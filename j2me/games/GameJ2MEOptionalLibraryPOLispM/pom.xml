@@ -1,0 +1,76 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.allbinary</groupId>
+    <artifactId>GameJ2MEOptionalLibraryPOMLisp</artifactId>
+    <packaging>pom</packaging>
+    <!-- AllBinary Platform Version Start -->
+    <version>1.0.0-SNAPSHOT</version>
+    <!-- AllBinary Platform Version End -->
+
+    <name>GameJ2MEOptionalLibraryPOMLisp</name>
+    <url>http://www.allbinary.com/</url>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>AllBinary Snapshots Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-releases</id>
+            <name>AllBinary Releases Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
+
+
+
+    <modules>
+        
+        <!--<module>../../ProgressLazyJ2MEJavaLibraryLispM</module>-->
+        <!--
+                <module>../../games/GameScoresBaseHTMLLibraryLispM</module>
+                <module>../../games/GameScoresJ2MEJavaLibraryLispM</module>
+                <module>../../../allbinary_src/licensing/RemoteXmlRpcJavaLibraryLispM</module>
+                <module>../../games/GameScoresLocalLibraryLispM</module>
+                <module>../../games/GameScoresRemoteAndLocalLibraryLispM</module>
+        -->
+<!-- in GameJ2MELibraryPOM <module>../../media/graphics/ImageCacheJ2MEJavaLibraryLispM</module>-->
+        <!--<module>../../media/graphics/ImageCacheLazyJ2MEJavaLibraryLispM</module>-->
+        <!--        <module>../../media/graphics/ImageCacheOpenGLESJavaLibraryLispM</module>-->
+        <module>../../media/graphics/LazyGameResourceNoneJavaLibraryLispM</module>
+
+<!-- in GameJ2MELibraryPOM <module>../../../graphics/opengl/OpenGLNoneJavaLibraryLispM</module>-->
+
+        <!--
+                <module>../../../graphics/opengl/OpenGLESJavaLibraryLispM</module>
+        -->
+
+<!-- in GameJ2MELibraryPOM <module>../../input/JSEGyroSensorJavaLibraryLispM</module>-->
+        <!--        
+                <module>../../ProgressJ2MEJavaLibraryLispM</module>
+        -->
+        <!--        
+                //At some point the GameInput libraries were here
+        -->
+        
+        <!--
+        ../../
+        <module>../../../../worklisp/j2me/media/graphics/FormJMEJavaLibraryLispM</module>
+        -->
+        <!--
+        ../../
+        <module>../../../../worklisp/j2me/media/graphics/FormJSEJavaLibraryLispM</module>
+        -->
+
+        <!--<module>../../media/sound/J2SEMediaMIDPMinimalJavaLibraryLispM</module>-->
+<!--        <module>../../media/sound/NotDeviceSpecificMIDP2JavaLibraryLispM</module>-->
+        <!--<module>../../media/sound/MediaMIDP2ForHTMLJavaLibraryLispM</module>-->
+
+        <!--
+                <module>../../../../worklisp/j2me/ScreenCaptureAndroidJavaLibraryLispM</module>
+        -->
+    </modules>
+
+</project>
+

@@ -1,0 +1,147 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.allbinary.business</groupId>
+    <artifactId>BlisketJavaLibraryPLisp</artifactId>
+    <packaging>pom</packaging>
+    <!-- AllBinary Platform Version Start -->
+    <version>1.0.0-SNAPSHOT</version>
+    <!-- AllBinary Platform Version End -->
+
+    <name>BlisketJavaLibraryPLisp</name>
+    <url>http://www.allbinary.com/</url>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>AllBinary Snapshots Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-releases</id>
+            <name>AllBinary Releases Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
+    
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    
+    <modules>
+
+        <!--
+        <module>../../j2me/AllBinaryJ2MELibraryLispP</module>
+        -->
+        <!--
+        <module>../data/DataJavaLibraryLispM</module>
+        -->
+
+        <module>../licensing/TestServiceClientInfoJavaLibraryLispM</module>        
+
+        <module>../data/DataTableInterfacesLispM</module>
+        
+        <module>../QueueJavaLibraryLispM</module>
+        
+        <!--
+        <module>../TokenizerJavaLibraryLispM</module>
+        -->
+
+        <module>../logging/LogConfigTypeFreeblisketJavaLibraryLispM</module>
+
+        <module>../JavaUtilLibraryLispM</module>
+        <module>../NullInitInfoJavaLibraryLispM</module>        
+        <module>../InitInfoJavaLibraryLispM</module>
+        <module>../PreLoaderHttpJavaLibraryLispM</module>
+        
+        <module>../TagsBaseJavaLibraryLispM</module>
+        <module>../CustomLoaderJavaLibraryLispM</module>
+        
+        <!--
+        <module>../logic/data/file/FileJ2SEJavaLibraryLispM</module>
+        <module>../logic/data/file/FileJavaLibraryLispM</module>
+        -->
+
+        <module>../data/SQLAllBinaryJavaLibraryLispM</module>
+
+        <!--
+        <module>../licensing/FileLicenseInitInfoJavaLibraryLispM</module>
+        -->
+
+        <module>../DocumentObjectModelJavaLibraryLispM</module>
+
+        <module>../VisualStyleJavaLibraryLispM</module>
+
+        <module>../ConfigurationJavaLibraryLispM</module>
+
+        <module>../VisualTransformBaseJavaLibraryLispM</module>
+
+        <module>../CategoryBaseJavaLibraryLispM</module>
+        <module>../CategoryJavaLibraryLispM</module>
+
+        <module>../UserJavaLibraryLispM</module>
+
+        <module>../PaymentGatewayBaseJavaLibraryLispM</module>
+
+        <module>../data/vo/EntitiesBlisketVOJavaLibraryLispM</module>
+        <module>../PaymentGatewayJavaLibraryLispM</module>
+        <module>../data/vo/EntitiesOrderHistoryVOJavaLibraryLispM</module>
+        <module>../data/vo/EntityPaymentGatewayVOJavaLibraryLispM</module>
+        <module>../data/vo/EntityStoreFrontVOJavaLibraryLispM</module>
+
+        <module>../data/EntitiesBlisketBaseInterfacesJavaLibraryLispM</module>
+        <module>../data/EntitiesBlisketBaseJavaLibraryLispM</module>
+        
+        <module>../data/EntitiesAdvertisementBaseJavaLibraryLispM</module>
+        <module>../data/EntityOrderHistoryJavaLibraryLispM</module>
+        <module>../data/EntityPaymentGatewayJavaLibraryLispM</module>
+        <module>../data/EntityVisualTransformJavaLibraryLispM</module>
+        <module>../data/EntityUserJavaLibraryLispM</module>
+        <module>../data/EntityWorkflowJavaLibraryLispM</module>
+
+        <module>../SMTPConfigurationJavaLibraryLispM</module>
+        <module>../SMTPBaseJavaLibraryLispM</module>
+
+        <module>../VisualTransformJavaLibraryLispM</module>
+
+        <module>../../replace_these_stub_projects/allbinary_src/YourRuntimeEnvironmentJavaLibraryLispM</module>
+        <module>../GatewayJavaLibraryLispM</module>
+        
+        <module>../WorkflowBaseJavaLibraryLispM</module>
+        <module>../WorkflowJavaLibraryLispM</module>
+
+        <module>../IdGeneratorUsingFilesJavaLibraryLispM</module>
+        <module>../BlisketPreVOJavaLibraryLispM</module>
+
+        <!-- 
+        EntitiesOrderHistoryVOJavaLibrary
+        UserJavaLibrary
+        -->
+        
+        <module>../BlisketVOJavaLibraryLispM</module>
+
+        <module>../UserCommerceJavaLibraryLispM</module>
+
+        <module>../CustomizerValidatorsJavaLibraryLispM</module>
+
+        <!-- 
+        AllBinaryCacheForShiftOneJavaLibrary
+        AllBinaryJSECacheJavaLibrary
+        ColorJavaLibrary
+        ImageJavaLibrary
+        -->
+        
+        <module>../logic/data/file/FileMediaJ2SEJavaLibraryLispM</module>
+        <module>../BlisketBaseJavaLibraryLispM</module>
+
+        <module>../logging/LoggingGAEAllLispM</module>
+        <module>../BlisketJavaLibraryLispM</module>
+        
+    </modules>
+
+</project>
+

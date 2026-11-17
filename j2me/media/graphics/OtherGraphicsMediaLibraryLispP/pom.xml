@@ -1,0 +1,87 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.allbinary</groupId>
+    <artifactId>OtherGraphicsMediaLibraryPLisp</artifactId>
+    <packaging>pom</packaging>
+    <!-- AllBinary Platform Version Start -->
+    <version>1.0.0-SNAPSHOT</version>
+    <!-- AllBinary Platform Version End -->
+
+    <name>OtherGraphicsMediaLibraryPLisp</name>
+    <url>http://www.allbinary.com/</url>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>AllBinary Snapshots Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-releases</id>
+            <name>AllBinary Releases Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
+
+
+    <properties>
+        <buildLabel>${project.version}</buildLabel>
+        <assemblyPluginVersion>2.2-beta-1</assemblyPluginVersion>
+    </properties>
+
+    <modules>
+
+        <!--
+        -->
+        <module>../../graphics/animation/vector/VectorAnimationBaseJavaLibraryLispM</module>
+
+        <module>../../graphics/animation/vector/VectorAnimationJ2MEJavaLibraryLispM</module>
+        <module>../../graphics/animation/vector/VectorAnimationJavaLibraryLispM</module>
+
+        <module>../../graphics/VectorJavaLibraryLispM</module>
+
+        <module>../../graphics/BoundsJavaLibraryLispM</module>
+
+        <module>../../../../graphics/opengl/OpenGLESNullImageJavaLibraryLispM</module>
+        <module>../../../../graphics/opengl/OpenGLESNullImageJ2MEJavaLibraryLispM</module>
+
+        <module>../../graphics/animation/image/AllBinaryImageAnimationJavaLibraryLispM</module>
+        <module>../../graphics/animation/sprite/AllBinarySpriteAnimationJavaLibraryLispM</module>
+
+        <!--
+        ../../
+        <module>../../../../../worklisp/j2me/media/graphics/animation/sprite/AllBinaryQuarterSpriteAnimationJavaLibraryLispM</module>
+        -->
+        <!--
+        ../../
+        <module>../../../../../worklisp/j2me/media/graphics/animation/sprite/AllBinaryQuarterSpriteAnimation2JavaLibraryLispM</module>
+        -->
+
+        <module>../../graphics/animation/image/ImageJ2MEJavaLibraryLispM</module>
+        <!--
+        <module>../../graphics/animation/image/ImageHTMLJavaLibraryLispM</module>
+        -->
+        <!--<module>../../graphics/animation/image/ImageJ2SEJavaLibraryLispM</module>-->
+        <!--
+        <module>../../graphics/animation/image/ImageAndroidJavaLibraryLispM</module>
+        -->
+        <!--
+        <module>../../graphics/animation/image/ImageSwtJ2SEJavaLibraryLispM</module>
+        -->
+        
+        <!--
+        ../../
+        <module>../../../../../worklisp/j2me/media/graphics/layer/AllBinaryTiledLayerJavaLibraryLispM</module>
+        <module>../../graphics/layer/AllBinaryTiledLayerJavaLibraryLispM</module>
+        -->
+
+        <!-- Not used in Platform Libraries -->
+        <module>../../graphics/GraphicsBasicImageJavaLibraryLispM</module>
+        <!--
+        -->
+        <module>../../graphics/animation/image/AllBinaryImageAnimationRotationJavaLibraryLispM</module>
+
+    </modules>
+
+</project>
+

@@ -1,0 +1,59 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.allbinary</groupId>
+    <artifactId>AllBinaryPersistenceLibraryPLisp</artifactId>
+    <packaging>pom</packaging>
+    <!-- AllBinary Platform Version Start -->
+    <version>1.0.0-SNAPSHOT</version>
+    <!-- AllBinary Platform Version End -->
+
+    <name>AllBinaryPersistenceLibraryPLisp</name>
+    <url>http://www.allbinary.com/</url>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>AllBinary Snapshots Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-releases</id>
+            <name>AllBinary Releases Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
+    
+    <properties>
+        <buildLabel>${project.version}</buildLabel>
+        <assemblyPluginVersion>2.2-beta-1</assemblyPluginVersion>
+    </properties>
+
+    <modules>
+        
+        <!--
+        -->
+        <module>../allbinary_src/cache/AllBinaryCacheLibraryLispM</module>
+        <module>../allbinary_src/PermutationsJavaLibraryLispM</module>
+        <module>../allbinary_src/logic/BasePreloaderFileJavaLibraryLispM</module>
+        <module>../allbinary_src/logic/data/file/FileJavaLibraryLispM</module>
+        <module>../allbinary_src/logic/data/file/FileJ2SEJavaLibraryLispM</module>
+        <!--<module>../allbinary_src/data/DataJavaLibraryLispM</module>-->
+        <!--<module>../allbinary_src/logic/data/file/FileUnamedJavaLibraryLispM</module>-->
+        <!--<module>../allbinary_src/logic/data/file/FileAdvancedJavaLibraryLispM</module>-->
+        <!--<module>../allbinary_src/PreLoaderJavaLibraryLispM</module>-->
+        <!--<module>../allbinary_src/FileInitInfoJavaLibraryLispM</module>-->
+        <!--<module>../allbinary_src/PreLoaderFileJavaLibraryLispM</module>-->
+        <!--<module>../allbinary_src/PreLoaderLicenseJavaLibraryLispM</module>-->
+        <module>../j2me/PCResourceLibraryLispM</module>
+        <module>../j2me/ProgressJ2MEJavaLibraryLispM</module>
+        <module>../allbinary_src/licensing/ClientInfoBaseJavaLibraryLispM</module>
+        <!--<module>../allbinary_src/licensing/RemoteXmlRpcJavaLibraryLispM</module>-->
+        <!--<module>../allbinary_src/licensing/LicenseClientJavaLibraryLispM</module>-->
+
+        <!--
+        <module>../allbinary_src/PreLoaderLicenseJavaLibraryLispM</module>
+        -->
+    </modules>
+
+</project>
+

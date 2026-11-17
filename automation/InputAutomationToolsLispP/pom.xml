@@ -1,0 +1,61 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.allbinary</groupId>
+    <artifactId>InputAutomationToolsLisp</artifactId>
+    <packaging>pom</packaging>
+    <!-- AllBinary Platform Version Start -->
+    <version>1.0.0-SNAPSHOT</version>
+    <!-- AllBinary Platform Version End -->
+
+    <name>InputAutomationToolsLisp</name>
+    <url>http://www.allbinary.com/</url>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>AllBinary Snapshots Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-releases</id>
+            <name>AllBinary Releases Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
+    
+    <properties>
+        <buildLabel>${project.version}</buildLabel>
+        <assemblyPluginVersion>2.2-beta-1</assemblyPluginVersion>
+    </properties>
+
+    <modules>
+        <!--
+        <module>../AllBinaryCoreJavaLibraryLispM</module>        
+        -->
+
+        <module>../../replace_these_stub_projects/osgi/YourOSGIComponentLibraryLispM</module>
+        <module>../../allbinary_src/AllBinaryOSGIJavaLibraryLispM</module>
+
+        <module>../../graphics/ColorJavaLibraryLispM</module>
+        <module>../../graphics/ImageJavaLibraryLispM</module>
+        <module>../../graphics/ImageComparisonJavaLibraryLispM</module>
+        <module>../../graphics/AdvancedImageJ2SEJavaLibraryLispM</module>
+        
+        <module>../InputAutomationModuleJavaLibraryLispM</module>
+        
+        <module>../InputAutomationActionScriptJavaLibraryLispM</module>
+        <module>../InputAutomationGenericModuleJavaLibraryLispM</module>
+        <module>../InputAutomationGeneric2ModuleJavaLibraryLispM</module>
+
+        <module>../../allbinary_src/HelpJavaLibraryLispM</module>
+        <module>../InputAutomationJavaLibraryLispM</module>
+
+        <module>../InputAutomationJavaApplicationLispM</module>
+        
+        <module>../../game/InputAutomationGameModulesJavaLibraryLispM</module>
+        
+        <module>../AllBinaryCoreJavaLibraryLispM</module>
+    </modules>
+
+</project>
+

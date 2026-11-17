@@ -1,0 +1,192 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.allbinary</groupId>
+  <artifactId>GameJ2MELibraryPOMLisp</artifactId>
+  <packaging>pom</packaging>
+  <!-- AllBinary Platform Version Start -->
+  <version>1.0.0-SNAPSHOT</version>
+  <!-- AllBinary Platform Version End -->
+
+  <name>GameJ2MELibraryPOMLisp</name>
+  <url>http://www.allbinary.com/</url>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>AllBinary Snapshots Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-releases</id>
+            <name>AllBinary Releases Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
+
+
+
+    <modules>
+
+        <!--
+        NoGyroSensorLibrary
+
+        -->
+        <!--<module>../../android/AndroidUtilJavaLibraryLispM</module>-->
+
+        <module>../../../allbinary_src/security/SimpleCryptLibraryLispM</module>
+        <!--
+        <module>../../../../working_thirdpartylisp/security/BouncyCastleDESJavaLibraryLispM</module>
+        <module>../../../../working_thirdpartylisp/communication/XmlRpc/XmlRpcJavaLibraryLispM</module>
+        -->
+        <module>../../../allbinary_src/TokenizerJavaLibraryLispM</module>
+        <module>../../../allbinary_src/security/BasicSecurityJavaLibraryLispM</module>
+        <!--<module>../../../replace_these_stub_projects/security/YourCryptFileJavaLibraryLispM</module>-->
+        <module>../../../replace_these_stub_projects/security/YourSecurityJavaLibraryLispM</module>
+        <module>../../../replace_these_stub_projects/communication/YourXmlRpcJavaLibraryLispM</module>
+        <module>../../../replace_these_stub_projects/allbinary_src/J2MEOnlyJavaLibraryLispM</module>
+        <module>../../../replace_these_stub_projects/allbinary_src/J2MECompatibilityJavaLibraryLispM</module>
+        <module>../../../replace_these_stub_projects/allbinary_src/J2MEJsInteropCompatibilityJavaLibraryLispM</module>
+
+        <module>../../DebugJavaLibraryLispM</module>             
+        <module>../../ResourceLibraryLispM</module>
+        <module>../../ResourceJ2MEJavaLibraryLispM</module>
+        <!--<module>../../AndroidResourceLibraryLispM</module>-->
+        <!--<module>../../../allbinary_src/hardware/AndroidSystemJavaLibraryLispM</module>-->
+
+        <module>../../../game/behavior/ArtificialIntelligenceLibraryLispM</module>
+
+        <module>../../media/graphics/PlatformNullImageJavaLibraryLispM</module>
+        <module>../../media/graphics/ImageCacheBaseJ2MEJavaLibraryLispM</module>
+        <module>../../media/graphics/ImageCacheJ2MEJavaLibraryLispM</module>
+        <module>../../../graphics/opengl/OpenGLJ2MENoneJavaLibraryLispM</module>
+        <module>../../../graphics/opengl/OpenGLNoneJavaLibraryLispM</module>
+        <module>../../../graphics/opengl/OpenGLNoneOtherJavaLibraryLispM</module>
+        <module>../../../graphics/opengl/OpenGLNoneOther2JavaLibraryLispM</module>
+        <module>../../../graphics/opengl/OpenGLESBaseJ2MEJavaLibraryLispM</module>
+
+        <module>../../media/graphics/animation/AnimationLibraryLispM</module>
+        <module>../../media/graphics/animation/RotationAnimationJavaLibraryLispM</module>
+
+        <module>../../games/GameInputLibraryLispM</module>
+
+        <module>../../games/GameScoresBaseJavaLibraryLispM</module>
+        <module>../../games/GameScoresBaseJ2MELibraryLispM</module>
+
+        <module>../../statistics/ApplicationStatisticsHTMLLibraryLispM</module>
+        <!--
+        <module>../../games/GameConfigurationHTMLJavaLibraryLispM</module>
+        -->
+        <module>../../games/GameConfigurationJ2MEJavaLibraryLispM</module>   
+        <module>../../games/GameConfigurationJavaLibraryLispM</module>
+
+        <module>../../games/GameIntermissionLibraryLispM</module>
+
+        <module>../../GroupLibraryLispM</module>
+
+        <module>../../input/NoSensorJavaLibraryLispM</module>
+
+        <module>../../input/AllBinarySensorJavaLibraryLispM</module>
+
+        <module>../../input/platform/me/GameInputMEJavaLibraryLispM</module>
+        <module>../../input/platform/me/GameInputMEKeyOnlyJavaLibraryLispM</module>
+        <module>../../input/platform/me/GameInputMEMotionJavaLibraryLispM</module>
+        <module>../../input/platform/pc/GameInputPCBaseJavaLibraryLispM</module>
+        <module>../../input/platform/pc/GameInputPCJavaLibraryLispM</module>
+        <module>../../input/platform/pc/GameInputPCKeyOnlyJavaLibraryLispM</module>
+        <module>../../input/platform/pc/GameInputPCMotionJavaLibraryLispM</module>
+        <module>../../input/platform/pc/GameInputSwtJavaLibraryLispM</module>
+
+        <module>../../input/AllBinaryGyroSensorJavaLibraryLispM</module>
+        <module>../../input/MotionGestureJavaLibraryLispM</module>
+        
+        <module>../../input/MotionGestureBaseJavaLibraryLispM</module>
+
+        <module>../../games/GameInputPersistanceLibraryLispM</module>
+        <module>../../games/GameInputNoPersistanceLibraryLispM</module>
+        
+        <module>../../lib/VectorThreeDimensionalLibraryLispM</module>
+        <module>../../input/AllBinaryAccelerometerSensorJavaLibraryLispM</module>
+        <module>../../input/NoGyroSensorJavaLibraryLispM</module>
+        <module>../../input/JSEGyroSensorJavaLibraryLispM</module>
+        <!--
+        <module>../../input/android/</module>
+        <module>../../input/platform/android/GameInputAndroidBaseJavaLibraryLispM</module>
+        -->
+
+        <module>../../media/sound/BasicPlayerJavaLibraryLispM</module>
+        <module>../../media/sound/BasicPlayerMIDP2JavaLibraryLispM</module>
+        <module>../../media/sound/NoPlayerJavaLibraryLispM</module>
+        <module>../../media/sound/SoundJ2MELibraryLispM</module>
+
+        <module>../../media/motion/AllBinaryVibrationJavaLibraryLispM</module>
+        <module>../../media/motion/NoVibrateJavaLibraryLispM</module>
+        <!--<module>../../media/motion/VibrateAndroidJavaLibraryLispM</module>-->
+
+        <module>../../media/graphics/NullCustomUIJavaLibraryLispM</module>
+        <module>../../media/graphics/NullCustomUIBaseJavaLibraryLispM</module>
+
+        <module>../../media/graphics/FormValidationJavaLibraryLispM</module>
+        
+        <module>../../media/graphics/FormJavaLibraryLispM</module>
+        <module>../../media/graphics/FormBaseJavaLibraryLispM</module>
+        <!--
+        <module>../../media/graphics/FormJMEJavaLibraryLispM</module>
+        -->
+        <module>../../../j2me/media/graphics/FormJMEJavaLibraryLispM</module>
+
+        <module>../../media/graphics/animation/AnimationResourceJavaLibraryLispM</module>
+        <module>../../media/graphics/animation/TransitionAnimationJavaLibraryLispM</module>
+        <module>../../media/graphics/animation/NoTransitionAnimationJavaLibraryLispM</module>
+        <!--
+        AndroidTransitionAnimationJavaLibraryM
+        -->
+        <module>../../media/graphics/animation/GameAnimationJavaLibraryLispM</module>
+        <module>../../games/GameResourceJavaLibraryLispM</module>
+        <module>../../games/GameSoundsJavaLibraryLispM</module>
+
+        <module>../../input/TouchInputLibraryLispP</module>
+
+        <module>../../media/MediaDataLispM</module>
+        <module>../../media/sound/NotDeviceSpecificNoMediaMIDP1LibraryLispM</module>
+
+        <module>../../../allbinary_src/content/ContentNoneJavaLibraryLispM</module>
+        <!--<module>../../../allbinary_src/content/ContentAndroidJavaLibraryLispM</module>-->
+
+        <module>../../games/GameConfigurationFormJavaLibraryLispM</module>
+
+        <module>../../FullScreenNoneJavaLibraryLispM</module>
+        <!--
+        <module>../../FullScreenJavaLibraryLispM</module>
+        -->
+
+        <module>../../../physics/VelocityLibraryLispM</module>
+
+        <module>../../games/weapon/SoundsBasicWeaponsJavaLibraryLispM</module>
+
+        <module>../../lib/TrigJ2MELibraryLispM</module>
+
+        <module>../../media/graphics/geography/map/LayerPlacementLibraryLispM</module>
+        <module>../../media/graphics/layer/AllBinaryLayerJavaLibraryLispM</module>
+
+        <module>../../ScreenCaptureNoneJavaLibraryLispM</module>
+        
+        <module>../licensing/GameLicensingNullJavaLibraryLispM</module>
+        
+        <module>../../business/advertisement/AllBinaryAdvertisementClientJavaLibraryLispM</module>
+        <module>../../business/advertisement/AdvertisementClientNoneJavaLibraryLispM</module>
+
+        <module>../GameNotificationJavaLibraryLispM</module>
+
+        <module>../../../graphics/opengl/NoSWTJavaLibraryLispM</module>
+        <module>../../../graphics/opengl/SWTWithoutJOGLJavaLibraryLispM</module>
+        <module>../SWTJavaLibraryLispM</module>
+        <module>../GameJ2MELibraryLispM</module>
+        
+        <!--
+        <module>../GameJ2MEOptionalLibraryPOLispM</module>
+        -->
+    
+    </modules>
+
+</project>
+
