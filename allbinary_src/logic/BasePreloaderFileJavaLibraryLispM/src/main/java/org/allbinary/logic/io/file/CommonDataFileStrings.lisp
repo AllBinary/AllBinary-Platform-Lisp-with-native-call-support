@@ -1,238 +1,418 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2026 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io.file
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2026 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.io.file
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass CommonDataFileStrings (JObject)
+  ((f_XML :initform nil)
+   (f__XML :initform nil)
+   (f_JSON :initform nil)
+   (f__JSON :initform nil)
+   (f_XSL :initform nil)
+   (f__XSL :initform nil)
+   (f_JAVA :initform nil)
+   (f__JAVA :initform nil)
+   (f_KT :initform nil)
+   (f__KT :initform nil)
+   (f_TS :initform nil)
+   (f__TS :initform nil)
+   (f_JS :initform nil)
+   (f__JS :initform nil)
+   (f_CPP :initform nil)
+   (f__CPP :initform nil)
+   (f_H :initform nil)
+   (f__H :initform nil)
+   (f_PY :initform nil)
+   (f__PY :initform nil)
+   (f_GO :initform nil)
+   (f__GO :initform nil)
+   (f_CS :initform nil)
+   (f__CS :initform nil)
+   (f_ADB :initform nil)
+   (f__ADB :initform nil)
+   (f_ADS :initform nil)
+   (f__ADS :initform nil)
+   (f_ADA :initform nil)
+   (f__ADA :initform nil)
+   (f_RUST :initform nil)
+   (f__RUST :initform nil)
+   (f_C :initform nil)
+   (f__C :initform nil)
+   (f_CSHARP :initform nil)
+   (f__CSHARP :initform nil)
+   (f_ERL :initform nil)
+   (f__ERL :initform nil)
+   (f_HS :initform nil)
+   (f__HS :initform nil)
+   (f_HX :initform nil)
+   (f__HX :initform nil)
+   (f_LUA :initform nil)
+   (f__LUA :initform nil)
+   (f_PAS :initform nil)
+   (f__PAS :initform nil)
+   (f_ML :initform nil)
+   (f__ML :initform nil)
+   (f_PL :initform nil)
+   (f__PL :initform nil)
+   (f_RB :initform nil)
+   (f__RB :initform nil)
+   (f_ZIG :initform nil)
+   (f__ZIG :initform nil)
+   (f_PM :initform nil)
+   (f__PM :initform nil)
+   (f_KTS :initform nil)
+   (f__KTS :initform nil)
+   (f_CBL :initform nil)
+   (f__CBL :initform nil)
+   (f_COB :initform nil)
+   (f__COB :initform nil)
+   (f_F90 :initform nil)
+   (f__F90 :initform nil)
+   (f_F :initform nil)
+   (f__F :initform nil)
+   (f_DART :initform nil)
+   (f__DART :initform nil)
+   (f_EX :initform nil)
+   (f__EX :initform nil)
+   (f_EXS :initform nil)
+   (f__EXS :initform nil)
+   (f_M :initform nil)
+   (f__M :initform nil)
+   (f_SWIFT :initform nil)
+   (f__SWIFT :initform nil)
+   (f_ASM :initform nil)
+   (f__ASM :initform nil)
+   (f_S :initform nil)
+   (f__S :initform nil)
+   (f_NIM :initform nil)
+   (f__NIM :initform nil)
+   (f_VALA :initform nil)
+   (f__VALA :initform nil)
+   (f_LISP :initform nil)
+   (f__LISP :initform nil)
+   (f_RKT :initform nil)
+   (f__RKT :initform nil)
+   (f_SCM :initform nil)
+   (f__SCM :initform nil)
+   (f_AS :initform nil)
+   (f__AS :initform nil)
+   (f_OBX :initform nil)
+   (f__OBX :initform nil)
+   (f_SCALA :initform nil)
+   (f__SCALA :initform nil)
+   (f_GROOVY :initform nil)
+   (f__GROOVY :initform nil)
+   (f_JL :initform nil)
+   (f__JL :initform nil)
+   (f_TCL :initform nil)
+   (f__TCL :initform nil)
+   (f_WREN :initform nil)
+   (f__WREN :initform nil)
+   (f_JANET :initform nil)
+   (f__JANET :initform nil)
+   (f_GR :initform nil)
+   (f__GR :initform nil)
+   (f_ELM :initform nil)
+   (f__ELM :initform nil)
+   (f_KOTLIN :initform nil)
+   (f_TYPESCRIPT :initform nil)
+   (f_JAVASCRIPT :initform nil)
+   (f_C_PLUS_PLUS :initform nil)
+   (f_PYTHON :initform nil)
+   (f_C_SHARP :initform nil)
+   (f_RUST_NAME :initform nil)
+   (f_RUBY :initform nil)
+   (f_PERL :initform nil)
+   (f_OBJECT_PASCAL :initform nil)
+   (f_OCAML :initform nil)
+   (f_HASKELL :initform nil)
+   (f_HAXE :initform nil)
+   (f_ERLANG :initform nil)
+   (f_COBOL :initform nil)
+   (f_FORTRAN :initform nil)
+   (f_ELIXIR :initform nil)
+   (f_OBJECTIVE_C :initform nil)
+   (f_RACKET :initform nil)
+   (f_SCHEME :initform nil)
+   (f_ACTIONSCRIPT :initform nil)
+   (f_OBERON_PLUS :initform nil)
+   (f_JULIA :initform nil)
+   (f_GRAIN :initform nil)
+   (f_CPLUSPLUS :initform nil)
+   (f_GOLANG :initform nil)
+   (f_CSHARP_ALIAS :initform nil)
+   (f_C23 :initform nil)
+   (f_PASCAL :initform nil)
+   (f_OBJECT_PASCAL_ALIAS :initform nil)
+   (f_OBJC :initform nil)
+   (f_OBJECTIVE_C_ALIAS :initform nil)
+   (f_ASSEMBLY :initform nil)
+   (f_COMMON_LISP :initform nil)
+   (f_OBERON :initform nil)
+   (f_OBERON_PLUS_ALIAS :initform nil)
+   (f_KT_SHORT_NAME :initform nil)
+   (f_TS_SHORT_NAME :initform nil)
+   (f_JS_SHORT_NAME :initform nil)
+   (f_CPP_SHORT_NAME :initform nil)
+   (f_PY_SHORT_NAME :initform nil)
+   (f_GO_SHORT_NAME :initform nil)
+   (f_CS_SHORT_NAME :initform nil)
+   (f_ADA_SHORT_NAME :initform nil)
+   (f_RUST_SHORT_NAME :initform nil)
+   (f_LUA_SHORT_NAME :initform nil)
+   (f_C_SHORT_NAME :initform nil)
+   (f_ZIG_SHORT_NAME :initform nil)
+   (f_RB_SHORT_NAME :initform nil)
+   (f_PL_SHORT_NAME :initform nil)
+   (f_PAS_SHORT_NAME :initform nil)
+   (f_ML_SHORT_NAME :initform nil)
+   (f_HS_SHORT_NAME :initform nil)
+   (f_HX_SHORT_NAME :initform nil)
+   (f_ERL_SHORT_NAME :initform nil)
+   (f_CBL_SHORT_NAME :initform nil)
+   (f_F90_SHORT_NAME :initform nil)
+   (f_DART_SHORT_NAME :initform nil)
+   (f_EX_SHORT_NAME :initform nil)
+   (f_OBJC_SHORT_NAME :initform nil)
+   (f_SWIFT_SHORT_NAME :initform nil)
+   (f_ASM_SHORT_NAME :initform nil)
+   (f_NIM_SHORT_NAME :initform nil)
+   (f_VALA_SHORT_NAME :initform nil)
+   (f_LISP_SHORT_NAME :initform nil)
+   (f_RKT_SHORT_NAME :initform nil)
+   (f_SCM_SHORT_NAME :initform nil)
+   (f_AS_SHORT_NAME :initform nil)
+   (f_OBX_SHORT_NAME :initform nil)
+   (f_SCALA_SHORT_NAME :initform nil)
+   (f_GROOVY_SHORT_NAME :initform nil)
+   (f_JL_SHORT_NAME :initform nil)
+   (f_TCL_SHORT_NAME :initform nil)
+   (f_WREN_SHORT_NAME :initform nil)
+   (f_JANET_SHORT_NAME :initform nil)
+   (f_GR_SHORT_NAME :initform nil)
+   (f_ELM_SHORT_NAME :initform nil)
+   (f_UNCRYPTED_EXTENSION :initform nil)
+   (f_ENCRYPTED_EXTENSION :initform nil)))
+
+(defvar CommonDataFileStrings.jcell_instance :jnone)
+(defun CommonDataFileStrings.jstatic_instance ()
+  (when (eq CommonDataFileStrings.jcell_instance :jnone) (setf CommonDataFileStrings.jcell_instance (CommonDataFileStrings.jnew_0)))
+  CommonDataFileStrings.jcell_instance)
+(defun (setf CommonDataFileStrings.jstatic_instance) (value) (setf CommonDataFileStrings.jcell_instance value))
+
+(defun CommonDataFileStrings.jnew_0 ()
+  (let ((this (make-instance 'CommonDataFileStrings)))
+    (setf (slot-value this 'f_XML) "xml")
+    (setf (slot-value this 'f__XML) ".xml")
+    (setf (slot-value this 'f_JSON) "json")
+    (setf (slot-value this 'f__JSON) ".json")
+    (setf (slot-value this 'f_XSL) "xsl")
+    (setf (slot-value this 'f__XSL) ".xsl")
+    (setf (slot-value this 'f_JAVA) "java")
+    (setf (slot-value this 'f__JAVA) ".java")
+    (setf (slot-value this 'f_KT) "kt")
+    (setf (slot-value this 'f__KT) ".kt")
+    (setf (slot-value this 'f_TS) "ts")
+    (setf (slot-value this 'f__TS) ".ts")
+    (setf (slot-value this 'f_JS) "js")
+    (setf (slot-value this 'f__JS) ".js")
+    (setf (slot-value this 'f_CPP) "cpp")
+    (setf (slot-value this 'f__CPP) ".cpp")
+    (setf (slot-value this 'f_H) "h")
+    (setf (slot-value this 'f__H) ".h")
+    (setf (slot-value this 'f_PY) "py")
+    (setf (slot-value this 'f__PY) ".py")
+    (setf (slot-value this 'f_GO) "go")
+    (setf (slot-value this 'f__GO) ".go")
+    (setf (slot-value this 'f_CS) "cs")
+    (setf (slot-value this 'f__CS) ".cs")
+    (setf (slot-value this 'f_ADB) "adb")
+    (setf (slot-value this 'f__ADB) ".adb")
+    (setf (slot-value this 'f_ADS) "ads")
+    (setf (slot-value this 'f__ADS) ".ads")
+    (setf (slot-value this 'f_ADA) "ada")
+    (setf (slot-value this 'f__ADA) ".ada")
+    (setf (slot-value this 'f_RUST) "rs")
+    (setf (slot-value this 'f__RUST) ".rs")
+    (setf (slot-value this 'f_C) "c")
+    (setf (slot-value this 'f__C) ".c")
+    (setf (slot-value this 'f_CSHARP) "cs")
+    (setf (slot-value this 'f__CSHARP) ".cs")
+    (setf (slot-value this 'f_ERL) "erl")
+    (setf (slot-value this 'f__ERL) ".erl")
+    (setf (slot-value this 'f_HS) "hs")
+    (setf (slot-value this 'f__HS) ".hs")
+    (setf (slot-value this 'f_HX) "hx")
+    (setf (slot-value this 'f__HX) ".hx")
+    (setf (slot-value this 'f_LUA) "lua")
+    (setf (slot-value this 'f__LUA) ".lua")
+    (setf (slot-value this 'f_PAS) "pas")
+    (setf (slot-value this 'f__PAS) ".pas")
+    (setf (slot-value this 'f_ML) "ml")
+    (setf (slot-value this 'f__ML) ".ml")
+    (setf (slot-value this 'f_PL) "pl")
+    (setf (slot-value this 'f__PL) ".pl")
+    (setf (slot-value this 'f_RB) "rb")
+    (setf (slot-value this 'f__RB) ".rb")
+    (setf (slot-value this 'f_ZIG) "zig")
+    (setf (slot-value this 'f__ZIG) ".zig")
+    (setf (slot-value this 'f_PM) "pm")
+    (setf (slot-value this 'f__PM) ".pm")
+    (setf (slot-value this 'f_KTS) "kts")
+    (setf (slot-value this 'f__KTS) ".kts")
+    (setf (slot-value this 'f_CBL) "cbl")
+    (setf (slot-value this 'f__CBL) ".cbl")
+    (setf (slot-value this 'f_COB) "cob")
+    (setf (slot-value this 'f__COB) ".cob")
+    (setf (slot-value this 'f_F90) "f90")
+    (setf (slot-value this 'f__F90) ".f90")
+    (setf (slot-value this 'f_F) "f")
+    (setf (slot-value this 'f__F) ".f")
+    (setf (slot-value this 'f_DART) "dart")
+    (setf (slot-value this 'f__DART) ".dart")
+    (setf (slot-value this 'f_EX) "ex")
+    (setf (slot-value this 'f__EX) ".ex")
+    (setf (slot-value this 'f_EXS) "exs")
+    (setf (slot-value this 'f__EXS) ".exs")
+    (setf (slot-value this 'f_M) "m")
+    (setf (slot-value this 'f__M) ".m")
+    (setf (slot-value this 'f_SWIFT) "swift")
+    (setf (slot-value this 'f__SWIFT) ".swift")
+    (setf (slot-value this 'f_ASM) "asm")
+    (setf (slot-value this 'f__ASM) ".asm")
+    (setf (slot-value this 'f_S) "s")
+    (setf (slot-value this 'f__S) ".s")
+    (setf (slot-value this 'f_NIM) "nim")
+    (setf (slot-value this 'f__NIM) ".nim")
+    (setf (slot-value this 'f_VALA) "vala")
+    (setf (slot-value this 'f__VALA) ".vala")
+    (setf (slot-value this 'f_LISP) "lisp")
+    (setf (slot-value this 'f__LISP) ".lisp")
+    (setf (slot-value this 'f_RKT) "rkt")
+    (setf (slot-value this 'f__RKT) ".rkt")
+    (setf (slot-value this 'f_SCM) "scm")
+    (setf (slot-value this 'f__SCM) ".scm")
+    (setf (slot-value this 'f_AS) "as")
+    (setf (slot-value this 'f__AS) ".as")
+    (setf (slot-value this 'f_OBX) "obx")
+    (setf (slot-value this 'f__OBX) ".obx")
+    (setf (slot-value this 'f_SCALA) "scala")
+    (setf (slot-value this 'f__SCALA) ".scala")
+    (setf (slot-value this 'f_GROOVY) "groovy")
+    (setf (slot-value this 'f__GROOVY) ".groovy")
+    (setf (slot-value this 'f_JL) "jl")
+    (setf (slot-value this 'f__JL) ".jl")
+    (setf (slot-value this 'f_TCL) "tcl")
+    (setf (slot-value this 'f__TCL) ".tcl")
+    (setf (slot-value this 'f_WREN) "wren")
+    (setf (slot-value this 'f__WREN) ".wren")
+    (setf (slot-value this 'f_JANET) "janet")
+    (setf (slot-value this 'f__JANET) ".janet")
+    (setf (slot-value this 'f_GR) "gr")
+    (setf (slot-value this 'f__GR) ".gr")
+    (setf (slot-value this 'f_ELM) "elm")
+    (setf (slot-value this 'f__ELM) ".elm")
+    (setf (slot-value this 'f_KOTLIN) "kotlin")
+    (setf (slot-value this 'f_TYPESCRIPT) "typescript")
+    (setf (slot-value this 'f_JAVASCRIPT) "javascript")
+    (setf (slot-value this 'f_C_PLUS_PLUS) "c++")
+    (setf (slot-value this 'f_PYTHON) "python")
+    (setf (slot-value this 'f_C_SHARP) "c#")
+    (setf (slot-value this 'f_RUST_NAME) "rust")
+    (setf (slot-value this 'f_RUBY) "ruby")
+    (setf (slot-value this 'f_PERL) "perl")
+    (setf (slot-value this 'f_OBJECT_PASCAL) "objectpascal")
+    (setf (slot-value this 'f_OCAML) "ocaml")
+    (setf (slot-value this 'f_HASKELL) "haskell")
+    (setf (slot-value this 'f_HAXE) "haxe")
+    (setf (slot-value this 'f_ERLANG) "erlang")
+    (setf (slot-value this 'f_COBOL) "cobol")
+    (setf (slot-value this 'f_FORTRAN) "fortran")
+    (setf (slot-value this 'f_ELIXIR) "elixir")
+    (setf (slot-value this 'f_OBJECTIVE_C) "objective-c")
+    (setf (slot-value this 'f_RACKET) "racket")
+    (setf (slot-value this 'f_SCHEME) "scheme")
+    (setf (slot-value this 'f_ACTIONSCRIPT) "actionscript")
+    (setf (slot-value this 'f_OBERON_PLUS) "oberon+")
+    (setf (slot-value this 'f_JULIA) "julia")
+    (setf (slot-value this 'f_GRAIN) "grain")
+    (setf (slot-value this 'f_CPLUSPLUS) "cplusplus")
+    (setf (slot-value this 'f_GOLANG) "golang")
+    (setf (slot-value this 'f_CSHARP_ALIAS) "csharp")
+    (setf (slot-value this 'f_C23) "c23")
+    (setf (slot-value this 'f_PASCAL) "pascal")
+    (setf (slot-value this 'f_OBJECT_PASCAL_ALIAS) "object pascal")
+    (setf (slot-value this 'f_OBJC) "objc")
+    (setf (slot-value this 'f_OBJECTIVE_C_ALIAS) "objectivec")
+    (setf (slot-value this 'f_ASSEMBLY) "assembly")
+    (setf (slot-value this 'f_COMMON_LISP) "common lisp")
+    (setf (slot-value this 'f_OBERON) "oberon")
+    (setf (slot-value this 'f_OBERON_PLUS_ALIAS) "oberonplus")
+    (setf (slot-value this 'f_KT_SHORT_NAME) "Kt")
+    (setf (slot-value this 'f_TS_SHORT_NAME) "Ts")
+    (setf (slot-value this 'f_JS_SHORT_NAME) "Js")
+    (setf (slot-value this 'f_CPP_SHORT_NAME) "Cpp")
+    (setf (slot-value this 'f_PY_SHORT_NAME) "Py")
+    (setf (slot-value this 'f_GO_SHORT_NAME) "Go")
+    (setf (slot-value this 'f_CS_SHORT_NAME) "Cs")
+    (setf (slot-value this 'f_ADA_SHORT_NAME) "Ada")
+    (setf (slot-value this 'f_RUST_SHORT_NAME) "Rust")
+    (setf (slot-value this 'f_LUA_SHORT_NAME) "Lua")
+    (setf (slot-value this 'f_C_SHORT_NAME) "C")
+    (setf (slot-value this 'f_ZIG_SHORT_NAME) "Zig")
+    (setf (slot-value this 'f_RB_SHORT_NAME) "Rb")
+    (setf (slot-value this 'f_PL_SHORT_NAME) "Pl")
+    (setf (slot-value this 'f_PAS_SHORT_NAME) "Pas")
+    (setf (slot-value this 'f_ML_SHORT_NAME) "Ml")
+    (setf (slot-value this 'f_HS_SHORT_NAME) "Hs")
+    (setf (slot-value this 'f_HX_SHORT_NAME) "Hx")
+    (setf (slot-value this 'f_ERL_SHORT_NAME) "Erl")
+    (setf (slot-value this 'f_CBL_SHORT_NAME) "Cbl")
+    (setf (slot-value this 'f_F90_SHORT_NAME) "F90")
+    (setf (slot-value this 'f_DART_SHORT_NAME) "Dart")
+    (setf (slot-value this 'f_EX_SHORT_NAME) "Ex")
+    (setf (slot-value this 'f_OBJC_SHORT_NAME) "ObjC")
+    (setf (slot-value this 'f_SWIFT_SHORT_NAME) "Swift")
+    (setf (slot-value this 'f_ASM_SHORT_NAME) "Asm")
+    (setf (slot-value this 'f_NIM_SHORT_NAME) "Nim")
+    (setf (slot-value this 'f_VALA_SHORT_NAME) "Vala")
+    (setf (slot-value this 'f_LISP_SHORT_NAME) "Lisp")
+    (setf (slot-value this 'f_RKT_SHORT_NAME) "Rkt")
+    (setf (slot-value this 'f_SCM_SHORT_NAME) "Scm")
+    (setf (slot-value this 'f_AS_SHORT_NAME) "As")
+    (setf (slot-value this 'f_OBX_SHORT_NAME) "Obx")
+    (setf (slot-value this 'f_SCALA_SHORT_NAME) "Scala")
+    (setf (slot-value this 'f_GROOVY_SHORT_NAME) "Groovy")
+    (setf (slot-value this 'f_JL_SHORT_NAME) "Jl")
+    (setf (slot-value this 'f_TCL_SHORT_NAME) "Tcl")
+    (setf (slot-value this 'f_WREN_SHORT_NAME) "Wren")
+    (setf (slot-value this 'f_JANET_SHORT_NAME) "Janet")
+    (setf (slot-value this 'f_GR_SHORT_NAME) "Gr")
+    (setf (slot-value this 'f_ELM_SHORT_NAME) "Elm")
+    (setf (slot-value this 'f_UNCRYPTED_EXTENSION) (slot-value this 'f_XML))
+    (setf (slot-value this 'f_ENCRYPTED_EXTENSION) "abd")
+    this))
+
+    
+(defun CommonDataFileStrings.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (CommonDataFileStrings.jstatic_instance)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local CommonDataFileStrings = {}
-CommonDataFileStrings.__index = CommonDataFileStrings
-CommonDataFileStrings.className = "CommonDataFileStrings"
-
-function CommonDataFileStrings:_init_fields()
-    self.XML = "xml"
-    self._XML = ".xml"
-    self.JSON = "json"
-    self._JSON = ".json"
-    self.XSL = "xsl"
-    self._XSL = ".xsl"
-    self.JAVA = "java"
-    self._JAVA = ".java"
-    self.KT = "kt"
-    self._KT = ".kt"
-    self.TS = "ts"
-    self._TS = ".ts"
-    self.JS = "js"
-    self._JS = ".js"
-    self.CPP = "cpp"
-    self._CPP = ".cpp"
-    self.H = "h"
-    self._H = ".h"
-    self.PY = "py"
-    self._PY = ".py"
-    self.GO = "go"
-    self._GO = ".go"
-    self.CS = "cs"
-    self._CS = ".cs"
-    self.ADB = "adb"
-    self._ADB = ".adb"
-    self.ADS = "ads"
-    self._ADS = ".ads"
-    self.ADA = "ada"
-    self._ADA = ".ada"
-    self.RUST = "rs"
-    self._RUST = ".rs"
-    self.C = "c"
-    self._C = ".c"
-    self.CSHARP = "cs"
-    self._CSHARP = ".cs"
-    self.ERL = "erl"
-    self._ERL = ".erl"
-    self.HS = "hs"
-    self._HS = ".hs"
-    self.HX = "hx"
-    self._HX = ".hx"
-    self.LUA = "lua"
-    self._LUA = ".lua"
-    self.PAS = "pas"
-    self._PAS = ".pas"
-    self.ML = "ml"
-    self._ML = ".ml"
-    self.PL = "pl"
-    self._PL = ".pl"
-    self.RB = "rb"
-    self._RB = ".rb"
-    self.ZIG = "zig"
-    self._ZIG = ".zig"
-    self.PM = "pm"
-    self._PM = ".pm"
-    self.KTS = "kts"
-    self._KTS = ".kts"
-    self.CBL = "cbl"
-    self._CBL = ".cbl"
-    self.COB = "cob"
-    self._COB = ".cob"
-    self.F90 = "f90"
-    self._F90 = ".f90"
-    self.F = "f"
-    self._F = ".f"
-    self.DART = "dart"
-    self._DART = ".dart"
-    self.EX = "ex"
-    self._EX = ".ex"
-    self.EXS = "exs"
-    self._EXS = ".exs"
-    self.M = "m"
-    self._M = ".m"
-    self.SWIFT = "swift"
-    self._SWIFT = ".swift"
-    self.ASM = "asm"
-    self._ASM = ".asm"
-    self.S = "s"
-    self._S = ".s"
-    self.NIM = "nim"
-    self._NIM = ".nim"
-    self.VALA = "vala"
-    self._VALA = ".vala"
-    self.LISP = "lisp"
-    self._LISP = ".lisp"
-    self.RKT = "rkt"
-    self._RKT = ".rkt"
-    self.SCM = "scm"
-    self._SCM = ".scm"
-    self.AS = "as"
-    self._AS = ".as"
-    self.OBX = "obx"
-    self._OBX = ".obx"
-    self.SCALA = "scala"
-    self._SCALA = ".scala"
-    self.GROOVY = "groovy"
-    self._GROOVY = ".groovy"
-    self.JL = "jl"
-    self._JL = ".jl"
-    self.TCL = "tcl"
-    self._TCL = ".tcl"
-    self.WREN = "wren"
-    self._WREN = ".wren"
-    self.JANET = "janet"
-    self._JANET = ".janet"
-    self.GR = "gr"
-    self._GR = ".gr"
-    self.ELM = "elm"
-    self._ELM = ".elm"
-    self.KOTLIN = "kotlin"
-    self.TYPESCRIPT = "typescript"
-    self.JAVASCRIPT = "javascript"
-    self.C_PLUS_PLUS = "c++"
-    self.PYTHON = "python"
-    self.C_SHARP = "c#"
-    self.RUST_NAME = "rust"
-    self.RUBY = "ruby"
-    self.PERL = "perl"
-    self.OBJECT_PASCAL = "objectpascal"
-    self.OCAML = "ocaml"
-    self.HASKELL = "haskell"
-    self.HAXE = "haxe"
-    self.ERLANG = "erlang"
-    self.COBOL = "cobol"
-    self.FORTRAN = "fortran"
-    self.ELIXIR = "elixir"
-    self.OBJECTIVE_C = "objective-c"
-    self.RACKET = "racket"
-    self.SCHEME = "scheme"
-    self.ACTIONSCRIPT = "actionscript"
-    self.OBERON_PLUS = "oberon+"
-    self.JULIA = "julia"
-    self.GRAIN = "grain"
-    self.CPLUSPLUS = "cplusplus"
-    self.GOLANG = "golang"
-    self.CSHARP_ALIAS = "csharp"
-    self.C23 = "c23"
-    self.PASCAL = "pascal"
-    self.OBJECT_PASCAL_ALIAS = "object pascal"
-    self.OBJC = "objc"
-    self.OBJECTIVE_C_ALIAS = "objectivec"
-    self.ASSEMBLY = "assembly"
-    self.COMMON_LISP = "common lisp"
-    self.OBERON = "oberon"
-    self.OBERON_PLUS_ALIAS = "oberonplus"
-    self.KT_SHORT_NAME = "Kt"
-    self.TS_SHORT_NAME = "Ts"
-    self.JS_SHORT_NAME = "Js"
-    self.CPP_SHORT_NAME = "Cpp"
-    self.PY_SHORT_NAME = "Py"
-    self.GO_SHORT_NAME = "Go"
-    self.CS_SHORT_NAME = "Cs"
-    self.ADA_SHORT_NAME = "Ada"
-    self.RUST_SHORT_NAME = "Rust"
-    self.LUA_SHORT_NAME = "Lua"
-    self.C_SHORT_NAME = "C"
-    self.ZIG_SHORT_NAME = "Zig"
-    self.RB_SHORT_NAME = "Rb"
-    self.PL_SHORT_NAME = "Pl"
-    self.PAS_SHORT_NAME = "Pas"
-    self.ML_SHORT_NAME = "Ml"
-    self.HS_SHORT_NAME = "Hs"
-    self.HX_SHORT_NAME = "Hx"
-    self.ERL_SHORT_NAME = "Erl"
-    self.CBL_SHORT_NAME = "Cbl"
-    self.F90_SHORT_NAME = "F90"
-    self.DART_SHORT_NAME = "Dart"
-    self.EX_SHORT_NAME = "Ex"
-    self.OBJC_SHORT_NAME = "ObjC"
-    self.SWIFT_SHORT_NAME = "Swift"
-    self.ASM_SHORT_NAME = "Asm"
-    self.NIM_SHORT_NAME = "Nim"
-    self.VALA_SHORT_NAME = "Vala"
-    self.LISP_SHORT_NAME = "Lisp"
-    self.RKT_SHORT_NAME = "Rkt"
-    self.SCM_SHORT_NAME = "Scm"
-    self.AS_SHORT_NAME = "As"
-    self.OBX_SHORT_NAME = "Obx"
-    self.SCALA_SHORT_NAME = "Scala"
-    self.GROOVY_SHORT_NAME = "Groovy"
-    self.JL_SHORT_NAME = "Jl"
-    self.TCL_SHORT_NAME = "Tcl"
-    self.WREN_SHORT_NAME = "Wren"
-    self.JANET_SHORT_NAME = "Janet"
-    self.GR_SHORT_NAME = "Gr"
-    self.ELM_SHORT_NAME = "Elm"
-    self.UNCRYPTED_EXTENSION = self.XML
-    self.ENCRYPTED_EXTENSION = "abd"
-end
-
-function CommonDataFileStrings.new()
-    local self = setmetatable({}, CommonDataFileStrings)
-    self:_init_fields()
-    return self
-end
-
-
-function CommonDataFileStrings.getInstance()
-        return CommonDataFileStrings.instance
-end
-
-CommonDataFileStrings.instance = CommonDataFileStrings.new()
-
-return CommonDataFileStrings
 

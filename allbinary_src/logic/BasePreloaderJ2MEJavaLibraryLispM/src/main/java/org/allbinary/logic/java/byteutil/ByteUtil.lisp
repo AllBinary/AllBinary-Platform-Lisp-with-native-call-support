@@ -25,6 +25,7 @@
 (defun ByteUtil.jstatic_instance ()
   (when (eq ByteUtil.jcell_instance :jnone) (setf ByteUtil.jcell_instance (ByteUtil.jnew_0)))
   ByteUtil.jcell_instance)
+(defun (setf ByteUtil.jstatic_instance) (value) (setf ByteUtil.jcell_instance value))
 
     
 (defun ByteUtil.jm_getInstance_0 ()

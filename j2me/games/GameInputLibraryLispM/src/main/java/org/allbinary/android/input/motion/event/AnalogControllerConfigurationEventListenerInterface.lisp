@@ -1,42 +1,35 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.android.input.motion.event
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.android.input.motion.event
 
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass AnalogControllerConfigurationEventListenerInterface (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun AnalogControllerConfigurationEventListenerInterface.jnew_0 ()
+  (let ((this (make-instance 'AnalogControllerConfigurationEventListenerInterface)))
+    this))
 
--- Java interface
-local AnalogControllerConfigurationEventListenerInterface = {}
-AnalogControllerConfigurationEventListenerInterface.__index = AnalogControllerConfigurationEventListenerInterface
-AnalogControllerConfigurationEventListenerInterface.className = "AnalogControllerConfigurationEventListenerInterface"
-setmetatable(AnalogControllerConfigurationEventListenerInterface, {__index = EventListenerInterface})
+    
+(unless (fboundp 'jm_onAnalogControllerConfigurationEvent_1) (defgeneric jm_onAnalogControllerConfigurationEvent_1 (this p1)))
+(defmethod jm_onAnalogControllerConfigurationEvent_1 ((this AnalogControllerConfigurationEventListenerInterface) _analogControllerConfigurationEvent)
+  (declare (ignorable this _analogControllerConfigurationEvent))
+  (error (JR.newException "AbstractMethodError" "onAnalogControllerConfigurationEvent")))
 
 
--- throws Exception
-function AnalogControllerConfigurationEventListenerInterface:onAnalogControllerConfigurationEvent(analogControllerConfigurationEvent)
-    error("abstract method onAnalogControllerConfigurationEvent")
-end
-
-return AnalogControllerConfigurationEventListenerInterface
 

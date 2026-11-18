@@ -30,6 +30,7 @@
 (defun BooleanFactory.jstatic_instance ()
   (when (eq BooleanFactory.jcell_instance :jnone) (setf BooleanFactory.jcell_instance (BooleanFactory.jnew_0)))
   BooleanFactory.jcell_instance)
+(defun (setf BooleanFactory.jstatic_instance) (value) (setf BooleanFactory.jcell_instance value))
 
 (defun BooleanFactory.jnew_0 ()
   (let ((this (make-instance 'BooleanFactory)))

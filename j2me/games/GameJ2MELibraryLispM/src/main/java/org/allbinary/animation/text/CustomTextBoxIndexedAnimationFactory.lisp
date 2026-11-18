@@ -1,79 +1,67 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation.text
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2022 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation.text
 
--- local Font = require("javax.microedition.lcdui.Font")
--- local TextField = require("javax.microedition.lcdui.TextField")
-local CustomTextBox = require("org.allbinary.graphics.form.item.CustomTextBox")
-local Animation = require("org.allbinary.animation.Animation")
-local AnimationInterfaceFactoryInterface = require("org.allbinary.animation.AnimationInterfaceFactoryInterface")
-local ABToGBUtil = require("org.allbinary.game.canvas.ABToGBUtil")
-local AllBinaryGameCanvas = require("org.allbinary.game.displayable.canvas.AllBinaryGameCanvas")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local ScaleProperties = require("org.allbinary.media.ScaleProperties")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass CustomTextBoxIndexedAnimationFactory (JObject)
+  ((f_logUtil :initform nil)
+   (f_scaleProperties :initform nil)
+   (f_maxLength :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun CustomTextBoxIndexedAnimationFactory.jnew_2 (_fontSize _maxLength)
+  (declare (ignorable _fontSize _maxLength))
+  (let ((this (make-instance 'CustomTextBoxIndexedAnimationFactory)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_scaleProperties) (ScaleProperties.jnew_0))
+        (setf (slot-value (slot-value this 'f_scaleProperties) 'f_scaleHeight) _fontSize)
+        (setf (slot-value this 'f_maxLength) _maxLength)))
+    this))
 
-local CustomTextBoxIndexedAnimationFactory = {}
-CustomTextBoxIndexedAnimationFactory.__index = CustomTextBoxIndexedAnimationFactory
-CustomTextBoxIndexedAnimationFactory.className = "CustomTextBoxIndexedAnimationFactory"
+    
+(unless (fboundp 'jm_getInstance_1) (defgeneric jm_getInstance_1 (this p1)))
+(defmethod jm_getInstance_1 ((this CustomTextBoxIndexedAnimationFactory) _instanceId)
+  (declare (ignorable this _instanceId))
+  (let (_abToGBUtil _abCanvas _font _customTextBox)
+  (declare (ignorable _abToGBUtil _abCanvas _font _customTextBox))
+    (block jreturn
+        (setf _abToGBUtil (ABToGBUtil.jm_getInstance_0))
+        (setf _abCanvas (slot-value _abToGBUtil 'f_abCanvas))
+        (setf _font (Font.jm_getFont_3 (Font.jstatic_FACE_SYSTEM) (Font.jstatic_STYLE_PLAIN) (slot-value (slot-value this 'f_scaleProperties) 'f_scaleHeight)))
+        (setf _customTextBox (CustomTextBox2.jnew_8 (jm_getCustomCommandListener_0 _abCanvas) (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (slot-value this 'f_maxLength) (TextField.jstatic_ANY) _font (jm_getBackgroundBasicColor_0 (jm_getLayerManager_0 _abCanvas)) (jm_getForegroundBasicColor_0 (jm_getLayerManager_0 _abCanvas))))
+        (return-from jreturn (CustomTextBoxIndexedAnimation.jnew_1 _customTextBox)))))
 
-function CustomTextBoxIndexedAnimationFactory:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.scaleProperties = nil
-    self.maxLength = nil
-end
-
-
-function CustomTextBoxIndexedAnimationFactory.new(fontSize, maxLength)
-    local self = setmetatable({}, CustomTextBoxIndexedAnimationFactory)
-    self:_init_fields()
-        self.scaleProperties = ScaleProperties.new()
-        self.scaleProperties.scaleHeight = fontSize
-        self.maxLength = maxLength
-    return self
-end
-
-
--- throws Exception
-function CustomTextBoxIndexedAnimationFactory:getInstance(instanceId)
-        local abToGBUtil = ABToGBUtil.getInstance()
-        local abCanvas = abToGBUtil.abCanvas
-        local font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, self.scaleProperties.scaleHeight)
-        local customTextBox = CustomTextBox2.new(abCanvas:getCustomCommandListener(), StringUtil.getInstance().EMPTY_STRING, StringUtil.getInstance().EMPTY_STRING, self.maxLength, TextField.ANY, font, abCanvas:getLayerManager():getBackgroundBasicColor(), abCanvas:getLayerManager():getForegroundBasicColor())
-        return CustomTextBoxIndexedAnimation.new(customTextBox)
-end
+    
+(unless (fboundp 'jm_setInitialScale_1) (defgeneric jm_setInitialScale_1 (this p1)))
+(defmethod jm_setInitialScale_1 ((this CustomTextBoxIndexedAnimationFactory) _scaleProperties)
+  (declare (ignorable this _scaleProperties))
+  (let (_fontSize)
+  (declare (ignorable _fontSize))
+    (block jreturn
+        (setf _fontSize (slot-value (slot-value this 'f_scaleProperties) 'f_scaleHeight))
+        (setf (slot-value this 'f_scaleProperties) _scaleProperties)
+        (if (< (slot-value (slot-value this 'f_scaleProperties) 'f_scaleHeight) 6)
+            (progn
+            (setf (slot-value (slot-value this 'f_scaleProperties) 'f_scaleHeight) _fontSize))))))
 
 
-function CustomTextBoxIndexedAnimationFactory:setInitialScale(scaleProperties)
-        local fontSize = self.scaleProperties.scaleHeight
-        self.scaleProperties = scaleProperties
-        if self.scaleProperties.scaleHeight < 6 then
-            self.scaleProperties.scaleHeight = fontSize
-        end
-end
-
-return CustomTextBoxIndexedAnimationFactory
 

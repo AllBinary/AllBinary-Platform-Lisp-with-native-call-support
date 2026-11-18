@@ -1,89 +1,89 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.media.audio
 
--- local Player = require("javax.microedition.media.Player")
-local PreLogUtil = require("org.allbinary.logic.communication.log.PreLogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local SoundInterface = require("org.allbinary.media.audio.SoundInterface")
--- java.lang.Runnable has no Lua module
-local Runnable = {}
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass Sound (JObject)
+  ((f_resource :initform nil)
+   (f_player :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun Sound.jnew_1 (_resource)
+  (declare (ignorable _resource))
+  (let ((this (make-instance 'Sound)))
+    
+    (setf (slot-value this 'f_player) (NoPlayer.jstatic_NO_PLAYER))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_resource) _resource)))
+    this))
 
-local Sound = {}
-Sound.__index = Sound
-Sound.className = "Sound"
+    
+(unless (fboundp 'jm_getResource_0) (defgeneric jm_getResource_0 (this)))
+(defmethod jm_getResource_0 ((this Sound))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_resource)))))
 
-function Sound:_init_fields()
-    self.resource = nil
-    self.player = NoPlayer.NO_PLAYER
-end
+    
+(unless (fboundp 'jm_getPlayerP_0) (defgeneric jm_getPlayerP_0 (this)))
+(defmethod jm_getPlayerP_0 ((this Sound))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_player)))))
+
+    
+(unless (fboundp 'jm_setPlayerP_1) (defgeneric jm_setPlayerP_1 (this p1)))
+(defmethod jm_setPlayerP_1 ((this Sound) _player)
+  (declare (ignorable this _player))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_player) _player))))
+
+    
+(unless (fboundp 'jm_init_0) (defgeneric jm_init_0 (this)))
+(defmethod jm_init_0 ((this Sound))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_getDuration_0) (defgeneric jm_getDuration_0 (this)))
+(defmethod jm_getDuration_0 ((this Sound))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (JR.i32 (- 1))))))
+
+    
+(unless (fboundp 'jm_run_0) (defgeneric jm_run_0 (this)))
+(defmethod jm_run_0 ((this Sound))
+  (declare (ignorable this))
+  (let (_commonStrings)
+  (declare (ignorable _commonStrings))
+    (block jreturn
+        (handler-case (progn
+            (jm_start_0 (slot-value this 'f_player)))
+            (error (_e) (declare (ignorable _e))
+            (setf _commonStrings (CommonStrings.jm_getInstance_0))
+            (PreLogUtil.jm_put_3 (slot-value _commonStrings 'f_EXCEPTION) this (slot-value _commonStrings 'f_RUN)))))))
 
 
-function Sound.new(resource)
-    local self = setmetatable({}, Sound)
-    self:_init_fields()
-        self.resource = resource
-    return self
-end
-
-
-function Sound:getResource()
-        return self.resource
-end
-
-
-function Sound:getPlayerP()
-        return self.player
-end
-
-
-function Sound:setPlayerP(player)
-        self.player = player
-end
-
-
--- throws Exception
-function Sound:init()
-end
-
-
-function Sound:getDuration()
-        return -1
-end
-
-
-function Sound:run()
-        local try_ok, try_error = pcall(function()
-            self.player:start()
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            PreLogUtil.put(commonStrings.EXCEPTION, self, commonStrings.RUN)
-        end
-end
-
-return Sound
 

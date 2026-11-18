@@ -25,6 +25,7 @@
 (defun HardwareFactory.jstatic_instance ()
   (when (eq HardwareFactory.jcell_instance :jnone) (setf HardwareFactory.jcell_instance (HardwareFactory.jnew_0)))
   HardwareFactory.jcell_instance)
+(defun (setf HardwareFactory.jstatic_instance) (value) (setf HardwareFactory.jcell_instance value))
 
     
 (defun HardwareFactory.jm_getInstance_0 ()

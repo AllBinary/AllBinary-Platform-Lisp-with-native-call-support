@@ -1,45 +1,32 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form.item
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.form.item
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local MyFontProcessor = require("org.allbinary.graphics.font.MyFontProcessor")
-local UpdateMyFontInterface = require("org.allbinary.graphics.font.UpdateMyFontInterface")
-local UpdateMyFontProcessor = require("org.allbinary.graphics.font.UpdateMyFontProcessor")
-local ABCustomItem = require("org.allbinary.graphics.form.item.ABCustomItem")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass CustomCustomItem (ABCustomItem)
+  ((f_updateMyFontProcessor :initform nil)
+   (f_myFontProcessor :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun CustomCustomItem.jnew_3 (_label _backgroundBasicColor _foregroundBasicColor)
+  (declare (ignorable _label _backgroundBasicColor _foregroundBasicColor))
+  (let ((this (make-instance 'CustomCustomItem)))
+    (setf (slot-value this 'f_updateMyFontProcessor) (UpdateMyFontProcessor.jnew_1 this))
+    (setf (slot-value this 'f_myFontProcessor) (slot-value this 'f_updateMyFontProcessor))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
-local CustomCustomItem = {}
-CustomCustomItem.__index = CustomCustomItem
-CustomCustomItem.className = "CustomCustomItem"
-setmetatable(CustomCustomItem, {__index = ABCustomItem})
-
-function CustomCustomItem:_init_fields()
-    self.updateMyFontProcessor = UpdateMyFontProcessor.new(self)
-    self.myFontProcessor = self.updateMyFontProcessor
-end
-
-
-function CustomCustomItem.new(label, backgroundBasicColor, foregroundBasicColor)
-    local self = setmetatable(ABCustomItem.new(label, backgroundBasicColor, foregroundBasicColor), CustomCustomItem)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
+    
+(unless (fboundp 'jm_updateMeasurement_1) (defgeneric jm_updateMeasurement_1 (this p1)))
+(defmethod jm_updateMeasurement_1 ((this CustomCustomItem) _graphics)
+  (declare (ignorable this _graphics))
+  (let ()
+    (block jreturn nil)))
 
 
-function CustomCustomItem:updateMeasurement(graphics)
-end
-
-return CustomCustomItem
 

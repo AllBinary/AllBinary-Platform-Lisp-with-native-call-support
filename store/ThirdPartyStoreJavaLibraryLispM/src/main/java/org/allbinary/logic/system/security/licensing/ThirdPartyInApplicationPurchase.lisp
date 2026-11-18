@@ -1,95 +1,123 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.licensing
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.system.security.licensing
 
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local ThirdPartyInApplicationPurchaseInterface = require("org.allbinary.logic.system.security.licensing.ThirdPartyInApplicationPurchaseInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ThirdPartyInApplicationPurchase (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun ThirdPartyInApplicationPurchase.jnew_0 ()
+  (let ((this (make-instance 'ThirdPartyInApplicationPurchase)))
+    this))
 
-local ThirdPartyInApplicationPurchase = {}
-ThirdPartyInApplicationPurchase.__index = ThirdPartyInApplicationPurchase
-ThirdPartyInApplicationPurchase.className = "ThirdPartyInApplicationPurchase"
+    
+(unless (fboundp 'jm_isPurchased_1) (defgeneric jm_isPurchased_1 (this p1)))
+(defmethod jm_isPurchased_1 ((this ThirdPartyInApplicationPurchase) _lockableFeature)
+  (declare (ignorable this _lockableFeature))
+  (let ()
+    (block jreturn
+        (return-from jreturn nil))))
 
-function ThirdPartyInApplicationPurchase.new()
-    local self = setmetatable({}, ThirdPartyInApplicationPurchase)
-    return self
-end
+    
+(unless (fboundp 'jm_onCreate_2) (defgeneric jm_onCreate_2 (this p1 p2)))
+(defmethod jm_onCreate_2 ((this ThirdPartyInApplicationPurchase) _anyType _stateObject)
+  (declare (ignorable this _anyType _stateObject))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_onDestroy_0) (defgeneric jm_onDestroy_0 (this)))
+(defmethod jm_onDestroy_0 ((this ThirdPartyInApplicationPurchase))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_onStart_0) (defgeneric jm_onStart_0 (this)))
+(defmethod jm_onStart_0 ((this ThirdPartyInApplicationPurchase))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_onActivityResult_3) (defgeneric jm_onActivityResult_3 (this p1 p2 p3)))
+(defmethod jm_onActivityResult_3 ((this ThirdPartyInApplicationPurchase) _requestCode _resultCode _dataObject)
+  (declare (ignorable this _requestCode _resultCode _dataObject))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_onSaveInstanceState_1) (defgeneric jm_onSaveInstanceState_1 (this p1)))
+(defmethod jm_onSaveInstanceState_1 ((this ThirdPartyInApplicationPurchase) _anyType)
+  (declare (ignorable this _anyType))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_onStop_0) (defgeneric jm_onStop_0 (this)))
+(defmethod jm_onStop_0 ((this ThirdPartyInApplicationPurchase))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_requestPurchase_1) (defgeneric jm_requestPurchase_1 (this p1)))
+(defmethod jm_requestPurchase_1 ((this ThirdPartyInApplicationPurchase) _lockableFeature)
+  (declare (ignorable this _lockableFeature))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_requestReceipts_0) (defgeneric jm_requestReceipts_0 (this)))
+(defmethod jm_requestReceipts_0 ((this ThirdPartyInApplicationPurchase))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_add_1) (defgeneric jm_add_1 (this p1)))
+(defmethod jm_add_1 ((this ThirdPartyInApplicationPurchase) _lockableFeature)
+  (declare (ignorable this _lockableFeature))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_getUserName_0) (defgeneric jm_getUserName_0 (this)))
+(defmethod jm_getUserName_0 ((this ThirdPartyInApplicationPurchase))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING)))))
+
+    
+(unless (fboundp 'jm_isEnabled_0) (defgeneric jm_isEnabled_0 (this)))
+(defmethod jm_isEnabled_0 ((this ThirdPartyInApplicationPurchase))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn nil))))
+
+    
+(unless (fboundp 'jm_requestProducts_0) (defgeneric jm_requestProducts_0 (this)))
+(defmethod jm_requestProducts_0 ((this ThirdPartyInApplicationPurchase))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
 
 
-function ThirdPartyInApplicationPurchase:isPurchased(lockableFeature)
-        return false
-end
-
-
-function ThirdPartyInApplicationPurchase:onCreate(anyType, stateObject)
-end
-
-
-function ThirdPartyInApplicationPurchase:onDestroy()
-end
-
-
-function ThirdPartyInApplicationPurchase:onStart()
-end
-
-
-function ThirdPartyInApplicationPurchase:onActivityResult(requestCode, resultCode, dataObject)
-end
-
-
-function ThirdPartyInApplicationPurchase:onSaveInstanceState(anyType)
-end
-
-
-function ThirdPartyInApplicationPurchase:onStop()
-end
-
-
-function ThirdPartyInApplicationPurchase:requestPurchase(lockableFeature)
-end
-
-
-function ThirdPartyInApplicationPurchase:requestReceipts()
-end
-
-
-function ThirdPartyInApplicationPurchase:add(lockableFeature)
-end
-
-
-function ThirdPartyInApplicationPurchase:getUserName()
-        return StringUtil.getInstance().EMPTY_STRING
-end
-
-
-function ThirdPartyInApplicationPurchase:isEnabled()
-        return false
-end
-
-
-function ThirdPartyInApplicationPurchase:requestProducts()
-end
-
-return ThirdPartyInApplicationPurchase
 

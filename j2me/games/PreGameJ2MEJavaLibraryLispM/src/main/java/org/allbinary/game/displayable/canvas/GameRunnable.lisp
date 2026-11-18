@@ -1,65 +1,53 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.displayable.canvas
 
-local DisplayInfoSingleton = require("org.allbinary.graphics.displayable.DisplayInfoSingleton")
--- java.lang.Runnable has no Lua module
-local Runnable = {}
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass GameRunnable (JObject)
+  ((f_WAIT :initform 0)
+   (f_FAST :initform 0)
+   (f_waitInMillis :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun GameRunnable.jnew_0 ()
+  (let ((this (make-instance 'GameRunnable)))
+    (setf (slot-value this 'f_WAIT) 240)
+    (setf (slot-value this 'f_FAST) 60)
+    (setf (slot-value this 'f_waitInMillis) (slot-value this 'f_WAIT))
+  (let ()
+    (block jreturn nil))
+    this))
 
-local function java_sleep(milliseconds)
-    local finish = os.clock() + milliseconds / 1000
-    while os.clock() < finish do end
-end
+    
+(unless (fboundp 'jm_run_0) (defgeneric jm_run_0 (this)))
+(defmethod jm_run_0 ((this GameRunnable))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_process_0 (DisplayInfoSingleton.jm_getInstance_0)))))
 
-local GameRunnable = {}
-GameRunnable.__index = GameRunnable
-GameRunnable.className = "GameRunnable"
-
-function GameRunnable:_init_fields()
-    self.WAIT = 240
-    self.FAST = 60
-    self.waitInMillis = self.WAIT
-end
-
-
-function GameRunnable.new()
-    local self = setmetatable({}, GameRunnable)
-    self:_init_fields()
-    return self
-end
-
-
-function GameRunnable:run()
-        DisplayInfoSingleton.getInstance():process()
-end
+    
+(unless (fboundp 'jm_processLoopSleep_0) (defgeneric jm_processLoopSleep_0 (this)))
+(defmethod jm_processLoopSleep_0 ((this GameRunnable))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (Thread.jm_sleep_1 (slot-value this 'f_waitInMillis)))))
 
 
--- throws Exception
-function GameRunnable:processLoopSleep()
-        java_sleep(self.waitInMillis)
-end
-
-return GameRunnable
 

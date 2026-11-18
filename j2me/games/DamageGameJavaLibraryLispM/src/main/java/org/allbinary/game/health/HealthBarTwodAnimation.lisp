@@ -1,51 +1,45 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.health
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.health
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local HealthBarAnimation = require("org.allbinary.game.health.HealthBarAnimation")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass HealthBarTwodAnimation (HealthBarAnimation)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun HealthBarTwodAnimation.jnew_2 (_layerInterface _location)
+  (declare (ignorable _layerInterface _location))
+  (let ((this (make-instance 'HealthBarTwodAnimation)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
-local HealthBarTwodAnimation = {}
-HealthBarTwodAnimation.__index = HealthBarTwodAnimation
-HealthBarTwodAnimation.className = "HealthBarTwodAnimation"
-setmetatable(HealthBarTwodAnimation, {__index = HealthBarAnimation})
+    
+(unless (fboundp 'jm_paintXY_3) (defgeneric jm_paintXY_3 (this p1 p2 p3)))
+(defmethod jm_paintXY_3 ((this HealthBarTwodAnimation) _graphics _x _y)
+  (declare (ignorable this _graphics _x _y))
+  (let (_ax)
+  (declare (ignorable _ax))
+    (block jreturn
+        (setf _ax (jm_getX_0 (jm_getViewPosition_0 (slot-value this 'f_allbinaryLayer))))
+        (jm_setBasicColorP3_3 (slot-value this 'f_basicSetColorUtil) _graphics (slot-value this 'f_basicColor) (slot-value this 'f_colorP))
+        (jm_fillRect_4 _graphics _ax (JR.i32 (- (jm_getY_0 this) 1)) (slot-value this 'f_x2) (slot-value this 'f_thickness)))))
 
 
-function HealthBarTwodAnimation.new(layerInterface, location)
-    local self = setmetatable(HealthBarAnimation.new(layerInterface, location), HealthBarTwodAnimation)
-        -- super(...) made self above
-    return self
-end
-
-
-function HealthBarTwodAnimation:paintXY(graphics, x, y)
-        local ax = self.allbinaryLayer:getViewPosition():getX()
-        self.basicSetColorUtil:setBasicColorP3(graphics, self.basicColor, self.colorP)
-        graphics:fillRect(ax, self:getY() - 1, self.x2, self.thickness)
-end
-
-return HealthBarTwodAnimation
 

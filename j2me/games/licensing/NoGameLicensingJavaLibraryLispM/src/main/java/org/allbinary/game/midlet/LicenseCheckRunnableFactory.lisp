@@ -1,45 +1,37 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.midlet
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2025 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.midlet
 
-local ABRunnable = require("org.allbinary.thread.ABRunnable")
-local NullABRunnable = require("org.allbinary.thread.NullABRunnable")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass LicenseCheckRunnableFactory (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun LicenseCheckRunnableFactory.jnew_0 ()
+  (let ((this (make-instance 'LicenseCheckRunnableFactory)))
+    this))
 
-local LicenseCheckRunnableFactory = {}
-LicenseCheckRunnableFactory.__index = LicenseCheckRunnableFactory
-LicenseCheckRunnableFactory.className = "LicenseCheckRunnableFactory"
-
-function LicenseCheckRunnableFactory.new()
-    local self = setmetatable({}, LicenseCheckRunnableFactory)
-    return self
-end
+    
+(unless (fboundp 'jm_getInstance_1) (defgeneric jm_getInstance_1 (this p1)))
+(defmethod jm_getInstance_1 ((this LicenseCheckRunnableFactory) _specialDemoGameMidlet)
+  (declare (ignorable this _specialDemoGameMidlet))
+  (let ()
+    (block jreturn
+        (return-from jreturn (NullABRunnable.jm_getInstance_0)))))
 
 
-function LicenseCheckRunnableFactory:getInstance(specialDemoGameMidlet)
-        return NullABRunnable.getInstance()
-end
-
-return LicenseCheckRunnableFactory
 

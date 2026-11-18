@@ -1,79 +1,88 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.input
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local TestInputInterface = require("org.allbinary.game.input.TestInputInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass TestInputExample (JObject)
+  ((f_testValue :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun TestInputExample.jnew_0 ()
+  (let ((this (make-instance 'TestInputExample)))
+    
+    this))
 
-local TestInputExample = {}
-TestInputExample.__index = TestInputExample
-TestInputExample.className = "TestInputExample"
+    
+(unless (fboundp 'jm_up_0) (defgeneric jm_up_0 (this)))
+(defmethod jm_up_0 ((this TestInputExample))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
 
-function TestInputExample:_init_fields()
-    self.testValue = 0
-end
+    
+(unless (fboundp 'jm_down_0) (defgeneric jm_down_0 (this)))
+(defmethod jm_down_0 ((this TestInputExample))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
 
-function TestInputExample.new()
-    local self = setmetatable({}, TestInputExample)
-    self:_init_fields()
-    return self
-end
+    
+(unless (fboundp 'jm_left_0) (defgeneric jm_left_0 (this)))
+(defmethod jm_left_0 ((this TestInputExample))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_testValue) (JR.i32 (+ (slot-value this 'f_testValue) 1))))))
+
+    
+(unless (fboundp 'jm_right_0) (defgeneric jm_right_0 (this)))
+(defmethod jm_right_0 ((this TestInputExample))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_testValue) (JR.i32 (- (slot-value this 'f_testValue) 1))))))
+
+    
+(unless (fboundp 'jm_strafeLeft_0) (defgeneric jm_strafeLeft_0 (this)))
+(defmethod jm_strafeLeft_0 ((this TestInputExample))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_strafeRight_0) (defgeneric jm_strafeRight_0 (this)))
+(defmethod jm_strafeRight_0 ((this TestInputExample))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_paint_1) (defgeneric jm_paint_1 (this p1)))
+(defmethod jm_paint_1 ((this TestInputExample) _graphics)
+  (declare (ignorable this _graphics))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_paintThreed_1) (defgeneric jm_paintThreed_1 (this p1)))
+(defmethod jm_paintThreed_1 ((this TestInputExample) _graphics)
+  (declare (ignorable this _graphics))
+  (let ()
+    (block jreturn nil)))
 
 
-function TestInputExample:up()
-end
-
-
-function TestInputExample:down()
-end
-
-
-function TestInputExample:left()
-        self.testValue = self.testValue + 1
-end
-
-
-function TestInputExample:right()
-        self.testValue = self.testValue - 1
-end
-
-
-function TestInputExample:strafeLeft()
-end
-
-
-function TestInputExample:strafeRight()
-end
-
-
-function TestInputExample:paint(graphics)
-end
-
-
-function TestInputExample:paintThreed(graphics)
-end
-
-return TestInputExample
 

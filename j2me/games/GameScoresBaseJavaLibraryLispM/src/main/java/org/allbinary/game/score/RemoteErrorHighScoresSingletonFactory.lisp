@@ -1,46 +1,41 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.score
 
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass RemoteErrorHighScoresSingletonFactory (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar RemoteErrorHighScoresSingletonFactory.jcell_SINGLETON :jnone)
+(defun RemoteErrorHighScoresSingletonFactory.jstatic_SINGLETON ()
+  (when (eq RemoteErrorHighScoresSingletonFactory.jcell_SINGLETON :jnone) (setf RemoteErrorHighScoresSingletonFactory.jcell_SINGLETON (HighScores.jnew_3 (slot-value (CommonStrings.jm_getInstance_0) 'f_LOADING) "Remote High Scores Did Not Load" (slot-value (CommonStrings.jm_getInstance_0) 'f_PERIODS))))
+  RemoteErrorHighScoresSingletonFactory.jcell_SINGLETON)
+(defun (setf RemoteErrorHighScoresSingletonFactory.jstatic_SINGLETON) (value) (setf RemoteErrorHighScoresSingletonFactory.jcell_SINGLETON value))
 
-local RemoteErrorHighScoresSingletonFactory = {}
-RemoteErrorHighScoresSingletonFactory.__index = RemoteErrorHighScoresSingletonFactory
-RemoteErrorHighScoresSingletonFactory.className = "RemoteErrorHighScoresSingletonFactory"
+(defun RemoteErrorHighScoresSingletonFactory.jnew_0 ()
+  (let ((this (make-instance 'RemoteErrorHighScoresSingletonFactory)))
+    this))
 
-function RemoteErrorHighScoresSingletonFactory.new()
-    local self = setmetatable({}, RemoteErrorHighScoresSingletonFactory)
-    return self
-end
+    
+(defun RemoteErrorHighScoresSingletonFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (RemoteErrorHighScoresSingletonFactory.jstatic_SINGLETON)))))
 
 
-function RemoteErrorHighScoresSingletonFactory.getInstance()
-        return RemoteErrorHighScoresSingletonFactory.SINGLETON
-end
-
-RemoteErrorHighScoresSingletonFactory.SINGLETON = HighScores.new(CommonStrings.getInstance().LOADING, "Remote High Scores Did Not Load", CommonStrings.getInstance().PERIODS)
-
-return RemoteErrorHighScoresSingletonFactory
 

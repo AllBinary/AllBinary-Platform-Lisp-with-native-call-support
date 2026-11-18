@@ -1,67 +1,59 @@
--- Generated Code Do Not Modify
--- package org.allbinary.physics.movement
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.physics.movement
 
-local AllBinaryGameLayer = require("org.allbinary.game.layer.AllBinaryGameLayer")
-local BasicVelocityProperties = require("org.allbinary.game.physics.velocity.BasicVelocityProperties")
-local BasicDecimal = require("org.allbinary.logic.math.BasicDecimal")
-local MathUtil = require("org.allbinary.logic.math.MathUtil")
-local ScaleFactorFactory = require("org.allbinary.logic.math.ScaleFactorFactory")
-local BasicConstantVelocityMovement = require("org.allbinary.physics.movement.BasicConstantVelocityMovement")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass PreciseConstantVelocityMovement (BasicConstantVelocityMovement)
+  ((f_accumulatedX :initform 0)
+   (f_accumulatedY :initform 0)
+   (f_accumulatedZ :initform 0)
+   (f_factorValue :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun PreciseConstantVelocityMovement.jnew_2 (_basicDecimal _velocityProperties)
+  (declare (ignorable _basicDecimal _velocityProperties))
+  (let ((this (make-instance 'PreciseConstantVelocityMovement)))
+    
+    
+    
+    (setf (slot-value this 'f_factorValue) (slot-value (ScaleFactorFactory.jm_getInstance_0) 'f_DEFAULT_SCALE_VALUE))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
-local PreciseConstantVelocityMovement = {}
-PreciseConstantVelocityMovement.__index = PreciseConstantVelocityMovement
-PreciseConstantVelocityMovement.className = "PreciseConstantVelocityMovement"
-setmetatable(PreciseConstantVelocityMovement, {__index = BasicConstantVelocityMovement})
+    
+(unless (fboundp 'jm_init_3) (defgeneric jm_init_3 (this p1 p2 p3)))
+(defmethod jm_init_3 ((this PreciseConstantVelocityMovement) _speedBasicDecimal _angle _otherAngle)
+  (declare (ignorable this _speedBasicDecimal _angle _otherAngle))
+  (let ()
+    (block jreturn nil)))
 
-function PreciseConstantVelocityMovement:_init_fields()
-    self.accumulatedX = 0
-    self.accumulatedY = 0
-    self.accumulatedZ = 0
-    self.factorValue = ScaleFactorFactory.getInstance().DEFAULT_SCALE_VALUE
-end
+    
+(unless (fboundp 'jm_process_1) (defgeneric jm_process_1 (this p1)))
+(defmethod jm_process_1 ((this PreciseConstantVelocityMovement) _layer)
+  (declare (ignorable this _layer))
+  (let (_mathUtil _velocityProperties)
+  (declare (ignorable _mathUtil _velocityProperties))
+    (block jreturn
+        (setf _mathUtil (MathUtil.jm_getInstance_0))
+        (setf _velocityProperties (jm_getVelocityProperties_0 this))
+        (setf (slot-value this 'f_accumulatedX) (JR.i32 (+ (slot-value this 'f_accumulatedX) (jm_getUnscaled_0 (jm_getVelocityXBasicDecimalP_0 _velocityProperties)))))
+        (setf (slot-value this 'f_accumulatedY) (JR.i32 (+ (slot-value this 'f_accumulatedY) (jm_getUnscaled_0 (jm_getVelocityYBasicDecimalP_0 _velocityProperties)))))
+        (setf (slot-value this 'f_accumulatedZ) (JR.i32 (+ (slot-value this 'f_accumulatedZ) (jm_getUnscaled_0 (jm_getVelocityZBasicDecimalP_0 _velocityProperties)))))
+        (jm_moveDXYZ_3 _layer (JR.idiv (slot-value this 'f_accumulatedX) (slot-value this 'f_factorValue)) (JR.idiv (slot-value this 'f_accumulatedY) (slot-value this 'f_factorValue)) (JR.idiv (slot-value this 'f_accumulatedZ) (slot-value this 'f_factorValue)))
+        (if (> (jm_abs_1 _mathUtil (slot-value this 'f_accumulatedX)) (slot-value this 'f_factorValue))
+            (progn
+            (setf (slot-value this 'f_accumulatedX) 0)))
+        (if (> (jm_abs_1 _mathUtil (slot-value this 'f_accumulatedY)) (slot-value this 'f_factorValue))
+            (progn
+            (setf (slot-value this 'f_accumulatedY) 0)))
+        (if (> (jm_abs_1 _mathUtil (slot-value this 'f_accumulatedZ)) (slot-value this 'f_factorValue))
+            (progn
+            (setf (slot-value this 'f_accumulatedZ) 0))))))
 
 
-function PreciseConstantVelocityMovement.new(basicDecimal, velocityProperties)
-    local self = setmetatable(BasicConstantVelocityMovement.new(basicDecimal, velocityProperties), PreciseConstantVelocityMovement)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
-
-
-function PreciseConstantVelocityMovement:init(speedBasicDecimal, angle, otherAngle)
-end
-
-
--- throws Exception
-function PreciseConstantVelocityMovement:process(layer)
-        local mathUtil = MathUtil.getInstance()
-        local velocityProperties = self:getVelocityProperties()
-        self.accumulatedX = java_int((self.accumulatedX + velocityProperties:getVelocityXBasicDecimalP():getUnscaled()))
-        self.accumulatedY = java_int((self.accumulatedY + velocityProperties:getVelocityYBasicDecimalP():getUnscaled()))
-        self.accumulatedZ = java_int((self.accumulatedZ + velocityProperties:getVelocityZBasicDecimalP():getUnscaled()))
-        layer:moveDXYZ(java_idiv(self.accumulatedX, self.factorValue), java_idiv(self.accumulatedY, self.factorValue), java_idiv(self.accumulatedZ, self.factorValue))
-        if mathUtil:abs(self.accumulatedX) > self.factorValue then
-            self.accumulatedX = 0
-        end
-        if mathUtil:abs(self.accumulatedY) > self.factorValue then
-            self.accumulatedY = 0
-        end
-        if mathUtil:abs(self.accumulatedZ) > self.factorValue then
-            self.accumulatedZ = 0
-        end
-end
-
-return PreciseConstantVelocityMovement
 

@@ -1,55 +1,48 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.gyro.action
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.input.motion.gyro.action
 
-local PlatformInputMappingFactory = require("org.allbinary.game.input.PlatformInputMappingFactory")
-local GameKeyCompleteMotionGestureInputEvent = require("org.allbinary.game.input.motion.action.GameKeyCompleteMotionGestureInputEvent")
-local OrientationMotionGestureFactory = require("org.allbinary.input.gyro.OrientationMotionGestureFactory")
-local NullUtil = require("org.allbinary.logic.NullUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass DownOrientationInputToGameKeyEventAction (GameKeyCompleteMotionGestureInputEvent)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar DownOrientationInputToGameKeyEventAction.jcell_instance :jnone)
+(defun DownOrientationInputToGameKeyEventAction.jstatic_instance ()
+  (when (eq DownOrientationInputToGameKeyEventAction.jcell_instance :jnone) (setf DownOrientationInputToGameKeyEventAction.jcell_instance (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT)))
+  DownOrientationInputToGameKeyEventAction.jcell_instance)
+(defun (setf DownOrientationInputToGameKeyEventAction.jstatic_instance) (value) (setf DownOrientationInputToGameKeyEventAction.jcell_instance value))
 
-local DownOrientationInputToGameKeyEventAction = {}
-DownOrientationInputToGameKeyEventAction.__index = DownOrientationInputToGameKeyEventAction
-DownOrientationInputToGameKeyEventAction.className = "DownOrientationInputToGameKeyEventAction"
-setmetatable(DownOrientationInputToGameKeyEventAction, {__index = GameKeyCompleteMotionGestureInputEvent})
+    
+(defun DownOrientationInputToGameKeyEventAction.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (if (eq (DownOrientationInputToGameKeyEventAction.jstatic_instance) (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT))
+            (progn
+            (setf (DownOrientationInputToGameKeyEventAction.jstatic_instance) (DownOrientationInputToGameKeyEventAction.jnew_0))))
+        (return-from jreturn (DownOrientationInputToGameKeyEventAction.jstatic_instance)))))
+
+    
+(defun DownOrientationInputToGameKeyEventAction.jnew_0 ()
+  (let ((this (make-instance 'DownOrientationInputToGameKeyEventAction)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
 
-function DownOrientationInputToGameKeyEventAction.getInstance()
-        if DownOrientationInputToGameKeyEventAction.instance == NullUtil.getInstance().NULL_OBJECT then
-            DownOrientationInputToGameKeyEventAction.instance = DownOrientationInputToGameKeyEventAction.new()
-        end
-        return DownOrientationInputToGameKeyEventAction.instance
-end
-
-
-function DownOrientationInputToGameKeyEventAction.new()
-    local self = setmetatable(GameKeyCompleteMotionGestureInputEvent.new("Down Action", OrientationMotionGestureFactory.getInstance().DOWN, PlatformInputMappingFactory.getInstance():getPersistentInputMappingInstance():getInputMapping()), DownOrientationInputToGameKeyEventAction)
-        -- super(...) made self above
-    return self
-end
-
-DownOrientationInputToGameKeyEventAction.instance = NullUtil.getInstance().NULL_OBJECT
-
-return DownOrientationInputToGameKeyEventAction
 

@@ -25,6 +25,7 @@
 (defun AllBinaryEventObject.jstatic_NULL_EVENT ()
   (when (eq AllBinaryEventObject.jcell_NULL_EVENT :jnone) (setf AllBinaryEventObject.jcell_NULL_EVENT (AllBinaryEventObject.jnew_1 (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT))))
   AllBinaryEventObject.jcell_NULL_EVENT)
+(defun (setf AllBinaryEventObject.jstatic_NULL_EVENT) (value) (setf AllBinaryEventObject.jcell_NULL_EVENT value))
 
     
 (defun AllBinaryEventObject.jnew_1 (_anyType)

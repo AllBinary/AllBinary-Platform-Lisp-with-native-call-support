@@ -1,56 +1,38 @@
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.weapon
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.layer.weapon
 
-local Animation = require("org.allbinary.animation.Animation")
-local WeaponProperties = require("org.allbinary.game.combat.weapon.WeaponProperties")
-local RemoteInfo = require("org.allbinary.game.multiplayer.layer.RemoteInfo")
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local Movement = require("org.allbinary.physics.movement.Movement")
-local GameTickTimeDelayHelperFactory = require("org.allbinary.time.GameTickTimeDelayHelperFactory")
-local TimeDelayHelper = require("org.allbinary.time.TimeDelayHelper")
-local ViewPositionBase = require("org.allbinary.view.ViewPositionBase")
-local SimpleWeaponLayer = require("org.allbinary.game.layer.weapon.SimpleWeaponLayer")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass TempExplosionWeaponLayer (SimpleWeaponLayer)
+  ((f_weaponProperties :initform nil)
+   (f_timeDelayHelper :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun TempExplosionWeaponLayer.jnew_6 (_name _movement _animationInterface _rectangle _viewPosition _timeDelay)
+  (declare (ignorable _name _movement _animationInterface _rectangle _viewPosition _timeDelay))
+  (let ((this (make-instance 'TempExplosionWeaponLayer)))
+    (setf (slot-value this 'f_weaponProperties) (WeaponProperties.jnew_5 (JR.i64 (- 1)) (JR.i64 (- 1)) 0 1000 (JR.i16 0)))
+    (setf (slot-value this 'f_timeDelayHelper) (TimeDelayHelper.jnew_1 0))
+  (let ()
+    (block jreturn
+        nil
+        (setf (slot-value (slot-value this 'f_timeDelayHelper) 'f_delay) _timeDelay)))
+    this))
 
-local TempExplosionWeaponLayer = {}
-TempExplosionWeaponLayer.__index = TempExplosionWeaponLayer
-TempExplosionWeaponLayer.className = "TempExplosionWeaponLayer"
-setmetatable(TempExplosionWeaponLayer, {__index = SimpleWeaponLayer})
-
-function TempExplosionWeaponLayer:_init_fields()
-    self.weaponProperties = WeaponProperties.new(-1, -1, 0, 1000, 0)
-    self.timeDelayHelper = TimeDelayHelper.new(0)
-end
-
-
-function TempExplosionWeaponLayer.new(name, movement, animationInterface, rectangle, viewPosition, timeDelay)
-    local self = setmetatable(SimpleWeaponLayer.new(name, RemoteInfo.REMOTE_INFO, -1, movement, animationInterface, SimpleWeaponLayer.createDestroyed(), rectangle, viewPosition), TempExplosionWeaponLayer)
-    self:_init_fields()
-        -- super(...) made self above
-        self.timeDelayHelper.delay = timeDelay
-    return self
-end
+    
+(unless (fboundp 'jm_processTick_1) (defgeneric jm_processTick_1 (this p1)))
+(defmethod jm_processTick_1 ((this TempExplosionWeaponLayer) _allBinaryLayerManager)
+  (declare (ignorable this _allBinaryLayerManager))
+  (let ()
+    (block jreturn
+        (if (jm_isTime_1 (slot-value this 'f_timeDelayHelper) (slot-value (GameTickTimeDelayHelperFactory.jm_getInstance_0) 'f_startTime))
+            (progn
+            (jm_collide_2 (jm_getCollidableInferface_0 this) this this)
+            (setf (slot-value this 'f_totalDamage) (JR.i32 (+ (jm_getInitDamage_0 this) 1)))))
+        (call-next-method this _allBinaryLayerManager))))
 
 
--- throws Exception
-function TempExplosionWeaponLayer:processTick(allBinaryLayerManager)
-        if self.timeDelayHelper:isTime(GameTickTimeDelayHelperFactory.getInstance().startTime) then
-            self:getCollidableInferface():collide(self, self)
-            self.totalDamage = self:getInitDamage() + 1
-        end
-        SimpleWeaponLayer.processTick(self, allBinaryLayerManager)
-end
-
-return TempExplosionWeaponLayer
 

@@ -1,123 +1,142 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.input.motion.button
 
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass TouchScreenFactory (JObject)
+  ((f_logUtil :initform nil)
+   (f_touch :initform nil)
+   (f_multiTouch :initform nil)
+   (f_multiTouchDistinct :initform nil)
+   (f_touchScreenType :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar TouchScreenFactory.jcell_SINGLETON :jnone)
+(defun TouchScreenFactory.jstatic_SINGLETON ()
+  (when (eq TouchScreenFactory.jcell_SINGLETON :jnone) (setf TouchScreenFactory.jcell_SINGLETON (TouchScreenFactory.jnew_0)))
+  TouchScreenFactory.jcell_SINGLETON)
+(defun (setf TouchScreenFactory.jstatic_SINGLETON) (value) (setf TouchScreenFactory.jcell_SINGLETON value))
 
-local TouchScreenFactory = {}
-TouchScreenFactory.__index = TouchScreenFactory
-TouchScreenFactory.className = "TouchScreenFactory"
+    
+(defun TouchScreenFactory.jnew_0 ()
+  (let ((this (make-instance 'TouchScreenFactory)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    
+    
+    
+    (setf (slot-value this 'f_touchScreenType) (slot-value (TouchScreenTypesFactory.jm_getInstance_0) 'f_NOTOUCH))
+  (let (_commonStrings)
+  (declare (ignorable _commonStrings))
+    (block jreturn
+        (handler-case (progn
+            (jm_setTouch_1 this t)
+            (jm_setMultiTouch_1 this nil))
+            (error (_e) (declare (ignorable _e))
+            (setf _commonStrings (CommonStrings.jm_getInstance_0))
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value _commonStrings 'f_EXCEPTION) (TouchScreenFactory.jstatic_SINGLETON) (slot-value _commonStrings 'f_GET_INSTANCE) _e)))))
+    this))
 
-function TouchScreenFactory:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.touch = false
-    self.multiTouch = false
-    self.multiTouchDistinct = false
-    self.touchScreenType = TouchScreenTypesFactory.getInstance().NOTOUCH
-end
+    
+(defun TouchScreenFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (TouchScreenFactory.jstatic_SINGLETON)))))
+
+    
+(unless (fboundp 'jm_setMultiTouch_1) (defgeneric jm_setMultiTouch_1 (this p1)))
+(defmethod jm_setMultiTouch_1 ((this TouchScreenFactory) _multiTouch)
+  (declare (ignorable this _multiTouch))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_multiTouch) _multiTouch))))
+
+    
+(unless (fboundp 'jm_isMultiTouch_0) (defgeneric jm_isMultiTouch_0 (this)))
+(defmethod jm_isMultiTouch_0 ((this TouchScreenFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_multiTouch)))))
+
+    
+(unless (fboundp 'jm_setTouch_1) (defgeneric jm_setTouch_1 (this p1)))
+(defmethod jm_setTouch_1 ((this TouchScreenFactory) _touch)
+  (declare (ignorable this _touch))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_touch) _touch))))
+
+    
+(unless (fboundp 'jm_isTouch_0) (defgeneric jm_isTouch_0 (this)))
+(defmethod jm_isTouch_0 ((this TouchScreenFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_touch)))))
+
+    
+(unless (fboundp 'jm_setMultiTouchDistinct_1) (defgeneric jm_setMultiTouchDistinct_1 (this p1)))
+(defmethod jm_setMultiTouchDistinct_1 ((this TouchScreenFactory) _multiTouchDistinct)
+  (declare (ignorable this _multiTouchDistinct))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_multiTouchDistinct) _multiTouchDistinct))))
+
+    
+(unless (fboundp 'jm_isMultiTouchDistinct_0) (defgeneric jm_isMultiTouchDistinct_0 (this)))
+(defmethod jm_isMultiTouchDistinct_0 ((this TouchScreenFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_multiTouchDistinct)))))
+
+    
+(unless (fboundp 'jm_setTouchScreenType_1) (defgeneric jm_setTouchScreenType_1 (this p1)))
+(defmethod jm_setTouchScreenType_1 ((this TouchScreenFactory) _touchScreenType)
+  (declare (ignorable this _touchScreenType))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_touchScreenType) _touchScreenType))))
+
+    
+(unless (fboundp 'jm_getTouchScreenType_0) (defgeneric jm_getTouchScreenType_0 (this)))
+(defmethod jm_getTouchScreenType_0 ((this TouchScreenFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_touchScreenType)))))
+
+    
+(unless (fboundp 'jm_toString_0) (defgeneric jm_toString_0 (this)))
+(defmethod jm_toString_0 ((this TouchScreenFactory))
+  (declare (ignorable this))
+  (let (_stringBuffer)
+  (declare (ignorable _stringBuffer))
+    (block jreturn
+        (setf _stringBuffer (StringMaker.jnew_0))
+        (jm_append_1 _stringBuffer "TouchScreen: ")
+        (jm_appendboolean_1 _stringBuffer (jm_isTouch_0 this))
+        (jm_append_1 _stringBuffer " MultiTouch: ")
+        (jm_appendboolean_1 _stringBuffer (jm_isMultiTouch_0 this))
+        (jm_append_1 _stringBuffer " Distinct MultiTouch: ")
+        (jm_appendboolean_1 _stringBuffer (jm_isMultiTouchDistinct_0 this))
+        (jm_append_1 _stringBuffer " TouchScreenType: ")
+        (jm_append_1 _stringBuffer (jm_toString_1 (StringUtil.jm_getInstance_0) (jm_getTouchScreenType_0 this)))
+        (return-from jreturn (jm_toString_0 _stringBuffer)))))
 
 
-function TouchScreenFactory.new()
-    local self = setmetatable({}, TouchScreenFactory)
-    self:_init_fields()
-        local try_ok, try_error = pcall(function()
-            self:setTouch(true)
-            self:setMultiTouch(false)
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, TouchScreenFactory.SINGLETON, commonStrings.GET_INSTANCE, e)
-        end
-    return self
-end
-
-
-function TouchScreenFactory.getInstance()
-        return TouchScreenFactory.SINGLETON
-end
-
-
-function TouchScreenFactory:setMultiTouch(multiTouch)
-        self.multiTouch = multiTouch
-end
-
-
-function TouchScreenFactory:isMultiTouch()
-        return self.multiTouch
-end
-
-
-function TouchScreenFactory:setTouch(touch)
-        self.touch = touch
-end
-
-
-function TouchScreenFactory:isTouch()
-        return self.touch
-end
-
-
-function TouchScreenFactory:setMultiTouchDistinct(multiTouchDistinct)
-        self.multiTouchDistinct = multiTouchDistinct
-end
-
-
-function TouchScreenFactory:isMultiTouchDistinct()
-        return self.multiTouchDistinct
-end
-
-
-function TouchScreenFactory:setTouchScreenType(touchScreenType)
-        self.touchScreenType = touchScreenType
-end
-
-
-function TouchScreenFactory:getTouchScreenType()
-        return self.touchScreenType
-end
-
-
-function TouchScreenFactory:toString()
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append("TouchScreen: ")
-        stringBuffer:appendboolean(self:isTouch())
-        stringBuffer:append(" MultiTouch: ")
-        stringBuffer:appendboolean(self:isMultiTouch())
-        stringBuffer:append(" Distinct MultiTouch: ")
-        stringBuffer:appendboolean(self:isMultiTouchDistinct())
-        stringBuffer:append(" TouchScreenType: ")
-        stringBuffer:append(StringUtil.getInstance():toString(self:getTouchScreenType()))
-        return tostring(stringBuffer)
-end
-TouchScreenFactory.__tostring = function(self) return self:toString() end
-
-TouchScreenFactory.SINGLETON = TouchScreenFactory.new()
-
-return TouchScreenFactory
 

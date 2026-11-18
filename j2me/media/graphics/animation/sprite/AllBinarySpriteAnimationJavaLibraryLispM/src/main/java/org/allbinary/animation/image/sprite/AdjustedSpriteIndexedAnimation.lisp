@@ -1,75 +1,67 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image.sprite
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation.image.sprite
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
--- local Image = require("javax.microedition.lcdui.Image")
--- local Sprite = require("javax.microedition.lcdui.game.Sprite")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorUtil = require("org.allbinary.graphics.color.BasicColorUtil")
-local SpriteIndexedAnimation = require("org.allbinary.animation.image.sprite.SpriteIndexedAnimation")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass AdjustedSpriteIndexedAnimation (SpriteIndexedAnimation)
+  ((f_dx :initform 0)
+   (f_dy :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun AdjustedSpriteIndexedAnimation.jnew_6 (_sprite _image _basicColorArray _dx _dy _animationBehavior)
+  (declare (ignorable _sprite _image _basicColorArray _dx _dy _animationBehavior))
+  (let ((this (make-instance 'AdjustedSpriteIndexedAnimation)))
+    
+    
+  (let ()
+    (block jreturn
+        nil
+        (setf (slot-value this 'f_dx) _dx)
+        (setf (slot-value this 'f_dy) _dy)))
+    this))
 
-local AdjustedSpriteIndexedAnimation = {}
-AdjustedSpriteIndexedAnimation.__index = AdjustedSpriteIndexedAnimation
-AdjustedSpriteIndexedAnimation.className = "AdjustedSpriteIndexedAnimation"
-setmetatable(AdjustedSpriteIndexedAnimation, {__index = SpriteIndexedAnimation})
+    
+(unless (fboundp 'jm_paintFrame_4) (defgeneric jm_paintFrame_4 (this p1 p2 p3 p4)))
+(defmethod jm_paintFrame_4 ((this AdjustedSpriteIndexedAnimation) _graphics _frame _x _y)
+  (declare (ignorable this _graphics _frame _x _y))
+  (let ()
+    (block jreturn
+        (jm_setFrame_1 this _frame)
+        (jm_setPosition_2 (slot-value this 'f_sprite) (JR.i32 (+ _x (slot-value this 'f_dx))) (JR.i32 (+ _y (slot-value this 'f_dy))))
+        (jm_paint_1 this _graphics))))
 
-function AdjustedSpriteIndexedAnimation:_init_fields()
-    self.dx = nil
-    self.dy = nil
-end
+    
+(unless (fboundp 'jm_paintXY_3) (defgeneric jm_paintXY_3 (this p1 p2 p3)))
+(defmethod jm_paintXY_3 ((this AdjustedSpriteIndexedAnimation) _g _x _y)
+  (declare (ignorable this _g _x _y))
+  (let ()
+    (block jreturn
+        (jm_setPosition_2 (slot-value this 'f_sprite) (JR.i32 (+ _x (slot-value this 'f_dx))) (JR.i32 (+ _y (slot-value this 'f_dy))))
+        (jm_paint_1 this _g))))
 
-
-function AdjustedSpriteIndexedAnimation.new(sprite, image, basicColorArray, dx, dy, animationBehavior)
-    local self = setmetatable(SpriteIndexedAnimation.new(sprite, image, basicColorArray, animationBehavior), AdjustedSpriteIndexedAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self.dx = dx
-        self.dy = dy
-    return self
-end
-
-
-function AdjustedSpriteIndexedAnimation:paintFrame(graphics, frame, x, y)
-        self:setFrame(frame)
-        self.sprite:setPosition(x + self.dx, y + self.dy)
-        SpriteIndexedAnimation.paint(self, graphics)
-end
-
-
-function AdjustedSpriteIndexedAnimation:paintXY(g, x, y)
-        self.sprite:setPosition(x + self.dx, y + self.dy)
-        SpriteIndexedAnimation.paint(self, g)
-end
+    
+(unless (fboundp 'jm_paint_1) (defgeneric jm_paint_1 (this p1)))
+(defmethod jm_paint_1 ((this AdjustedSpriteIndexedAnimation) _g)
+  (declare (ignorable this _g))
+  (let ()
+    (block jreturn
+        (jm_setPosition_2 (slot-value this 'f_sprite) (slot-value this 'f_dx) (slot-value this 'f_dy))
+        (call-next-method this _g))))
 
 
-function AdjustedSpriteIndexedAnimation:paint(g)
-        self.sprite:setPosition(self.dx, self.dy)
-        SpriteIndexedAnimation.paint(self, g)
-end
-
-return AdjustedSpriteIndexedAnimation
 

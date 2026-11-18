@@ -1,82 +1,85 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.input.motion
 
-local CustomGPoint = require("org.allbinary.graphics.CustomGPoint")
-local GPointCircularPool = require("org.allbinary.graphics.GPointCircularPool")
-local MotionGestureRecognizer = require("org.allbinary.input.motion.gesture.MotionGestureRecognizer")
-local MotionRecognizer = require("org.allbinary.input.motion.MotionRecognizer")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass GestureOnlyMotionRecognizer (MotionRecognizer)
+  ((f_motionGestureRecognizer :initform nil)
+   (f_id :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar GestureOnlyMotionRecognizer.jcell_index :jnone)
+(defun GestureOnlyMotionRecognizer.jstatic_index ()
+  (when (eq GestureOnlyMotionRecognizer.jcell_index :jnone) (setf GestureOnlyMotionRecognizer.jcell_index 0))
+  GestureOnlyMotionRecognizer.jcell_index)
+(defun (setf GestureOnlyMotionRecognizer.jstatic_index) (value) (setf GestureOnlyMotionRecognizer.jcell_index value))
 
-local GestureOnlyMotionRecognizer = {}
-GestureOnlyMotionRecognizer.__index = GestureOnlyMotionRecognizer
-GestureOnlyMotionRecognizer.className = "GestureOnlyMotionRecognizer"
-setmetatable(GestureOnlyMotionRecognizer, {__index = MotionRecognizer})
+(defvar GestureOnlyMotionRecognizer.jcell_pointCircularPool :jnone)
+(defun GestureOnlyMotionRecognizer.jstatic_pointCircularPool ()
+  (when (eq GestureOnlyMotionRecognizer.jcell_pointCircularPool :jnone) (setf GestureOnlyMotionRecognizer.jcell_pointCircularPool (GPointCircularPool.jnew_1 40)))
+  GestureOnlyMotionRecognizer.jcell_pointCircularPool)
+(defun (setf GestureOnlyMotionRecognizer.jstatic_pointCircularPool) (value) (setf GestureOnlyMotionRecognizer.jcell_pointCircularPool value))
 
-function GestureOnlyMotionRecognizer:_init_fields()
-    self.motionGestureRecognizer = nil
-    self.id = nil
-end
+    
+(defun GestureOnlyMotionRecognizer.jnew_0 ()
+  (let ((this (make-instance 'GestureOnlyMotionRecognizer)))
+    
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_id) (prog1 (GestureOnlyMotionRecognizer.jstatic_index) (setf (GestureOnlyMotionRecognizer.jstatic_index) (JR.i32 (+ (GestureOnlyMotionRecognizer.jstatic_index) 1)))))
+        (setf (slot-value this 'f_motionGestureRecognizer) (MotionGestureRecognizer.jnew_1 (slot-value this 'f_id)))))
+    this))
+
+    
+(unless (fboundp 'jm_processStartMotionEvent_4) (defgeneric jm_processStartMotionEvent_4 (this p1 p2 p3 p4)))
+(defmethod jm_processStartMotionEvent_4 ((this GestureOnlyMotionRecognizer) _x _y _deviceId _modifiers)
+  (declare (ignorable this _x _y _deviceId _modifiers))
+  (let (_point)
+  (declare (ignorable _point))
+    (block jreturn
+        (setf _point (jm_getNextInstance_0 (GestureOnlyMotionRecognizer.jstatic_pointCircularPool)))
+        (jm_setX_1 _point _x)
+        (jm_setY_1 _point _y)
+        (jm_processPressedMotionEvent_3 (slot-value this 'f_motionGestureRecognizer) _point _deviceId _modifiers))))
+
+    
+(unless (fboundp 'jm_processEndMotionEvent_4) (defgeneric jm_processEndMotionEvent_4 (this p1 p2 p3 p4)))
+(defmethod jm_processEndMotionEvent_4 ((this GestureOnlyMotionRecognizer) _x _y _deviceId _modifiers)
+  (declare (ignorable this _x _y _deviceId _modifiers))
+  (let (_point)
+  (declare (ignorable _point))
+    (block jreturn
+        (setf _point (jm_getNextInstance_0 (GestureOnlyMotionRecognizer.jstatic_pointCircularPool)))
+        (jm_setX_1 _point _x)
+        (jm_setY_1 _point _y)
+        (jm_processReleasedMotionEvent_3 (slot-value this 'f_motionGestureRecognizer) _point _deviceId _modifiers))))
+
+    
+(unless (fboundp 'jm_processDraggedMotionEvent_4) (defgeneric jm_processDraggedMotionEvent_4 (this p1 p2 p3 p4)))
+(defmethod jm_processDraggedMotionEvent_4 ((this GestureOnlyMotionRecognizer) _x _y _deviceId _modifiers)
+  (declare (ignorable this _x _y _deviceId _modifiers))
+  (let (_point)
+  (declare (ignorable _point))
+    (block jreturn
+        (setf _point (jm_getNextInstance_0 (GestureOnlyMotionRecognizer.jstatic_pointCircularPool)))
+        (jm_setX_1 _point _x)
+        (jm_setY_1 _point _y)
+        (jm_processDraggedMotionEvent_3 (slot-value this 'f_motionGestureRecognizer) _point _deviceId _modifiers))))
 
 
-function GestureOnlyMotionRecognizer.new()
-    local self = setmetatable(MotionRecognizer.new(), GestureOnlyMotionRecognizer)
-    self:_init_fields()
-        self.id = (function() local value = GestureOnlyMotionRecognizer.index GestureOnlyMotionRecognizer.index = value + 1 return value end)()
-        self.motionGestureRecognizer = MotionGestureRecognizer.new(self.id)
-    return self
-end
-
-
--- throws Exception
-function GestureOnlyMotionRecognizer:processStartMotionEvent(x, y, deviceId, modifiers)
-        local point = GestureOnlyMotionRecognizer.pointCircularPool:getNextInstance()
-        point:setX(x)
-        point:setY(y)
-        self.motionGestureRecognizer:processPressedMotionEvent(point, deviceId, modifiers)
-end
-
-
--- throws Exception
-function GestureOnlyMotionRecognizer:processEndMotionEvent(x, y, deviceId, modifiers)
-        local point = GestureOnlyMotionRecognizer.pointCircularPool:getNextInstance()
-        point:setX(x)
-        point:setY(y)
-        self.motionGestureRecognizer:processReleasedMotionEvent(point, deviceId, modifiers)
-end
-
-
--- throws Exception
-function GestureOnlyMotionRecognizer:processDraggedMotionEvent(x, y, deviceId, modifiers)
-        local point = GestureOnlyMotionRecognizer.pointCircularPool:getNextInstance()
-        point:setX(x)
-        point:setY(y)
-        self.motionGestureRecognizer:processDraggedMotionEvent(point, deviceId, modifiers)
-end
-
-GestureOnlyMotionRecognizer.index = 0
-GestureOnlyMotionRecognizer.pointCircularPool = GPointCircularPool.new(40)
-
-return GestureOnlyMotionRecognizer
 

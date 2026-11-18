@@ -1,50 +1,41 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.gesture.observer
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.input.motion.gesture.observer
 
-local MotionGestureConfiguration = require("org.allbinary.input.motion.gesture.configuration.MotionGestureConfiguration")
-local MotionGestureConfigurationFactory = require("org.allbinary.input.motion.gesture.configuration.MotionGestureConfigurationFactory")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass MotionGestureReceiveInterfaceFactory (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun MotionGestureReceiveInterfaceFactory.jnew_0 ()
+  (let ((this (make-instance 'MotionGestureReceiveInterfaceFactory)))
+    this))
 
-local MotionGestureReceiveInterfaceFactory = {}
-MotionGestureReceiveInterfaceFactory.__index = MotionGestureReceiveInterfaceFactory
-MotionGestureReceiveInterfaceFactory.className = "MotionGestureReceiveInterfaceFactory"
+    
+(defun MotionGestureReceiveInterfaceFactory.jm_getInstance_0 ()
+  (let (_configuration)
+  (declare (ignorable _configuration))
+    (block jreturn
+        (setf _configuration (MotionGestureConfigurationFactory.jm_getInstance_0))
+        (if (not (jm_isExecutingActionsAllowed_0 _configuration))
+            (progn
+            (return-from jreturn (NullCompleteMotionGestureReceiver.jnew_0)))
+            (progn
+            (return-from jreturn (ResolveCompleteMotionGestureListener.jnew_0)))))))
 
-function MotionGestureReceiveInterfaceFactory.new()
-    local self = setmetatable({}, MotionGestureReceiveInterfaceFactory)
-    return self
-end
 
-
-function MotionGestureReceiveInterfaceFactory.getInstance()
-        local configuration = MotionGestureConfigurationFactory.getInstance()
-        if not configuration:isExecutingActionsAllowed() then
-            return NullCompleteMotionGestureReceiver.new()
-        else
-            return ResolveCompleteMotionGestureListener.new()
-        end
-end
-
-return MotionGestureReceiveInterfaceFactory
 

@@ -1,82 +1,84 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.motion.action
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.input.motion.action
 
-local CompleteMotionGestureInputEvent = require("org.allbinary.game.input.CompleteMotionGestureInputEvent")
-local GameKey = require("org.allbinary.game.input.GameKey")
-local GameKeyEventSourceInterface = require("org.allbinary.game.input.GameKeyEventSourceInterface")
-local GameKeyEvent = require("org.allbinary.game.input.event.GameKeyEvent")
-local InputToGameKeyMapping = require("org.allbinary.game.input.mapping.InputToGameKeyMapping")
-local MotionGestureInput = require("org.allbinary.input.motion.gesture.MotionGestureInput")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass GameKeyCompleteMotionGestureInputEvent (CompleteMotionGestureInputEvent)
+  ((f_gameKey :initform nil)
+   (f_gameKeyEvent :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun GameKeyCompleteMotionGestureInputEvent.jnew_3 (_name _motionGestureInput _inputToGameKeyMapping)
+  (declare (ignorable _name _motionGestureInput _inputToGameKeyMapping))
+  (let ((this (make-instance 'GameKeyCompleteMotionGestureInputEvent)))
+    (setf (slot-value this 'f_gameKey) (GameKey.jstatic_NULL_GAME_KEY))
+    (setf (slot-value this 'f_gameKeyEvent) (GameKeyEvent.jstatic_NONE))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
-local GameKeyCompleteMotionGestureInputEvent = {}
-GameKeyCompleteMotionGestureInputEvent.__index = GameKeyCompleteMotionGestureInputEvent
-GameKeyCompleteMotionGestureInputEvent.className = "GameKeyCompleteMotionGestureInputEvent"
-setmetatable(GameKeyCompleteMotionGestureInputEvent, {__index = CompleteMotionGestureInputEvent})
+    
+(unless (fboundp 'jm_getSourceId_0) (defgeneric jm_getSourceId_0 (this)))
+(defmethod jm_getSourceId_0 ((this GameKeyCompleteMotionGestureInputEvent))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn 0))))
 
-function GameKeyCompleteMotionGestureInputEvent:_init_fields()
-    self.gameKey = GameKey.NULL_GAME_KEY
-    self.gameKeyEvent = GameKeyEvent.NONE
-end
+    
+(unless (fboundp 'jm_update_0) (defgeneric jm_update_0 (this)))
+(defmethod jm_update_0 ((this GameKeyCompleteMotionGestureInputEvent))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_setGameKeyEvent_1) (defgeneric jm_setGameKeyEvent_1 (this p1)))
+(defmethod jm_setGameKeyEvent_1 ((this GameKeyCompleteMotionGestureInputEvent) _gameKeyEvent)
+  (declare (ignorable this _gameKeyEvent))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_gameKeyEvent) _gameKeyEvent))))
+
+    
+(unless (fboundp 'jm_getGameKeyEvent_0) (defgeneric jm_getGameKeyEvent_0 (this)))
+(defmethod jm_getGameKeyEvent_0 ((this GameKeyCompleteMotionGestureInputEvent))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_gameKeyEvent)))))
+
+    
+(unless (fboundp 'jm_setGameKey_1) (defgeneric jm_setGameKey_1 (this p1)))
+(defmethod jm_setGameKey_1 ((this GameKeyCompleteMotionGestureInputEvent) _gameKey)
+  (declare (ignorable this _gameKey))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_gameKey) _gameKey))))
+
+    
+(unless (fboundp 'jm_getGameKey_0) (defgeneric jm_getGameKey_0 (this)))
+(defmethod jm_getGameKey_0 ((this GameKeyCompleteMotionGestureInputEvent))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_gameKey)))))
 
 
-function GameKeyCompleteMotionGestureInputEvent.new(name, motionGestureInput, inputToGameKeyMapping)
-    local self = setmetatable(CompleteMotionGestureInputEvent.new(name, motionGestureInput), GameKeyCompleteMotionGestureInputEvent)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
-
-
-function GameKeyCompleteMotionGestureInputEvent:getSourceId()
-        return 0
-end
-
-
-function GameKeyCompleteMotionGestureInputEvent:update()
-end
-
-
-function GameKeyCompleteMotionGestureInputEvent:setGameKeyEvent(gameKeyEvent)
-        self.gameKeyEvent = gameKeyEvent
-end
-
-
-function GameKeyCompleteMotionGestureInputEvent:getGameKeyEvent()
-        return self.gameKeyEvent
-end
-
-
-function GameKeyCompleteMotionGestureInputEvent:setGameKey(gameKey)
-        self.gameKey = gameKey
-end
-
-
-function GameKeyCompleteMotionGestureInputEvent:getGameKey()
-        return self.gameKey
-end
-
-return GameKeyCompleteMotionGestureInputEvent
 

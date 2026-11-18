@@ -1,59 +1,45 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.ag.ai
 
-local ArtificialIntelligenceInterface = require("org.allbinary.ai.ArtificialIntelligenceInterface")
-local BasicRandomAIFactory = require("org.allbinary.game.ag.ai.tactical.BasicRandomAIFactory")
-local ArtificialIntelligenceInterfaceFactoryInterface = require("org.allbinary.game.ai.ArtificialIntelligenceInterfaceFactoryInterface")
-local BasicAI = require("org.allbinary.game.ai.BasicAI")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local Visitor = require("org.allbinary.logic.util.visitor.Visitor")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass DiveAndDirectionalTrackingAIFactory (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun DiveAndDirectionalTrackingAIFactory.jnew_0 ()
+  (let ((this (make-instance 'DiveAndDirectionalTrackingAIFactory)))
+    this))
 
-local DiveAndDirectionalTrackingAIFactory = {}
-DiveAndDirectionalTrackingAIFactory.__index = DiveAndDirectionalTrackingAIFactory
-DiveAndDirectionalTrackingAIFactory.className = "DiveAndDirectionalTrackingAIFactory"
+    
+(unless (fboundp 'jm_getInstance_3) (defgeneric jm_getInstance_3 (this p1 p2 p3)))
+(defmethod jm_getInstance_3 ((this DiveAndDirectionalTrackingAIFactory) _hashtable _ownerLayerInterface _gameInput)
+  (declare (ignorable this _hashtable _ownerLayerInterface _gameInput))
+  (let (_visitorCanBeNull _hashtable2 _artificialIntelligenceInterface)
+  (declare (ignorable _visitorCanBeNull _hashtable2 _artificialIntelligenceInterface))
+    (block jreturn
+        (setf _visitorCanBeNull (jm_get_1 _hashtable (BasicAI.jstatic_AI_VISITOR)))
+        (if (null _visitorCanBeNull)
+            (progn
+            (setf _visitorCanBeNull (ThrustAIVisitorFactory.jm_getInstance_0))))
+        (setf _hashtable2 (jm_getInstance_0 (BasicProbabilityAIDataFactory.jnew_0)))
+        (jm_put_2 _hashtable2 (BasicAI.jstatic_AI_VISITOR) (LastKeyAIVisitorFactory.jm_getInstance_0))
+        (setf _artificialIntelligenceInterface (jm_getInstance_3 (BasicRandomAIFactory.jnew_0) _hashtable2 _ownerLayerInterface _gameInput))
+        (return-from jreturn (DiveAndDirectionalTrackingAI.jnew_4 _ownerLayerInterface _artificialIntelligenceInterface _gameInput _visitorCanBeNull)))))
 
-function DiveAndDirectionalTrackingAIFactory.new()
-    local self = setmetatable({}, DiveAndDirectionalTrackingAIFactory)
-    return self
-end
 
-
--- throws Exception
-function DiveAndDirectionalTrackingAIFactory:getInstance(hashtable, ownerLayerInterface, gameInput)
-        local visitorCanBeNull = hashtable:get(BasicAI.AI_VISITOR)
-        if visitorCanBeNull == nil then
-            visitorCanBeNull = ThrustAIVisitorFactory.getInstance()
-        end
-        local hashtable2 = BasicProbabilityAIDataFactory.new():getInstance()
-        hashtable2:put(BasicAI.AI_VISITOR, LastKeyAIVisitorFactory.getInstance())
-        local artificialIntelligenceInterface = BasicRandomAIFactory.new():getInstance(hashtable2, ownerLayerInterface, gameInput)
-        return DiveAndDirectionalTrackingAI.new(ownerLayerInterface, artificialIntelligenceInterface, gameInput, visitorCanBeNull)
-end
-
-return DiveAndDirectionalTrackingAIFactory
 

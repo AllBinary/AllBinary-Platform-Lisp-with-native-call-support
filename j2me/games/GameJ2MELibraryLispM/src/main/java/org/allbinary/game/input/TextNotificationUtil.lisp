@@ -1,88 +1,83 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.input
 
-local GameNotificationEvent = require("org.allbinary.game.layer.hud.event.GameNotificationEvent")
-local GameNotificationEventHandler = require("org.allbinary.game.layer.hud.event.GameNotificationEventHandler")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local BooleanFactory = require("org.allbinary.logic.java.bool.BooleanFactory")
-local SmallIntegerSingletonFactory = require("org.allbinary.logic.math.SmallIntegerSingletonFactory")
-local ErrorSound = require("org.allbinary.media.audio.ErrorSound")
-local PrimaryPlayerQueueFactory = require("org.allbinary.media.audio.PrimaryPlayerQueueFactory")
-local SelectSound = require("org.allbinary.media.audio.SelectSound")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass TextNotificationUtil (JObject)
+  ((f_TWO :initform nil)
+   (f_FALSE :initform nil)
+   (f_gameNotificationEventHandler :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar TextNotificationUtil.jcell_instance :jnone)
+(defun TextNotificationUtil.jstatic_instance ()
+  (when (eq TextNotificationUtil.jcell_instance :jnone) (setf TextNotificationUtil.jcell_instance (TextNotificationUtil.jnew_0)))
+  TextNotificationUtil.jcell_instance)
+(defun (setf TextNotificationUtil.jstatic_instance) (value) (setf TextNotificationUtil.jcell_instance value))
 
-local TextNotificationUtil = {}
-TextNotificationUtil.__index = TextNotificationUtil
-TextNotificationUtil.className = "TextNotificationUtil"
+(defun TextNotificationUtil.jnew_0 ()
+  (let ((this (make-instance 'TextNotificationUtil)))
+    (setf (slot-value this 'f_TWO) (jm_getAt_1 (SmallIntegerSingletonFactory.jm_getInstance_0) 2))
+    (setf (slot-value this 'f_FALSE) (slot-value (BooleanFactory.jm_getInstance_0) 'f_FALSE))
+    (setf (slot-value this 'f_gameNotificationEventHandler) (GameNotificationEventHandler.jm_getInstance_0))
+    this))
 
-function TextNotificationUtil:_init_fields()
-    self.TWO = SmallIntegerSingletonFactory.getInstance():getAt(2)
-    self.FALSE = BooleanFactory.getInstance().FALSE
-    self.gameNotificationEventHandler = GameNotificationEventHandler.getInstance()
-end
+    
+(defun TextNotificationUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (TextNotificationUtil.jstatic_instance)))))
 
-function TextNotificationUtil.new()
-    local self = setmetatable({}, TextNotificationUtil)
-    self:_init_fields()
-    return self
-end
+    
+(unless (fboundp 'jm_fireError_1) (defgeneric jm_fireError_1 (this p1)))
+(defmethod jm_fireError_1 ((this TextNotificationUtil) _message)
+  (declare (ignorable this _message))
+  (let ()
+    (block jreturn
+        (jm_add_1 (PrimaryPlayerQueueFactory.jm_getInstance_0) (ErrorSound.jm_getInstance_0))
+        (jm_fire_1 this _message))))
+
+    
+(unless (fboundp 'jm_fireNew_1) (defgeneric jm_fireNew_1 (this p1)))
+(defmethod jm_fireNew_1 ((this TextNotificationUtil) _message)
+  (declare (ignorable this _message))
+  (let ()
+    (block jreturn
+        (jm_add_1 (PrimaryPlayerQueueFactory.jm_getInstance_0) (SelectSound.jm_getInstance_0))
+        (jm_fire_1 this _message))))
+
+    
+(unless (fboundp 'jm_fireSuccess_1) (defgeneric jm_fireSuccess_1 (this p1)))
+(defmethod jm_fireSuccess_1 ((this TextNotificationUtil) _message)
+  (declare (ignorable this _message))
+  (let ()
+    (block jreturn
+        (jm_add_1 (PrimaryPlayerQueueFactory.jm_getInstance_0) (SelectSound.jm_getInstance_0))
+        (jm_fire_1 this _message))))
+
+    
+(unless (fboundp 'jm_fire_1) (defgeneric jm_fire_1 (this p1)))
+(defmethod jm_fire_1 ((this TextNotificationUtil) _message)
+  (declare (ignorable this _message))
+  (let (_gameNotificationEvent)
+  (declare (ignorable _gameNotificationEvent))
+    (block jreturn
+        (setf _gameNotificationEvent (GameNotificationEvent.jnew_5 this _message (slot-value this 'f_TWO) (slot-value (BasicColorFactory.jm_getInstance_0) 'f_RED) (slot-value this 'f_FALSE)))
+        (jm_fireEvent_1 (slot-value this 'f_gameNotificationEventHandler) _gameNotificationEvent))))
 
 
-function TextNotificationUtil.getInstance()
-        return TextNotificationUtil.instance
-end
-
-
--- throws Exception
-function TextNotificationUtil:fireError(message)
-        PrimaryPlayerQueueFactory.getInstance():add(ErrorSound.getInstance())
-        self:fire(message)
-end
-
-
--- throws Exception
-function TextNotificationUtil:fireNew(message)
-        PrimaryPlayerQueueFactory.getInstance():add(SelectSound.getInstance())
-        self:fire(message)
-end
-
-
--- throws Exception
-function TextNotificationUtil:fireSuccess(message)
-        PrimaryPlayerQueueFactory.getInstance():add(SelectSound.getInstance())
-        self:fire(message)
-end
-
-
--- throws Exception
-function TextNotificationUtil:fire(message)
-        local gameNotificationEvent = GameNotificationEvent.new(self, message, self.TWO, BasicColorFactory.getInstance().RED, self.FALSE)
-        self.gameNotificationEventHandler:fireEvent(gameNotificationEvent)
-end
-
-TextNotificationUtil.instance = TextNotificationUtil.new()
-
-return TextNotificationUtil
 

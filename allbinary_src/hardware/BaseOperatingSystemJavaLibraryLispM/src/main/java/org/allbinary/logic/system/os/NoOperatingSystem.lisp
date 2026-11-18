@@ -25,6 +25,7 @@
 (defun NoOperatingSystem.jstatic_NO_OPERATING_SYSTEM ()
   (when (eq NoOperatingSystem.jcell_NO_OPERATING_SYSTEM :jnone) (setf NoOperatingSystem.jcell_NO_OPERATING_SYSTEM (GenericOperatingSystem.jnew_0)))
   NoOperatingSystem.jcell_NO_OPERATING_SYSTEM)
+(defun (setf NoOperatingSystem.jstatic_NO_OPERATING_SYSTEM) (value) (setf NoOperatingSystem.jcell_NO_OPERATING_SYSTEM value))
 
     
 (defun NoOperatingSystem.jnew_0 ()

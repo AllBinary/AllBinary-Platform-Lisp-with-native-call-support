@@ -26,6 +26,7 @@
 (defun LogFactory.jstatic_LOG ()
   (when (eq LogFactory.jcell_LOG :jnone) (setf LogFactory.jcell_LOG (Log.jnew_4 (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT) (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT))))
   LogFactory.jcell_LOG)
+(defun (setf LogFactory.jstatic_LOG) (value) (setf LogFactory.jcell_LOG value))
 
 (defun LogFactory.jnew_0 ()
   (let ((this (make-instance 'LogFactory)))

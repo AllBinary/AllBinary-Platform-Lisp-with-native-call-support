@@ -1,281 +1,353 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.graphics.hud
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.graphics.hud
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local J2MEUtil = require("org.allbinary.J2MEUtil")
-local Anchor = require("org.allbinary.graphics.Anchor")
-local GPoint = require("org.allbinary.graphics.GPoint")
-local PointFactory = require("org.allbinary.graphics.PointFactory")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local BasicColorSetUtil = require("org.allbinary.graphics.color.BasicColorSetUtil")
-local CanvasStrings = require("org.allbinary.graphics.displayable.CanvasStrings")
-local DisplayInfoSingleton = require("org.allbinary.graphics.displayable.DisplayInfoSingleton")
-local DisplayChangeEvent = require("org.allbinary.graphics.displayable.event.DisplayChangeEvent")
-local MyFontProcessor = require("org.allbinary.graphics.font.MyFontProcessor")
-local UpdateMyFontInterface = require("org.allbinary.graphics.font.UpdateMyFontInterface")
-local UpdateMyFontProcessor = require("org.allbinary.graphics.font.UpdateMyFontProcessor")
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventStrings = require("org.allbinary.logic.util.event.EventStrings")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass BasicHud (JObject)
+  ((f_logUtil :initform nil)
+   (f_commonStrings :initform nil)
+   (f_canvasStrings :initform nil)
+   (f_basicSetColorUtil :initform nil)
+   (f_displayInfo :initform nil)
+   (f_updateMyFontProcessor :initform nil)
+   (f_myFontProcessor :initform nil)
+   (f_location :initform 0)
+   (f_direction :initform 0)
+   (f_bufferZone :initform 0)
+   (f_bufferZoneY :initform 0)
+   (f_hudGraphicsPosition :initform nil)
+   (f_x :initform 0)
+   (f_y :initform 0)
+   (f_basicColor :initform nil)
+   (f_color :initform 0)
+   (f_updateMaxWidth :initform 0)
+   (f_updateMaxHeight :initform 0)
+   (f_offsetY :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun BasicHud.jnew_4 (_location _direction _bufferZone _basicColor)
+  (declare (ignorable _location _direction _bufferZone _basicColor))
+  (let ((this (make-instance 'BasicHud)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_commonStrings) (CommonStrings.jm_getInstance_0))
+    (setf (slot-value this 'f_canvasStrings) (CanvasStrings.jm_getInstance_0))
+    (setf (slot-value this 'f_basicSetColorUtil) (BasicColorSetUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_displayInfo) (DisplayInfoSingleton.jm_getInstance_0))
+    (setf (slot-value this 'f_updateMyFontProcessor) (UpdateMyFontProcessor.jnew_1 this))
+    (setf (slot-value this 'f_myFontProcessor) (slot-value this 'f_updateMyFontProcessor))
+    
+    
+    
+    
+    (setf (slot-value this 'f_hudGraphicsPosition) (HudGraphicsPosition.jstatic_NULL_HUD_GRAPHICS_POSITION))
+    
+    
+    (setf (slot-value this 'f_basicColor) (slot-value (BasicColorFactory.jm_getInstance_0) 'f_BLACK))
+    
+    
+    
+    
+  (let ()
+    (block jreturn
+        (jm_setLocation_1 this _location)
+        (jm_setDirection_1 this _direction)
+        (jm_setBufferZone_1 this _bufferZone)
+        (jm_onDisplayChangeEvent_1 this (slot-value (DisplayInfoSingleton.jm_getInstance_0) 'f_displayChangeEvent))
+        (jm_setBasicColorP_1 this _basicColor)
+        (setf (slot-value this 'f_color) (jm_intValue_0 _basicColor))))
+    this))
 
-local BasicHud = {}
-BasicHud.__index = BasicHud
-BasicHud.className = "BasicHud"
+    
+(unless (fboundp 'jm_updateMeasurement_1) (defgeneric jm_updateMeasurement_1 (this p1)))
+(defmethod jm_updateMeasurement_1 ((this BasicHud) _graphics)
+  (declare (ignorable this _graphics))
+  (let (_commonStrings)
+  (declare (ignorable _commonStrings))
+    (block jreturn
+        (handler-case (progn
+            (setf (slot-value this 'f_hudGraphicsPosition) (jm_getHudGraphicsPositionWH_4 this (jm_getLastWidth_0 (slot-value this 'f_displayInfo)) (jm_getLastHeight_0 (slot-value this 'f_displayInfo)) (slot-value this 'f_updateMaxWidth) (slot-value this 'f_updateMaxHeight)))
+            (setf (slot-value this 'f_x) (jm_getX_0 (jm_getPoint_0 (slot-value this 'f_hudGraphicsPosition))))
+            (jm_setY_1 this (jm_getY_0 (jm_getPoint_0 (slot-value this 'f_hudGraphicsPosition)))))
+            (error (_e) (declare (ignorable _e))
+            (setf _commonStrings (CommonStrings.jm_getInstance_0))
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value _commonStrings 'f_EXCEPTION) this (slot-value (slot-value this 'f_canvasStrings) 'f_ON_DISPLAY_CHANGE_EVENT) _e)))
+        (setf (slot-value this 'f_myFontProcessor) (MyFontProcessor.jm_getInstance_0)))))
 
-function BasicHud:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.canvasStrings = CanvasStrings.getInstance()
-    self.basicSetColorUtil = BasicColorSetUtil.getInstance()
-    self.displayInfo = DisplayInfoSingleton.getInstance()
-    self.updateMyFontProcessor = UpdateMyFontProcessor.new(self)
-    self.myFontProcessor = self.updateMyFontProcessor
-    self.location = 0
-    self.direction = 0
-    self.bufferZone = 0
-    self.bufferZoneY = 0
-    self.hudGraphicsPosition = HudGraphicsPosition.NULL_HUD_GRAPHICS_POSITION
-    self.x = 0
-    self.y = 0
-    self.basicColor = BasicColorFactory.getInstance().BLACK
-    self.color = nil
-    self.updateMaxWidth = 0
-    self.updateMaxHeight = 0
-    self.offsetY = 0
-end
+    
+(unless (fboundp 'jm_getLocation_0) (defgeneric jm_getLocation_0 (this)))
+(defmethod jm_getLocation_0 ((this BasicHud))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_location)))))
+
+    
+(unless (fboundp 'jm_getDirection_0) (defgeneric jm_getDirection_0 (this)))
+(defmethod jm_getDirection_0 ((this BasicHud))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_direction)))))
+
+    
+(unless (fboundp 'jm_getHudGraphicsPositionWH_4) (defgeneric jm_getHudGraphicsPositionWH_4 (this p1 p2 p3 p4)))
+(defmethod jm_getHudGraphicsPositionWH_4 ((this BasicHud) _width _height _maxWidth _maxHeight)
+  (declare (ignorable this _width _height _maxWidth _maxHeight))
+  (let (_x _y _anchor _basicHudFactory)
+  (declare (ignorable _x _y _anchor _basicHudFactory))
+    (block jreturn
+        (setf _x 0)
+        (setf _y 0)
+        (setf _anchor 0)
+        (setf _basicHudFactory (BasicHudFactory.jm_getInstance_0))
+        (if (eq (slot-value _basicHudFactory 'f_BOTTOMLEFT) (jm_getLocation_0 this))
+            (progn
+            (setf _x (JR.i32 (+ (slot-value this 'f_bufferZone) 2)))
+            (setf _y (JR.i32 (- (JR.i32 (- _height _maxHeight)) (slot-value this 'f_bufferZone))))
+            (setf _anchor (logand (Graphics.jstatic_BOTTOM) (Graphics.jstatic_LEFT))))
+            (if (eq (slot-value _basicHudFactory 'f_BOTTOMRIGHT) (jm_getLocation_0 this))
+            (progn
+            (setf _x (JR.i32 (- _width _maxWidth)))
+            (setf _y (JR.i32 (- (JR.i32 (- _height _maxHeight)) (slot-value this 'f_bufferZone))))
+            (setf _anchor (logand (Graphics.jstatic_BOTTOM) (Graphics.jstatic_RIGHT))))
+            (if (eq (slot-value _basicHudFactory 'f_TOPLEFT) (jm_getLocation_0 this))
+            (progn
+            (setf _x (JR.i32 (+ (slot-value this 'f_bufferZone) 2)))
+            (setf _y (slot-value this 'f_bufferZoneY))
+            (setf _anchor (Anchor.jstatic_TOP_LEFT)))
+            (if (eq (slot-value _basicHudFactory 'f_TOPRIGHT) (jm_getLocation_0 this))
+            (progn
+            (setf _x (JR.i32 (- _width _maxWidth)))
+            (setf _y (slot-value this 'f_bufferZoneY))
+            (setf _anchor (logand (Graphics.jstatic_TOP) (Graphics.jstatic_RIGHT))))
+            (if (eq (slot-value _basicHudFactory 'f_TOPCENTER) (jm_getLocation_0 this))
+            (progn
+            (setf _x (JR.idiv (JR.i32 (- _width _maxWidth)) 2))
+            (setf _y (slot-value this 'f_bufferZoneY))
+            (setf _anchor (logand (Graphics.jstatic_TOP) (Graphics.jstatic_HCENTER))))
+            (if (eq (slot-value _basicHudFactory 'f_BOTTOMCENTER) (jm_getLocation_0 this))
+            (progn
+            (setf _x (JR.idiv (JR.i32 (- _width _maxWidth)) 2))
+            (setf _y (JR.i32 (- (JR.i32 (- _height _maxHeight)) (slot-value this 'f_bufferZone))))
+            (setf _anchor (logand (Graphics.jstatic_BOTTOM) (Graphics.jstatic_HCENTER))))
+            (if (eq (slot-value _basicHudFactory 'f_ABSOLUTE) (jm_getLocation_0 this))
+            (progn
+            (setf _x _maxHeight)
+            (setf _y _maxWidth)
+            (setf _anchor 0)))))))))
+        (return-from jreturn (HudGraphicsPosition.jnew_2 (jm_getPoint_2 this _x _y) _anchor)))))
+
+    
+(unless (fboundp 'jm_onEvent_1) (defgeneric jm_onEvent_1 (this p1)))
+(defmethod jm_onEvent_1 ((this BasicHud) _eventObject)
+  (declare (ignorable this _eventObject))
+  (let ()
+    (block jreturn
+        (ForcedLogUtil.jm_log_2 (slot-value (EventStrings.jm_getInstance_0) 'f_PERFORMANCE_MESSAGE) this))))
+
+    
+(unless (fboundp 'jm_onDisplayChangeEvent_1) (defgeneric jm_onDisplayChangeEvent_1 (this p1)))
+(defmethod jm_onDisplayChangeEvent_1 ((this BasicHud) _displayChangeEvent)
+  (declare (ignorable this _displayChangeEvent))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_myFontProcessor) (slot-value this 'f_updateMyFontProcessor)))))
+
+    
+(unless (fboundp 'jm_getPoint_2) (defgeneric jm_getPoint_2 (this p1 p2)))
+(defmethod jm_getPoint_2 ((this BasicHud) _x _y)
+  (declare (ignorable this _x _y))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_createXY_2 (PointFactory.jm_getInstance_0) _x _y)))))
+
+    
+(unless (fboundp 'jm_getBufferZone_0) (defgeneric jm_getBufferZone_0 (this)))
+(defmethod jm_getBufferZone_0 ((this BasicHud))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_bufferZone)))))
+
+    
+(unless (fboundp 'jm_setBufferZone_1) (defgeneric jm_setBufferZone_1 (this p1)))
+(defmethod jm_setBufferZone_1 ((this BasicHud) _bufferZone)
+  (declare (ignorable this _bufferZone))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_bufferZone) _bufferZone)
+        (if (J2MEUtil.jm_isHTML_0)
+            (progn
+            (setf (slot-value this 'f_bufferZoneY) (slot-value this 'f_bufferZone)))
+            (progn
+            (setf (slot-value this 'f_bufferZoneY) (JR.i32 (+ (slot-value this 'f_bufferZone) 5))))))))
+
+    
+(unless (fboundp 'jm_setLocation_1) (defgeneric jm_setLocation_1 (this p1)))
+(defmethod jm_setLocation_1 ((this BasicHud) _location)
+  (declare (ignorable this _location))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_location) _location))))
+
+    
+(unless (fboundp 'jm_setDirection_1) (defgeneric jm_setDirection_1 (this p1)))
+(defmethod jm_setDirection_1 ((this BasicHud) _direction)
+  (declare (ignorable this _direction))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_direction) _direction))))
+
+    
+(unless (fboundp 'jm_getHudGraphicsPosition_0) (defgeneric jm_getHudGraphicsPosition_0 (this)))
+(defmethod jm_getHudGraphicsPosition_0 ((this BasicHud))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_hudGraphicsPosition)))))
+
+    
+(unless (fboundp 'jm_getColor_0) (defgeneric jm_getColor_0 (this)))
+(defmethod jm_getColor_0 ((this BasicHud))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_color)))))
+
+    
+(unless (fboundp 'jm_getX_0) (defgeneric jm_getX_0 (this)))
+(defmethod jm_getX_0 ((this BasicHud))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_x)))))
+
+    
+(unless (fboundp 'jm_setX_1) (defgeneric jm_setX_1 (this p1)))
+(defmethod jm_setX_1 ((this BasicHud) _x)
+  (declare (ignorable this _x))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_x) _x))))
+
+    
+(unless (fboundp 'jm_setBasicColorP_1) (defgeneric jm_setBasicColorP_1 (this p1)))
+(defmethod jm_setBasicColorP_1 ((this BasicHud) _basicColor)
+  (declare (ignorable this _basicColor))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_basicColor) _basicColor))))
+
+    
+(unless (fboundp 'jm_getBasicColorP_0) (defgeneric jm_getBasicColorP_0 (this)))
+(defmethod jm_getBasicColorP_0 ((this BasicHud))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_basicColor)))))
+
+    
+(unless (fboundp 'jm_setY_1) (defgeneric jm_setY_1 (this p1)))
+(defmethod jm_setY_1 ((this BasicHud) _y)
+  (declare (ignorable this _y))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_y) _y))))
+
+    
+(unless (fboundp 'jm_getY_0) (defgeneric jm_getY_0 (this)))
+(defmethod jm_getY_0 ((this BasicHud))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_y)))))
+
+    
+(unless (fboundp 'jm_paintSSO_4) (defgeneric jm_paintSSO_4 (this p1 p2 p3 p4)))
+(defmethod jm_paintSSO_4 ((this BasicHud) _graphics _string _string2 _offset)
+  (declare (ignorable this _graphics _string _string2 _offset))
+  (let ()
+    (block jreturn
+        (jm_process_1 (slot-value this 'f_myFontProcessor) _graphics)
+        (jm_setBasicColorP_2 (slot-value this 'f_basicSetColorUtil) _graphics (jm_getBasicColorP_0 this))
+        (jm_drawString_4 _graphics _string (slot-value this 'f_x) (jm_getY_0 this) (jm_getAnchor_0 (slot-value this 'f_hudGraphicsPosition)))
+        (jm_drawString_4 _graphics _string2 (JR.i32 (+ (slot-value this 'f_x) _offset)) (jm_getY_0 this) (jm_getAnchor_0 (slot-value this 'f_hudGraphicsPosition))))))
+
+    
+(unless (fboundp 'jm_paintSSOO_5) (defgeneric jm_paintSSOO_5 (this p1 p2 p3 p4 p5)))
+(defmethod jm_paintSSOO_5 ((this BasicHud) _graphics _string _string2 _offset _offset2)
+  (declare (ignorable this _graphics _string _string2 _offset _offset2))
+  (let ()
+    (block jreturn
+        (jm_process_1 (slot-value this 'f_myFontProcessor) _graphics)
+        (jm_setColor_1 _graphics (jm_getColor_0 this))
+        (jm_drawString_4 _graphics _string (JR.i32 (+ (slot-value this 'f_x) _offset)) (jm_getY_0 this) (jm_getAnchor_0 (slot-value this 'f_hudGraphicsPosition)))
+        (jm_drawString_4 _graphics _string2 (JR.i32 (+ (slot-value this 'f_x) _offset2)) (jm_getY_0 this) (jm_getAnchor_0 (slot-value this 'f_hudGraphicsPosition))))))
+
+    
+(unless (fboundp 'jm_paintDXY_9) (defgeneric jm_paintDXY_9 (this p1 p2 p3 p4 p5 p6 p7 p8 p9)))
+(defmethod jm_paintDXY_9 ((this BasicHud) _graphics _charArray _offset _len _charArray2 _offset2 _len2 _xOffset _xOffset2)
+  (declare (ignorable this _graphics _charArray _offset _len _charArray2 _offset2 _len2 _xOffset _xOffset2))
+  (let (_y)
+  (declare (ignorable _y))
+    (block jreturn
+        (jm_process_1 (slot-value this 'f_myFontProcessor) _graphics)
+        (jm_setBasicColorP_2 (slot-value this 'f_basicSetColorUtil) _graphics (jm_getBasicColorP_0 this))
+        (setf _y (jm_getY_0 this))
+        (jm_drawChars_6 _graphics _charArray _offset _len (JR.i32 (+ (slot-value this 'f_x) _xOffset)) _y (jm_getAnchor_0 (slot-value this 'f_hudGraphicsPosition)))
+        (jm_drawChars_6 _graphics _charArray2 _offset2 _len2 (JR.i32 (+ (slot-value this 'f_x) _xOffset2)) _y (jm_getAnchor_0 (slot-value this 'f_hudGraphicsPosition))))))
+
+    
+(unless (fboundp 'jm_paintDX_8) (defgeneric jm_paintDX_8 (this p1 p2 p3 p4 p5 p6 p7 p8)))
+(defmethod jm_paintDX_8 ((this BasicHud) _graphics _charArray _offset _len _charArray2 _offset2 _len2 _xOffset)
+  (declare (ignorable this _graphics _charArray _offset _len _charArray2 _offset2 _len2 _xOffset))
+  (let (_y)
+  (declare (ignorable _y))
+    (block jreturn
+        (jm_process_1 (slot-value this 'f_myFontProcessor) _graphics)
+        (jm_setBasicColorP_2 (slot-value this 'f_basicSetColorUtil) _graphics (jm_getBasicColorP_0 this))
+        (setf _y (jm_getY_0 this))
+        (jm_drawChars_6 _graphics _charArray _offset _len (slot-value this 'f_x) _y (jm_getAnchor_0 (slot-value this 'f_hudGraphicsPosition)))
+        (jm_drawChars_6 _graphics _charArray2 _offset2 _len2 (JR.i32 (+ (slot-value this 'f_x) _xOffset)) _y (jm_getAnchor_0 (slot-value this 'f_hudGraphicsPosition))))))
+
+    
+(unless (fboundp 'jm_paintOffsetAndLength_4) (defgeneric jm_paintOffsetAndLength_4 (this p1 p2 p3 p4)))
+(defmethod jm_paintOffsetAndLength_4 ((this BasicHud) _graphics _charArray _offset _len)
+  (declare (ignorable this _graphics _charArray _offset _len))
+  (let (_y)
+  (declare (ignorable _y))
+    (block jreturn
+        (jm_process_1 (slot-value this 'f_myFontProcessor) _graphics)
+        (jm_setBasicColorP_2 (slot-value this 'f_basicSetColorUtil) _graphics (jm_getBasicColorP_0 this))
+        (setf _y (jm_getY_0 this))
+        (jm_drawChars_6 _graphics _charArray _offset _len (slot-value this 'f_x) _y (jm_getAnchor_0 (slot-value this 'f_hudGraphicsPosition))))))
+
+    
+(unless (fboundp 'jm_paintString_2) (defgeneric jm_paintString_2 (this p1 p2)))
+(defmethod jm_paintString_2 ((this BasicHud) _graphics _string)
+  (declare (ignorable this _graphics _string))
+  (let (_y)
+  (declare (ignorable _y))
+    (block jreturn
+        (jm_process_1 (slot-value this 'f_myFontProcessor) _graphics)
+        (jm_setBasicColorP_2 (slot-value this 'f_basicSetColorUtil) _graphics (jm_getBasicColorP_0 this))
+        (setf _y (JR.i32 (+ (jm_getY_0 this) (slot-value this 'f_offsetY))))
+        (jm_drawString_4 _graphics _string (slot-value this 'f_x) _y (jm_getAnchor_0 (slot-value this 'f_hudGraphicsPosition))))))
 
 
-function BasicHud.new(location, direction, bufferZone, basicColor)
-    local self = setmetatable({}, BasicHud)
-    self:_init_fields()
-        self:setLocation(location)
-        self:setDirection(direction)
-        self:setBufferZone(bufferZone)
-        self:onDisplayChangeEvent(DisplayInfoSingleton.getInstance().displayChangeEvent)
-        self:setBasicColorP(basicColor)
-        self.color = math.tointeger(basicColor // 1)
-    return self
-end
-
-
-function BasicHud:updateMeasurement(graphics)
-        local try_ok, try_error = pcall(function()
-            self.hudGraphicsPosition = self:getHudGraphicsPositionWH(self.displayInfo:getLastWidth(), self.displayInfo:getLastHeight(), self.updateMaxWidth, self.updateMaxHeight)
-            self.x = self.hudGraphicsPosition:getPoint():getX()
-            self:setY(self.hudGraphicsPosition:getPoint():getY())
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, self.canvasStrings.ON_DISPLAY_CHANGE_EVENT, e)
-        end
-        self.myFontProcessor = MyFontProcessor.getInstance()
-end
-
-
-function BasicHud:getLocation()
-        return self.location
-end
-
-
-function BasicHud:getDirection()
-        return self.direction
-end
-
-
--- throws Exception
-function BasicHud:getHudGraphicsPositionWH(width, height, maxWidth, maxHeight)
-        local x = 0
-        local y = 0
-        local anchor = 0
-        local basicHudFactory = BasicHudFactory.getInstance()
-        if basicHudFactory.BOTTOMLEFT == self:getLocation() then
-            x = self.bufferZone + 2
-            y = height - maxHeight - self.bufferZone
-            anchor = Graphics.BOTTOM & Graphics.LEFT
-        elseif basicHudFactory.BOTTOMRIGHT == self:getLocation() then
-            x = width - maxWidth
-            y = height - maxHeight - self.bufferZone
-            anchor = Graphics.BOTTOM & Graphics.RIGHT
-        elseif basicHudFactory.TOPLEFT == self:getLocation() then
-            x = self.bufferZone + 2
-            y = self.bufferZoneY
-            anchor = Anchor.TOP_LEFT
-        elseif basicHudFactory.TOPRIGHT == self:getLocation() then
-            x = width - maxWidth
-            y = self.bufferZoneY
-            anchor = Graphics.TOP & Graphics.RIGHT
-        elseif basicHudFactory.TOPCENTER == self:getLocation() then
-            x = (java_idiv((width - maxWidth), 2))
-            y = self.bufferZoneY
-            anchor = Graphics.TOP & Graphics.HCENTER
-        elseif basicHudFactory.BOTTOMCENTER == self:getLocation() then
-            x = (java_idiv((width - maxWidth), 2))
-            y = height - maxHeight - self.bufferZone
-            anchor = Graphics.BOTTOM & Graphics.HCENTER
-        elseif basicHudFactory.ABSOLUTE == self:getLocation() then
-            x = maxHeight
-            y = maxWidth
-            anchor = 0
-        end
-        return HudGraphicsPosition.new(self:getPoint(x, y), anchor)
-end
-
-
-function BasicHud:onEvent(eventObject)
-        ForcedLogUtil.log(EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
-end
-
-
-function BasicHud:onDisplayChangeEvent(displayChangeEvent)
-        self.myFontProcessor = self.updateMyFontProcessor
-end
-
-
-function BasicHud:getPoint(x, y)
-        return PointFactory.getInstance():createXY(x, y)
-end
-
-
-function BasicHud:getBufferZone()
-        return self.bufferZone
-end
-
-
-function BasicHud:setBufferZone(bufferZone)
-        self.bufferZone = bufferZone
-        if J2MEUtil.isHTML() then
-            self.bufferZoneY = self.bufferZone
-        else
-            self.bufferZoneY = self.bufferZone + 5
-        end
-end
-
-
-function BasicHud:setLocation(location)
-        self.location = location
-end
-
-
-function BasicHud:setDirection(direction)
-        self.direction = direction
-end
-
-
-function BasicHud:getHudGraphicsPosition()
-        return self.hudGraphicsPosition
-end
-
-
-function BasicHud:getColor()
-        return self.color
-end
-
-
-function BasicHud:getX()
-        return self.x
-end
-
-
-function BasicHud:setX(x)
-        self.x = x
-end
-
-
-function BasicHud:setBasicColorP(basicColor)
-        self.basicColor = basicColor
-end
-
-
-function BasicHud:getBasicColorP()
-        return self.basicColor
-end
-
-
-function BasicHud:setY(y)
-        self.y = y
-end
-
-
-function BasicHud:getY()
-        return self.y
-end
-
-
-function BasicHud:paintSSO(graphics, string, string2, offset)
-        self.myFontProcessor:process(graphics)
-        self.basicSetColorUtil:setBasicColorP(graphics, self:getBasicColorP())
-        graphics:drawString(string, self.x, self:getY(), self.hudGraphicsPosition:getAnchor())
-        graphics:drawString(string2, self.x + offset, self:getY(), self.hudGraphicsPosition:getAnchor())
-end
-
-
-function BasicHud:paintSSOO(graphics, string, string2, offset, offset2)
-        self.myFontProcessor:process(graphics)
-        graphics:setColor(self:getColor())
-        graphics:drawString(string, self.x + offset, self:getY(), self.hudGraphicsPosition:getAnchor())
-        graphics:drawString(string2, self.x + offset2, self:getY(), self.hudGraphicsPosition:getAnchor())
-end
-
-
-function BasicHud:paintDXY(graphics, charArray, offset, len, charArray2, offset2, len2, xOffset, xOffset2)
-        self.myFontProcessor:process(graphics)
-        self.basicSetColorUtil:setBasicColorP(graphics, self:getBasicColorP())
-        local y = self:getY()
-        graphics:drawChars(charArray, offset, len, self.x + xOffset, y, self.hudGraphicsPosition:getAnchor())
-        graphics:drawChars(charArray2, offset2, len2, self.x + xOffset2, y, self.hudGraphicsPosition:getAnchor())
-end
-
-
-function BasicHud:paintDX(graphics, charArray, offset, len, charArray2, offset2, len2, xOffset)
-        self.myFontProcessor:process(graphics)
-        self.basicSetColorUtil:setBasicColorP(graphics, self:getBasicColorP())
-        local y = self:getY()
-        graphics:drawChars(charArray, offset, len, self.x, y, self.hudGraphicsPosition:getAnchor())
-        graphics:drawChars(charArray2, offset2, len2, self.x + xOffset, y, self.hudGraphicsPosition:getAnchor())
-end
-
-
-function BasicHud:paintOffsetAndLength(graphics, charArray, offset, len)
-        self.myFontProcessor:process(graphics)
-        self.basicSetColorUtil:setBasicColorP(graphics, self:getBasicColorP())
-        local y = self:getY()
-        graphics:drawChars(charArray, offset, len, self.x, y, self.hudGraphicsPosition:getAnchor())
-end
-
-
-function BasicHud:paintString(graphics, string)
-        self.myFontProcessor:process(graphics)
-        self.basicSetColorUtil:setBasicColorP(graphics, self:getBasicColorP())
-        local y = self:getY() + self.offsetY
-        graphics:drawString(string, self.x, y, self.hudGraphicsPosition:getAnchor())
-end
-
-return BasicHud
 

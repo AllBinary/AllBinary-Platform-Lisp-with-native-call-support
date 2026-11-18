@@ -1,53 +1,43 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.displayable.canvas
 
-local Processor = require("org.allbinary.canvas.Processor")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass GameProcessor (Processor)
+  ((f_gameCanvas :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun GameProcessor.jnew_1 (_gameCanvas)
+  (declare (ignorable _gameCanvas))
+  (let ((this (make-instance 'GameProcessor)))
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_gameCanvas) _gameCanvas)))
+    this))
 
-local GameProcessor = {}
-GameProcessor.__index = GameProcessor
-GameProcessor.className = "GameProcessor"
-setmetatable(GameProcessor, {__index = Processor})
-
-function GameProcessor:_init_fields()
-    self.gameCanvas = nil
-end
-
-
-function GameProcessor.new(gameCanvas)
-    local self = setmetatable(Processor.new(), GameProcessor)
-    self:_init_fields()
-        self.gameCanvas = gameCanvas
-    return self
-end
+    
+(unless (fboundp 'jm_process_0) (defgeneric jm_process_0 (this)))
+(defmethod jm_process_0 ((this GameProcessor))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_processPlayingGame_0 (slot-value this 'f_gameCanvas)))))
 
 
--- throws Exception
-function GameProcessor:process()
-        self.gameCanvas:processPlayingGame()
-end
-
-return GameProcessor
 

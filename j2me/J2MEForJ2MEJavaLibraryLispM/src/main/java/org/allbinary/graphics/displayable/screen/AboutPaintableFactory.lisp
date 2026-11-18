@@ -1,66 +1,49 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2022 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
--- 
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.displayable.screen
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2022 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;; 
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.displayable.screen
 
-local AboutPaintable = require("org.allbinary.game.paint.AboutPaintable")
-local NullPaintable = require("org.allbinary.graphics.paint.NullPaintable")
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(defclass AboutPaintableFactory (JObject)
+  ((f_paintableArray :initform nil)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defvar AboutPaintableFactory.jcell_instance :jnone)
+(defun AboutPaintableFactory.jstatic_instance ()
+  (when (eq AboutPaintableFactory.jcell_instance :jnone) (setf AboutPaintableFactory.jcell_instance (AboutPaintableFactory.jnew_0)))
+  AboutPaintableFactory.jcell_instance)
+(defun (setf AboutPaintableFactory.jstatic_instance) (value) (setf AboutPaintableFactory.jcell_instance value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun AboutPaintableFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (AboutPaintableFactory.jstatic_instance)))))
 
-local AboutPaintableFactory = {}
-AboutPaintableFactory.__index = AboutPaintableFactory
-AboutPaintableFactory.className = "AboutPaintableFactory"
-
-function AboutPaintableFactory:_init_fields()
-    self.paintableArray = {NullPaintable.getInstance()}
-end
-
-
-function AboutPaintableFactory.getInstance()
-        return AboutPaintableFactory.instance
-end
+    
+(defun AboutPaintableFactory.jnew_0 ()
+  (let ((this (make-instance 'AboutPaintableFactory)))
+    (setf (slot-value this 'f_paintableArray) (vector (NullPaintable.jm_getInstance_0)))
+  (let (_INFO _DEVELOPERS)
+  (declare (ignorable _INFO _DEVELOPERS))
+    (block jreturn
+        (setf _INFO (vector "Built with the" "AllBinary Platform" (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) "Comments or Questions:" "support@allbinary.com"))
+        (setf _DEVELOPERS (vector "Developed By:" "Travis Berthelot"))
+        (setf (slot-value this 'f_paintableArray) (jm_getPaintableArrayInstance_0 (AboutPaintable.jm_getInstance_2 _INFO _DEVELOPERS)))))
+    this))
 
 
-function AboutPaintableFactory.new()
-    local self = setmetatable({}, AboutPaintableFactory)
-    self:_init_fields()
-        local INFO = {"Built with the", "AllBinary Platform", StringUtil.getInstance().EMPTY_STRING, "Comments or Questions:", "support@allbinary.com"}
-        local DEVELOPERS = {"Developed By:", "Travis Berthelot"}
-        self.paintableArray = AboutPaintable.getInstance(INFO, DEVELOPERS):getPaintableArrayInstance()
-    return self
-end
-
-AboutPaintableFactory.instance = AboutPaintableFactory.new()
-
-return AboutPaintableFactory
 

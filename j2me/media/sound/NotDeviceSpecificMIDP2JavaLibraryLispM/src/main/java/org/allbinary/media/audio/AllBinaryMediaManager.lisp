@@ -1,110 +1,104 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.media.audio
 
--- local InputStream = require("java.io.InputStream")
--- local Manager = require("javax.microedition.media.Manager")
--- local MediaException = require("javax.microedition.media.MediaException")
--- local Player = require("javax.microedition.media.Player")
-local MIDPUtil = require("org.allbinary.MIDPUtil")
-local TsUtil = require("org.allbinary.TsUtil")
-local AudioContentTypeDataFactory = require("org.allbinary.audio.AudioContentTypeDataFactory")
-local ResourceUtil = require("org.allbinary.data.resource.ResourceUtil")
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local GameFeatureFactory = require("org.allbinary.game.configuration.feature.GameFeatureFactory")
-local ProgressCanvasFactory = require("org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+;NotDeviceSpecificMIDP2JavaLibrary
+(defclass AllBinaryMediaManager (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar AllBinaryMediaManager.jcell_THIS :jnone)
+(defun AllBinaryMediaManager.jstatic_THIS ()
+  (when (eq AllBinaryMediaManager.jcell_THIS :jnone) (setf AllBinaryMediaManager.jcell_THIS "AllBinaryMediaManagerNoMIPD2"))
+  AllBinaryMediaManager.jcell_THIS)
+(defun (setf AllBinaryMediaManager.jstatic_THIS) (value) (setf AllBinaryMediaManager.jcell_THIS value))
 
---NotDeviceSpecificMIDP2JavaLibrary
-local AllBinaryMediaManager = {}
-AllBinaryMediaManager.__index = AllBinaryMediaManager
-AllBinaryMediaManager.className = "AllBinaryMediaManager"
+    
+(defun AllBinaryMediaManager.jnew_0 ()
+  (let ((this (make-instance 'AllBinaryMediaManager)))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(defun AllBinaryMediaManager.jm_isMuted_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn nil))))
+
+    
+(defun AllBinaryMediaManager.jm_setMuted_1 (_aMuted)
+  (declare (ignorable _aMuted))
+  (let ()
+    (block jreturn nil)))
+
+    
+(defun AllBinaryMediaManager.jm_update_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn t))))
+
+    
+(defun AllBinaryMediaManager.jm_init_1 (_soundsFactoryInterface)
+  (declare (ignorable _soundsFactoryInterface))
+  (let (_logUtil _commonString)
+  (declare (ignorable _logUtil _commonString))
+    (block jreturn
+        (setf _logUtil (LogUtil.jm_getInstance_0))
+        (setf _commonString (CommonStrings.jm_getInstance_0))
+        (jm_putF_3 _logUtil (slot-value _commonString 'f_START) (AllBinaryMediaManager.jstatic_THIS) (slot-value _commonString 'f_INIT))
+        (jm_addNormalPortion_2 (ProgressCanvasFactory.jm_getInstance_0) 50 "Media Manager")
+        (jm_init_0 (Sounds.jnew_1 _soundsFactoryInterface)))))
+
+    
+(defun AllBinaryMediaManager.jm_shutdown_1 (_soundsFactoryInterface)
+  (declare (ignorable _soundsFactoryInterface))
+  (let ()
+    (block jreturn
+        (jm_stopAll_0 (Sounds.jnew_1 _soundsFactoryInterface))
+        (jm_closeAll_0 (Sounds.jnew_1 _soundsFactoryInterface))
+        (jm_gc_0 (TsUtil.jm_getInstance_0)))))
+
+    
+(defun AllBinaryMediaManager.jm_createPlayer_1 (_resource)
+  (declare (ignorable _resource))
+  (let (_inputStream)
+  (declare (ignorable _inputStream))
+    (block jreturn
+        (if (jm_isFeature_1 (Features.jm_getInstance_0) (slot-value (GameFeatureFactory.jm_getInstance_0) 'f_SOUND))
+            (progn
+            (if (eq (jm_compareTo_2 (TsUtil.jm_getInstance_0) _resource (Manager.jstatic_TONE_DEVICE_LOCATOR)) 0)
+                (progn
+                (return-from jreturn (Manager.jm_createPlayer_1 _resource)))
+                (progn
+                (setf _inputStream (jm_getResourceAsStream_1 (ResourceUtil.jm_getInstance_0) _resource))
+                (return-from jreturn (jm_createPlayerFromInputStream_2 (MIDPUtil.jm_getInstance_0) _inputStream (jm_getName_0 (slot-value (AudioContentTypeDataFactory.jm_getInstance_0) 'f_MIME_AUDIO_WAV)))))))
+            (progn
+            (return-from jreturn (NoPlayer.jstatic_NO_PLAYER)))))))
+
+    
+(defun AllBinaryMediaManager.jm_playTone_3 (_frequency _time _volume)
+  (declare (ignorable _frequency _time _volume))
+  (let ()
+    (block jreturn
+        (if (jm_isFeature_1 (Features.jm_getInstance_0) (slot-value (GameFeatureFactory.jm_getInstance_0) 'f_SOUND))
+            (progn
+            (Manager.jm_playTone_3 _frequency _time _volume))))))
 
 
-function AllBinaryMediaManager.new()
-    local self = setmetatable({}, AllBinaryMediaManager)
-    return self
-end
-
-
-function AllBinaryMediaManager.isMuted()
-        return false
-end
-
-
-function AllBinaryMediaManager.setMuted(aMuted)
-end
-
-
-function AllBinaryMediaManager.update()
-        return true
-end
-
-
--- throws Exception
-function AllBinaryMediaManager.init(soundsFactoryInterface)
-        local logUtil = LogUtil.getInstance()
-        local commonString = CommonStrings.getInstance()
-        logUtil:putF(commonString.START, AllBinaryMediaManager.THIS, commonString.INIT)
-        ProgressCanvasFactory.getInstance():addNormalPortion(50, "Media Manager")
-        Sounds.new(soundsFactoryInterface):init()
-end
-
-
--- throws Exception
-function AllBinaryMediaManager.shutdown(soundsFactoryInterface)
-        Sounds.new(soundsFactoryInterface):stopAll()
-        Sounds.new(soundsFactoryInterface):closeAll()
-        TsUtil.getInstance():gc()
-end
-
-
--- throws Exception
-function AllBinaryMediaManager.createPlayer(resource)
-        if Features.getInstance():isFeature(GameFeatureFactory.getInstance().SOUND) then
-            if TsUtil.getInstance():compareTo(resource, Manager.TONE_DEVICE_LOCATOR) == 0 then
-                return Manager.createPlayer(resource)
-            else
-                local inputStream = ResourceUtil.getInstance():getResourceAsStream(resource)
-                return MIDPUtil.getInstance():createPlayerFromInputStream(inputStream, AudioContentTypeDataFactory.getInstance().MIME_AUDIO_WAV:getName())
-            end
-        else
-            return NoPlayer.NO_PLAYER
-        end
-end
-
-
--- throws MediaException
-function AllBinaryMediaManager.playTone(frequency, time, volume)
-        if Features.getInstance():isFeature(GameFeatureFactory.getInstance().SOUND) then
-            Manager.playTone(frequency, time, volume)
-        end
-end
-
-AllBinaryMediaManager.THIS = "AllBinaryMediaManagerNoMIPD2"
-
-return AllBinaryMediaManager
 

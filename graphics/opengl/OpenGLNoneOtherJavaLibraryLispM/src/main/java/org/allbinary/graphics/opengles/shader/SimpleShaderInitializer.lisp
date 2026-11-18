@@ -1,47 +1,41 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles.shader
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2025 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.opengles.shader
 
-local ShaderInitializer = require("org.allbinary.graphics.opengles.shader.ShaderInitializer")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass SimpleShaderInitializer (ShaderInitializer)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar SimpleShaderInitializer.jcell_instanceC :jnone)
+(defun SimpleShaderInitializer.jstatic_instanceC ()
+  (when (eq SimpleShaderInitializer.jcell_instanceC :jnone) (setf SimpleShaderInitializer.jcell_instanceC (SimpleShaderInitializer.jnew_0)))
+  SimpleShaderInitializer.jcell_instanceC)
+(defun (setf SimpleShaderInitializer.jstatic_instanceC) (value) (setf SimpleShaderInitializer.jcell_instanceC value))
 
-local SimpleShaderInitializer = {}
-SimpleShaderInitializer.__index = SimpleShaderInitializer
-SimpleShaderInitializer.className = "SimpleShaderInitializer"
-setmetatable(SimpleShaderInitializer, {__index = ShaderInitializer})
+(defun SimpleShaderInitializer.jnew_0 ()
+  (let ((this (make-instance 'SimpleShaderInitializer)))
+    this))
 
-function SimpleShaderInitializer.new()
-    local self = setmetatable(ShaderInitializer.new(), SimpleShaderInitializer)
-    return self
-end
+    
+(defun SimpleShaderInitializer.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (SimpleShaderInitializer.jstatic_instanceC)))))
 
 
-function SimpleShaderInitializer.getInstance()
-        return SimpleShaderInitializer.instanceC
-end
-
-SimpleShaderInitializer.instanceC = SimpleShaderInitializer.new()
-
-return SimpleShaderInitializer
 

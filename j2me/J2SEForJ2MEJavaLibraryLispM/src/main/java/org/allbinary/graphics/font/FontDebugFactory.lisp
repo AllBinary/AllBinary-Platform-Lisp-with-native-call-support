@@ -1,52 +1,49 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.font
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.font
 
--- local Font = require("javax.microedition.lcdui.Font")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass FontDebugFactory (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar FontDebugFactory.jcell_instance :jnone)
+(defun FontDebugFactory.jstatic_instance ()
+  (when (eq FontDebugFactory.jcell_instance :jnone) (setf FontDebugFactory.jcell_instance (FontDebugFactory.jnew_0)))
+  FontDebugFactory.jcell_instance)
+(defun (setf FontDebugFactory.jstatic_instance) (value) (setf FontDebugFactory.jcell_instance value))
 
-local FontDebugFactory = {}
-FontDebugFactory.__index = FontDebugFactory
-FontDebugFactory.className = "FontDebugFactory"
+(defun FontDebugFactory.jnew_0 ()
+  (let ((this (make-instance 'FontDebugFactory)))
+    this))
 
-function FontDebugFactory.new()
-    local self = setmetatable({}, FontDebugFactory)
-    return self
-end
+    
+(defun FontDebugFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (FontDebugFactory.jstatic_instance)))))
+
+    
+(unless (fboundp 'jm_setFont_2) (defgeneric jm_setFont_2 (this p1 p2)))
+(defmethod jm_setFont_2 ((this FontDebugFactory) _font _graphics)
+  (declare (ignorable this _font _graphics))
+  (let ()
+    (block jreturn
+        (jm_setFont_1 _graphics _font))))
 
 
-function FontDebugFactory.getInstance()
-        return FontDebugFactory.instance
-end
-
-
-function FontDebugFactory:setFont(font, graphics)
-        graphics:setFont(font)
-end
-
-FontDebugFactory.instance = FontDebugFactory.new()
-
-return FontDebugFactory
 

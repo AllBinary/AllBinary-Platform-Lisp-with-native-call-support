@@ -1,63 +1,63 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.identification
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.identification
 
-local NullUtil = require("org.allbinary.logic.NullUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass BasicGroupFactory (JObject)
+  ((f_NAME :initform nil)
+   (f_NO_SUCH_GROUP :initform nil)
+   (f_GOOD :initform nil)
+   (f_ENEMY :initform nil)
+   (f_ENEMY_ON_LEVEL :initform nil)
+   (f_NONE :initform nil)
+   (f_GOOD_ARRAY :initform nil)
+   (f_ENEMY_ARRAY :initform nil)
+   (f_ENEMY_ON_LEVEL_ARRAY :initform nil)
+   (f_NONE_ARRAY :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar BasicGroupFactory.jcell_instance :jnone)
+(defun BasicGroupFactory.jstatic_instance ()
+  (when (eq BasicGroupFactory.jcell_instance :jnone) (setf BasicGroupFactory.jcell_instance (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT)))
+  BasicGroupFactory.jcell_instance)
+(defun (setf BasicGroupFactory.jstatic_instance) (value) (setf BasicGroupFactory.jcell_instance value))
 
-local BasicGroupFactory = {}
-BasicGroupFactory.__index = BasicGroupFactory
-BasicGroupFactory.className = "BasicGroupFactory"
+(defun BasicGroupFactory.jnew_0 ()
+  (let ((this (make-instance 'BasicGroupFactory)))
+    (setf (slot-value this 'f_NAME) "GROUP_NAME")
+    (setf (slot-value this 'f_NO_SUCH_GROUP) "No Such Group: ")
+    (setf (slot-value this 'f_GOOD) (Group.jnew_2 "Good Guys" (JR.i16 0)))
+    (setf (slot-value this 'f_ENEMY) (Group.jnew_2 "Bad Guys" (JR.i16 1)))
+    (setf (slot-value this 'f_ENEMY_ON_LEVEL) (Group.jnew_2 "Bad Guys on Level" (JR.i16 2)))
+    (setf (slot-value this 'f_NONE) (Group.jnew_2 "Not On A Team" (JR.i16 3)))
+    (setf (slot-value this 'f_GOOD_ARRAY) (vector (slot-value this 'f_GOOD)))
+    (setf (slot-value this 'f_ENEMY_ARRAY) (vector (slot-value this 'f_ENEMY)))
+    (setf (slot-value this 'f_ENEMY_ON_LEVEL_ARRAY) (vector (slot-value this 'f_ENEMY) (slot-value this 'f_ENEMY_ON_LEVEL)))
+    (setf (slot-value this 'f_NONE_ARRAY) (vector (slot-value this 'f_NONE)))
+    this))
 
-function BasicGroupFactory:_init_fields()
-    self.NAME = "GROUP_NAME"
-    self.NO_SUCH_GROUP = "No Such Group: "
-    self.GOOD = Group.new("Good Guys", 0)
-    self.ENEMY = Group.new("Bad Guys", 1)
-    self.ENEMY_ON_LEVEL = Group.new("Bad Guys on Level", 2)
-    self.NONE = Group.new("Not On A Team", 3)
-    self.GOOD_ARRAY = {self.GOOD}
-    self.ENEMY_ARRAY = {self.ENEMY}
-    self.ENEMY_ON_LEVEL_ARRAY = {self.ENEMY, self.ENEMY_ON_LEVEL}
-    self.NONE_ARRAY = {self.NONE}
-end
-
-function BasicGroupFactory.new()
-    local self = setmetatable({}, BasicGroupFactory)
-    self:_init_fields()
-    return self
-end
+    
+(defun BasicGroupFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (if (eq (BasicGroupFactory.jstatic_instance) (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT))
+            (progn
+            (setf (BasicGroupFactory.jstatic_instance) (BasicGroupFactory.jnew_0))))
+        (return-from jreturn (BasicGroupFactory.jstatic_instance)))))
 
 
-function BasicGroupFactory.getInstance()
-        if BasicGroupFactory.instance == NullUtil.getInstance().NULL_OBJECT then
-            BasicGroupFactory.instance = BasicGroupFactory.new()
-        end
-        return BasicGroupFactory.instance
-end
-
-BasicGroupFactory.instance = NullUtil.getInstance().NULL_OBJECT
-
-return BasicGroupFactory
 

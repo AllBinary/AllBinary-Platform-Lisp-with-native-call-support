@@ -25,6 +25,7 @@
 (defun ColorChangeEventHandler.jstatic_eventHandler ()
   (when (eq ColorChangeEventHandler.jcell_eventHandler :jnone) (setf ColorChangeEventHandler.jcell_eventHandler (ColorChangeEventHandler.jnew_0)))
   ColorChangeEventHandler.jcell_eventHandler)
+(defun (setf ColorChangeEventHandler.jstatic_eventHandler) (value) (setf ColorChangeEventHandler.jcell_eventHandler value))
 
     
 (defun ColorChangeEventHandler.jnew_0 ()

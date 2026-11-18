@@ -1,73 +1,59 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation.image
 
--- local Image = require("javax.microedition.lcdui.Image")
-local Animation = require("org.allbinary.animation.Animation")
-local AnimationBehaviorFactory = require("org.allbinary.animation.AnimationBehaviorFactory")
-local GameConfigurationCentral = require("org.allbinary.game.configuration.GameConfigurationCentral")
-local PrimitiveIntUtil = require("org.allbinary.logic.math.PrimitiveIntUtil")
-local AngleFactory = require("org.allbinary.math.AngleFactory")
-local AngleInfo = require("org.allbinary.math.AngleInfo")
-local BaseImageAnimationFactory = require("org.allbinary.animation.image.BaseImageAnimationFactory")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ImageRotationAnimationFactory (BaseImageAnimationFactory)
+  ((f_angleIncrement :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun ImageRotationAnimationFactory.jnew_7 (_image _width _height _dx _dy _angleIncrement _animationBehaviorFactory)
+  (declare (ignorable _image _width _height _dx _dy _angleIncrement _animationBehaviorFactory))
+  (let ((this (make-instance 'ImageRotationAnimationFactory)))
+    
+  (let ()
+    (block jreturn
+        nil
+        (setf (slot-value this 'f_angleIncrement) _angleIncrement)
+        (setf (slot-value (slot-value this 'f_animationFactoryInitializationVisitor) 'f_dx) _dx)
+        (setf (slot-value (slot-value this 'f_animationFactoryInitializationVisitor) 'f_dy) _dy)))
+    this))
 
-local ImageRotationAnimationFactory = {}
-ImageRotationAnimationFactory.__index = ImageRotationAnimationFactory
-ImageRotationAnimationFactory.className = "ImageRotationAnimationFactory"
-setmetatable(ImageRotationAnimationFactory, {__index = BaseImageAnimationFactory})
+    
+(unless (fboundp 'jm_getInstance_1) (defgeneric jm_getInstance_1 (this p1)))
+(defmethod jm_getInstance_1 ((this ImageRotationAnimationFactory) _instanceId)
+  (declare (ignorable this _instanceId))
+  (let ()
+    (block jreturn
+        (if (or (not (eq (slot-value (slot-value this 'f_animationFactoryInitializationVisitor) 'f_dx) 0)) (not (eq (slot-value (slot-value this 'f_animationFactoryInitializationVisitor) 'f_dy) 0)))
+            (progn
+            (jm_processAdjust_1 (slot-value this 'f_animationFactoryImageScaleUtil) this)
+            (return-from jreturn (AdjustedImageBaseRotationAnimation.jnew_6 (jm_getImage_0 this) (AngleInfo.jm_getInstance_1 (slot-value this 'f_angleIncrement)) (slot-value (AngleFactory.jm_getInstance_0) 'f_TOTAL_ANGLE) (slot-value (slot-value this 'f_animationFactoryInitializationVisitor) 'f_dx) (slot-value (slot-value this 'f_animationFactoryInitializationVisitor) 'f_dy) (jm_getOrCreateInstance_0 (slot-value this 'f_animationBehaviorFactory)))))
+            (progn
+            (return-from jreturn (ImageBaseRotationAnimation.jnew_4 (jm_getImage_0 this) (AngleInfo.jm_getInstance_1 (slot-value this 'f_angleIncrement)) (slot-value (AngleFactory.jm_getInstance_0) 'f_TOTAL_ANGLE) (jm_getOrCreateInstance_0 (slot-value this 'f_animationBehaviorFactory)))))))))
 
-function ImageRotationAnimationFactory:_init_fields()
-    self.angleIncrement = nil
-end
-
-
-function ImageRotationAnimationFactory.new(image, width, height, dx, dy, angleIncrement, animationBehaviorFactory)
-    local self = setmetatable(BaseImageAnimationFactory.new(image, PrimitiveIntUtil.getArrayInstance(), width, height, 0, 0, animationBehaviorFactory), ImageRotationAnimationFactory)
-    self:_init_fields()
-        -- super(...) made self above
-        self.angleIncrement = angleIncrement
-        self.animationFactoryInitializationVisitor.dx = dx
-        self.animationFactoryInitializationVisitor.dy = dy
-    return self
-end
-
-
--- throws Exception
-function ImageRotationAnimationFactory:getInstance(instanceId)
-        if self.animationFactoryInitializationVisitor.dx ~= 0 or self.animationFactoryInitializationVisitor.dy ~= 0 then
-            self.animationFactoryImageScaleUtil:processAdjust(self)
-            return AdjustedImageBaseRotationAnimation.new(self:getImage(), AngleInfo.getInstance(self.angleIncrement), AngleFactory.getInstance().TOTAL_ANGLE, self.animationFactoryInitializationVisitor.dx, self.animationFactoryInitializationVisitor.dy, self.animationBehaviorFactory:getOrCreateInstance())
-        else
-            return ImageBaseRotationAnimation.new(self:getImage(), AngleInfo.getInstance(self.angleIncrement), AngleFactory.getInstance().TOTAL_ANGLE, self.animationBehaviorFactory:getOrCreateInstance())
-        end
-end
+    
+(unless (fboundp 'jm_getAngleIncrementP_0) (defgeneric jm_getAngleIncrementP_0 (this)))
+(defmethod jm_getAngleIncrementP_0 ((this ImageRotationAnimationFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_angleIncrement)))))
 
 
-function ImageRotationAnimationFactory:getAngleIncrementP()
-        return self.angleIncrement
-end
-
-return ImageRotationAnimationFactory
 

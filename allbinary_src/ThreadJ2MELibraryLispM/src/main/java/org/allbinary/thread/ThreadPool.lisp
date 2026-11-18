@@ -36,11 +36,13 @@
 (defun ThreadPool.jstatic_ROOT_NAME ()
   (when (eq ThreadPool.jcell_ROOT_NAME :jnone) (setf ThreadPool.jcell_ROOT_NAME "-PooledThread-"))
   ThreadPool.jcell_ROOT_NAME)
+(defun (setf ThreadPool.jstatic_ROOT_NAME) (value) (setf ThreadPool.jcell_ROOT_NAME value))
 
 (defvar ThreadPool.jcell_NORMAL_PRIORITY :jnone)
 (defun ThreadPool.jstatic_NORMAL_PRIORITY ()
   (when (eq ThreadPool.jcell_NORMAL_PRIORITY :jnone) (setf ThreadPool.jcell_NORMAL_PRIORITY (Thread.jstatic_NORM_PRIORITY)))
   ThreadPool.jcell_NORMAL_PRIORITY)
+(defun (setf ThreadPool.jstatic_NORMAL_PRIORITY) (value) (setf ThreadPool.jcell_NORMAL_PRIORITY value))
 
     
 (defun ThreadPool.jnew_3 (_poolName _numThreads _priority)

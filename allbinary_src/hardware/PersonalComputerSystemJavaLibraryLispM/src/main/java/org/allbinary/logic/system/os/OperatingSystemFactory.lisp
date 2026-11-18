@@ -28,6 +28,7 @@
 (defun OperatingSystemFactory.jstatic_instance ()
   (when (eq OperatingSystemFactory.jcell_instance :jnone) (setf OperatingSystemFactory.jcell_instance (OperatingSystemFactory.jnew_0)))
   OperatingSystemFactory.jcell_instance)
+(defun (setf OperatingSystemFactory.jstatic_instance) (value) (setf OperatingSystemFactory.jcell_instance value))
 
     
 (defun OperatingSystemFactory.jm_getInstance_0 ()
@@ -65,19 +66,19 @@
                 (setf (slot-value this 'f_hasDetected) t)
                 (if (>= (JR.indexOf _osName (slot-value _operatingSystems 'f_LINUX)) 0)
                     (progn
-                    (if (JR.className (LogConfigTypes.jstatic_LOGGING))
+                    (if (jm_contains_1 (LogConfigTypes.jstatic_LOGGING) (slot-value (LogConfigTypeFactory.jm_getInstance_0) 'f_FACTORYERROR))
                         (progn
                         (jm_putF_3 (slot-value this 'f_logUtil) "Found a Linux OS" this (slot-value (slot-value this 'f_commonStrings) 'f_GET_INSTANCE))))
                     (setf (slot-value this 'f_genericOperatingSystem) (jm_getOperatingSystemInstance_0 (LinuxOperatingSystemFactory.jm_getInstance_0))))
                     (if (>= (JR.indexOf _osName (slot-value _operatingSystems 'f_WINDOWS)) 0)
                     (progn
-                    (if (JR.className (LogConfigTypes.jstatic_LOGGING))
+                    (if (jm_contains_1 (LogConfigTypes.jstatic_LOGGING) (slot-value (LogConfigTypeFactory.jm_getInstance_0) 'f_FACTORYERROR))
                         (progn
                         (jm_putF_3 (slot-value this 'f_logUtil) "Found a Windows OS" this (slot-value (slot-value this 'f_commonStrings) 'f_GET_INSTANCE))))
                     (setf (slot-value this 'f_genericOperatingSystem) (jm_getOperatingSystemInstance_0 (WindowsOperatingSystemFactory.jm_getInstance_0))))
                     (if (>= (JR.indexOf _osName (slot-value _operatingSystems 'f_SOLARIS)) 0)
                     (progn
-                    (if (JR.className (LogConfigTypes.jstatic_LOGGING))
+                    (if (jm_contains_1 (LogConfigTypes.jstatic_LOGGING) (slot-value (LogConfigTypeFactory.jm_getInstance_0) 'f_FACTORYERROR))
                         (progn
                         (jm_putF_3 (slot-value this 'f_logUtil) "Found a Solaris OS" this (slot-value (slot-value this 'f_commonStrings) 'f_GET_INSTANCE))))
                     (setf (slot-value this 'f_genericOperatingSystem) (jm_getOperatingSystemInstance_0 (SolarisOperatingSystemFactory.jm_getInstance_0))))
@@ -88,7 +89,7 @@
                 (jm_putL_1 (slot-value this 'f_logUtil) _log)))
             (return-from jreturn (slot-value this 'f_genericOperatingSystem)))
             (error (_e) (declare (ignorable _e))
-            (if (JR.className (LogConfigTypes.jstatic_LOGGING))
+            (if (jm_contains_1 (LogConfigTypes.jstatic_LOGGING) (slot-value (LogConfigTypeFactory.jm_getInstance_0) 'f_FACTORYERROR))
                 (progn
                 (jm_put_4 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_EXCEPTION) this (slot-value (slot-value this 'f_commonStrings) 'f_GET_INSTANCE) _e)))
             (return-from jreturn (NoOperatingSystem.jstatic_NO_OPERATING_SYSTEM)))))))

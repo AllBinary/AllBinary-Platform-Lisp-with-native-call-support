@@ -1,79 +1,80 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.identification
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.identification
 
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local GroupInterface = require("org.allbinary.game.identification.GroupInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass Group (JObject)
+  ((f_name :initform nil)
+   (f_teamId :initform 0)
+   (f_string :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun Group.jnew_2 (_teamName _teamId)
+  (declare (ignorable _teamName _teamId))
+  (let ((this (make-instance 'Group)))
+    (setf (slot-value this 'f_name) (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING))
+    
+    (setf (slot-value this 'f_string) (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_teamId) _teamId)
+        (jm_setName_1 this _teamName)))
+    this))
 
-local Group = {}
-Group.__index = Group
-Group.className = "Group"
+    
+(unless (fboundp 'jm_getGroupName_0) (defgeneric jm_getGroupName_0 (this)))
+(defmethod jm_getGroupName_0 ((this Group))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_name)))))
 
-function Group:_init_fields()
-    self.name = StringUtil.getInstance().EMPTY_STRING
-    self.teamId = nil
-    self.string = StringUtil.getInstance().EMPTY_STRING
-end
+    
+(unless (fboundp 'jm_setName_1) (defgeneric jm_setName_1 (this p1)))
+(defmethod jm_setName_1 ((this Group) _name)
+  (declare (ignorable this _name))
+  (let (_groupCommonFactory _stringBuffer)
+  (declare (ignorable _groupCommonFactory _stringBuffer))
+    (block jreturn
+        (setf (slot-value this 'f_name) _name)
+        (setf _groupCommonFactory (GroupCommonFactory.jm_getInstance_0))
+        (setf _stringBuffer (StringMaker.jnew_0))
+        (jm_append_1 _stringBuffer (slot-value _groupCommonFactory 'f_GROUP_NAME_LABEL))
+        (jm_append_1 _stringBuffer (slot-value this 'f_name))
+        (jm_append_1 _stringBuffer (slot-value _groupCommonFactory 'f_ID_LABEL))
+        (jm_appendshort_1 _stringBuffer (slot-value this 'f_teamId))
+        (setf (slot-value this 'f_string) (jm_toString_0 _stringBuffer)))))
+
+    
+(unless (fboundp 'jm_getGroupId_0) (defgeneric jm_getGroupId_0 (this)))
+(defmethod jm_getGroupId_0 ((this Group))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_teamId)))))
+
+    
+(unless (fboundp 'jm_toString_0) (defgeneric jm_toString_0 (this)))
+(defmethod jm_toString_0 ((this Group))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_string)))))
 
 
-function Group.new(teamName, teamId)
-    local self = setmetatable({}, Group)
-    self:_init_fields()
-        self.teamId = teamId
-        self:setName(teamName)
-    return self
-end
-
-
-function Group:getGroupName()
-        return self.name
-end
-
-
-function Group:setName(name)
-        self.name = name
-        local groupCommonFactory = GroupCommonFactory.getInstance()
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append(groupCommonFactory.GROUP_NAME_LABEL)
-        stringBuffer:append(self.name)
-        stringBuffer:append(groupCommonFactory.ID_LABEL)
-        stringBuffer:appendshort(self.teamId)
-        self.string = tostring(stringBuffer)
-end
-
-
-function Group:getGroupId()
-        return self.teamId
-end
-
-
-function Group:toString()
-        return self.string
-end
-Group.__tostring = function(self) return self:toString() end
-
-return Group
 

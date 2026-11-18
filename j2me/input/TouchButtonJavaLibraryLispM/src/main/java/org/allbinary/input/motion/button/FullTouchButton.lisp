@@ -1,72 +1,60 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.input.motion.button
 
-local Animation = require("org.allbinary.animation.Animation")
-local FeaturedAnimationInterfaceFactoryInterfaceFactory = require("org.allbinary.animation.FeaturedAnimationInterfaceFactoryInterfaceFactory")
-local CellPosition = require("org.allbinary.graphics.CellPosition")
-local GPoint = require("org.allbinary.graphics.GPoint")
-local PointFactory = require("org.allbinary.graphics.PointFactory")
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local TouchButton = require("org.allbinary.input.motion.button.TouchButton")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass FullTouchButton (TouchButton)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun FullTouchButton.jm_createButton_6 (_touchButtonInput _touchButtonResource _rawRectangle _cellPosition _xBorder _yBorder)
+  (declare (ignorable _touchButtonInput _touchButtonResource _rawRectangle _cellPosition _xBorder _yBorder))
+  (let ()
+    (block jreturn
+        (return-from jreturn (FullTouchButton.jnew_7 _touchButtonInput (jm_getInstance_1 (jm_get_1 (FeaturedAnimationInterfaceFactoryInterfaceFactory.jm_getInstance_0) (slot-value _touchButtonResource 'f_RESOURCE)) 0) (jm_getInstance_1 (jm_get_1 (FeaturedAnimationInterfaceFactoryInterfaceFactory.jm_getInstance_0) (slot-value _touchButtonResource 'f_HINT)) 0) _rawRectangle _cellPosition _xBorder _yBorder)))))
 
-local FullTouchButton = {}
-FullTouchButton.__index = FullTouchButton
-FullTouchButton.className = "FullTouchButton"
-setmetatable(FullTouchButton, {__index = TouchButton})
+    
+(defun FullTouchButton.jnew_7 (_touchButtonInput _animationInterface _hintAnimationInterface _rawRectangle _cellPosition _xBorder _yBorder)
+  (declare (ignorable _touchButtonInput _animationInterface _hintAnimationInterface _rawRectangle _cellPosition _xBorder _yBorder))
+  (let ((this (make-instance 'FullTouchButton)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
+
+    
+(unless (fboundp 'jm_updateRectangle_0) (defgeneric jm_updateRectangle_0 (this)))
+(defmethod jm_updateRectangle_0 ((this FullTouchButton))
+  (declare (ignorable this))
+  (let (_pointFactory _x _y _point)
+  (declare (ignorable _pointFactory _x _y _point))
+    (block jreturn
+        (handler-case (progn
+            (setf _pointFactory (PointFactory.jm_getInstance_0))
+            (setf _x (JR.i32 (* (jm_getWidth_0 (slot-value this 'f_rawRectangle)) (jm_getColumn_0 (slot-value this 'f_cellPositionP)))))
+            (setf _y (JR.i32 (* (jm_getHeight_0 (slot-value this 'f_rawRectangle)) (jm_getRow_0 (slot-value this 'f_cellPositionP)))))
+            (setf (slot-value this 'f_rectangleP) (Rectangle.jnew_3 (jm_createXY_2 _pointFactory _x _y) (JR.i32 (+ (jm_getWidth_0 (slot-value this 'f_rawRectangle)) (JR.i32 (* 2 (slot-value this 'f_xBorder))))) (JR.i32 (+ (jm_getHeight_0 (slot-value this 'f_rawRectangle)) (JR.i32 (* 2 (slot-value this 'f_yBorder)))))))
+            (setf _point (jm_getPoint_0 (slot-value this 'f_rectangleP)))
+            (setf (slot-value this 'f_animationX) (JR.i32 (+ (jm_getX_0 _point) (slot-value this 'f_xBorder))))
+            (setf (slot-value this 'f_animationY) (JR.i32 (+ (jm_getY_0 _point) (slot-value this 'f_yBorder))))
+            (setf (slot-value this 'f_hintAnimationY) (ash (JR.i32 (- (slot-value this 'f_animationY) (jm_getHeight_0 (slot-value this 'f_rectangleP)))) (- (logand 1 31)))))
+            (error (_e) (declare (ignorable _e))
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_EXCEPTION) this "updateRectangle" _e))))))
 
 
--- throws Exception
-function FullTouchButton.createButton(touchButtonInput, touchButtonResource, rawRectangle, cellPosition, xBorder, yBorder)
-        return FullTouchButton.new(touchButtonInput, FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance():get(touchButtonResource.RESOURCE):getInstance(0), FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance():get(touchButtonResource.HINT):getInstance(0), rawRectangle, cellPosition, xBorder, yBorder)
-end
-
-
-function FullTouchButton.new(touchButtonInput, animationInterface, hintAnimationInterface, rawRectangle, cellPosition, xBorder, yBorder)
-    local self = setmetatable(TouchButton.new(touchButtonInput, animationInterface, hintAnimationInterface, rawRectangle, cellPosition, xBorder, yBorder), FullTouchButton)
-        -- super(...) made self above
-    return self
-end
-
-
-function FullTouchButton:updateRectangle()
-        local try_ok, try_error = pcall(function()
-            local pointFactory = PointFactory.getInstance()
-            local x = self.rawRectangle:getWidth() * self.cellPositionP:getColumn()
-            local y = self.rawRectangle:getHeight() * self.cellPositionP:getRow()
-            self.rectangleP = Rectangle.new(pointFactory:createXY(x, y), self.rawRectangle:getWidth() + (2 * self.xBorder), self.rawRectangle:getHeight() + (2 * self.yBorder))
-            local point = self.rectangleP:getPoint()
-            self.animationX = point:getX() + self.xBorder
-            self.animationY = point:getY() + self.yBorder
-            self.hintAnimationY = ((self.animationY - self.rectangleP:getHeight()) // (1 << (1)))
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, "updateRectangle", e)
-        end
-end
-
-return FullTouchButton
 

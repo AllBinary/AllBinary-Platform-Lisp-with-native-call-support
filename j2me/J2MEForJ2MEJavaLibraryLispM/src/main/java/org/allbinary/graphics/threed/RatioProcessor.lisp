@@ -1,42 +1,36 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.threed
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2025 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.threed
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass RatioProcessor (JObject)
+  ())
+
+(defun RatioProcessor.jnew_0 ()
+  (let ((this (make-instance 'RatioProcessor)))
+    this))
+
+    
+(unless (fboundp 'jm_setCustom_3) (defgeneric jm_setCustom_3 (this p1 p2 p3)))
+(defmethod jm_setCustom_3 ((this RatioProcessor) _width _height _ratio)
+  (declare (ignorable this _width _height _ratio))
+  (let ()
+    (block jreturn nil)))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local RatioProcessor = {}
-RatioProcessor.__index = RatioProcessor
-RatioProcessor.className = "RatioProcessor"
-
-function RatioProcessor.new()
-    local self = setmetatable({}, RatioProcessor)
-    return self
-end
-
-
-function RatioProcessor:setCustom(width, height, ratio)
-end
-
-return RatioProcessor
 

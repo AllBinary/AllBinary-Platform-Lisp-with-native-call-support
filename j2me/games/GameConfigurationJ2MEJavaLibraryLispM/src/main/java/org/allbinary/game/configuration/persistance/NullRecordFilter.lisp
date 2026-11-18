@@ -1,46 +1,43 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.persistance
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2025 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.configuration.persistance
 
--- local RecordFilter = require("javax.microedition.rms.RecordFilter")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass NullRecordFilter (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar NullRecordFilter.jcell_NULL_RECORD_FILTER :jnone)
+(defun NullRecordFilter.jstatic_NULL_RECORD_FILTER ()
+  (when (eq NullRecordFilter.jcell_NULL_RECORD_FILTER :jnone) (setf NullRecordFilter.jcell_NULL_RECORD_FILTER (NullRecordFilter.jnew_0)))
+  NullRecordFilter.jcell_NULL_RECORD_FILTER)
+(defun (setf NullRecordFilter.jstatic_NULL_RECORD_FILTER) (value) (setf NullRecordFilter.jcell_NULL_RECORD_FILTER value))
 
-local NullRecordFilter = {}
-NullRecordFilter.__index = NullRecordFilter
-NullRecordFilter.className = "NullRecordFilter"
+(defun NullRecordFilter.jnew_0 ()
+  (let ((this (make-instance 'NullRecordFilter)))
+    this))
 
-function NullRecordFilter.new()
-    local self = setmetatable({}, NullRecordFilter)
-    return self
-end
+    
+(unless (fboundp 'jm_matches_1) (defgeneric jm_matches_1 (this p1)))
+(defmethod jm_matches_1 ((this NullRecordFilter) _candidate)
+  (declare (ignorable this _candidate))
+  (let ()
+    (block jreturn
+        (return-from jreturn t))))
 
 
-function NullRecordFilter:matches(candidate)
-        return true
-end
-
-NullRecordFilter.NULL_RECORD_FILTER = NullRecordFilter.new()
-
-return NullRecordFilter
 

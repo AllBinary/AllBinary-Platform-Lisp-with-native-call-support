@@ -1,72 +1,84 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.media.image
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2022 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.media.image
 
--- local Image = require("javax.microedition.lcdui.Image")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ImageModifierUtil (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar ImageModifierUtil.jcell_instance :jnone)
+(defun ImageModifierUtil.jstatic_instance ()
+  (when (eq ImageModifierUtil.jcell_instance :jnone) (setf ImageModifierUtil.jcell_instance (ImageModifierUtil.jnew_0)))
+  ImageModifierUtil.jcell_instance)
+(defun (setf ImageModifierUtil.jstatic_instance) (value) (setf ImageModifierUtil.jcell_instance value))
 
-local ImageModifierUtil = {}
-ImageModifierUtil.__index = ImageModifierUtil
-ImageModifierUtil.className = "ImageModifierUtil"
+(defun ImageModifierUtil.jnew_0 ()
+  (let ((this (make-instance 'ImageModifierUtil)))
+    this))
 
-function ImageModifierUtil.new()
-    local self = setmetatable({}, ImageModifierUtil)
-    return self
-end
+    
+(defun ImageModifierUtil.jm_getInstanceOrCreate_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (ImageModifierUtil.jstatic_instance)))))
+
+    
+(unless (fboundp 'jm_setColor_4) (defgeneric jm_setColor_4 (this p1 p2 p3 p4)))
+(defmethod jm_setColor_4 ((this ImageModifierUtil) _unusedOriginalImage _image _imageIndex _basicColor)
+  (declare (ignorable this _unusedOriginalImage _image _imageIndex _basicColor))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_changeColor_4) (defgeneric jm_changeColor_4 (this p1 p2 p3 p4)))
+(defmethod jm_changeColor_4 ((this ImageModifierUtil) _unusedOriginalImage _image _imageIndex _basicColor)
+  (declare (ignorable this _unusedOriginalImage _image _imageIndex _basicColor))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_setAlpha_4) (defgeneric jm_setAlpha_4 (this p1 p2 p3 p4)))
+(defmethod jm_setAlpha_4 ((this ImageModifierUtil) _originalImage _image _imageIndex _alphaInt)
+  (declare (ignorable this _originalImage _image _imageIndex _alphaInt))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_getImageArray_1) (defgeneric jm_getImageArray_1 (this p1)))
+(defmethod jm_getImageArray_1 ((this ImageModifierUtil) _originalImageArray)
+  (declare (ignorable this _originalImageArray))
+  (let ()
+    (block jreturn
+        (return-from jreturn _originalImageArray))))
+
+    
+(unless (fboundp 'jm_handleImage_3) (defgeneric jm_handleImage_3 (this p1 p2 p3)))
+(defmethod jm_handleImage_3 ((this ImageModifierUtil) _imageArray _index _image)
+  (declare (ignorable this _imageArray _index _image))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_reset_0) (defgeneric jm_reset_0 (this)))
+(defmethod jm_reset_0 ((this ImageModifierUtil))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
 
 
-function ImageModifierUtil.getInstanceOrCreate()
-        return ImageModifierUtil.instance
-end
-
-
-function ImageModifierUtil:setColor(unusedOriginalImage, image, imageIndex, basicColor)
-end
-
-
-function ImageModifierUtil:changeColor(unusedOriginalImage, image, imageIndex, basicColor)
-end
-
-
-function ImageModifierUtil:setAlpha(originalImage, image, imageIndex, alphaInt)
-end
-
-
-function ImageModifierUtil:getImageArray(originalImageArray)
-        return originalImageArray
-end
-
-
-function ImageModifierUtil:handleImage(imageArray, index, image)
-end
-
-
-function ImageModifierUtil:reset()
-end
-
-ImageModifierUtil.instance = ImageModifierUtil.new()
-
-return ImageModifierUtil
 

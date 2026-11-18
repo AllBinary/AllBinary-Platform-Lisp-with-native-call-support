@@ -25,6 +25,7 @@
 (defun NullEventListener.jstatic_NULL_EVENT_LISTENER ()
   (when (eq NullEventListener.jcell_NULL_EVENT_LISTENER :jnone) (setf NullEventListener.jcell_NULL_EVENT_LISTENER (NullEventListener.jnew_0)))
   NullEventListener.jcell_NULL_EVENT_LISTENER)
+(defun (setf NullEventListener.jstatic_NULL_EVENT_LISTENER) (value) (setf NullEventListener.jcell_NULL_EVENT_LISTENER value))
 
 (defun NullEventListener.jnew_0 ()
   (let ((this (make-instance 'NullEventListener)))

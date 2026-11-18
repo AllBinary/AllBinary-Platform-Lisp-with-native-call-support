@@ -1,71 +1,59 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2022 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
--- 
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.displayable.screen
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2022 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;; 
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.displayable.screen
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
--- local Command = require("javax.microedition.lcdui.Command")
--- local CommandListener = require("javax.microedition.lcdui.CommandListener")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass WebCommandProcessor (JObject)
+  ((f_logUtil :initform nil)
+   (f_aboutCommandProcessor :initform nil)
+   (f_list :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar WebCommandProcessor.jcell_instance :jnone)
+(defun WebCommandProcessor.jstatic_instance ()
+  (when (eq WebCommandProcessor.jcell_instance :jnone) (setf WebCommandProcessor.jcell_instance (WebCommandProcessor.jnew_0)))
+  WebCommandProcessor.jcell_instance)
+(defun (setf WebCommandProcessor.jstatic_instance) (value) (setf WebCommandProcessor.jcell_instance value))
 
-local WebCommandProcessor = {}
-WebCommandProcessor.__index = WebCommandProcessor
-WebCommandProcessor.className = "WebCommandProcessor"
+(defun WebCommandProcessor.jnew_0 ()
+  (let ((this (make-instance 'WebCommandProcessor)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_aboutCommandProcessor) (AboutCommandProcessor.jm_getInstance_0))
+    (setf (slot-value this 'f_list) (BasicArrayListD.jnew_0))
+    this))
 
-function WebCommandProcessor:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.aboutCommandProcessor = AboutCommandProcessor.getInstance()
-    self.list = BasicArrayListD.new()
-end
+    
+(defun WebCommandProcessor.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (WebCommandProcessor.jstatic_instance)))))
 
-function WebCommandProcessor.new()
-    local self = setmetatable({}, WebCommandProcessor)
-    self:_init_fields()
-    return self
-end
+    
+(unless (fboundp 'jm_process_3) (defgeneric jm_process_3 (this p1 p2 p3)))
+(defmethod jm_process_3 ((this WebCommandProcessor) _midletCommandListener _command _canvas)
+  (declare (ignorable this _midletCommandListener _command _canvas))
+  (let (_commonStrings)
+  (declare (ignorable _commonStrings))
+    (block jreturn
+        (handler-case (progn
+            (jm_removeAt_1 (slot-value this 'f_list) 0))
+            (error (_e) (declare (ignorable _e))
+            (setf _commonStrings (CommonStrings.jm_getInstance_0))
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value _commonStrings 'f_EXCEPTION) this (slot-value _commonStrings 'f_PROCESS) _e))))))
 
 
-function WebCommandProcessor.getInstance()
-        return WebCommandProcessor.instance
-end
-
-
-function WebCommandProcessor:process(midletCommandListener, command, canvas)
-        local try_ok, try_error = pcall(function()
-            self.list:removeAt(0)
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, commonStrings.PROCESS, e)
-        end
-end
-
-WebCommandProcessor.instance = WebCommandProcessor.new()
-
-return WebCommandProcessor
 

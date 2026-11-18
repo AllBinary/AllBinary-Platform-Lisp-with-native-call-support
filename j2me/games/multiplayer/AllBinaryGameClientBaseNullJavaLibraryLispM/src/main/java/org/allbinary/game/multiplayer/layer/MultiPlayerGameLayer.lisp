@@ -1,64 +1,64 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.multiplayer.layer
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.multiplayer.layer
 
-local Group = require("org.allbinary.game.identification.Group")
-local CollidableDestroyableDamageableLayer = require("org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer")
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local ViewPositionBase = require("org.allbinary.view.ViewPositionBase")
-local MultiPlayerGameLayerInterface = require("org.allbinary.game.multiplayer.layer.MultiPlayerGameLayerInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass MultiPlayerGameLayer (CollidableDestroyableDamageableLayer)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun MultiPlayerGameLayer.jnew_5 (_remoteInfo _groupInterface _name _layerInfo _viewPosition)
+  (declare (ignorable _remoteInfo _groupInterface _name _layerInfo _viewPosition))
+  (let ((this (make-instance 'MultiPlayerGameLayer)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
-local MultiPlayerGameLayer = {}
-MultiPlayerGameLayer.__index = MultiPlayerGameLayer
-MultiPlayerGameLayer.className = "MultiPlayerGameLayer"
-setmetatable(MultiPlayerGameLayer, {__index = CollidableDestroyableDamageableLayer})
+    
+(unless (fboundp 'jm_getMultiplayerBehavior_0) (defgeneric jm_getMultiplayerBehavior_0 (this)))
+(defmethod jm_getMultiplayerBehavior_0 ((this MultiPlayerGameLayer))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (MultiplayerBehavior.jstatic_NULL_MULTIPLAYER_BEHAVIOR)))))
+
+    
+(unless (fboundp 'jm_setPingInfo_1) (defgeneric jm_setPingInfo_1 (this p1)))
+(defmethod jm_setPingInfo_1 ((this MultiPlayerGameLayer) _show)
+  (declare (ignorable this _show))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_setFiring_1) (defgeneric jm_setFiring_1 (this p1)))
+(defmethod jm_setFiring_1 ((this MultiPlayerGameLayer) _firing)
+  (declare (ignorable this _firing))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_getFiring_0) (defgeneric jm_getFiring_0 (this)))
+(defmethod jm_getFiring_0 ((this MultiPlayerGameLayer))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn 0))))
 
 
-function MultiPlayerGameLayer.new(remoteInfo, groupInterface, name, layerInfo, viewPosition)
-    local self = setmetatable(CollidableDestroyableDamageableLayer.new(groupInterface, name, layerInfo, viewPosition), MultiPlayerGameLayer)
-        -- super(...) made self above
-    return self
-end
-
-
-function MultiPlayerGameLayer:getMultiplayerBehavior()
-        return MultiplayerBehavior.NULL_MULTIPLAYER_BEHAVIOR
-end
-
-
-function MultiPlayerGameLayer:setPingInfo(show)
-end
-
-
-function MultiPlayerGameLayer:setFiring(firing)
-end
-
-
-function MultiPlayerGameLayer:getFiring()
-        return 0
-end
-
-return MultiPlayerGameLayer
 

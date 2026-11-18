@@ -1,73 +1,76 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.control.validate
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.control.validate
 
-local StdUtil = require("org.allbinary.logic.StdUtil")
-local BooleanFactory = require("org.allbinary.logic.java.bool.BooleanFactory")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListUtil = require("org.allbinary.util.BasicArrayListUtil")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
-local ValidatorBaseInterface = require("org.allbinary.logic.control.validate.ValidatorBaseInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ValidatorBase (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar ValidatorBase.jcell_instance :jnone)
+(defun ValidatorBase.jstatic_instance ()
+  (when (eq ValidatorBase.jcell_instance :jnone) (setf ValidatorBase.jcell_instance (ValidatorBase.jnew_0)))
+  ValidatorBase.jcell_instance)
+(defun (setf ValidatorBase.jstatic_instance) (value) (setf ValidatorBase.jcell_instance value))
 
-local ValidatorBase = {}
-ValidatorBase.__index = ValidatorBase
-ValidatorBase.className = "ValidatorBase"
+    
+(defun ValidatorBase.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (ValidatorBase.jstatic_instance)))))
+
+    
+(defun ValidatorBase.jnew_0 ()
+  (let ((this (make-instance 'ValidatorBase)))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(unless (fboundp 'jm_isValid_0) (defgeneric jm_isValid_0 (this)))
+(defmethod jm_isValid_0 ((this ValidatorBase))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value (BooleanFactory.jm_getInstance_0) 'f_TRUE)))))
+
+    
+(unless (fboundp 'jm_validationInfo_0) (defgeneric jm_validationInfo_0 (this)))
+(defmethod jm_validationInfo_0 ((this ValidatorBase))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING)))))
+
+    
+(unless (fboundp 'jm_toHashtable_0) (defgeneric jm_toHashtable_0 (this)))
+(defmethod jm_toHashtable_0 ((this ValidatorBase))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value (StdUtil.jm_getInstance_0) 'f_NULL_TABLE)))))
+
+    
+(unless (fboundp 'jm_toList_0) (defgeneric jm_toList_0 (this)))
+(defmethod jm_toList_0 ((this ValidatorBase))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getImmutableInstance_0 (BasicArrayListUtil.jm_getInstance_0))))))
 
 
-function ValidatorBase.getInstance()
-        return ValidatorBase.instance
-end
-
-
-function ValidatorBase.new()
-    local self = setmetatable({}, ValidatorBase)
-    return self
-end
-
-
-function ValidatorBase:isValid()
-        return BooleanFactory.getInstance().TRUE
-end
-
-
-function ValidatorBase:validationInfo()
-        return StringUtil.getInstance().EMPTY_STRING
-end
-
-
-function ValidatorBase:toHashtable()
-        return StdUtil.getInstance().NULL_TABLE
-end
-
-
-function ValidatorBase:toList()
-        return BasicArrayListUtil.getInstance():getImmutableInstance()
-end
-
-ValidatorBase.instance = ValidatorBase.new()
-
-return ValidatorBase
 

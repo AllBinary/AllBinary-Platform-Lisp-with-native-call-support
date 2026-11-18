@@ -1,71 +1,73 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.image
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.image
 
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ImageTypeUtil (JObject)
+  ((f_PNG :initform nil)
+   (f_JPG :initform nil)
+   (f_GIF :initform nil)
+   (f_list :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar ImageTypeUtil.jcell_SINGLETON :jnone)
+(defun ImageTypeUtil.jstatic_SINGLETON ()
+  (when (eq ImageTypeUtil.jcell_SINGLETON :jnone) (setf ImageTypeUtil.jcell_SINGLETON (ImageTypeUtil.jnew_0)))
+  ImageTypeUtil.jcell_SINGLETON)
+(defun (setf ImageTypeUtil.jstatic_SINGLETON) (value) (setf ImageTypeUtil.jcell_SINGLETON value))
 
-local ImageTypeUtil = {}
-ImageTypeUtil.__index = ImageTypeUtil
-ImageTypeUtil.className = "ImageTypeUtil"
+    
+(defun ImageTypeUtil.jnew_0 ()
+  (let ((this (make-instance 'ImageTypeUtil)))
+    (setf (slot-value this 'f_PNG) "png")
+    (setf (slot-value this 'f_JPG) "jpg")
+    (setf (slot-value this 'f_GIF) "gif")
+    (setf (slot-value this 'f_list) (BasicArrayListD.jnew_0))
+  (let ()
+    (block jreturn
+        (jm_add_1 (slot-value this 'f_list) (slot-value this 'f_JPG))
+        (jm_add_1 (slot-value this 'f_list) (slot-value this 'f_GIF))
+        (jm_add_1 (slot-value this 'f_list) (slot-value this 'f_PNG))))
+    this))
 
-function ImageTypeUtil:_init_fields()
-    self.PNG = "png"
-    self.JPG = "jpg"
-    self.GIF = "gif"
-    self.list = BasicArrayListD.new()
-end
+    
+(unless (fboundp 'jm_isSupported_1) (defgeneric jm_isSupported_1 (this p1)))
+(defmethod jm_isSupported_1 ((this ImageTypeUtil) _mediaFileType)
+  (declare (ignorable this _mediaFileType))
+  (let (_name _index)
+  (declare (ignorable _name _index))
+    (block jreturn
+        (setf _mediaFileType (JR.toLowerCase _mediaFileType))
+        (progn
+            (setf _index (JR.i32 (- (jm_size_0 (slot-value this 'f_list)) 1)))
+            (block jbreak (loop while (>= _index 0) do
+                (block jcontinue
+            (setf _name (jm_get_1 (slot-value this 'f_list) _index))
+            (if (eq (JR.compareTo _mediaFileType _name) 0)
+                (progn
+                (return-from jreturn t))))
+                (setf _index (JR.i32 (- _index 1))))))
+        (return-from jreturn nil))))
+
+    
+(defun ImageTypeUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (ImageTypeUtil.jstatic_SINGLETON)))))
 
 
-function ImageTypeUtil.new()
-    local self = setmetatable({}, ImageTypeUtil)
-    self:_init_fields()
-        self.list:add(self.JPG)
-        self.list:add(self.GIF)
-        self.list:add(self.PNG)
-    return self
-end
-
-
-function ImageTypeUtil:isSupported(mediaFileType)
-        mediaFileType = string.lower(mediaFileType)
-        for index = self.list:size() - 1, 0, -1 do
-            local name = self.list:get(index)
-            if ((mediaFileType < name and -1) or (mediaFileType > name and 1) or 0) == 0 then
-                return true
-            end
-        end
-        return false
-end
-
-
-function ImageTypeUtil.getInstance()
-        return ImageTypeUtil.SINGLETON
-end
-
-ImageTypeUtil.SINGLETON = ImageTypeUtil.new()
-
-return ImageTypeUtil
 

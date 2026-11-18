@@ -1,69 +1,73 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.score
 
-local SmallIntegerSingletonFactory = require("org.allbinary.logic.math.SmallIntegerSingletonFactory")
-local ScoreableInterface = require("org.allbinary.game.score.ScoreableInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass Scoreable (JObject)
+  ((f_points :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar Scoreable.jcell_ID :jnone)
+(defun Scoreable.jstatic_ID ()
+  (when (eq Scoreable.jcell_ID :jnone) (setf Scoreable.jcell_ID (jm_getAt_1 (SmallIntegerSingletonFactory.jm_getInstance_0) 3)))
+  Scoreable.jcell_ID)
+(defun (setf Scoreable.jstatic_ID) (value) (setf Scoreable.jcell_ID value))
 
-local Scoreable = {}
-Scoreable.__index = Scoreable
-Scoreable.className = "Scoreable"
+    
+(defun Scoreable.jnew_1 (_points)
+  (declare (ignorable _points))
+  (let ((this (make-instance 'Scoreable)))
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_points) _points)))
+    this))
 
-function Scoreable:_init_fields()
-    self.points = nil
-end
+    
+(unless (fboundp 'jm_addPoints_1) (defgeneric jm_addPoints_1 (this p1)))
+(defmethod jm_addPoints_1 ((this Scoreable) _points)
+  (declare (ignorable this _points))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_points) (JR.i32 (+ (slot-value this 'f_points) _points))))))
+
+    
+(unless (fboundp 'jm_removePoints_1) (defgeneric jm_removePoints_1 (this p1)))
+(defmethod jm_removePoints_1 ((this Scoreable) _points)
+  (declare (ignorable this _points))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_points) (JR.i32 (- (slot-value this 'f_points) _points))))))
+
+    
+(unless (fboundp 'jm_setPoints_1) (defgeneric jm_setPoints_1 (this p1)))
+(defmethod jm_setPoints_1 ((this Scoreable) _points)
+  (declare (ignorable this _points))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_points) _points))))
+
+    
+(unless (fboundp 'jm_getPoints_0) (defgeneric jm_getPoints_0 (this)))
+(defmethod jm_getPoints_0 ((this Scoreable))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_points)))))
 
 
-function Scoreable.new(points)
-    local self = setmetatable({}, Scoreable)
-    self:_init_fields()
-        self.points = points
-    return self
-end
-
-
-function Scoreable:addPoints(points)
-        self.points = self.points + (points)
-end
-
-
-function Scoreable:removePoints(points)
-        self.points = self.points - (points)
-end
-
-
-function Scoreable:setPoints(points)
-        self.points = points
-end
-
-
-function Scoreable:getPoints()
-        return self.points
-end
-
-Scoreable.ID = SmallIntegerSingletonFactory.getInstance():getAt(3)
-
-return Scoreable
 

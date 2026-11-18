@@ -1,27 +1,23 @@
--- Generated Code Do Not Modify
--- package java.lang.annotation
+;;;; Generated Code Do Not Modify
+;;;; package java.lang.annotation
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass Annotation (JObject)
+  ())
+
+(defun Annotation.jnew_0 ()
+  (let ((this (make-instance 'Annotation)))
+    this))
+
+    
+(unless (fboundp 'jm_annotationType_0) (defgeneric jm_annotationType_0 (this)))
+(defmethod jm_annotationType_0 ((this Annotation))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "annotationType")))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local Annotation = {}
-Annotation.__index = Annotation
-Annotation.className = "Annotation"
-
-
-function Annotation:annotationType()
-    error("abstract method annotationType")
-end
-
-return Annotation
 

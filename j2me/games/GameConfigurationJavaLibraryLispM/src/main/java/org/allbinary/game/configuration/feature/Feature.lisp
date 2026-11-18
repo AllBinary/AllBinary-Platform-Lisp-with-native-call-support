@@ -1,73 +1,73 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.feature
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.configuration.feature
 
-local ChangedGameFeatureListener = require("org.allbinary.game.configuration.event.ChangedGameFeatureListener")
-local StdUtil = require("org.allbinary.logic.StdUtil")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass Feature (JObject)
+  ((f_name :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar Feature.jcell_hashtable :jnone)
+(defun Feature.jstatic_hashtable ()
+  (when (eq Feature.jcell_hashtable :jnone) (setf Feature.jcell_hashtable (jm_createHashtable_0 (StdUtil.jm_getInstance_0))))
+  Feature.jcell_hashtable)
+(defun (setf Feature.jstatic_hashtable) (value) (setf Feature.jcell_hashtable value))
 
-local Feature = {}
-Feature.__index = Feature
-Feature.className = "Feature"
+    
+(defun Feature.jnew_1 (_name)
+  (declare (ignorable _name))
+  (let ((this (make-instance 'Feature)))
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_name) _name)
+        (Feature.jm_add_2 _name this)
+        (jm_add_1 (ChangedGameFeatureListener.jm_getInstance_0) this)))
+    this))
 
-function Feature:_init_fields()
-    self.name = nil
-end
+    
+(defun Feature.jm_getInstance_1 (_name)
+  (declare (ignorable _name))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_get_1 (Feature.jstatic_hashtable) _name)))))
+
+    
+(defun Feature.jm_add_2 (_name _gameFeature)
+  (declare (ignorable _name _gameFeature))
+  (let ()
+    (block jreturn
+        (jm_put_2 (Feature.jstatic_hashtable) _name _gameFeature))))
+
+    
+(unless (fboundp 'jm_toString_0) (defgeneric jm_toString_0 (this)))
+(defmethod jm_toString_0 ((this Feature))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getName_0 this)))))
+
+    
+(unless (fboundp 'jm_getName_0) (defgeneric jm_getName_0 (this)))
+(defmethod jm_getName_0 ((this Feature))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_name)))))
 
 
-function Feature.new(name)
-    local self = setmetatable({}, Feature)
-    self:_init_fields()
-        self.name = name
-        Feature.add(name, self)
-        ChangedGameFeatureListener.getInstance():add(self)
-    return self
-end
-
-
-function Feature.getInstance(name)
-        return Feature.hashtable:get(name)
-end
-
-
-function Feature.add(name, gameFeature)
-        Feature.hashtable:put(name, gameFeature)
-end
-
-
-function Feature:toString()
-        return self:getName()
-end
-Feature.__tostring = function(self) return self:toString() end
-
-
-function Feature:getName()
-        return self.name
-end
-
-Feature.hashtable = StdUtil.getInstance():createHashtable()
-
-return Feature
 

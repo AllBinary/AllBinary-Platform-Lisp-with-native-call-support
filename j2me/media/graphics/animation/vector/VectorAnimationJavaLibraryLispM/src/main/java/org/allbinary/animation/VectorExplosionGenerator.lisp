@@ -1,179 +1,169 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation
 
-local GPoint = require("org.allbinary.graphics.GPoint")
-local PointFactory = require("org.allbinary.graphics.PointFactory")
-local RandomRotationFactory = require("org.allbinary.graphics.pipeline.RandomRotationFactory")
-local RandomTranslation = require("org.allbinary.graphics.pipeline.RandomTranslation")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local BasicArrayListS = require("org.allbinary.util.BasicArrayListS")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(defclass VectorExplosionGenerator (JObject)
+  ((f_RANDOM :initform nil)
+   (f_ROTATION :initform nil)
+   (f_vectorAnimationUtil :initform nil)
+   (f_randomRotationFactory :initform nil)))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(defvar VectorExplosionGenerator.jcell_instance :jnone)
+(defun VectorExplosionGenerator.jstatic_instance ()
+  (when (eq VectorExplosionGenerator.jcell_instance :jnone) (setf VectorExplosionGenerator.jcell_instance (VectorExplosionGenerator.jnew_0)))
+  VectorExplosionGenerator.jcell_instance)
+(defun (setf VectorExplosionGenerator.jstatic_instance) (value) (setf VectorExplosionGenerator.jcell_instance value))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(defun VectorExplosionGenerator.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (VectorExplosionGenerator.jstatic_instance)))))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun VectorExplosionGenerator.jnew_0 ()
+  (let ((this (make-instance 'VectorExplosionGenerator)))
+    (setf (slot-value this 'f_RANDOM) (VectorExplosionType.jnew_0))
+    (setf (slot-value this 'f_ROTATION) (VectorExplosionType.jnew_0))
+    (setf (slot-value this 'f_vectorAnimationUtil) (VectorAnimationUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_randomRotationFactory) (RandomRotationFactory.jm_getInstance_0))
+  (let ()
+    (block jreturn nil))
+    this))
 
-local VectorExplosionGenerator = {}
-VectorExplosionGenerator.__index = VectorExplosionGenerator
-VectorExplosionGenerator.className = "VectorExplosionGenerator"
+    
+(unless (fboundp 'jm_createList_3) (defgeneric jm_createList_3 (this p1 p2 p3)))
+(defmethod jm_createList_3 ((this VectorExplosionGenerator) _list _howMuch _type)
+  (declare (ignorable this _list _howMuch _type))
+  (let (_point _size _points _index)
+  (declare (ignorable _point _size _points _index))
+    (block jreturn
+        (setf _point nil)
+        (setf _size (jm_size_0 _list))
+        (setf _points (JR.newArray 0 _size 2))
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (setf _point (aref (slot-value _list 'f_objectArray) _index))
+            (setf (aref (aref _points _index) 0) (jm_getX_0 _point))
+            (setf (aref (aref _points _index) 1) (jm_getY_0 _point)))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (return-from jreturn (jm_createListFromPoints_4 this _list _points _howMuch _type)))))
 
-function VectorExplosionGenerator:_init_fields()
-    self.RANDOM = VectorExplosionType.new()
-    self.ROTATION = VectorExplosionType.new()
-    self.vectorAnimationUtil = VectorAnimationUtil.getInstance()
-    self.randomRotationFactory = RandomRotationFactory.getInstance()
-end
+    
+(unless (fboundp 'jm_getInstance_3) (defgeneric jm_getInstance_3 (this p1 p2 p3)))
+(defmethod jm_getInstance_3 ((this VectorExplosionGenerator) _points _howMuch _type)
+  (declare (ignorable this _points _howMuch _type))
+  (let (_pointsBasicArrayList _tempBasicArrayList _newPoints)
+  (declare (ignorable _pointsBasicArrayList _tempBasicArrayList _newPoints))
+    (block jreturn
+        (setf _pointsBasicArrayList (jm_getInstanceStartFrame_4 this _points _howMuch _type t))
+        (setf _tempBasicArrayList (aref (slot-value _pointsBasicArrayList 'f_objectArray) 0))
+        (setf _newPoints (jm_toAnimationArrayFromListOfPointListWithPointsPerFrame_2 (slot-value this 'f_vectorAnimationUtil) _pointsBasicArrayList (jm_size_0 _tempBasicArrayList)))
+        (return-from jreturn _newPoints))))
+
+    
+(unless (fboundp 'jm_getInstanceStartFrame_4) (defgeneric jm_getInstanceStartFrame_4 (this p1 p2 p3 p4)))
+(defmethod jm_getInstanceStartFrame_4 ((this VectorExplosionGenerator) _points _howMuch _type _startFrame)
+  (declare (ignorable this _points _howMuch _type _startFrame))
+  (let (_pointsBasicArrayList _frameIndex _tempBasicArrayList _pointBasicArrayList)
+  (declare (ignorable _pointsBasicArrayList _frameIndex _tempBasicArrayList _pointBasicArrayList))
+    (block jreturn
+        (handler-case (progn
+            (setf _pointsBasicArrayList (BasicArrayListS.jnew_1 _howMuch))
+            (jm_add_1 _pointsBasicArrayList (jm_createPointsBasicArrayList_1 this _points))
+            (setf _frameIndex 0)
+            (setf _tempBasicArrayList nil)
+            (setf _pointBasicArrayList nil)
+            (block jbreak (loop while (< _frameIndex _howMuch) do
+                    (block jcontinue
+                (setf _tempBasicArrayList (aref (slot-value _pointsBasicArrayList 'f_objectArray) _frameIndex))
+                (setf _pointBasicArrayList (jm_createListFromPoints_4 this _tempBasicArrayList _points _howMuch _type))
+                (jm_add_1 _pointsBasicArrayList _pointBasicArrayList)
+                (setf _frameIndex (JR.i32 (+ _frameIndex 1))))))
+            (if (not _startFrame)
+                (progn
+                (jm_removeAt_1 _pointsBasicArrayList 0)))
+            (return-from jreturn _pointsBasicArrayList))
+            (error (_e) (declare (ignorable _e))
+            (error _e))))))
+
+    
+(unless (fboundp 'jm_createListFromPoints_4) (defgeneric jm_createListFromPoints_4 (this p1 p2 p3 p4)))
+(defmethod jm_createListFromPoints_4 ((this VectorExplosionGenerator) _tempBasicArrayList _points _howMuch _type)
+  (declare (ignorable this _tempBasicArrayList _points _howMuch _type))
+  (let (_index _pointBasicArrayList _sectionBasicArrayList _size _index2)
+  (declare (ignorable _index _pointBasicArrayList _sectionBasicArrayList _size _index2))
+    (block jreturn
+        (setf _index 0)
+        (setf _pointBasicArrayList (BasicArrayListD.jnew_0))
+        (setf _sectionBasicArrayList nil)
+        (block jbreak (loop while (< _index (length _points)) do
+                (block jcontinue
+            (setf _sectionBasicArrayList (BasicArrayListD.jnew_0))
+            (block jbreak (loop while (not (eq (aref (aref _points _index) 0) 1000)) do
+                    (block jcontinue
+                (jm_add_1 _sectionBasicArrayList (aref (slot-value _tempBasicArrayList 'f_objectArray) _index))
+                (setf _index (JR.i32 (+ _index 1)))
+                (if (>= _index (length _points))
+                    (progn
+                    (return-from jbreak))))))
+            (setf _sectionBasicArrayList (RandomTranslation.jm_getInstance_2 _sectionBasicArrayList _howMuch))
+            (if (eq _type (slot-value this 'f_ROTATION))
+                (progn
+                (setf _sectionBasicArrayList (jm_getInstanceList_2 (slot-value this 'f_randomRotationFactory) _sectionBasicArrayList _howMuch))))
+            (setf _size (jm_size_0 _sectionBasicArrayList))
+            (progn
+                (setf _index2 0)
+                (block jbreak (loop while (< _index2 _size) do
+                    (block jcontinue
+                (jm_add_1 _pointBasicArrayList (aref (slot-value _sectionBasicArrayList 'f_objectArray) _index2)))
+                    (setf _index2 (JR.i32 (+ _index2 1))))))
+            (if (>= _index (length _points))
+                (progn
+                (return-from jbreak))
+                (if (eq (aref (aref _points _index) 0) 1000)
+                (progn
+                (jm_add_1 _pointBasicArrayList (aref (slot-value _tempBasicArrayList 'f_objectArray) _index))
+                (setf _index (JR.i32 (+ _index 1)))))))))
+        (return-from jreturn _pointBasicArrayList))))
+
+    
+(unless (fboundp 'jm_createPointsBasicArrayList_1) (defgeneric jm_createPointsBasicArrayList_1 (this p1)))
+(defmethod jm_createPointsBasicArrayList_1 ((this VectorExplosionGenerator) _points)
+  (declare (ignorable this _points))
+  (let (_firstPointBasicArrayList _pointFactory _index)
+  (declare (ignorable _firstPointBasicArrayList _pointFactory _index))
+    (block jreturn
+        (if (= (length _points) 0)
+            (progn
+            (error (JR.newException "Exception" "Not Points Provided"))))
+        (setf _firstPointBasicArrayList (BasicArrayListS.jnew_1 (length _points)))
+        (setf _pointFactory (PointFactory.jm_getInstance_0))
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index (length _points)) do
+                (block jcontinue
+            (jm_add_1 _firstPointBasicArrayList (jm_createXY_2 _pointFactory (aref (aref _points _index) 0) (aref (aref _points _index) 1))))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (return-from jreturn _firstPointBasicArrayList))))
 
 
-function VectorExplosionGenerator.getInstance()
-        return VectorExplosionGenerator.instance
-end
-
-
-function VectorExplosionGenerator.new()
-    local self = setmetatable({}, VectorExplosionGenerator)
-    self:_init_fields()
-    return self
-end
-
-
--- throws Exception
-function VectorExplosionGenerator:createList(list, howMuch, type)
-        local point = nil
-        local size = list:size()
-        local points = java_new_array(0, size, 2)
-        for index = 0, size - 1 do
-            point = list.objectArray[index + 1]
-            points[index + 1][1] = point:getX()
-            points[index + 1][2] = point:getY()
-        end
-        return self:createListFromPoints(list, points, howMuch, type)
-end
-
-
--- throws Exception
--- Java overloaded method: Lua keeps the last definition
-function VectorExplosionGenerator:getInstance(points, howMuch, type)
-        local pointsBasicArrayList = self:getInstanceStartFrame(points, howMuch, type, true)
-        local tempBasicArrayList = pointsBasicArrayList.objectArray[1]
-        local newPoints = self.vectorAnimationUtil:toAnimationArrayFromListOfPointListWithPointsPerFrame(pointsBasicArrayList, tempBasicArrayList:size())
-        return newPoints
-end
-
-
--- throws Exception
-function VectorExplosionGenerator:getInstanceStartFrame(points, howMuch, type, startFrame)
-        local try_ok, try_error = pcall(function()
-            local pointsBasicArrayList = BasicArrayListS.new(howMuch)
-            pointsBasicArrayList:add(self:createPointsBasicArrayList(points))
-            local frameIndex = 0
-            local tempBasicArrayList = nil
-            local pointBasicArrayList = nil
-            while frameIndex < howMuch do
-                tempBasicArrayList = pointsBasicArrayList.objectArray[frameIndex + 1]
-                pointBasicArrayList = self:createListFromPoints(tempBasicArrayList, points, howMuch, type)
-                pointsBasicArrayList:add(pointBasicArrayList)
-                frameIndex = frameIndex + 1
-            end
-            if not startFrame then
-                pointsBasicArrayList:removeAt(0)
-            end
-            return pointsBasicArrayList
-        end)
-        if not try_ok then
-            local e = try_error
-            error(e, 0)
-        end
-end
-
-
--- throws Exception
-function VectorExplosionGenerator:createListFromPoints(tempBasicArrayList, points, howMuch, type)
-        local index = 0
-        local pointBasicArrayList = BasicArrayListD.new()
-        local sectionBasicArrayList = nil
-        while index < (points.n or #points) do
-            sectionBasicArrayList = BasicArrayListD.new()
-            while points[index + 1][1] ~= 1000 do
-                sectionBasicArrayList:add(tempBasicArrayList.objectArray[index + 1])
-                index = index + 1
-                if index >= (points.n or #points) then
-                    break
-                end
-            end
-            sectionBasicArrayList = RandomTranslation.getInstance(sectionBasicArrayList, howMuch)
-            if type == self.ROTATION then
-                sectionBasicArrayList = self.randomRotationFactory:getInstanceList(sectionBasicArrayList, howMuch)
-            end
-            local size = sectionBasicArrayList:size()
-            for index2 = 0, size - 1 do
-                pointBasicArrayList:add(sectionBasicArrayList.objectArray[index2 + 1])
-            end
-            if index >= (points.n or #points) then
-                break
-            elseif points[index + 1][1] == 1000 then
-                pointBasicArrayList:add(tempBasicArrayList.objectArray[index + 1])
-                index = index + 1
-            end
-        end
-        return pointBasicArrayList
-end
-
-
--- throws Exception
-function VectorExplosionGenerator:createPointsBasicArrayList(points)
-        if (points.n or #points) == 0 then
-            error(java_exception("Exception", "Not Points Provided"), 0)
-        end
-        local firstPointBasicArrayList = BasicArrayListS.new((points.n or #points))
-        local pointFactory = PointFactory.getInstance()
-        for index = 0, (points.n or #points) - 1 do
-            firstPointBasicArrayList:add(pointFactory:createXY(points[index + 1][1], points[index + 1][2]))
-        end
-        return firstPointBasicArrayList
-end
-
-VectorExplosionGenerator.instance = VectorExplosionGenerator.new()
-
-return VectorExplosionGenerator
 

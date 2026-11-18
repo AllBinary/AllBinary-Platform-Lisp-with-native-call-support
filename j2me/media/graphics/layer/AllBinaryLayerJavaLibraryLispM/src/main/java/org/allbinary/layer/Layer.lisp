@@ -1,160 +1,187 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2011 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.layer
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2011 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.layer
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local CanvasStrings = require("org.allbinary.graphics.displayable.CanvasStrings")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local SmallIntegerSingletonFactory = require("org.allbinary.logic.math.SmallIntegerSingletonFactory")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(defclass Layer (JObject)
+  ((f_logUtil :initform nil)
+   (f_x :initform 0)
+   (f_y :initform 0)
+   (f_z :initform 0)
+   (f_width :initform 0)
+   (f_height :initform 0)
+   (f_visible :initform nil)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defvar Layer.jcell_ID :jnone)
+(defun Layer.jstatic_ID ()
+  (when (eq Layer.jcell_ID :jnone) (setf Layer.jcell_ID (jm_getAt_1 (SmallIntegerSingletonFactory.jm_getInstance_0) 0)))
+  Layer.jcell_ID)
+(defun (setf Layer.jstatic_ID) (value) (setf Layer.jcell_ID value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun Layer.jnew_2 (_width _height)
+  (declare (ignorable _width _height))
+  (let ((this (make-instance 'Layer)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    
+    
+    (setf (slot-value this 'f_z) 3)
+    
+    
+    (setf (slot-value this 'f_visible) t)
+  (let ()
+    (block jreturn
+        (jm_setLayerWidth_1 this _width)
+        (jm_setLayerHeight_1 this _height)))
+    this))
 
-local Layer = {}
-Layer.__index = Layer
-Layer.className = "Layer"
+    
+(unless (fboundp 'jm_setPosition_3) (defgeneric jm_setPosition_3 (this p1 p2 p3)))
+(defmethod jm_setPosition_3 ((this Layer) _x _y _z)
+  (declare (ignorable this _x _y _z))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_x) _x)
+        (setf (slot-value this 'f_y) _y)
+        (setf (slot-value this 'f_z) _z))))
 
-function Layer:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.x = 0
-    self.y = 0
-    self.z = 3
-    self.width = 0
-    self.height = 0
-    self.visible = true
-end
+    
+(unless (fboundp 'jm_moveDXY_2) (defgeneric jm_moveDXY_2 (this p1 p2)))
+(defmethod jm_moveDXY_2 ((this Layer) _dx _dy)
+  (declare (ignorable this _dx _dy))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_x) (JR.i32 (+ (slot-value this 'f_x) _dx)))
+        (setf (slot-value this 'f_y) (JR.i32 (+ (slot-value this 'f_y) _dy))))))
+
+    
+(unless (fboundp 'jm_moveDXYZ_3) (defgeneric jm_moveDXYZ_3 (this p1 p2 p3)))
+(defmethod jm_moveDXYZ_3 ((this Layer) _dx _dy _dz)
+  (declare (ignorable this _dx _dy _dz))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_x) (JR.i32 (+ (slot-value this 'f_x) _dx)))
+        (setf (slot-value this 'f_y) (JR.i32 (+ (slot-value this 'f_y) _dy)))
+        (setf (slot-value this 'f_z) (JR.i32 (+ (slot-value this 'f_z) _dz))))))
+
+    
+(unless (fboundp 'jm_getXP_0) (defgeneric jm_getXP_0 (this)))
+(defmethod jm_getXP_0 ((this Layer))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_x)))))
+
+    
+(unless (fboundp 'jm_getYP_0) (defgeneric jm_getYP_0 (this)))
+(defmethod jm_getYP_0 ((this Layer))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_y)))))
+
+    
+(unless (fboundp 'jm_getZP_0) (defgeneric jm_getZP_0 (this)))
+(defmethod jm_getZP_0 ((this Layer))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_z)))))
+
+    
+(unless (fboundp 'jm_getWidth_0) (defgeneric jm_getWidth_0 (this)))
+(defmethod jm_getWidth_0 ((this Layer))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_width)))))
+
+    
+(unless (fboundp 'jm_getHeight_0) (defgeneric jm_getHeight_0 (this)))
+(defmethod jm_getHeight_0 ((this Layer))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_height)))))
+
+    
+(unless (fboundp 'jm_getDepth_0) (defgeneric jm_getDepth_0 (this)))
+(defmethod jm_getDepth_0 ((this Layer))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn 0))))
+
+    
+(unless (fboundp 'jm_setVisible_1) (defgeneric jm_setVisible_1 (this p1)))
+(defmethod jm_setVisible_1 ((this Layer) _visible)
+  (declare (ignorable this _visible))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_visible) _visible))))
+
+    
+(unless (fboundp 'jm_isVisible_0) (defgeneric jm_isVisible_0 (this)))
+(defmethod jm_isVisible_0 ((this Layer))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_visible)))))
+
+    
+(unless (fboundp 'jm_paint_1) (defgeneric jm_paint_1 (this p1)))
+(defmethod jm_paint_1 ((this Layer) _graphics)
+  (declare (ignorable this _graphics))
+  (let (_commonStrings _canvasStrings)
+  (declare (ignorable _commonStrings _canvasStrings))
+    (block jreturn
+        (setf _commonStrings (CommonStrings.jm_getInstance_0))
+        (setf _canvasStrings (CanvasStrings.jm_getInstance_0))
+        (jm_putF_3 (slot-value this 'f_logUtil) (slot-value _commonStrings 'f_NOT_IMPLEMENTED) this (slot-value _canvasStrings 'f_PAINT)))))
+
+    
+(unless (fboundp 'jm_setLayerWidth_1) (defgeneric jm_setLayerWidth_1 (this p1)))
+(defmethod jm_setLayerWidth_1 ((this Layer) _width)
+  (declare (ignorable this _width))
+  (let ()
+    (block jreturn
+        (if (< _width 0)
+            (progn
+            (error (JR.newException "IllegalArgumentException"))))
+        (setf (slot-value this 'f_width) _width))))
+
+    
+(unless (fboundp 'jm_setLayerHeight_1) (defgeneric jm_setLayerHeight_1 (this p1)))
+(defmethod jm_setLayerHeight_1 ((this Layer) _height)
+  (declare (ignorable this _height))
+  (let ()
+    (block jreturn
+        (if (< _height 0)
+            (progn
+            (error (JR.newException "IllegalArgumentException"))))
+        (setf (slot-value this 'f_height) _height))))
+
+    
+(unless (fboundp 'jm_toStringAppend_1) (defgeneric jm_toStringAppend_1 (this p1)))
+(defmethod jm_toStringAppend_1 ((this Layer) _stringBuffer)
+  (declare (ignorable this _stringBuffer))
+  (let ()
+    (block jreturn nil)))
 
 
-function Layer.new(width, height)
-    local self = setmetatable({}, Layer)
-    self:_init_fields()
-        self:setLayerWidth(width)
-        self:setLayerHeight(height)
-    return self
-end
-
-
-function Layer:setPosition(x, y, z)
-        self.x = x
-        self.y = y
-        self.z = z
-end
-
-
-function Layer:moveDXY(dx, dy)
-        self.x = self.x + (dx)
-        self.y = self.y + (dy)
-end
-
-
-function Layer:moveDXYZ(dx, dy, dz)
-        self.x = self.x + (dx)
-        self.y = self.y + (dy)
-        self.z = self.z + (dz)
-end
-
-
-function Layer:getXP()
-        return self.x
-end
-
-
-function Layer:getYP()
-        return self.y
-end
-
-
-function Layer:getZP()
-        return self.z
-end
-
-
-function Layer:getWidth()
-        return self.width
-end
-
-
-function Layer:getHeight()
-        return self.height
-end
-
-
-function Layer:getDepth()
-        return 0
-end
-
-
-function Layer:setVisible(visible)
-        self.visible = visible
-end
-
-
-function Layer:isVisible()
-        return self.visible
-end
-
-
-function Layer:paint(graphics)
-        local commonStrings = CommonStrings.getInstance()
-        local canvasStrings = CanvasStrings.getInstance()
-        self.logUtil:putF(commonStrings.NOT_IMPLEMENTED, self, canvasStrings.PAINT)
-end
-
-
-function Layer:setLayerWidth(width)
-        if width < 0 then
-            error(java_exception("IllegalArgumentException"), 0)
-        end
-        self.width = width
-end
-
-
-function Layer:setLayerHeight(height)
-        if height < 0 then
-            error(java_exception("IllegalArgumentException"), 0)
-        end
-        self.height = height
-end
-
-
-function Layer:toStringAppend(stringBuffer)
-end
-
-Layer.ID = SmallIntegerSingletonFactory.getInstance():getAt(0)
-
-return Layer
 

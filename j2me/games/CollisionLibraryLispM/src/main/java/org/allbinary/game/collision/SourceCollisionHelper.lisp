@@ -1,52 +1,45 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.collision
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.collision
 
-local CollidableCompositeLayer = require("org.allbinary.game.layer.CollidableCompositeLayer")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local CollisionHelper = require("org.allbinary.game.collision.CollisionHelper")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass SourceCollisionHelper (CollisionHelper)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun SourceCollisionHelper.jnew_1 (_layerInterface)
+  (declare (ignorable _layerInterface))
+  (let ((this (make-instance 'SourceCollisionHelper)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
-local SourceCollisionHelper = {}
-SourceCollisionHelper.__index = SourceCollisionHelper
-SourceCollisionHelper.className = "SourceCollisionHelper"
-setmetatable(SourceCollisionHelper, {__index = CollisionHelper})
+    
+(unless (fboundp 'jm_isCollidable_1) (defgeneric jm_isCollidable_1 (this p1)))
+(defmethod jm_isCollidable_1 ((this SourceCollisionHelper) _layerInterface)
+  (declare (ignorable this _layerInterface))
+  (let ()
+    (block jreturn
+        (if (not (eq (slot-value this 'f_sourceLayerInterface) _layerInterface))
+            (progn
+            (return-from jreturn t)))
+        (return-from jreturn nil))))
 
 
-function SourceCollisionHelper.new(layerInterface)
-    local self = setmetatable(CollisionHelper.new(layerInterface), SourceCollisionHelper)
-        -- super(...) made self above
-    return self
-end
-
-
-function SourceCollisionHelper:isCollidable(layerInterface)
-        if self.sourceLayerInterface ~= layerInterface then
-            return true
-        end
-        return false
-end
-
-return SourceCollisionHelper
 

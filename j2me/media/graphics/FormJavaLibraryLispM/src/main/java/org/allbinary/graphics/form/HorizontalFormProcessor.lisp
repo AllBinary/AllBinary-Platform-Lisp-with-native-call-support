@@ -1,54 +1,44 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.form
 
-local Processor = require("org.allbinary.canvas.Processor")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass HorizontalFormProcessor (Processor)
+  ((f_scrollCurrentSelectionForm :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun HorizontalFormProcessor.jnew_1 (_scrollCurrentSelectionForm)
+  (declare (ignorable _scrollCurrentSelectionForm))
+  (let ((this (make-instance 'HorizontalFormProcessor)))
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_scrollCurrentSelectionForm) _scrollCurrentSelectionForm)))
+    this))
 
-local HorizontalFormProcessor = {}
-HorizontalFormProcessor.__index = HorizontalFormProcessor
-HorizontalFormProcessor.className = "HorizontalFormProcessor"
-setmetatable(HorizontalFormProcessor, {__index = Processor})
-
-function HorizontalFormProcessor:_init_fields()
-    self.scrollCurrentSelectionForm = nil
-end
-
-
-function HorizontalFormProcessor.new(scrollCurrentSelectionForm)
-    local self = setmetatable(Processor.new(), HorizontalFormProcessor)
-    self:_init_fields()
-        self.scrollCurrentSelectionForm = scrollCurrentSelectionForm
-    return self
-end
+    
+(unless (fboundp 'jm_process_0) (defgeneric jm_process_0 (this)))
+(defmethod jm_process_0 ((this HorizontalFormProcessor))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_processHorizontalForm_0 (slot-value this 'f_scrollCurrentSelectionForm))
+        (setf (slot-value (slot-value this 'f_scrollCurrentSelectionForm) 'f_processor) (Processor.jm_getInstance_0)))))
 
 
--- throws Exception
-function HorizontalFormProcessor:process()
-        self.scrollCurrentSelectionForm:processHorizontalForm()
-        self.scrollCurrentSelectionForm.processor = Processor.getInstance()
-end
-
-return HorizontalFormProcessor
 

@@ -1,83 +1,93 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.input.motion.button
 
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass CurrentlyPressedTouchButtonSingleton (JObject)
+  ((f_list :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar CurrentlyPressedTouchButtonSingleton.jcell_instance :jnone)
+(defun CurrentlyPressedTouchButtonSingleton.jstatic_instance ()
+  (when (eq CurrentlyPressedTouchButtonSingleton.jcell_instance :jnone) (setf CurrentlyPressedTouchButtonSingleton.jcell_instance (CurrentlyPressedTouchButtonSingleton.jnew_0)))
+  CurrentlyPressedTouchButtonSingleton.jcell_instance)
+(defun (setf CurrentlyPressedTouchButtonSingleton.jstatic_instance) (value) (setf CurrentlyPressedTouchButtonSingleton.jcell_instance value))
 
-local CurrentlyPressedTouchButtonSingleton = {}
-CurrentlyPressedTouchButtonSingleton.__index = CurrentlyPressedTouchButtonSingleton
-CurrentlyPressedTouchButtonSingleton.className = "CurrentlyPressedTouchButtonSingleton"
+    
+(defun CurrentlyPressedTouchButtonSingleton.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (CurrentlyPressedTouchButtonSingleton.jstatic_instance)))))
 
-function CurrentlyPressedTouchButtonSingleton:_init_fields()
-    self.list = BasicArrayListD.new()
-end
+    
+(defun CurrentlyPressedTouchButtonSingleton.jnew_0 ()
+  (let ((this (make-instance 'CurrentlyPressedTouchButtonSingleton)))
+    (setf (slot-value this 'f_list) (BasicArrayListD.jnew_0))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(unless (fboundp 'jm_size_0) (defgeneric jm_size_0 (this)))
+(defmethod jm_size_0 ((this CurrentlyPressedTouchButtonSingleton))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_size_0 (slot-value this 'f_list))))))
+
+    
+(unless (fboundp 'jm_removeAt_1) (defgeneric jm_removeAt_1 (this p1)))
+(defmethod jm_removeAt_1 ((this CurrentlyPressedTouchButtonSingleton) _index)
+  (declare (ignorable this _index))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_removeAt_1 (slot-value this 'f_list) _index)))))
+
+    
+(unless (fboundp 'jm_remove_1) (defgeneric jm_remove_1 (this p1)))
+(defmethod jm_remove_1 ((this CurrentlyPressedTouchButtonSingleton) _touchButtonInput)
+  (declare (ignorable this _touchButtonInput))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_remove_1 (slot-value this 'f_list) _touchButtonInput)))))
+
+    
+(unless (fboundp 'jm_get_1) (defgeneric jm_get_1 (this p1)))
+(defmethod jm_get_1 ((this CurrentlyPressedTouchButtonSingleton) _index)
+  (declare (ignorable this _index))
+  (let ()
+    (block jreturn
+        (return-from jreturn (aref (slot-value (slot-value this 'f_list) 'f_objectArray) _index)))))
+
+    
+(unless (fboundp 'jm_contains_1) (defgeneric jm_contains_1 (this p1)))
+(defmethod jm_contains_1 ((this CurrentlyPressedTouchButtonSingleton) _touchButtonInput)
+  (declare (ignorable this _touchButtonInput))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_contains_1 (slot-value this 'f_list) _touchButtonInput)))))
+
+    
+(unless (fboundp 'jm_add_1) (defgeneric jm_add_1 (this p1)))
+(defmethod jm_add_1 ((this CurrentlyPressedTouchButtonSingleton) _touchButtonInput)
+  (declare (ignorable this _touchButtonInput))
+  (let ()
+    (block jreturn
+        (jm_add_1 (slot-value this 'f_list) _touchButtonInput))))
 
 
-function CurrentlyPressedTouchButtonSingleton.getInstance()
-        return CurrentlyPressedTouchButtonSingleton.instance
-end
-
-
-function CurrentlyPressedTouchButtonSingleton.new()
-    local self = setmetatable({}, CurrentlyPressedTouchButtonSingleton)
-    self:_init_fields()
-    return self
-end
-
-
-function CurrentlyPressedTouchButtonSingleton:size()
-        return self.list:size()
-end
-
-
-function CurrentlyPressedTouchButtonSingleton:removeAt(index)
-        return self.list:removeAt(index)
-end
-
-
-function CurrentlyPressedTouchButtonSingleton:remove(touchButtonInput)
-        return self.list:remove(touchButtonInput)
-end
-
-
-function CurrentlyPressedTouchButtonSingleton:get(index)
-        return self.list.objectArray[index + 1]
-end
-
-
-function CurrentlyPressedTouchButtonSingleton:contains(touchButtonInput)
-        return self.list:contains(touchButtonInput)
-end
-
-
-function CurrentlyPressedTouchButtonSingleton:add(touchButtonInput)
-        self.list:add(touchButtonInput)
-end
-
-CurrentlyPressedTouchButtonSingleton.instance = CurrentlyPressedTouchButtonSingleton.new()
-
-return CurrentlyPressedTouchButtonSingleton
 

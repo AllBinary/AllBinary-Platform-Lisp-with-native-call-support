@@ -1,75 +1,66 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.data
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.data
 
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local StringValidationUtil = require("org.allbinary.logic.string.StringValidationUtil")
-local Tokenizer = require("org.allbinary.logic.string.tokens.Tokenizer")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass CamelCaseUtil (JObject)
+  ((f_commonSeps :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar CamelCaseUtil.jcell_instance :jnone)
+(defun CamelCaseUtil.jstatic_instance ()
+  (when (eq CamelCaseUtil.jcell_instance :jnone) (setf CamelCaseUtil.jcell_instance (CamelCaseUtil.jnew_0)))
+  CamelCaseUtil.jcell_instance)
+(defun (setf CamelCaseUtil.jstatic_instance) (value) (setf CamelCaseUtil.jcell_instance value))
 
-local CamelCaseUtil = {}
-CamelCaseUtil.__index = CamelCaseUtil
-CamelCaseUtil.className = "CamelCaseUtil"
+(defun CamelCaseUtil.jnew_0 ()
+  (let ((this (make-instance 'CamelCaseUtil)))
+    (setf (slot-value this 'f_commonSeps) (CommonSeps.jm_getInstance_0))
+    this))
 
-function CamelCaseUtil:_init_fields()
-    self.commonSeps = CommonSeps.getInstance()
-end
+    
+(defun CamelCaseUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (CamelCaseUtil.jstatic_instance)))))
 
-function CamelCaseUtil.new()
-    local self = setmetatable({}, CamelCaseUtil)
-    self:_init_fields()
-    return self
-end
+    
+(unless (fboundp 'jm_getAsCamelCase_2) (defgeneric jm_getAsCamelCase_2 (this p1 p2)))
+(defmethod jm_getAsCamelCase_2 ((this CamelCaseUtil) _string _stringBuilder)
+  (declare (ignorable this _string _stringBuilder))
+  (let (_stringValidationUtil _list _tokenizer _size _word _i)
+  (declare (ignorable _stringValidationUtil _list _tokenizer _size _word _i))
+    (block jreturn
+        (setf _stringValidationUtil (StringValidationUtil.jm_getInstance_0))
+        (jm_delete_2 _stringBuilder 0 (jm_length_0 _stringBuilder))
+        (setf _list (BasicArrayListD.jnew_0))
+        (setf _tokenizer (Tokenizer.jnew_1 (slot-value (slot-value this 'f_commonSeps) 'f_UNDERSCORE)))
+        (jm_getTokensFromString_2 _tokenizer _string _list)
+        (setf _size (jm_size_0 _list))
+        (setf _word nil)
+        (progn
+            (setf _i 0)
+            (block jbreak (loop while (< _i _size) do
+                (block jcontinue
+            (setf _word (jm_get_1 _list _i))
+            (setf _word (if (jm_isEmpty_1 _stringValidationUtil _word) _word (jm_toString_0 (jm_append_1 (jm_appendchar_1 (StringMaker.jnew_0) (Character.jm_toUpperCase_1 (JR.charAt _word 0))) (JR.toLowerCase (JR.substring _word 1))))))
+            (jm_append_1 _stringBuilder _word))
+                (setf _i (JR.i32 (+ _i 1))))))
+        (return-from jreturn (jm_toString_0 _stringBuilder)))))
 
 
-function CamelCaseUtil.getInstance()
-        return CamelCaseUtil.instance
-end
-
-
--- throws Exception
-function CamelCaseUtil:getAsCamelCase(string, stringBuilder)
-        local stringValidationUtil = StringValidationUtil.getInstance()
-        stringBuilder:delete(0, stringBuilder:length())
-        local list = BasicArrayListD.new()
-        local tokenizer = Tokenizer.new(self.commonSeps.UNDERSCORE)
-        tokenizer:getTokensFromString(string, list)
-        local size = list:size()
-        local word = nil
-        for i = 0, size - 1 do
-            word = list:get(i)
-            word = (function() if stringValidationUtil:isEmpty(word) then return word else return tostring(StringMaker.new():appendchar(string.upper(string.sub(word, (0) + 1, (0) + 1))):append(string.lower(string.sub(word, (1) + 1)))) end end)()
-            stringBuilder:append(word)
-        end
-        return tostring(stringBuilder)
-end
-
-CamelCaseUtil.instance = CamelCaseUtil.new()
-
-return CamelCaseUtil
 

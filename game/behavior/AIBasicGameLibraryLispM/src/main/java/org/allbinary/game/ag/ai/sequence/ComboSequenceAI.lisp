@@ -1,57 +1,51 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai.sequence
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.ag.ai.sequence
 
-local ArtificialIntelligenceInterface = require("org.allbinary.ai.ArtificialIntelligenceInterface")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local SequenceAI = require("org.allbinary.game.ag.ai.sequence.SequenceAI")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ComboSequenceAI (SequenceAI)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun ComboSequenceAI.jnew_3 (_artificialIntelligenceInterface _ownerLayerInterface _gameInput)
+  (declare (ignorable _artificialIntelligenceInterface _ownerLayerInterface _gameInput))
+  (let ((this (make-instance 'ComboSequenceAI)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
-local ComboSequenceAI = {}
-ComboSequenceAI.__index = ComboSequenceAI
-ComboSequenceAI.className = "ComboSequenceAI"
-setmetatable(ComboSequenceAI, {__index = SequenceAI})
+    
+(unless (fboundp 'jm_processAI_1) (defgeneric jm_processAI_1 (this p1)))
+(defmethod jm_processAI_1 ((this ComboSequenceAI) _allBinaryLayerManager)
+  (declare (ignorable this _allBinaryLayerManager))
+  (let (_artificialIntelligenceInterfaceArray _size _index)
+  (declare (ignorable _artificialIntelligenceInterfaceArray _size _index))
+    (block jreturn
+        (setf _artificialIntelligenceInterfaceArray (jm_getArtificialIntelligenceInterface_0 this))
+        (setf _size (length _artificialIntelligenceInterfaceArray))
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (jm_setIndex_1 this _index)
+            (call-next-method this _allBinaryLayerManager))
+                (setf _index (JR.i32 (+ _index 1)))))))))
 
 
-function ComboSequenceAI.new(artificialIntelligenceInterface, ownerLayerInterface, gameInput)
-    local self = setmetatable(SequenceAI.new(artificialIntelligenceInterface, ownerLayerInterface, gameInput), ComboSequenceAI)
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function ComboSequenceAI:processAI(allBinaryLayerManager)
-        local artificialIntelligenceInterfaceArray = self:getArtificialIntelligenceInterface()
-        local size = (artificialIntelligenceInterfaceArray.n or #artificialIntelligenceInterfaceArray)
-        for index = 0, size - 1 do
-            self:setIndex(index)
-            SequenceAI.processAI(self, allBinaryLayerManager)
-        end
-end
-
-return ComboSequenceAI
 

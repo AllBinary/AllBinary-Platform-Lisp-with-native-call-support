@@ -1,58 +1,58 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2022 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary
 
--- local Image = require("javax.microedition.lcdui.Image")
-local Resource = require("org.eclipse.swt.graphics.Resource")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass DisposalUtil (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar DisposalUtil.jcell_instance :jnone)
+(defun DisposalUtil.jstatic_instance ()
+  (when (eq DisposalUtil.jcell_instance :jnone) (setf DisposalUtil.jcell_instance (DisposalUtil.jnew_0)))
+  DisposalUtil.jcell_instance)
+(defun (setf DisposalUtil.jstatic_instance) (value) (setf DisposalUtil.jcell_instance value))
 
-local DisposalUtil = {}
-DisposalUtil.__index = DisposalUtil
-DisposalUtil.className = "DisposalUtil"
+(defun DisposalUtil.jnew_0 ()
+  (let ((this (make-instance 'DisposalUtil)))
+    this))
 
-function DisposalUtil.new()
-    local self = setmetatable({}, DisposalUtil)
-    return self
-end
+    
+(defun DisposalUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (DisposalUtil.jstatic_instance)))))
+
+    
+(unless (fboundp 'jm_disposeImage_1) (defgeneric jm_disposeImage_1 (this p1)))
+(defmethod jm_disposeImage_1 ((this DisposalUtil) _image)
+  (declare (ignorable this _image))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_disposeResource_1) (defgeneric jm_disposeResource_1 (this p1)))
+(defmethod jm_disposeResource_1 ((this DisposalUtil) _resource)
+  (declare (ignorable this _resource))
+  (let ()
+    (block jreturn
+        (if (not (jm_isDisposed_0 _resource))
+            (progn
+            (jm_dispose_0 _resource))))))
 
 
-function DisposalUtil.getInstance()
-        return DisposalUtil.instance
-end
-
-
-function DisposalUtil:disposeImage(image)
-end
-
-
-function DisposalUtil:disposeResource(resource)
-        if not resource:isDisposed() then
-            resource:dispose()
-        end
-end
-
-DisposalUtil.instance = DisposalUtil.new()
-
-return DisposalUtil
 

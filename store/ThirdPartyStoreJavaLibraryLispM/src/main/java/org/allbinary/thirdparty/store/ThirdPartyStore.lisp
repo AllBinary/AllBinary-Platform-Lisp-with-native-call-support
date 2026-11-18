@@ -1,66 +1,68 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.thirdparty.store
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.thirdparty.store
 
-local AbeClientInformationInterface = require("org.allbinary.logic.system.security.licensing.AbeClientInformationInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ThirdPartyStore (JObject)
+  ((f_authorized :initform nil)
+   (f_name :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun ThirdPartyStore.jnew_1 (_name)
+  (declare (ignorable _name))
+  (let ((this (make-instance 'ThirdPartyStore)))
+    
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_name) _name)))
+    this))
 
-local ThirdPartyStore = {}
-ThirdPartyStore.__index = ThirdPartyStore
-ThirdPartyStore.className = "ThirdPartyStore"
+    
+(unless (fboundp 'jm_authorize_1) (defgeneric jm_authorize_1 (this p1)))
+(defmethod jm_authorize_1 ((this ThirdPartyStore) _clientInformationInterface)
+  (declare (ignorable this _clientInformationInterface))
+  (let ()
+    (block jreturn nil)))
 
-function ThirdPartyStore:_init_fields()
-    self.authorized = false
-    self.name = nil
-end
+    
+(unless (fboundp 'jm_isAuthorized_0) (defgeneric jm_isAuthorized_0 (this)))
+(defmethod jm_isAuthorized_0 ((this ThirdPartyStore))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_authorized)))))
+
+    
+(unless (fboundp 'jm_setAuthorized_1) (defgeneric jm_setAuthorized_1 (this p1)))
+(defmethod jm_setAuthorized_1 ((this ThirdPartyStore) _authorized)
+  (declare (ignorable this _authorized))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_authorized) _authorized))))
+
+    
+(unless (fboundp 'jm_getName_0) (defgeneric jm_getName_0 (this)))
+(defmethod jm_getName_0 ((this ThirdPartyStore))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_name)))))
 
 
-function ThirdPartyStore.new(name)
-    local self = setmetatable({}, ThirdPartyStore)
-    self:_init_fields()
-        self.name = name
-    return self
-end
-
-
-function ThirdPartyStore:authorize(clientInformationInterface)
-end
-
-
-function ThirdPartyStore:isAuthorized()
-        return self.authorized
-end
-
-
-function ThirdPartyStore:setAuthorized(authorized)
-        self.authorized = authorized
-end
-
-
-function ThirdPartyStore:getName()
-        return self.name
-end
-
-return ThirdPartyStore
 

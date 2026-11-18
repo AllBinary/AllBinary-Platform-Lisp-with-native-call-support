@@ -1,154 +1,166 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2025 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary
 
--- local Displayable = require("javax.microedition.lcdui.Displayable")
--- local Form = require("javax.microedition.lcdui.Form")
--- local InvalidRecordIDException = require("javax.microedition.rms.InvalidRecordIDException")
--- local RecordStore = require("javax.microedition.rms.RecordStore")
--- local RecordStoreException = require("javax.microedition.rms.RecordStoreException")
--- local RecordStoreNotOpenException = require("javax.microedition.rms.RecordStoreNotOpenException")
-local NullUtil = require("org.allbinary.logic.NullUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+;J2SE
+(defclass TsUtil (JObject)
+  ())
 
-local function java_instanceof(object, class)
-    local metatable = getmetatable(object)
-    while metatable do
-        if metatable == class then return true end
-        local parent = getmetatable(metatable)
-        metatable = parent and parent.__index
-    end
-    return false
-end
+(defvar TsUtil.jcell_instance :jnone)
+(defun TsUtil.jstatic_instance ()
+  (when (eq TsUtil.jcell_instance :jnone) (setf TsUtil.jcell_instance (TsUtil.jnew_0)))
+  TsUtil.jcell_instance)
+(defun (setf TsUtil.jstatic_instance) (value) (setf TsUtil.jcell_instance value))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defun TsUtil.jnew_0 ()
+  (let ((this (make-instance 'TsUtil)))
+    this))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun TsUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (TsUtil.jstatic_instance)))))
 
---J2SE
-local TsUtil = {}
-TsUtil.__index = TsUtil
-TsUtil.className = "TsUtil"
+    
+(unless (fboundp 'jm_longBitsToDouble_1) (defgeneric jm_longBitsToDouble_1 (this p1)))
+(defmethod jm_longBitsToDouble_1 ((this TsUtil) _bits)
+  (declare (ignorable this _bits))
+  (let ()
+    (block jreturn
+        (return-from jreturn (Double.jm_longBitsToDouble_1 _bits)))))
 
-function TsUtil.new()
-    local self = setmetatable({}, TsUtil)
-    return self
-end
+    
+(unless (fboundp 'jm_intBitsToFloat_1) (defgeneric jm_intBitsToFloat_1 (this p1)))
+(defmethod jm_intBitsToFloat_1 ((this TsUtil) _bits)
+  (declare (ignorable this _bits))
+  (let ()
+    (block jreturn
+        (return-from jreturn (Float.jm_intBitsToFloat_1 _bits)))))
+
+    
+(unless (fboundp 'jm_hashCode_1) (defgeneric jm_hashCode_1 (this p1)))
+(defmethod jm_hashCode_1 ((this TsUtil) _anyType)
+  (declare (ignorable this _anyType))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_hashCode_0 _anyType)))))
+
+    
+(unless (fboundp 'jm_waitFor_2) (defgeneric jm_waitFor_2 (this p1 p2)))
+(defmethod jm_waitFor_2 ((this TsUtil) _any _timeoutMillis)
+  (declare (ignorable this _any _timeoutMillis))
+  (let (_anyType)
+  (declare (ignorable _anyType))
+    (block jreturn
+        (setf _anyType _any)
+        (jm_wait_1 _anyType _timeoutMillis))))
+
+    
+(unless (fboundp 'jm_getRecord_2) (defgeneric jm_getRecord_2 (this p1 p2)))
+(defmethod jm_getRecord_2 ((this TsUtil) _anyType _recordId)
+  (declare (ignorable this _anyType _recordId))
+  (let (_recordStore _data)
+  (declare (ignorable _recordStore _data))
+    (block jreturn
+        (setf _recordStore _anyType)
+        (setf _data nil)
+        (progn
+            (setf _data (JR.newArray 0 (jm_getRecordSize_1 _recordStore _recordId)))
+            (jm_getRecord_3 _recordStore _recordId _data 0))
+        (return-from jreturn (if (< (length _data) 1) (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_BYTE_ARRAY) _data)))))
+
+    
+(unless (fboundp 'jm_compareTo_2) (defgeneric jm_compareTo_2 (this p1 p2)))
+(defmethod jm_compareTo_2 ((this TsUtil) _a _b)
+  (declare (ignorable this _a _b))
+  (let ()
+    (block jreturn
+        (return-from jreturn (JR.compareTo _a _b)))))
+
+    
+(unless (fboundp 'jm_equalIgnoreCase_2) (defgeneric jm_equalIgnoreCase_2 (this p1 p2)))
+(defmethod jm_equalIgnoreCase_2 ((this TsUtil) _a _b)
+  (declare (ignorable this _a _b))
+  (let ()
+    (block jreturn
+        (return-from jreturn (JR.equalsIgnoreCase _a _b)))))
+
+    
+(unless (fboundp 'jm_equalsNotstring_2) (defgeneric jm_equalsNotstring_2 (this p1 p2)))
+(defmethod jm_equalsNotstring_2 ((this TsUtil) _anyType _object2)
+  (declare (ignorable this _anyType _object2))
+  (let ()
+    (block jreturn
+        (return-from jreturn (eq _anyType _object2)))))
+
+    
+(unless (fboundp 'jm_getClassClassLoader_1) (defgeneric jm_getClassClassLoader_1 (this p1)))
+(defmethod jm_getClassClassLoader_1 ((this TsUtil) _anyType)
+  (declare (ignorable this _anyType))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getClassLoader_0 (JR.className _anyType))))))
+
+    
+(unless (fboundp 'jm_toNumberFromChar_1) (defgeneric jm_toNumberFromChar_1 (this p1)))
+(defmethod jm_toNumberFromChar_1 ((this TsUtil) _value)
+  (declare (ignorable this _value))
+  (let ()
+    (block jreturn
+        (return-from jreturn _value))))
+
+    
+(unless (fboundp 'jm_toNumber_1) (defgeneric jm_toNumber_1 (this p1)))
+(defmethod jm_toNumber_1 ((this TsUtil) _value)
+  (declare (ignorable this _value))
+  (let ()
+    (block jreturn
+        (return-from jreturn _value))))
+
+    
+(unless (fboundp 'jm_getByteArray_1) (defgeneric jm_getByteArray_1 (this p1)))
+(defmethod jm_getByteArray_1 ((this TsUtil) _string)
+  (declare (ignorable this _string))
+  (let ()
+    (block jreturn
+        (return-from jreturn (JR.getBytes _string)))))
+
+    
+(unless (fboundp 'jm_isItemListener_1) (defgeneric jm_isItemListener_1 (this p1)))
+(defmethod jm_isItemListener_1 ((this TsUtil) _owner)
+  (declare (ignorable this _owner))
+  (let ()
+    (block jreturn
+        (if (typep _owner 'Form)
+            (progn
+            (return-from jreturn t))
+            (progn
+            (return-from jreturn nil))))))
+
+    
+(unless (fboundp 'jm_gc_0) (defgeneric jm_gc_0 (this)))
+(defmethod jm_gc_0 ((this TsUtil))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (System.jm_gc_0))))
 
 
-function TsUtil.getInstance()
-        return TsUtil.instance
-end
-
-
-function TsUtil:longBitsToDouble(bits)
-        return java.lang.Double:longBitsToDouble(bits)
-end
-
-
-function TsUtil:intBitsToFloat(bits)
-        return java.lang.Float:intBitsToFloat(bits)
-end
-
-
-function TsUtil:hashCode(anyType)
-        return anyType:hashCode()
-end
-
-
--- throws InterruptedException
-function TsUtil:waitFor(any, timeoutMillis)
-        local anyType = any
-        anyType:wait(timeoutMillis)
-end
-
-
--- throws RecordStoreNotOpenException, InvalidRecordIDException, RecordStoreException
-function TsUtil:getRecord(anyType, recordId)
-        local recordStore = anyType
-        local data = nil
-        do -- synchronized (self)
-            data = java_new_array(0, recordStore:getRecordSize(recordId))
-            recordStore:getRecord(recordId, data, 0)
-        end
-        return (function() if (data.n or #data) < 1 then return NullUtil.getInstance().NULL_BYTE_ARRAY else return data end end)()
-end
-
-
-function TsUtil:compareTo(a, b)
-        return ((a < b and -1) or (a > b and 1) or 0)
-end
-
-
-function TsUtil:equalIgnoreCase(a, b)
-        return (string.lower(a) == string.lower(b))
-end
-
-
-function TsUtil:equalsNotstring(anyType, object2)
-        return anyType:equals(object2)
-end
-
-
-function TsUtil:getClassClassLoader(anyType)
-        return getmetatable(anyType):getClassLoader()
-end
-
-
-function TsUtil:toNumberFromChar(value)
-        return string.byte(value)
-end
-
-
-function TsUtil:toNumber(value)
-        return value
-end
-
-
-function TsUtil:getByteArray(string)
-        return {string.byte(string, 1, -1)}
-end
-
-
-function TsUtil:isItemListener(owner)
-        if java_instanceof(owner, Form) then
-            return true
-        else
-            return false
-        end
-end
-
-
-function TsUtil:gc()
-        collectgarbage()
-end
-
-TsUtil.instance = TsUtil.new()
-
-return TsUtil
 

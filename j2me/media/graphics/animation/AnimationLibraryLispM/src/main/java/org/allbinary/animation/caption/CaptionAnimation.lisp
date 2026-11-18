@@ -1,75 +1,75 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.caption
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation.caption
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Animation = require("org.allbinary.animation.Animation")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass CaptionAnimation (Animation)
+  ((f_animationInterface :initform nil)
+   (f_overlayAnimationInterface :initform nil)
+   (f_captionDx :initform 0)
+   (f_captionDy :initform 0)
+   (f_dx :initform 0)
+   (f_dy :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun CaptionAnimation.jnew_6 (_animationInterface _overlayAnimationInterface _captionDx _captionDy _dx _dy)
+  (declare (ignorable _animationInterface _overlayAnimationInterface _captionDx _captionDy _dx _dy))
+  (let ((this (make-instance 'CaptionAnimation)))
+    
+    
+    
+    
+    
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_animationInterface) _animationInterface)
+        (setf (slot-value this 'f_overlayAnimationInterface) _overlayAnimationInterface)
+        (setf (slot-value this 'f_captionDx) _captionDx)
+        (setf (slot-value this 'f_captionDy) _captionDy)
+        (setf (slot-value this 'f_dx) _dx)
+        (setf (slot-value this 'f_dy) _dy)))
+    this))
 
-local CaptionAnimation = {}
-CaptionAnimation.__index = CaptionAnimation
-CaptionAnimation.className = "CaptionAnimation"
-setmetatable(CaptionAnimation, {__index = Animation})
+    
+(unless (fboundp 'jm_nextFrame_0) (defgeneric jm_nextFrame_0 (this)))
+(defmethod jm_nextFrame_0 ((this CaptionAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
 
-function CaptionAnimation:_init_fields()
-    self.animationInterface = nil
-    self.overlayAnimationInterface = nil
-    self.captionDx = nil
-    self.captionDy = nil
-    self.dx = nil
-    self.dy = nil
-end
+    
+(unless (fboundp 'jm_paintXY_3) (defgeneric jm_paintXY_3 (this p1 p2 p3)))
+(defmethod jm_paintXY_3 ((this CaptionAnimation) _graphics _x _y)
+  (declare (ignorable this _graphics _x _y))
+  (let ()
+    (block jreturn
+        (jm_paintXY_3 (slot-value this 'f_animationInterface) _graphics (JR.i32 (+ _x (slot-value this 'f_captionDx))) (JR.i32 (+ _y (slot-value this 'f_captionDy))))
+        (jm_paintXY_3 (slot-value this 'f_overlayAnimationInterface) _graphics (JR.i32 (+ (JR.i32 (+ _x (slot-value this 'f_captionDx))) (slot-value this 'f_dx))) (JR.i32 (+ (JR.i32 (+ _y (slot-value this 'f_captionDy))) (slot-value this 'f_dy)))))))
 
-
-function CaptionAnimation.new(animationInterface, overlayAnimationInterface, captionDx, captionDy, dx, dy)
-    local self = setmetatable(Animation.new(), CaptionAnimation)
-    self:_init_fields()
-        self.animationInterface = animationInterface
-        self.overlayAnimationInterface = overlayAnimationInterface
-        self.captionDx = captionDx
-        self.captionDy = captionDy
-        self.dx = dx
-        self.dy = dy
-    return self
-end
+    
+(unless (fboundp 'jm_paintThreedXYZ_4) (defgeneric jm_paintThreedXYZ_4 (this p1 p2 p3 p4)))
+(defmethod jm_paintThreedXYZ_4 ((this CaptionAnimation) _graphics _x _y _z)
+  (declare (ignorable this _graphics _x _y _z))
+  (let ()
+    (block jreturn
+        (jm_paintThreedXYZ_4 (slot-value this 'f_animationInterface) _graphics (JR.i32 (+ _x (slot-value this 'f_captionDx))) (JR.i32 (+ _y (slot-value this 'f_captionDy))) _z)
+        (jm_paintThreedXYZ_4 (slot-value this 'f_overlayAnimationInterface) _graphics (JR.i32 (+ (JR.i32 (+ _x (slot-value this 'f_captionDx))) (slot-value this 'f_dx))) (JR.i32 (+ (JR.i32 (+ _y (slot-value this 'f_captionDy))) (slot-value this 'f_dy))) _z))))
 
 
--- throws Exception
-function CaptionAnimation:nextFrame()
-end
-
-
-function CaptionAnimation:paintXY(graphics, x, y)
-        self.animationInterface:paintXY(graphics, x + self.captionDx, y + self.captionDy)
-        self.overlayAnimationInterface:paintXY(graphics, x + self.captionDx + self.dx, y + self.captionDy + self.dy)
-end
-
-
-function CaptionAnimation:paintThreedXYZ(graphics, x, y, z)
-        self.animationInterface:paintThreedXYZ(graphics, x + self.captionDx, y + self.captionDy, z)
-        self.overlayAnimationInterface:paintThreedXYZ(graphics, x + self.captionDx + self.dx, y + self.captionDy + self.dy, z)
-end
-
-return CaptionAnimation
 

@@ -1,58 +1,50 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.persistance
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2022 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.persistance
 
-local CommonSeps = require("org.allbinary.string.CommonSeps")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local AbeClientInformationInterface = require("org.allbinary.logic.system.security.licensing.AbeClientInformationInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass PlatformRecordIdUtil (JObject)
+  ((f_PLATFORM_SHORT_NAME :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar PlatformRecordIdUtil.jcell_instance :jnone)
+(defun PlatformRecordIdUtil.jstatic_instance ()
+  (when (eq PlatformRecordIdUtil.jcell_instance :jnone) (setf PlatformRecordIdUtil.jcell_instance (PlatformRecordIdUtil.jnew_0)))
+  PlatformRecordIdUtil.jcell_instance)
+(defun (setf PlatformRecordIdUtil.jstatic_instance) (value) (setf PlatformRecordIdUtil.jcell_instance value))
 
-local PlatformRecordIdUtil = {}
-PlatformRecordIdUtil.__index = PlatformRecordIdUtil
-PlatformRecordIdUtil.className = "PlatformRecordIdUtil"
+(defun PlatformRecordIdUtil.jnew_0 ()
+  (let ((this (make-instance 'PlatformRecordIdUtil)))
+    (setf (slot-value this 'f_PLATFORM_SHORT_NAME) "AVN")
+    this))
 
-function PlatformRecordIdUtil:_init_fields()
-    self.PLATFORM_SHORT_NAME = "AVN"
-end
+    
+(defun PlatformRecordIdUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (PlatformRecordIdUtil.jstatic_instance)))))
 
-function PlatformRecordIdUtil.new()
-    local self = setmetatable({}, PlatformRecordIdUtil)
-    self:_init_fields()
-    return self
-end
-
-
-function PlatformRecordIdUtil.getInstance()
-        return PlatformRecordIdUtil.instance
-end
+    
+(unless (fboundp 'jm_getRecordId_2) (defgeneric jm_getRecordId_2 (this p1 p2)))
+(defmethod jm_getRecordId_2 ((this PlatformRecordIdUtil) _abeClientInformation _baseRecordId)
+  (declare (ignorable this _abeClientInformation _baseRecordId))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_toString_0 (jm_append_1 (jm_append_1 (jm_append_1 (jm_append_1 (StringMaker.jnew_0) (jm_toShortString_0 _abeClientInformation)) (slot-value (CommonSeps.jm_getInstance_0) 'f_UNDERSCORE)) (slot-value this 'f_PLATFORM_SHORT_NAME)) _baseRecordId))))))
 
 
-function PlatformRecordIdUtil:getRecordId(abeClientInformation, baseRecordId)
-        return tostring(StringMaker.new():append(abeClientInformation:toShortString()):append(CommonSeps.getInstance().UNDERSCORE):append(self.PLATFORM_SHORT_NAME):append(baseRecordId))
-end
-
-PlatformRecordIdUtil.instance = PlatformRecordIdUtil.new()
-
-return PlatformRecordIdUtil
 

@@ -1,106 +1,85 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.crypt.jcehelper
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.system.security.crypt.jcehelper
 
--- local Security = require("java.security.Security")
--- local KeySpec = require("java.security.spec.KeySpec")
--- local Cipher = require("javax.crypto.Cipher")
--- local SecretKey = require("javax.crypto.SecretKey")
--- local SecretKeyFactory = require("javax.crypto.SecretKeyFactory")
-local TsUtil = require("org.allbinary.TsUtil")
-local CryptInterface = require("org.allbinary.init.crypt.jcehelper.CryptInterface")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local PreLogUtil = require("org.allbinary.logic.communication.log.PreLogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BouncyCastleProvider = require("org.bouncycastle.jce.provider.BouncyCastleProvider")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass AbCrypt (JObject)
+  ((f_tsUtil :initform nil)
+   (f_secretComposite :initform nil)
+   (f_algorithm :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun AbCrypt.jnew_1 (_algorithm)
+  (declare (ignorable _algorithm))
+  (let ((this (make-instance 'AbCrypt)))
+    (setf (slot-value this 'f_tsUtil) (TsUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_secretComposite) (BaseSecretComposite.jstatic_NULL_SECRET_COMPOSITE))
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_algorithm) _algorithm)))
+    this))
 
-local AbCrypt = {}
-AbCrypt.__index = AbCrypt
-AbCrypt.className = "AbCrypt"
+    
+(unless (fboundp 'jm_init_1) (defgeneric jm_init_1 (this p1)))
+(defmethod jm_init_1 ((this AbCrypt) _keyAsString)
+  (declare (ignorable this _keyAsString))
+  (let (_commonStrings _key _keySpec _keyFactory _secretKey _cipher)
+  (declare (ignorable _commonStrings _key _keySpec _keyFactory _secretKey _cipher))
+    (block jreturn
+        (setf _commonStrings (CommonStrings.jm_getInstance_0))
+        (handler-case (progn
+            (handler-case (progn
+                (Security.jm_addProvider_1 (BouncyCastleProvider.jnew_0)))
+                (error (_e) (declare (ignorable _e))
+                (PreLogUtil.jm_putOE_4 (slot-value _commonStrings 'f_EXCEPTION) this (slot-value _commonStrings 'f_INIT) _e)))
+            (setf _key (jm_getByteArray_1 (slot-value this 'f_tsUtil) _keyAsString))
+            (setf _keySpec (jm_getInstance_2 (KeySpecFactory.jm_getInstance_0) (slot-value this 'f_algorithm) _key))
+            (setf _keyFactory (SecretKeyFactory.jm_getInstance_1 (slot-value this 'f_algorithm)))
+            (setf _secretKey (jm_generateSecret_1 _keyFactory _keySpec))
+            (setf _cipher (Cipher.jm_getInstance_1 (slot-value this 'f_algorithm)))
+            (setf (slot-value this 'f_secretComposite) (SecretComposite.jnew_3 _secretKey _cipher _key)))
+            (error (_e) (declare (ignorable _e))
+            (PreLogUtil.jm_putOE_4 "init Failed" this (slot-value _commonStrings 'f_INIT) _e))))))
 
-function AbCrypt:_init_fields()
-    self.tsUtil = TsUtil.getInstance()
-    self.secretComposite = BaseSecretComposite.NULL_SECRET_COMPOSITE
-    self.algorithm = nil
-end
+    
+(unless (fboundp 'jm_encrypt_1) (defgeneric jm_encrypt_1 (this p1)))
+(defmethod jm_encrypt_1 ((this AbCrypt) _array)
+  (declare (ignorable this _array))
+  (let ()
+    (block jreturn
+        (handler-case (progn
+            (return-from jreturn (jm_encrypt_1 (slot-value this 'f_secretComposite) _array)))
+            (error (_e) (declare (ignorable _e))
+            (PreLogUtil.jm_putOE_4 "Encrypt Failed" this "encrypt" _e)
+            (return-from jreturn (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_BYTE_ARRAY)))))))
 
-
-function AbCrypt.new(algorithm)
-    local self = setmetatable({}, AbCrypt)
-    self:_init_fields()
-        self.algorithm = algorithm
-    return self
-end
-
-
-function AbCrypt:init(keyAsString)
-        local commonStrings = CommonStrings.getInstance()
-        local try_ok, try_error = pcall(function()
-            local try_ok, try_error = pcall(function()
-                Security.addProvider(BouncyCastleProvider.new())
-            end)
-            if not try_ok then
-                local e = try_error
-                PreLogUtil.putOE(commonStrings.EXCEPTION, self, commonStrings.INIT, e)
-            end
-            local key = self.tsUtil:getByteArray(keyAsString)
-            local keySpec = KeySpecFactory.getInstance():getInstance(self.algorithm, key)
-            local keyFactory = SecretKeyFactory.getInstance(self.algorithm)
-            local secretKey = keyFactory:generateSecret(keySpec)
-            local cipher = Cipher.getInstance(self.algorithm)
-            self.secretComposite = SecretComposite.new(secretKey, cipher, key)
-        end)
-        if not try_ok then
-            local e = try_error
-            PreLogUtil.putOE("init Failed", self, commonStrings.INIT, e)
-        end
-end
-
-
-function AbCrypt:encrypt(array)
-        local try_ok, try_error = pcall(function()
-            return self.secretComposite:encrypt(array)
-        end)
-        if not try_ok then
-            local e = try_error
-            PreLogUtil.putOE("Encrypt Failed", self, "encrypt", e)
-            return NullUtil.getInstance().NULL_BYTE_ARRAY
-        end
-end
+    
+(unless (fboundp 'jm_decrypt_1) (defgeneric jm_decrypt_1 (this p1)))
+(defmethod jm_decrypt_1 ((this AbCrypt) _array)
+  (declare (ignorable this _array))
+  (let ()
+    (block jreturn
+        (handler-case (progn
+            (return-from jreturn (jm_decrypt_1 (slot-value this 'f_secretComposite) _array)))
+            (error (_e) (declare (ignorable _e))
+            (PreLogUtil.jm_putOE_4 "decrypt Failed" this "decrypt" _e)
+            (return-from jreturn (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_BYTE_ARRAY)))))))
 
 
-function AbCrypt:decrypt(array)
-        local try_ok, try_error = pcall(function()
-            return self.secretComposite:decrypt(array)
-        end)
-        if not try_ok then
-            local e = try_error
-            PreLogUtil.putOE("decrypt Failed", self, "decrypt", e)
-            return NullUtil.getInstance().NULL_BYTE_ARRAY
-        end
-end
-
-return AbCrypt
 

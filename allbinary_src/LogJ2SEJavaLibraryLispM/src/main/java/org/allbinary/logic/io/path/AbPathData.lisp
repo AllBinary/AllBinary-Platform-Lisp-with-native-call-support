@@ -27,6 +27,7 @@
 (defun AbPathData.jstatic_instance ()
   (when (eq AbPathData.jcell_instance :jnone) (setf AbPathData.jcell_instance (AbPathData.jnew_0)))
   AbPathData.jcell_instance)
+(defun (setf AbPathData.jstatic_instance) (value) (setf AbPathData.jcell_instance value))
 
     
 (defun AbPathData.jm_getInstance_0 ()

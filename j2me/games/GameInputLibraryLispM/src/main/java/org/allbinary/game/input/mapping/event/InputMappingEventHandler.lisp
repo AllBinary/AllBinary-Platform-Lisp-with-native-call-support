@@ -1,57 +1,54 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.mapping.event
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.input.mapping.event
 
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
-local BasicEventHandler = require("org.allbinary.logic.util.event.handler.BasicEventHandler")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass InputMappingEventHandler (BasicEventHandler)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar InputMappingEventHandler.jcell_gameKeyEventHandler :jnone)
+(defun InputMappingEventHandler.jstatic_gameKeyEventHandler ()
+  (when (eq InputMappingEventHandler.jcell_gameKeyEventHandler :jnone) (setf InputMappingEventHandler.jcell_gameKeyEventHandler (InputMappingEventHandler.jnew_0)))
+  InputMappingEventHandler.jcell_gameKeyEventHandler)
+(defun (setf InputMappingEventHandler.jstatic_gameKeyEventHandler) (value) (setf InputMappingEventHandler.jcell_gameKeyEventHandler value))
 
-local InputMappingEventHandler = {}
-InputMappingEventHandler.__index = InputMappingEventHandler
-InputMappingEventHandler.className = "InputMappingEventHandler"
-setmetatable(InputMappingEventHandler, {__index = BasicEventHandler})
+    
+(defun InputMappingEventHandler.jnew_0 ()
+  (let ((this (make-instance 'InputMappingEventHandler)))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(defun InputMappingEventHandler.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (InputMappingEventHandler.jstatic_gameKeyEventHandler)))))
+
+    
+(unless (fboundp 'jm_process_2) (defgeneric jm_process_2 (this p1 p2)))
+(defmethod jm_process_2 ((this InputMappingEventHandler) _eventObject _eventListenerInterface)
+  (declare (ignorable this _eventObject _eventListenerInterface))
+  (let (_inputMappingEventListenerInterface)
+  (declare (ignorable _inputMappingEventListenerInterface))
+    (block jreturn
+        (setf _inputMappingEventListenerInterface _eventListenerInterface)
+        (jm_onInputMappingEvent_1 _inputMappingEventListenerInterface _eventObject))))
 
 
-function InputMappingEventHandler.new()
-    local self = setmetatable(BasicEventHandler.new(), InputMappingEventHandler)
-    return self
-end
-
-
-function InputMappingEventHandler.getInstance()
-        return InputMappingEventHandler.gameKeyEventHandler
-end
-
-
--- throws Exception
-function InputMappingEventHandler:process(eventObject, eventListenerInterface)
-        local inputMappingEventListenerInterface = eventListenerInterface
-        inputMappingEventListenerInterface:onInputMappingEvent(eventObject)
-end
-
-InputMappingEventHandler.gameKeyEventHandler = InputMappingEventHandler.new()
-
-return InputMappingEventHandler
 

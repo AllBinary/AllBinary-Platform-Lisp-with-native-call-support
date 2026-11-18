@@ -1,51 +1,38 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.input
 
-local Init = require("org.allbinary.init.Init")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass KeyFactoryInitializer (Init)
+  ((f_logUtil :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun KeyFactoryInitializer.jnew_0 ()
+  (let ((this (make-instance 'KeyFactoryInitializer)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    this))
 
-local KeyFactoryInitializer = {}
-KeyFactoryInitializer.__index = KeyFactoryInitializer
-KeyFactoryInitializer.className = "KeyFactoryInitializer"
-setmetatable(KeyFactoryInitializer, {__index = Init})
-
-function KeyFactoryInitializer:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-end
-
-function KeyFactoryInitializer.new()
-    local self = setmetatable(Init.new(), KeyFactoryInitializer)
-    self:_init_fields()
-    return self
-end
+    
+(unless (fboundp 'jm_init_0) (defgeneric jm_init_0 (this)))
+(defmethod jm_init_0 ((this KeyFactoryInitializer))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_putF_3 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_START) this (slot-value (slot-value this 'f_commonStrings) 'f_INIT)))))
 
 
-function KeyFactoryInitializer:init()
-        self.logUtil:putF(self.commonStrings.START, self, self.commonStrings.INIT)
-end
-
-return KeyFactoryInitializer
 

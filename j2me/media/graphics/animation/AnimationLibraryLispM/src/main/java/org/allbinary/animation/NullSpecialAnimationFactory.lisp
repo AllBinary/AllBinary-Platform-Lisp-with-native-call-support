@@ -1,66 +1,67 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation
 
-local SpecialAnimation = require("org.allbinary.animation.special.SpecialAnimation")
-local ScaleProperties = require("org.allbinary.media.ScaleProperties")
-local AnimationInterfaceFactoryInterface = require("org.allbinary.animation.AnimationInterfaceFactoryInterface")
-local ProceduralAnimationInterfaceFactoryInterface = require("org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass NullSpecialAnimationFactory (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar NullSpecialAnimationFactory.jcell_NULL_SPECIAL_ANIMATION_FACTORY :jnone)
+(defun NullSpecialAnimationFactory.jstatic_NULL_SPECIAL_ANIMATION_FACTORY ()
+  (when (eq NullSpecialAnimationFactory.jcell_NULL_SPECIAL_ANIMATION_FACTORY :jnone) (setf NullSpecialAnimationFactory.jcell_NULL_SPECIAL_ANIMATION_FACTORY (NullSpecialAnimationFactory.jnew_0)))
+  NullSpecialAnimationFactory.jcell_NULL_SPECIAL_ANIMATION_FACTORY)
+(defun (setf NullSpecialAnimationFactory.jstatic_NULL_SPECIAL_ANIMATION_FACTORY) (value) (setf NullSpecialAnimationFactory.jcell_NULL_SPECIAL_ANIMATION_FACTORY value))
 
-local NullSpecialAnimationFactory = {}
-NullSpecialAnimationFactory.__index = NullSpecialAnimationFactory
-NullSpecialAnimationFactory.className = "NullSpecialAnimationFactory"
+    
+(defun NullSpecialAnimationFactory.jnew_0 ()
+  (let ((this (make-instance 'NullSpecialAnimationFactory)))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(defun NullSpecialAnimationFactory.jm_getFactoryInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (NullSpecialAnimationFactory.jstatic_NULL_SPECIAL_ANIMATION_FACTORY)))))
+
+    
+(unless (fboundp 'jm_getInstance_1) (defgeneric jm_getInstance_1 (this p1)))
+(defmethod jm_getInstance_1 ((this NullSpecialAnimationFactory) _instanceId)
+  (declare (ignorable this _instanceId))
+  (let ()
+    (block jreturn
+        (return-from jreturn (SpecialAnimation.jm_getInstance_0)))))
+
+    
+(unless (fboundp 'jm_getInstanceAnimation_1) (defgeneric jm_getInstanceAnimation_1 (this p1)))
+(defmethod jm_getInstanceAnimation_1 ((this NullSpecialAnimationFactory) _animationInterface)
+  (declare (ignorable this _animationInterface))
+  (let ()
+    (block jreturn
+        (return-from jreturn (SpecialAnimation.jm_getInstance_0)))))
+
+    
+(unless (fboundp 'jm_setInitialScale_1) (defgeneric jm_setInitialScale_1 (this p1)))
+(defmethod jm_setInitialScale_1 ((this NullSpecialAnimationFactory) _scaleProperties)
+  (declare (ignorable this _scaleProperties))
+  (let ()
+    (block jreturn nil)))
 
 
-function NullSpecialAnimationFactory.new()
-    local self = setmetatable({}, NullSpecialAnimationFactory)
-    return self
-end
-
-
-function NullSpecialAnimationFactory.getFactoryInstance()
-        return NullSpecialAnimationFactory.NULL_SPECIAL_ANIMATION_FACTORY
-end
-
-
--- throws Exception
-function NullSpecialAnimationFactory:getInstance(instanceId)
-        return SpecialAnimation.getInstance()
-end
-
-
--- throws Exception
-function NullSpecialAnimationFactory:getInstanceAnimation(animationInterface)
-        return SpecialAnimation.getInstance()
-end
-
-
-function NullSpecialAnimationFactory:setInitialScale(scaleProperties)
-end
-
-NullSpecialAnimationFactory.NULL_SPECIAL_ANIMATION_FACTORY = NullSpecialAnimationFactory.new()
-
-return NullSpecialAnimationFactory
 

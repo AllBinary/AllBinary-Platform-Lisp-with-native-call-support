@@ -1,39 +1,27 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.opengles
 
--- local GL10 = require("javax.microedition.khronos.opengles.GL10")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass OpenGLProcessor (JObject)
+  ((f_logUtil :initform nil)
+   (f_commonStrings :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun OpenGLProcessor.jnew_0 ()
+  (let ((this (make-instance 'OpenGLProcessor)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_commonStrings) (CommonStrings.jm_getInstance_0))
+    this))
 
-local OpenGLProcessor = {}
-OpenGLProcessor.__index = OpenGLProcessor
-OpenGLProcessor.className = "OpenGLProcessor"
-
-function OpenGLProcessor:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-end
-
-function OpenGLProcessor.new()
-    local self = setmetatable({}, OpenGLProcessor)
-    self:_init_fields()
-    return self
-end
+    
+(unless (fboundp 'jm_process_1) (defgeneric jm_process_1 (this p1)))
+(defmethod jm_process_1 ((this OpenGLProcessor) _gl)
+  (declare (ignorable this _gl))
+  (let ()
+    (block jreturn nil)))
 
 
-function OpenGLProcessor:process(gl)
-end
-
-return OpenGLProcessor
 

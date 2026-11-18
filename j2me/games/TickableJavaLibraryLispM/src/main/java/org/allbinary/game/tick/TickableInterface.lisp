@@ -1,43 +1,35 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.tick
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.tick
 
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local NamedInterface = require("org.allbinary.layer.NamedInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass TickableInterface (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun TickableInterface.jnew_0 ()
+  (let ((this (make-instance 'TickableInterface)))
+    this))
 
--- Java interface
-local TickableInterface = {}
-TickableInterface.__index = TickableInterface
-TickableInterface.className = "TickableInterface"
-setmetatable(TickableInterface, {__index = NamedInterface})
+    
+(unless (fboundp 'jm_processTick_1) (defgeneric jm_processTick_1 (this p1)))
+(defmethod jm_processTick_1 ((this TickableInterface) _allBinaryLayerManager)
+  (declare (ignorable this _allBinaryLayerManager))
+  (error (JR.newException "AbstractMethodError" "processTick")))
 
 
--- throws Exception
-function TickableInterface:processTick(allBinaryLayerManager)
-    error("abstract method processTick")
-end
-
-return TickableInterface
 

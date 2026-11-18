@@ -1,367 +1,435 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.form
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local GPoint = require("org.allbinary.graphics.GPoint")
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local ABCustomItem = require("org.allbinary.graphics.form.item.ABCustomItem")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local RectangleCollisionUtil = require("org.allbinary.math.RectangleCollisionUtil")
-local CommonLabels = require("org.allbinary.string.CommonLabels")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local PaintableForm = require("org.allbinary.graphics.form.PaintableForm")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(defclass ScrollSelectionForm (PaintableForm)
+  ((f_rectangleCollisionUtil :initform nil)
+   (f_border :initform 0)
+   (f_halfBorder :initform 0)
+   (f_buttonBasicColor :initform nil)
+   (f_scrollSelectionFormFormTypeItemIndexPaintable :initform nil)
+   (f_formTypeItemIndexDx :initform nil)
+   (f_paintable :initform nil)
+   (f_adjustedExtraBorder :initform 0)))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(defvar ScrollSelectionForm.jcell_NULL_SCROLL_SELECTION_FORM :jnone)
+(defun ScrollSelectionForm.jstatic_NULL_SCROLL_SELECTION_FORM ()
+  (when (eq ScrollSelectionForm.jcell_NULL_SCROLL_SELECTION_FORM :jnone) (setf ScrollSelectionForm.jcell_NULL_SCROLL_SELECTION_FORM (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT)))
+  ScrollSelectionForm.jcell_NULL_SCROLL_SELECTION_FORM)
+(defun (setf ScrollSelectionForm.jstatic_NULL_SCROLL_SELECTION_FORM) (value) (setf ScrollSelectionForm.jcell_NULL_SCROLL_SELECTION_FORM value))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defvar ScrollSelectionForm.jcell_NULL_SCROLL_SELECTION_HORIZONTAL_FORM :jnone)
+(defun ScrollSelectionForm.jstatic_NULL_SCROLL_SELECTION_HORIZONTAL_FORM ()
+  (when (eq ScrollSelectionForm.jcell_NULL_SCROLL_SELECTION_HORIZONTAL_FORM :jnone) (setf ScrollSelectionForm.jcell_NULL_SCROLL_SELECTION_HORIZONTAL_FORM (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT)))
+  ScrollSelectionForm.jcell_NULL_SCROLL_SELECTION_HORIZONTAL_FORM)
+(defun (setf ScrollSelectionForm.jstatic_NULL_SCROLL_SELECTION_HORIZONTAL_FORM) (value) (setf ScrollSelectionForm.jcell_NULL_SCROLL_SELECTION_HORIZONTAL_FORM value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar ScrollSelectionForm.jcell_INSIDE_FORM :jnone)
+(defun ScrollSelectionForm.jstatic_INSIDE_FORM ()
+  (when (eq ScrollSelectionForm.jcell_INSIDE_FORM :jnone) (setf ScrollSelectionForm.jcell_INSIDE_FORM " inside form"))
+  ScrollSelectionForm.jcell_INSIDE_FORM)
+(defun (setf ScrollSelectionForm.jstatic_INSIDE_FORM) (value) (setf ScrollSelectionForm.jcell_INSIDE_FORM value))
 
-local ScrollSelectionForm = {}
-ScrollSelectionForm.__index = ScrollSelectionForm
-ScrollSelectionForm.className = "ScrollSelectionForm"
-setmetatable(ScrollSelectionForm, {__index = PaintableForm})
+(defvar ScrollSelectionForm.jcell_IS_IN_FORM :jnone)
+(defun ScrollSelectionForm.jstatic_IS_IN_FORM ()
+  (when (eq ScrollSelectionForm.jcell_IS_IN_FORM :jnone) (setf ScrollSelectionForm.jcell_IS_IN_FORM "isInForm"))
+  ScrollSelectionForm.jcell_IS_IN_FORM)
+(defun (setf ScrollSelectionForm.jstatic_IS_IN_FORM) (value) (setf ScrollSelectionForm.jcell_IS_IN_FORM value))
 
-function ScrollSelectionForm:_init_fields()
-    self.rectangleCollisionUtil = RectangleCollisionUtil.getInstance()
-    self.border = nil
-    self.halfBorder = nil
-    self.buttonBasicColor = nil
-    self.scrollSelectionFormFormTypeItemIndexPaintable = ItemIndexPaintable.getInstance()
-    self.formTypeItemIndexDx = ItemIndexDx.getInstance()
-    self.paintable = ItemPaintableFactory.getInstance()
-    self.adjustedExtraBorder = nil
-end
+(defvar ScrollSelectionForm.jcell_GET_SELECTED_INDEX :jnone)
+(defun ScrollSelectionForm.jstatic_GET_SELECTED_INDEX ()
+  (when (eq ScrollSelectionForm.jcell_GET_SELECTED_INDEX :jnone) (setf ScrollSelectionForm.jcell_GET_SELECTED_INDEX "getSelectedIndexForPoint"))
+  ScrollSelectionForm.jcell_GET_SELECTED_INDEX)
+(defun (setf ScrollSelectionForm.jstatic_GET_SELECTED_INDEX) (value) (setf ScrollSelectionForm.jcell_GET_SELECTED_INDEX value))
+
+    
+(defun ScrollSelectionForm.jm_createForm_6 (_title _items _formPaintableFactory _border _backgroundBasicColor _foregroundBasicColor)
+  (declare (ignorable _title _items _formPaintableFactory _border _backgroundBasicColor _foregroundBasicColor))
+  (let (_commonStrings _logUtil)
+  (declare (ignorable _commonStrings _logUtil))
+    (block jreturn
+        (handler-case (progn
+            (if (eq _formPaintableFactory (ItemPaintableFactory.jm_getInstance_0))
+                (progn
+                (return-from jreturn (ScrollSelectionForm.jnew_7 _title _items _formPaintableFactory _border (JR.i32 (- 3)) _backgroundBasicColor _foregroundBasicColor)))
+                (progn
+                (setf _commonStrings (CommonStrings.jm_getInstance_0))
+                (setf _logUtil (LogUtil.jm_getInstance_0))
+                (jm_putF_3 _logUtil (slot-value _commonStrings 'f_EXCEPTION) _logUtil (slot-value _commonStrings 'f_EXCEPTION))
+                (return-from jreturn (PaintableForm.jm_getNullPaintableForm_0)))))
+            (error (_e) (declare (ignorable _e))
+            (setf _commonStrings (CommonStrings.jm_getInstance_0))
+            (setf _logUtil (LogUtil.jm_getInstance_0))
+            (jm_put_4 _logUtil (slot-value _commonStrings 'f_EXCEPTION) _logUtil (slot-value _commonStrings 'f_EXCEPTION) _e)
+            (return-from jreturn (PaintableForm.jm_getNullPaintableForm_0)))))))
+
+    
+(defun ScrollSelectionForm.jm_getNullScrollSelectionForm_0 ()
+  (let ()
+    (block jreturn
+        (if (eq (ScrollSelectionForm.jstatic_NULL_SCROLL_SELECTION_FORM) (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT))
+            (progn
+            (setf (ScrollSelectionForm.jstatic_NULL_SCROLL_SELECTION_FORM) (ScrollSelectionForm.jm_createForm_6 (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (JR.newArray nil 0) (ItemPaintableFactory.jm_getInstance_0) 0 (slot-value (BasicColorFactory.jm_getInstance_0) 'f_BLACK) (slot-value (BasicColorFactory.jm_getInstance_0) 'f_WHITE)))))
+        (return-from jreturn (ScrollSelectionForm.jstatic_NULL_SCROLL_SELECTION_FORM)))))
+
+    
+(defun ScrollSelectionForm.jm_getNullScrollSelectionFormHorizontal_0 ()
+  (let ()
+    (block jreturn
+        (if (eq (ScrollSelectionForm.jstatic_NULL_SCROLL_SELECTION_HORIZONTAL_FORM) (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT))
+            (progn
+            (setf (ScrollSelectionForm.jstatic_NULL_SCROLL_SELECTION_HORIZONTAL_FORM) (ScrollSelectionForm.jm_createForm_6 (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (JR.newArray nil 0) (ItemPaintableFactory.jm_getInstance_0) 0 (slot-value (BasicColorFactory.jm_getInstance_0) 'f_BLACK) (slot-value (BasicColorFactory.jm_getInstance_0) 'f_WHITE)))))
+        (return-from jreturn (ScrollSelectionForm.jstatic_NULL_SCROLL_SELECTION_HORIZONTAL_FORM)))))
+
+    
+(defun ScrollSelectionForm.jnew_7 (_title _items _formPaintableFactory _border _adjustedExtraBorder _backgroundBasicColor _foregroundBasicColor)
+  (declare (ignorable _title _items _formPaintableFactory _border _adjustedExtraBorder _backgroundBasicColor _foregroundBasicColor))
+  (let ((this (make-instance 'ScrollSelectionForm)))
+    (setf (slot-value this 'f_rectangleCollisionUtil) (RectangleCollisionUtil.jm_getInstance_0))
+    
+    
+    
+    (setf (slot-value this 'f_scrollSelectionFormFormTypeItemIndexPaintable) (ItemIndexPaintable.jm_getInstance_0))
+    (setf (slot-value this 'f_formTypeItemIndexDx) (ItemIndexDx.jm_getInstance_0))
+    (setf (slot-value this 'f_paintable) (ItemPaintableFactory.jm_getInstance_0))
+    
+  (let ()
+    (block jreturn
+        nil
+        (setf (slot-value this 'f_adjustedExtraBorder) _adjustedExtraBorder)
+        (setf (slot-value this 'f_buttonBasicColor) _foregroundBasicColor)
+        (setf (slot-value this 'f_border) _border)
+        (setf (slot-value this 'f_halfBorder) (ash _border (- (logand 1 31))))
+        (setf (slot-value this 'f_paintable) (jm_getInstanceItemPaintable_1 _formPaintableFactory this))))
+    this))
+
+    
+(unless (fboundp 'jm_init_2) (defgeneric jm_init_2 (this p1 p2)))
+(defmethod jm_init_2 ((this ScrollSelectionForm) _rectangle _formType)
+  (declare (ignorable this _rectangle _formType))
+  (let (_formTypeFactory)
+  (declare (ignorable _formTypeFactory))
+    (block jreturn
+        (call-next-method this _rectangle _formType)
+        (setf _formTypeFactory (FormTypeFactory.jm_getInstance_0))
+        (if (eq _formType (slot-value _formTypeFactory 'f_HORIZONTAL_FORM))
+            (progn
+            (setf (slot-value this 'f_scrollSelectionFormFormTypeItemIndexPaintable) (ScrollSelectionFormHorizontalPaintable.jnew_1 this))
+            (setf (slot-value this 'f_formTypeItemIndexDx) (ScrollSelectionFormHorizontalDx.jnew_1 this)))
+            (if (eq _formType (slot-value _formTypeFactory 'f_VERTICAL_CENTER_FORM))
+            (progn
+            (setf (slot-value this 'f_scrollSelectionFormFormTypeItemIndexPaintable) (ScrollSelectionFormVerticalPaintable.jnew_1 this))
+            (setf (slot-value this 'f_formTypeItemIndexDx) (ScrollSelectionFormVericalDx.jnew_1 this)))
+            (if (eq _formType (slot-value _formTypeFactory 'f_TEMP_HORIZONTAL_FORM))
+            (progn
+            (setf (slot-value this 'f_scrollSelectionFormFormTypeItemIndexPaintable) (ScrollSelectionFormTempHorizontalPaintable.jnew_1 this))
+            (setf (slot-value this 'f_formTypeItemIndexDx) (ScrollSelectionFormTempHorizontalDx.jnew_1 this)))
+            (if (eq _formType (slot-value _formTypeFactory 'f_NULL_FORM_TYPE))
+            (progn
+            nil)
+            (progn
+            (error (JR.newException "Exception" (slot-value _formTypeFactory 'f_UNK)))))))))))
+
+    
+(unless (fboundp 'jm_paintItemHorizontal_5) (defgeneric jm_paintItemHorizontal_5 (this p1 p2 p3 p4 p5)))
+(defmethod jm_paintItemHorizontal_5 ((this ScrollSelectionForm) _graphics _index _item _x _y)
+  (declare (ignorable this _graphics _index _item _x _y))
+  (let (_width)
+  (declare (ignorable _width))
+    (block jreturn
+        (setf _width (jm_getMinimumWidth_0 _item))
+        (return-from jreturn (JR.i32 (+ (JR.i32 (+ _x _width)) (slot-value this 'f_border)))))))
+
+    
+(unless (fboundp 'jm_paintItemVertical_5) (defgeneric jm_paintItemVertical_5 (this p1 p2 p3 p4 p5)))
+(defmethod jm_paintItemVertical_5 ((this ScrollSelectionForm) _graphics _index _item _x _y)
+  (declare (ignorable this _graphics _index _item _x _y))
+  (let (_height)
+  (declare (ignorable _height))
+    (block jreturn
+        (setf _height (jm_getMinimumHeight_0 _item))
+        (return-from jreturn (JR.i32 (+ (JR.i32 (+ _y _height)) (slot-value this 'f_border)))))))
+
+    
+(unless (fboundp 'jm_paintItemTempHorizontal_5) (defgeneric jm_paintItemTempHorizontal_5 (this p1 p2 p3 p4 p5)))
+(defmethod jm_paintItemTempHorizontal_5 ((this ScrollSelectionForm) _graphics _index _item _x _y)
+  (declare (ignorable this _graphics _index _item _x _y))
+  (let ()
+    (block jreturn
+        (return-from jreturn 0))))
+
+    
+(unless (fboundp 'jm_getSelectedIndexForPointHorizontalDx_4) (defgeneric jm_getSelectedIndexForPointHorizontalDx_4 (this p1 p2 p3 p4)))
+(defmethod jm_getSelectedIndexForPointHorizontalDx_4 ((this ScrollSelectionForm) _index _item _dx _dy)
+  (declare (ignorable this _index _item _dx _dy))
+  (let ()
+    (block jreturn
+        (return-from jreturn (JR.i32 (- _dx (slot-value this 'f_halfBorder)))))))
+
+    
+(unless (fboundp 'jm_getSelectedIndexForPointVerticalDx_4) (defgeneric jm_getSelectedIndexForPointVerticalDx_4 (this p1 p2 p3 p4)))
+(defmethod jm_getSelectedIndexForPointVerticalDx_4 ((this ScrollSelectionForm) _index _item _dx _dy)
+  (declare (ignorable this _index _item _dx _dy))
+  (let ()
+    (block jreturn
+        (return-from jreturn (JR.i32 (+ _dx (jm_getDiffX_1 this _item)))))))
+
+    
+(unless (fboundp 'jm_getSelectedIndexForPointTempHorizontalDx_4) (defgeneric jm_getSelectedIndexForPointTempHorizontalDx_4 (this p1 p2 p3 p4)))
+(defmethod jm_getSelectedIndexForPointTempHorizontalDx_4 ((this ScrollSelectionForm) _index _item _dx _dy)
+  (declare (ignorable this _index _item _dx _dy))
+  (let ()
+    (block jreturn
+        (return-from jreturn (JR.i32 (+ _dx (jm_getDiffX_1 this _item)))))))
+
+    
+(unless (fboundp 'jm_append_1) (defgeneric jm_append_1 (this p1)))
+(defmethod jm_append_1 ((this ScrollSelectionForm) _item)
+  (declare (ignorable this _item))
+  (let ()
+    (block jreturn
+        (return-from jreturn (call-next-method this _item)))))
+
+    
+(unless (fboundp 'jm_getSelectedItem_1) (defgeneric jm_getSelectedItem_1 (this p1)))
+(defmethod jm_getSelectedItem_1 ((this ScrollSelectionForm) _point)
+  (declare (ignorable this _point))
+  (let (_index)
+  (declare (ignorable _index))
+    (block jreturn
+        (setf _index (jm_getSelectedIndexForPoint_1 this _point))
+        (if (/= _index (JR.i32 (- 1)))
+            (progn
+            (return-from jreturn (jm_get_1 this _index)))
+            (progn
+            (return-from jreturn (ABCustomItem.jm_getNullInstance_0)))))))
+
+    
+(unless (fboundp 'jm_getItemIndex_1) (defgeneric jm_getItemIndex_1 (this p1)))
+(defmethod jm_getItemIndex_1 ((this ScrollSelectionForm) _item)
+  (declare (ignorable this _item))
+  (let (_nextItem _size _index)
+  (declare (ignorable _nextItem _size _index))
+    (block jreturn
+        (setf _nextItem nil)
+        (setf _size (jm_size_0 this))
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (setf _nextItem (jm_get_1 this _index))
+            (if (eq _nextItem _item)
+                (progn
+                (return-from jreturn _index))))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (return-from jreturn (JR.i32 (- 1))))))
+
+    
+(unless (fboundp 'jm_getStartIndex_0) (defgeneric jm_getStartIndex_0 (this)))
+(defmethod jm_getStartIndex_0 ((this ScrollSelectionForm))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn 0))))
+
+    
+(unless (fboundp 'jm_getSelectedIndexForPoint_1) (defgeneric jm_getSelectedIndexForPoint_1 (this p1)))
+(defmethod jm_getSelectedIndexForPoint_1 ((this ScrollSelectionForm) _point)
+  (declare (ignorable this _point))
+  (let (_start _size _dx _dy _formTypeFactory _commonLabels _stringBuffer _item _width _height _diffX _index)
+  (declare (ignorable _start _size _dx _dy _formTypeFactory _commonLabels _stringBuffer _item _width _height _diffX _index))
+    (block jreturn
+        (setf _start (jm_getStartIndex_0 this))
+        (setf _size (jm_size_0 this))
+        (setf _dx (jm_getDx_0 this))
+        (setf _dy (jm_getDy_0 this))
+        (setf _formTypeFactory (FormTypeFactory.jm_getInstance_0))
+        (setf _commonLabels (CommonLabels.jm_getInstance_0))
+        (setf _stringBuffer (StringMaker.jnew_0))
+        (jm_append_1 _stringBuffer (slot-value _commonLabels 'f_START_LABEL))
+        (jm_appendint_1 _stringBuffer _start)
+        (jm_append_1 _stringBuffer (slot-value (CommonSeps.jm_getInstance_0) 'f_SPACE))
+        (jm_append_1 _stringBuffer (slot-value _commonLabels 'f_TOTAL_LABEL))
+        (jm_appendint_1 _stringBuffer _size)
+        (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 _stringBuffer) this (ScrollSelectionForm.jstatic_GET_SELECTED_INDEX))
+        (setf _item nil)
+        (setf _width 0)
+        (setf _height 0)
+        (setf _diffX 0)
+        (progn
+            (setf _index _start)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (setf _item (jm_get_1 this _index))
+            (setf _width (jm_getMinimumWidth_0 _item))
+            (setf _height (jm_getMinimumHeight_0 _item))
+            (setf _diffX (jm_getDx_4 (slot-value this 'f_formTypeItemIndexDx) _index _item _dx _dy))
+            (if (jm_isInside_6 (slot-value this 'f_rectangleCollisionUtil) _diffX (JR.i32 (- _dy (slot-value this 'f_halfBorder))) (JR.i32 (+ (JR.i32 (+ _diffX _width)) (slot-value this 'f_border))) (JR.i32 (+ (JR.i32 (+ (JR.i32 (+ _dy _height)) (slot-value this 'f_halfBorder))) 1)) (jm_getX_0 _point) (jm_getY_0 _point))
+                (progn
+                (jm_delete_2 _stringBuffer 0 (jm_length_0 _stringBuffer))
+                (jm_append_1 _stringBuffer (slot-value _commonLabels 'f_ITEM_LABEL))
+                (jm_append_1 _stringBuffer (jm_getLabel_0 _item))
+                (jm_append_1 _stringBuffer (slot-value (CommonSeps.jm_getInstance_0) 'f_SPACE))
+                (jm_append_1 _stringBuffer (slot-value _commonLabels 'f_INDEX_LABEL))
+                (jm_appendint_1 _stringBuffer _index)
+                (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 _stringBuffer) this (ScrollSelectionForm.jstatic_GET_SELECTED_INDEX))
+                (return-from jreturn _index)))
+            (if (eq (slot-value this 'f_formType) (slot-value _formTypeFactory 'f_HORIZONTAL_FORM))
+                (progn
+                (setf _dx (JR.i32 (+ (JR.i32 (+ _dx _width)) (slot-value this 'f_border))))
+                (if (> _dx (jm_getMaxX_0 (slot-value this 'f_rectangle)))
+                    (progn
+                    (return-from jbreak))))
+                (if (eq (slot-value this 'f_formType) (slot-value _formTypeFactory 'f_VERTICAL_CENTER_FORM))
+                (progn
+                (setf _dy (JR.i32 (+ (JR.i32 (+ _dy _height)) (slot-value this 'f_border))))
+                (if (> _dy (jm_getMaxY_0 (slot-value this 'f_rectangle)))
+                    (progn
+                    (return-from jbreak))))
+                (if (eq (slot-value this 'f_formType) (slot-value _formTypeFactory 'f_NULL_FORM_TYPE))
+                (progn
+                nil)
+                (progn
+                (error (JR.newException "Exception" (slot-value _formTypeFactory 'f_UNK))))))))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (return-from jreturn (JR.i32 (- 1))))))
+
+    
+(unless (fboundp 'jm_processInputKey_1) (defgeneric jm_processInputKey_1 (this p1)))
+(defmethod jm_processInputKey_1 ((this ScrollSelectionForm) _gameKeyCode)
+  (declare (ignorable this _gameKeyCode))
+  (let (_formTypeFactory _index _max)
+  (declare (ignorable _formTypeFactory _index _max))
+    (block jreturn
+        (setf _formTypeFactory (FormTypeFactory.jm_getInstance_0))
+        (if (= (jm_size_0 this) 0)
+            (progn
+            (return-from jreturn (JR.i32 (- 1)))))
+        (setf _index (jm_getSelectedIndex_0 this))
+        (if (or (eq (slot-value this 'f_formType) (slot-value _formTypeFactory 'f_HORIZONTAL_FORM)) (eq (slot-value this 'f_formType) (slot-value _formTypeFactory 'f_TEMP_HORIZONTAL_FORM)))
+            (progn
+            (if (= _gameKeyCode (Canvas.jstatic_RIGHT))
+                (progn
+                (setf _index (JR.i32 (+ _index 1))))
+                (if (= _gameKeyCode (Canvas.jstatic_LEFT))
+                (progn
+                (setf _index (JR.i32 (- _index 1)))))))
+            (if (eq (slot-value this 'f_formType) (slot-value _formTypeFactory 'f_VERTICAL_CENTER_FORM))
+            (progn
+            (if (= _gameKeyCode (Canvas.jstatic_DOWN))
+                (progn
+                (setf _index (JR.i32 (+ _index 1))))
+                (if (= _gameKeyCode (Canvas.jstatic_UP))
+                (progn
+                (setf _index (JR.i32 (- _index 1)))))))
+            (if (eq (slot-value this 'f_formType) (slot-value _formTypeFactory 'f_NULL_FORM_TYPE))
+            (progn
+            nil)
+            (progn
+            (error (JR.newException "Exception" (slot-value _formTypeFactory 'f_UNK)))))))
+        (setf _max (JR.i32 (- (jm_size_0 this) 1)))
+        (if (< _index 0)
+            (progn
+            (jm_setSelectedIndex_1 this 0))
+            (if (> _index _max)
+            (progn
+            (jm_setSelectedIndex_1 this _max))
+            (progn
+            (jm_setSelectedIndex_1 this _index))))
+        (return-from jreturn (JR.i32 (- 1))))))
+
+    
+(unless (fboundp 'jm_isInForm_1) (defgeneric jm_isInForm_1 (this p1)))
+(defmethod jm_isInForm_1 ((this ScrollSelectionForm) _point)
+  (declare (ignorable this _point))
+  (let ()
+    (block jreturn
+        (if (jm_isInside_6 (slot-value this 'f_rectangleCollisionUtil) (slot-value this 'f_x) (JR.i32 (- (slot-value this 'f_y) (slot-value this 'f_halfBorder))) (JR.i32 (+ (jm_getMaxX_0 (slot-value this 'f_rectangle)) (slot-value this 'f_border))) (JR.i32 (+ (jm_getMaxY_0 (slot-value this 'f_rectangle)) (slot-value this 'f_border))) (jm_getX_0 _point) (jm_getY_0 _point))
+            (progn
+            (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 (jm_append_1 (jm_append_1 (StringMaker.jnew_0) (jm_toString_1 (StringUtil.jm_getInstance_0) _point)) (ScrollSelectionForm.jstatic_INSIDE_FORM))) this (ScrollSelectionForm.jstatic_IS_IN_FORM))
+            (return-from jreturn t)))
+        (return-from jreturn nil))))
+
+    
+(unless (fboundp 'jm_paintItem_5) (defgeneric jm_paintItem_5 (this p1 p2 p3 p4 p5)))
+(defmethod jm_paintItem_5 ((this ScrollSelectionForm) _graphics _index _item _x _y)
+  (declare (ignorable this _graphics _index _item _x _y))
+  (let (_width _height _adjustedBorder)
+  (declare (ignorable _width _height _adjustedBorder))
+    (block jreturn
+        (jm_paintXY_3 _item _graphics _x _y)
+        (setf _width (jm_getMinimumWidth_0 _item))
+        (setf _height (jm_getMinimumHeight_0 _item))
+        (jm_setColor_1 _graphics (jm_intValue_0 (jm_getButtonBasicColor_0 this)))
+        (setf _adjustedBorder 3)
+        (jm_drawRect_4 _graphics (JR.i32 (- (JR.i32 (- _x (slot-value this 'f_halfBorder))) _adjustedBorder)) (JR.i32 (- (JR.i32 (- _y (slot-value this 'f_halfBorder))) _adjustedBorder)) (JR.i32 (+ (JR.i32 (+ _width (slot-value this 'f_border))) (slot-value this 'f_adjustedExtraBorder))) (JR.i32 (+ (JR.i32 (+ _height (slot-value this 'f_border))) (slot-value this 'f_adjustedExtraBorder))))
+        (return-from jreturn (jm_paint_5 (slot-value this 'f_scrollSelectionFormFormTypeItemIndexPaintable) _graphics _index _item _x _y)))))
+
+    
+(unless (fboundp 'jm_paintUnselectedItem_5) (defgeneric jm_paintUnselectedItem_5 (this p1 p2 p3 p4 p5)))
+(defmethod jm_paintUnselectedItem_5 ((this ScrollSelectionForm) _graphics _index _item _x _y)
+  (declare (ignorable this _graphics _index _item _x _y))
+  (let ()
+    (block jreturn
+        (jm_setColor_1 _graphics (jm_intValue_0 (jm_getButtonBasicColor_0 this)))
+        (jm_paintUnselected_3 _item _graphics _x _y)
+        (return-from jreturn (jm_paint_5 (slot-value this 'f_scrollSelectionFormFormTypeItemIndexPaintable) _graphics _index _item _x _y)))))
+
+    
+(unless (fboundp 'jm_getDiffX_1) (defgeneric jm_getDiffX_1 (this p1)))
+(defmethod jm_getDiffX_1 ((this ScrollSelectionForm) _item)
+  (declare (ignorable this _item))
+  (let ()
+    (block jreturn
+        (return-from jreturn 0))))
+
+    
+(unless (fboundp 'jm_getDx_0) (defgeneric jm_getDx_0 (this)))
+(defmethod jm_getDx_0 ((this ScrollSelectionForm))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_x)))))
+
+    
+(unless (fboundp 'jm_getDy_0) (defgeneric jm_getDy_0 (this)))
+(defmethod jm_getDy_0 ((this ScrollSelectionForm))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_y)))))
+
+    
+(unless (fboundp 'jm_setButtonBasicColor_1) (defgeneric jm_setButtonBasicColor_1 (this p1)))
+(defmethod jm_setButtonBasicColor_1 ((this ScrollSelectionForm) _buttonBasicColor)
+  (declare (ignorable this _buttonBasicColor))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_buttonBasicColor) _buttonBasicColor))))
+
+    
+(unless (fboundp 'jm_getButtonBasicColor_0) (defgeneric jm_getButtonBasicColor_0 (this)))
+(defmethod jm_getButtonBasicColor_0 ((this ScrollSelectionForm))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_buttonBasicColor)))))
 
 
-function ScrollSelectionForm.createForm(title, items, formPaintableFactory, border, backgroundBasicColor, foregroundBasicColor)
-        local try_ok, try_error = pcall(function()
-            if formPaintableFactory == ItemPaintableFactory.getInstance() then
-                return ScrollSelectionForm.new(title, items, formPaintableFactory, border, -3, backgroundBasicColor, foregroundBasicColor)
-            else
-                local commonStrings = CommonStrings.getInstance()
-                local logUtil = LogUtil.getInstance()
-                logUtil:putF(commonStrings.EXCEPTION, logUtil, commonStrings.EXCEPTION)
-                return PaintableForm.getNullPaintableForm()
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            local logUtil = LogUtil.getInstance()
-            logUtil:put(commonStrings.EXCEPTION, logUtil, commonStrings.EXCEPTION, e)
-            return PaintableForm.getNullPaintableForm()
-        end
-end
-
-
-function ScrollSelectionForm.getNullScrollSelectionForm()
-        if ScrollSelectionForm.NULL_SCROLL_SELECTION_FORM == NullUtil.getInstance().NULL_OBJECT then
-            ScrollSelectionForm.NULL_SCROLL_SELECTION_FORM = ScrollSelectionForm.createForm(StringUtil.getInstance().EMPTY_STRING, java_new_array(nil, 0), ItemPaintableFactory.getInstance(), 0, BasicColorFactory.getInstance().BLACK, BasicColorFactory.getInstance().WHITE)
-        end
-        return ScrollSelectionForm.NULL_SCROLL_SELECTION_FORM
-end
-
-
-function ScrollSelectionForm.getNullScrollSelectionFormHorizontal()
-        if ScrollSelectionForm.NULL_SCROLL_SELECTION_HORIZONTAL_FORM == NullUtil.getInstance().NULL_OBJECT then
-            ScrollSelectionForm.NULL_SCROLL_SELECTION_HORIZONTAL_FORM = ScrollSelectionForm.createForm(StringUtil.getInstance().EMPTY_STRING, java_new_array(nil, 0), ItemPaintableFactory.getInstance(), 0, BasicColorFactory.getInstance().BLACK, BasicColorFactory.getInstance().WHITE)
-        end
-        return ScrollSelectionForm.NULL_SCROLL_SELECTION_HORIZONTAL_FORM
-end
-
-
-function ScrollSelectionForm.new(title, items, formPaintableFactory, border, adjustedExtraBorder, backgroundBasicColor, foregroundBasicColor)
-    local self = setmetatable(PaintableForm.new(title, items, backgroundBasicColor, foregroundBasicColor), ScrollSelectionForm)
-    self:_init_fields()
-        -- super(...) made self above
-        self.adjustedExtraBorder = adjustedExtraBorder
-        self.buttonBasicColor = foregroundBasicColor
-        self.border = border
-        self.halfBorder = (((border) // (1 << (1))))
-        self.paintable = formPaintableFactory:getInstanceItemPaintable(self)
-    return self
-end
-
-
--- throws Exception
-function ScrollSelectionForm:init(rectangle, formType)
-        PaintableForm.init(self, rectangle, formType)
-        local formTypeFactory = FormTypeFactory.getInstance()
-        if formType == formTypeFactory.HORIZONTAL_FORM then
-            self.scrollSelectionFormFormTypeItemIndexPaintable = ScrollSelectionFormHorizontalPaintable.new(self)
-            self.formTypeItemIndexDx = ScrollSelectionFormHorizontalDx.new(self)
-        elseif formType == formTypeFactory.VERTICAL_CENTER_FORM then
-            self.scrollSelectionFormFormTypeItemIndexPaintable = ScrollSelectionFormVerticalPaintable.new(self)
-            self.formTypeItemIndexDx = ScrollSelectionFormVericalDx.new(self)
-        elseif formType == formTypeFactory.TEMP_HORIZONTAL_FORM then
-            self.scrollSelectionFormFormTypeItemIndexPaintable = ScrollSelectionFormTempHorizontalPaintable.new(self)
-            self.formTypeItemIndexDx = ScrollSelectionFormTempHorizontalDx.new(self)
-        elseif formType == formTypeFactory.NULL_FORM_TYPE then
-        else
-            error(java_exception("Exception", formTypeFactory.UNK), 0)
-        end
-end
-
-
-function ScrollSelectionForm:paintItemHorizontal(graphics, index, item, x, y)
-        local width = item:getMinimumWidth()
-        return x + width + self.border
-end
-
-
-function ScrollSelectionForm:paintItemVertical(graphics, index, item, x, y)
-        local height = item:getMinimumHeight()
-        return y + height + self.border
-end
-
-
-function ScrollSelectionForm:paintItemTempHorizontal(graphics, index, item, x, y)
-        return 0
-end
-
-
-function ScrollSelectionForm:getSelectedIndexForPointHorizontalDx(index, item, dx, dy)
-        return dx - self.halfBorder
-end
-
-
-function ScrollSelectionForm:getSelectedIndexForPointVerticalDx(index, item, dx, dy)
-        return dx + self:getDiffX(item)
-end
-
-
-function ScrollSelectionForm:getSelectedIndexForPointTempHorizontalDx(index, item, dx, dy)
-        return dx + self:getDiffX(item)
-end
-
-
-function ScrollSelectionForm:append(item)
-        return PaintableForm.append(self, item)
-end
-
-
--- throws Exception
-function ScrollSelectionForm:getSelectedItem(point)
-        local index = self:getSelectedIndexForPoint(point)
-        if index ~= -1 then
-            return self:get(index)
-        else
-            return ABCustomItem.getNullInstance()
-        end
-end
-
-
--- throws Exception
-function ScrollSelectionForm:getItemIndex(item)
-        local nextItem = nil
-        local size = self:size()
-        for index = 0, size - 1 do
-            nextItem = self:get(index)
-            if nextItem == item then
-                return index
-            end
-        end
-        return -1
-end
-
-
-function ScrollSelectionForm:getStartIndex()
-        return 0
-end
-
-
--- throws Exception
-function ScrollSelectionForm:getSelectedIndexForPoint(point)
-        local start = self:getStartIndex()
-        local size = self:size()
-        local dx = self:getDx()
-        local dy = self:getDy()
-        local formTypeFactory = FormTypeFactory.getInstance()
-        local commonLabels = CommonLabels.getInstance()
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append(commonLabels.START_LABEL)
-        stringBuffer:appendint(start)
-        stringBuffer:append(CommonSeps.getInstance().SPACE)
-        stringBuffer:append(commonLabels.TOTAL_LABEL)
-        stringBuffer:appendint(size)
-        self.logUtil:putF(tostring(stringBuffer), self, ScrollSelectionForm.GET_SELECTED_INDEX)
-        local item = nil
-        local width = 0
-        local height = 0
-        local diffX = 0
-        for index = start, size - 1 do
-            item = self:get(index)
-            width = item:getMinimumWidth()
-            height = item:getMinimumHeight()
-            diffX = self.formTypeItemIndexDx:getDx(index, item, dx, dy)
-            if self.rectangleCollisionUtil:isInside(diffX, dy - self.halfBorder, diffX + width + self.border, dy + height + self.halfBorder + 1, point:getX(), point:getY()) then
-                stringBuffer:delete(0, stringBuffer:length())
-                stringBuffer:append(commonLabels.ITEM_LABEL)
-                stringBuffer:append(item:getLabel())
-                stringBuffer:append(CommonSeps.getInstance().SPACE)
-                stringBuffer:append(commonLabels.INDEX_LABEL)
-                stringBuffer:appendint(index)
-                self.logUtil:putF(tostring(stringBuffer), self, ScrollSelectionForm.GET_SELECTED_INDEX)
-                return index
-            end
-            if self.formType == formTypeFactory.HORIZONTAL_FORM then
-                dx = dx + width + self.border
-                if dx > self.rectangle:getMaxX() then
-                    break
-                end
-            elseif self.formType == formTypeFactory.VERTICAL_CENTER_FORM then
-                dy = dy + height + self.border
-                if dy > self.rectangle:getMaxY() then
-                    break
-                end
-            elseif self.formType == formTypeFactory.NULL_FORM_TYPE then
-            else
-                error(java_exception("Exception", formTypeFactory.UNK), 0)
-            end
-        end
-        return -1
-end
-
-
--- throws Exception
-function ScrollSelectionForm:processInputKey(gameKeyCode)
-        local formTypeFactory = FormTypeFactory.getInstance()
-        if self:size() == 0 then
-            return -1
-        end
-        local index = self:getSelectedIndex()
-        if self.formType == formTypeFactory.HORIZONTAL_FORM or self.formType == formTypeFactory.TEMP_HORIZONTAL_FORM then
-            if gameKeyCode == Canvas.RIGHT then
-                index = index + 1
-            elseif gameKeyCode == Canvas.LEFT then
-                index = index - 1
-            end
-        elseif self.formType == formTypeFactory.VERTICAL_CENTER_FORM then
-            if gameKeyCode == Canvas.DOWN then
-                index = index + 1
-            elseif gameKeyCode == Canvas.UP then
-                index = index - 1
-            end
-        elseif self.formType == formTypeFactory.NULL_FORM_TYPE then
-        else
-            error(java_exception("Exception", formTypeFactory.UNK), 0)
-        end
-        local max = self:size() - 1
-        if index < 0 then
-            self:setSelectedIndex(0)
-        elseif index > max then
-            self:setSelectedIndex(max)
-        else
-            self:setSelectedIndex(index)
-        end
-        return -1
-end
-
-
-function ScrollSelectionForm:isInForm(point)
-        if self.rectangleCollisionUtil:isInside(self.x, self.y - self.halfBorder, self.rectangle:getMaxX() + self.border, self.rectangle:getMaxY() + self.border, point:getX(), point:getY()) then
-            self.logUtil:putF(tostring(StringMaker.new():append(StringUtil.getInstance():toString(point)):append(ScrollSelectionForm.INSIDE_FORM)), self, ScrollSelectionForm.IS_IN_FORM)
-            return true
-        end
-        return false
-end
-
-
--- throws Exception
-function ScrollSelectionForm:paintItem(graphics, index, item, x, y)
-        item:paintXY(graphics, x, y)
-        local width = item:getMinimumWidth()
-        local height = item:getMinimumHeight()
-        graphics:setColor(math.tointeger(self:getButtonBasicColor() // 1))
-        local adjustedBorder = 3
-        graphics:drawRect(x - self.halfBorder - adjustedBorder, y - self.halfBorder - adjustedBorder, width + self.border + self.adjustedExtraBorder, height + self.border + self.adjustedExtraBorder)
-        return self.scrollSelectionFormFormTypeItemIndexPaintable:paint(graphics, index, item, x, y)
-end
-
-
--- throws Exception
-function ScrollSelectionForm:paintUnselectedItem(graphics, index, item, x, y)
-        graphics:setColor(math.tointeger(self:getButtonBasicColor() // 1))
-        item:paintUnselected(graphics, x, y)
-        return self.scrollSelectionFormFormTypeItemIndexPaintable:paint(graphics, index, item, x, y)
-end
-
-
-function ScrollSelectionForm:getDiffX(item)
-        return 0
-end
-
-
-function ScrollSelectionForm:getDx()
-        return self.x
-end
-
-
-function ScrollSelectionForm:getDy()
-        return self.y
-end
-
-
-function ScrollSelectionForm:setButtonBasicColor(buttonBasicColor)
-        self.buttonBasicColor = buttonBasicColor
-end
-
-
-function ScrollSelectionForm:getButtonBasicColor()
-        return self.buttonBasicColor
-end
-
-ScrollSelectionForm.NULL_SCROLL_SELECTION_FORM = NullUtil.getInstance().NULL_OBJECT
-ScrollSelectionForm.NULL_SCROLL_SELECTION_HORIZONTAL_FORM = NullUtil.getInstance().NULL_OBJECT
-ScrollSelectionForm.INSIDE_FORM = " inside form"
-ScrollSelectionForm.IS_IN_FORM = "isInForm"
-ScrollSelectionForm.GET_SELECTED_INDEX = "getSelectedIndexForPoint"
-
-return ScrollSelectionForm
 

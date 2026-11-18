@@ -1,50 +1,39 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.collision
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.collision
 
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local GameFeatureFactory = require("org.allbinary.game.configuration.feature.GameFeatureFactory")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass CollidableHelperFactory (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun CollidableHelperFactory.jnew_0 ()
+  (let ((this (make-instance 'CollidableHelperFactory)))
+    this))
 
-local CollidableHelperFactory = {}
-CollidableHelperFactory.__index = CollidableHelperFactory
-CollidableHelperFactory.className = "CollidableHelperFactory"
-
-function CollidableHelperFactory.new()
-    local self = setmetatable({}, CollidableHelperFactory)
-    return self
-end
+    
+(defun CollidableHelperFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (if (jm_isFeature_1 (Features.jm_getInstance_0) (slot-value (GameFeatureFactory.jm_getInstance_0) 'f_COLLISIONS_WITH_SOURCE))
+            (progn
+            (return-from jreturn (CollisionHelper.jnew_1 (AllBinaryLayer.jstatic_NULL_ALLBINARY_LAYER))))
+            (progn
+            (return-from jreturn (SourceCollisionHelper.jnew_1 (AllBinaryLayer.jstatic_NULL_ALLBINARY_LAYER))))))))
 
 
-function CollidableHelperFactory.getInstance()
-        if Features.getInstance():isFeature(GameFeatureFactory.getInstance().COLLISIONS_WITH_SOURCE) then
-            return CollisionHelper.new(AllBinaryLayer.NULL_ALLBINARY_LAYER)
-        else
-            return SourceCollisionHelper.new(AllBinaryLayer.NULL_ALLBINARY_LAYER)
-        end
-end
-
-return CollidableHelperFactory
 

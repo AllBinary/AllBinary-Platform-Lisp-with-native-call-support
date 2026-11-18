@@ -26,6 +26,7 @@
 (defun LogFormatUtil.jstatic_instance ()
   (when (eq LogFormatUtil.jcell_instance :jnone) (setf LogFormatUtil.jcell_instance (LogFormatUtil.jnew_0)))
   LogFormatUtil.jcell_instance)
+(defun (setf LogFormatUtil.jstatic_instance) (value) (setf LogFormatUtil.jcell_instance value))
 
     
 (defun LogFormatUtil.jm_getInstance_0 ()

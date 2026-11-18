@@ -1,38 +1,30 @@
--- Generated Code Do Not Modify
--- package org.allbinary.logic.util.cache
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.util.cache
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass PoolTypeFactory (JObject)
+  ((f_VECTOR_POOL :initform nil)))
+
+(defvar PoolTypeFactory.jcell_instance :jnone)
+(defun PoolTypeFactory.jstatic_instance ()
+  (when (eq PoolTypeFactory.jcell_instance :jnone) (setf PoolTypeFactory.jcell_instance (PoolTypeFactory.jnew_0)))
+  PoolTypeFactory.jcell_instance)
+(defun (setf PoolTypeFactory.jstatic_instance) (value) (setf PoolTypeFactory.jcell_instance value))
+
+(defun PoolTypeFactory.jnew_0 ()
+  (let ((this (make-instance 'PoolTypeFactory)))
+    (setf (slot-value this 'f_VECTOR_POOL) (PoolType.jnew_1 (slot-value (CacheTypeFactory.jm_getInstance_0) 'f_NO_CACHE)))
+    this))
+
+    
+(defun PoolTypeFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (PoolTypeFactory.jstatic_instance)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local PoolTypeFactory = {}
-PoolTypeFactory.__index = PoolTypeFactory
-PoolTypeFactory.className = "PoolTypeFactory"
-
-function PoolTypeFactory:_init_fields()
-    self.VECTOR_POOL = PoolType.new(CacheTypeFactory.getInstance().NO_CACHE)
-end
-
-function PoolTypeFactory.new()
-    local self = setmetatable({}, PoolTypeFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function PoolTypeFactory.getInstance()
-        return PoolTypeFactory.instance
-end
-
-PoolTypeFactory.instance = PoolTypeFactory.new()
-
-return PoolTypeFactory
 

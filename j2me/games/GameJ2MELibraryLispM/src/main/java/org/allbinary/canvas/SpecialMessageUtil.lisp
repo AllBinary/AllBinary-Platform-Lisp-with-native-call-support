@@ -1,66 +1,61 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.canvas
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.canvas
 
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local OpenGLFeatureFactory = require("org.allbinary.graphics.opengles.OpenGLFeatureFactory")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
-local Memory = require("org.allbinary.system.Memory")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass SpecialMessageUtil (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar SpecialMessageUtil.jcell_SINGLETON :jnone)
+(defun SpecialMessageUtil.jstatic_SINGLETON ()
+  (when (eq SpecialMessageUtil.jcell_SINGLETON :jnone) (setf SpecialMessageUtil.jcell_SINGLETON (SpecialMessageUtil.jnew_0)))
+  SpecialMessageUtil.jcell_SINGLETON)
+(defun (setf SpecialMessageUtil.jstatic_SINGLETON) (value) (setf SpecialMessageUtil.jcell_SINGLETON value))
 
-local SpecialMessageUtil = {}
-SpecialMessageUtil.__index = SpecialMessageUtil
-SpecialMessageUtil.className = "SpecialMessageUtil"
+(defun SpecialMessageUtil.jnew_0 ()
+  (let ((this (make-instance 'SpecialMessageUtil)))
+    this))
 
-function SpecialMessageUtil.new()
-    local self = setmetatable({}, SpecialMessageUtil)
-    return self
-end
+    
+(defun SpecialMessageUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (SpecialMessageUtil.jstatic_SINGLETON)))))
+
+    
+(unless (fboundp 'jm_get_0) (defgeneric jm_get_0 (this)))
+(defmethod jm_get_0 ((this SpecialMessageUtil))
+  (declare (ignorable this))
+  (let (_stringBuffer)
+  (declare (ignorable _stringBuffer))
+    (block jreturn
+        (setf _stringBuffer (StringMaker.jnew_0))
+        (jm_append_1 _stringBuffer (Memory.jm_getInfo_0))
+        (jm_append_1 _stringBuffer (slot-value (CommonSeps.jm_getInstance_0) 'f_SPACE))
+        (jm_append_1 _stringBuffer (jm_toString_0 (GameStatisticsFactory.jm_getInstance_0)))
+        (jm_append_1 _stringBuffer (slot-value (CommonSeps.jm_getInstance_0) 'f_SPACE))
+        (jm_append_1 _stringBuffer " Option: ")
+        (if (jm_isDefault_1 (Features.jm_getInstance_0) (slot-value (OpenGLFeatureFactory.jm_getInstance_0) 'f_OPENGL_AUTO_SELECT))
+            (progn
+            (jm_append_1 _stringBuffer (jm_getName_0 (slot-value (OpenGLFeatureFactory.jm_getInstance_0) 'f_OPENGL_AUTO_SELECT))))
+            (progn
+            (jm_append_1 _stringBuffer (jm_getName_0 (slot-value (OpenGLFeatureFactory.jm_getInstance_0) 'f_OPENGL_MINIMUM)))))
+        (return-from jreturn (jm_toString_0 _stringBuffer)))))
 
 
-function SpecialMessageUtil.getInstance()
-        return SpecialMessageUtil.SINGLETON
-end
-
-
-function SpecialMessageUtil:get()
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append(Memory.getInfo())
-        stringBuffer:append(CommonSeps.getInstance().SPACE)
-        stringBuffer:append(tostring(GameStatisticsFactory.getInstance()))
-        stringBuffer:append(CommonSeps.getInstance().SPACE)
-        stringBuffer:append(" Option: ")
-        if Features.getInstance():isDefault(OpenGLFeatureFactory.getInstance().OPENGL_AUTO_SELECT) then
-            stringBuffer:append(OpenGLFeatureFactory.getInstance().OPENGL_AUTO_SELECT:getName())
-        else
-            stringBuffer:append(OpenGLFeatureFactory.getInstance().OPENGL_MINIMUM:getName())
-        end
-        return tostring(stringBuffer)
-end
-
-SpecialMessageUtil.SINGLETON = SpecialMessageUtil.new()
-
-return SpecialMessageUtil
 

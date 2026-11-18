@@ -1,64 +1,64 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.state
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.state
 
-local NullUtil = require("org.allbinary.logic.NullUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass GameStateFactory (JObject)
+  ((f_index :initform 0)
+   (f_NO_GAME_STATE :initform nil)
+   (f_PLAYING_GAME_STATE :initform nil)
+   (f_SHOW_END_RESULT_GAME_STATE :initform nil)
+   (f_SHOW_HIGH_SCORE_GAME_STATE :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar GameStateFactory.jcell_instance :jnone)
+(defun GameStateFactory.jstatic_instance ()
+  (when (eq GameStateFactory.jcell_instance :jnone) (setf GameStateFactory.jcell_instance (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT)))
+  GameStateFactory.jcell_instance)
+(defun (setf GameStateFactory.jstatic_instance) (value) (setf GameStateFactory.jcell_instance value))
 
-local GameStateFactory = {}
-GameStateFactory.__index = GameStateFactory
-GameStateFactory.className = "GameStateFactory"
+    
+(defun GameStateFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (if (eq (GameStateFactory.jstatic_instance) (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT))
+            (progn
+            (setf (GameStateFactory.jstatic_instance) (GameStateFactory.jnew_0))))
+        (return-from jreturn (GameStateFactory.jstatic_instance)))))
 
-function GameStateFactory:_init_fields()
-    self.index = 0
-    self.NO_GAME_STATE = self:createGameState("NO_GAME_STATE")
-    self.PLAYING_GAME_STATE = self:createGameState("PLAYING_GAME_STATE")
-    self.SHOW_END_RESULT_GAME_STATE = self:createGameState("SHOW_END_RESULT_GAME_STATE")
-    self.SHOW_HIGH_SCORE_GAME_STATE = self:createGameState("SHOW_HIGH_SCORE_GAME_STATE")
-end
+    
+(defun GameStateFactory.jnew_0 ()
+  (let ((this (make-instance 'GameStateFactory)))
+    (setf (slot-value this 'f_index) 0)
+    (setf (slot-value this 'f_NO_GAME_STATE) (jm_createGameState_1 this "NO_GAME_STATE"))
+    (setf (slot-value this 'f_PLAYING_GAME_STATE) (jm_createGameState_1 this "PLAYING_GAME_STATE"))
+    (setf (slot-value this 'f_SHOW_END_RESULT_GAME_STATE) (jm_createGameState_1 this "SHOW_END_RESULT_GAME_STATE"))
+    (setf (slot-value this 'f_SHOW_HIGH_SCORE_GAME_STATE) (jm_createGameState_1 this "SHOW_HIGH_SCORE_GAME_STATE"))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(unless (fboundp 'jm_createGameState_1) (defgeneric jm_createGameState_1 (this p1)))
+(defmethod jm_createGameState_1 ((this GameStateFactory) _name)
+  (declare (ignorable this _name))
+  (let ()
+    (block jreturn
+        (return-from jreturn (GameState.jnew_2 _name (prog1 (slot-value this 'f_index) (setf (slot-value this 'f_index) (JR.i32 (+ (slot-value this 'f_index) 1)))))))))
 
 
-function GameStateFactory.getInstance()
-        if GameStateFactory.instance == NullUtil.getInstance().NULL_OBJECT then
-            GameStateFactory.instance = GameStateFactory.new()
-        end
-        return GameStateFactory.instance
-end
-
-
-function GameStateFactory.new()
-    local self = setmetatable({}, GameStateFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function GameStateFactory:createGameState(name)
-        return GameState.new(name, (function() local value = self.index self.index = value + 1 return value end)())
-end
-
-GameStateFactory.instance = NullUtil.getInstance().NULL_OBJECT
-
-return GameStateFactory
 

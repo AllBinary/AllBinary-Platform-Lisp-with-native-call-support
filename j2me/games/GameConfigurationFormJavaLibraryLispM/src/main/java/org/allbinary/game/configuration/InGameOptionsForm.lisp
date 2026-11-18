@@ -1,67 +1,69 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.configuration
 
--- local Choice = require("javax.microedition.lcdui.Choice")
--- local Command = require("javax.microedition.lcdui.Command")
--- local CommandListener = require("javax.microedition.lcdui.CommandListener")
-local GameCommandsFactory = require("org.allbinary.game.commands.GameCommandsFactory")
-local GameFeatureFormUtil = require("org.allbinary.game.configuration.feature.GameFeatureFormUtil")
-local InGameFeatureChoiceGroups = require("org.allbinary.game.configuration.feature.InGameFeatureChoiceGroups")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local CommandForm = require("org.allbinary.graphics.displayable.screen.CommandForm")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass InGameOptionsForm (CommandForm)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar InGameOptionsForm.jcell_DISPLAY :jnone)
+(defun InGameOptionsForm.jstatic_DISPLAY ()
+  (when (eq InGameOptionsForm.jcell_DISPLAY :jnone) (setf InGameOptionsForm.jcell_DISPLAY (Command.jnew_4 "Options In Game" (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (Command.jstatic_SCREEN) 1)))
+  InGameOptionsForm.jcell_DISPLAY)
+(defun (setf InGameOptionsForm.jstatic_DISPLAY) (value) (setf InGameOptionsForm.jcell_DISPLAY value))
 
-local InGameOptionsForm = {}
-InGameOptionsForm.__index = InGameOptionsForm
-InGameOptionsForm.className = "InGameOptionsForm"
-setmetatable(InGameOptionsForm, {__index = CommandForm})
+(defvar InGameOptionsForm.jcell_SAVE :jnone)
+(defun InGameOptionsForm.jstatic_SAVE ()
+  (when (eq InGameOptionsForm.jcell_SAVE :jnone) (setf InGameOptionsForm.jcell_SAVE (Command.jnew_4 "Save" (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (Command.jstatic_SCREEN) 1)))
+  InGameOptionsForm.jcell_SAVE)
+(defun (setf InGameOptionsForm.jstatic_SAVE) (value) (setf InGameOptionsForm.jcell_SAVE value))
+
+(defvar InGameOptionsForm.jcell_DEFAULT :jnone)
+(defun InGameOptionsForm.jstatic_DEFAULT ()
+  (when (eq InGameOptionsForm.jcell_DEFAULT :jnone) (setf InGameOptionsForm.jcell_DEFAULT (Command.jnew_4 "Default" (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (Command.jstatic_SCREEN) 1)))
+  InGameOptionsForm.jcell_DEFAULT)
+(defun (setf InGameOptionsForm.jstatic_DEFAULT) (value) (setf InGameOptionsForm.jcell_DEFAULT value))
+
+    
+(defun InGameOptionsForm.jnew_4 (_commandListener _title _backgrounBasicColor _foregroundBasicColor)
+  (declare (ignorable _commandListener _title _backgrounBasicColor _foregroundBasicColor))
+  (let ((this (make-instance 'InGameOptionsForm)))
+  (let (_gameFeatureFormUtil)
+  (declare (ignorable _gameFeatureFormUtil))
+    (block jreturn
+        nil
+        (jm_putF_3 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_START) this (slot-value (slot-value this 'f_commonStrings) 'f_CONSTRUCTOR))
+        (setf _gameFeatureFormUtil (GameFeatureFormUtil.jm_getInstance_0))
+        (jm_addChoiceGroup_3 _gameFeatureFormUtil this (jm_get_0 (InGameFeatureChoiceGroups.jm_getExclusiveInstance_0)) (Choice.jstatic_EXCLUSIVE))
+        (jm_addChoiceGroup_3 _gameFeatureFormUtil this (jm_get_0 (InGameFeatureChoiceGroups.jm_getMultipleInstance_0)) (Choice.jstatic_MULTIPLE))
+        (jm_initCommands_1 this _commandListener)))
+    this))
+
+    
+(unless (fboundp 'jm_initCommands_1) (defgeneric jm_initCommands_1 (this p1)))
+(defmethod jm_initCommands_1 ((this InGameOptionsForm) _cmdListener)
+  (declare (ignorable this _cmdListener))
+  (let ()
+    (block jreturn
+        (jm_removeAllCommands_0 this)
+        (jm_addCommand_1 this (slot-value (GameCommandsFactory.jm_getInstance_0) 'f_CLOSE_AND_SHOW_GAME_CANVAS))
+        (jm_addCommand_1 this (InGameOptionsForm.jstatic_DEFAULT))
+        (jm_setCommandListener_1 this _cmdListener))))
 
 
-function InGameOptionsForm.new(commandListener, title, backgrounBasicColor, foregroundBasicColor)
-    local self = setmetatable(CommandForm.new(commandListener, title, backgrounBasicColor, foregroundBasicColor), InGameOptionsForm)
-        -- super(...) made self above
-        self.logUtil:putF(self.commonStrings.START, self, self.commonStrings.CONSTRUCTOR)
-        local gameFeatureFormUtil = GameFeatureFormUtil.getInstance()
-        gameFeatureFormUtil:addChoiceGroup(self, InGameFeatureChoiceGroups.getExclusiveInstance():get(), Choice.EXCLUSIVE)
-        gameFeatureFormUtil:addChoiceGroup(self, InGameFeatureChoiceGroups.getMultipleInstance():get(), Choice.MULTIPLE)
-        self:initCommands(commandListener)
-    return self
-end
-
-
-function InGameOptionsForm:initCommands(cmdListener)
-        self:removeAllCommands()
-        self:addCommand(GameCommandsFactory.getInstance().CLOSE_AND_SHOW_GAME_CANVAS)
-        self:addCommand(InGameOptionsForm.DEFAULT)
-        self:setCommandListener(cmdListener)
-end
-
-InGameOptionsForm.DISPLAY = Command.new("Options In Game", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-InGameOptionsForm.SAVE = Command.new("Save", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-InGameOptionsForm.DEFAULT = Command.new("Default", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-
-return InGameOptionsForm
 

@@ -1,169 +1,150 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.init
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.business.init
 
-local TsUtil = require("org.allbinary.TsUtil")
-local PATH_GLOBALS = require("org.allbinary.globals.PATH_GLOBALS")
-local URLGLOBALS = require("org.allbinary.globals.URLGLOBALS")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local AbDataInputStream = require("org.allbinary.logic.io.AbDataInputStream")
-local AbDataOutputStream = require("org.allbinary.logic.io.AbDataOutputStream")
-local AbFileInputStream = require("org.allbinary.logic.io.AbFileInputStream")
-local DataOutputStreamFactory = require("org.allbinary.logic.io.DataOutputStreamFactory")
-local FileStreamFactory = require("org.allbinary.logic.io.FileStreamFactory")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local DatabaseEncoder = require("org.allbinary.logic.system.security.crypt.DatabaseEncoder")
-local WeakCrypt = require("org.allbinary.logic.system.security.crypt.WeakCrypt")
-local CommonLabels = require("org.allbinary.string.CommonLabels")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(defclass LicenseInitInfoUtil (JObject)
+  ((f_logUtil :initform nil)
+   (f_stringUtil :initform nil)
+   (f_INITFILENAME :initform nil)
+   (f_ABOUT :initform nil)
+   (f_PRIVACY_POLICY :initform nil)
+   (f_filePath :initform nil)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defvar LicenseInitInfoUtil.jcell_instance :jnone)
+(defun LicenseInitInfoUtil.jstatic_instance ()
+  (when (eq LicenseInitInfoUtil.jcell_instance :jnone) (setf LicenseInitInfoUtil.jcell_instance (LicenseInitInfoUtil.jnew_0)))
+  LicenseInitInfoUtil.jcell_instance)
+(defun (setf LicenseInitInfoUtil.jstatic_instance) (value) (setf LicenseInitInfoUtil.jcell_instance value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun LicenseInitInfoUtil.jnew_0 ()
+  (let ((this (make-instance 'LicenseInitInfoUtil)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_stringUtil) (StringUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_INITFILENAME) "licenseinitdata.dat")
+    (setf (slot-value this 'f_ABOUT) "about")
+    (setf (slot-value this 'f_PRIVACY_POLICY) "privacy_policy")
+    (setf (slot-value this 'f_filePath) (slot-value (slot-value this 'f_stringUtil) 'f_EMPTY_STRING))
+    this))
 
-local LicenseInitInfoUtil = {}
-LicenseInitInfoUtil.__index = LicenseInitInfoUtil
-LicenseInitInfoUtil.className = "LicenseInitInfoUtil"
+    
+(defun LicenseInitInfoUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (LicenseInitInfoUtil.jstatic_instance)))))
 
-function LicenseInitInfoUtil:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.stringUtil = StringUtil.getInstance()
-    self.INITFILENAME = "licenseinitdata.dat"
-    self.ABOUT = "about"
-    self.PRIVACY_POLICY = "privacy_policy"
-    self.filePath = self.stringUtil.EMPTY_STRING
-end
+    
+(unless (fboundp 'jm_setFilePath_1) (defgeneric jm_setFilePath_1 (this p1)))
+(defmethod jm_setFilePath_1 ((this LicenseInitInfoUtil) _filePath)
+  (declare (ignorable this _filePath))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_filePath) _filePath))))
 
-function LicenseInitInfoUtil.new()
-    local self = setmetatable({}, LicenseInitInfoUtil)
-    self:_init_fields()
-    return self
-end
+    
+(unless (fboundp 'jm_write_1) (defgeneric jm_write_1 (this p1)))
+(defmethod jm_write_1 ((this LicenseInitInfoUtil) _initData)
+  (declare (ignorable this _initData))
+  (let (_tsUtil _dataOutputStream _licenseIdCrypted _numberOfLicenseServers _licenseServerCrypted _index)
+  (declare (ignorable _tsUtil _dataOutputStream _licenseIdCrypted _numberOfLicenseServers _licenseServerCrypted _index))
+    (block jreturn
+        (if (eq (slot-value this 'f_filePath) (slot-value (slot-value this 'f_stringUtil) 'f_EMPTY_STRING))
+            (progn
+            (setf (slot-value this 'f_filePath) (JR.i32 (+ (URLGLOBALS.jm_getMainPath_0) (slot-value (PATH_GLOBALS.jm_getInstance_0) 'f_INIT_PATH))))))
+        (handler-case (progn
+            (setf _tsUtil (TsUtil.jm_getInstance_0))
+            (setf _dataOutputStream (jm_getInstance_2 (DataOutputStreamFactory.jm_getInstance_0) (slot-value this 'f_filePath) (slot-value this 'f_INITFILENAME)))
+            (setf _licenseIdCrypted (jm_getByteArray_1 _tsUtil (jm_encrypt_1 (WeakCrypt.jnew_1 1) (jm_getLicenseId_0 _initData))))
+            (jm_writeUTF_1 _dataOutputStream (DatabaseEncoder.jm_encode_1 _licenseIdCrypted))
+            (setf _numberOfLicenseServers (jm_getNumberOfServers_0 _initData))
+            (jm_writeInt_1 _dataOutputStream _numberOfLicenseServers)
+            (setf _licenseServerCrypted nil)
+            (progn
+                (setf _index 0)
+                (block jbreak (loop while (< _index _numberOfLicenseServers) do
+                    (block jcontinue
+                (setf _licenseServerCrypted (jm_getByteArray_1 _tsUtil (jm_encrypt_1 (WeakCrypt.jnew_1 3) (jm_getServer_1 _initData _index))))
+                (jm_writeUTF_1 _dataOutputStream (DatabaseEncoder.jm_encode_1 _licenseServerCrypted)))
+                    (setf _index (JR.i32 (+ _index 1)))))))
+            (error (_e) (declare (ignorable _e))
+            (jm_put_4 (slot-value this 'f_logUtil) (JR.concat "Command Failed: " (slot-value this 'f_INITFILENAME)) this "write" _e)
+            (jm_delete_2 (FileStreamFactory.jm_getInstance_0) (slot-value this 'f_filePath) (slot-value this 'f_INITFILENAME))
+            (error _e))))))
 
+    
+(unless (fboundp 'jm_read_0) (defgeneric jm_read_0 (this)))
+(defmethod jm_read_0 ((this LicenseInitInfoUtil))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_readAgain_1 this 0)))))
 
-function LicenseInitInfoUtil.getInstance()
-        return LicenseInitInfoUtil.instance
-end
+    
+(unless (fboundp 'jm_readAgain_1) (defgeneric jm_readAgain_1 (this p1)))
+(defmethod jm_readAgain_1 ((this LicenseInitInfoUtil) _initializeCounter)
+  (declare (ignorable this _initializeCounter))
+  (let (_METHOD_NAME _fileStreamFactory _iFile _iData _initInfo _decodedByteArray _licenseIdDecoded _numberOfLicenseServers _NEXT_FILE _licenseServerDecoded _index)
+  (declare (ignorable _METHOD_NAME _fileStreamFactory _iFile _iData _initInfo _decodedByteArray _licenseIdDecoded _numberOfLicenseServers _NEXT_FILE _licenseServerDecoded _index))
+    (block jreturn
+        (setf _METHOD_NAME "readAgain")
+        (if (eq (slot-value this 'f_filePath) (slot-value (slot-value this 'f_stringUtil) 'f_EMPTY_STRING))
+            (progn
+            (setf (slot-value this 'f_filePath) (JR.i32 (+ (URLGLOBALS.jm_getMainPath_0) (slot-value (PATH_GLOBALS.jm_getInstance_0) 'f_INIT_PATH))))))
+        (handler-case (progn
+            (jm_putF_3 (slot-value this 'f_logUtil) (JR.concat "LicenseInitInfo File: " (slot-value this 'f_INITFILENAME)) this _METHOD_NAME)
+            (setf _fileStreamFactory (FileStreamFactory.jm_getInstance_0))
+            (setf _iFile (jm_getFileInputStreamInstance_2 _fileStreamFactory (slot-value this 'f_filePath) (slot-value this 'f_INITFILENAME)))
+            (if (not (null _iFile))
+                (progn
+                (setf _iData (AbDataInputStream.jnew_1 _iFile))
+                (setf _initInfo (LicenseInitInfo.jnew_0))
+                (setf _decodedByteArray (DatabaseEncoder.jm_decode_1 (jm_readUTF_0 _iData)))
+                (setf _licenseIdDecoded _decodedByteArray)
+                (jm_setLicenseId_1 _initInfo (jm_decrypt_1 (WeakCrypt.jnew_1 1) _licenseIdDecoded))
+                (setf _numberOfLicenseServers (jm_readInt_0 _iData))
+                (setf _NEXT_FILE (jm_toString_0 (jm_append_1 (jm_append_1 (StringMaker.jnew_0) (slot-value (CommonLabels.jm_getInstance_0) 'f_NEXT)) " License Server From File: ")))
+                (setf _licenseServerDecoded nil)
+                (progn
+                    (setf _index 0)
+                    (block jbreak (loop while (< _index _numberOfLicenseServers) do
+                        (block jcontinue
+                    (setf _decodedByteArray (DatabaseEncoder.jm_decode_1 (jm_readUTF_0 _iData)))
+                    (setf _licenseServerDecoded _decodedByteArray)
+                    (jm_setServer_2 _initInfo (jm_decrypt_1 (WeakCrypt.jnew_1 3) _licenseServerDecoded) _index)
+                    (jm_putF_3 (slot-value this 'f_logUtil) (JR.concat _NEXT_FILE (JR.str (jm_getServer_1 _initInfo _index))) this _METHOD_NAME))
+                        (setf _index (JR.i32 (+ _index 1))))))
+                (return-from jreturn _initInfo))
+                (progn
+                (error (JR.newException "Exception" (JR.concat "Could Not Load License InitInfo: " (slot-value this 'f_INITFILENAME)))))))
+            (error (_e) (declare (ignorable _e))
+            (handler-case (progn
+                (jm_put_4 (slot-value this 'f_logUtil) (JR.concat "Command Failed: " (slot-value this 'f_INITFILENAME)) this _METHOD_NAME _e))
+                (error (_e2) (declare (ignorable _e2))
+                (jm_put_4 (slot-value this 'f_logUtil) (JR.concat "LicenseInitInfo Read Retry: " (slot-value this 'f_INITFILENAME)) this "readAgain()" _e2)))
+            (error (JR.newException "Exception" (JR.concat "LicenseInitInfo Read Error: " (slot-value this 'f_INITFILENAME)))))))))
 
-
-function LicenseInitInfoUtil:setFilePath(filePath)
-        self.filePath = filePath
-end
-
-
--- throws Exception
-function LicenseInitInfoUtil:write(initData)
-        if self.filePath == self.stringUtil.EMPTY_STRING then
-            self.filePath = self.URLGLOBALS:getMainPath() + self.PATH_GLOBALS:getInstance().INIT_PATH
-        end
-        local try_ok, try_error = pcall(function()
-            local tsUtil = TsUtil.getInstance()
-            local dataOutputStream = DataOutputStreamFactory.getInstance():getInstance(self.filePath, self.INITFILENAME)
-            local licenseIdCrypted = tsUtil:getByteArray(WeakCrypt.new(1):encrypt(initData:getLicenseId()))
-            dataOutputStream:writeUTF(DatabaseEncoder.encode(licenseIdCrypted))
-            local numberOfLicenseServers = initData:getNumberOfServers()
-            dataOutputStream:writeInt(numberOfLicenseServers)
-            local licenseServerCrypted = nil
-            for index = 0, numberOfLicenseServers - 1 do
-                licenseServerCrypted = tsUtil:getByteArray(WeakCrypt.new(3):encrypt(initData:getServer(index)))
-                dataOutputStream:writeUTF(DatabaseEncoder.encode(licenseServerCrypted))
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put("Command Failed: " .. self.INITFILENAME, self, "write", e)
-            FileStreamFactory.getInstance():delete(self.filePath, self.INITFILENAME)
-            error(e, 0)
-        end
-end
-
-
--- throws Exception
-function LicenseInitInfoUtil:read()
-        return self:readAgain(0)
-end
-
-
--- throws Exception
-function LicenseInitInfoUtil:readAgain(initializeCounter)
-        local METHOD_NAME = "readAgain"
-        if self.filePath == self.stringUtil.EMPTY_STRING then
-            self.filePath = self.URLGLOBALS:getMainPath() + self.PATH_GLOBALS:getInstance().INIT_PATH
-        end
-        local try_ok, try_error = pcall(function()
-            self.logUtil:putF("LicenseInitInfo File: " .. self.INITFILENAME, self, METHOD_NAME)
-            local fileStreamFactory = FileStreamFactory.getInstance()
-            local iFile = fileStreamFactory:getFileInputStreamInstance(self.filePath, self.INITFILENAME)
-            if iFile ~= nil then
-                local iData = AbDataInputStream.new(iFile)
-                local initInfo = LicenseInitInfo.new()
-                local decodedByteArray = DatabaseEncoder.decode(iData:readUTF())
-                local licenseIdDecoded = string.char(table.unpack(decodedByteArray))
-                initInfo:setLicenseId(WeakCrypt.new(1):decrypt(licenseIdDecoded))
-                local numberOfLicenseServers = iData:readInt()
-                local NEXT_FILE = tostring(StringMaker.new():append(CommonLabels.getInstance().NEXT):append(" License Server From File: "))
-                local licenseServerDecoded = nil
-                for index = 0, numberOfLicenseServers - 1 do
-                    decodedByteArray = DatabaseEncoder.decode(iData:readUTF())
-                    licenseServerDecoded = string.char(table.unpack(decodedByteArray))
-                    initInfo:setServer(WeakCrypt.new(3):decrypt(licenseServerDecoded), index)
-                    self.logUtil:putF(NEXT_FILE .. tostring(initInfo:getServer(index)), self, METHOD_NAME)
-                end
-                return initInfo
-            else
-                error(java_exception("Exception", "Could Not Load License InitInfo: " .. self.INITFILENAME), 0)
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            local try_ok, try_error = pcall(function()
-                self.logUtil:put("Command Failed: " .. self.INITFILENAME, self, METHOD_NAME, e)
-            end)
-            if not try_ok then
-                local e2 = try_error
-                self.logUtil:put("LicenseInitInfo Read Retry: " .. self.INITFILENAME, self, "readAgain()", e2)
-            end
-            error(java_exception("Exception", "LicenseInitInfo Read Error: " .. self.INITFILENAME), 0)
-        end
-end
+    
+(unless (fboundp 'jm_getFilePath_0) (defgeneric jm_getFilePath_0 (this)))
+(defmethod jm_getFilePath_0 ((this LicenseInitInfoUtil))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_filePath)))))
 
 
-function LicenseInitInfoUtil:getFilePath()
-        return self.filePath
-end
-
-LicenseInitInfoUtil.instance = LicenseInitInfoUtil.new()
-
-return LicenseInitInfoUtil
 

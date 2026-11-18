@@ -1,33 +1,29 @@
--- Generated Code Do Not Modify
--- package org.allbinary.device
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.device
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass OpenGLESNullGraphicsFactory (JObject)
+  ())
+
+(defvar OpenGLESNullGraphicsFactory.jcell_instance :jnone)
+(defun OpenGLESNullGraphicsFactory.jstatic_instance ()
+  (when (eq OpenGLESNullGraphicsFactory.jcell_instance :jnone) (setf OpenGLESNullGraphicsFactory.jcell_instance (OpenGLESGraphics.jnew_0)))
+  OpenGLESNullGraphicsFactory.jcell_instance)
+(defun (setf OpenGLESNullGraphicsFactory.jstatic_instance) (value) (setf OpenGLESNullGraphicsFactory.jcell_instance value))
+
+(defun OpenGLESNullGraphicsFactory.jnew_0 ()
+  (let ((this (make-instance 'OpenGLESNullGraphicsFactory)))
+    this))
+
+    
+(defun OpenGLESNullGraphicsFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (OpenGLESNullGraphicsFactory.jstatic_instance)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local OpenGLESNullGraphicsFactory = {}
-OpenGLESNullGraphicsFactory.__index = OpenGLESNullGraphicsFactory
-OpenGLESNullGraphicsFactory.className = "OpenGLESNullGraphicsFactory"
-
-function OpenGLESNullGraphicsFactory.new()
-    local self = setmetatable({}, OpenGLESNullGraphicsFactory)
-    return self
-end
-
-
-function OpenGLESNullGraphicsFactory.getInstance()
-        return OpenGLESNullGraphicsFactory.instance
-end
-
-OpenGLESNullGraphicsFactory.instance = OpenGLESGraphics.new()
-
-return OpenGLESNullGraphicsFactory
 

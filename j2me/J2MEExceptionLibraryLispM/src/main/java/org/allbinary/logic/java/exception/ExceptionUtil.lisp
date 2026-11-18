@@ -27,6 +27,7 @@
 (defun ExceptionUtil.jstatic_instance ()
   (when (eq ExceptionUtil.jcell_instance :jnone) (setf ExceptionUtil.jcell_instance (ExceptionUtil.jnew_0)))
   ExceptionUtil.jcell_instance)
+(defun (setf ExceptionUtil.jstatic_instance) (value) (setf ExceptionUtil.jcell_instance value))
 
     
 (defun ExceptionUtil.jm_getInstance_0 ()

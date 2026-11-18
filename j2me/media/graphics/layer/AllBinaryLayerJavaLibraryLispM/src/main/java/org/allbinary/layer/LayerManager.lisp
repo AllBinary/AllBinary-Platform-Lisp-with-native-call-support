@@ -1,147 +1,165 @@
--- Generated Code Do Not Modify
--- package org.allbinary.layer
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.layer
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local TsUtil = require("org.allbinary.TsUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local SynchObject = require("org.allbinary.thread.SynchObject")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local ABSystemWrapper = require("org.allbinary.logic.ABSystemWrapper")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass LayerManager (JObject)
+  ((f_logUtil :initform nil)
+   (f_commonStrings :initform nil)
+   (f_systemWrapper :initform nil)
+   (f_tsUtil :initform nil)
+   (f_layerManagerLogging :initform nil)
+   (f_list :initform nil)
+   (f_anyType :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun LayerManager.jnew_1 (_layerManagerLogging)
+  (declare (ignorable _layerManagerLogging))
+  (let ((this (make-instance 'LayerManager)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_commonStrings) (CommonStrings.jm_getInstance_0))
+    (setf (slot-value this 'f_systemWrapper) (ABSystemWrapper.jm_getInstance_0))
+    (setf (slot-value this 'f_tsUtil) (TsUtil.jm_getInstance_0))
+    
+    (setf (slot-value this 'f_list) (BasicArrayListD.jnew_0))
+    (setf (slot-value this 'f_anyType) (SynchObject.jnew_0))
+  (let ()
+    (block jreturn
+        (jm_putF_3 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_START) this (slot-value (slot-value this 'f_commonStrings) 'f_CONSTRUCTOR))
+        (setf (slot-value this 'f_layerManagerLogging) _layerManagerLogging)))
+    this))
 
-local LayerManager = {}
-LayerManager.__index = LayerManager
-LayerManager.className = "LayerManager"
+    
+(unless (fboundp 'jm_contains_1) (defgeneric jm_contains_1 (this p1)))
+(defmethod jm_contains_1 ((this LayerManager) _layerInterface)
+  (declare (ignorable this _layerInterface))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_contains_1 (slot-value this 'f_list) _layerInterface)))))
 
-function LayerManager:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.systemWrapper = ABSystemWrapper.getInstance()
-    self.tsUtil = TsUtil.getInstance()
-    self.layerManagerLogging = nil
-    self.list = BasicArrayListD.new()
-    self.anyType = SynchObject.new()
-end
+    
+(unless (fboundp 'jm_update_1) (defgeneric jm_update_1 (this p1)))
+(defmethod jm_update_1 ((this LayerManager) _layerInterface)
+  (declare (ignorable this _layerInterface))
+  (let (_had _nextLayerInterface _size _index)
+  (declare (ignorable _had _nextLayerInterface _size _index))
+    (block jreturn
+        (setf _had (jm_remove_1 (slot-value this 'f_list) _layerInterface))
+        (if _had
+            (progn
+            (setf _nextLayerInterface nil)
+            (setf _size (jm_size_0 (slot-value this 'f_list)))
+            (progn
+                (setf _index 0)
+                (block jbreak (loop while (< _index _size) do
+                    (block jcontinue
+                (setf _nextLayerInterface (jm_get_1 (slot-value this 'f_list) _index))
+                (if (> (jm_getZP_0 _layerInterface) (jm_getZP_0 _nextLayerInterface))
+                    (progn
+                    (jm_addAt_2 (slot-value this 'f_list) _index _layerInterface)
+                    (return-from jreturn))))
+                    (setf _index (JR.i32 (+ _index 1))))))
+            (jm_add_1 (slot-value this 'f_list) _layerInterface))))))
+
+    
+(unless (fboundp 'jm_insert_1) (defgeneric jm_insert_1 (this p1)))
+(defmethod jm_insert_1 ((this LayerManager) _layerInterface)
+  (declare (ignorable this _layerInterface))
+  (let (_nextLayerInterface _size _index)
+  (declare (ignorable _nextLayerInterface _size _index))
+    (block jreturn
+        (setf _nextLayerInterface nil)
+        (setf _size (jm_size_0 (slot-value this 'f_list)))
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (setf _nextLayerInterface (jm_get_1 (slot-value this 'f_list) _index))
+            (if (> (jm_getZP_0 _layerInterface) (jm_getZP_0 _nextLayerInterface))
+                (progn
+                (jm_appendAt_2 this _layerInterface _index)
+                (return-from jreturn))))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (jm_append_1 this _layerInterface))))
+
+    
+(unless (fboundp 'jm_append_1) (defgeneric jm_append_1 (this p1)))
+(defmethod jm_append_1 ((this LayerManager) _layerInterface)
+  (declare (ignorable this _layerInterface))
+  (let ()
+    (block jreturn
+        (jm_append_1 (slot-value this 'f_layerManagerLogging) _layerInterface)
+        (jm_add_1 (slot-value this 'f_list) _layerInterface))))
+
+    
+(unless (fboundp 'jm_appendAt_2) (defgeneric jm_appendAt_2 (this p1 p2)))
+(defmethod jm_appendAt_2 ((this LayerManager) _layerInterface _index)
+  (declare (ignorable this _layerInterface _index))
+  (let ()
+    (block jreturn
+        (jm_appendAt_2 (slot-value this 'f_layerManagerLogging) _layerInterface _index)
+        (jm_addAt_2 (slot-value this 'f_list) _index _layerInterface))))
+
+    
+(unless (fboundp 'jm_remove_1) (defgeneric jm_remove_1 (this p1)))
+(defmethod jm_remove_1 ((this LayerManager) _layerInterface)
+  (declare (ignorable this _layerInterface))
+  (let (_result)
+  (declare (ignorable _result))
+    (block jreturn
+        (progn
+            (jm_remove_1 (slot-value this 'f_layerManagerLogging) _layerInterface)
+            (setf _result (jm_remove_1 (slot-value this 'f_list) _layerInterface))
+            (jm_removeResult_3 (slot-value this 'f_layerManagerLogging) this _layerInterface _result)))))
+
+    
+(unless (fboundp 'jm_getLayerAt_1) (defgeneric jm_getLayerAt_1 (this p1)))
+(defmethod jm_getLayerAt_1 ((this LayerManager) _index)
+  (declare (ignorable this _index))
+  (let ()
+    (block jreturn
+        (return-from jreturn (aref (slot-value (slot-value this 'f_list) 'f_objectArray) _index)))))
+
+    
+(unless (fboundp 'jm_getSize_0) (defgeneric jm_getSize_0 (this)))
+(defmethod jm_getSize_0 ((this LayerManager))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_size_0 (slot-value this 'f_list))))))
+
+    
+(unless (fboundp 'jm_cleanup_0) (defgeneric jm_cleanup_0 (this)))
+(defmethod jm_cleanup_0 ((this LayerManager))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (progn
+            (jm_clear_0 (slot-value this 'f_list))
+            (jm_clear_0 (slot-value this 'f_layerManagerLogging))
+            (jm_gc_0 (slot-value this 'f_tsUtil))
+            (jm_gc_0 (slot-value this 'f_tsUtil))))))
+
+    
+(unless (fboundp 'jm_paint_3) (defgeneric jm_paint_3 (this p1 p2 p3)))
+(defmethod jm_paint_3 ((this LayerManager) _g _x _y)
+  (declare (ignorable this _g _x _y))
+  (let (_comp _index)
+  (declare (ignorable _comp _index))
+    (block jreturn
+        (progn
+            (setf _comp nil)
+            (progn
+                (setf _index (jm_size_0 (slot-value this 'f_list)))
+                (block jbreak (loop while (>= (setf _index (JR.i32 (- _index 1))) 0) do
+                    (block jcontinue
+                (setf _comp (aref (slot-value (slot-value this 'f_list) 'f_objectArray) _index))
+                (if (and (not (null _comp)) (jm_isVisible_0 _comp))
+                    (progn
+                    (jm_paint_1 _comp _g)))))))))))
 
 
-function LayerManager.new(layerManagerLogging)
-    local self = setmetatable({}, LayerManager)
-    self:_init_fields()
-        self.logUtil:putF(self.commonStrings.START, self, self.commonStrings.CONSTRUCTOR)
-        self.layerManagerLogging = layerManagerLogging
-    return self
-end
-
-
-function LayerManager:contains(layerInterface)
-        return self.list:contains(layerInterface)
-end
-
-
--- throws Exception
-function LayerManager:update(layerInterface)
-        local had = self.list:remove(layerInterface)
-        if had then
-            local nextLayerInterface = nil
-            local size = self.list:size()
-            for index = 0, size - 1 do
-                nextLayerInterface = self.list:get(index)
-                if layerInterface:getZP() > nextLayerInterface:getZP() then
-                    self.list:addAt(index, layerInterface)
-                    return
-                end
-            end
-            self.list:add(layerInterface)
-        end
-end
-
-
--- throws Exception
-function LayerManager:insert(layerInterface)
-        local nextLayerInterface = nil
-        local size = self.list:size()
-        for index = 0, size - 1 do
-            nextLayerInterface = self.list:get(index)
-            if layerInterface:getZP() > nextLayerInterface:getZP() then
-                self:appendAt(layerInterface, index)
-                return
-            end
-        end
-        self:append(layerInterface)
-end
-
-
--- throws Exception
-function LayerManager:append(layerInterface)
-        self.layerManagerLogging:append(layerInterface)
-        self.list:add(layerInterface)
-end
-
-
--- throws Exception
-function LayerManager:appendAt(layerInterface, index)
-        self.layerManagerLogging:appendAt(layerInterface, index)
-        self.list:addAt(index, layerInterface)
-end
-
-
--- throws Exception
-function LayerManager:remove(layerInterface)
-        do -- synchronized (self.anyType)
-            self.layerManagerLogging:remove(layerInterface)
-            local result = self.list:remove(layerInterface)
-            self.layerManagerLogging:removeResult(self, layerInterface, result)
-        end
-end
-
-
-function LayerManager:getLayerAt(index)
-        return self.list.objectArray[index + 1]
-end
-
-
-function LayerManager:getSize()
-        return self.list:size()
-end
-
-
--- throws Exception
-function LayerManager:cleanup()
-        do -- synchronized (self.anyType)
-            self.list:clear()
-            self.layerManagerLogging:clear()
-            self.tsUtil:gc()
-            self.tsUtil:gc()
-        end
-end
-
-
-function LayerManager:paint(g, x, y)
-        do -- synchronized (self.anyType)
-            local comp = nil
-            do
-                local index = self.list:size()
-                while (function() index = index - 1 return index end)() >= 0 do
-                comp = self.list.objectArray[index + 1]
-                if comp ~= nil and comp:isVisible() then
-                    comp:paint(g)
-                end
-                end
-            end
-        end
-end
-
-return LayerManager
 

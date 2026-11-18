@@ -1,45 +1,34 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.layer.relationship
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.layer.relationship
 
-local PointFactory = require("org.allbinary.graphics.PointFactory")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local BasicArrayListUtil = require("org.allbinary.util.BasicArrayListUtil")
-local RelativeLayerRelationship = require("org.allbinary.layer.relationship.RelativeLayerRelationship")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass MiddleRelativeLayerRelationship (RelativeLayerRelationship)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local MiddleRelativeLayerRelationship = {}
-MiddleRelativeLayerRelationship.__index = MiddleRelativeLayerRelationship
-MiddleRelativeLayerRelationship.className = "MiddleRelativeLayerRelationship"
-setmetatable(MiddleRelativeLayerRelationship, {__index = RelativeLayerRelationship})
+    
+(defun MiddleRelativeLayerRelationship.jnew_1 (_layer)
+  (declare (ignorable _layer))
+  (let ((this (make-instance 'MiddleRelativeLayerRelationship)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
 
-function MiddleRelativeLayerRelationship.new(layer)
-    local self = setmetatable(RelativeLayerRelationship.new(layer, PointFactory.getInstance():createXY(layer:getHalfWidth(), layer:getHalfHeight()), BasicArrayListUtil.getInstance():getImmutableInstance()), MiddleRelativeLayerRelationship)
-        -- super(...) made self above
-    return self
-end
-
-return MiddleRelativeLayerRelationship
 

@@ -1,66 +1,56 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.math.vector
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.math.vector
 
-local BasicDecimal = require("org.allbinary.logic.math.BasicDecimal")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local PositionStrings = require("org.allbinary.math.PositionStrings")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass Vertex (JObject)
+  ((f_x :initform nil)
+   (f_y :initform nil)
+   (f_z :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun Vertex.jnew_0 ()
+  (let ((this (make-instance 'Vertex)))
+    (setf (slot-value this 'f_x) (BasicDecimal.jnew_1 0))
+    (setf (slot-value this 'f_y) (BasicDecimal.jnew_1 0))
+    (setf (slot-value this 'f_z) (BasicDecimal.jnew_1 0))
+  (let ()
+    (block jreturn nil))
+    this))
 
-local Vertex = {}
-Vertex.__index = Vertex
-Vertex.className = "Vertex"
+    
+(unless (fboundp 'jm_toString_0) (defgeneric jm_toString_0 (this)))
+(defmethod jm_toString_0 ((this Vertex))
+  (declare (ignorable this))
+  (let (_stringBuffer _positionStrings)
+  (declare (ignorable _stringBuffer _positionStrings))
+    (block jreturn
+        (setf _stringBuffer (StringMaker.jnew_0))
+        (setf _positionStrings (PositionStrings.jm_getInstance_0))
+        (jm_append_1 _stringBuffer (slot-value _positionStrings 'f_X_LABEL))
+        (jm_append_1 _stringBuffer (jm_toString_0 (slot-value this 'f_x)))
+        (jm_append_1 _stringBuffer (slot-value (CommonSeps.jm_getInstance_0) 'f_SPACE))
+        (jm_append_1 _stringBuffer (slot-value _positionStrings 'f_Y_LABEL))
+        (jm_append_1 _stringBuffer (jm_toString_0 (slot-value this 'f_y)))
+        (jm_append_1 _stringBuffer (slot-value (CommonSeps.jm_getInstance_0) 'f_SPACE))
+        (jm_append_1 _stringBuffer (slot-value _positionStrings 'f_Z_LABEL))
+        (jm_append_1 _stringBuffer (jm_toString_0 (slot-value this 'f_z)))
+        (return-from jreturn (jm_toString_0 _stringBuffer)))))
 
-function Vertex:_init_fields()
-    self.x = BasicDecimal.new(0)
-    self.y = BasicDecimal.new(0)
-    self.z = BasicDecimal.new(0)
-end
 
-
-function Vertex.new()
-    local self = setmetatable({}, Vertex)
-    self:_init_fields()
-    return self
-end
-
-
-function Vertex:toString()
-        local stringBuffer = StringMaker.new()
-        local positionStrings = PositionStrings.getInstance()
-        stringBuffer:append(positionStrings.X_LABEL)
-        stringBuffer:append(tostring(self.x))
-        stringBuffer:append(CommonSeps.getInstance().SPACE)
-        stringBuffer:append(positionStrings.Y_LABEL)
-        stringBuffer:append(tostring(self.y))
-        stringBuffer:append(CommonSeps.getInstance().SPACE)
-        stringBuffer:append(positionStrings.Z_LABEL)
-        stringBuffer:append(tostring(self.z))
-        return tostring(stringBuffer)
-end
-Vertex.__tostring = function(self) return self:toString() end
-
-return Vertex
 

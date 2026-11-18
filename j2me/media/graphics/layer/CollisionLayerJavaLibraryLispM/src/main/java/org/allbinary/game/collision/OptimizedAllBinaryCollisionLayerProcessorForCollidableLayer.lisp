@@ -1,76 +1,72 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.collision
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.collision
 
-local CollidableCompositeLayer = require("org.allbinary.game.layer.CollidableCompositeLayer")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local LayerManager = require("org.allbinary.layer.LayerManager")
-local LayerProcessor = require("org.allbinary.layer.LayerProcessor")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass OptimizedAllBinaryCollisionLayerProcessorForCollidableLayer (LayerProcessor)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun OptimizedAllBinaryCollisionLayerProcessorForCollidableLayer.jnew_0 ()
+  (let ((this (make-instance 'OptimizedAllBinaryCollisionLayerProcessorForCollidableLayer)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
-local OptimizedAllBinaryCollisionLayerProcessorForCollidableLayer = {}
-OptimizedAllBinaryCollisionLayerProcessorForCollidableLayer.__index = OptimizedAllBinaryCollisionLayerProcessorForCollidableLayer
-OptimizedAllBinaryCollisionLayerProcessorForCollidableLayer.className = "OptimizedAllBinaryCollisionLayerProcessorForCollidableLayer"
-setmetatable(OptimizedAllBinaryCollisionLayerProcessorForCollidableLayer, {__index = LayerProcessor})
+    
+(unless (fboundp 'jm_processAt_3) (defgeneric jm_processAt_3 (this p1 p2 p3)))
+(defmethod jm_processAt_3 ((this OptimizedAllBinaryCollisionLayerProcessorForCollidableLayer) _allBinaryLayerManager _layerInterface _startIndex)
+  (declare (ignorable this _allBinaryLayerManager _layerInterface _startIndex))
+  (let (_collidableInterfaceCompositeInterface _collidableBase _layerManager _size _collidableInterfaceCompositeInterface2 _collidableBase2 _index)
+  (declare (ignorable _collidableInterfaceCompositeInterface _collidableBase _layerManager _size _collidableInterfaceCompositeInterface2 _collidableBase2 _index))
+    (block jreturn
+        (setf _collidableInterfaceCompositeInterface _layerInterface)
+        (setf _collidableBase (jm_getCollidableInferface_0 _collidableInterfaceCompositeInterface))
+        (if (jm_isCollidable_1 _collidableBase _collidableInterfaceCompositeInterface)
+            (progn
+            (setf _layerManager (jm_getLayerManager_0 this))
+            (setf _size (jm_getSize_0 _layerManager))
+            (setf _collidableInterfaceCompositeInterface2 nil)
+            (setf _collidableBase2 nil)
+            (progn
+                (setf _index (JR.i32 (+ _startIndex 1)))
+                (block jbreak (loop while (< _index _size) do
+                    (block jcontinue
+                (setf _collidableInterfaceCompositeInterface2 (jm_getLayerAt_1 _layerManager _index))
+                (setf _collidableBase2 (jm_getCollidableInferface_0 _collidableInterfaceCompositeInterface2))
+                (if (and (jm_isCollidable_1 _collidableBase2 _collidableInterfaceCompositeInterface) (jm_isCollision_2 _collidableBase _collidableInterfaceCompositeInterface _collidableInterfaceCompositeInterface2))
+                    (progn
+                    (jm_collide_2 _collidableBase _collidableInterfaceCompositeInterface _collidableInterfaceCompositeInterface2)
+                    (jm_collide_2 _collidableBase2 _collidableInterfaceCompositeInterface2 _collidableInterfaceCompositeInterface))))
+                    (setf _index (JR.i32 (+ _index 1)))))))))))
+
+    
+(unless (fboundp 'jm_isProcessorLayer_1) (defgeneric jm_isProcessorLayer_1 (this p1)))
+(defmethod jm_isProcessorLayer_1 ((this OptimizedAllBinaryCollisionLayerProcessorForCollidableLayer) _layerInterface)
+  (declare (ignorable this _layerInterface))
+  (let ()
+    (block jreturn
+        (if (jm_implmentsCollidableInterface_0 _layerInterface)
+            (progn
+            (return-from jreturn t))
+            (progn
+            (return-from jreturn nil))))))
 
 
-function OptimizedAllBinaryCollisionLayerProcessorForCollidableLayer.new()
-    local self = setmetatable(LayerProcessor.new(OptimizedAllBinaryCollisionLayerManager.new()), OptimizedAllBinaryCollisionLayerProcessorForCollidableLayer)
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function OptimizedAllBinaryCollisionLayerProcessorForCollidableLayer:processAt(allBinaryLayerManager, layerInterface, startIndex)
-        local collidableInterfaceCompositeInterface = layerInterface
-        local collidableBase = collidableInterfaceCompositeInterface:getCollidableInferface()
-        if collidableBase:isCollidable(collidableInterfaceCompositeInterface) then
-            local layerManager = self:getLayerManager()
-            local size = layerManager:getSize()
-            local collidableInterfaceCompositeInterface2 = nil
-            local collidableBase2 = nil
-            for index = startIndex + 1, size - 1 do
-                collidableInterfaceCompositeInterface2 = layerManager:getLayerAt(index)
-                collidableBase2 = collidableInterfaceCompositeInterface2:getCollidableInferface()
-                if collidableBase2:isCollidable(collidableInterfaceCompositeInterface) and collidableBase:isCollision(collidableInterfaceCompositeInterface, collidableInterfaceCompositeInterface2) then
-                    collidableBase:collide(collidableInterfaceCompositeInterface, collidableInterfaceCompositeInterface2)
-                    collidableBase2:collide(collidableInterfaceCompositeInterface2, collidableInterfaceCompositeInterface)
-                end
-            end
-        end
-end
-
-
-function OptimizedAllBinaryCollisionLayerProcessorForCollidableLayer:isProcessorLayer(layerInterface)
-        if layerInterface:implmentsCollidableInterface() then
-            return true
-        else
-            return false
-        end
-end
-
-return OptimizedAllBinaryCollisionLayerProcessorForCollidableLayer
 

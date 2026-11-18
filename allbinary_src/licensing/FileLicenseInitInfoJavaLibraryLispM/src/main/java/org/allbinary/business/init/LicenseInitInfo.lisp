@@ -1,97 +1,109 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.init
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.business.init
 
-local DebugFactory = require("org.allbinary.debug.DebugFactory")
-local NoDebug = require("org.allbinary.debug.NoDebug")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass LicenseInitInfo (JObject)
+  ((f_id :initform nil)
+   (f_serverVector :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun LicenseInitInfo.jnew_0 ()
+  (let ((this (make-instance 'LicenseInitInfo)))
+    (setf (slot-value this 'f_id) (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING))
+    (setf (slot-value this 'f_serverVector) (BasicArrayListD.jnew_0))
+  (let ()
+    (block jreturn nil))
+    this))
 
-local LicenseInitInfo = {}
-LicenseInitInfo.__index = LicenseInitInfo
-LicenseInitInfo.className = "LicenseInitInfo"
+    
+(unless (fboundp 'jm_getLicenseId_0) (defgeneric jm_getLicenseId_0 (this)))
+(defmethod jm_getLicenseId_0 ((this LicenseInitInfo))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_id)))))
 
-function LicenseInitInfo:_init_fields()
-    self.id = StringUtil.getInstance().EMPTY_STRING
-    self.serverVector = BasicArrayListD.new()
-end
+    
+(unless (fboundp 'jm_getServer_1) (defgeneric jm_getServer_1 (this p1)))
+(defmethod jm_getServer_1 ((this LicenseInitInfo) _index)
+  (declare (ignorable this _index))
+  (let ()
+    (block jreturn
+        (return-from jreturn (aref (slot-value (slot-value this 'f_serverVector) 'f_objectArray) _index)))))
+
+    
+(unless (fboundp 'jm_getNumberOfServers_0) (defgeneric jm_getNumberOfServers_0 (this)))
+(defmethod jm_getNumberOfServers_0 ((this LicenseInitInfo))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_size_0 (slot-value this 'f_serverVector))))))
+
+    
+(unless (fboundp 'jm_setLicenseId_1) (defgeneric jm_setLicenseId_1 (this p1)))
+(defmethod jm_setLicenseId_1 ((this LicenseInitInfo) _value)
+  (declare (ignorable this _value))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_id) _value))))
+
+    
+(unless (fboundp 'jm_clearServers_0) (defgeneric jm_clearServers_0 (this)))
+(defmethod jm_clearServers_0 ((this LicenseInitInfo))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_serverVector) (BasicArrayListD.jnew_0)))))
+
+    
+(unless (fboundp 'jm_setServer_2) (defgeneric jm_setServer_2 (this p1 p2)))
+(defmethod jm_setServer_2 ((this LicenseInitInfo) _value _index)
+  (declare (ignorable this _value _index))
+  (let ()
+    (block jreturn
+        (jm_addAt_2 (slot-value this 'f_serverVector) _index _value))))
+
+    
+(unless (fboundp 'jm_addServer_1) (defgeneric jm_addServer_1 (this p1)))
+(defmethod jm_addServer_1 ((this LicenseInitInfo) _value)
+  (declare (ignorable this _value))
+  (let ()
+    (block jreturn
+        (jm_add_1 (slot-value this 'f_serverVector) _value))))
+
+    
+(unless (fboundp 'jm_getServerList_0) (defgeneric jm_getServerList_0 (this)))
+(defmethod jm_getServerList_0 ((this LicenseInitInfo))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_serverVector)))))
+
+    
+(unless (fboundp 'jm_setServerList_1) (defgeneric jm_setServerList_1 (this p1)))
+(defmethod jm_setServerList_1 ((this LicenseInitInfo) _servers)
+  (declare (ignorable this _servers))
+  (let ()
+    (block jreturn
+        (if (eq (DebugFactory.jm_getInstance_0) (NoDebug.jm_getInstance_0))
+            (progn
+            (setf (slot-value this 'f_serverVector) _servers))))))
 
 
-function LicenseInitInfo.new()
-    local self = setmetatable({}, LicenseInitInfo)
-    self:_init_fields()
-    return self
-end
-
-
-function LicenseInitInfo:getLicenseId()
-        return self.id
-end
-
-
-function LicenseInitInfo:getServer(index)
-        return self.serverVector.objectArray[index + 1]
-end
-
-
-function LicenseInitInfo:getNumberOfServers()
-        return self.serverVector:size()
-end
-
-
-function LicenseInitInfo:setLicenseId(value)
-        self.id = value
-end
-
-
-function LicenseInitInfo:clearServers()
-        self.serverVector = BasicArrayListD.new()
-end
-
-
-function LicenseInitInfo:setServer(value, index)
-        self.serverVector:addAt(index, value)
-end
-
-
-function LicenseInitInfo:addServer(value)
-        self.serverVector:add(value)
-end
-
-
-function LicenseInitInfo:getServerList()
-        return self.serverVector
-end
-
-
-function LicenseInitInfo:setServerList(servers)
-        if DebugFactory.getInstance() == NoDebug.getInstance() then
-            self.serverVector = servers
-        end
-end
-
-return LicenseInitInfo
 

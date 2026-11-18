@@ -1,60 +1,61 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.globals
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.globals
 
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass UrlGlobalsInterface (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun UrlGlobalsInterface.jnew_0 ()
+  (let ((this (make-instance 'UrlGlobalsInterface)))
+    this))
 
-local UrlGlobalsInterface = {}
-UrlGlobalsInterface.__index = UrlGlobalsInterface
-UrlGlobalsInterface.className = "UrlGlobalsInterface"
+    
+(unless (fboundp 'jm_getMainPath_0) (defgeneric jm_getMainPath_0 (this)))
+(defmethod jm_getMainPath_0 ((this UrlGlobalsInterface))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING)))))
 
-function UrlGlobalsInterface.new()
-    local self = setmetatable({}, UrlGlobalsInterface)
-    return self
-end
+    
+(unless (fboundp 'jm_getTestHtmlPath_0) (defgeneric jm_getTestHtmlPath_0 (this)))
+(defmethod jm_getTestHtmlPath_0 ((this UrlGlobalsInterface))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING)))))
+
+    
+(unless (fboundp 'jm_getWebappPath_0) (defgeneric jm_getWebappPath_0 (this)))
+(defmethod jm_getWebappPath_0 ((this UrlGlobalsInterface))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING)))))
+
+    
+(unless (fboundp 'jm_isTestingMode_0) (defgeneric jm_isTestingMode_0 (this)))
+(defmethod jm_isTestingMode_0 ((this UrlGlobalsInterface))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn nil))))
 
 
--- throws Exception
-function UrlGlobalsInterface:getMainPath()
-        return StringUtil.getInstance().EMPTY_STRING
-end
-
-
-function UrlGlobalsInterface:getTestHtmlPath()
-        return StringUtil.getInstance().EMPTY_STRING
-end
-
-
-function UrlGlobalsInterface:getWebappPath()
-        return StringUtil.getInstance().EMPTY_STRING
-end
-
-
-function UrlGlobalsInterface:isTestingMode()
-        return false
-end
-
-return UrlGlobalsInterface
 

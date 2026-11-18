@@ -1,50 +1,42 @@
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.displayable.canvas
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local BaseGameStatistics = require("org.allbinary.canvas.BaseGameStatistics")
-local GameStatisticsFactory = require("org.allbinary.canvas.GameStatisticsFactory")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+;J2MEForJ2ME
+(defclass NullDisplayable (Canvas)
+  ((f_baseGameStatistics :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar NullDisplayable.jcell_SINGLETON :jnone)
+(defun NullDisplayable.jstatic_SINGLETON ()
+  (when (eq NullDisplayable.jcell_SINGLETON :jnone) (setf NullDisplayable.jcell_SINGLETON (NullDisplayable.jnew_0)))
+  NullDisplayable.jcell_SINGLETON)
+(defun (setf NullDisplayable.jstatic_SINGLETON) (value) (setf NullDisplayable.jcell_SINGLETON value))
 
---J2MEForJ2ME
-local NullDisplayable = {}
-NullDisplayable.__index = NullDisplayable
-NullDisplayable.className = "NullDisplayable"
-setmetatable(NullDisplayable, {__index = Canvas})
+    
+(defun NullDisplayable.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (NullDisplayable.jstatic_SINGLETON)))))
 
-function NullDisplayable:_init_fields()
-    self.baseGameStatistics = GameStatisticsFactory.getInstance()
-end
+    
+(defun NullDisplayable.jnew_0 ()
+  (let ((this (make-instance 'NullDisplayable)))
+    (setf (slot-value this 'f_baseGameStatistics) (GameStatisticsFactory.jm_getInstance_0))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(unless (fboundp 'jm_paint_1) (defgeneric jm_paint_1 (this p1)))
+(defmethod jm_paint_1 ((this NullDisplayable) _graphics)
+  (declare (ignorable this _graphics))
+  (let ()
+    (block jreturn
+        (jm_nextRefresh_0 (slot-value this 'f_baseGameStatistics)))))
 
 
-function NullDisplayable.getInstance()
-        return NullDisplayable.SINGLETON
-end
-
-
-function NullDisplayable.new()
-    local self = setmetatable(Canvas.new(), NullDisplayable)
-    self:_init_fields()
-    return self
-end
-
-
-function NullDisplayable:paint(graphics)
-        self.baseGameStatistics:nextRefresh()
-end
-
-NullDisplayable.SINGLETON = NullDisplayable.new()
-
-return NullDisplayable
 

@@ -1,57 +1,54 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.midlet
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.midlet
 
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
-local BasicEventHandler = require("org.allbinary.logic.util.event.handler.BasicEventHandler")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass DemoGameMidletEventHandler (BasicEventHandler)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar DemoGameMidletEventHandler.jcell_gameKeyEventHandler :jnone)
+(defun DemoGameMidletEventHandler.jstatic_gameKeyEventHandler ()
+  (when (eq DemoGameMidletEventHandler.jcell_gameKeyEventHandler :jnone) (setf DemoGameMidletEventHandler.jcell_gameKeyEventHandler (DemoGameMidletEventHandler.jnew_0)))
+  DemoGameMidletEventHandler.jcell_gameKeyEventHandler)
+(defun (setf DemoGameMidletEventHandler.jstatic_gameKeyEventHandler) (value) (setf DemoGameMidletEventHandler.jcell_gameKeyEventHandler value))
 
-local DemoGameMidletEventHandler = {}
-DemoGameMidletEventHandler.__index = DemoGameMidletEventHandler
-DemoGameMidletEventHandler.className = "DemoGameMidletEventHandler"
-setmetatable(DemoGameMidletEventHandler, {__index = BasicEventHandler})
+    
+(defun DemoGameMidletEventHandler.jnew_0 ()
+  (let ((this (make-instance 'DemoGameMidletEventHandler)))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(defun DemoGameMidletEventHandler.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (DemoGameMidletEventHandler.jstatic_gameKeyEventHandler)))))
+
+    
+(unless (fboundp 'jm_process_2) (defgeneric jm_process_2 (this p1 p2)))
+(defmethod jm_process_2 ((this DemoGameMidletEventHandler) _eventObject _eventListenerInterface)
+  (declare (ignorable this _eventObject _eventListenerInterface))
+  (let (_demoGameMidletEventListener)
+  (declare (ignorable _demoGameMidletEventListener))
+    (block jreturn
+        (setf _demoGameMidletEventListener _eventListenerInterface)
+        (jm_onDemoGameMidletEvent_1 _demoGameMidletEventListener _eventObject))))
 
 
-function DemoGameMidletEventHandler.new()
-    local self = setmetatable(BasicEventHandler.new(), DemoGameMidletEventHandler)
-    return self
-end
-
-
-function DemoGameMidletEventHandler.getInstance()
-        return DemoGameMidletEventHandler.gameKeyEventHandler
-end
-
-
--- throws Exception
-function DemoGameMidletEventHandler:process(eventObject, eventListenerInterface)
-        local demoGameMidletEventListener = eventListenerInterface
-        demoGameMidletEventListener:onDemoGameMidletEvent(eventObject)
-end
-
-DemoGameMidletEventHandler.gameKeyEventHandler = DemoGameMidletEventHandler.new()
-
-return DemoGameMidletEventHandler
 

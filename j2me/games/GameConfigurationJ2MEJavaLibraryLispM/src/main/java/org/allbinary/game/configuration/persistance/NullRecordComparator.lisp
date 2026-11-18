@@ -1,46 +1,43 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.persistance
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2025 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.configuration.persistance
 
--- local RecordComparator = require("javax.microedition.rms.RecordComparator")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass NullRecordComparator (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar NullRecordComparator.jcell_NULL_RECORD_COMPARATOR :jnone)
+(defun NullRecordComparator.jstatic_NULL_RECORD_COMPARATOR ()
+  (when (eq NullRecordComparator.jcell_NULL_RECORD_COMPARATOR :jnone) (setf NullRecordComparator.jcell_NULL_RECORD_COMPARATOR (NullRecordComparator.jnew_0)))
+  NullRecordComparator.jcell_NULL_RECORD_COMPARATOR)
+(defun (setf NullRecordComparator.jstatic_NULL_RECORD_COMPARATOR) (value) (setf NullRecordComparator.jcell_NULL_RECORD_COMPARATOR value))
 
-local NullRecordComparator = {}
-NullRecordComparator.__index = NullRecordComparator
-NullRecordComparator.className = "NullRecordComparator"
+(defun NullRecordComparator.jnew_0 ()
+  (let ((this (make-instance 'NullRecordComparator)))
+    this))
 
-function NullRecordComparator.new()
-    local self = setmetatable({}, NullRecordComparator)
-    return self
-end
+    
+(unless (fboundp 'jm_compare_2) (defgeneric jm_compare_2 (this p1 p2)))
+(defmethod jm_compare_2 ((this NullRecordComparator) _rec1 _rec2)
+  (declare (ignorable this _rec1 _rec2))
+  (let ()
+    (block jreturn
+        (return-from jreturn 0))))
 
 
-function NullRecordComparator:compare(rec1, rec2)
-        return 0
-end
-
-NullRecordComparator.NULL_RECORD_COMPARATOR = NullRecordComparator.new()
-
-return NullRecordComparator
 

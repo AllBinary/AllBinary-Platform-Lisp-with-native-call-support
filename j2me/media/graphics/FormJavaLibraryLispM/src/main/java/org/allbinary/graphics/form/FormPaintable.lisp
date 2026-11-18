@@ -1,58 +1,51 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.form
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass FormPaintable (Paintable)
+  ((f_form :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun FormPaintable.jnew_1 (_form)
+  (declare (ignorable _form))
+  (let ((this (make-instance 'FormPaintable)))
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_form) _form)))
+    this))
 
-local FormPaintable = {}
-FormPaintable.__index = FormPaintable
-FormPaintable.className = "FormPaintable"
-setmetatable(FormPaintable, {__index = Paintable})
+    
+(unless (fboundp 'jm_paint_1) (defgeneric jm_paint_1 (this p1)))
+(defmethod jm_paint_1 ((this FormPaintable) _graphics)
+  (declare (ignorable this _graphics))
+  (let ()
+    (block jreturn
+        (jm_paint_1 (slot-value this 'f_form) _graphics))))
 
-function FormPaintable:_init_fields()
-    self.form = nil
-end
-
-
-function FormPaintable.new(form)
-    local self = setmetatable(Paintable.new(), FormPaintable)
-    self:_init_fields()
-        self.form = form
-    return self
-end
-
-
-function FormPaintable:paint(graphics)
-        self.form:paint(graphics)
-end
+    
+(unless (fboundp 'jm_getForm_0) (defgeneric jm_getForm_0 (this)))
+(defmethod jm_getForm_0 ((this FormPaintable))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_form)))))
 
 
-function FormPaintable:getForm()
-        return self.form
-end
-
-return FormPaintable
 

@@ -1,162 +1,164 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.feature
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.configuration.feature
 
-local GameFeatureEvent = require("org.allbinary.game.configuration.event.GameFeatureEvent")
-local GameFeatureEventHandler = require("org.allbinary.game.configuration.event.GameFeatureEventHandler")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local PreLogUtil = require("org.allbinary.logic.communication.log.PreLogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local GenericOperatingSystem = require("org.allbinary.logic.system.os.GenericOperatingSystem")
-local OperatingSystemFactory = require("org.allbinary.logic.system.os.OperatingSystemFactory")
-local CommonLabels = require("org.allbinary.string.CommonLabels")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass Features (JObject)
+  ((f_logUtil :initform nil)
+   (f_commonStrings :initform nil)
+   (f_list :initform nil)
+   (f_defaultList :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar Features.jcell_SINGLETON :jnone)
+(defun Features.jstatic_SINGLETON ()
+  (when (eq Features.jcell_SINGLETON :jnone) (setf Features.jcell_SINGLETON (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT)))
+  Features.jcell_SINGLETON)
+(defun (setf Features.jstatic_SINGLETON) (value) (setf Features.jcell_SINGLETON value))
 
-local Features = {}
-Features.__index = Features
-Features.className = "Features"
+    
+(defun Features.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (if (eq (Features.jstatic_SINGLETON) (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT))
+            (progn
+            (setf (Features.jstatic_SINGLETON) (Features.jnew_0))))
+        (return-from jreturn (Features.jstatic_SINGLETON)))))
 
-function Features:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.list = nil
-    self.defaultList = nil
-end
+    
+(defun Features.jnew_0 ()
+  (let ((this (make-instance 'Features)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_commonStrings) (CommonStrings.jm_getInstance_0))
+    
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_list) (BasicArrayListD.jnew_0))
+        (setf (slot-value this 'f_defaultList) (BasicArrayListD.jnew_0))
+        (jm_init_0 this)))
+    this))
+
+    
+(unless (fboundp 'jm_addDefault_1) (defgeneric jm_addDefault_1 (this p1)))
+(defmethod jm_addDefault_1 ((this Features) _gameFeature)
+  (declare (ignorable this _gameFeature))
+  (let ()
+    (block jreturn
+        (jm_add_1 this _gameFeature)
+        (if (not (jm_contains_1 (slot-value this 'f_defaultList) _gameFeature))
+            (progn
+            (jm_add_1 (slot-value this 'f_defaultList) _gameFeature))))))
+
+    
+(unless (fboundp 'jm_add_1) (defgeneric jm_add_1 (this p1)))
+(defmethod jm_add_1 ((this Features) _gameFeature)
+  (declare (ignorable this _gameFeature))
+  (let ()
+    (block jreturn
+        (if (not (jm_contains_1 (slot-value this 'f_list) _gameFeature))
+            (progn
+            (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 (jm_append_1 (jm_append_1 (StringMaker.jnew_0) (slot-value (CommonLabels.jm_getInstance_0) 'f_START_LABEL)) (jm_toString_0 _gameFeature))) this (slot-value (slot-value this 'f_commonStrings) 'f_ADD))
+            (jm_add_1 (slot-value this 'f_list) _gameFeature)
+            (jm_fireEvent_1 (GameFeatureEventHandler.jm_getInstance_0) (GameFeatureEvent.jnew_2 _gameFeature (jm_toString_0 _gameFeature))))))))
+
+    
+(unless (fboundp 'jm_removeDefault_1) (defgeneric jm_removeDefault_1 (this p1)))
+(defmethod jm_removeDefault_1 ((this Features) _gameFeature)
+  (declare (ignorable this _gameFeature))
+  (let ()
+    (block jreturn
+        (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 (jm_append_1 (jm_append_1 (StringMaker.jnew_0) (slot-value (CommonLabels.jm_getInstance_0) 'f_START_LABEL)) (jm_toString_0 _gameFeature))) this "removeDefault")
+        (jm_remove_1 this _gameFeature)
+        (jm_remove_1 (slot-value this 'f_defaultList) _gameFeature))))
+
+    
+(unless (fboundp 'jm_remove_1) (defgeneric jm_remove_1 (this p1)))
+(defmethod jm_remove_1 ((this Features) _gameFeature)
+  (declare (ignorable this _gameFeature))
+  (let ()
+    (block jreturn
+        (if (jm_contains_1 (slot-value this 'f_list) _gameFeature)
+            (progn
+            (jm_putF_3 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_START) this (slot-value (slot-value this 'f_commonStrings) 'f_REMOVE))
+            (jm_remove_1 (slot-value this 'f_list) _gameFeature)
+            (jm_fireEvent_1 (GameFeatureEventHandler.jm_getInstance_0) (GameFeatureEvent.jnew_2 _gameFeature (jm_toString_0 _gameFeature))))))))
+
+    
+(unless (fboundp 'jm_init_0) (defgeneric jm_init_0 (this)))
+(defmethod jm_init_0 ((this Features))
+  (declare (ignorable this))
+  (let (_gameFeatureFactory _inputFeatureFactory _sensorFeatureFactory _touchFeatureFactory _operatingSystemInterface)
+  (declare (ignorable _gameFeatureFactory _inputFeatureFactory _sensorFeatureFactory _touchFeatureFactory _operatingSystemInterface))
+    (block jreturn
+        (handler-case (progn
+            (setf _gameFeatureFactory (GameFeatureFactory.jm_getInstance_0))
+            (setf _inputFeatureFactory (InputFeatureFactory.jm_getInstance_0))
+            (setf _sensorFeatureFactory (SensorFeatureFactory.jm_getInstance_0))
+            (setf _touchFeatureFactory (TouchFeatureFactory.jm_getInstance_0))
+            (jm_addDefault_1 this (slot-value _gameFeatureFactory 'f_ARTIFICIAL_INTELLEGENCE_PROCESSOR))
+            (jm_addDefault_1 this (slot-value _gameFeatureFactory 'f_COLLIDABLE_INTERFACE_LAYER_PROCESSOR))
+            (jm_addDefault_1 this (slot-value _gameFeatureFactory 'f_GAME_INPUT_LAYER_PROCESSOR))
+            (jm_addDefault_1 this (slot-value _gameFeatureFactory 'f_TICKABLE_LAYER_PROCESSOR))
+            (jm_addDefault_1 this (slot-value _inputFeatureFactory 'f_MULTI_KEY_PRESS))
+            (jm_addDefault_1 this (slot-value _inputFeatureFactory 'f_REMOVE_DUPLICATE_KEY_PRESSES))
+            (jm_addDefault_1 this (slot-value _gameFeatureFactory 'f_SCREEN_SHAKE))
+            (jm_addDefault_1 this (slot-value _gameFeatureFactory 'f_POST_IMAGE_LOADING_MODIFICATION))
+            (setf _operatingSystemInterface (jm_getOperatingSystemInstance_0 (OperatingSystemFactory.jm_getInstance_0)))
+            (if (jm_isOverScan_0 _operatingSystemInterface)
+                (progn
+                (jm_addDefault_1 this (slot-value _sensorFeatureFactory 'f_NO_ORIENTATION))
+                (jm_addDefault_1 this (slot-value _touchFeatureFactory 'f_HIDE_SCREEN_BUTTONS)))
+                (progn
+                (jm_addDefault_1 this (slot-value _sensorFeatureFactory 'f_ORIENTATION_SENSORS))
+                (jm_addDefault_1 this (slot-value _touchFeatureFactory 'f_AUTO_HIDE_SHOW_SCREEN_BUTTONS))))
+            (jm_addDefault_1 this (slot-value _touchFeatureFactory 'f_TOUCH_ENABLED))
+            (jm_addDefault_1 this (slot-value (MainFeatureFactory.jm_getInstance_0) 'f_FULL_SCREEN))
+            (jm_addDefault_1 this (slot-value (MainFeatureFactory.jm_getInstance_0) 'f_LOAD_ONDEMAND)))
+            (error (_e) (declare (ignorable _e))
+            (PreLogUtil.jm_putOE_4 (slot-value (slot-value this 'f_commonStrings) 'f_EXCEPTION) this (slot-value (slot-value this 'f_commonStrings) 'f_INIT) _e))))))
+
+    
+(unless (fboundp 'jm_isDefault_1) (defgeneric jm_isDefault_1 (this p1)))
+(defmethod jm_isDefault_1 ((this Features) _gameFeature)
+  (declare (ignorable this _gameFeature))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_contains_1 (slot-value this 'f_defaultList) _gameFeature)))))
+
+    
+(unless (fboundp 'jm_isFeature_1) (defgeneric jm_isFeature_1 (this p1)))
+(defmethod jm_isFeature_1 ((this Features) _gameFeature)
+  (declare (ignorable this _gameFeature))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_contains_1 (slot-value this 'f_list) _gameFeature)))))
+
+    
+(unless (fboundp 'jm_toggle_1) (defgeneric jm_toggle_1 (this p1)))
+(defmethod jm_toggle_1 ((this Features) _gameFeature)
+  (declare (ignorable this _gameFeature))
+  (let ()
+    (block jreturn
+        (if (jm_isFeature_1 this _gameFeature)
+            (progn
+            (jm_remove_1 this _gameFeature))
+            (progn
+            (jm_add_1 this _gameFeature))))))
 
 
-function Features.getInstance()
-        if Features.SINGLETON == NullUtil.getInstance().NULL_OBJECT then
-            Features.SINGLETON = Features.new()
-        end
-        return Features.SINGLETON
-end
-
-
-function Features.new()
-    local self = setmetatable({}, Features)
-    self:_init_fields()
-        self.list = BasicArrayListD.new()
-        self.defaultList = BasicArrayListD.new()
-        self:init()
-    return self
-end
-
-
--- throws Exception
-function Features:addDefault(gameFeature)
-        self:add(gameFeature)
-        if not self.defaultList:contains(gameFeature) then
-            self.defaultList:add(gameFeature)
-        end
-end
-
-
--- throws Exception
-function Features:add(gameFeature)
-        if not self.list:contains(gameFeature) then
-            self.logUtil:putF(tostring(StringMaker.new():append(CommonLabels.getInstance().START_LABEL):append(tostring(gameFeature))), self, self.commonStrings.ADD)
-            self.list:add(gameFeature)
-            GameFeatureEventHandler.getInstance():fireEvent(GameFeatureEvent.new(gameFeature, tostring(gameFeature)))
-        end
-end
-
-
--- throws Exception
-function Features:removeDefault(gameFeature)
-        self.logUtil:putF(tostring(StringMaker.new():append(CommonLabels.getInstance().START_LABEL):append(tostring(gameFeature))), self, "removeDefault")
-        self:remove(gameFeature)
-        self.defaultList:remove(gameFeature)
-end
-
-
--- throws Exception
-function Features:remove(gameFeature)
-        if self.list:contains(gameFeature) then
-            self.logUtil:putF(self.commonStrings.START, self, self.commonStrings.REMOVE)
-            self.list:remove(gameFeature)
-            GameFeatureEventHandler.getInstance():fireEvent(GameFeatureEvent.new(gameFeature, tostring(gameFeature)))
-        end
-end
-
-
-function Features:init()
-        local try_ok, try_error = pcall(function()
-            local gameFeatureFactory = GameFeatureFactory.getInstance()
-            local inputFeatureFactory = InputFeatureFactory.getInstance()
-            local sensorFeatureFactory = SensorFeatureFactory.getInstance()
-            local touchFeatureFactory = TouchFeatureFactory.getInstance()
-            self:addDefault(gameFeatureFactory.ARTIFICIAL_INTELLEGENCE_PROCESSOR)
-            self:addDefault(gameFeatureFactory.COLLIDABLE_INTERFACE_LAYER_PROCESSOR)
-            self:addDefault(gameFeatureFactory.GAME_INPUT_LAYER_PROCESSOR)
-            self:addDefault(gameFeatureFactory.TICKABLE_LAYER_PROCESSOR)
-            self:addDefault(inputFeatureFactory.MULTI_KEY_PRESS)
-            self:addDefault(inputFeatureFactory.REMOVE_DUPLICATE_KEY_PRESSES)
-            self:addDefault(gameFeatureFactory.SCREEN_SHAKE)
-            self:addDefault(gameFeatureFactory.POST_IMAGE_LOADING_MODIFICATION)
-            local operatingSystemInterface = OperatingSystemFactory.getInstance():getOperatingSystemInstance()
-            if operatingSystemInterface:isOverScan() then
-                self:addDefault(sensorFeatureFactory.NO_ORIENTATION)
-                self:addDefault(touchFeatureFactory.HIDE_SCREEN_BUTTONS)
-            else
-                self:addDefault(sensorFeatureFactory.ORIENTATION_SENSORS)
-                self:addDefault(touchFeatureFactory.AUTO_HIDE_SHOW_SCREEN_BUTTONS)
-            end
-            self:addDefault(touchFeatureFactory.TOUCH_ENABLED)
-            self:addDefault(MainFeatureFactory.getInstance().FULL_SCREEN)
-            self:addDefault(MainFeatureFactory.getInstance().LOAD_ONDEMAND)
-        end)
-        if not try_ok then
-            local e = try_error
-            PreLogUtil.putOE(self.commonStrings.EXCEPTION, self, self.commonStrings.INIT, e)
-        end
-end
-
-
-function Features:isDefault(gameFeature)
-        return self.defaultList:contains(gameFeature)
-end
-
-
-function Features:isFeature(gameFeature)
-        return self.list:contains(gameFeature)
-end
-
-
--- throws Exception
-function Features:toggle(gameFeature)
-        if self:isFeature(gameFeature) then
-            self:remove(gameFeature)
-        else
-            self:add(gameFeature)
-        end
-end
-
-Features.SINGLETON = NullUtil.getInstance().NULL_OBJECT
-
-return Features
 

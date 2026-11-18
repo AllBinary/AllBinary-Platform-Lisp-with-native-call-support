@@ -1,88 +1,82 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.caption
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation.caption
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Animation = require("org.allbinary.animation.Animation")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local NullAnimationFactory = require("org.allbinary.animation.NullAnimationFactory")
-local TextAnimation = require("org.allbinary.animation.text.TextAnimation")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local GameTickTimeDelayHelperFactory = require("org.allbinary.time.GameTickTimeDelayHelperFactory")
-local TimeDelayHelper = require("org.allbinary.time.TimeDelayHelper")
-local CaptionAnimationHelperBase = require("org.allbinary.animation.caption.CaptionAnimationHelperBase")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass CaptionAnimationHelper (CaptionAnimationHelperBase)
+  ((f_timeHelper :initform nil)
+   (f_textAnimation :initform nil)
+   (f_captionAnimation :initform nil)
+   (f_animation :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun CaptionAnimationHelper.jnew_5 (_captionAnimation _captionDx _captionDy _dx _dy)
+  (declare (ignorable _captionAnimation _captionDx _captionDy _dx _dy))
+  (let ((this (make-instance 'CaptionAnimationHelper)))
+    (setf (slot-value this 'f_timeHelper) (TimeDelayHelper.jnew_1 620))
+    (setf (slot-value this 'f_textAnimation) (TextAnimation.jnew_2 (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (AnimationBehavior.jm_getInstance_0)))
+    
+    (setf (slot-value this 'f_animation) (jm_getInstance_1 (NullAnimationFactory.jm_getFactoryInstance_0) 0))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_captionAnimation) (CaptionAnimation.jnew_6 _captionAnimation (slot-value this 'f_textAnimation) _captionDx _captionDy _dx _dy))))
+    this))
 
-local CaptionAnimationHelper = {}
-CaptionAnimationHelper.__index = CaptionAnimationHelper
-CaptionAnimationHelper.className = "CaptionAnimationHelper"
-setmetatable(CaptionAnimationHelper, {__index = CaptionAnimationHelperBase})
+    
+(unless (fboundp 'jm_isShowing_0) (defgeneric jm_isShowing_0 (this)))
+(defmethod jm_isShowing_0 ((this CaptionAnimationHelper))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (if (eq (slot-value this 'f_animation) (slot-value this 'f_captionAnimation))
+            (progn
+            (return-from jreturn t))
+            (progn
+            (return-from jreturn nil))))))
 
-function CaptionAnimationHelper:_init_fields()
-    self.timeHelper = TimeDelayHelper.new(620)
-    self.textAnimation = TextAnimation.new(StringUtil.getInstance().EMPTY_STRING, AnimationBehavior.getInstance())
-    self.captionAnimation = nil
-    self.animation = NullAnimationFactory.getFactoryInstance():getInstance(0)
-end
+    
+(unless (fboundp 'jm_tick_0) (defgeneric jm_tick_0 (this)))
+(defmethod jm_tick_0 ((this CaptionAnimationHelper))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (if (jm_isTime_1 (slot-value this 'f_timeHelper) (slot-value (GameTickTimeDelayHelperFactory.jm_getInstance_0) 'f_startTime))
+            (progn
+            (setf (slot-value this 'f_animation) (jm_getInstance_1 (NullAnimationFactory.jm_getFactoryInstance_0) 0)))))))
 
+    
+(unless (fboundp 'jm_update_2) (defgeneric jm_update_2 (this p1 p2)))
+(defmethod jm_update_2 ((this CaptionAnimationHelper) _message _basicColor)
+  (declare (ignorable this _message _basicColor))
+  (let ()
+    (block jreturn
+        (jm_setBasicColorP_1 (slot-value this 'f_textAnimation) _basicColor)
+        (jm_setText_1 (slot-value this 'f_textAnimation) _message)
+        (setf (slot-value this 'f_animation) (slot-value this 'f_captionAnimation))
+        (jm_setStartTimeTNT_0 (slot-value this 'f_timeHelper)))))
 
-function CaptionAnimationHelper.new(captionAnimation, captionDx, captionDy, dx, dy)
-    local self = setmetatable(CaptionAnimationHelperBase.new(), CaptionAnimationHelper)
-    self:_init_fields()
-        self.captionAnimation = CaptionAnimation.new(captionAnimation, self.textAnimation, captionDx, captionDy, dx, dy)
-    return self
-end
-
-
-function CaptionAnimationHelper:isShowing()
-        if self.animation == self.captionAnimation then
-            return true
-        else
-            return false
-        end
-end
-
-
-function CaptionAnimationHelper:tick()
-        if self.timeHelper:isTime(GameTickTimeDelayHelperFactory.getInstance().startTime) then
-            self.animation = NullAnimationFactory.getFactoryInstance():getInstance(0)
-        end
-end
-
-
-function CaptionAnimationHelper:update(message, basicColor)
-        self.textAnimation:setBasicColorP(basicColor)
-        self.textAnimation:setText(message)
-        self.animation = self.captionAnimation
-        self.timeHelper:setStartTimeTNT()
-end
+    
+(unless (fboundp 'jm_paintXY_3) (defgeneric jm_paintXY_3 (this p1 p2 p3)))
+(defmethod jm_paintXY_3 ((this CaptionAnimationHelper) _graphics _x _y)
+  (declare (ignorable this _graphics _x _y))
+  (let ()
+    (block jreturn
+        (jm_paintXY_3 (slot-value this 'f_animation) _graphics _x _y))))
 
 
-function CaptionAnimationHelper:paintXY(graphics, x, y)
-        self.animation:paintXY(graphics, x, y)
-end
-
-return CaptionAnimationHelper
 

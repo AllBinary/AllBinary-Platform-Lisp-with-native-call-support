@@ -38,8 +38,8 @@
   (let (_size _index)
   (declare (ignorable _size _index))
     (block jreturn
-        (JR.className (slot-value this 'f_circularIndexUtil))
-        (setf _size (JR.className (slot-value this 'f_circularIndexUtil)))
+        (jm_setIndex_1 (slot-value this 'f_circularIndexUtil) 0)
+        (setf _size (jm_getSize_0 (slot-value this 'f_circularIndexUtil)))
         (progn
             (setf _index 0)
             (block jbreak (loop while (< _index _size) do

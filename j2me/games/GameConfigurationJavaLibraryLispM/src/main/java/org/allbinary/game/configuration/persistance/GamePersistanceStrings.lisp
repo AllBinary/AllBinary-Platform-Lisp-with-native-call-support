@@ -1,53 +1,48 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.persistance
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2025 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.configuration.persistance
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass GamePersistanceStrings (JObject)
+  ((f_SAVED_GAME_RECORD_ID :initform nil)
+   (f_SAVED_GAME_CONFIGURATION_RECORD_ID :initform nil)
+   (f_DEFAULT_INPUT_MAPPING_RECORD_ID :initform nil)
+   (f_SAVED_INPUT_CONFIGURATION_RECORD_ID :initform nil)))
+
+(defvar GamePersistanceStrings.jcell_instance :jnone)
+(defun GamePersistanceStrings.jstatic_instance ()
+  (when (eq GamePersistanceStrings.jcell_instance :jnone) (setf GamePersistanceStrings.jcell_instance (GamePersistanceStrings.jnew_0)))
+  GamePersistanceStrings.jcell_instance)
+(defun (setf GamePersistanceStrings.jstatic_instance) (value) (setf GamePersistanceStrings.jcell_instance value))
+
+(defun GamePersistanceStrings.jnew_0 ()
+  (let ((this (make-instance 'GamePersistanceStrings)))
+    (setf (slot-value this 'f_SAVED_GAME_RECORD_ID) "_SG")
+    (setf (slot-value this 'f_SAVED_GAME_CONFIGURATION_RECORD_ID) "_SGC")
+    (setf (slot-value this 'f_DEFAULT_INPUT_MAPPING_RECORD_ID) "_DIM")
+    (setf (slot-value this 'f_SAVED_INPUT_CONFIGURATION_RECORD_ID) "_SIC")
+    this))
+
+    
+(defun GamePersistanceStrings.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (GamePersistanceStrings.jstatic_instance)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local GamePersistanceStrings = {}
-GamePersistanceStrings.__index = GamePersistanceStrings
-GamePersistanceStrings.className = "GamePersistanceStrings"
-
-function GamePersistanceStrings:_init_fields()
-    self.SAVED_GAME_RECORD_ID = "_SG"
-    self.SAVED_GAME_CONFIGURATION_RECORD_ID = "_SGC"
-    self.DEFAULT_INPUT_MAPPING_RECORD_ID = "_DIM"
-    self.SAVED_INPUT_CONFIGURATION_RECORD_ID = "_SIC"
-end
-
-function GamePersistanceStrings.new()
-    local self = setmetatable({}, GamePersistanceStrings)
-    self:_init_fields()
-    return self
-end
-
-
-function GamePersistanceStrings.getInstance()
-        return GamePersistanceStrings.instance
-end
-
-GamePersistanceStrings.instance = GamePersistanceStrings.new()
-
-return GamePersistanceStrings
 

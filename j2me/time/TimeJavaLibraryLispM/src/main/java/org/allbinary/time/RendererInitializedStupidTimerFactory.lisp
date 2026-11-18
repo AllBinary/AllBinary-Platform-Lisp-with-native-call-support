@@ -25,6 +25,7 @@
 (defun RendererInitializedStupidTimerFactory.jstatic_instance ()
   (when (eq RendererInitializedStupidTimerFactory.jcell_instance :jnone) (setf RendererInitializedStupidTimerFactory.jcell_instance (StupidTimer.jnew_0)))
   RendererInitializedStupidTimerFactory.jcell_instance)
+(defun (setf RendererInitializedStupidTimerFactory.jstatic_instance) (value) (setf RendererInitializedStupidTimerFactory.jcell_instance value))
 
 (defun RendererInitializedStupidTimerFactory.jnew_0 ()
   (let ((this (make-instance 'RendererInitializedStupidTimerFactory)))

@@ -1,47 +1,41 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.resource
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.resource
 
-local Rectangle = require("org.allbinary.graphics.Rectangle")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass RectangleResourceFactoryInterface (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun RectangleResourceFactoryInterface.jnew_0 ()
+  (let ((this (make-instance 'RectangleResourceFactoryInterface)))
+    this))
 
--- Java interface
-local RectangleResourceFactoryInterface = {}
-RectangleResourceFactoryInterface.__index = RectangleResourceFactoryInterface
-RectangleResourceFactoryInterface.className = "RectangleResourceFactoryInterface"
+    
+(unless (fboundp 'jm_getRectangle_1) (defgeneric jm_getRectangle_1 (this p1)))
+(defmethod jm_getRectangle_1 ((this RectangleResourceFactoryInterface) _resource)
+  (declare (ignorable this _resource))
+  (error (JR.newException "AbstractMethodError" "getRectangle")))
 
-
--- throws Exception
-function RectangleResourceFactoryInterface:getRectangle(resource)
-    error("abstract method getRectangle")
-end
+    
+(unless (fboundp 'jm_getRectangleArrayOfArrays_1) (defgeneric jm_getRectangleArrayOfArrays_1 (this p1)))
+(defmethod jm_getRectangleArrayOfArrays_1 ((this RectangleResourceFactoryInterface) _resource)
+  (declare (ignorable this _resource))
+  (error (JR.newException "AbstractMethodError" "getRectangleArrayOfArrays")))
 
 
--- throws Exception
-function RectangleResourceFactoryInterface:getRectangleArrayOfArrays(resource)
-    error("abstract method getRectangleArrayOfArrays")
-end
-
-return RectangleResourceFactoryInterface
 

@@ -1,76 +1,76 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.draw
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.draw
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local CharArrayFactory = require("org.allbinary.logic.java.character.CharArrayFactory")
-local MyFontProcessor = require("org.allbinary.graphics.font.MyFontProcessor")
-local UpdateMyFontInterface = require("org.allbinary.graphics.font.UpdateMyFontInterface")
-local UpdateMyFontProcessor = require("org.allbinary.graphics.font.UpdateMyFontProcessor")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass KeyValueDrawCharArray (JObject)
+  ((f_myFontProcessor :initform nil)
+   (f_LABEL :initform nil)
+   (f_labelX :initform 0)
+   (f_valueX :initform 0)
+   (f_value :initform nil)
+   (f_len :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun KeyValueDrawCharArray.jnew_2 (_label _x)
+  (declare (ignorable _label _x))
+  (let ((this (make-instance 'KeyValueDrawCharArray)))
+    (setf (slot-value this 'f_myFontProcessor) (UpdateMyFontProcessor.jnew_1 this))
+    
+    
+    
+    (setf (slot-value this 'f_value) (jm_getZeroCharArray_0 (CharArrayFactory.jm_getInstance_0)))
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_LABEL) _label)
+        (setf (slot-value this 'f_labelX) _x)))
+    this))
 
-local KeyValueDrawCharArray = {}
-KeyValueDrawCharArray.__index = KeyValueDrawCharArray
-KeyValueDrawCharArray.className = "KeyValueDrawCharArray"
+    
+(unless (fboundp 'jm_updateMeasurement_1) (defgeneric jm_updateMeasurement_1 (this p1)))
+(defmethod jm_updateMeasurement_1 ((this KeyValueDrawCharArray) _graphics)
+  (declare (ignorable this _graphics))
+  (let (_labelWidth)
+  (declare (ignorable _labelWidth))
+    (block jreturn
+        (setf _labelWidth (JR.i32 (- (jm_stringWidth_1 (jm_getFont_0 _graphics) (slot-value this 'f_LABEL)) (length (slot-value this 'f_LABEL)))))
+        (setf (slot-value this 'f_valueX) (JR.i32 (+ _labelWidth (slot-value this 'f_labelX))))
+        (setf (slot-value this 'f_myFontProcessor) (MyFontProcessor.jm_getInstance_0)))))
 
-function KeyValueDrawCharArray:_init_fields()
-    self.myFontProcessor = UpdateMyFontProcessor.new(self)
-    self.LABEL = nil
-    self.labelX = nil
-    self.valueX = 0
-    self.value = CharArrayFactory.getInstance():getZeroCharArray()
-    self.len = 0
-end
+    
+(unless (fboundp 'jm_paint_2) (defgeneric jm_paint_2 (this p1 p2)))
+(defmethod jm_paint_2 ((this KeyValueDrawCharArray) _graphics _y)
+  (declare (ignorable this _graphics _y))
+  (let ()
+    (block jreturn
+        (jm_process_1 (slot-value this 'f_myFontProcessor) _graphics)
+        (jm_drawString_4 _graphics (slot-value this 'f_LABEL) (slot-value this 'f_labelX) _y 0)
+        (jm_drawChars_6 _graphics (slot-value this 'f_value) 0 (slot-value this 'f_len) (slot-value this 'f_valueX) _y 0))))
 
-
-function KeyValueDrawCharArray.new(label, x)
-    local self = setmetatable({}, KeyValueDrawCharArray)
-    self:_init_fields()
-        self.LABEL = label
-        self.labelX = x
-    return self
-end
-
-
-function KeyValueDrawCharArray:updateMeasurement(graphics)
-        local labelWidth = graphics:getFont():stringWidth(self.LABEL) - #self.LABEL
-        self.valueX = labelWidth + self.labelX
-        self.myFontProcessor = MyFontProcessor.getInstance()
-end
-
-
-function KeyValueDrawCharArray:paint(graphics, y)
-        self.myFontProcessor:process(graphics)
-        graphics:drawString(self.LABEL, self.labelX, y, 0)
-        graphics:drawChars(self.value, 0, self.len, self.valueX, y, 0)
-end
+    
+(unless (fboundp 'jm_update_2) (defgeneric jm_update_2 (this p1 p2)))
+(defmethod jm_update_2 ((this KeyValueDrawCharArray) _value _len)
+  (declare (ignorable this _value _len))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_value) _value)
+        (setf (slot-value this 'f_len) _len))))
 
 
-function KeyValueDrawCharArray:update(value, len)
-        self.value = value
-        self.len = len
-end
-
-return KeyValueDrawCharArray
 

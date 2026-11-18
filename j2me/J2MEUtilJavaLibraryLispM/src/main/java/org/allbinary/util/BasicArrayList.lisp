@@ -16,6 +16,7 @@
 (defun BasicArrayList.jstatic_SIZE ()
   (when (eq BasicArrayList.jcell_SIZE :jnone) (setf BasicArrayList.jcell_SIZE ", Size: "))
   BasicArrayList.jcell_SIZE)
+(defun (setf BasicArrayList.jstatic_SIZE) (value) (setf BasicArrayList.jcell_SIZE value))
 
     
 (defun BasicArrayList.jnew_1 (_objectArray)

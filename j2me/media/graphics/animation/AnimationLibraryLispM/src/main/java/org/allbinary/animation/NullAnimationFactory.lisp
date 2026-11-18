@@ -1,87 +1,76 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local ScaleProperties = require("org.allbinary.media.ScaleProperties")
-local AnimationInterfaceFactoryInterface = require("org.allbinary.animation.AnimationInterfaceFactoryInterface")
-local ProceduralAnimationInterfaceFactoryInterface = require("org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(defclass NullAnimationFactory (JObject)
+  ((f_NULL_ANIMATION :initform nil)
+   (f_EMPTY_ARRAY :initform nil)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defvar NullAnimationFactory.jcell_NULL_NOT_FOR_USE_ANIMATION_FACTORY :jnone)
+(defun NullAnimationFactory.jstatic_NULL_NOT_FOR_USE_ANIMATION_FACTORY ()
+  (when (eq NullAnimationFactory.jcell_NULL_NOT_FOR_USE_ANIMATION_FACTORY :jnone) (setf NullAnimationFactory.jcell_NULL_NOT_FOR_USE_ANIMATION_FACTORY (NullAnimationFactory.jnew_0)))
+  NullAnimationFactory.jcell_NULL_NOT_FOR_USE_ANIMATION_FACTORY)
+(defun (setf NullAnimationFactory.jstatic_NULL_NOT_FOR_USE_ANIMATION_FACTORY) (value) (setf NullAnimationFactory.jcell_NULL_NOT_FOR_USE_ANIMATION_FACTORY value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar NullAnimationFactory.jcell_NULL_ANIMATION_FACTORY :jnone)
+(defun NullAnimationFactory.jstatic_NULL_ANIMATION_FACTORY ()
+  (when (eq NullAnimationFactory.jcell_NULL_ANIMATION_FACTORY :jnone) (setf NullAnimationFactory.jcell_NULL_ANIMATION_FACTORY (NullAnimationFactory.jnew_0)))
+  NullAnimationFactory.jcell_NULL_ANIMATION_FACTORY)
+(defun (setf NullAnimationFactory.jstatic_NULL_ANIMATION_FACTORY) (value) (setf NullAnimationFactory.jcell_NULL_ANIMATION_FACTORY value))
 
-local NullAnimationFactory = {}
-NullAnimationFactory.__index = NullAnimationFactory
-NullAnimationFactory.className = "NullAnimationFactory"
+    
+(defun NullAnimationFactory.jnew_0 ()
+  (let ((this (make-instance 'NullAnimationFactory)))
+    (setf (slot-value this 'f_NULL_ANIMATION) (Animation.jnew_0))
+    (setf (slot-value this 'f_EMPTY_ARRAY) (JR.newArray nil 0))
+  (let ()
+    (block jreturn nil))
+    this))
 
-function NullAnimationFactory:_init_fields()
-    self.NULL_ANIMATION = (function()
-        local o = Animation.new and Animation.new() or setmetatable({}, {__index = Animation})
-        
+    
+(defun NullAnimationFactory.jm_getFactoryInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (NullAnimationFactory.jstatic_NULL_ANIMATION_FACTORY)))))
 
-        function o:paintXY(graphics, x, y)
-        end
-        return o
-    end)()
-    self.EMPTY_ARRAY = java_new_array(nil, 0)
-end
+    
+(unless (fboundp 'jm_getInstance_1) (defgeneric jm_getInstance_1 (this p1)))
+(defmethod jm_getInstance_1 ((this NullAnimationFactory) _instanceId)
+  (declare (ignorable this _instanceId))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_NULL_ANIMATION)))))
 
+    
+(unless (fboundp 'jm_getInstanceAnimation_1) (defgeneric jm_getInstanceAnimation_1 (this p1)))
+(defmethod jm_getInstanceAnimation_1 ((this NullAnimationFactory) _animationInterface)
+  (declare (ignorable this _animationInterface))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_NULL_ANIMATION)))))
 
-function NullAnimationFactory.new()
-    local self = setmetatable({}, NullAnimationFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function NullAnimationFactory.getFactoryInstance()
-        return NullAnimationFactory.NULL_ANIMATION_FACTORY
-end
-
-
-function NullAnimationFactory:getInstance(instanceId)
-        return self.NULL_ANIMATION
-end
-
-
--- throws Exception
-function NullAnimationFactory:getInstanceAnimation(animationInterface)
-        return self.NULL_ANIMATION
-end
+    
+(unless (fboundp 'jm_setInitialScale_1) (defgeneric jm_setInitialScale_1 (this p1)))
+(defmethod jm_setInitialScale_1 ((this NullAnimationFactory) _scaleProperties)
+  (declare (ignorable this _scaleProperties))
+  (let ()
+    (block jreturn nil)))
 
 
-function NullAnimationFactory:setInitialScale(scaleProperties)
-end
-
-NullAnimationFactory.NULL_NOT_FOR_USE_ANIMATION_FACTORY = NullAnimationFactory.new()
-NullAnimationFactory.NULL_ANIMATION_FACTORY = NullAnimationFactory.new()
-
-return NullAnimationFactory
 

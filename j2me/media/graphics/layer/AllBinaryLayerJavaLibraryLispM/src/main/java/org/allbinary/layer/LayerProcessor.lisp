@@ -1,88 +1,77 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.layer
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.layer
 
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local LayerProcessorInterface = require("org.allbinary.layer.LayerProcessorInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(defclass LayerProcessor (JObject)
+  ((f_commonStrings :initform nil)
+   (f_layerManager :initform nil)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(defun LayerProcessor.jnew_1 (_layerManager)
+  (declare (ignorable _layerManager))
+  (let ((this (make-instance 'LayerProcessor)))
+    (setf (slot-value this 'f_commonStrings) (CommonStrings.jm_getInstance_0))
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_layerManager) _layerManager)))
+    this))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(unless (fboundp 'jm_processAt_3) (defgeneric jm_processAt_3 (this p1 p2 p3)))
+(defmethod jm_processAt_3 ((this LayerProcessor) _allBinaryLayerManager _layerInterface _index)
+  (declare (ignorable this _allBinaryLayerManager _layerInterface _index))
+  (let ()
+    (block jreturn
+        (error (JR.newException "Exception" (slot-value (slot-value this 'f_commonStrings) 'f_NOT_IMPLEMENTED))))))
 
-local LayerProcessor = {}
-LayerProcessor.__index = LayerProcessor
-LayerProcessor.className = "LayerProcessor"
+    
+(unless (fboundp 'jm_isProcessorLayer_1) (defgeneric jm_isProcessorLayer_1 (this p1)))
+(defmethod jm_isProcessorLayer_1 ((this LayerProcessor) _layerInterface)
+  (declare (ignorable this _layerInterface))
+  (let ()
+    (block jreturn
+        (error (JR.newException "Exception" (slot-value (slot-value this 'f_commonStrings) 'f_NOT_IMPLEMENTED))))))
 
-function LayerProcessor:_init_fields()
-    self.commonStrings = CommonStrings.getInstance()
-    self.layerManager = nil
-end
+    
+(unless (fboundp 'jm_getLayerManager_0) (defgeneric jm_getLayerManager_0 (this)))
+(defmethod jm_getLayerManager_0 ((this LayerProcessor))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_layerManager)))))
 
-
-function LayerProcessor.new(layerManager)
-    local self = setmetatable({}, LayerProcessor)
-    self:_init_fields()
-        self.layerManager = layerManager
-    return self
-end
-
-
--- throws Exception
-function LayerProcessor:processAt(allBinaryLayerManager, layerInterface, index)
-        error(java_exception("Exception", self.commonStrings.NOT_IMPLEMENTED), 0)
-end
-
-
--- throws Exception
-function LayerProcessor:isProcessorLayer(layerInterface)
-        error(java_exception("Exception", self.commonStrings.NOT_IMPLEMENTED), 0)
-end
-
-
-function LayerProcessor:getLayerManager()
-        return self.layerManager
-end
+    
+(unless (fboundp 'jm_process_1) (defgeneric jm_process_1 (this p1)))
+(defmethod jm_process_1 ((this LayerProcessor) _allBinaryLayerManager)
+  (declare (ignorable this _allBinaryLayerManager))
+  (let (_layerManager _size _index)
+  (declare (ignorable _layerManager _size _index))
+    (block jreturn
+        (setf _layerManager (jm_getLayerManager_0 this))
+        (setf _size (jm_getSize_0 _layerManager))
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (jm_processAt_3 this _allBinaryLayerManager (jm_getLayerAt_1 _layerManager _index) _index))
+                (setf _index (JR.i32 (+ _index 1)))))))))
 
 
--- throws Exception
-function LayerProcessor:process(allBinaryLayerManager)
-        local layerManager = self:getLayerManager()
-        local size = layerManager:getSize()
-        for index = 0, size - 1 do
-            self:processAt(allBinaryLayerManager, layerManager:getLayerAt(index), index)
-        end
-end
-
-return LayerProcessor
 

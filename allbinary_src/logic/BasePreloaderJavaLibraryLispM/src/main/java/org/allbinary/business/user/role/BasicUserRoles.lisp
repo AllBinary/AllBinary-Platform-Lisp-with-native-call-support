@@ -25,6 +25,7 @@
 (defun BasicUserRoles.jstatic_instance ()
   (when (eq BasicUserRoles.jcell_instance :jnone) (setf BasicUserRoles.jcell_instance (BasicUserRoles.jnew_0)))
   BasicUserRoles.jcell_instance)
+(defun (setf BasicUserRoles.jstatic_instance) (value) (setf BasicUserRoles.jcell_instance value))
 
 (defun BasicUserRoles.jnew_0 ()
   (let ((this (make-instance 'BasicUserRoles)))

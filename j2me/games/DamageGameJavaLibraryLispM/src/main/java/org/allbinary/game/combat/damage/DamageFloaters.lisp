@@ -1,51 +1,48 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.combat.damage
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.combat.damage
 
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass DamageFloaters (Paintable)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar DamageFloaters.jcell_SINGLETON :jnone)
+(defun DamageFloaters.jstatic_SINGLETON ()
+  (when (eq DamageFloaters.jcell_SINGLETON :jnone) (setf DamageFloaters.jcell_SINGLETON (DamageFloaters.jnew_0)))
+  DamageFloaters.jcell_SINGLETON)
+(defun (setf DamageFloaters.jstatic_SINGLETON) (value) (setf DamageFloaters.jcell_SINGLETON value))
 
-local DamageFloaters = {}
-DamageFloaters.__index = DamageFloaters
-DamageFloaters.className = "DamageFloaters"
-setmetatable(DamageFloaters, {__index = Paintable})
+(defun DamageFloaters.jnew_0 ()
+  (let ((this (make-instance 'DamageFloaters)))
+    this))
 
-function DamageFloaters.new()
-    local self = setmetatable(Paintable.new(), DamageFloaters)
-    return self
-end
+    
+(defun DamageFloaters.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (DamageFloaters.jstatic_SINGLETON)))))
+
+    
+(unless (fboundp 'jm_add_1) (defgeneric jm_add_1 (this p1)))
+(defmethod jm_add_1 ((this DamageFloaters) _damage)
+  (declare (ignorable this _damage))
+  (let ()
+    (block jreturn nil)))
 
 
-function DamageFloaters.getInstance()
-        return DamageFloaters.SINGLETON
-end
-
-
-function DamageFloaters:add(damage)
-end
-
-DamageFloaters.SINGLETON = DamageFloaters.new()
-
-return DamageFloaters
 

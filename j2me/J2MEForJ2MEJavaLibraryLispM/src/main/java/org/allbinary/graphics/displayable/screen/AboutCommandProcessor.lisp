@@ -1,53 +1,49 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2022 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
--- 
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.displayable.screen
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2022 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;; 
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.displayable.screen
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
--- local Command = require("javax.microedition.lcdui.Command")
--- local CommandListener = require("javax.microedition.lcdui.CommandListener")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass AboutCommandProcessor (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar AboutCommandProcessor.jcell_instance :jnone)
+(defun AboutCommandProcessor.jstatic_instance ()
+  (when (eq AboutCommandProcessor.jcell_instance :jnone) (setf AboutCommandProcessor.jcell_instance (AboutCommandProcessor.jnew_0)))
+  AboutCommandProcessor.jcell_instance)
+(defun (setf AboutCommandProcessor.jstatic_instance) (value) (setf AboutCommandProcessor.jcell_instance value))
 
-local AboutCommandProcessor = {}
-AboutCommandProcessor.__index = AboutCommandProcessor
-AboutCommandProcessor.className = "AboutCommandProcessor"
+(defun AboutCommandProcessor.jnew_0 ()
+  (let ((this (make-instance 'AboutCommandProcessor)))
+    this))
 
-function AboutCommandProcessor.new()
-    local self = setmetatable({}, AboutCommandProcessor)
-    return self
-end
+    
+(defun AboutCommandProcessor.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (AboutCommandProcessor.jstatic_instance)))))
+
+    
+(unless (fboundp 'jm_process_3) (defgeneric jm_process_3 (this p1 p2 p3)))
+(defmethod jm_process_3 ((this AboutCommandProcessor) _midletCommandListener _command _canvas)
+  (declare (ignorable this _midletCommandListener _command _canvas))
+  (let ()
+    (block jreturn
+        (jm_commandAction_2 _midletCommandListener _command _canvas))))
 
 
-function AboutCommandProcessor.getInstance()
-        return AboutCommandProcessor.instance
-end
-
-
-function AboutCommandProcessor:process(midletCommandListener, command, canvas)
-        midletCommandListener:commandAction(command, canvas)
-end
-
-AboutCommandProcessor.instance = AboutCommandProcessor.new()
-
-return AboutCommandProcessor
 

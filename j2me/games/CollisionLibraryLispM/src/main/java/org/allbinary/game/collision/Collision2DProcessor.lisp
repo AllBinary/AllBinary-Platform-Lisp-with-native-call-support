@@ -1,38 +1,29 @@
--- Generated Code Do Not Modify
--- package org.allbinary.game.collision
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.collision
 
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local CollisionProcessor = require("org.allbinary.game.collision.CollisionProcessor")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass Collision2DProcessor (CollisionProcessor)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun Collision2DProcessor.jnew_0 ()
+  (let ((this (make-instance 'Collision2DProcessor)))
+    this))
 
-local Collision2DProcessor = {}
-Collision2DProcessor.__index = Collision2DProcessor
-Collision2DProcessor.className = "Collision2DProcessor"
-setmetatable(Collision2DProcessor, {__index = CollisionProcessor})
-
-function Collision2DProcessor.new()
-    local self = setmetatable(CollisionProcessor.new(), Collision2DProcessor)
-    return self
-end
+    
+(unless (fboundp 'jm_isCollision_2) (defgeneric jm_isCollision_2 (this p1 p2)))
+(defmethod jm_isCollision_2 ((this Collision2DProcessor) _myLayer _myLayer2)
+  (declare (ignorable this _myLayer _myLayer2))
+  (let ()
+    (block jreturn
+        (if (or (or (or (>= (jm_getXP_0 _myLayer2) (jm_getX2_0 _myLayer)) (>= (jm_getYP_0 _myLayer2) (jm_getY2_0 _myLayer))) (<= (jm_getX2_0 _myLayer2) (jm_getXP_0 _myLayer))) (<= (jm_getY2_0 _myLayer2) (jm_getYP_0 _myLayer)))
+            (progn
+            (return-from jreturn nil))
+            (progn
+            (return-from jreturn t))))))
 
 
-function Collision2DProcessor:isCollision(myLayer, myLayer2)
-        if myLayer2:getXP() >= myLayer:getX2() or myLayer2:getYP() >= myLayer:getY2() or myLayer2:getX2() <= myLayer:getXP() or myLayer2:getY2() <= myLayer:getYP() then
-            return false
-        else
-            return true
-        end
-end
-
-return Collision2DProcessor
 

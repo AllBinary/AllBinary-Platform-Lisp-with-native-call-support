@@ -1,47 +1,35 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.special
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.layer.special
 
-local GameInputProcessor = require("org.allbinary.game.input.GameInputProcessor")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass SpecialGameInputProcessor (GameInputProcessor)
+  ((f_collidableDestroyableDamageableLayer :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local SpecialGameInputProcessor = {}
-SpecialGameInputProcessor.__index = SpecialGameInputProcessor
-SpecialGameInputProcessor.className = "SpecialGameInputProcessor"
-setmetatable(SpecialGameInputProcessor, {__index = GameInputProcessor})
-
-function SpecialGameInputProcessor:_init_fields()
-    self.collidableDestroyableDamageableLayer = nil
-end
+    
+(defun SpecialGameInputProcessor.jnew_1 (_collidableDestroyableDamageableLayer)
+  (declare (ignorable _collidableDestroyableDamageableLayer))
+  (let ((this (make-instance 'SpecialGameInputProcessor)))
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_collidableDestroyableDamageableLayer) _collidableDestroyableDamageableLayer)))
+    this))
 
 
-function SpecialGameInputProcessor.new(collidableDestroyableDamageableLayer)
-    local self = setmetatable(GameInputProcessor.new(), SpecialGameInputProcessor)
-    self:_init_fields()
-        self.collidableDestroyableDamageableLayer = collidableDestroyableDamageableLayer
-    return self
-end
-
-return SpecialGameInputProcessor
 

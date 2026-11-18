@@ -1,48 +1,42 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package javax.microedition.lcdui
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2022 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package javax.microedition.lcdui
 
-local PlatformImage = require("javax.microedition.lcdui.PlatformImage")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+;PlatformNullImageJavaLibrary
+(defclass PostLoadPlatformImage (PlatformImage)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar PostLoadPlatformImage.jcell_instance :jnone)
+(defun PostLoadPlatformImage.jstatic_instance ()
+  (when (eq PostLoadPlatformImage.jcell_instance :jnone) (setf PostLoadPlatformImage.jcell_instance (PostLoadPlatformImage.jnew_0)))
+  PostLoadPlatformImage.jcell_instance)
+(defun (setf PostLoadPlatformImage.jstatic_instance) (value) (setf PostLoadPlatformImage.jcell_instance value))
 
---PlatformNullImageJavaLibrary
-local PostLoadPlatformImage = {}
-PostLoadPlatformImage.__index = PostLoadPlatformImage
-PostLoadPlatformImage.className = "PostLoadPlatformImage"
-setmetatable(PostLoadPlatformImage, {__index = PlatformImage})
+(defun PostLoadPlatformImage.jnew_0 ()
+  (let ((this (make-instance 'PostLoadPlatformImage)))
+    this))
 
-function PostLoadPlatformImage.new()
-    local self = setmetatable(PlatformImage.new(), PostLoadPlatformImage)
-    return self
-end
+    
+(defun PostLoadPlatformImage.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (PostLoadPlatformImage.jstatic_instance)))))
 
 
-function PostLoadPlatformImage.getInstance()
-        return PostLoadPlatformImage.instance
-end
-
-PostLoadPlatformImage.instance = PostLoadPlatformImage.new()
-
-return PostLoadPlatformImage
 

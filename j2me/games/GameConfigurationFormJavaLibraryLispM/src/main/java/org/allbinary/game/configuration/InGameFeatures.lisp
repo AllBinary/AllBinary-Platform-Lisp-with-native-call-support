@@ -1,99 +1,92 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.configuration
 
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local GameFeatureChoiceGroups = require("org.allbinary.game.configuration.feature.GameFeatureChoiceGroups")
-local InGameFeatureChoiceGroups = require("org.allbinary.game.configuration.feature.InGameFeatureChoiceGroups")
-local SensorFeatureFactory = require("org.allbinary.game.configuration.feature.SensorFeatureFactory")
-local TouchFeatureFactory = require("org.allbinary.game.configuration.feature.TouchFeatureFactory")
-local Init = require("org.allbinary.init.Init")
-local OrientationData = require("org.allbinary.input.gyro.OrientationData")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass InGameFeatures (Init)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun InGameFeatures.jnew_0 ()
+  (let ((this (make-instance 'InGameFeatures)))
+    this))
 
-local InGameFeatures = {}
-InGameFeatures.__index = InGameFeatures
-InGameFeatures.className = "InGameFeatures"
-setmetatable(InGameFeatures, {__index = Init})
+    
+(unless (fboundp 'jm_init_0) (defgeneric jm_init_0 (this)))
+(defmethod jm_init_0 ((this InGameFeatures))
+  (declare (ignorable this))
+  (let (_LABEL _orientationData _exclusiveOrientationSensorVector _inGameFeatureChoiceGroups _inGameExclusiveOrientationSensorVectorCanBeNull _inGameExclusiveOrientationSensorVector _features _exclusiveScreenButtonsVector _touchFeatureFactory)
+  (declare (ignorable _LABEL _orientationData _exclusiveOrientationSensorVector _inGameFeatureChoiceGroups _inGameExclusiveOrientationSensorVectorCanBeNull _inGameExclusiveOrientationSensorVector _features _exclusiveScreenButtonsVector _touchFeatureFactory))
+    (block jreturn
+        (setf _LABEL "Screen Buttons")
+        (setf _orientationData (OrientationData.jm_getInstance_0))
+        (setf _exclusiveOrientationSensorVector (jm_get_1 (jm_get_0 (GameFeatureChoiceGroups.jm_getExclusiveInstance_0)) (slot-value _orientationData 'f_ORIENTATION_SENSOR_INPUT)))
+        (setf _inGameFeatureChoiceGroups (InGameFeatureChoiceGroups.jm_getExclusiveInstance_0))
+        (if (not (null _exclusiveOrientationSensorVector))
+            (progn
+            (setf _inGameExclusiveOrientationSensorVectorCanBeNull (jm_get_1 (jm_get_0 _inGameFeatureChoiceGroups) (slot-value _orientationData 'f_ORIENTATION_SENSOR_INPUT)))
+            (if (null _inGameExclusiveOrientationSensorVectorCanBeNull)
+                (progn
+                (jm_addToInGameMenu_0 this))
+                (progn
+                (setf _inGameExclusiveOrientationSensorVector _inGameExclusiveOrientationSensorVectorCanBeNull)
+                (if (= (jm_size_0 _inGameExclusiveOrientationSensorVector) 0)
+                    (progn
+                    (jm_addToInGameMenu_0 this)))))))
+        (setf _features (Features.jm_getInstance_0))
+        (if (or (or (jm_isFeature_1 _features (slot-value (TouchFeatureFactory.jm_getInstance_0) 'f_SHOW_SCREEN_BUTTONS)) (jm_isFeature_1 _features (slot-value (TouchFeatureFactory.jm_getInstance_0) 'f_AUTO_HIDE_SHOW_SCREEN_BUTTONS))) (jm_isFeature_1 _features (slot-value (TouchFeatureFactory.jm_getInstance_0) 'f_HIDE_SCREEN_BUTTONS)))
+            (progn
+            (setf _exclusiveScreenButtonsVector (BasicArrayListD.jnew_0))
+            (setf _touchFeatureFactory (TouchFeatureFactory.jm_getInstance_0))
+            (jm_add_1 _exclusiveScreenButtonsVector (slot-value _touchFeatureFactory 'f_AUTO_HIDE_SHOW_SCREEN_BUTTONS))
+            (jm_add_1 _exclusiveScreenButtonsVector (slot-value _touchFeatureFactory 'f_SHOW_SCREEN_BUTTONS))
+            (jm_add_1 _exclusiveScreenButtonsVector (slot-value _touchFeatureFactory 'f_HIDE_SCREEN_BUTTONS))
+            (jm_add_2 _inGameFeatureChoiceGroups _LABEL _exclusiveScreenButtonsVector))))))
 
-function InGameFeatures.new()
-    local self = setmetatable(Init.new(), InGameFeatures)
-    return self
-end
+    
+(unless (fboundp 'jm_addToInGameMenu_0) (defgeneric jm_addToInGameMenu_0 (this)))
+(defmethod jm_addToInGameMenu_0 ((this InGameFeatures))
+  (declare (ignorable this))
+  (let (_orientationData _inGameExclusiveOrientationSensorVector)
+  (declare (ignorable _orientationData _inGameExclusiveOrientationSensorVector))
+    (block jreturn
+        (setf _orientationData (OrientationData.jm_getInstance_0))
+        (setf _inGameExclusiveOrientationSensorVector (BasicArrayListD.jnew_0))
+        (jm_add_1 _inGameExclusiveOrientationSensorVector (slot-value (SensorFeatureFactory.jm_getInstance_0) 'f_ORIENTATION_SENSORS))
+        (jm_add_1 _inGameExclusiveOrientationSensorVector (slot-value (SensorFeatureFactory.jm_getInstance_0) 'f_NO_ORIENTATION))
+        (jm_add_2 (InGameFeatureChoiceGroups.jm_getExclusiveInstance_0) (slot-value _orientationData 'f_ORIENTATION_SENSOR_INPUT) _inGameExclusiveOrientationSensorVector))))
+
+    
+(unless (fboundp 'jm_isAny_0) (defgeneric jm_isAny_0 (this)))
+(defmethod jm_isAny_0 ((this InGameFeatures))
+  (declare (ignorable this))
+  (let (_features _touchFeatureFactory _exclusiveOrientationSensorVector)
+  (declare (ignorable _features _touchFeatureFactory _exclusiveOrientationSensorVector))
+    (block jreturn
+        (setf _features (Features.jm_getInstance_0))
+        (setf _touchFeatureFactory (TouchFeatureFactory.jm_getInstance_0))
+        (if (or (or (jm_isFeature_1 _features (slot-value _touchFeatureFactory 'f_SHOW_SCREEN_BUTTONS)) (jm_isFeature_1 _features (slot-value _touchFeatureFactory 'f_AUTO_HIDE_SHOW_SCREEN_BUTTONS))) (jm_isFeature_1 _features (slot-value _touchFeatureFactory 'f_HIDE_SCREEN_BUTTONS)))
+            (progn
+            (return-from jreturn t)))
+        (setf _exclusiveOrientationSensorVector (jm_get_1 (jm_get_0 (GameFeatureChoiceGroups.jm_getExclusiveInstance_0)) (slot-value (OrientationData.jm_getInstance_0) 'f_ORIENTATION_SENSOR_INPUT)))
+        (if (not (null _exclusiveOrientationSensorVector))
+            (progn
+            (return-from jreturn t)))
+        (return-from jreturn nil))))
 
 
-function InGameFeatures:init()
-        local LABEL = "Screen Buttons"
-        local orientationData = OrientationData.getInstance()
-        local exclusiveOrientationSensorVector = GameFeatureChoiceGroups.getExclusiveInstance():get():get(orientationData.ORIENTATION_SENSOR_INPUT)
-        local inGameFeatureChoiceGroups = InGameFeatureChoiceGroups.getExclusiveInstance()
-        if exclusiveOrientationSensorVector ~= nil then
-            local inGameExclusiveOrientationSensorVectorCanBeNull = inGameFeatureChoiceGroups:get():get(orientationData.ORIENTATION_SENSOR_INPUT)
-            if inGameExclusiveOrientationSensorVectorCanBeNull == nil then
-                self:addToInGameMenu()
-            else
-                local inGameExclusiveOrientationSensorVector = inGameExclusiveOrientationSensorVectorCanBeNull
-                if inGameExclusiveOrientationSensorVector:size() == 0 then
-                    self:addToInGameMenu()
-                end
-            end
-        end
-        local features = Features.getInstance()
-        if features:isFeature(TouchFeatureFactory.getInstance().SHOW_SCREEN_BUTTONS) or features:isFeature(TouchFeatureFactory.getInstance().AUTO_HIDE_SHOW_SCREEN_BUTTONS) or features:isFeature(TouchFeatureFactory.getInstance().HIDE_SCREEN_BUTTONS) then
-            local exclusiveScreenButtonsVector = BasicArrayListD.new()
-            local touchFeatureFactory = TouchFeatureFactory.getInstance()
-            exclusiveScreenButtonsVector:add(touchFeatureFactory.AUTO_HIDE_SHOW_SCREEN_BUTTONS)
-            exclusiveScreenButtonsVector:add(touchFeatureFactory.SHOW_SCREEN_BUTTONS)
-            exclusiveScreenButtonsVector:add(touchFeatureFactory.HIDE_SCREEN_BUTTONS)
-            inGameFeatureChoiceGroups:add(LABEL, exclusiveScreenButtonsVector)
-        end
-end
-
-
-function InGameFeatures:addToInGameMenu()
-        local orientationData = OrientationData.getInstance()
-        local inGameExclusiveOrientationSensorVector = BasicArrayListD.new()
-        inGameExclusiveOrientationSensorVector:add(SensorFeatureFactory.getInstance().ORIENTATION_SENSORS)
-        inGameExclusiveOrientationSensorVector:add(SensorFeatureFactory.getInstance().NO_ORIENTATION)
-        InGameFeatureChoiceGroups.getExclusiveInstance():add(orientationData.ORIENTATION_SENSOR_INPUT, inGameExclusiveOrientationSensorVector)
-end
-
-
-function InGameFeatures:isAny()
-        local features = Features.getInstance()
-        local touchFeatureFactory = TouchFeatureFactory.getInstance()
-        if features:isFeature(touchFeatureFactory.SHOW_SCREEN_BUTTONS) or features:isFeature(touchFeatureFactory.AUTO_HIDE_SHOW_SCREEN_BUTTONS) or features:isFeature(touchFeatureFactory.HIDE_SCREEN_BUTTONS) then
-            return true
-        end
-        local exclusiveOrientationSensorVector = GameFeatureChoiceGroups.getExclusiveInstance():get():get(OrientationData.getInstance().ORIENTATION_SENSOR_INPUT)
-        if exclusiveOrientationSensorVector ~= nil then
-            return true
-        end
-        return false
-end
-
-return InGameFeatures
 

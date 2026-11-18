@@ -1,73 +1,62 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.input
 
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local PlayerGameInput = require("org.allbinary.game.input.PlayerGameInput")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass GameInputProcessorComposite (PlayerGameInput)
+  ((f_name :initform nil)
+   (f_gameInputProcessorInterface :initform nil)
+   (f_NAME_LABEL :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun GameInputProcessorComposite.jnew_2 (_name _gameInputProcessorInterface)
+  (declare (ignorable _name _gameInputProcessorInterface))
+  (let ((this (make-instance 'GameInputProcessorComposite)))
+    
+    
+    (setf (slot-value this 'f_NAME_LABEL) " GameInputProcessorInterface: ")
+  (let ()
+    (block jreturn
+        nil
+        (setf (slot-value this 'f_name) _name)
+        (setf (slot-value this 'f_gameInputProcessorInterface) _gameInputProcessorInterface)))
+    this))
 
-local GameInputProcessorComposite = {}
-GameInputProcessorComposite.__index = GameInputProcessorComposite
-GameInputProcessorComposite.className = "GameInputProcessorComposite"
-setmetatable(GameInputProcessorComposite, {__index = PlayerGameInput})
+    
+(unless (fboundp 'jm_update_0) (defgeneric jm_update_0 (this)))
+(defmethod jm_update_0 ((this GameInputProcessorComposite))
+  (declare (ignorable this))
+  (let (_list)
+  (declare (ignorable _list))
+    (block jreturn
+        (handler-case (progn
+            (setf _list (jm_getGameKeyEventList_0 this))
+            (jm_onInput_1 (slot-value this 'f_gameInputProcessorInterface) _list))
+            (error (_e) (declare (ignorable _e))
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_EXCEPTION) this (slot-value (slot-value this 'f_commonStrings) 'f_UPDATE) _e))))))
 
-function GameInputProcessorComposite:_init_fields()
-    self.name = nil
-    self.gameInputProcessorInterface = nil
-    self.NAME_LABEL = " GameInputProcessorInterface: "
-end
-
-
-function GameInputProcessorComposite.new(name, gameInputProcessorInterface)
-    local self = setmetatable(PlayerGameInput.new(BasicArrayListD.new(), BasicArrayListD.new(), -1), GameInputProcessorComposite)
-    self:_init_fields()
-        -- super(...) made self above
-        self.name = name
-        self.gameInputProcessorInterface = gameInputProcessorInterface
-    return self
-end
-
-
-function GameInputProcessorComposite:update()
-        local try_ok, try_error = pcall(function()
-            local list = self:getGameKeyEventList()
-            self.gameInputProcessorInterface:onInput(list)
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.commonStrings.UPDATE, e)
-        end
-end
+    
+(unless (fboundp 'jm_toString_0) (defgeneric jm_toString_0 (this)))
+(defmethod jm_toString_0 ((this GameInputProcessorComposite))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_toString_0 (jm_append_1 (jm_append_1 (jm_append_1 (StringMaker.jnew_0) (call-next-method this)) (slot-value this 'f_NAME_LABEL)) (slot-value this 'f_name)))))))
 
 
-function GameInputProcessorComposite:toString()
-        return tostring(StringMaker.new():append(tostring(PlayerGameInput)):append(self.NAME_LABEL):append(self.name))
-end
-GameInputProcessorComposite.__tostring = function(self) return self:toString() end
-
-return GameInputProcessorComposite
 

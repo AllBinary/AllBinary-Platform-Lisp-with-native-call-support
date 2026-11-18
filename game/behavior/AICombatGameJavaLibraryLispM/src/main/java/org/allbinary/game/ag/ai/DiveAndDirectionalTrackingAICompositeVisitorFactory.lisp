@@ -1,44 +1,37 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.ag.ai
 
-local Visitor = require("org.allbinary.logic.util.visitor.Visitor")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass DiveAndDirectionalTrackingAICompositeVisitorFactory (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun DiveAndDirectionalTrackingAICompositeVisitorFactory.jnew_0 ()
+  (let ((this (make-instance 'DiveAndDirectionalTrackingAICompositeVisitorFactory)))
+    this))
 
-local DiveAndDirectionalTrackingAICompositeVisitorFactory = {}
-DiveAndDirectionalTrackingAICompositeVisitorFactory.__index = DiveAndDirectionalTrackingAICompositeVisitorFactory
-DiveAndDirectionalTrackingAICompositeVisitorFactory.className = "DiveAndDirectionalTrackingAICompositeVisitorFactory"
-
-function DiveAndDirectionalTrackingAICompositeVisitorFactory.new()
-    local self = setmetatable({}, DiveAndDirectionalTrackingAICompositeVisitorFactory)
-    return self
-end
+    
+(unless (fboundp 'jm_getInstance_1) (defgeneric jm_getInstance_1 (this p1)))
+(defmethod jm_getInstance_1 ((this DiveAndDirectionalTrackingAICompositeVisitorFactory) _diveBombAI)
+  (declare (ignorable this _diveBombAI))
+  (let ()
+    (block jreturn
+        (return-from jreturn (Visitor.jm_getInstance_0)))))
 
 
-function DiveAndDirectionalTrackingAICompositeVisitorFactory:getInstance(diveBombAI)
-        return Visitor.getInstance()
-end
-
-return DiveAndDirectionalTrackingAICompositeVisitorFactory
 

@@ -1,85 +1,100 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.commands
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.commands
 
--- local Command = require("javax.microedition.lcdui.Command")
-local CanvasStrings = require("org.allbinary.graphics.displayable.CanvasStrings")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass GameCommandsFactory (JObject)
+  ((f_TOGGLE_FULLSCREEN :initform nil)
+   (f_TOGGLE_KEYBOARD :initform nil)
+   (f_SET_MENU_DISPLAYABLE :initform nil)
+   (f_APPLICATION_UPDATE :initform nil)
+   (f_DISPLAY_ABOUT :initform nil)
+   (f_OPEN_WEB_URL :initform nil)
+   (f_CLOSE_OPTIONS :initform nil)
+   (f_DISPLAY_OPTIONS :initform nil)
+   (f_START_TRACE :initform nil)
+   (f_STOP_TRACE :initform nil)
+   (f_DEFAULT_OPTIONS :initform nil)
+   (f_SHOW_GAME_CANVAS :initform nil)
+   (f_CLOSE_AND_SHOW_GAME_CANVAS :initform nil)
+   (f_QUIT_COMMAND :initform nil)
+   (f_RESTART_COMMAND :initform nil)
+   (f_DISPLAY_SAVE_FORM :initform nil)
+   (f_SAVE :initform nil)
+   (f_DISPLAY_LOAD_FORM :initform nil)
+   (f_LOAD_FILE :initform nil)
+   (f_DELETE_FILE :initform nil)
+   (f_EXIT_COMMAND :initform nil)
+   (f_EXIT_WITHOUT_PROGRESS_COMMAND :initform nil)
+   (f_START_COMMAND :initform nil)
+   (f_CONTINUE_COMMAND :initform nil)
+   (f_SELECT_COMMAND :initform nil)
+   (f_FEATURE_UPDATE :initform nil)
+   (f_BUY_COMMAND :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar GameCommandsFactory.jcell_instance :jnone)
+(defun GameCommandsFactory.jstatic_instance ()
+  (when (eq GameCommandsFactory.jcell_instance :jnone) (setf GameCommandsFactory.jcell_instance (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT)))
+  GameCommandsFactory.jcell_instance)
+(defun (setf GameCommandsFactory.jstatic_instance) (value) (setf GameCommandsFactory.jcell_instance value))
 
-local GameCommandsFactory = {}
-GameCommandsFactory.__index = GameCommandsFactory
-GameCommandsFactory.className = "GameCommandsFactory"
+    
+(defun GameCommandsFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (if (eq (GameCommandsFactory.jstatic_instance) (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT))
+            (progn
+            (setf (GameCommandsFactory.jstatic_instance) (GameCommandsFactory.jnew_0))))
+        (return-from jreturn (GameCommandsFactory.jstatic_instance)))))
 
-function GameCommandsFactory:_init_fields()
-    self.TOGGLE_FULLSCREEN = Command.new("Toggle FullScreen", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-    self.TOGGLE_KEYBOARD = Command.new("Keyboard", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-    self.SET_MENU_DISPLAYABLE = Command.new("Set Menu Displayable", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-    self.APPLICATION_UPDATE = Command.new(CommonStrings.getInstance().UPDATE, StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-    self.DISPLAY_ABOUT = Command.new(CanvasStrings.getInstance().ABOUT, StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 2)
-    self.OPEN_WEB_URL = Command.new("Open Web URL", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 2)
-    self.CLOSE_OPTIONS = Command.new("Back", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-    self.DISPLAY_OPTIONS = Command.new(CanvasStrings.getInstance().OPTIONS, StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 2)
-    self.START_TRACE = Command.new("Start Trace", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-    self.STOP_TRACE = Command.new("Stop Trace", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-    self.DEFAULT_OPTIONS = Command.new("Default", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-    self.SHOW_GAME_CANVAS = Command.new("Back to Game", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-    self.CLOSE_AND_SHOW_GAME_CANVAS = Command.new("Back", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-    self.QUIT_COMMAND = Command.new("Quit", StringUtil.getInstance().EMPTY_STRING, Command.STOP, 1)
-    self.RESTART_COMMAND = Command.new("Restart", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 0)
-    self.DISPLAY_SAVE_FORM = Command.new("Save To", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 3)
-    self.SAVE = Command.new("Save", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 3)
-    self.DISPLAY_LOAD_FORM = Command.new("Load", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 3)
-    self.LOAD_FILE = Command.new("Load File", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 3)
-    self.DELETE_FILE = Command.new("Delete File", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-    self.EXIT_COMMAND = Command.new("Exit", StringUtil.getInstance().EMPTY_STRING, Command.EXIT, 2)
-    self.EXIT_WITHOUT_PROGRESS_COMMAND = Command.new("Exit Without Progress", StringUtil.getInstance().EMPTY_STRING, Command.EXIT, 2)
-    self.START_COMMAND = Command.new(CommonStrings.getInstance().START, StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-    self.CONTINUE_COMMAND = Command.new("Continue", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-    self.SELECT_COMMAND = Command.new("Select", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-    self.FEATURE_UPDATE = Command.new("Feature Update", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-    self.BUY_COMMAND = Command.new("BUY", StringUtil.getInstance().EMPTY_STRING, Command.SCREEN, 1)
-end
+    
+(defun GameCommandsFactory.jnew_0 ()
+  (let ((this (make-instance 'GameCommandsFactory)))
+    (setf (slot-value this 'f_TOGGLE_FULLSCREEN) (Command.jnew_4 "Toggle FullScreen" (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (Command.jstatic_SCREEN) 1))
+    (setf (slot-value this 'f_TOGGLE_KEYBOARD) (Command.jnew_4 "Keyboard" (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (Command.jstatic_SCREEN) 1))
+    (setf (slot-value this 'f_SET_MENU_DISPLAYABLE) (Command.jnew_4 "Set Menu Displayable" (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (Command.jstatic_SCREEN) 1))
+    (setf (slot-value this 'f_APPLICATION_UPDATE) (Command.jnew_4 (slot-value (CommonStrings.jm_getInstance_0) 'f_UPDATE) (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (Command.jstatic_SCREEN) 1))
+    (setf (slot-value this 'f_DISPLAY_ABOUT) (Command.jnew_4 (slot-value (CanvasStrings.jm_getInstance_0) 'f_ABOUT) (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (Command.jstatic_SCREEN) 2))
+    (setf (slot-value this 'f_OPEN_WEB_URL) (Command.jnew_4 "Open Web URL" (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (Command.jstatic_SCREEN) 2))
+    (setf (slot-value this 'f_CLOSE_OPTIONS) (Command.jnew_4 "Back" (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (Command.jstatic_SCREEN) 1))
+    (setf (slot-value this 'f_DISPLAY_OPTIONS) (Command.jnew_4 (slot-value (CanvasStrings.jm_getInstance_0) 'f_OPTIONS) (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (Command.jstatic_SCREEN) 2))
+    (setf (slot-value this 'f_START_TRACE) (Command.jnew_4 "Start Trace" (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (Command.jstatic_SCREEN) 1))
+    (setf (slot-value this 'f_STOP_TRACE) (Command.jnew_4 "Stop Trace" (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (Command.jstatic_SCREEN) 1))
+    (setf (slot-value this 'f_DEFAULT_OPTIONS) (Command.jnew_4 "Default" (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (Command.jstatic_SCREEN) 1))
+    (setf (slot-value this 'f_SHOW_GAME_CANVAS) (Command.jnew_4 "Back to Game" (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (Command.jstatic_SCREEN) 1))
+    (setf (slot-value this 'f_CLOSE_AND_SHOW_GAME_CANVAS) (Command.jnew_4 "Back" (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (Command.jstatic_SCREEN) 1))
+    (setf (slot-value this 'f_QUIT_COMMAND) (Command.jnew_4 "Quit" (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (Command.jstatic_STOP) 1))
+    (setf (slot-value this 'f_RESTART_COMMAND) (Command.jnew_4 "Restart" (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (Command.jstatic_SCREEN) 0))
+    (setf (slot-value this 'f_DISPLAY_SAVE_FORM) (Command.jnew_4 "Save To" (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (Command.jstatic_SCREEN) 3))
+    (setf (slot-value this 'f_SAVE) (Command.jnew_4 "Save" (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (Command.jstatic_SCREEN) 3))
+    (setf (slot-value this 'f_DISPLAY_LOAD_FORM) (Command.jnew_4 "Load" (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (Command.jstatic_SCREEN) 3))
+    (setf (slot-value this 'f_LOAD_FILE) (Command.jnew_4 "Load File" (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (Command.jstatic_SCREEN) 3))
+    (setf (slot-value this 'f_DELETE_FILE) (Command.jnew_4 "Delete File" (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (Command.jstatic_SCREEN) 1))
+    (setf (slot-value this 'f_EXIT_COMMAND) (Command.jnew_4 "Exit" (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (Command.jstatic_EXIT) 2))
+    (setf (slot-value this 'f_EXIT_WITHOUT_PROGRESS_COMMAND) (Command.jnew_4 "Exit Without Progress" (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (Command.jstatic_EXIT) 2))
+    (setf (slot-value this 'f_START_COMMAND) (Command.jnew_4 (slot-value (CommonStrings.jm_getInstance_0) 'f_START) (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (Command.jstatic_SCREEN) 1))
+    (setf (slot-value this 'f_CONTINUE_COMMAND) (Command.jnew_4 "Continue" (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (Command.jstatic_SCREEN) 1))
+    (setf (slot-value this 'f_SELECT_COMMAND) (Command.jnew_4 "Select" (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (Command.jstatic_SCREEN) 1))
+    (setf (slot-value this 'f_FEATURE_UPDATE) (Command.jnew_4 "Feature Update" (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (Command.jstatic_SCREEN) 1))
+    (setf (slot-value this 'f_BUY_COMMAND) (Command.jnew_4 "BUY" (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (Command.jstatic_SCREEN) 1))
+  (let ()
+    (block jreturn nil))
+    this))
 
 
-function GameCommandsFactory.getInstance()
-        if GameCommandsFactory.instance == NullUtil.getInstance().NULL_OBJECT then
-            GameCommandsFactory.instance = GameCommandsFactory.new()
-        end
-        return GameCommandsFactory.instance
-end
-
-
-function GameCommandsFactory.new()
-    local self = setmetatable({}, GameCommandsFactory)
-    self:_init_fields()
-    return self
-end
-
-GameCommandsFactory.instance = NullUtil.getInstance().NULL_OBJECT
-
-return GameCommandsFactory
 

@@ -25,6 +25,7 @@
 (defun SoundThreadPool.jstatic_instance ()
   (when (eq SoundThreadPool.jcell_instance :jnone) (setf SoundThreadPool.jcell_instance (ThreadPool.jnew_3 "Sound" 1 (ThreadPool.jstatic_NORMAL_PRIORITY))))
   SoundThreadPool.jcell_instance)
+(defun (setf SoundThreadPool.jstatic_instance) (value) (setf SoundThreadPool.jcell_instance value))
 
 (defun SoundThreadPool.jnew_0 ()
   (let ((this (make-instance 'SoundThreadPool)))

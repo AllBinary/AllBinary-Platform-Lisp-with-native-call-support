@@ -1,58 +1,51 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.mapping.event
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.input.mapping.event
 
-local InputToGameKeyMapping = require("org.allbinary.game.input.mapping.InputToGameKeyMapping")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass InputMappingEvent (AllBinaryEventObject)
+  ((f_inputToGameKeyMapping :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun InputMappingEvent.jnew_1 (_anyType)
+  (declare (ignorable _anyType))
+  (let ((this (make-instance 'InputMappingEvent)))
+    (setf (slot-value this 'f_inputToGameKeyMapping) (InputToGameKeyMapping.jm_getNullInstance_0))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
-local InputMappingEvent = {}
-InputMappingEvent.__index = InputMappingEvent
-InputMappingEvent.className = "InputMappingEvent"
-setmetatable(InputMappingEvent, {__index = AllBinaryEventObject})
+    
+(unless (fboundp 'jm_setInputToGameKeyMapping_1) (defgeneric jm_setInputToGameKeyMapping_1 (this p1)))
+(defmethod jm_setInputToGameKeyMapping_1 ((this InputMappingEvent) _inputToGameKeyMapping)
+  (declare (ignorable this _inputToGameKeyMapping))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_inputToGameKeyMapping) _inputToGameKeyMapping))))
 
-function InputMappingEvent:_init_fields()
-    self.inputToGameKeyMapping = InputToGameKeyMapping.getNullInstance()
-end
-
-
-function InputMappingEvent.new(anyType)
-    local self = setmetatable(AllBinaryEventObject.new(anyType), InputMappingEvent)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
-
-
-function InputMappingEvent:setInputToGameKeyMapping(inputToGameKeyMapping)
-        self.inputToGameKeyMapping = inputToGameKeyMapping
-end
+    
+(unless (fboundp 'jm_getInputToGameKeyMapping_0) (defgeneric jm_getInputToGameKeyMapping_0 (this)))
+(defmethod jm_getInputToGameKeyMapping_0 ((this InputMappingEvent))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_inputToGameKeyMapping)))))
 
 
-function InputMappingEvent:getInputToGameKeyMapping()
-        return self.inputToGameKeyMapping
-end
-
-return InputMappingEvent
 

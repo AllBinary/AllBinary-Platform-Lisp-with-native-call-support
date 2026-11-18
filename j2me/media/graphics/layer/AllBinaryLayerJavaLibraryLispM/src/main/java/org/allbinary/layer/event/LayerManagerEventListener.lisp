@@ -1,54 +1,50 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.layer.event
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.layer.event
 
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local LayerManagerEventListenerInterface = require("org.allbinary.layer.event.LayerManagerEventListenerInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass LayerManagerEventListener (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun LayerManagerEventListener.jnew_0 ()
+  (let ((this (make-instance 'LayerManagerEventListener)))
+    this))
 
-local LayerManagerEventListener = {}
-LayerManagerEventListener.__index = LayerManagerEventListener
-LayerManagerEventListener.className = "LayerManagerEventListener"
+    
+(unless (fboundp 'jm_onEvent_1) (defgeneric jm_onEvent_1 (this p1)))
+(defmethod jm_onEvent_1 ((this LayerManagerEventListener) _eventObject)
+  (declare (ignorable this _eventObject))
+  (let ()
+    (block jreturn nil)))
 
-function LayerManagerEventListener.new()
-    local self = setmetatable({}, LayerManagerEventListener)
-    return self
-end
+    
+(unless (fboundp 'jm_onCreateLayerManagerEvent_1) (defgeneric jm_onCreateLayerManagerEvent_1 (this p1)))
+(defmethod jm_onCreateLayerManagerEvent_1 ((this LayerManagerEventListener) _layerManagerEvent)
+  (declare (ignorable this _layerManagerEvent))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_onDeleteLayerManagerEvent_1) (defgeneric jm_onDeleteLayerManagerEvent_1 (this p1)))
+(defmethod jm_onDeleteLayerManagerEvent_1 ((this LayerManagerEventListener) _layerManagerEvent)
+  (declare (ignorable this _layerManagerEvent))
+  (let ()
+    (block jreturn nil)))
 
 
-function LayerManagerEventListener:onEvent(eventObject)
-end
-
-
--- throws Exception
-function LayerManagerEventListener:onCreateLayerManagerEvent(layerManagerEvent)
-end
-
-
--- throws Exception
-function LayerManagerEventListener:onDeleteLayerManagerEvent(layerManagerEvent)
-end
-
-return LayerManagerEventListener
 

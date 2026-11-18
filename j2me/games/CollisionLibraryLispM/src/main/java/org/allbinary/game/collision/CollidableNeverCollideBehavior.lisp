@@ -1,62 +1,64 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.collision
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.collision
 
-local CollidableCompositeLayer = require("org.allbinary.game.layer.CollidableCompositeLayer")
-local CollidableBaseBehavior = require("org.allbinary.game.collision.CollidableBaseBehavior")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass CollidableNeverCollideBehavior (CollidableBaseBehavior)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun CollidableNeverCollideBehavior.jnew_1 (_isCollidable)
+  (declare (ignorable _isCollidable))
+  (let ((this (make-instance 'CollidableNeverCollideBehavior)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
-local CollidableNeverCollideBehavior = {}
-CollidableNeverCollideBehavior.__index = CollidableNeverCollideBehavior
-CollidableNeverCollideBehavior.className = "CollidableNeverCollideBehavior"
-setmetatable(CollidableNeverCollideBehavior, {__index = CollidableBaseBehavior})
+    
+(unless (fboundp 'jm_isCollision_2) (defgeneric jm_isCollision_2 (this p1 p2)))
+(defmethod jm_isCollision_2 ((this CollidableNeverCollideBehavior) _ownerLayer _allbinaryCollidableLayer)
+  (declare (ignorable this _ownerLayer _allbinaryCollidableLayer))
+  (let ()
+    (block jreturn
+        (return-from jreturn nil))))
+
+    
+(unless (fboundp 'jm_collide_2) (defgeneric jm_collide_2 (this p1 p2)))
+(defmethod jm_collide_2 ((this CollidableNeverCollideBehavior) _ownerLayer _allbinaryCollidableLayer)
+  (declare (ignorable this _ownerLayer _allbinaryCollidableLayer))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_collideInterface_2) (defgeneric jm_collideInterface_2 (this p1 p2)))
+(defmethod jm_collideInterface_2 ((this CollidableNeverCollideBehavior) _ownerLayer _collidableInterfaceCompositeInterface)
+  (declare (ignorable this _ownerLayer _collidableInterfaceCompositeInterface))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_isCollisionInterface_2) (defgeneric jm_isCollisionInterface_2 (this p1 p2)))
+(defmethod jm_isCollisionInterface_2 ((this CollidableNeverCollideBehavior) _ownerLayer _collidableInterfaceCompositeInterface)
+  (declare (ignorable this _ownerLayer _collidableInterfaceCompositeInterface))
+  (let ()
+    (block jreturn
+        (return-from jreturn nil))))
 
 
-function CollidableNeverCollideBehavior.new(isCollidable)
-    local self = setmetatable(CollidableBaseBehavior.new(isCollidable), CollidableNeverCollideBehavior)
-        -- super(...) made self above
-    return self
-end
-
-
-function CollidableNeverCollideBehavior:isCollision(ownerLayer, allbinaryCollidableLayer)
-        return false
-end
-
-
--- throws Exception
-function CollidableNeverCollideBehavior:collide(ownerLayer, allbinaryCollidableLayer)
-end
-
-
-function CollidableNeverCollideBehavior:collideInterface(ownerLayer, collidableInterfaceCompositeInterface)
-end
-
-
-function CollidableNeverCollideBehavior:isCollisionInterface(ownerLayer, collidableInterfaceCompositeInterface)
-        return false
-end
-
-return CollidableNeverCollideBehavior
 

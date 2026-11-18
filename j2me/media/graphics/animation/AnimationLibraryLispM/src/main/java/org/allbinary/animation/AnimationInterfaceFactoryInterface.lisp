@@ -1,48 +1,41 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation
 
-local ScaleProperties = require("org.allbinary.media.ScaleProperties")
-local BasicAnimationInterfaceFactoryInterface = require("org.allbinary.animation.BasicAnimationInterfaceFactoryInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass AnimationInterfaceFactoryInterface (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun AnimationInterfaceFactoryInterface.jnew_0 ()
+  (let ((this (make-instance 'AnimationInterfaceFactoryInterface)))
+    this))
 
--- Java interface
-local AnimationInterfaceFactoryInterface = {}
-AnimationInterfaceFactoryInterface.__index = AnimationInterfaceFactoryInterface
-AnimationInterfaceFactoryInterface.className = "AnimationInterfaceFactoryInterface"
-setmetatable(AnimationInterfaceFactoryInterface, {__index = BasicAnimationInterfaceFactoryInterface})
+    
+(unless (fboundp 'jm_getInstance_1) (defgeneric jm_getInstance_1 (this p1)))
+(defmethod jm_getInstance_1 ((this AnimationInterfaceFactoryInterface) _instanceId)
+  (declare (ignorable this _instanceId))
+  (error (JR.newException "AbstractMethodError" "getInstance")))
 
-
--- throws Exception
-function AnimationInterfaceFactoryInterface:getInstance(instanceId)
-    error("abstract method getInstance")
-end
+    
+(unless (fboundp 'jm_setInitialScale_1) (defgeneric jm_setInitialScale_1 (this p1)))
+(defmethod jm_setInitialScale_1 ((this AnimationInterfaceFactoryInterface) _scaleProperties)
+  (declare (ignorable this _scaleProperties))
+  (error (JR.newException "AbstractMethodError" "setInitialScale")))
 
 
-function AnimationInterfaceFactoryInterface:setInitialScale(scaleProperties)
-    error("abstract method setInitialScale")
-end
-
-return AnimationInterfaceFactoryInterface
 

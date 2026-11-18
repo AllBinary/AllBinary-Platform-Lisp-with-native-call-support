@@ -1,95 +1,107 @@
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local IndexedAnimation = require("org.allbinary.animation.IndexedAnimation")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass FillAnimation (IndexedAnimation)
+  ((f_pixelBuffer :initform nil)
+   (f_width :initform 0)
+   (f_height :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun FillAnimation.jnew_4 (_pixelBuffer _width _height _animationBehavior)
+  (declare (ignorable _pixelBuffer _width _height _animationBehavior))
+  (let ((this (make-instance 'FillAnimation)))
+    
+    
+    
+  (let ()
+    (block jreturn
+        nil
+        (setf (slot-value this 'f_width) 100)
+        (setf (slot-value this 'f_height) 100)
+        (setf (slot-value this 'f_pixelBuffer) _pixelBuffer)))
+    this))
 
-local FillAnimation = {}
-FillAnimation.__index = FillAnimation
-FillAnimation.className = "FillAnimation"
-setmetatable(FillAnimation, {__index = IndexedAnimation})
+    
+(unless (fboundp 'jm_setBasicColorP_1) (defgeneric jm_setBasicColorP_1 (this p1)))
+(defmethod jm_setBasicColorP_1 ((this FillAnimation) _basicColor)
+  (declare (ignorable this _basicColor))
+  (let (_changed)
+  (declare (ignorable _changed))
+    (block jreturn
+        (setf _changed nil)
+        (if (or (null (jm_getBasicColorP_0 this)) (not (eq (jm_intValue_0 (jm_getBasicColorP_0 this)) (jm_intValue_0 _basicColor))))
+            (progn
+            (setf _changed t)))
+        (call-next-method this _basicColor)
+        (if _changed
+            (progn
+            (jm_updateModifiers_0 this))))))
 
-function FillAnimation:_init_fields()
-    self.pixelBuffer = nil
-    self.width = nil
-    self.height = nil
-end
+    
+(unless (fboundp 'jm_changeBasicColor_1) (defgeneric jm_changeBasicColor_1 (this p1)))
+(defmethod jm_changeBasicColor_1 ((this FillAnimation) _basicColor)
+  (declare (ignorable this _basicColor))
+  (let (_changed)
+  (declare (ignorable _changed))
+    (block jreturn
+        (setf _changed nil)
+        (if (or (null (jm_getChangeBasicColor_0 this)) (not (eq (jm_intValue_0 (jm_getChangeBasicColor_0 this)) (jm_intValue_0 _basicColor))))
+            (progn
+            (setf _changed t)))
+        (call-next-method this _basicColor)
+        (if _changed
+            (progn
+            (jm_updateModifiers_0 this))))))
+
+    
+(unless (fboundp 'jm_setAlpha_1) (defgeneric jm_setAlpha_1 (this p1)))
+(defmethod jm_setAlpha_1 ((this FillAnimation) _alpha)
+  (declare (ignorable this _alpha))
+  (let (_changed)
+  (declare (ignorable _changed))
+    (block jreturn
+        (setf _changed nil)
+        (if (not (eq (slot-value this 'f_alphaP) _alpha))
+            (progn
+            (setf _changed t)))
+        (call-next-method this _alpha)
+        (if _changed
+            (progn
+            (jm_updateModifiers_0 this))))))
+
+    
+(unless (fboundp 'jm_setScale_2) (defgeneric jm_setScale_2 (this p1 p2)))
+(defmethod jm_setScale_2 ((this FillAnimation) _scaleX _scaleY)
+  (declare (ignorable this _scaleX _scaleY))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_setMaxScale_2) (defgeneric jm_setMaxScale_2 (this p1 p2)))
+(defmethod jm_setMaxScale_2 ((this FillAnimation) _maxScaleX _maxScaleY)
+  (declare (ignorable this _maxScaleX _maxScaleY))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_updateModifiers_0) (defgeneric jm_updateModifiers_0 (this)))
+(defmethod jm_updateModifiers_0 ((this FillAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_paint_1) (defgeneric jm_paint_1 (this p1)))
+(defmethod jm_paint_1 ((this FillAnimation) _g)
+  (declare (ignorable this _g))
+  (let ()
+    (block jreturn
+        (jm_drawRGB_8 _g (slot-value this 'f_pixelBuffer) 0 (slot-value this 'f_width) 0 0 (slot-value this 'f_width) (slot-value this 'f_height) t))))
 
 
-function FillAnimation.new(pixelBuffer, width, height, animationBehavior)
-    local self = setmetatable(IndexedAnimation.new(animationBehavior), FillAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self.width = 100
-        self.height = 100
-        self.pixelBuffer = pixelBuffer
-    return self
-end
-
-
-function FillAnimation:setBasicColorP(basicColor)
-        local changed = false
-        if self:getBasicColorP() == nil or math.tointeger(self:getBasicColorP() // 1) ~= math.tointeger(basicColor // 1) then
-            changed = true
-        end
-        IndexedAnimation.setBasicColorP(self, basicColor)
-        if changed then
-            self:updateModifiers()
-        end
-end
-
-
-function FillAnimation:changeBasicColor(basicColor)
-        local changed = false
-        if self:getChangeBasicColor() == nil or math.tointeger(self:getChangeBasicColor() // 1) ~= math.tointeger(basicColor // 1) then
-            changed = true
-        end
-        IndexedAnimation.changeBasicColor(self, basicColor)
-        if changed then
-            self:updateModifiers()
-        end
-end
-
-
-function FillAnimation:setAlpha(alpha)
-        local changed = false
-        if self.alphaP ~= alpha then
-            changed = true
-        end
-        IndexedAnimation.setAlpha(self, alpha)
-        if changed then
-            self:updateModifiers()
-        end
-end
-
-
-function FillAnimation:setScale(scaleX, scaleY)
-end
-
-
-function FillAnimation:setMaxScale(maxScaleX, maxScaleY)
-end
-
-
-function FillAnimation:updateModifiers()
-end
-
-
-function FillAnimation:paint(g)
-        g:drawRGB(self.pixelBuffer, 0, self.width, 0, 0, self.width, self.height, true)
-end
-
-return FillAnimation
 

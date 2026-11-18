@@ -1,65 +1,61 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.resources
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.layer.resources
 
-local BaseResourceAnimationInterfaceFactoryInterfaceFactory = require("org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory")
-local ImageCache = require("org.allbinary.image.ImageCache")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass OnDemandResources (JObject)
+  ((f_logUtil :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar OnDemandResources.jcell_NULL_ON_DEMAND_RESOURCES :jnone)
+(defun OnDemandResources.jstatic_NULL_ON_DEMAND_RESOURCES ()
+  (when (eq OnDemandResources.jcell_NULL_ON_DEMAND_RESOURCES :jnone) (setf OnDemandResources.jcell_NULL_ON_DEMAND_RESOURCES (OnDemandResources.jnew_0)))
+  OnDemandResources.jcell_NULL_ON_DEMAND_RESOURCES)
+(defun (setf OnDemandResources.jstatic_NULL_ON_DEMAND_RESOURCES) (value) (setf OnDemandResources.jcell_NULL_ON_DEMAND_RESOURCES value))
 
-local OnDemandResources = {}
-OnDemandResources.__index = OnDemandResources
-OnDemandResources.className = "OnDemandResources"
+    
+(defun OnDemandResources.jnew_0 ()
+  (let ((this (make-instance 'OnDemandResources)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+  (let ()
+    (block jreturn nil))
+    this))
 
-function OnDemandResources:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-end
+    
+(unless (fboundp 'jm_waitFor_0) (defgeneric jm_waitFor_0 (this)))
+(defmethod jm_waitFor_0 ((this OnDemandResources))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_init_0) (defgeneric jm_init_0 (this)))
+(defmethod jm_init_0 ((this OnDemandResources))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_initAt_5) (defgeneric jm_initAt_5 (this p1 p2 p3 p4 p5)))
+(defmethod jm_initAt_5 ((this OnDemandResources) _imageCache _resourceAnimationInterfaceFactoryInterfaceFactory _portion _loadingString _index)
+  (declare (ignorable this _imageCache _resourceAnimationInterfaceFactoryInterfaceFactory _portion _loadingString _index))
+  (let ()
+    (block jreturn
+        (return-from jreturn 0))))
 
 
-function OnDemandResources.new()
-    local self = setmetatable({}, OnDemandResources)
-    self:_init_fields()
-    return self
-end
-
-
--- throws Exception
-function OnDemandResources:waitFor()
-end
-
-
--- throws Exception
-function OnDemandResources:init()
-end
-
-
--- throws Exception
-function OnDemandResources:initAt(imageCache, resourceAnimationInterfaceFactoryInterfaceFactory, portion, loadingString, index)
-        return 0
-end
-
-OnDemandResources.NULL_ON_DEMAND_RESOURCES = OnDemandResources.new()
-
-return OnDemandResources
 

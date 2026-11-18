@@ -25,6 +25,7 @@
 (defun ScreenListenerHandler.jstatic_instance ()
   (when (eq ScreenListenerHandler.jcell_instance :jnone) (setf ScreenListenerHandler.jcell_instance (ScreenListenerHandler.jnew_0)))
   ScreenListenerHandler.jcell_instance)
+(defun (setf ScreenListenerHandler.jstatic_instance) (value) (setf ScreenListenerHandler.jcell_instance value))
 
 (defun ScreenListenerHandler.jnew_0 ()
   (let ((this (make-instance 'ScreenListenerHandler)))

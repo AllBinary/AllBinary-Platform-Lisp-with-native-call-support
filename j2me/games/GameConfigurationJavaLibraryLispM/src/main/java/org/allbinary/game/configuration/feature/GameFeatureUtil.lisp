@@ -1,210 +1,223 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.feature
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.configuration.feature
 
--- local Enumeration = require("java.util.Enumeration")
--- local ChoiceGroup = require("javax.microedition.lcdui.ChoiceGroup")
-local TsUtil = require("org.allbinary.TsUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonLabels = require("org.allbinary.string.CommonLabels")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local EnumerationUtil = require("org.allbinary.util.EnumerationUtil")
-local HashtableUtil = require("org.allbinary.util.HashtableUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(defclass GameFeatureUtil (JObject)
+  ((f_logUtil :initform nil)
+   (f_tsUtil :initform nil)
+   (f_enumerationUtil :initform nil)
+   (f_ON_GAME_FEATURE_CHANGE :initform nil)
+   (f_GAME_FEATURE_CHANGED :initform nil)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defvar GameFeatureUtil.jcell_instance :jnone)
+(defun GameFeatureUtil.jstatic_instance ()
+  (when (eq GameFeatureUtil.jcell_instance :jnone) (setf GameFeatureUtil.jcell_instance (GameFeatureUtil.jnew_0)))
+  GameFeatureUtil.jcell_instance)
+(defun (setf GameFeatureUtil.jstatic_instance) (value) (setf GameFeatureUtil.jcell_instance value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun GameFeatureUtil.jnew_0 ()
+  (let ((this (make-instance 'GameFeatureUtil)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_tsUtil) (TsUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_enumerationUtil) (EnumerationUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_ON_GAME_FEATURE_CHANGE) "onGameFeatureChange")
+    (setf (slot-value this 'f_GAME_FEATURE_CHANGED) "Game Feature Changed: ")
+    this))
 
-local GameFeatureUtil = {}
-GameFeatureUtil.__index = GameFeatureUtil
-GameFeatureUtil.className = "GameFeatureUtil"
+    
+(defun GameFeatureUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (GameFeatureUtil.jstatic_instance)))))
 
-function GameFeatureUtil:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.tsUtil = TsUtil.getInstance()
-    self.enumerationUtil = EnumerationUtil.getInstance()
-    self.ON_GAME_FEATURE_CHANGE = "onGameFeatureChange"
-    self.GAME_FEATURE_CHANGED = "Game Feature Changed: "
-end
+    
+(unless (fboundp 'jm_setDefault_1) (defgeneric jm_setDefault_1 (this p1)))
+(defmethod jm_setDefault_1 ((this GameFeatureUtil) _choiceGroup)
+  (declare (ignorable this _choiceGroup))
+  (let (_stringBuffer _METHOD_NAME _SELECTED_ARRAY_RETURN _SELECTED_SEP _selectedArray_return _total _features _isSelected _selectedChoiceLabel _gameFeature _index)
+  (declare (ignorable _stringBuffer _METHOD_NAME _SELECTED_ARRAY_RETURN _SELECTED_SEP _selectedArray_return _total _features _isSelected _selectedChoiceLabel _gameFeature _index))
+    (block jreturn
+        (setf _stringBuffer (StringMaker.jnew_0))
+        (setf _METHOD_NAME "setDefault")
+        (setf _SELECTED_ARRAY_RETURN "selectedArray_return[")
+        (setf _SELECTED_SEP "] = ")
+        (setf _selectedArray_return (JR.newArray nil (jm_size_0 _choiceGroup)))
+        (setf _total (jm_getSelectedFlags_1 _choiceGroup _selectedArray_return))
+        (jm_append_1 _stringBuffer "Multiple Total Choices: ")
+        (jm_appendint_1 _stringBuffer _total)
+        (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 _stringBuffer) this _METHOD_NAME)
+        (setf _features (Features.jm_getInstance_0))
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index (length _selectedArray_return)) do
+                (block jcontinue
+            (setf _isSelected (aref _selectedArray_return _index))
+            (jm_delete_2 _stringBuffer 0 (jm_length_0 _stringBuffer))
+            (jm_append_1 _stringBuffer _SELECTED_ARRAY_RETURN)
+            (jm_appendint_1 _stringBuffer _index)
+            (jm_append_1 _stringBuffer _SELECTED_SEP)
+            (jm_appendboolean_1 _stringBuffer _isSelected)
+            (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 _stringBuffer) this _METHOD_NAME)
+            (setf _selectedChoiceLabel (jm_getString_1 _choiceGroup _index))
+            (setf _gameFeature (Feature.jm_getInstance_1 _selectedChoiceLabel))
+            (if (jm_isDefault_1 _features _gameFeature)
+                (progn
+                (jm_add_1 _features _gameFeature)
+                (jm_setSelectedIndex_2 _choiceGroup _index t))
+                (progn
+                (jm_remove_1 _features _gameFeature)
+                (jm_setSelectedIndex_2 _choiceGroup _index nil))))
+                (setf _index (JR.i32 (+ _index 1)))))))))
 
-function GameFeatureUtil.new()
-    local self = setmetatable({}, GameFeatureUtil)
-    self:_init_fields()
-    return self
-end
+    
+(unless (fboundp 'jm_updateMultiple_1) (defgeneric jm_updateMultiple_1 (this p1)))
+(defmethod jm_updateMultiple_1 ((this GameFeatureUtil) _choiceGroup)
+  (declare (ignorable this _choiceGroup))
+  (let (_stringBuffer _METHOD_NAME _SELECTED_ARRAY_RETURN _SELECTED_SEP _selectedArray_return _total _features _isSelected _selectedChoiceLabel _gameFeature _index)
+  (declare (ignorable _stringBuffer _METHOD_NAME _SELECTED_ARRAY_RETURN _SELECTED_SEP _selectedArray_return _total _features _isSelected _selectedChoiceLabel _gameFeature _index))
+    (block jreturn
+        (setf _stringBuffer (StringMaker.jnew_0))
+        (setf _METHOD_NAME "updateMultiple")
+        (setf _SELECTED_ARRAY_RETURN "selectedArray_return[")
+        (setf _SELECTED_SEP "] = ")
+        (setf _selectedArray_return (JR.newArray nil (jm_size_0 _choiceGroup)))
+        (setf _total (jm_getSelectedFlags_1 _choiceGroup _selectedArray_return))
+        (jm_append_1 _stringBuffer "Multiple Total Choices: ")
+        (jm_appendint_1 _stringBuffer _total)
+        (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 _stringBuffer) this _METHOD_NAME)
+        (setf _features (Features.jm_getInstance_0))
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index (length _selectedArray_return)) do
+                (block jcontinue
+            (setf _isSelected (aref _selectedArray_return _index))
+            (jm_delete_2 _stringBuffer 0 (jm_length_0 _stringBuffer))
+            (jm_append_1 _stringBuffer _SELECTED_ARRAY_RETURN)
+            (jm_appendint_1 _stringBuffer _index)
+            (jm_append_1 _stringBuffer _SELECTED_SEP)
+            (jm_appendboolean_1 _stringBuffer _isSelected)
+            (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 _stringBuffer) this _METHOD_NAME)
+            (setf _selectedChoiceLabel (jm_getString_1 _choiceGroup _index))
+            (setf _gameFeature (Feature.jm_getInstance_1 _selectedChoiceLabel))
+            (if (and (not _isSelected) (jm_isFeature_1 _features _gameFeature))
+                (progn
+                (jm_remove_1 _features _gameFeature))
+                (if (and _isSelected (not (jm_isFeature_1 _features _gameFeature)))
+                (progn
+                (jm_add_1 _features _gameFeature)))))
+                (setf _index (JR.i32 (+ _index 1)))))))))
+
+    
+(unless (fboundp 'jm_updateExclusiveForChoiceGroup_1) (defgeneric jm_updateExclusiveForChoiceGroup_1 (this p1)))
+(defmethod jm_updateExclusiveForChoiceGroup_1 ((this GameFeatureUtil) _choiceGroup)
+  (declare (ignorable this _choiceGroup))
+  (let (_stringBuffer _METHOD_NAME _SELECTED_ARRAY_RETURN _SELECTED_SEP _selectedArray_return _total _isSelected _selectedChoiceLabel _index)
+  (declare (ignorable _stringBuffer _METHOD_NAME _SELECTED_ARRAY_RETURN _SELECTED_SEP _selectedArray_return _total _isSelected _selectedChoiceLabel _index))
+    (block jreturn
+        (setf _stringBuffer (StringMaker.jnew_0))
+        (setf _METHOD_NAME "updateExclusive")
+        (setf _SELECTED_ARRAY_RETURN "selectedArray_return[")
+        (setf _SELECTED_SEP "] = ")
+        (setf _selectedArray_return (JR.newArray nil (jm_size_0 _choiceGroup)))
+        (setf _total (jm_getSelectedFlags_1 _choiceGroup _selectedArray_return))
+        (jm_append_1 _stringBuffer "Exclusive Total Choices: 1==")
+        (jm_appendint_1 _stringBuffer _total)
+        (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 _stringBuffer) this _METHOD_NAME)
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index (length _selectedArray_return)) do
+                (block jcontinue
+            (setf _isSelected (aref _selectedArray_return _index))
+            (jm_delete_2 _stringBuffer 0 (jm_length_0 _stringBuffer))
+            (jm_append_1 _stringBuffer _SELECTED_ARRAY_RETURN)
+            (jm_appendint_1 _stringBuffer _index)
+            (jm_append_1 _stringBuffer _SELECTED_SEP)
+            (jm_appendboolean_1 _stringBuffer _isSelected)
+            (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 _stringBuffer) this _METHOD_NAME)
+            (if _isSelected
+                (progn
+                (setf _selectedChoiceLabel (jm_getString_1 _choiceGroup _index))
+                (jm_updateExclusive_1 this _selectedChoiceLabel))))
+                (setf _index (JR.i32 (+ _index 1)))))))))
+
+    
+(unless (fboundp 'jm_isExclusive_1) (defgeneric jm_isExclusive_1 (this p1)))
+(defmethod jm_isExclusive_1 ((this GameFeatureUtil) _itemLabel)
+  (declare (ignorable this _itemLabel))
+  (let (_enumeration _name)
+  (declare (ignorable _enumeration _name))
+    (block jreturn
+        (setf _enumeration (jm_keys_0 (jm_get_0 (GameFeatureChoiceGroups.jm_getExclusiveInstance_0))))
+        (setf _name nil)
+        (block jbreak (loop while (jm_hasMoreElements_1 (slot-value this 'f_enumerationUtil) _enumeration) do
+                (block jcontinue
+            (setf _name (jm_nextElement_1 (slot-value this 'f_enumerationUtil) _enumeration))
+            (if (eq (jm_compareTo_2 (slot-value this 'f_tsUtil) _itemLabel _name) 0)
+                (progn
+                (return-from jreturn t))))))
+        (return-from jreturn nil))))
+
+    
+(unless (fboundp 'jm_updateExclusive_1) (defgeneric jm_updateExclusive_1 (this p1)))
+(defmethod jm_updateExclusive_1 ((this GameFeatureUtil) _selectedChoiceLabel)
+  (declare (ignorable this _selectedChoiceLabel))
+  (let (_gameFeature _hashtable _objectArray _basicArrayList _anyType _size _index)
+  (declare (ignorable _gameFeature _hashtable _objectArray _basicArrayList _anyType _size _index))
+    (block jreturn
+        (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 (jm_append_1 (jm_append_1 (StringMaker.jnew_0) (slot-value (CommonLabels.jm_getInstance_0) 'f_ITEM_LABEL)) _selectedChoiceLabel)) this "updateExclusive")
+        (setf _gameFeature (Feature.jm_getInstance_1 _selectedChoiceLabel))
+        (setf _hashtable (jm_get_0 (GameFeatureChoiceGroups.jm_getExclusiveInstance_0)))
+        (setf _objectArray (jm_getKeysAsArray_1 (HashtableUtil.jm_getInstance_0) _hashtable))
+        (setf _basicArrayList nil)
+        (setf _anyType nil)
+        (setf _size (length _objectArray))
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (setf _anyType (aref _objectArray _index))
+            (setf _basicArrayList (jm_get_1 _hashtable _anyType))
+            (jm_updateExclusiveList_2 this _gameFeature _basicArrayList))
+                (setf _index (JR.i32 (+ _index 1)))))))))
+
+    
+(unless (fboundp 'jm_updateExclusiveList_2) (defgeneric jm_updateExclusiveList_2 (this p1 p2)))
+(defmethod jm_updateExclusiveList_2 ((this GameFeatureUtil) _gameFeature _list)
+  (declare (ignorable this _gameFeature _list))
+  (let (_features _addIndex _size _index)
+  (declare (ignorable _features _addIndex _size _index))
+    (block jreturn
+        (if (jm_contains_1 _list _gameFeature)
+            (progn
+            (setf _features (Features.jm_getInstance_0))
+            (setf _addIndex (jm_indexOf_1 _list _gameFeature))
+            (setf _size (jm_size_0 _list))
+            (progn
+                (setf _index 0)
+                (block jbreak (loop while (< _index _size) do
+                    (block jcontinue
+                (if (/= _addIndex _index)
+                    (progn
+                    (jm_remove_1 _features (aref (slot-value _list 'f_objectArray) _index)))
+                    (progn
+                    (jm_add_1 _features (aref (slot-value _list 'f_objectArray) _index)))))
+                    (setf _index (JR.i32 (+ _index 1)))))))))))
 
 
-function GameFeatureUtil.getInstance()
-        return GameFeatureUtil.instance
-end
-
-
--- throws Exception
-function GameFeatureUtil:setDefault(choiceGroup)
-        local stringBuffer = StringMaker.new()
-        local METHOD_NAME = "setDefault"
-        local SELECTED_ARRAY_RETURN = "selectedArray_return["
-        local SELECTED_SEP = "] = "
-        local selectedArray_return = java_new_array(false, choiceGroup:size())
-        local total = choiceGroup:getSelectedFlags(selectedArray_return)
-        stringBuffer:append("Multiple Total Choices: ")
-        stringBuffer:appendint(total)
-        self.logUtil:putF(tostring(stringBuffer), self, METHOD_NAME)
-        local features = Features.getInstance()
-        for index = 0, (selectedArray_return.n or #selectedArray_return) - 1 do
-            local isSelected = selectedArray_return[index + 1]
-            stringBuffer:delete(0, stringBuffer:length())
-            stringBuffer:append(SELECTED_ARRAY_RETURN)
-            stringBuffer:appendint(index)
-            stringBuffer:append(SELECTED_SEP)
-            stringBuffer:appendboolean(isSelected)
-            self.logUtil:putF(tostring(stringBuffer), self, METHOD_NAME)
-            local selectedChoiceLabel = choiceGroup:getString(index)
-            local gameFeature = Feature.getInstance(selectedChoiceLabel)
-            if features:isDefault(gameFeature) then
-                features:add(gameFeature)
-                choiceGroup:setSelectedIndex(index, true)
-            else
-                features:remove(gameFeature)
-                choiceGroup:setSelectedIndex(index, false)
-            end
-        end
-end
-
-
--- throws Exception
-function GameFeatureUtil:updateMultiple(choiceGroup)
-        local stringBuffer = StringMaker.new()
-        local METHOD_NAME = "updateMultiple"
-        local SELECTED_ARRAY_RETURN = "selectedArray_return["
-        local SELECTED_SEP = "] = "
-        local selectedArray_return = java_new_array(false, choiceGroup:size())
-        local total = choiceGroup:getSelectedFlags(selectedArray_return)
-        stringBuffer:append("Multiple Total Choices: ")
-        stringBuffer:appendint(total)
-        self.logUtil:putF(tostring(stringBuffer), self, METHOD_NAME)
-        local features = Features.getInstance()
-        for index = 0, (selectedArray_return.n or #selectedArray_return) - 1 do
-            local isSelected = selectedArray_return[index + 1]
-            stringBuffer:delete(0, stringBuffer:length())
-            stringBuffer:append(SELECTED_ARRAY_RETURN)
-            stringBuffer:appendint(index)
-            stringBuffer:append(SELECTED_SEP)
-            stringBuffer:appendboolean(isSelected)
-            self.logUtil:putF(tostring(stringBuffer), self, METHOD_NAME)
-            local selectedChoiceLabel = choiceGroup:getString(index)
-            local gameFeature = Feature.getInstance(selectedChoiceLabel)
-            if not isSelected and features:isFeature(gameFeature) then
-                features:remove(gameFeature)
-            elseif isSelected and not features:isFeature(gameFeature) then
-                features:add(gameFeature)
-            end
-        end
-end
-
-
--- throws Exception
-function GameFeatureUtil:updateExclusiveForChoiceGroup(choiceGroup)
-        local stringBuffer = StringMaker.new()
-        local METHOD_NAME = "updateExclusive"
-        local SELECTED_ARRAY_RETURN = "selectedArray_return["
-        local SELECTED_SEP = "] = "
-        local selectedArray_return = java_new_array(false, choiceGroup:size())
-        local total = choiceGroup:getSelectedFlags(selectedArray_return)
-        stringBuffer:append("Exclusive Total Choices: 1==")
-        stringBuffer:appendint(total)
-        self.logUtil:putF(tostring(stringBuffer), self, METHOD_NAME)
-        for index = 0, (selectedArray_return.n or #selectedArray_return) - 1 do
-            local isSelected = selectedArray_return[index + 1]
-            stringBuffer:delete(0, stringBuffer:length())
-            stringBuffer:append(SELECTED_ARRAY_RETURN)
-            stringBuffer:appendint(index)
-            stringBuffer:append(SELECTED_SEP)
-            stringBuffer:appendboolean(isSelected)
-            self.logUtil:putF(tostring(stringBuffer), self, METHOD_NAME)
-            if isSelected then
-                local selectedChoiceLabel = choiceGroup:getString(index)
-                self:updateExclusive(selectedChoiceLabel)
-            end
-        end
-end
-
-
-function GameFeatureUtil:isExclusive(itemLabel)
-        local enumeration = GameFeatureChoiceGroups.getExclusiveInstance():get():keys()
-        local name = nil
-        while self.enumerationUtil:hasMoreElements(enumeration) do
-            name = self.enumerationUtil:nextElement(enumeration)
-            if self.tsUtil:compareTo(itemLabel, name) == 0 then
-                return true
-            end
-        end
-        return false
-end
-
-
--- throws Exception
-function GameFeatureUtil:updateExclusive(selectedChoiceLabel)
-        self.logUtil:putF(tostring(StringMaker.new():append(CommonLabels.getInstance().ITEM_LABEL):append(selectedChoiceLabel)), self, "updateExclusive")
-        local gameFeature = Feature.getInstance(selectedChoiceLabel)
-        local hashtable = GameFeatureChoiceGroups.getExclusiveInstance():get()
-        local objectArray = HashtableUtil.getInstance():getKeysAsArray(hashtable)
-        local basicArrayList = nil
-        local anyType = nil
-        local size = (objectArray.n or #objectArray)
-        for index = 0, size - 1 do
-            anyType = objectArray[index + 1]
-            basicArrayList = hashtable:get(anyType)
-            self:updateExclusiveList(gameFeature, basicArrayList)
-        end
-end
-
-
--- throws Exception
-function GameFeatureUtil:updateExclusiveList(gameFeature, list)
-        if list:contains(gameFeature) then
-            local features = Features.getInstance()
-            local addIndex = list:indexOf(gameFeature)
-            local size = list:size()
-            for index = 0, size - 1 do
-                if addIndex ~= index then
-                    features:remove(list.objectArray[index + 1])
-                else
-                    features:add(list.objectArray[index + 1])
-                end
-            end
-        end
-end
-
-GameFeatureUtil.instance = GameFeatureUtil.new()
-
-return GameFeatureUtil
 

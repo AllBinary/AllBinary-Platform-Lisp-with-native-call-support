@@ -1,31 +1,25 @@
--- Generated Code Do Not Modify
--- package org.allbinary.device
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.device
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass OpenGLESGraphicsFactory (JObject)
+  ())
+
+(defun OpenGLESGraphicsFactory.jnew_0 ()
+  (let ((this (make-instance 'OpenGLESGraphicsFactory)))
+    this))
+
+    
+(unless (fboundp 'jm_getOpenGLESGraphicsInstance_0) (defgeneric jm_getOpenGLESGraphicsInstance_0 (this)))
+(defmethod jm_getOpenGLESGraphicsInstance_0 ((this OpenGLESGraphicsFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (OpenGLESNullGraphicsFactory.jm_getInstance_0)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local OpenGLESGraphicsFactory = {}
-OpenGLESGraphicsFactory.__index = OpenGLESGraphicsFactory
-OpenGLESGraphicsFactory.className = "OpenGLESGraphicsFactory"
-
-function OpenGLESGraphicsFactory.new()
-    local self = setmetatable({}, OpenGLESGraphicsFactory)
-    return self
-end
-
-
-function OpenGLESGraphicsFactory:getOpenGLESGraphicsInstance()
-        return OpenGLESNullGraphicsFactory.getInstance()
-end
-
-return OpenGLESGraphicsFactory
 

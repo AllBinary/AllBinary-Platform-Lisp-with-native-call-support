@@ -27,6 +27,7 @@
 (defun StoreRoleFactory.jstatic_instance ()
   (when (eq StoreRoleFactory.jcell_instance :jnone) (setf StoreRoleFactory.jcell_instance (StoreRoleFactory.jnew_0)))
   StoreRoleFactory.jcell_instance)
+(defun (setf StoreRoleFactory.jstatic_instance) (value) (setf StoreRoleFactory.jcell_instance value))
 
     
 (defun StoreRoleFactory.jm_getInstance_0 ()

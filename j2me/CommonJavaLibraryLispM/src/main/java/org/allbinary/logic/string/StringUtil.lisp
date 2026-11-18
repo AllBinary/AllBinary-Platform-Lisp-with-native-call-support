@@ -30,6 +30,7 @@
 (defun StringUtil.jstatic_instance ()
   (when (eq StringUtil.jcell_instance :jnone) (setf StringUtil.jcell_instance (StringUtil.jnew_0)))
   StringUtil.jcell_instance)
+(defun (setf StringUtil.jstatic_instance) (value) (setf StringUtil.jcell_instance value))
 
     
 (defun StringUtil.jm_getInstance_0 ()

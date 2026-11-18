@@ -26,6 +26,7 @@
 (defun FilePathData.jstatic_instance ()
   (when (eq FilePathData.jcell_instance :jnone) (setf FilePathData.jcell_instance (FilePathData.jnew_0)))
   FilePathData.jcell_instance)
+(defun (setf FilePathData.jstatic_instance) (value) (setf FilePathData.jcell_instance value))
 
     
 (defun FilePathData.jm_getInstance_0 ()

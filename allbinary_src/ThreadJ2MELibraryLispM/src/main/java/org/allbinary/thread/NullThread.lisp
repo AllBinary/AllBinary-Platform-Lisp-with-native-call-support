@@ -25,6 +25,7 @@
 (defun NullThread.jstatic_NULL_THREAD ()
   (when (eq NullThread.jcell_NULL_THREAD :jnone) (setf NullThread.jcell_NULL_THREAD (Thread.jnew_0)))
   NullThread.jcell_NULL_THREAD)
+(defun (setf NullThread.jstatic_NULL_THREAD) (value) (setf NullThread.jcell_NULL_THREAD value))
 
 (defun NullThread.jnew_0 ()
   (let ((this (make-instance 'NullThread)))

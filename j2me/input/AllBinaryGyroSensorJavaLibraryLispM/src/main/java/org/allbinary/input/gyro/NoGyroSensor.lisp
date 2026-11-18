@@ -1,54 +1,48 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.gyro
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.input.gyro
 
-local AllBinarySensorListener = require("org.allbinary.input.AllBinarySensorListener")
-local Orientation = require("org.allbinary.logic.math.Orientation")
-local AllBinaryOrientationSensor = require("org.allbinary.input.gyro.AllBinaryOrientationSensor")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass NoGyroSensor (AllBinaryOrientationSensor)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun NoGyroSensor.jnew_0 ()
+  (let ((this (make-instance 'NoGyroSensor)))
+  (let ()
+    (block jreturn
+        (jm_putF_3 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_START) this (slot-value (slot-value this 'f_commonStrings) 'f_CONSTRUCTOR))))
+    this))
 
-local NoGyroSensor = {}
-NoGyroSensor.__index = NoGyroSensor
-NoGyroSensor.className = "NoGyroSensor"
-setmetatable(NoGyroSensor, {__index = AllBinaryOrientationSensor})
+    
+(unless (fboundp 'jm_getOrientation_0) (defgeneric jm_getOrientation_0 (this)))
+(defmethod jm_getOrientation_0 ((this NoGyroSensor))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (Orientation.jstatic_NONE)))))
 
-
-function NoGyroSensor.new()
-    local self = setmetatable(AllBinaryOrientationSensor.new(), NoGyroSensor)
-        self.logUtil:putF(self.commonStrings.START, self, self.commonStrings.CONSTRUCTOR)
-    return self
-end
-
-
--- throws Exception
-function NoGyroSensor:getOrientation()
-        return Orientation.NONE
-end
+    
+(unless (fboundp 'jm_onSensorChange_0) (defgeneric jm_onSensorChange_0 (this)))
+(defmethod jm_onSensorChange_0 ((this NoGyroSensor))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
 
 
-function NoGyroSensor:onSensorChange()
-end
-
-return NoGyroSensor
 

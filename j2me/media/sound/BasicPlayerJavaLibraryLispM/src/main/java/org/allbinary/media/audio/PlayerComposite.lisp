@@ -1,197 +1,209 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.media.audio
 
--- local Control = require("javax.microedition.media.Control")
--- local Controllable = require("javax.microedition.media.Controllable")
--- local Player = require("javax.microedition.media.Player")
--- local PlayerListener = require("javax.microedition.media.PlayerListener")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local GameTickTimeDelayHelper = require("org.allbinary.time.GameTickTimeDelayHelper")
-local GameTickTimeDelayHelperFactory = require("org.allbinary.time.GameTickTimeDelayHelperFactory")
-local TimeDelayHelper = require("org.allbinary.time.TimeDelayHelper")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+;BasicPlayer
+(defclass PlayerComposite (JObject)
+  ((f_logUtil :initform nil)
+   (f_commonStrings :initform nil)
+   (f_player :initform nil)
+   (f_timeElapsedHelper :initform nil)
+   (f_gameTickTimeDelayHelper :initform nil)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(defun PlayerComposite.jnew_2 (_player _repeatTime)
+  (declare (ignorable _player _repeatTime))
+  (let ((this (make-instance 'PlayerComposite)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_commonStrings) (CommonStrings.jm_getInstance_0))
+    
+    (setf (slot-value this 'f_timeElapsedHelper) (TimeDelayHelper.jnew_1 0))
+    (setf (slot-value this 'f_gameTickTimeDelayHelper) (GameTickTimeDelayHelperFactory.jm_getInstance_0))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_player) _player)
+        (setf (slot-value (slot-value this 'f_timeElapsedHelper) 'f_delay) _repeatTime)))
+    this))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(unless (fboundp 'jm_addPlayerListener_1) (defgeneric jm_addPlayerListener_1 (this p1)))
+(defmethod jm_addPlayerListener_1 ((this PlayerComposite) _playerListener)
+  (declare (ignorable this _playerListener))
+  (let ()
+    (block jreturn
+        (jm_addPlayerListener_1 (slot-value this 'f_player) _playerListener))))
 
---BasicPlayer
-local PlayerComposite = {}
-PlayerComposite.__index = PlayerComposite
-PlayerComposite.className = "PlayerComposite"
+    
+(unless (fboundp 'jm_removePlayerListener_1) (defgeneric jm_removePlayerListener_1 (this p1)))
+(defmethod jm_removePlayerListener_1 ((this PlayerComposite) _playerListener)
+  (declare (ignorable this _playerListener))
+  (let ()
+    (block jreturn
+        (jm_removePlayerListener_1 (slot-value this 'f_player) _playerListener))))
 
-function PlayerComposite:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.player = nil
-    self.timeElapsedHelper = TimeDelayHelper.new(0)
-    self.gameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance()
-end
+    
+(unless (fboundp 'jm_close_0) (defgeneric jm_close_0 (this)))
+(defmethod jm_close_0 ((this PlayerComposite))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_close_0 (slot-value this 'f_player)))))
+
+    
+(unless (fboundp 'jm_deallocate_0) (defgeneric jm_deallocate_0 (this)))
+(defmethod jm_deallocate_0 ((this PlayerComposite))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_deallocate_0 (slot-value this 'f_player)))))
+
+    
+(unless (fboundp 'jm_getContentType_0) (defgeneric jm_getContentType_0 (this)))
+(defmethod jm_getContentType_0 ((this PlayerComposite))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getContentType_0 (slot-value this 'f_player))))))
+
+    
+(unless (fboundp 'jm_getDuration_0) (defgeneric jm_getDuration_0 (this)))
+(defmethod jm_getDuration_0 ((this PlayerComposite))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getDuration_0 (slot-value this 'f_player))))))
+
+    
+(unless (fboundp 'jm_getMediaTime_0) (defgeneric jm_getMediaTime_0 (this)))
+(defmethod jm_getMediaTime_0 ((this PlayerComposite))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getMediaTime_0 (slot-value this 'f_player))))))
+
+    
+(unless (fboundp 'jm_prefetch_0) (defgeneric jm_prefetch_0 (this)))
+(defmethod jm_prefetch_0 ((this PlayerComposite))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (handler-case (progn
+            (jm_prefetch_0 (slot-value this 'f_player)))
+            (error (_e) (declare (ignorable _e))
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_EXCEPTION) this "prefetch" _e))))))
+
+    
+(unless (fboundp 'jm_realize_0) (defgeneric jm_realize_0 (this)))
+(defmethod jm_realize_0 ((this PlayerComposite))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (handler-case (progn
+            (jm_realize_0 (slot-value this 'f_player)))
+            (error (_e) (declare (ignorable _e))
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_EXCEPTION) this "realize" _e))))))
+
+    
+(unless (fboundp 'jm_getState_0) (defgeneric jm_getState_0 (this)))
+(defmethod jm_getState_0 ((this PlayerComposite))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getState_0 (slot-value this 'f_player))))))
+
+    
+(unless (fboundp 'jm_setLoopCount_1) (defgeneric jm_setLoopCount_1 (this p1)))
+(defmethod jm_setLoopCount_1 ((this PlayerComposite) _count)
+  (declare (ignorable this _count))
+  (let ()
+    (block jreturn
+        (jm_setLoopCount_1 (slot-value this 'f_player) _count))))
+
+    
+(unless (fboundp 'jm_setMediaTime_1) (defgeneric jm_setMediaTime_1 (this p1)))
+(defmethod jm_setMediaTime_1 ((this PlayerComposite) _now)
+  (declare (ignorable this _now))
+  (let ()
+    (block jreturn
+        (handler-case (progn
+            (return-from jreturn (jm_setMediaTime_1 (slot-value this 'f_player) _now)))
+            (error (_e) (declare (ignorable _e))
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_EXCEPTION) this "setMediaTime" _e)
+            (return-from jreturn (JR.i32 (- 1))))))))
+
+    
+(unless (fboundp 'jm_start_0) (defgeneric jm_start_0 (this)))
+(defmethod jm_start_0 ((this PlayerComposite))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (handler-case (progn
+            (if (jm_isTime_1 (slot-value this 'f_timeElapsedHelper) (slot-value (slot-value this 'f_gameTickTimeDelayHelper) 'f_startTime))
+                (progn
+                (jm_start_0 (slot-value this 'f_player)))))
+            (error (_e) (declare (ignorable _e))
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_EXCEPTION) this (slot-value (slot-value this 'f_commonStrings) 'f_START_METHOD_NAME) _e))))))
+
+    
+(unless (fboundp 'jm_stop_0) (defgeneric jm_stop_0 (this)))
+(defmethod jm_stop_0 ((this PlayerComposite))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (handler-case (progn
+            (jm_stop_0 (slot-value this 'f_player)))
+            (error (_e) (declare (ignorable _e))
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_EXCEPTION) this "stop" _e))))))
+
+    
+(unless (fboundp 'jm_getControl_1) (defgeneric jm_getControl_1 (this p1)))
+(defmethod jm_getControl_1 ((this PlayerComposite) _controlType)
+  (declare (ignorable this _controlType))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getControl_1 (slot-value this 'f_player) _controlType)))))
+
+    
+(unless (fboundp 'jm_getControls_0) (defgeneric jm_getControls_0 (this)))
+(defmethod jm_getControls_0 ((this PlayerComposite))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (error (JR.newException "RuntimeException")))))
+
+    
+(unless (fboundp 'jm_setVolume_2) (defgeneric jm_setVolume_2 (this p1 p2)))
+(defmethod jm_setVolume_2 ((this PlayerComposite) _leftVolume _rightVolume)
+  (declare (ignorable this _leftVolume _rightVolume))
+  (let (_controllable2)
+  (declare (ignorable _controllable2))
+    (block jreturn
+        (setf _controllable2 (slot-value this 'f_player))
+        (jm_setVolume_2 _controllable2 _leftVolume _rightVolume))))
+
+    
+(unless (fboundp 'jm_getPlayerP_0) (defgeneric jm_getPlayerP_0 (this)))
+(defmethod jm_getPlayerP_0 ((this PlayerComposite))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_player)))))
 
 
-function PlayerComposite.new(player, repeatTime)
-    local self = setmetatable({}, PlayerComposite)
-    self:_init_fields()
-        self.player = player
-        self.timeElapsedHelper.delay = repeatTime
-    return self
-end
-
-
-function PlayerComposite:addPlayerListener(playerListener)
-        self.player:addPlayerListener(playerListener)
-end
-
-
-function PlayerComposite:removePlayerListener(playerListener)
-        self.player:removePlayerListener(playerListener)
-end
-
-
-function PlayerComposite:close()
-        self.player:close()
-end
-
-
-function PlayerComposite:deallocate()
-        self.player:deallocate()
-end
-
-
-function PlayerComposite:getContentType()
-        return self.player:getContentType()
-end
-
-
-function PlayerComposite:getDuration()
-        return self.player:getDuration()
-end
-
-
-function PlayerComposite:getMediaTime()
-        return self.player:getMediaTime()
-end
-
-
-function PlayerComposite:prefetch()
-        local try_ok, try_error = pcall(function()
-            self.player:prefetch()
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, "prefetch", e)
-        end
-end
-
-
-function PlayerComposite:realize()
-        local try_ok, try_error = pcall(function()
-            self.player:realize()
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, "realize", e)
-        end
-end
-
-
-function PlayerComposite:getState()
-        return self.player:getState()
-end
-
-
-function PlayerComposite:setLoopCount(count)
-        self.player:setLoopCount(count)
-end
-
-
-function PlayerComposite:setMediaTime(now)
-        local try_ok, try_error = pcall(function()
-            return self.player:setMediaTime(now)
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, "setMediaTime", e)
-            return -1
-        end
-end
-
-
-function PlayerComposite:start()
-        local try_ok, try_error = pcall(function()
-            if self.timeElapsedHelper:isTime(self.gameTickTimeDelayHelper.startTime) then
-                self.player:start()
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.commonStrings.START_METHOD_NAME, e)
-        end
-end
-
-
-function PlayerComposite:stop()
-        local try_ok, try_error = pcall(function()
-            self.player:stop()
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, "stop", e)
-        end
-end
-
-
-function PlayerComposite:getControl(controlType)
-        return self.player:getControl(controlType)
-end
-
-
-function PlayerComposite:getControls()
-        error(java_exception("RuntimeException"), 0)
-end
-
-
-function PlayerComposite:setVolume(leftVolume, rightVolume)
-        local controllable2 = (self.player)
-        controllable2:setVolume(leftVolume, rightVolume)
-end
-
-
-function PlayerComposite:getPlayerP()
-        return self.player
-end
-
-return PlayerComposite
 

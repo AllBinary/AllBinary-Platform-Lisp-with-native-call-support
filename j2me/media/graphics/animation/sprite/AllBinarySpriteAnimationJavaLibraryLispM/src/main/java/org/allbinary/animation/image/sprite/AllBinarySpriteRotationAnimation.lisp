@@ -1,89 +1,96 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image.sprite
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation.image.sprite
 
--- local Image = require("javax.microedition.lcdui.Image")
--- local Sprite = require("javax.microedition.lcdui.game.Sprite")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local Direction = require("org.allbinary.direction.Direction")
-local Angle = require("org.allbinary.math.Angle")
-local AngleFactory = require("org.allbinary.math.AngleFactory")
-local AngleInfo = require("org.allbinary.math.AngleInfo")
-local HackRotationSpriteIndexedAnimation = require("org.allbinary.animation.image.sprite.HackRotationSpriteIndexedAnimation")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass AllBinarySpriteRotationAnimation (HackRotationSpriteIndexedAnimation)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun AllBinarySpriteRotationAnimation.jnew_3 (_sprite _image _animationBehavior)
+  (declare (ignorable _sprite _image _animationBehavior))
+  (let ((this (make-instance 'AllBinarySpriteRotationAnimation)))
+  (let ()
+    (block jreturn
+        nil
+        (jm_adjustAngle_1 (slot-value this 'f_angleInfo) (jm_getFrame_0 (slot-value this 'f_sprite)))))
+    this))
 
-local AllBinarySpriteRotationAnimation = {}
-AllBinarySpriteRotationAnimation.__index = AllBinarySpriteRotationAnimation
-AllBinarySpriteRotationAnimation.className = "AllBinarySpriteRotationAnimation"
-setmetatable(AllBinarySpriteRotationAnimation, {__index = HackRotationSpriteIndexedAnimation})
+    
+(unless (fboundp 'jm_nextRotation_0) (defgeneric jm_nextRotation_0 (this)))
+(defmethod jm_nextRotation_0 ((this AllBinarySpriteRotationAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_nextFrame_0 (slot-value this 'f_sprite))
+        (jm_adjustAngle_1 (slot-value this 'f_angleInfo) (jm_getFrame_0 (slot-value this 'f_sprite))))))
+
+    
+(unless (fboundp 'jm_previousRotation_0) (defgeneric jm_previousRotation_0 (this)))
+(defmethod jm_previousRotation_0 ((this AllBinarySpriteRotationAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_prevFrame_0 (slot-value this 'f_sprite))
+        (jm_adjustAngle_1 (slot-value this 'f_angleInfo) (jm_getFrame_0 (slot-value this 'f_sprite))))))
+
+    
+(unless (fboundp 'jm_setFrameByDirection_1) (defgeneric jm_setFrameByDirection_1 (this p1)))
+(defmethod jm_setFrameByDirection_1 ((this AllBinarySpriteRotationAnimation) _direction)
+  (declare (ignorable this _direction))
+  (let (_angle)
+  (declare (ignorable _angle))
+    (block jreturn
+        (setf _angle (jm_getFrameAngle_1 (slot-value this 'f_directionUtil) _direction))
+        (jm_adjustFrameToAngle_1 this _angle))))
+
+    
+(unless (fboundp 'jm_setFrameToAngle_1) (defgeneric jm_setFrameToAngle_1 (this p1)))
+(defmethod jm_setFrameToAngle_1 ((this AllBinarySpriteRotationAnimation) _angle)
+  (declare (ignorable this _angle))
+  (let ()
+    (block jreturn
+        (jm_adjustFrameToAngle_1 this _angle))))
+
+    
+(unless (fboundp 'jm_setFrame_1) (defgeneric jm_setFrame_1 (this p1)))
+(defmethod jm_setFrame_1 ((this AllBinarySpriteRotationAnimation) _index)
+  (declare (ignorable this _index))
+  (let ()
+    (block jreturn
+        (jm_setFrame_1 (slot-value this 'f_sprite) _index)
+        (jm_adjustAngle_1 (slot-value this 'f_angleInfo) (jm_getFrame_0 this)))))
+
+    
+(unless (fboundp 'jm_adjustFrameToAngle_1) (defgeneric jm_adjustFrameToAngle_1 (this p1)))
+(defmethod jm_adjustFrameToAngle_1 ((this AllBinarySpriteRotationAnimation) _angle)
+  (declare (ignorable this _angle))
+  (let ()
+    (block jreturn
+        (jm_adjustFrame_1 this (jm_getValue_0 _angle)))))
+
+    
+(unless (fboundp 'jm_adjustFrame_1) (defgeneric jm_adjustFrame_1 (this p1)))
+(defmethod jm_adjustFrame_1 ((this AllBinarySpriteRotationAnimation) _angle)
+  (declare (ignorable this _angle))
+  (let ()
+    (block jreturn
+        (jm_setFrame_1 this (jm_getFrameForAngle_2 (slot-value this 'f_frameUtil) _angle (jm_getAngleIncrement_0 (jm_getAngleIncrementInfo_0 (slot-value this 'f_angleInfo))))))))
 
 
-function AllBinarySpriteRotationAnimation.new(sprite, image, animationBehavior)
-    local self = setmetatable(HackRotationSpriteIndexedAnimation.new(sprite, image, AngleInfo.getInstance(java_int((AngleFactory.getInstance().TOTAL_ANGLE / sprite:getRawFrameCount()))), animationBehavior), AllBinarySpriteRotationAnimation)
-        -- super(...) made self above
-        self.angleInfo:adjustAngle(self.sprite:getFrame())
-    return self
-end
-
-
-function AllBinarySpriteRotationAnimation:nextRotation()
-        self.sprite:nextFrame()
-        self.angleInfo:adjustAngle(self.sprite:getFrame())
-end
-
-
-function AllBinarySpriteRotationAnimation:previousRotation()
-        self.sprite:prevFrame()
-        self.angleInfo:adjustAngle(self.sprite:getFrame())
-end
-
-
-function AllBinarySpriteRotationAnimation:setFrameByDirection(direction)
-        local angle = self.directionUtil:getFrameAngle(direction)
-        self:adjustFrameToAngle(angle)
-end
-
-
-function AllBinarySpriteRotationAnimation:setFrameToAngle(angle)
-        self:adjustFrameToAngle(angle)
-end
-
-
-function AllBinarySpriteRotationAnimation:setFrame(index)
-        self.sprite:setFrame(index)
-        self.angleInfo:adjustAngle(self:getFrame())
-end
-
-
-function AllBinarySpriteRotationAnimation:adjustFrameToAngle(angle)
-        self:adjustFrame(angle:getValue())
-end
-
-
-function AllBinarySpriteRotationAnimation:adjustFrame(angle)
-        self:setFrame(self.frameUtil:getFrameForAngle(angle, java_int(self.angleInfo:getAngleIncrementInfo():getAngleIncrement())))
-end
-
-return AllBinarySpriteRotationAnimation
 

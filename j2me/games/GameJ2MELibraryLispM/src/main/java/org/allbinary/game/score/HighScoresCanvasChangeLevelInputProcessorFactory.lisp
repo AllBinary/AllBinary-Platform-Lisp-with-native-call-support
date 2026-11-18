@@ -1,45 +1,37 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.score
 
-local HighScoresCanvas = require("org.allbinary.game.score.displayable.HighScoresCanvas")
-local HighScoresCanvasInputProcessorFactoryInterface = require("org.allbinary.game.score.HighScoresCanvasInputProcessorFactoryInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass HighScoresCanvasChangeLevelInputProcessorFactory (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun HighScoresCanvasChangeLevelInputProcessorFactory.jnew_0 ()
+  (let ((this (make-instance 'HighScoresCanvasChangeLevelInputProcessorFactory)))
+    this))
 
-local HighScoresCanvasChangeLevelInputProcessorFactory = {}
-HighScoresCanvasChangeLevelInputProcessorFactory.__index = HighScoresCanvasChangeLevelInputProcessorFactory
-HighScoresCanvasChangeLevelInputProcessorFactory.className = "HighScoresCanvasChangeLevelInputProcessorFactory"
-
-function HighScoresCanvasChangeLevelInputProcessorFactory.new()
-    local self = setmetatable({}, HighScoresCanvasChangeLevelInputProcessorFactory)
-    return self
-end
+    
+(unless (fboundp 'jm_getInstance_1) (defgeneric jm_getInstance_1 (this p1)))
+(defmethod jm_getInstance_1 ((this HighScoresCanvasChangeLevelInputProcessorFactory) _highScoresCanvas)
+  (declare (ignorable this _highScoresCanvas))
+  (let ()
+    (block jreturn
+        (return-from jreturn (HighScoresCanvasLevelChangeInputProcessor.jnew_1 _highScoresCanvas)))))
 
 
-function HighScoresCanvasChangeLevelInputProcessorFactory:getInstance(highScoresCanvas)
-        return HighScoresCanvasLevelChangeInputProcessor.new(highScoresCanvas)
-end
-
-return HighScoresCanvasChangeLevelInputProcessorFactory
 

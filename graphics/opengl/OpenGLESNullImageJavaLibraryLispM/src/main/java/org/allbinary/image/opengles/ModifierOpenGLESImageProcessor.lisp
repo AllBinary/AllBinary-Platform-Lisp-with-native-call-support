@@ -1,47 +1,41 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.image.opengles
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2022 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.image.opengles
 
-local OpenGLESImageProcessor = require("org.allbinary.image.opengles.OpenGLESImageProcessor")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ModifierOpenGLESImageProcessor (OpenGLESImageProcessor)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar ModifierOpenGLESImageProcessor.jcell_instanceC :jnone)
+(defun ModifierOpenGLESImageProcessor.jstatic_instanceC ()
+  (when (eq ModifierOpenGLESImageProcessor.jcell_instanceC :jnone) (setf ModifierOpenGLESImageProcessor.jcell_instanceC (ModifierOpenGLESImageProcessor.jnew_0)))
+  ModifierOpenGLESImageProcessor.jcell_instanceC)
+(defun (setf ModifierOpenGLESImageProcessor.jstatic_instanceC) (value) (setf ModifierOpenGLESImageProcessor.jcell_instanceC value))
 
-local ModifierOpenGLESImageProcessor = {}
-ModifierOpenGLESImageProcessor.__index = ModifierOpenGLESImageProcessor
-ModifierOpenGLESImageProcessor.className = "ModifierOpenGLESImageProcessor"
-setmetatable(ModifierOpenGLESImageProcessor, {__index = OpenGLESImageProcessor})
+(defun ModifierOpenGLESImageProcessor.jnew_0 ()
+  (let ((this (make-instance 'ModifierOpenGLESImageProcessor)))
+    this))
 
-function ModifierOpenGLESImageProcessor.new()
-    local self = setmetatable(OpenGLESImageProcessor.new(), ModifierOpenGLESImageProcessor)
-    return self
-end
+    
+(defun ModifierOpenGLESImageProcessor.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (ModifierOpenGLESImageProcessor.jstatic_instanceC)))))
 
 
-function ModifierOpenGLESImageProcessor.getInstance()
-        return ModifierOpenGLESImageProcessor.instanceC
-end
-
-ModifierOpenGLESImageProcessor.instanceC = ModifierOpenGLESImageProcessor.new()
-
-return ModifierOpenGLESImageProcessor
 

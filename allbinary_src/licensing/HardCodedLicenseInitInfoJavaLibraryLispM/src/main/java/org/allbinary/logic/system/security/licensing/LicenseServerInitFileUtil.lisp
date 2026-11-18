@@ -1,46 +1,43 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.licensing
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.system.security.licensing
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass LicenseServerInitFileUtil (JObject)
+  ())
+
+(defun LicenseServerInitFileUtil.jnew_0 ()
+  (let ((this (make-instance 'LicenseServerInitFileUtil)))
+    this))
+
+    
+(unless (fboundp 'jm_init_0) (defgeneric jm_init_0 (this)))
+(defmethod jm_init_0 ((this LicenseServerInitFileUtil))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_write_0) (defgeneric jm_write_0 (this)))
+(defmethod jm_write_0 ((this LicenseServerInitFileUtil))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local LicenseServerInitFileUtil = {}
-LicenseServerInitFileUtil.__index = LicenseServerInitFileUtil
-LicenseServerInitFileUtil.className = "LicenseServerInitFileUtil"
-
-function LicenseServerInitFileUtil.new()
-    local self = setmetatable({}, LicenseServerInitFileUtil)
-    return self
-end
-
-
-function LicenseServerInitFileUtil:init()
-end
-
-
-function LicenseServerInitFileUtil:write()
-end
-
-return LicenseServerInitFileUtil
 

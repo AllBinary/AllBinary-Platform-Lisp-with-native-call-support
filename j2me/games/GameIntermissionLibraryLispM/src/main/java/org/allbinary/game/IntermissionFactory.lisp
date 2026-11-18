@@ -1,55 +1,48 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game
 
-local GameState = require("org.allbinary.game.state.GameState")
-local GameStateFactory = require("org.allbinary.game.state.GameStateFactory")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass IntermissionFactory (JObject)
+  ((f_START_LEVEL_INTERMISSION_GAME_STATE :initform nil)
+   (f_WAIT_LEVEL_INTERMISSION_GAME_STATE :initform nil)
+   (f_SHOW_RESULTS_LEVEL_INTERMISSION_GAME_STATE :initform nil)
+   (f_SHOW_HIGH_SCORE_LEVEL_INTERMISSION_GAME_STATE :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar IntermissionFactory.jcell_instance :jnone)
+(defun IntermissionFactory.jstatic_instance ()
+  (when (eq IntermissionFactory.jcell_instance :jnone) (setf IntermissionFactory.jcell_instance (IntermissionFactory.jnew_0)))
+  IntermissionFactory.jcell_instance)
+(defun (setf IntermissionFactory.jstatic_instance) (value) (setf IntermissionFactory.jcell_instance value))
 
-local IntermissionFactory = {}
-IntermissionFactory.__index = IntermissionFactory
-IntermissionFactory.className = "IntermissionFactory"
+(defun IntermissionFactory.jnew_0 ()
+  (let ((this (make-instance 'IntermissionFactory)))
+    (setf (slot-value this 'f_START_LEVEL_INTERMISSION_GAME_STATE) (jm_createGameState_1 (GameStateFactory.jm_getInstance_0) "START_LEVEL_INTERMISSION_GAME_STATE"))
+    (setf (slot-value this 'f_WAIT_LEVEL_INTERMISSION_GAME_STATE) (jm_createGameState_1 (GameStateFactory.jm_getInstance_0) "WAIT_LEVEL_INTERMISSION_GAME_STATE"))
+    (setf (slot-value this 'f_SHOW_RESULTS_LEVEL_INTERMISSION_GAME_STATE) (jm_createGameState_1 (GameStateFactory.jm_getInstance_0) "SHOW_RESULTS_LEVEL_INTERMISSION_GAME_STATE"))
+    (setf (slot-value this 'f_SHOW_HIGH_SCORE_LEVEL_INTERMISSION_GAME_STATE) (jm_createGameState_1 (GameStateFactory.jm_getInstance_0) "SHOW_HIGH_SCORE_LEVEL_INTERMISSION_GAME_STATE"))
+    this))
 
-function IntermissionFactory:_init_fields()
-    self.START_LEVEL_INTERMISSION_GAME_STATE = GameStateFactory.getInstance():createGameState("START_LEVEL_INTERMISSION_GAME_STATE")
-    self.WAIT_LEVEL_INTERMISSION_GAME_STATE = GameStateFactory.getInstance():createGameState("WAIT_LEVEL_INTERMISSION_GAME_STATE")
-    self.SHOW_RESULTS_LEVEL_INTERMISSION_GAME_STATE = GameStateFactory.getInstance():createGameState("SHOW_RESULTS_LEVEL_INTERMISSION_GAME_STATE")
-    self.SHOW_HIGH_SCORE_LEVEL_INTERMISSION_GAME_STATE = GameStateFactory.getInstance():createGameState("SHOW_HIGH_SCORE_LEVEL_INTERMISSION_GAME_STATE")
-end
-
-function IntermissionFactory.new()
-    local self = setmetatable({}, IntermissionFactory)
-    self:_init_fields()
-    return self
-end
+    
+(defun IntermissionFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (IntermissionFactory.jstatic_instance)))))
 
 
-function IntermissionFactory.getInstance()
-        return IntermissionFactory.instance
-end
-
-IntermissionFactory.instance = IntermissionFactory.new()
-
-return IntermissionFactory
 

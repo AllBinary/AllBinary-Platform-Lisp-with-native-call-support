@@ -25,6 +25,7 @@
 (defun ABSystemWrapper.jstatic_instance ()
   (when (eq ABSystemWrapper.jcell_instance :jnone) (setf ABSystemWrapper.jcell_instance (ABSystemWrapper.jnew_0)))
   ABSystemWrapper.jcell_instance)
+(defun (setf ABSystemWrapper.jstatic_instance) (value) (setf ABSystemWrapper.jcell_instance value))
 
 (defun ABSystemWrapper.jnew_0 ()
   (let ((this (make-instance 'ABSystemWrapper)))

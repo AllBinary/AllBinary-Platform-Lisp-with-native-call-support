@@ -27,6 +27,7 @@
 (defun ThreadPoolStrings.jstatic_instance ()
   (when (eq ThreadPoolStrings.jcell_instance :jnone) (setf ThreadPoolStrings.jcell_instance (ThreadPoolStrings.jnew_0)))
   ThreadPoolStrings.jcell_instance)
+(defun (setf ThreadPoolStrings.jstatic_instance) (value) (setf ThreadPoolStrings.jcell_instance value))
 
 (defun ThreadPoolStrings.jnew_0 ()
   (let ((this (make-instance 'ThreadPoolStrings)))

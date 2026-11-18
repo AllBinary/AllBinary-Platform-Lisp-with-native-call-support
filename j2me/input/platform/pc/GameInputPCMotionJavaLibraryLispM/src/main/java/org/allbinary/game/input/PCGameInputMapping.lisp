@@ -1,76 +1,70 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.input
 
-local GamePersistanceStrings = require("org.allbinary.game.configuration.persistance.GamePersistanceStrings")
-local PersistentInputMapping = require("org.allbinary.game.input.mapping.PersistentInputMapping")
-local BasicTouchInputFactory = require("org.allbinary.input.motion.button.BasicTouchInputFactory")
-local TouchMotionGestureFactory = require("org.allbinary.input.motion.gesture.TouchMotionGestureFactory")
-local TrackballMotionGestureFactory = require("org.allbinary.input.motion.gesture.TrackballMotionGestureFactory")
-local AbeClientInformationInterface = require("org.allbinary.logic.system.security.licensing.AbeClientInformationInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass PCGameInputMapping (PersistentInputMapping)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun PCGameInputMapping.jnew_0 ()
+  (let ((this (make-instance 'PCGameInputMapping)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
-local PCGameInputMapping = {}
-PCGameInputMapping.__index = PCGameInputMapping
-PCGameInputMapping.className = "PCGameInputMapping"
-setmetatable(PCGameInputMapping, {__index = PersistentInputMapping})
+    
+(unless (fboundp 'jm_init_1) (defgeneric jm_init_1 (this p1)))
+(defmethod jm_init_1 ((this PCGameInputMapping) _abeClientInformation)
+  (declare (ignorable this _abeClientInformation))
+  (let ()
+    (block jreturn
+        (jm_putF_3 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_START) this (slot-value (slot-value this 'f_commonStrings) 'f_INIT))
+        (PCKeyFactory.jm_getInstance_0)
+        (TouchMotionGestureFactory.jm_getInstance_0)
+        (TrackballMotionGestureFactory.jm_getInstance_0)
+        (BasicTouchInputFactory.jm_getInstance_0)
+        (call-next-method this _abeClientInformation)
+        (if (or (eq (jm_getTotalMapped_0 this) 0) (jm_isDefaultNew_0 this))
+            (progn
+            (jm_addMapping_1 (jm_getInputMapping_0 this) (jm_getDefault_0 this))
+            (jm_save_1 this _abeClientInformation))))))
+
+    
+(unless (fboundp 'jm_isDelete_1) (defgeneric jm_isDelete_1 (this p1)))
+(defmethod jm_isDelete_1 ((this PCGameInputMapping) _input)
+  (declare (ignorable this _input))
+  (let ()
+    (block jreturn
+        (if (eq _input (slot-value (PCKeyFactory.jm_getInstance_0) 'f_DEL))
+            (progn
+            (return-from jreturn t))
+            (progn
+            (return-from jreturn nil))))))
+
+    
+(unless (fboundp 'jm_isSystemInput_1) (defgeneric jm_isSystemInput_1 (this p1)))
+(defmethod jm_isSystemInput_1 ((this PCGameInputMapping) _input)
+  (declare (ignorable this _input))
+  (let ()
+    (block jreturn
+        (return-from jreturn nil))))
 
 
-function PCGameInputMapping.new()
-    local self = setmetatable(PersistentInputMapping.new(GamePersistanceStrings.getInstance().SAVED_INPUT_CONFIGURATION_RECORD_ID), PCGameInputMapping)
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function PCGameInputMapping:init(abeClientInformation)
-        self.logUtil:putF(self.commonStrings.START, self, self.commonStrings.INIT)
-        PCKeyFactory.getInstance()
-        TouchMotionGestureFactory.getInstance()
-        TrackballMotionGestureFactory.getInstance()
-        BasicTouchInputFactory.getInstance()
-        PersistentInputMapping.init(self, abeClientInformation)
-        if self:getTotalMapped() == 0 or self:isDefaultNew() then
-            self:getInputMapping():addMapping(self:getDefault())
-            self:save(abeClientInformation)
-        end
-end
-
-
-function PCGameInputMapping:isDelete(input)
-        if input == PCKeyFactory.getInstance().DEL then
-            return true
-        else
-            return false
-        end
-end
-
-
-function PCGameInputMapping:isSystemInput(input)
-        return false
-end
-
-return PCGameInputMapping
 

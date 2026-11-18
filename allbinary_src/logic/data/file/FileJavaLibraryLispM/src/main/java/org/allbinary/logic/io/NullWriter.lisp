@@ -1,76 +1,77 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
--- 
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
--- 
--- Created By: Travis Berthelot 
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2025 AllBinary 
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;; 
+;;;; Created By: Travis Berthelot 
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.io
 
--- local IOException = require("java.io.IOException")
--- local Writer = require("java.io.Writer")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass NullWriter (Writer)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar NullWriter.jcell_NULL_WRITER :jnone)
+(defun NullWriter.jstatic_NULL_WRITER ()
+  (when (eq NullWriter.jcell_NULL_WRITER :jnone) (setf NullWriter.jcell_NULL_WRITER (NullWriter.jnew_0)))
+  NullWriter.jcell_NULL_WRITER)
+(defun (setf NullWriter.jstatic_NULL_WRITER) (value) (setf NullWriter.jcell_NULL_WRITER value))
 
-local NullWriter = {}
-NullWriter.__index = NullWriter
-NullWriter.className = "NullWriter"
-setmetatable(NullWriter, {__index = Writer})
+(defun NullWriter.jnew_0 ()
+  (let ((this (make-instance 'NullWriter)))
+    this))
 
-function NullWriter.new()
-    local self = setmetatable(Writer.new(), NullWriter)
-    return self
-end
+    
+(unless (fboundp 'jm_write_1) (defgeneric jm_write_1 (this p1)))
+(defmethod jm_write_1 ((this NullWriter) (_c integer))
+  (declare (ignorable this _c))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_write_3) (defgeneric jm_write_3 (this p1 p2 p3)))
+(defmethod jm_write_3 ((this NullWriter) (_cbuf vector) (_off integer) (_len integer))
+  (declare (ignorable this _cbuf _off _len))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_write_1) (defgeneric jm_write_1 (this p1)))
+(defmethod jm_write_1 ((this NullWriter) (_str string))
+  (declare (ignorable this _str))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_write_3) (defgeneric jm_write_3 (this p1 p2 p3)))
+(defmethod jm_write_3 ((this NullWriter) (_str string) (_off integer) (_len integer))
+  (declare (ignorable this _str _off _len))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_flush_0) (defgeneric jm_flush_0 (this)))
+(defmethod jm_flush_0 ((this NullWriter))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_close_0) (defgeneric jm_close_0 (this)))
+(defmethod jm_close_0 ((this NullWriter))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
 
 
--- throws IOException
-function NullWriter:write(c)
-end
-
-
--- throws IOException
--- Java overloaded method: Lua keeps the last definition
-function NullWriter:write(cbuf, off, len)
-end
-
-
--- throws IOException
--- Java overloaded method: Lua keeps the last definition
-function NullWriter:write(str)
-end
-
-
--- throws IOException
--- Java overloaded method: Lua keeps the last definition
-function NullWriter:write(str, off, len)
-end
-
-
--- throws IOException
-function NullWriter:flush()
-end
-
-
--- throws IOException
-function NullWriter:close()
-end
-
-NullWriter.NULL_WRITER = NullWriter.new()
-
-return NullWriter
 

@@ -1,45 +1,50 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form.item
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.form.item
 
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ABStringComponent (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar ABStringComponent.jcell_NULL_STRING_COMPONENT :jnone)
+(defun ABStringComponent.jstatic_NULL_STRING_COMPONENT ()
+  (when (eq ABStringComponent.jcell_NULL_STRING_COMPONENT :jnone) (setf ABStringComponent.jcell_NULL_STRING_COMPONENT (ABStringComponent.jnew_2 (slot-value (BasicColorFactory.jm_getInstance_0) 'f_BLACK) (slot-value (BasicColorFactory.jm_getInstance_0) 'f_WHITE))))
+  ABStringComponent.jcell_NULL_STRING_COMPONENT)
+(defun (setf ABStringComponent.jstatic_NULL_STRING_COMPONENT) (value) (setf ABStringComponent.jcell_NULL_STRING_COMPONENT value))
 
-local ABStringComponent = {}
-ABStringComponent.__index = ABStringComponent
-ABStringComponent.className = "ABStringComponent"
+    
+(unless (fboundp 'jm_getBackgroundBasicColor_0) (defgeneric jm_getBackgroundBasicColor_0 (this)))
+(defmethod jm_getBackgroundBasicColor_0 ((this ABStringComponent))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value (BasicColorFactory.jm_getInstance_0) 'f_WHITE)))))
+
+    
+(defun ABStringComponent.jnew_2 (_backgroundBasicColor _foregroundBasicColor)
+  (declare (ignorable _backgroundBasicColor _foregroundBasicColor))
+  (let ((this (make-instance 'ABStringComponent)))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(unless (fboundp 'jm_getForegroundBasicColor_0) (defgeneric jm_getForegroundBasicColor_0 (this)))
+(defmethod jm_getForegroundBasicColor_0 ((this ABStringComponent))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value (BasicColorFactory.jm_getInstance_0) 'f_WHITE)))))
+
+    
+(unless (fboundp 'jm_setForegroundBasicColor_1) (defgeneric jm_setForegroundBasicColor_1 (this p1)))
+(defmethod jm_setForegroundBasicColor_1 ((this ABStringComponent) _foregroundBasicColor)
+  (declare (ignorable this _foregroundBasicColor))
+  (let ()
+    (block jreturn nil)))
 
 
-function ABStringComponent:getBackgroundBasicColor()
-        return BasicColorFactory.getInstance().WHITE
-end
-
-
-function ABStringComponent.new(backgroundBasicColor, foregroundBasicColor)
-    local self = setmetatable({}, ABStringComponent)
-    return self
-end
-
-
-function ABStringComponent:getForegroundBasicColor()
-        return BasicColorFactory.getInstance().WHITE
-end
-
-
-function ABStringComponent:setForegroundBasicColor(foregroundBasicColor)
-end
-
-ABStringComponent.NULL_STRING_COMPONENT = ABStringComponent.new(BasicColorFactory.getInstance().BLACK, BasicColorFactory.getInstance().WHITE)
-
-return ABStringComponent
 

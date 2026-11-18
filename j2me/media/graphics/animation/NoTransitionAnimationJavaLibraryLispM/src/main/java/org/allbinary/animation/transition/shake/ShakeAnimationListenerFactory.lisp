@@ -1,43 +1,35 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.transition.shake
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation.transition.shake
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass ShakeAnimationListenerFactory (JObject)
+  ())
+
+(defun ShakeAnimationListenerFactory.jnew_0 ()
+  (let ((this (make-instance 'ShakeAnimationListenerFactory)))
+    this))
+
+    
+(defun ShakeAnimationListenerFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (NoShakeAnimationListener.jnew_0)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ShakeAnimationListenerFactory = {}
-ShakeAnimationListenerFactory.__index = ShakeAnimationListenerFactory
-ShakeAnimationListenerFactory.className = "ShakeAnimationListenerFactory"
-
-function ShakeAnimationListenerFactory.new()
-    local self = setmetatable({}, ShakeAnimationListenerFactory)
-    return self
-end
-
-
-function ShakeAnimationListenerFactory.getInstance()
-        return NoShakeAnimationListener.new()
-end
-
-return ShakeAnimationListenerFactory
 

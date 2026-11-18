@@ -1,55 +1,43 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.form
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local ABCustomItem = require("org.allbinary.graphics.form.item.ABCustomItem")
-local ItemIndexPaintable = require("org.allbinary.graphics.form.ItemIndexPaintable")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass MultipleScrollSelectionFormVerticalPaintable (ItemIndexPaintable)
+  ((f_multipleScrollSelectionForm :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun MultipleScrollSelectionFormVerticalPaintable.jnew_1 (_multipleScrollSelectionForm)
+  (declare (ignorable _multipleScrollSelectionForm))
+  (let ((this (make-instance 'MultipleScrollSelectionFormVerticalPaintable)))
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_multipleScrollSelectionForm) _multipleScrollSelectionForm)))
+    this))
 
-local MultipleScrollSelectionFormVerticalPaintable = {}
-MultipleScrollSelectionFormVerticalPaintable.__index = MultipleScrollSelectionFormVerticalPaintable
-MultipleScrollSelectionFormVerticalPaintable.className = "MultipleScrollSelectionFormVerticalPaintable"
-setmetatable(MultipleScrollSelectionFormVerticalPaintable, {__index = ItemIndexPaintable})
-
-function MultipleScrollSelectionFormVerticalPaintable:_init_fields()
-    self.multipleScrollSelectionForm = nil
-end
-
-
-function MultipleScrollSelectionFormVerticalPaintable.new(multipleScrollSelectionForm)
-    local self = setmetatable(ItemIndexPaintable.new(), MultipleScrollSelectionFormVerticalPaintable)
-    self:_init_fields()
-        self.multipleScrollSelectionForm = multipleScrollSelectionForm
-    return self
-end
+    
+(unless (fboundp 'jm_paint_5) (defgeneric jm_paint_5 (this p1 p2 p3 p4 p5)))
+(defmethod jm_paint_5 ((this MultipleScrollSelectionFormVerticalPaintable) _graphics _index _item _dx _dy)
+  (declare (ignorable this _graphics _index _item _dx _dy))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_paintVertical_5 (slot-value this 'f_multipleScrollSelectionForm) _graphics _index _item _dx _dy)))))
 
 
--- throws Exception
-function MultipleScrollSelectionFormVerticalPaintable:paint(graphics, index, item, dx, dy)
-        return self.multipleScrollSelectionForm:paintVertical(graphics, index, item, dx, dy)
-end
-
-return MultipleScrollSelectionFormVerticalPaintable
 

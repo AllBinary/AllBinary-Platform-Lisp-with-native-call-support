@@ -1,59 +1,51 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.paint
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.paint
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Animation = require("org.allbinary.animation.Animation")
-local InitUpdatePaintable = require("org.allbinary.graphics.paint.InitUpdatePaintable")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass AnimationCompositePaintable (InitUpdatePaintable)
+  ((f_animationInterface :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun AnimationCompositePaintable.jnew_1 (_animationInterface)
+  (declare (ignorable _animationInterface))
+  (let ((this (make-instance 'AnimationCompositePaintable)))
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_animationInterface) _animationInterface)))
+    this))
 
-local AnimationCompositePaintable = {}
-AnimationCompositePaintable.__index = AnimationCompositePaintable
-AnimationCompositePaintable.className = "AnimationCompositePaintable"
-setmetatable(AnimationCompositePaintable, {__index = InitUpdatePaintable})
+    
+(unless (fboundp 'jm_paint_1) (defgeneric jm_paint_1 (this p1)))
+(defmethod jm_paint_1 ((this AnimationCompositePaintable) _graphics)
+  (declare (ignorable this _graphics))
+  (let ()
+    (block jreturn
+        (jm_paintXY_3 (slot-value this 'f_animationInterface) _graphics 0 0))))
 
-function AnimationCompositePaintable:_init_fields()
-    self.animationInterface = nil
-end
-
-
-function AnimationCompositePaintable.new(animationInterface)
-    local self = setmetatable(InitUpdatePaintable.new(), AnimationCompositePaintable)
-    self:_init_fields()
-        self.animationInterface = animationInterface
-    return self
-end
-
-
-function AnimationCompositePaintable:paint(graphics)
-        self.animationInterface:paintXY(graphics, 0, 0)
-end
+    
+(unless (fboundp 'jm_paintThreed_1) (defgeneric jm_paintThreed_1 (this p1)))
+(defmethod jm_paintThreed_1 ((this AnimationCompositePaintable) _graphics)
+  (declare (ignorable this _graphics))
+  (let ()
+    (block jreturn
+        (jm_paintThreedXYZ_4 (slot-value this 'f_animationInterface) _graphics 0 0 0))))
 
 
-function AnimationCompositePaintable:paintThreed(graphics)
-        self.animationInterface:paintThreedXYZ(graphics, 0, 0, 0)
-end
-
-return AnimationCompositePaintable
 

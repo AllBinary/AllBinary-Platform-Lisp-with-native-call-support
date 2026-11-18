@@ -1,45 +1,36 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.gyro
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.input.gyro
 
-local Processor = require("org.allbinary.canvas.Processor")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass GyroSensorUpdateProcessor (Processor)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun GyroSensorUpdateProcessor.jnew_0 ()
+  (let ((this (make-instance 'GyroSensorUpdateProcessor)))
+    this))
 
-local GyroSensorUpdateProcessor = {}
-GyroSensorUpdateProcessor.__index = GyroSensorUpdateProcessor
-GyroSensorUpdateProcessor.className = "GyroSensorUpdateProcessor"
-setmetatable(GyroSensorUpdateProcessor, {__index = Processor})
-
-function GyroSensorUpdateProcessor.new()
-    local self = setmetatable(Processor.new(), GyroSensorUpdateProcessor)
-    return self
-end
+    
+(unless (fboundp 'jm_process_0) (defgeneric jm_process_0 (this)))
+(defmethod jm_process_0 ((this GyroSensorUpdateProcessor))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
 
 
--- throws Exception
-function GyroSensorUpdateProcessor:process()
-end
-
-return GyroSensorUpdateProcessor
 

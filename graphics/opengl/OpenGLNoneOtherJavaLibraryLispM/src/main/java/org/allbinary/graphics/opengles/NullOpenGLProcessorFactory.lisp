@@ -1,33 +1,29 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.opengles
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass NullOpenGLProcessorFactory (JObject)
+  ())
+
+(defvar NullOpenGLProcessorFactory.jcell_instance :jnone)
+(defun NullOpenGLProcessorFactory.jstatic_instance ()
+  (when (eq NullOpenGLProcessorFactory.jcell_instance :jnone) (setf NullOpenGLProcessorFactory.jcell_instance (OpenGLProcessor.jnew_0)))
+  NullOpenGLProcessorFactory.jcell_instance)
+(defun (setf NullOpenGLProcessorFactory.jstatic_instance) (value) (setf NullOpenGLProcessorFactory.jcell_instance value))
+
+(defun NullOpenGLProcessorFactory.jnew_0 ()
+  (let ((this (make-instance 'NullOpenGLProcessorFactory)))
+    this))
+
+    
+(defun NullOpenGLProcessorFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (NullOpenGLProcessorFactory.jstatic_instance)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local NullOpenGLProcessorFactory = {}
-NullOpenGLProcessorFactory.__index = NullOpenGLProcessorFactory
-NullOpenGLProcessorFactory.className = "NullOpenGLProcessorFactory"
-
-function NullOpenGLProcessorFactory.new()
-    local self = setmetatable({}, NullOpenGLProcessorFactory)
-    return self
-end
-
-
-function NullOpenGLProcessorFactory.getInstance()
-        return NullOpenGLProcessorFactory.instance
-end
-
-NullOpenGLProcessorFactory.instance = OpenGLProcessor.new()
-
-return NullOpenGLProcessorFactory
 

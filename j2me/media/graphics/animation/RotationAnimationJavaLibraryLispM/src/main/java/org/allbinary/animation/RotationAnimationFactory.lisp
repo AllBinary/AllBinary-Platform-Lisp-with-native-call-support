@@ -1,75 +1,69 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2011 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2011 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation
 
-local GameConfigurationCentral = require("org.allbinary.game.configuration.GameConfigurationCentral")
-local AngleFactory = require("org.allbinary.math.AngleFactory")
-local AngleInfo = require("org.allbinary.math.AngleInfo")
-local ScaleProperties = require("org.allbinary.media.ScaleProperties")
-local AnimationInterfaceFactoryInterface = require("org.allbinary.animation.AnimationInterfaceFactoryInterface")
-local ProceduralAnimationInterfaceFactoryInterface = require("org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass RotationAnimationFactory (JObject)
+  ((f_totalAngle :initform 0)
+   (f_angleIncrement :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun RotationAnimationFactory.jm_createFactory_0 ()
+  (let (_totalAngle)
+  (declare (ignorable _totalAngle))
+    (block jreturn
+        (setf _totalAngle (slot-value (AngleFactory.jm_getInstance_0) 'f_TOTAL_ANGLE))
+        (return-from jreturn (RotationAnimationFactory.jnew_2 _totalAngle (JR.i16 (JR.idiv _totalAngle (jm_getGameControlFidelity_0 (GameConfigurationCentral.jm_getInstance_0)))))))))
 
-local RotationAnimationFactory = {}
-RotationAnimationFactory.__index = RotationAnimationFactory
-RotationAnimationFactory.className = "RotationAnimationFactory"
+    
+(defun RotationAnimationFactory.jnew_2 (_totalAngle _angleIncrement)
+  (declare (ignorable _totalAngle _angleIncrement))
+  (let ((this (make-instance 'RotationAnimationFactory)))
+    
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_totalAngle) _totalAngle)
+        (setf (slot-value this 'f_angleIncrement) _angleIncrement)))
+    this))
 
-function RotationAnimationFactory:_init_fields()
-    self.totalAngle = nil
-    self.angleIncrement = nil
-end
+    
+(unless (fboundp 'jm_getInstance_1) (defgeneric jm_getInstance_1 (this p1)))
+(defmethod jm_getInstance_1 ((this RotationAnimationFactory) _instanceId)
+  (declare (ignorable this _instanceId))
+  (let ()
+    (block jreturn
+        (return-from jreturn (NullRotationAnimation.jm_createTotalAngle_3 (AngleInfo.jm_getInstance_1 (slot-value this 'f_angleIncrement)) (slot-value this 'f_totalAngle) (AnimationBehavior.jm_getInstance_0))))))
 
+    
+(unless (fboundp 'jm_getInstanceAnimation_1) (defgeneric jm_getInstanceAnimation_1 (this p1)))
+(defmethod jm_getInstanceAnimation_1 ((this RotationAnimationFactory) _animationInterface)
+  (declare (ignorable this _animationInterface))
+  (let ()
+    (block jreturn
+        (return-from jreturn (NullRotationAnimation.jm_createTotalAngle_3 (AngleInfo.jm_getInstance_1 (slot-value this 'f_angleIncrement)) (slot-value this 'f_totalAngle) (AnimationBehavior.jm_getInstance_0))))))
 
-function RotationAnimationFactory.createFactory()
-        local totalAngle = AngleFactory.getInstance().TOTAL_ANGLE
-        return RotationAnimationFactory.new(totalAngle, java_int((totalAngle / GameConfigurationCentral.getInstance():getGameControlFidelity())))
-end
-
-
-function RotationAnimationFactory.new(totalAngle, angleIncrement)
-    local self = setmetatable({}, RotationAnimationFactory)
-    self:_init_fields()
-        self.totalAngle = totalAngle
-        self.angleIncrement = angleIncrement
-    return self
-end
-
-
--- throws Exception
-function RotationAnimationFactory:getInstance(instanceId)
-        return NullRotationAnimation.createTotalAngle(AngleInfo.getInstance(self.angleIncrement), self.totalAngle, AnimationBehavior.getInstance())
-end
-
-
--- throws Exception
-function RotationAnimationFactory:getInstanceAnimation(animationInterface)
-        return NullRotationAnimation.createTotalAngle(AngleInfo.getInstance(self.angleIncrement), self.totalAngle, AnimationBehavior.getInstance())
-end
+    
+(unless (fboundp 'jm_setInitialScale_1) (defgeneric jm_setInitialScale_1 (this p1)))
+(defmethod jm_setInitialScale_1 ((this RotationAnimationFactory) _scaleProperties)
+  (declare (ignorable this _scaleProperties))
+  (let ()
+    (block jreturn nil)))
 
 
-function RotationAnimationFactory:setInitialScale(scaleProperties)
-end
-
-return RotationAnimationFactory
 

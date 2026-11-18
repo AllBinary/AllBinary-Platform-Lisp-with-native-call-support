@@ -1,73 +1,72 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation
 
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local ScaleProperties = require("org.allbinary.media.ScaleProperties")
-local AnimationInterfaceFactoryInterface = require("org.allbinary.animation.AnimationInterfaceFactoryInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass VectorAnimationInterfaceFactory (JObject)
+  ((f_currentPoints :initform nil)
+   (f_basicColor :initform nil)
+   (f_animationBehaviorFactory :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun VectorAnimationInterfaceFactory.jnew_3 (_currentPoints _basicColor _animationBehaviorFactory)
+  (declare (ignorable _currentPoints _basicColor _animationBehaviorFactory))
+  (let ((this (make-instance 'VectorAnimationInterfaceFactory)))
+    
+    (setf (slot-value this 'f_basicColor) (slot-value (BasicColorFactory.jm_getInstance_0) 'f_WHITE))
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_currentPoints) _currentPoints)
+        (jm_setBasicColorP_1 this _basicColor)
+        (setf (slot-value this 'f_animationBehaviorFactory) _animationBehaviorFactory)))
+    this))
 
-local VectorAnimationInterfaceFactory = {}
-VectorAnimationInterfaceFactory.__index = VectorAnimationInterfaceFactory
-VectorAnimationInterfaceFactory.className = "VectorAnimationInterfaceFactory"
+    
+(unless (fboundp 'jm_getInstance_1) (defgeneric jm_getInstance_1 (this p1)))
+(defmethod jm_getInstance_1 ((this VectorAnimationInterfaceFactory) _instanceId)
+  (declare (ignorable this _instanceId))
+  (let ()
+    (block jreturn
+        (return-from jreturn (VectorAnimation.jnew_3 (slot-value this 'f_currentPoints) (jm_getBasicColorP_0 this) (jm_getOrCreateInstance_0 (slot-value this 'f_animationBehaviorFactory)))))))
 
-function VectorAnimationInterfaceFactory:_init_fields()
-    self.currentPoints = nil
-    self.basicColor = BasicColorFactory.getInstance().WHITE
-    self.animationBehaviorFactory = nil
-end
+    
+(unless (fboundp 'jm_setBasicColorP_1) (defgeneric jm_setBasicColorP_1 (this p1)))
+(defmethod jm_setBasicColorP_1 ((this VectorAnimationInterfaceFactory) _basicColor)
+  (declare (ignorable this _basicColor))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_basicColor) _basicColor))))
 
+    
+(unless (fboundp 'jm_getBasicColorP_0) (defgeneric jm_getBasicColorP_0 (this)))
+(defmethod jm_getBasicColorP_0 ((this VectorAnimationInterfaceFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_basicColor)))))
 
-function VectorAnimationInterfaceFactory.new(currentPoints, basicColor, animationBehaviorFactory)
-    local self = setmetatable({}, VectorAnimationInterfaceFactory)
-    self:_init_fields()
-        self.currentPoints = currentPoints
-        self:setBasicColorP(basicColor)
-        self.animationBehaviorFactory = animationBehaviorFactory
-    return self
-end
-
-
--- throws Exception
-function VectorAnimationInterfaceFactory:getInstance(instanceId)
-        return VectorAnimation.new(self.currentPoints, self:getBasicColorP(), self.animationBehaviorFactory:getOrCreateInstance())
-end
-
-
-function VectorAnimationInterfaceFactory:setBasicColorP(basicColor)
-        self.basicColor = basicColor
-end
-
-
-function VectorAnimationInterfaceFactory:getBasicColorP()
-        return self.basicColor
-end
+    
+(unless (fboundp 'jm_setInitialScale_1) (defgeneric jm_setInitialScale_1 (this p1)))
+(defmethod jm_setInitialScale_1 ((this VectorAnimationInterfaceFactory) _scaleProperties)
+  (declare (ignorable this _scaleProperties))
+  (let ()
+    (block jreturn nil)))
 
 
-function VectorAnimationInterfaceFactory:setInitialScale(scaleProperties)
-end
-
-return VectorAnimationInterfaceFactory
 

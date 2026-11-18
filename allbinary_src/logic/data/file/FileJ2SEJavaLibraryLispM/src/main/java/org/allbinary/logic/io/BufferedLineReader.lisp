@@ -1,75 +1,74 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.io
 
--- local BufferedReader = require("java.io.BufferedReader")
--- local FileReader = require("java.io.FileReader")
-local AbFile = require("org.allbinary.logic.io.file.AbFile")
-local AbFileNativeUtil = require("org.allbinary.logic.io.file.AbFileNativeUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass BufferedLineReader (JObject)
+  ((f_tmpIn :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun BufferedLineReader.jnew_1 (_file)
+  (declare (ignorable _file))
+  (let ((this (make-instance 'BufferedLineReader)))
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_tmpIn) (BufferedReader.jnew_1 (FileReader.jnew_1 (AbFileNativeUtil.jm_get_1 _file))))))
+    this))
 
-local BufferedLineReader = {}
-BufferedLineReader.__index = BufferedLineReader
-BufferedLineReader.className = "BufferedLineReader"
+    
+(unless (fboundp 'jm_readUpToLines_1) (defgeneric jm_readUpToLines_1 (this p1)))
+(defmethod jm_readUpToLines_1 ((this BufferedLineReader) _readAheadIndex)
+  (declare (ignorable this _readAheadIndex))
+  (let ()
+    (block jreturn nil)))
 
-function BufferedLineReader:_init_fields()
-    self.tmpIn = nil
-end
+    
+(unless (fboundp 'jm_readLine_0) (defgeneric jm_readLine_0 (this)))
+(defmethod jm_readLine_0 ((this BufferedLineReader))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_readLine_0 (slot-value this 'f_tmpIn))))))
+
+    
+(unless (fboundp 'jm_ready_0) (defgeneric jm_ready_0 (this)))
+(defmethod jm_ready_0 ((this BufferedLineReader))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_ready_0 (slot-value this 'f_tmpIn))))))
+
+    
+(unless (fboundp 'jm_getSize_0) (defgeneric jm_getSize_0 (this)))
+(defmethod jm_getSize_0 ((this BufferedLineReader))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn 0))))
+
+    
+(unless (fboundp 'jm_getCurrent_0) (defgeneric jm_getCurrent_0 (this)))
+(defmethod jm_getCurrent_0 ((this BufferedLineReader))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn 0))))
 
 
-function BufferedLineReader.new(file)
-    local self = setmetatable({}, BufferedLineReader)
-    self:_init_fields()
-        self.tmpIn = BufferedReader.new(FileReader.new(AbFileNativeUtil.get(file)))
-    return self
-end
-
-
-function BufferedLineReader:readUpToLines(readAheadIndex)
-end
-
-
--- throws Exception
-function BufferedLineReader:readLine()
-        return self.tmpIn:readLine()
-end
-
-
--- throws Exception
-function BufferedLineReader:ready()
-        return self.tmpIn:ready()
-end
-
-
-function BufferedLineReader:getSize()
-        return 0
-end
-
-
-function BufferedLineReader:getCurrent()
-        return 0
-end
-
-return BufferedLineReader
 

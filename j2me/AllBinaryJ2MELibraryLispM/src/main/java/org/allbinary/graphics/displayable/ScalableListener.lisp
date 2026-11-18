@@ -1,54 +1,53 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2011 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.displayable
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2011 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.displayable
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass ScalableListener (JObject)
+  ())
+
+(defun ScalableListener.jnew_0 ()
+  (let ((this (make-instance 'ScalableListener)))
+    this))
+
+    
+(unless (fboundp 'jm_getRatio_1) (defgeneric jm_getRatio_1 (this p1)))
+(defmethod jm_getRatio_1 ((this ScalableListener) _ratio)
+  (declare (ignorable this _ratio))
+  (error (JR.newException "AbstractMethodError" "getRatio")))
+
+    
+(unless (fboundp 'jm_getLeft_1) (defgeneric jm_getLeft_1 (this p1)))
+(defmethod jm_getLeft_1 ((this ScalableListener) _xOffset)
+  (declare (ignorable this _xOffset))
+  (error (JR.newException "AbstractMethodError" "getLeft")))
+
+    
+(unless (fboundp 'jm_getTop_1) (defgeneric jm_getTop_1 (this p1)))
+(defmethod jm_getTop_1 ((this ScalableListener) _yOffset)
+  (declare (ignorable this _yOffset))
+  (error (JR.newException "AbstractMethodError" "getTop")))
+
+    
+(unless (fboundp 'jm_scale_1) (defgeneric jm_scale_1 (this p1)))
+(defmethod jm_scale_1 ((this ScalableListener) _ratio)
+  (declare (ignorable this _ratio))
+  (error (JR.newException "AbstractMethodError" "scale")))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local ScalableListener = {}
-ScalableListener.__index = ScalableListener
-ScalableListener.className = "ScalableListener"
-
-
-function ScalableListener:getRatio(ratio)
-    error("abstract method getRatio")
-end
-
-
-function ScalableListener:getLeft(xOffset)
-    error("abstract method getLeft")
-end
-
-
-function ScalableListener:getTop(yOffset)
-    error("abstract method getTop")
-end
-
-
-function ScalableListener:scale(ratio)
-    error("abstract method scale")
-end
-
-return ScalableListener
 

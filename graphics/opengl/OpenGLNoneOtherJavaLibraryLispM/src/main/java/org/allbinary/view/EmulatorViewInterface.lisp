@@ -1,39 +1,35 @@
--- Generated Code Do Not Modify
--- package org.allbinary.view
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.view
 
--- local Displayable = require("javax.microedition.lcdui.Displayable")
--- local MIDlet = require("javax.microedition.midlet.MIDlet")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass EmulatorViewInterface (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun EmulatorViewInterface.jnew_0 ()
+  (let ((this (make-instance 'EmulatorViewInterface)))
+    this))
 
--- Java interface
-local EmulatorViewInterface = {}
-EmulatorViewInterface.__index = EmulatorViewInterface
-EmulatorViewInterface.className = "EmulatorViewInterface"
+    
+(unless (fboundp 'jm_setMidlet_1) (defgeneric jm_setMidlet_1 (this p1)))
+(defmethod jm_setMidlet_1 ((this EmulatorViewInterface) _midlet)
+  (declare (ignorable this _midlet))
+  (error (JR.newException "AbstractMethodError" "setMidlet")))
+
+    
+(unless (fboundp 'jm_onEmulatorInitComplete_1) (defgeneric jm_onEmulatorInitComplete_1 (this p1)))
+(defmethod jm_onEmulatorInitComplete_1 ((this EmulatorViewInterface) _midletActivity)
+  (declare (ignorable this _midletActivity))
+  (error (JR.newException "AbstractMethodError" "onEmulatorInitComplete")))
+
+    
+(unless (fboundp 'jm_onSetDisplayable_1) (defgeneric jm_onSetDisplayable_1 (this p1)))
+(defmethod jm_onSetDisplayable_1 ((this EmulatorViewInterface) _displayable)
+  (declare (ignorable this _displayable))
+  (error (JR.newException "AbstractMethodError" "onSetDisplayable")))
 
 
-function EmulatorViewInterface:setMidlet(midlet)
-    error("abstract method setMidlet")
-end
-
-
-function EmulatorViewInterface:onEmulatorInitComplete(midletActivity)
-    error("abstract method onEmulatorInitComplete")
-end
-
-
-function EmulatorViewInterface:onSetDisplayable(displayable)
-    error("abstract method onSetDisplayable")
-end
-
-return EmulatorViewInterface
 

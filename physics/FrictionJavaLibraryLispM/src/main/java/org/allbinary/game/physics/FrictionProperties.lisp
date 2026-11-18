@@ -1,47 +1,40 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.physics
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.physics
 
-local FrictionData = require("org.allbinary.game.physics.friction.FrictionData")
-local DragVelocityBehavior = require("org.allbinary.game.physics.velocity.DragVelocityBehavior")
-local VelocityProperties = require("org.allbinary.game.physics.velocity.VelocityProperties")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass FrictionProperties (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun FrictionProperties.jnew_0 ()
+  (let ((this (make-instance 'FrictionProperties)))
+  (let ()
+    (block jreturn nil))
+    this))
 
-local FrictionProperties = {}
-FrictionProperties.__index = FrictionProperties
-FrictionProperties.className = "FrictionProperties"
-
-
-function FrictionProperties.new()
-    local self = setmetatable({}, FrictionProperties)
-    return self
-end
+    
+(unless (fboundp 'jm_friction_2) (defgeneric jm_friction_2 (this p1 p2)))
+(defmethod jm_friction_2 ((this FrictionProperties) _velocityProperties _nominator)
+  (declare (ignorable this _velocityProperties _nominator))
+  (let ()
+    (block jreturn
+        (jm_reduce_3 (DragVelocityBehavior.jstatic_instance) _velocityProperties _nominator (FrictionData.jm_getFrictionDenominator_0)))))
 
 
-function FrictionProperties:friction(velocityProperties, nominator)
-        DragVelocityBehavior.instance:reduce(velocityProperties, nominator, FrictionData.getFrictionDenominator())
-end
-
-return FrictionProperties
 

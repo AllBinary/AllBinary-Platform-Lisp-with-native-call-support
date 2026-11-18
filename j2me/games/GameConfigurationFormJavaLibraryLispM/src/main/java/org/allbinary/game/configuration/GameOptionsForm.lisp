@@ -1,184 +1,174 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.configuration
 
--- local Choice = require("javax.microedition.lcdui.Choice")
--- local Command = require("javax.microedition.lcdui.Command")
--- local CommandListener = require("javax.microedition.lcdui.CommandListener")
--- local Item = require("javax.microedition.lcdui.Item")
--- local TextField = require("javax.microedition.lcdui.TextField")
-local MIDPUtil = require("org.allbinary.MIDPUtil")
-local GameCommandsFactory = require("org.allbinary.game.commands.GameCommandsFactory")
-local GameFeatureChoiceGroups = require("org.allbinary.game.configuration.feature.GameFeatureChoiceGroups")
-local GameFeatureFormUtil = require("org.allbinary.game.configuration.feature.GameFeatureFormUtil")
-local GameFeatureItemCommandListener = require("org.allbinary.game.configuration.feature.GameFeatureItemCommandListener")
-local GameFeatureItemStateListener = require("org.allbinary.game.configuration.feature.GameFeatureItemStateListener")
-local SensorFeatureFactory = require("org.allbinary.game.configuration.feature.SensorFeatureFactory")
-local GameConfigurationPersistanceSingleton = require("org.allbinary.game.configuration.persistance.GameConfigurationPersistanceSingleton")
-local KeyValuePersistance = require("org.allbinary.game.configuration.persistance.KeyValuePersistance")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local MyCommandsFactory = require("org.allbinary.graphics.displayable.command.MyCommandsFactory")
-local CommandForm = require("org.allbinary.graphics.displayable.screen.CommandForm")
-local OrientationData = require("org.allbinary.input.gyro.OrientationData")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local AbeClientInformationInterface = require("org.allbinary.logic.system.security.licensing.AbeClientInformationInterface")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local HashtableUtil = require("org.allbinary.util.HashtableUtil")
-local StdUtil = require("org.allbinary.logic.StdUtil")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_instanceof(object, class)
-    local metatable = getmetatable(object)
-    while metatable do
-        if metatable == class then return true end
-        local parent = getmetatable(metatable)
-        metatable = parent and parent.__index
-    end
-    return false
-end
+(defclass GameOptionsForm (CommandForm)
+  ((f_meUtil :initform nil)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(defun GameOptionsForm.jnew_4 (_commandListener _title _backgrounBasicColor _foregroundBasicColor)
+  (declare (ignorable _commandListener _title _backgrounBasicColor _foregroundBasicColor))
+  (let ((this (make-instance 'GameOptionsForm)))
+    (setf (slot-value this 'f_meUtil) (MIDPUtil.jm_getInstance_0))
+  (let (_gameFeatureFormUtil)
+  (declare (ignorable _gameFeatureFormUtil))
+    (block jreturn
+        nil
+        (jm_putF_3 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_START) this (slot-value (slot-value this 'f_commonStrings) 'f_CONSTRUCTOR))
+        (jm_addConfiguration_0 this)
+        (setf _gameFeatureFormUtil (GameFeatureFormUtil.jm_getInstance_0))
+        (jm_addChoiceGroup_3 _gameFeatureFormUtil this (jm_get_0 (GameFeatureChoiceGroups.jm_getExclusiveInstance_0)) (Choice.jstatic_EXCLUSIVE))
+        (jm_addChoiceGroup_3 _gameFeatureFormUtil this (jm_get_0 (GameFeatureChoiceGroups.jm_getMultipleInstance_0)) (Choice.jstatic_MULTIPLE))
+        (jm_initCommands_1 this _commandListener)
+        (jm_setItemStateListener_1 this (GameFeatureItemStateListener.jnew_1 this))
+        (jm_addTextFieldsIfSimulated_0 this)))
+    this))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(unless (fboundp 'jm_closeClientInformation_1) (defgeneric jm_closeClientInformation_1 (this p1)))
+(defmethod jm_closeClientInformation_1 ((this GameOptionsForm) _abeClientInformation)
+  (declare (ignorable this _abeClientInformation))
+  (let ()
+    (block jreturn
+        (jm_close_0 this)
+        (jm_save_1 this _abeClientInformation))))
 
-local GameOptionsForm = {}
-GameOptionsForm.__index = GameOptionsForm
-GameOptionsForm.className = "GameOptionsForm"
-setmetatable(GameOptionsForm, {__index = CommandForm})
+    
+(unless (fboundp 'jm_addTextFieldsIfSimulated_0) (defgeneric jm_addTextFieldsIfSimulated_0 (this)))
+(defmethod jm_addTextFieldsIfSimulated_0 ((this GameOptionsForm))
+  (declare (ignorable this))
+  (let (_key _hashtable _listCanBeNull _list)
+  (declare (ignorable _key _hashtable _listCanBeNull _list))
+    (block jreturn
+        (setf _key (slot-value (OrientationData.jm_getInstance_0) 'f_ORIENTATION_SENSOR_INPUT))
+        (setf _hashtable (jm_get_0 (GameFeatureChoiceGroups.jm_getExclusiveInstance_0)))
+        (if (not (null _hashtable))
+            (progn
+            (setf _listCanBeNull (jm_get_1 _hashtable _key))
+            (if (not (null _listCanBeNull))
+                (progn
+                (setf _list _listCanBeNull)
+                (if (jm_contains_1 _list (slot-value (SensorFeatureFactory.jm_getInstance_0) 'f_SIMULATED_ORIENTATION_SENSORS))
+                    (progn
+                    (jm_addTextFields_0 this))))))))))
 
-function GameOptionsForm:_init_fields()
-    self.meUtil = MIDPUtil.getInstance()
-end
+    
+(unless (fboundp 'jm_addTextFields_0) (defgeneric jm_addTextFields_0 (this)))
+(defmethod jm_addTextFields_0 ((this GameOptionsForm))
+  (declare (ignorable this))
+  (let (_hashtable _size _objectArray _gameConfigurationTextInput _textField _index)
+  (declare (ignorable _hashtable _size _objectArray _gameConfigurationTextInput _textField _index))
+    (block jreturn
+        (setf _hashtable (GameConfigurationTextInput.jm_getHashtable_0))
+        (setf _size (jm_size_0 _hashtable))
+        (setf _objectArray (jm_getKeysAsArray_1 (HashtableUtil.jm_getInstance_0) _hashtable))
+        (setf _gameConfigurationTextInput nil)
+        (setf _textField nil)
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (setf _gameConfigurationTextInput (jm_get_1 _hashtable (aref _objectArray _index)))
+            (setf _textField (TextField.jnew_4 (jm_getLabel_0 _gameConfigurationTextInput) (jm_getText_0 _gameConfigurationTextInput) 30 (TextField.jstatic_ANY)))
+            (jm_appendItem_2 (slot-value this 'f_meUtil) this _textField))
+                (setf _index (JR.i32 (+ _index 1)))))))))
+
+    
+(unless (fboundp 'jm_addConfiguration_0) (defgeneric jm_addConfiguration_0 (this)))
+(defmethod jm_addConfiguration_0 ((this GameOptionsForm))
+  (declare (ignorable this))
+  (let (_METHOD_NAME _NAME _list _GAUGE_CHANGE _stringMaker _size _gameConfiguration _gauge _index)
+  (declare (ignorable _METHOD_NAME _NAME _list _GAUGE_CHANGE _stringMaker _size _gameConfiguration _gauge _index))
+    (block jreturn
+        (setf _METHOD_NAME "addConfiguration")
+        (setf _NAME "Name: ")
+        (setf _list (jm_getOptionsBasicArrayList_0 (GameConfigurationSingleton.jm_getInstance_0)))
+        (setf _GAUGE_CHANGE (slot-value (MyCommandsFactory.jm_getInstance_0) 'f_GAUGE_CHANGE))
+        (setf _stringMaker (StringMaker.jnew_0))
+        (setf _size (jm_size_0 _list))
+        (setf _gameConfiguration nil)
+        (setf _gauge nil)
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (setf _gameConfiguration (aref (slot-value _list 'f_objectArray) _index))
+            (jm_delete_2 _stringMaker 0 (jm_length_0 _stringMaker))
+            (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 (jm_append_1 (jm_append_1 _stringMaker _NAME) (jm_toString_0 _gameConfiguration))) this _METHOD_NAME)
+            (setf _gauge (GameConfigurationGauge.jnew_1 _gameConfiguration))
+            (jm_setDefaultCommand_1 _gauge _GAUGE_CHANGE)
+            (jm_setItemCommandListener_1 _gauge (GameFeatureItemCommandListener.jnew_1 this))
+            (jm_appendItem_2 (slot-value this 'f_meUtil) this _gauge))
+                (setf _index (JR.i32 (+ _index 1)))))))))
+
+    
+(unless (fboundp 'jm_initCommands_1) (defgeneric jm_initCommands_1 (this p1)))
+(defmethod jm_initCommands_1 ((this GameOptionsForm) _cmdListener)
+  (declare (ignorable this _cmdListener))
+  (let (_gameCommandsFactory)
+  (declare (ignorable _gameCommandsFactory))
+    (block jreturn
+        (setf _gameCommandsFactory (GameCommandsFactory.jm_getInstance_0))
+        (jm_removeAllCommands_0 this)
+        (jm_addCommand_1 this (slot-value _gameCommandsFactory 'f_CLOSE_OPTIONS))
+        (jm_addCommand_1 this (slot-value _gameCommandsFactory 'f_DEFAULT_OPTIONS))
+        (jm_setCommandListener_1 this _cmdListener))))
+
+    
+(unless (fboundp 'jm_save_1) (defgeneric jm_save_1 (this p1)))
+(defmethod jm_save_1 ((this GameOptionsForm) _abeClientInformation)
+  (declare (ignorable this _abeClientInformation))
+  (let (_size _item _index _hashtable _SCALE _keyValuePersistance _list _size2 _integer)
+  (declare (ignorable _size _item _index _hashtable _SCALE _keyValuePersistance _list _size2 _integer))
+    (block jreturn
+        (setf _size (jm_size_0 this))
+        (setf _item nil)
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (setf _item (jm_get_1 this _index))
+            (if (typep _item 'GameConfigurationGauge)
+                (progn
+                (jm_update_1 (GameConfigurationUtil.jm_getInstance_0) _item))
+                (if (typep _item 'TextField)
+                (progn
+                (GameConfigurationTextInput.jm_update_1 _item)))))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (jm_updateCompetitionValue_0 (GameConfigurationUtil.jm_getInstance_0))
+        (setf _hashtable (jm_createHashtable_0 (StdUtil.jm_getInstance_0)))
+        (setf _SCALE (slot-value (GameConfigurationCentral.jm_getInstance_0) 'f_SCALE))
+        (jm_put_2 _hashtable (jm_getName_0 _SCALE) (JR.str (jm_intValue_0 (jm_getValue_0 _SCALE))))
+        (setf _keyValuePersistance (GameConfigurationPersistanceSingleton.jm_getInstance_0))
+        (jm_clear_0 _keyValuePersistance)
+        (jm_loadAll_1 _keyValuePersistance _abeClientInformation)
+        (setf _list (jm_getIds_0 _keyValuePersistance))
+        (jm_save_2 _keyValuePersistance _abeClientInformation _hashtable)
+        (setf _size2 (jm_size_0 _list))
+        (setf _integer nil)
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size2) do
+                (block jcontinue
+            (setf _integer (aref (slot-value _list 'f_objectArray) _index))
+            (jm_delete_2 _keyValuePersistance _abeClientInformation (jm_intValue_0 _integer)))
+                (setf _index (JR.i32 (+ _index 1)))))))))
 
 
-function GameOptionsForm.new(commandListener, title, backgrounBasicColor, foregroundBasicColor)
-    local self = setmetatable(CommandForm.new(commandListener, title, backgrounBasicColor, foregroundBasicColor), GameOptionsForm)
-    self:_init_fields()
-        -- super(...) made self above
-        self.logUtil:putF(self.commonStrings.START, self, self.commonStrings.CONSTRUCTOR)
-        self:addConfiguration()
-        local gameFeatureFormUtil = GameFeatureFormUtil.getInstance()
-        gameFeatureFormUtil:addChoiceGroup(self, GameFeatureChoiceGroups.getExclusiveInstance():get(), Choice.EXCLUSIVE)
-        gameFeatureFormUtil:addChoiceGroup(self, GameFeatureChoiceGroups.getMultipleInstance():get(), Choice.MULTIPLE)
-        self:initCommands(commandListener)
-        self:setItemStateListener(GameFeatureItemStateListener.new(self))
-        self:addTextFieldsIfSimulated()
-    return self
-end
-
-
--- throws Exception
-function GameOptionsForm:closeClientInformation(abeClientInformation)
-        CommandForm.close(self)
-        self:save(abeClientInformation)
-end
-
-
-function GameOptionsForm:addTextFieldsIfSimulated()
-        local key = OrientationData.getInstance().ORIENTATION_SENSOR_INPUT
-        local hashtable = GameFeatureChoiceGroups.getExclusiveInstance():get()
-        if hashtable ~= nil then
-            local listCanBeNull = hashtable:get(key)
-            if listCanBeNull ~= nil then
-                local list = listCanBeNull
-                if list:contains(SensorFeatureFactory.getInstance().SIMULATED_ORIENTATION_SENSORS) then
-                    self:addTextFields()
-                end
-            end
-        end
-end
-
-
-function GameOptionsForm:addTextFields()
-        local hashtable = GameConfigurationTextInput.getHashtable()
-        local size = hashtable:size()
-        local objectArray = HashtableUtil.getInstance():getKeysAsArray(hashtable)
-        local gameConfigurationTextInput = nil
-        local textField = nil
-        for index = 0, size - 1 do
-            gameConfigurationTextInput = hashtable:get(objectArray[index + 1])
-            textField = TextField.new(gameConfigurationTextInput:getLabel(), gameConfigurationTextInput:getText(), 30, TextField.ANY)
-            self.meUtil:appendItem(self, textField)
-        end
-end
-
-
-function GameOptionsForm:addConfiguration()
-        local METHOD_NAME = "addConfiguration"
-        local NAME = "Name: "
-        local list = GameConfigurationSingleton.getInstance():getOptionsBasicArrayList()
-        local GAUGE_CHANGE = MyCommandsFactory.getInstance().GAUGE_CHANGE
-        local stringMaker = StringMaker.new()
-        local size = list:size()
-        local gameConfiguration = nil
-        local gauge = nil
-        for index = 0, size - 1 do
-            gameConfiguration = list.objectArray[index + 1]
-            stringMaker:delete(0, stringMaker:length())
-            self.logUtil:putF(tostring(stringMaker:append(NAME):append(tostring(gameConfiguration))), self, METHOD_NAME)
-            gauge = GameConfigurationGauge.new(gameConfiguration)
-            gauge:setDefaultCommand(GAUGE_CHANGE)
-            gauge:setItemCommandListener(GameFeatureItemCommandListener.new(self))
-            self.meUtil:appendItem(self, gauge)
-        end
-end
-
-
-function GameOptionsForm:initCommands(cmdListener)
-        local gameCommandsFactory = GameCommandsFactory.getInstance()
-        self:removeAllCommands()
-        self:addCommand(gameCommandsFactory.CLOSE_OPTIONS)
-        self:addCommand(gameCommandsFactory.DEFAULT_OPTIONS)
-        self:setCommandListener(cmdListener)
-end
-
-
--- throws Exception
-function GameOptionsForm:save(abeClientInformation)
-        local size = self:size()
-        local item = nil
-        for index = 0, size - 1 do
-            item = self:get(index)
-            if java_instanceof(item, GameConfigurationGauge) then
-                GameConfigurationUtil.getInstance():update(item)
-            elseif java_instanceof(item, TextField) then
-                GameConfigurationTextInput.update(item)
-            end
-        end
-        GameConfigurationUtil.getInstance():updateCompetitionValue()
-        local hashtable = StdUtil.getInstance():createHashtable()
-        local SCALE = GameConfigurationCentral.getInstance().SCALE
-        hashtable:put(SCALE:getName(), tostring(math.tointeger(SCALE:getValue() // 1)))
-        local keyValuePersistance = GameConfigurationPersistanceSingleton.getInstance()
-        keyValuePersistance:clear()
-        keyValuePersistance:loadAll(abeClientInformation)
-        local list = keyValuePersistance:getIds()
-        keyValuePersistance:save(abeClientInformation, hashtable)
-        local size2 = list:size()
-        local integer = nil
-        for index = 0, size2 - 1 do
-            integer = list.objectArray[index + 1]
-            keyValuePersistance:delete(abeClientInformation, math.tointeger(integer // 1))
-        end
-end
-
-return GameOptionsForm
 

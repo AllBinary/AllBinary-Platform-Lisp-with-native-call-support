@@ -1,73 +1,59 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
---
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
---
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
---
--- Created By: Travis Berthelot
--- 
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;;
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;;
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;;
+;;;; Created By: Travis Berthelot
+;;;; 
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.displayable.canvas
 
-local HighScoreTextBox = require("org.allbinary.game.score.displayable.HighScoreTextBox")
-local ProgressCanvas = require("org.allbinary.graphics.canvas.transition.progress.ProgressCanvas")
-local ProgressCanvasFactory = require("org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
--- java.lang.Runnable has no Lua module
-local Runnable = {}
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass SaveHighScoreRunnable (JObject)
+  ((f_progressCanvas :initform nil)
+   (f_isLast :initform nil)
+   (f_textBox :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun SaveHighScoreRunnable.jnew_2 (_isLast _textBox)
+  (declare (ignorable _isLast _textBox))
+  (let ((this (make-instance 'SaveHighScoreRunnable)))
+    (setf (slot-value this 'f_progressCanvas) (ProgressCanvasFactory.jm_getInstance_0))
+    
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_isLast) _isLast)
+        (setf (slot-value this 'f_textBox) _textBox)))
+    this))
 
-local SaveHighScoreRunnable = {}
-SaveHighScoreRunnable.__index = SaveHighScoreRunnable
-SaveHighScoreRunnable.className = "SaveHighScoreRunnable"
+    
+(unless (fboundp 'jm_run_0) (defgeneric jm_run_0 (this)))
+(defmethod jm_run_0 ((this SaveHighScoreRunnable))
+  (declare (ignorable this))
+  (let (_logUtil _commonStrings)
+  (declare (ignorable _logUtil _commonStrings))
+    (block jreturn
+        (setf _logUtil (LogUtil.jm_getInstance_0))
+        (handler-case (progn
+            (if (slot-value this 'f_isLast)
+                (progn
+                (jm_submit_0 (slot-value this 'f_textBox)))
+                (progn
+                (jm_saveHighScore_0 (slot-value this 'f_textBox)))))
+            (error (_e) (declare (ignorable _e))
+            (setf _commonStrings (CommonStrings.jm_getInstance_0))
+            (jm_put_4 _logUtil (slot-value _commonStrings 'f_EXCEPTION) this "run" _e)
+            (jm_end_0 (slot-value this 'f_progressCanvas)))))))
 
-function SaveHighScoreRunnable:_init_fields()
-    self.progressCanvas = ProgressCanvasFactory.getInstance()
-    self.isLast = nil
-    self.textBox = nil
-end
 
-
-function SaveHighScoreRunnable.new(isLast, textBox)
-    local self = setmetatable({}, SaveHighScoreRunnable)
-    self:_init_fields()
-        self.isLast = isLast
-        self.textBox = textBox
-    return self
-end
-
-
-function SaveHighScoreRunnable:run()
-        local logUtil = LogUtil.getInstance()
-        local try_ok, try_error = pcall(function()
-            if self.isLast then
-                self.textBox:submit()
-            else
-                self.textBox:saveHighScore()
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            logUtil:put(commonStrings.EXCEPTION, self, "run", e)
-            self.progressCanvas:end_()
-        end
-end
-
-return SaveHighScoreRunnable
 

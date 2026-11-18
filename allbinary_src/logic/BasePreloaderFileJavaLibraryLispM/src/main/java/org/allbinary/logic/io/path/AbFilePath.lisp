@@ -1,48 +1,40 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io.path
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.io.path
 
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local AbPath = require("org.allbinary.logic.io.path.AbPath")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass AbFilePath (AbPath)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun AbFilePath.jnew_1 (_aPath)
+  (declare (ignorable _aPath))
+  (let ((this (make-instance 'AbFilePath)))
+  (let (_pathData _abPathUtil)
+  (declare (ignorable _pathData _abPathUtil))
+    (block jreturn
+        nil
+        (setf _pathData (AbPathData.jm_getInstance_0))
+        (setf _abPathUtil (PathUtil.jm_getInstance_0))
+        (setf (slot-value this 'f_schema) (jm_getSchema_1 this _aPath))
+        (jm_setName_1 this (jm_getNameFromPath_1 _pathData _aPath))
+        (jm_setPath_1 this (jm_adjust_1 _abPathUtil (jm_getPathFromPath_1 this (JR.toString (jm_removeNameFromPath_1 _abPathUtil _aPath)))))))
+    this))
 
-local AbFilePath = {}
-AbFilePath.__index = AbFilePath
-AbFilePath.className = "AbFilePath"
-setmetatable(AbFilePath, {__index = AbPath})
 
-
-function AbFilePath.new(aPath)
-    local self = setmetatable(AbPath.new(StringUtil.getInstance().EMPTY_STRING, StringUtil.getInstance().EMPTY_STRING), AbFilePath)
-        -- super(...) made self above
-        local pathData = AbPathData.getInstance()
-        local abPathUtil = PathUtil.getInstance()
-        self.schema = self:getSchema(aPath)
-        self:setName(pathData:getNameFromPath(aPath))
-        self:setPath(abPathUtil:adjust(self:getPathFromPath(tostring(abPathUtil:removeNameFromPath(aPath)))))
-    return self
-end
-
-return AbFilePath
 

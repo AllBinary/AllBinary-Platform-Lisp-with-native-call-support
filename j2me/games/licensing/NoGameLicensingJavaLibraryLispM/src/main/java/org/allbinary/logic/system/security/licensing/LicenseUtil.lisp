@@ -1,64 +1,71 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.licensing
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.system.security.licensing
 
--- local CommandListener = require("javax.microedition.lcdui.CommandListener")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass LicenseUtil (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar LicenseUtil.jcell_instance :jnone)
+(defun LicenseUtil.jstatic_instance ()
+  (when (eq LicenseUtil.jcell_instance :jnone) (setf LicenseUtil.jcell_instance (LicenseUtil.jnew_0)))
+  LicenseUtil.jcell_instance)
+(defun (setf LicenseUtil.jstatic_instance) (value) (setf LicenseUtil.jcell_instance value))
 
-local LicenseUtil = {}
-LicenseUtil.__index = LicenseUtil
-LicenseUtil.className = "LicenseUtil"
+(defun LicenseUtil.jnew_0 ()
+  (let ((this (make-instance 'LicenseUtil)))
+    this))
 
-function LicenseUtil.new()
-    local self = setmetatable({}, LicenseUtil)
-    return self
-end
+    
+(defun LicenseUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (LicenseUtil.jstatic_instance)))))
+
+    
+(unless (fboundp 'jm_init_0) (defgeneric jm_init_0 (this)))
+(defmethod jm_init_0 ((this LicenseUtil))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_isRunning_0) (defgeneric jm_isRunning_0 (this)))
+(defmethod jm_isRunning_0 ((this LicenseUtil))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn nil))))
+
+    
+(unless (fboundp 'jm_setRunning_1) (defgeneric jm_setRunning_1 (this p1)))
+(defmethod jm_setRunning_1 ((this LicenseUtil) _running)
+  (declare (ignorable this _running))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_shouldWait_1) (defgeneric jm_shouldWait_1 (this p1)))
+(defmethod jm_shouldWait_1 ((this LicenseUtil) _commandListener)
+  (declare (ignorable this _commandListener))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_isRunning_0 this)))))
 
 
-function LicenseUtil.getInstance()
-        return LicenseUtil.instance
-end
-
-
-function LicenseUtil:init()
-end
-
-
-function LicenseUtil:isRunning()
-        return false
-end
-
-
-function LicenseUtil:setRunning(running)
-end
-
-
-function LicenseUtil:shouldWait(commandListener)
-        return self:isRunning()
-end
-
-LicenseUtil.instance = LicenseUtil.new()
-
-return LicenseUtil
 

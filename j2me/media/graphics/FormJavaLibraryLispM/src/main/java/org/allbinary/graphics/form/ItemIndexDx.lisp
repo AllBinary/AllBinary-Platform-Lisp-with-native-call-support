@@ -1,52 +1,49 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2025 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.form
 
-local ABCustomItem = require("org.allbinary.graphics.form.item.ABCustomItem")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ItemIndexDx (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar ItemIndexDx.jcell_instance :jnone)
+(defun ItemIndexDx.jstatic_instance ()
+  (when (eq ItemIndexDx.jcell_instance :jnone) (setf ItemIndexDx.jcell_instance (ItemIndexDx.jnew_0)))
+  ItemIndexDx.jcell_instance)
+(defun (setf ItemIndexDx.jstatic_instance) (value) (setf ItemIndexDx.jcell_instance value))
 
-local ItemIndexDx = {}
-ItemIndexDx.__index = ItemIndexDx
-ItemIndexDx.className = "ItemIndexDx"
+(defun ItemIndexDx.jnew_0 ()
+  (let ((this (make-instance 'ItemIndexDx)))
+    this))
 
-function ItemIndexDx.new()
-    local self = setmetatable({}, ItemIndexDx)
-    return self
-end
+    
+(defun ItemIndexDx.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (ItemIndexDx.jstatic_instance)))))
+
+    
+(unless (fboundp 'jm_getDx_4) (defgeneric jm_getDx_4 (this p1 p2 p3 p4)))
+(defmethod jm_getDx_4 ((this ItemIndexDx) _index _item _dx _dy)
+  (declare (ignorable this _index _item _dx _dy))
+  (let ()
+    (block jreturn
+        (return-from jreturn 0))))
 
 
-function ItemIndexDx.getInstance()
-        return ItemIndexDx.instance
-end
-
-
--- throws Exception
-function ItemIndexDx:getDx(index, item, dx, dy)
-        return 0
-end
-
-ItemIndexDx.instance = ItemIndexDx.new()
-
-return ItemIndexDx
 

@@ -1,64 +1,55 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation.image
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
--- local Image = require("javax.microedition.lcdui.Image")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local RightToLeftImageAnimation = require("org.allbinary.animation.image.RightToLeftImageAnimation")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass AdjustedRightToLeftImageAnimation (RightToLeftImageAnimation)
+  ((f_dx :initform 0)
+   (f_dy :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun AdjustedRightToLeftImageAnimation.jnew_4 (_image _dx _dy _animationBehavior)
+  (declare (ignorable _image _dx _dy _animationBehavior))
+  (let ((this (make-instance 'AdjustedRightToLeftImageAnimation)))
+    
+    
+  (let ()
+    (block jreturn
+        nil
+        (jm_init_2 this _dx _dy)))
+    this))
 
-local AdjustedRightToLeftImageAnimation = {}
-AdjustedRightToLeftImageAnimation.__index = AdjustedRightToLeftImageAnimation
-AdjustedRightToLeftImageAnimation.className = "AdjustedRightToLeftImageAnimation"
-setmetatable(AdjustedRightToLeftImageAnimation, {__index = RightToLeftImageAnimation})
+    
+(unless (fboundp 'jm_init_2) (defgeneric jm_init_2 (this p1 p2)))
+(defmethod jm_init_2 ((this AdjustedRightToLeftImageAnimation) _dx _dy)
+  (declare (ignorable this _dx _dy))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_dx) _dx)
+        (setf (slot-value this 'f_dy) _dy))))
 
-function AdjustedRightToLeftImageAnimation:_init_fields()
-    self.dx = 0
-    self.dy = 0
-end
-
-
-function AdjustedRightToLeftImageAnimation.new(image, dx, dy, animationBehavior)
-    local self = setmetatable(RightToLeftImageAnimation.new(image, animationBehavior), AdjustedRightToLeftImageAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self:init(dx, dy)
-    return self
-end
-
-
--- throws Exception
-function AdjustedRightToLeftImageAnimation:init(dx, dy)
-        self.dx = dx
-        self.dy = dy
-end
+    
+(unless (fboundp 'jm_paintXY_3) (defgeneric jm_paintXY_3 (this p1 p2 p3)))
+(defmethod jm_paintXY_3 ((this AdjustedRightToLeftImageAnimation) _graphics _x _y)
+  (declare (ignorable this _graphics _x _y))
+  (let ()
+    (block jreturn
+        (call-next-method this _graphics (JR.i32 (+ _x (slot-value this 'f_dx))) (JR.i32 (+ _y (slot-value this 'f_dy)))))))
 
 
-function AdjustedRightToLeftImageAnimation:paintXY(graphics, x, y)
-        RightToLeftImageAnimation.paintXY(self, graphics, x + self.dx, y + self.dy)
-end
-
-return AdjustedRightToLeftImageAnimation
 

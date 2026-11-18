@@ -1,52 +1,47 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.physics.movement
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.physics.movement
 
-local AllBinaryGameLayer = require("org.allbinary.game.layer.AllBinaryGameLayer")
-local BasicDecimal = require("org.allbinary.logic.math.BasicDecimal")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass MovementInterface (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun MovementInterface.jnew_0 ()
+  (let ((this (make-instance 'MovementInterface)))
+    this))
 
--- Java interface
-local MovementInterface = {}
-MovementInterface.__index = MovementInterface
-MovementInterface.className = "MovementInterface"
+    
+(unless (fboundp 'jm_init_3) (defgeneric jm_init_3 (this p1 p2 p3)))
+(defmethod jm_init_3 ((this MovementInterface) _speedBasicDecimal _angle _otherAngle)
+  (declare (ignorable this _speedBasicDecimal _angle _otherAngle))
+  (error (JR.newException "AbstractMethodError" "init")))
 
+    
+(unless (fboundp 'jm_process_1) (defgeneric jm_process_1 (this p1)))
+(defmethod jm_process_1 ((this MovementInterface) _layer)
+  (declare (ignorable this _layer))
+  (error (JR.newException "AbstractMethodError" "process")))
 
-function MovementInterface:init(speedBasicDecimal, angle, otherAngle)
-    error("abstract method init")
-end
-
-
--- throws Exception
-function MovementInterface:process(layer)
-    error("abstract method process")
-end
+    
+(unless (fboundp 'jm_stop_0) (defgeneric jm_stop_0 (this)))
+(defmethod jm_stop_0 ((this MovementInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "stop")))
 
 
-function MovementInterface:stop()
-    error("abstract method stop")
-end
-
-return MovementInterface
 

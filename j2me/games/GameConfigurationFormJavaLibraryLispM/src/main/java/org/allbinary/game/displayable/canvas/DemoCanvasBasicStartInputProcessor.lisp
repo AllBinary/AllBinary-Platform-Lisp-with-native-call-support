@@ -1,64 +1,54 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.displayable.canvas
 
--- local NullCanvas = require("javax.microedition.lcdui.NullCanvas")
-local RunnableCanvas = require("org.allbinary.canvas.RunnableCanvas")
-local GameCommandsFactory = require("org.allbinary.game.commands.GameCommandsFactory")
-local GameInputStrings = require("org.allbinary.game.input.GameInputStrings")
-local GameKeyEvent = require("org.allbinary.game.input.event.GameKeyEvent")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicMenuInputProcessor = require("org.allbinary.game.displayable.canvas.BasicMenuInputProcessor")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass DemoCanvasBasicStartInputProcessor (BasicMenuInputProcessor)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun DemoCanvasBasicStartInputProcessor.jnew_2 (_gameKeyEventList _gameCanvas)
+  (declare (ignorable _gameKeyEventList _gameCanvas))
+  (let ((this (make-instance 'DemoCanvasBasicStartInputProcessor)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
-local DemoCanvasBasicStartInputProcessor = {}
-DemoCanvasBasicStartInputProcessor.__index = DemoCanvasBasicStartInputProcessor
-DemoCanvasBasicStartInputProcessor.className = "DemoCanvasBasicStartInputProcessor"
-setmetatable(DemoCanvasBasicStartInputProcessor, {__index = BasicMenuInputProcessor})
+    
+(unless (fboundp 'jm_processInputList_0) (defgeneric jm_processInputList_0 (this)))
+(defmethod jm_processInputList_0 ((this DemoCanvasBasicStartInputProcessor))
+  (declare (ignorable this))
+  (let (_list _size _gameKeyEvent _index)
+  (declare (ignorable _list _size _gameKeyEvent _index))
+    (block jreturn
+        (setf _list (jm_getGameKeyEventList_0 this))
+        (setf _size (jm_size_0 _list))
+        (setf _gameKeyEvent nil)
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (setf _gameKeyEvent (aref (slot-value _list 'f_objectArray) _index))
+            (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 (jm_append_1 (jm_append_1 (StringMaker.jnew_0) "Start GameKey: ") (jm_toString_1 (StringUtil.jm_getInstance_0) _gameKeyEvent))) this (slot-value (GameInputStrings.jm_getInstance_0) 'f_PROCESS_INPUT)))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (jm_commandAction_2 (jm_getCustomCommandListener_0 (jm_getCanvas_0 this)) (slot-value (GameCommandsFactory.jm_getInstance_0) 'f_START_COMMAND) (NullCanvas.jstatic_NULL_CANVAS))
+        (return-from jreturn _size))))
 
 
-function DemoCanvasBasicStartInputProcessor.new(gameKeyEventList, gameCanvas)
-    local self = setmetatable(BasicMenuInputProcessor.new(gameKeyEventList, -1, gameCanvas), DemoCanvasBasicStartInputProcessor)
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function DemoCanvasBasicStartInputProcessor:processInputList()
-        local list = self:getGameKeyEventList()
-        local size = list:size()
-        local gameKeyEvent = nil
-        for index = 0, size - 1 do
-            gameKeyEvent = list.objectArray[index + 1]
-            self.logUtil:putF(tostring(StringMaker.new():append("Start GameKey: "):append(StringUtil.getInstance():toString(gameKeyEvent))), self, GameInputStrings.getInstance().PROCESS_INPUT)
-        end
-        self:getCanvas():getCustomCommandListener():commandAction(GameCommandsFactory.getInstance().START_COMMAND, NullCanvas.NULL_CANVAS)
-        return size
-end
-
-return DemoCanvasBasicStartInputProcessor
 

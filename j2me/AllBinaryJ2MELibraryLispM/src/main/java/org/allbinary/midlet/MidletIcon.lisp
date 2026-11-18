@@ -1,40 +1,35 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.midlet
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.midlet
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass MidletIcon (JObject)
+  ())
+
+(defvar MidletIcon.jcell_RESOURCE :jnone)
+(defun MidletIcon.jstatic_RESOURCE ()
+  (when (eq MidletIcon.jcell_RESOURCE :jnone) (setf MidletIcon.jcell_RESOURCE "icon"))
+  MidletIcon.jcell_RESOURCE)
+(defun (setf MidletIcon.jstatic_RESOURCE) (value) (setf MidletIcon.jcell_RESOURCE value))
+
+(defun MidletIcon.jnew_0 ()
+  (let ((this (make-instance 'MidletIcon)))
+    this))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local MidletIcon = {}
-MidletIcon.__index = MidletIcon
-MidletIcon.className = "MidletIcon"
-
-function MidletIcon.new()
-    local self = setmetatable({}, MidletIcon)
-    return self
-end
-
-MidletIcon.RESOURCE = "icon"
-
-return MidletIcon
 

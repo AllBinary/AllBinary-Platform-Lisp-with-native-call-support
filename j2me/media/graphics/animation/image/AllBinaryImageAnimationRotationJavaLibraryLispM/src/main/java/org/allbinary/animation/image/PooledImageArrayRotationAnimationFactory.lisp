@@ -1,85 +1,77 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation.image
 
--- local Image = require("javax.microedition.lcdui.Image")
-local Animation = require("org.allbinary.animation.Animation")
-local AnimationBehaviorFactory = require("org.allbinary.animation.AnimationBehaviorFactory")
-local AnimationInterfaceFactoryInterface = require("org.allbinary.animation.AnimationInterfaceFactoryInterface")
-local GameConfigurationCentral = require("org.allbinary.game.configuration.GameConfigurationCentral")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local AngleFactory = require("org.allbinary.math.AngleFactory")
-local ScaleProperties = require("org.allbinary.media.ScaleProperties")
-local ImageToRotationImageArrayUtil = require("org.allbinary.media.image.ImageToRotationImageArrayUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+;TWB - Adjustments should be done in the resource creation and not at the animation level
+(defclass PooledImageArrayRotationAnimationFactory (JObject)
+  ((f_allBinaryImageRotationAnimationInfo :initform nil)
+   (f_animationBehaviorFactory :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun PooledImageArrayRotationAnimationFactory.jm_createFactory_2 (_image _animationBehaviorFactory)
+  (declare (ignorable _image _animationBehaviorFactory))
+  (let (_totalAngle _angleIncrement)
+  (declare (ignorable _totalAngle _angleIncrement))
+    (block jreturn
+        (setf _totalAngle (slot-value (AngleFactory.jm_getInstance_0) 'f_TOTAL_ANGLE))
+        (setf _angleIncrement (JR.idiv _totalAngle (jm_getGameControlFidelity_0 (GameConfigurationCentral.jm_getInstance_0))))
+        (return-from jreturn (PooledImageArrayRotationAnimationFactory.jnew_7 _image (jm_getWidth_0 _image) (jm_getHeight_0 _image) (JR.i32 (- (ash (jm_getWidth_0 _image) (- (logand 2 31))))) (JR.i32 (- (ash (jm_getHeight_0 _image) (- (logand 2 31))))) _angleIncrement _animationBehaviorFactory)))))
 
---TWB - Adjustments should be done in the resource creation and not at the animation level
-local PooledImageArrayRotationAnimationFactory = {}
-PooledImageArrayRotationAnimationFactory.__index = PooledImageArrayRotationAnimationFactory
-PooledImageArrayRotationAnimationFactory.className = "PooledImageArrayRotationAnimationFactory"
+    
+(defun PooledImageArrayRotationAnimationFactory.jm_createDXY_4 (_image _dx _dy _animationBehaviorFactory)
+  (declare (ignorable _image _dx _dy _animationBehaviorFactory))
+  (let (_totalAngle _angleIncrement)
+  (declare (ignorable _totalAngle _angleIncrement))
+    (block jreturn
+        (setf _totalAngle (slot-value (AngleFactory.jm_getInstance_0) 'f_TOTAL_ANGLE))
+        (setf _angleIncrement (JR.idiv _totalAngle (jm_getGameControlFidelity_0 (GameConfigurationCentral.jm_getInstance_0))))
+        (return-from jreturn (PooledImageArrayRotationAnimationFactory.jnew_7 _image (jm_getWidth_0 _image) (jm_getHeight_0 _image) _dx _dy _angleIncrement _animationBehaviorFactory)))))
 
-function PooledImageArrayRotationAnimationFactory:_init_fields()
-    self.allBinaryImageRotationAnimationInfo = NullUtil.getInstance().NULL_OBJECT
-    self.animationBehaviorFactory = nil
-end
+    
+(defun PooledImageArrayRotationAnimationFactory.jnew_7 (_image _width _height _dx _dy _angleIncrement _animationBehaviorFactory)
+  (declare (ignorable _image _width _height _dx _dy _angleIncrement _animationBehaviorFactory))
+  (let ((this (make-instance 'PooledImageArrayRotationAnimationFactory)))
+    (setf (slot-value this 'f_allBinaryImageRotationAnimationInfo) (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT))
+    
+  (let (_totalAngle _imageArray)
+  (declare (ignorable _totalAngle _imageArray))
+    (block jreturn
+        (setf (slot-value this 'f_animationBehaviorFactory) _animationBehaviorFactory)
+        (setf _totalAngle (slot-value (AngleFactory.jm_getInstance_0) 'f_TOTAL_ANGLE))
+        (setf _imageArray (jm_generate_3 (ImageToRotationImageArrayUtil.jm_getInstance_0) _image _angleIncrement _totalAngle))
+        (setf (slot-value this 'f_allBinaryImageRotationAnimationInfo) (ImageArrayRotationAnimationInfo.jnew_5 _imageArray _angleIncrement _totalAngle _dx _dy))))
+    this))
 
+    
+(unless (fboundp 'jm_getInstance_1) (defgeneric jm_getInstance_1 (this p1)))
+(defmethod jm_getInstance_1 ((this PooledImageArrayRotationAnimationFactory) _instanceId)
+  (declare (ignorable this _instanceId))
+  (let ()
+    (block jreturn
+        (return-from jreturn (AdjustedImageArrayRotationAnimation.jm_createAdjustedImageArrayRotationAnimationInfo_2 (slot-value this 'f_allBinaryImageRotationAnimationInfo) (jm_getOrCreateInstance_0 (slot-value this 'f_animationBehaviorFactory)))))))
 
--- throws Exception
-function PooledImageArrayRotationAnimationFactory.createFactory(image, animationBehaviorFactory)
-        local totalAngle = java_int(AngleFactory.getInstance().TOTAL_ANGLE)
-        local angleIncrement = (totalAngle / GameConfigurationCentral.getInstance():getGameControlFidelity())
-        return PooledImageArrayRotationAnimationFactory.new(image, image:getWidth(), image:getHeight(), -(((image:getWidth()) // (1 << (2)))), -(((image:getHeight()) // (1 << (2)))), angleIncrement, animationBehaviorFactory)
-end
-
-
--- throws Exception
-function PooledImageArrayRotationAnimationFactory.createDXY(image, dx, dy, animationBehaviorFactory)
-        local totalAngle = java_int(AngleFactory.getInstance().TOTAL_ANGLE)
-        local angleIncrement = (totalAngle / GameConfigurationCentral.getInstance():getGameControlFidelity())
-        return PooledImageArrayRotationAnimationFactory.new(image, image:getWidth(), image:getHeight(), dx, dy, angleIncrement, animationBehaviorFactory)
-end
-
-
-function PooledImageArrayRotationAnimationFactory.new(image, width, height, dx, dy, angleIncrement, animationBehaviorFactory)
-    local self = setmetatable({}, PooledImageArrayRotationAnimationFactory)
-    self:_init_fields()
-        self.animationBehaviorFactory = animationBehaviorFactory
-        local totalAngle = java_int(AngleFactory.getInstance().TOTAL_ANGLE)
-        local imageArray = ImageToRotationImageArrayUtil.getInstance():generate(image, angleIncrement, totalAngle)
-        self.allBinaryImageRotationAnimationInfo = ImageArrayRotationAnimationInfo.new(imageArray, angleIncrement, totalAngle, dx, dy)
-    return self
-end
-
-
--- throws Exception
-function PooledImageArrayRotationAnimationFactory:getInstance(instanceId)
-        return AdjustedImageArrayRotationAnimation.createAdjustedImageArrayRotationAnimationInfo(self.allBinaryImageRotationAnimationInfo, self.animationBehaviorFactory:getOrCreateInstance())
-end
+    
+(unless (fboundp 'jm_setInitialScale_1) (defgeneric jm_setInitialScale_1 (this p1)))
+(defmethod jm_setInitialScale_1 ((this PooledImageArrayRotationAnimationFactory) _scaleProperties)
+  (declare (ignorable this _scaleProperties))
+  (let ()
+    (block jreturn nil)))
 
 
-function PooledImageArrayRotationAnimationFactory:setInitialScale(scaleProperties)
-end
-
-return PooledImageArrayRotationAnimationFactory
 

@@ -1,100 +1,93 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2011 AllBinary 
--- 
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
--- 
--- Created By: Travis Berthelot 
---  
--- Generated Code Do Not Modify
--- package org.allbinary.emulator.device
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2011 AllBinary 
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;; 
+;;;; Created By: Travis Berthelot 
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.emulator.device
 
--- local GL10 = require("javax.microedition.khronos.opengles.GL10")
--- local Image = require("javax.microedition.lcdui.Image")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local OpenGLESImage = require("org.allbinary.image.opengles.OpenGLESImage")
-local TrueTypeFontUtilBase = require("org.allbinary.emulator.device.TrueTypeFontUtilBase")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(defclass TrueTypeFontUtil (TrueTypeFontUtilBase)
+  ((f_fontImage :initform nil)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defvar TrueTypeFontUtil.jcell_instance :jnone)
+(defun TrueTypeFontUtil.jstatic_instance ()
+  (when (eq TrueTypeFontUtil.jcell_instance :jnone) (setf TrueTypeFontUtil.jcell_instance (TrueTypeFontUtil.jnew_0)))
+  TrueTypeFontUtil.jcell_instance)
+(defun (setf TrueTypeFontUtil.jstatic_instance) (value) (setf TrueTypeFontUtil.jcell_instance value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun TrueTypeFontUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (TrueTypeFontUtil.jstatic_instance)))))
 
-local TrueTypeFontUtil = {}
-TrueTypeFontUtil.__index = TrueTypeFontUtil
-TrueTypeFontUtil.className = "TrueTypeFontUtil"
-setmetatable(TrueTypeFontUtil, {__index = TrueTypeFontUtilBase})
+    
+(defun TrueTypeFontUtil.jnew_0 ()
+  (let ((this (make-instance 'TrueTypeFontUtil)))
+    (setf (slot-value this 'f_fontImage) (OpenGLESImage.jstatic_NULL_OPENGL_IMAGE))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
-function TrueTypeFontUtil:_init_fields()
-    self.fontImage = OpenGLESImage.NULL_OPENGL_IMAGE
-end
+    
+(unless (fboundp 'jm_getAsTextureSize_1) (defgeneric jm_getAsTextureSize_1 (this p1)))
+(defmethod jm_getAsTextureSize_1 ((this TrueTypeFontUtil) _textureSize)
+  (declare (ignorable this _textureSize))
+  (let ()
+    (block jreturn
+        (error (JR.newException "RuntimeException")))))
+
+    
+(unless (fboundp 'jm_getCellSize_1) (defgeneric jm_getCellSize_1 (this p1)))
+(defmethod jm_getCellSize_1 ((this TrueTypeFontUtil) _cellSize)
+  (declare (ignorable this _cellSize))
+  (let ()
+    (block jreturn
+        (error (JR.newException "RuntimeException")))))
+
+    
+(unless (fboundp 'jm_getFontBitmap_4) (defgeneric jm_getFontBitmap_4 (this p1 p2 p3 p4)))
+(defmethod jm_getFontBitmap_4 ((this TrueTypeFontUtil) _filename _fontSize _cellSize _basicColor)
+  (declare (ignorable this _filename _fontSize _cellSize _basicColor))
+  (let ()
+    (block jreturn
+        (error (JR.newException "RuntimeException")))))
+
+    
+(unless (fboundp 'jm_saveFontAtlasAsFile_0) (defgeneric jm_saveFontAtlasAsFile_0 (this)))
+(defmethod jm_saveFontAtlasAsFile_0 ((this TrueTypeFontUtil))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_getFontBitmapGL_4) (defgeneric jm_getFontBitmapGL_4 (this p1 p2 p3 p4)))
+(defmethod jm_getFontBitmapGL_4 ((this TrueTypeFontUtil) _gl _filename _cellSize _basicColor)
+  (declare (ignorable this _gl _filename _cellSize _basicColor))
+  (let ()
+    (block jreturn
+        (error (JR.newException "RuntimeException")))))
+
+    
+(unless (fboundp 'jm_getFontWidths_2) (defgeneric jm_getFontWidths_2 (this p1 p2)))
+(defmethod jm_getFontWidths_2 ((this TrueTypeFontUtil) _filename _fontSize)
+  (declare (ignorable this _filename _fontSize))
+  (let ()
+    (block jreturn
+        (error (JR.newException "RuntimeException")))))
 
 
-function TrueTypeFontUtil.getInstance()
-        return TrueTypeFontUtil.instance
-end
-
-
-function TrueTypeFontUtil.new()
-    local self = setmetatable(TrueTypeFontUtilBase.new(1), TrueTypeFontUtil)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
-
-
-function TrueTypeFontUtil:getAsTextureSize(textureSize)
-        error(java_exception("RuntimeException"), 0)
-end
-
-
-function TrueTypeFontUtil:getCellSize(cellSize)
-        error(java_exception("RuntimeException"), 0)
-end
-
-
-function TrueTypeFontUtil:getFontBitmap(filename, fontSize, cellSize, basicColor)
-        error(java_exception("RuntimeException"), 0)
-end
-
-
-function TrueTypeFontUtil:saveFontAtlasAsFile()
-end
-
-
-function TrueTypeFontUtil:getFontBitmapGL(gl, filename, cellSize, basicColor)
-        error(java_exception("RuntimeException"), 0)
-end
-
-
-function TrueTypeFontUtil:getFontWidths(filename, fontSize)
-        error(java_exception("RuntimeException"), 0)
-end
-
-TrueTypeFontUtil.instance = TrueTypeFontUtil.new()
-
-return TrueTypeFontUtil
 

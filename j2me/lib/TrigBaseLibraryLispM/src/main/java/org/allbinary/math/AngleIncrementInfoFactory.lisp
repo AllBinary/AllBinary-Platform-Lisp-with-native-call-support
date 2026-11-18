@@ -25,6 +25,7 @@
 (defun AngleIncrementInfoFactory.jstatic_instance ()
   (when (eq AngleIncrementInfoFactory.jcell_instance :jnone) (setf AngleIncrementInfoFactory.jcell_instance (AngleIncrementInfoFactory.jnew_0)))
   AngleIncrementInfoFactory.jcell_instance)
+(defun (setf AngleIncrementInfoFactory.jstatic_instance) (value) (setf AngleIncrementInfoFactory.jcell_instance value))
 
 (defun AngleIncrementInfoFactory.jnew_0 ()
   (let ((this (make-instance 'AngleIncrementInfoFactory)))

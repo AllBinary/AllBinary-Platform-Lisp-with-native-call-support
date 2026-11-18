@@ -25,6 +25,7 @@
 (defun J2SEMath.jstatic_instance ()
   (when (eq J2SEMath.jcell_instance :jnone) (setf J2SEMath.jcell_instance (J2SEMath.jnew_0)))
   J2SEMath.jcell_instance)
+(defun (setf J2SEMath.jstatic_instance) (value) (setf J2SEMath.jcell_instance value))
 
 (defun J2SEMath.jnew_0 ()
   (let ((this (make-instance 'J2SEMath)))

@@ -1,110 +1,109 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.hud.basic.life
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.ag.layer.hud.basic.life
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Animation = require("org.allbinary.animation.Animation")
-local Life = require("org.allbinary.game.ag.life.Life")
-local BasicHud = require("org.allbinary.game.graphics.hud.BasicHud")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local DisplayChangeEvent = require("org.allbinary.graphics.displayable.event.DisplayChangeEvent")
-local PaintableInterface = require("org.allbinary.graphics.paint.PaintableInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(defclass LivesHudWidget (BasicHud)
+  ((f_lifeInterface :initform nil)
+   (f_xArray :initform nil)
+   (f_animationInterface :initform nil)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(defun LivesHudWidget.jnew_4 (_animationInterface _lifeInterface _location _direction)
+  (declare (ignorable _animationInterface _lifeInterface _location _direction))
+  (let ((this (make-instance 'LivesHudWidget)))
+    
+    
+    
+  (let (_size)
+  (declare (ignorable _size))
+    (block jreturn
+        nil
+        (setf (slot-value this 'f_lifeInterface) _lifeInterface)
+        (setf _size (jm_getMaxlives_0 (jm_getLifeInterface_0 this)))
+        (setf (slot-value this 'f_xArray) (JR.newArray 0 _size))
+        (setf (slot-value this 'f_animationInterface) _animationInterface)
+        (setf (slot-value this 'f_updateMaxWidth) (JR.i32 (* (jm_getMaxlives_0 (slot-value this 'f_lifeInterface)) 16)))
+        (setf (slot-value this 'f_updateMaxHeight) 16)))
+    this))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(unless (fboundp 'jm_updateMeasurement_1) (defgeneric jm_updateMeasurement_1 (this p1)))
+(defmethod jm_updateMeasurement_1 ((this LivesHudWidget) _graphics)
+  (declare (ignorable this _graphics))
+  (let (_maxLives _index)
+  (declare (ignorable _maxLives _index))
+    (block jreturn
+        (call-next-method this _graphics)
+        (setf _maxLives (jm_getMaxlives_0 (jm_getLifeInterface_0 this)))
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _maxLives) do
+                (block jcontinue
+            (setf (aref (slot-value this 'f_xArray) _index) (JR.i32 (+ (jm_getX_0 this) (JR.i32 (* _index 16))))))
+                (setf _index (JR.i32 (+ _index 1)))))))))
 
-local LivesHudWidget = {}
-LivesHudWidget.__index = LivesHudWidget
-LivesHudWidget.className = "LivesHudWidget"
-setmetatable(LivesHudWidget, {__index = BasicHud})
+    
+(unless (fboundp 'jm_onDisplayChangeEvent_1) (defgeneric jm_onDisplayChangeEvent_1 (this p1)))
+(defmethod jm_onDisplayChangeEvent_1 ((this LivesHudWidget) _displayChangeEvent)
+  (declare (ignorable this _displayChangeEvent))
+  (let ()
+    (block jreturn
+        (call-next-method this _displayChangeEvent)
+        (setf (slot-value this 'f_myFontProcessor) (slot-value this 'f_updateMyFontProcessor)))))
 
-function LivesHudWidget:_init_fields()
-    self.lifeInterface = nil
-    self.xArray = nil
-    self.animationInterface = nil
-end
+    
+(unless (fboundp 'jm_setX_1) (defgeneric jm_setX_1 (this p1)))
+(defmethod jm_setX_1 ((this LivesHudWidget) _x)
+  (declare (ignorable this _x))
+  (let ()
+    (block jreturn
+        (call-next-method this _x)
+        (setf (slot-value this 'f_myFontProcessor) (slot-value this 'f_updateMyFontProcessor)))))
 
+    
+(unless (fboundp 'jm_paint_1) (defgeneric jm_paint_1 (this p1)))
+(defmethod jm_paint_1 ((this LivesHudWidget) _graphics)
+  (declare (ignorable this _graphics))
+  (let (_index)
+  (declare (ignorable _index))
+    (block jreturn
+        (jm_process_1 (slot-value this 'f_myFontProcessor) _graphics)
+        (progn
+            (setf _index (jm_get_0 (jm_getLifeInterface_0 this)))
+            (block jbreak (loop while (>= (setf _index (JR.i32 (- _index 1))) 0) do
+                (block jcontinue
+            (jm_paintXY_3 (slot-value this 'f_animationInterface) _graphics (aref (slot-value this 'f_xArray) _index) (jm_getY_0 this)))))))))
 
-function LivesHudWidget.new(animationInterface, lifeInterface, location, direction)
-    local self = setmetatable(BasicHud.new(location, direction, 2, BasicColorFactory.getInstance().WHITE), LivesHudWidget)
-    self:_init_fields()
-        -- super(...) made self above
-        self.lifeInterface = lifeInterface
-        local size = java_int(self:getLifeInterface():getMaxlives())
-        self.xArray = java_new_array(0, size)
-        self.animationInterface = animationInterface
-        self.updateMaxWidth = self.lifeInterface:getMaxlives() * 16
-        self.updateMaxHeight = 16
-    return self
-end
+    
+(unless (fboundp 'jm_paintThreed_1) (defgeneric jm_paintThreed_1 (this p1)))
+(defmethod jm_paintThreed_1 ((this LivesHudWidget) _graphics)
+  (declare (ignorable this _graphics))
+  (let ()
+    (block jreturn nil)))
 
-
-function LivesHudWidget:updateMeasurement(graphics)
-        BasicHud.updateMeasurement(self, graphics)
-        local maxLives = java_int(self:getLifeInterface():getMaxlives())
-        for index = 0, maxLives - 1 do
-            self.xArray[index + 1] = self:getX() + (index * 16)
-        end
-end
-
-
-function LivesHudWidget:onDisplayChangeEvent(displayChangeEvent)
-        BasicHud.onDisplayChangeEvent(self, displayChangeEvent)
-        self.myFontProcessor = self.updateMyFontProcessor
-end
-
-
-function LivesHudWidget:setX(x)
-        BasicHud.setX(self, x)
-        self.myFontProcessor = self.updateMyFontProcessor
-end
-
-
-function LivesHudWidget:paint(graphics)
-        self.myFontProcessor:process(graphics)
-        do
-            local index = java_int(self:getLifeInterface():get())
-            while (function() index = index - 1 return index end)() >= 0 do
-            self.animationInterface:paintXY(graphics, self.xArray[index + 1], self:getY())
-            end
-        end
-end
-
-
-function LivesHudWidget:paintThreed(graphics)
-end
+    
+(unless (fboundp 'jm_getLifeInterface_0) (defgeneric jm_getLifeInterface_0 (this)))
+(defmethod jm_getLifeInterface_0 ((this LivesHudWidget))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_lifeInterface)))))
 
 
-function LivesHudWidget:getLifeInterface()
-        return self.lifeInterface
-end
-
-return LivesHudWidget
 

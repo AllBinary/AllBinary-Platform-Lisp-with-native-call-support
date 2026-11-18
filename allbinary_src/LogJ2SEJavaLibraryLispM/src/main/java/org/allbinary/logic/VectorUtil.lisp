@@ -25,6 +25,7 @@
 (defun VectorUtil.jstatic_instance ()
   (when (eq VectorUtil.jcell_instance :jnone) (setf VectorUtil.jcell_instance (VectorUtil.jnew_0)))
   VectorUtil.jcell_instance)
+(defun (setf VectorUtil.jstatic_instance) (value) (setf VectorUtil.jcell_instance value))
 
 (defun VectorUtil.jnew_0 ()
   (let ((this (make-instance 'VectorUtil)))

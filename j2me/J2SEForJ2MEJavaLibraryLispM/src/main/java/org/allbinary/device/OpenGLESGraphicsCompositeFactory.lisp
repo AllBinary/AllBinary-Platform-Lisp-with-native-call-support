@@ -1,60 +1,58 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.device
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2022 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.device
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass OpenGLESGraphicsCompositeFactory (JObject)
+  ((f_openGLESGraphicsFactory :initform nil)))
+
+(defvar OpenGLESGraphicsCompositeFactory.jcell_instance :jnone)
+(defun OpenGLESGraphicsCompositeFactory.jstatic_instance ()
+  (when (eq OpenGLESGraphicsCompositeFactory.jcell_instance :jnone) (setf OpenGLESGraphicsCompositeFactory.jcell_instance (OpenGLESGraphicsCompositeFactory.jnew_0)))
+  OpenGLESGraphicsCompositeFactory.jcell_instance)
+(defun (setf OpenGLESGraphicsCompositeFactory.jstatic_instance) (value) (setf OpenGLESGraphicsCompositeFactory.jcell_instance value))
+
+(defun OpenGLESGraphicsCompositeFactory.jnew_0 ()
+  (let ((this (make-instance 'OpenGLESGraphicsCompositeFactory)))
+    (setf (slot-value this 'f_openGLESGraphicsFactory) (OpenGLESGraphicsFactory.jnew_0))
+    this))
+
+    
+(defun OpenGLESGraphicsCompositeFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (OpenGLESGraphicsCompositeFactory.jstatic_instance)))))
+
+    
+(unless (fboundp 'jm_set_1) (defgeneric jm_set_1 (this p1)))
+(defmethod jm_set_1 ((this OpenGLESGraphicsCompositeFactory) _openGLESGraphicsFactory)
+  (declare (ignorable this _openGLESGraphicsFactory))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_openGLESGraphicsFactory) _openGLESGraphicsFactory))))
+
+    
+(unless (fboundp 'jm_get_0) (defgeneric jm_get_0 (this)))
+(defmethod jm_get_0 ((this OpenGLESGraphicsCompositeFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_openGLESGraphicsFactory)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local OpenGLESGraphicsCompositeFactory = {}
-OpenGLESGraphicsCompositeFactory.__index = OpenGLESGraphicsCompositeFactory
-OpenGLESGraphicsCompositeFactory.className = "OpenGLESGraphicsCompositeFactory"
-
-function OpenGLESGraphicsCompositeFactory:_init_fields()
-    self.openGLESGraphicsFactory = OpenGLESGraphicsFactory.new()
-end
-
-function OpenGLESGraphicsCompositeFactory.new()
-    local self = setmetatable({}, OpenGLESGraphicsCompositeFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function OpenGLESGraphicsCompositeFactory.getInstance()
-        return OpenGLESGraphicsCompositeFactory.instance
-end
-
-
-function OpenGLESGraphicsCompositeFactory:set(openGLESGraphicsFactory)
-        self.openGLESGraphicsFactory = openGLESGraphicsFactory
-end
-
-
-function OpenGLESGraphicsCompositeFactory:get()
-        return self.openGLESGraphicsFactory
-end
-
-OpenGLESGraphicsCompositeFactory.instance = OpenGLESGraphicsCompositeFactory.new()
-
-return OpenGLESGraphicsCompositeFactory
 

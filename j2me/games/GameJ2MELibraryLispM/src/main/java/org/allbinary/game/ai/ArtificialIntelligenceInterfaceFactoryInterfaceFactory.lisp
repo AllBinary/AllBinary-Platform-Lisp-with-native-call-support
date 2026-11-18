@@ -1,72 +1,70 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ai
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.ai
 
-local ABHashtable = require("org.allbinary.util.ABHashtable")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local BasicArrayListUtil = require("org.allbinary.util.BasicArrayListUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ArtificialIntelligenceInterfaceFactoryInterfaceFactory (JObject)
+  ((f_list :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar ArtificialIntelligenceInterfaceFactoryInterfaceFactory.jcell_SINGLETON :jnone)
+(defun ArtificialIntelligenceInterfaceFactoryInterfaceFactory.jstatic_SINGLETON ()
+  (when (eq ArtificialIntelligenceInterfaceFactoryInterfaceFactory.jcell_SINGLETON :jnone) (setf ArtificialIntelligenceInterfaceFactoryInterfaceFactory.jcell_SINGLETON (ArtificialIntelligenceInterfaceFactoryInterfaceFactory.jnew_0)))
+  ArtificialIntelligenceInterfaceFactoryInterfaceFactory.jcell_SINGLETON)
+(defun (setf ArtificialIntelligenceInterfaceFactoryInterfaceFactory.jstatic_SINGLETON) (value) (setf ArtificialIntelligenceInterfaceFactoryInterfaceFactory.jcell_SINGLETON value))
 
-local ArtificialIntelligenceInterfaceFactoryInterfaceFactory = {}
-ArtificialIntelligenceInterfaceFactoryInterfaceFactory.__index = ArtificialIntelligenceInterfaceFactoryInterfaceFactory
-ArtificialIntelligenceInterfaceFactoryInterfaceFactory.className = "ArtificialIntelligenceInterfaceFactoryInterfaceFactory"
+(defun ArtificialIntelligenceInterfaceFactoryInterfaceFactory.jnew_0 ()
+  (let ((this (make-instance 'ArtificialIntelligenceInterfaceFactoryInterfaceFactory)))
+    (setf (slot-value this 'f_list) (jm_getImmutableInstance_0 (BasicArrayListUtil.jm_getInstance_0)))
+    this))
 
-function ArtificialIntelligenceInterfaceFactoryInterfaceFactory:_init_fields()
-    self.list = BasicArrayListUtil.getInstance():getImmutableInstance()
-end
+    
+(unless (fboundp 'jm_clear_0) (defgeneric jm_clear_0 (this)))
+(defmethod jm_clear_0 ((this ArtificialIntelligenceInterfaceFactoryInterfaceFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_list) (BasicArrayListD.jnew_0)))))
 
-function ArtificialIntelligenceInterfaceFactoryInterfaceFactory.new()
-    local self = setmetatable({}, ArtificialIntelligenceInterfaceFactoryInterfaceFactory)
-    self:_init_fields()
-    return self
-end
+    
+(defun ArtificialIntelligenceInterfaceFactoryInterfaceFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (ArtificialIntelligenceInterfaceFactoryInterfaceFactory.jstatic_SINGLETON)))))
+
+    
+(unless (fboundp 'jm_getInstanceFromCollection_1) (defgeneric jm_getInstanceFromCollection_1 (this p1)))
+(defmethod jm_getInstanceFromCollection_1 ((this ArtificialIntelligenceInterfaceFactoryInterfaceFactory) _hashtable)
+  (declare (ignorable this _hashtable))
+  (let (_typeInteger _type _artificialIntelligenceInterfaceFactoryInterface)
+  (declare (ignorable _typeInteger _type _artificialIntelligenceInterfaceFactoryInterface))
+    (block jreturn
+        (setf _typeInteger (jm_get_1 _hashtable (BasicAI.jstatic_ID)))
+        (setf _type (jm_intValue_0 _typeInteger))
+        (setf _artificialIntelligenceInterfaceFactoryInterface (aref (slot-value (slot-value this 'f_list) 'f_objectArray) (JR.i32 (- _type 1))))
+        (return-from jreturn _artificialIntelligenceInterfaceFactoryInterface))))
+
+    
+(unless (fboundp 'jm_add_1) (defgeneric jm_add_1 (this p1)))
+(defmethod jm_add_1 ((this ArtificialIntelligenceInterfaceFactoryInterfaceFactory) _artificialIntelligenceInterfaceFactoryInterface)
+  (declare (ignorable this _artificialIntelligenceInterfaceFactoryInterface))
+  (let ()
+    (block jreturn
+        (jm_add_1 (slot-value this 'f_list) _artificialIntelligenceInterfaceFactoryInterface))))
 
 
-function ArtificialIntelligenceInterfaceFactoryInterfaceFactory:clear()
-        self.list = BasicArrayListD.new()
-end
-
-
-function ArtificialIntelligenceInterfaceFactoryInterfaceFactory.getInstance()
-        return ArtificialIntelligenceInterfaceFactoryInterfaceFactory.SINGLETON
-end
-
-
-function ArtificialIntelligenceInterfaceFactoryInterfaceFactory:getInstanceFromCollection(hashtable)
-        local typeInteger = hashtable:get(BasicAI.ID)
-        local type = math.tointeger(typeInteger // 1)
-        local artificialIntelligenceInterfaceFactoryInterface = self.list.objectArray[type - 1 + 1]
-        return artificialIntelligenceInterfaceFactoryInterface
-end
-
-
-function ArtificialIntelligenceInterfaceFactoryInterfaceFactory:add(artificialIntelligenceInterfaceFactoryInterface)
-        self.list:add(artificialIntelligenceInterfaceFactoryInterface)
-end
-
-ArtificialIntelligenceInterfaceFactoryInterfaceFactory.SINGLETON = ArtificialIntelligenceInterfaceFactoryInterfaceFactory.new()
-
-return ArtificialIntelligenceInterfaceFactoryInterfaceFactory
 

@@ -1,75 +1,68 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.displayable
 
-local DisplayChangeEventHandler = require("org.allbinary.graphics.displayable.event.DisplayChangeEventHandler")
-local DisplayChangeEventListener = require("org.allbinary.graphics.displayable.event.DisplayChangeEventListener")
-local BasicEventHandler = require("org.allbinary.logic.util.event.handler.BasicEventHandler")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass GameLevelDisplayChangeEventListenersFactory (JObject)
+  ((f_list :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar GameLevelDisplayChangeEventListenersFactory.jcell_instance :jnone)
+(defun GameLevelDisplayChangeEventListenersFactory.jstatic_instance ()
+  (when (eq GameLevelDisplayChangeEventListenersFactory.jcell_instance :jnone) (setf GameLevelDisplayChangeEventListenersFactory.jcell_instance (GameLevelDisplayChangeEventListenersFactory.jnew_0)))
+  GameLevelDisplayChangeEventListenersFactory.jcell_instance)
+(defun (setf GameLevelDisplayChangeEventListenersFactory.jstatic_instance) (value) (setf GameLevelDisplayChangeEventListenersFactory.jcell_instance value))
 
-local GameLevelDisplayChangeEventListenersFactory = {}
-GameLevelDisplayChangeEventListenersFactory.__index = GameLevelDisplayChangeEventListenersFactory
-GameLevelDisplayChangeEventListenersFactory.className = "GameLevelDisplayChangeEventListenersFactory"
+(defun GameLevelDisplayChangeEventListenersFactory.jnew_0 ()
+  (let ((this (make-instance 'GameLevelDisplayChangeEventListenersFactory)))
+    (setf (slot-value this 'f_list) (BasicArrayListD.jnew_0))
+    this))
 
-function GameLevelDisplayChangeEventListenersFactory:_init_fields()
-    self.list = BasicArrayListD.new()
-end
+    
+(defun GameLevelDisplayChangeEventListenersFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (GameLevelDisplayChangeEventListenersFactory.jstatic_instance)))))
 
-function GameLevelDisplayChangeEventListenersFactory.new()
-    local self = setmetatable({}, GameLevelDisplayChangeEventListenersFactory)
-    self:_init_fields()
-    return self
-end
+    
+(unless (fboundp 'jm_add_1) (defgeneric jm_add_1 (this p1)))
+(defmethod jm_add_1 ((this GameLevelDisplayChangeEventListenersFactory) _displayChangeEventListener)
+  (declare (ignorable this _displayChangeEventListener))
+  (let ()
+    (block jreturn
+        (jm_add_1 (slot-value this 'f_list) _displayChangeEventListener)
+        (jm_addListenerInterface_1 (DisplayChangeEventHandler.jm_getInstance_0) _displayChangeEventListener))))
+
+    
+(unless (fboundp 'jm_clear_0) (defgeneric jm_clear_0 (this)))
+(defmethod jm_clear_0 ((this GameLevelDisplayChangeEventListenersFactory))
+  (declare (ignorable this))
+  (let (_displayChangeEventHandler _displayChangeEventListener _index)
+  (declare (ignorable _displayChangeEventHandler _displayChangeEventListener _index))
+    (block jreturn
+        (setf _displayChangeEventHandler (DisplayChangeEventHandler.jm_getInstance_0))
+        (setf _displayChangeEventListener nil)
+        (progn
+            (setf _index (jm_size_0 (slot-value this 'f_list)))
+            (block jbreak (loop while (>= (setf _index (JR.i32 (- _index 1))) 0) do
+                (block jcontinue
+            (setf _displayChangeEventListener (aref (slot-value (slot-value this 'f_list) 'f_objectArray) _index))
+            (jm_removeListener_1 _displayChangeEventHandler _displayChangeEventListener)))))
+        (jm_clear_0 (slot-value this 'f_list)))))
 
 
-function GameLevelDisplayChangeEventListenersFactory.getInstance()
-        return GameLevelDisplayChangeEventListenersFactory.instance
-end
-
-
-function GameLevelDisplayChangeEventListenersFactory:add(displayChangeEventListener)
-        self.list:add(displayChangeEventListener)
-        DisplayChangeEventHandler.getInstance():addListenerInterface(displayChangeEventListener)
-end
-
-
-function GameLevelDisplayChangeEventListenersFactory:clear()
-        local displayChangeEventHandler = DisplayChangeEventHandler.getInstance()
-        local displayChangeEventListener = nil
-        do
-            local index = self.list:size()
-            while (function() index = index - 1 return index end)() >= 0 do
-            displayChangeEventListener = self.list.objectArray[index + 1]
-            displayChangeEventHandler:removeListener(displayChangeEventListener)
-            end
-        end
-        self.list:clear()
-end
-
-GameLevelDisplayChangeEventListenersFactory.instance = GameLevelDisplayChangeEventListenersFactory.new()
-
-return GameLevelDisplayChangeEventListenersFactory
 

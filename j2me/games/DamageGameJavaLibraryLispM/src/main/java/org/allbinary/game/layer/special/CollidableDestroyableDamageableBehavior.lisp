@@ -1,79 +1,74 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.special
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.layer.special
 
-local CollidableBaseBehavior = require("org.allbinary.game.collision.CollidableBaseBehavior")
-local CollidableInterfaceCompositeInterface = require("org.allbinary.game.collision.CollidableInterfaceCompositeInterface")
-local DamageUtil = require("org.allbinary.game.combat.damage.DamageUtil")
-local CollidableCompositeLayer = require("org.allbinary.game.layer.CollidableCompositeLayer")
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass CollidableDestroyableDamageableBehavior (CollidableBaseBehavior)
+  ((f_damageUtil :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun CollidableDestroyableDamageableBehavior.jnew_1 (_collidable)
+  (declare (ignorable _collidable))
+  (let ((this (make-instance 'CollidableDestroyableDamageableBehavior)))
+    (setf (slot-value this 'f_damageUtil) (DamageUtil.jm_getInstance_0))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
-local CollidableDestroyableDamageableBehavior = {}
-CollidableDestroyableDamageableBehavior.__index = CollidableDestroyableDamageableBehavior
-CollidableDestroyableDamageableBehavior.className = "CollidableDestroyableDamageableBehavior"
-setmetatable(CollidableDestroyableDamageableBehavior, {__index = CollidableBaseBehavior})
+    
+(unless (fboundp 'jm_isCollision_2) (defgeneric jm_isCollision_2 (this p1 p2)))
+(defmethod jm_isCollision_2 ((this CollidableDestroyableDamageableBehavior) _ownerLayer _collisionLayer)
+  (declare (ignorable this _ownerLayer _collisionLayer))
+  (let ()
+    (block jreturn
+        (if (not (eq (aref (jm_getGroupInterface_0 _ownerLayer) 0) (aref (jm_getGroupInterface_0 _collisionLayer) 0)))
+            (progn
+            (return-from jreturn (call-next-method this _ownerLayer _collisionLayer))))
+        (return-from jreturn nil))))
 
-function CollidableDestroyableDamageableBehavior:_init_fields()
-    self.damageUtil = DamageUtil.getInstance()
-end
+    
+(unless (fboundp 'jm_collide_2) (defgeneric jm_collide_2 (this p1 p2)))
+(defmethod jm_collide_2 ((this CollidableDestroyableDamageableBehavior) _ownerLayer _collidableInterfaceCompositeInterface)
+  (declare (ignorable this _ownerLayer _collidableInterfaceCompositeInterface))
+  (let (_ownerCollidableDestroyableDamageableLayer _collidableDestroyableDamageableLayer)
+  (declare (ignorable _ownerCollidableDestroyableDamageableLayer _collidableDestroyableDamageableLayer))
+    (block jreturn
+        (setf _ownerCollidableDestroyableDamageableLayer _ownerLayer)
+        (setf _collidableDestroyableDamageableLayer _collidableInterfaceCompositeInterface)
+        (jm_damage_2 _ownerCollidableDestroyableDamageableLayer (jm_getDamage_1 _collidableDestroyableDamageableLayer 0) 0))))
+
+    
+(unless (fboundp 'jm_isCollisionInterface_2) (defgeneric jm_isCollisionInterface_2 (this p1 p2)))
+(defmethod jm_isCollisionInterface_2 ((this CollidableDestroyableDamageableBehavior) _ownerLayer _collidableInterfaceCompositeInterface)
+  (declare (ignorable this _ownerLayer _collidableInterfaceCompositeInterface))
+  (let ()
+    (block jreturn
+        (ForcedLogUtil.jm_log_2 "No Longer Used" this)
+        (return-from jreturn nil))))
+
+    
+(unless (fboundp 'jm_collideInterface_2) (defgeneric jm_collideInterface_2 (this p1 p2)))
+(defmethod jm_collideInterface_2 ((this CollidableDestroyableDamageableBehavior) _ownerLayer _collidableInterfaceCompositeInterface)
+  (declare (ignorable this _ownerLayer _collidableInterfaceCompositeInterface))
+  (let ()
+    (block jreturn
+        (ForcedLogUtil.jm_log_2 "No Longer Used" this))))
 
 
-function CollidableDestroyableDamageableBehavior.new(collidable)
-    local self = setmetatable(CollidableBaseBehavior.new(collidable), CollidableDestroyableDamageableBehavior)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
-
-
-function CollidableDestroyableDamageableBehavior:isCollision(ownerLayer, collisionLayer)
-        if ownerLayer:getGroupInterface()[1] ~= collisionLayer:getGroupInterface()[1] then
-            return CollidableBaseBehavior.isCollision(self, ownerLayer, collisionLayer)
-        end
-        return false
-end
-
-
--- throws Exception
-function CollidableDestroyableDamageableBehavior:collide(ownerLayer, collidableInterfaceCompositeInterface)
-        local ownerCollidableDestroyableDamageableLayer = ownerLayer
-        local collidableDestroyableDamageableLayer = collidableInterfaceCompositeInterface
-        ownerCollidableDestroyableDamageableLayer:damage(collidableDestroyableDamageableLayer:getDamage(0), 0)
-end
-
-
-function CollidableDestroyableDamageableBehavior:isCollisionInterface(ownerLayer, collidableInterfaceCompositeInterface)
-        ForcedLogUtil.log("No Longer Used", self)
-        return false
-end
-
-
--- throws Exception
-function CollidableDestroyableDamageableBehavior:collideInterface(ownerLayer, collidableInterfaceCompositeInterface)
-        ForcedLogUtil.log("No Longer Used", self)
-end
-
-return CollidableDestroyableDamageableBehavior
 

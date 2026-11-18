@@ -1,88 +1,92 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.score
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local PlayerGameInput = require("org.allbinary.game.input.PlayerGameInput")
-local GameKeyEvent = require("org.allbinary.game.input.event.GameKeyEvent")
-local HighScoresCanvas = require("org.allbinary.game.score.displayable.HighScoresCanvas")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass HighScoresCanvasInputProcessor (PlayerGameInput)
+  ((f_highScoresCanvas :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun HighScoresCanvasInputProcessor.jnew_1 (_highScoresCanvas)
+  (declare (ignorable _highScoresCanvas))
+  (let ((this (make-instance 'HighScoresCanvasInputProcessor)))
+    
+  (let ()
+    (block jreturn
+        nil
+        (setf (slot-value this 'f_highScoresCanvas) _highScoresCanvas)))
+    this))
 
-local HighScoresCanvasInputProcessor = {}
-HighScoresCanvasInputProcessor.__index = HighScoresCanvasInputProcessor
-HighScoresCanvasInputProcessor.className = "HighScoresCanvasInputProcessor"
-setmetatable(HighScoresCanvasInputProcessor, {__index = PlayerGameInput})
+    
+(unless (fboundp 'jm_open_0) (defgeneric jm_open_0 (this)))
+(defmethod jm_open_0 ((this HighScoresCanvasInputProcessor))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
 
-function HighScoresCanvasInputProcessor:_init_fields()
-    self.highScoresCanvas = nil
-end
+    
+(unless (fboundp 'jm_close_0) (defgeneric jm_close_0 (this)))
+(defmethod jm_close_0 ((this HighScoresCanvasInputProcessor))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_onPressGameKeyEvent_1) (defgeneric jm_onPressGameKeyEvent_1 (this p1)))
+(defmethod jm_onPressGameKeyEvent_1 ((this HighScoresCanvasInputProcessor) _gameKeyEvent)
+  (declare (ignorable this _gameKeyEvent))
+  (let ()
+    (block jreturn
+        (call-next-method this _gameKeyEvent)
+        (jm_update_0 this))))
+
+    
+(unless (fboundp 'jm_onDownGameKeyEvent_1) (defgeneric jm_onDownGameKeyEvent_1 (this p1)))
+(defmethod jm_onDownGameKeyEvent_1 ((this HighScoresCanvasInputProcessor) _gameKeyEvent)
+  (declare (ignorable this _gameKeyEvent))
+  (let ()
+    (block jreturn
+        (call-next-method this _gameKeyEvent)
+        (jm_update_0 this))))
+
+    
+(unless (fboundp 'jm_onUpGameKeyEvent_1) (defgeneric jm_onUpGameKeyEvent_1 (this p1)))
+(defmethod jm_onUpGameKeyEvent_1 ((this HighScoresCanvasInputProcessor) _gameKeyEvent)
+  (declare (ignorable this _gameKeyEvent))
+  (let ()
+    (block jreturn
+        (call-next-method this _gameKeyEvent)
+        (jm_update_0 this))))
+
+    
+(unless (fboundp 'jm_paint_1) (defgeneric jm_paint_1 (this p1)))
+(defmethod jm_paint_1 ((this HighScoresCanvasInputProcessor) _graphics)
+  (declare (ignorable this _graphics))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_getHighScoresCanvas_0) (defgeneric jm_getHighScoresCanvas_0 (this)))
+(defmethod jm_getHighScoresCanvas_0 ((this HighScoresCanvasInputProcessor))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_highScoresCanvas)))))
 
 
-function HighScoresCanvasInputProcessor.new(highScoresCanvas)
-    local self = setmetatable(PlayerGameInput.new(BasicArrayListD.new(), BasicArrayListD.new(), -1), HighScoresCanvasInputProcessor)
-    self:_init_fields()
-        -- super(...) made self above
-        self.highScoresCanvas = highScoresCanvas
-    return self
-end
-
-
-function HighScoresCanvasInputProcessor:open()
-end
-
-
-function HighScoresCanvasInputProcessor:close()
-end
-
-
-function HighScoresCanvasInputProcessor:onPressGameKeyEvent(gameKeyEvent)
-        PlayerGameInput.onPressGameKeyEvent(self, gameKeyEvent)
-        self:update()
-end
-
-
-function HighScoresCanvasInputProcessor:onDownGameKeyEvent(gameKeyEvent)
-        PlayerGameInput.onDownGameKeyEvent(self, gameKeyEvent)
-        self:update()
-end
-
-
-function HighScoresCanvasInputProcessor:onUpGameKeyEvent(gameKeyEvent)
-        PlayerGameInput.onUpGameKeyEvent(self, gameKeyEvent)
-        self:update()
-end
-
-
-function HighScoresCanvasInputProcessor:paint(graphics)
-end
-
-
-function HighScoresCanvasInputProcessor:getHighScoresCanvas()
-        return self.highScoresCanvas
-end
-
-return HighScoresCanvasInputProcessor
 

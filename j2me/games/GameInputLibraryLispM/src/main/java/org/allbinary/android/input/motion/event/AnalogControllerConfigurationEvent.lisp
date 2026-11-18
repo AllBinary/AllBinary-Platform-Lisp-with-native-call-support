@@ -1,42 +1,34 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.android.input.motion.event
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.android.input.motion.event
 
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass AnalogControllerConfigurationEvent (AllBinaryEventObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local AnalogControllerConfigurationEvent = {}
-AnalogControllerConfigurationEvent.__index = AnalogControllerConfigurationEvent
-AnalogControllerConfigurationEvent.className = "AnalogControllerConfigurationEvent"
-setmetatable(AnalogControllerConfigurationEvent, {__index = AllBinaryEventObject})
+    
+(defun AnalogControllerConfigurationEvent.jnew_1 (_anyType)
+  (declare (ignorable _anyType))
+  (let ((this (make-instance 'AnalogControllerConfigurationEvent)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
 
-function AnalogControllerConfigurationEvent.new(anyType)
-    local self = setmetatable(AllBinaryEventObject.new(anyType), AnalogControllerConfigurationEvent)
-        -- super(...) made self above
-    return self
-end
-
-return AnalogControllerConfigurationEvent
 

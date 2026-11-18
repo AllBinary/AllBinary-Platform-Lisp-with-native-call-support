@@ -1,46 +1,42 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.media
 
-local AllBinaryVibrationME = require("org.allbinary.media.AllBinaryVibrationME")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass AllBinaryNoVibration (AllBinaryVibrationME)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar AllBinaryNoVibration.jcell_NO_VIBRATION :jnone)
+(defun AllBinaryNoVibration.jstatic_NO_VIBRATION ()
+  (when (eq AllBinaryNoVibration.jcell_NO_VIBRATION :jnone) (setf AllBinaryNoVibration.jcell_NO_VIBRATION (AllBinaryNoVibration.jnew_0)))
+  AllBinaryNoVibration.jcell_NO_VIBRATION)
+(defun (setf AllBinaryNoVibration.jstatic_NO_VIBRATION) (value) (setf AllBinaryNoVibration.jcell_NO_VIBRATION value))
 
-local AllBinaryNoVibration = {}
-AllBinaryNoVibration.__index = AllBinaryNoVibration
-AllBinaryNoVibration.className = "AllBinaryNoVibration"
-setmetatable(AllBinaryNoVibration, {__index = AllBinaryVibrationME})
+(defun AllBinaryNoVibration.jnew_0 ()
+  (let ((this (make-instance 'AllBinaryNoVibration)))
+    this))
 
-function AllBinaryNoVibration.new()
-    local self = setmetatable(AllBinaryVibrationME.new(), AllBinaryNoVibration)
-    return self
-end
+    
+(unless (fboundp 'jm_vibrate_3) (defgeneric jm_vibrate_3 (this p1 p2 p3)))
+(defmethod jm_vibrate_3 ((this AllBinaryNoVibration) _duration _type _volume)
+  (declare (ignorable this _duration _type _volume))
+  (let ()
+    (block jreturn nil)))
 
 
-function AllBinaryNoVibration:vibrate(duration, type, volume)
-end
-
-AllBinaryNoVibration.NO_VIBRATION = AllBinaryNoVibration.new()
-
-return AllBinaryNoVibration
 

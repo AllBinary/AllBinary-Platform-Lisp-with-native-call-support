@@ -1,37 +1,40 @@
--- Generated Code Do Not Modify
--- package org.bouncycastle.jce.provider
+;;;; Generated Code Do Not Modify
+;;;; package org.bouncycastle.jce.provider
 
--- local Provider = require("java.security.Provider")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass BouncyCastleProvider (Provider)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar BouncyCastleProvider.jcell_info :jnone)
+(defun BouncyCastleProvider.jstatic_info ()
+  (when (eq BouncyCastleProvider.jcell_info :jnone) (setf BouncyCastleProvider.jcell_info "BouncyCastle Security Provider v1.41"))
+  BouncyCastleProvider.jcell_info)
+(defun (setf BouncyCastleProvider.jstatic_info) (value) (setf BouncyCastleProvider.jcell_info value))
 
-local BouncyCastleProvider = {}
-BouncyCastleProvider.__index = BouncyCastleProvider
-BouncyCastleProvider.className = "BouncyCastleProvider"
-setmetatable(BouncyCastleProvider, {__index = Provider})
+(defvar BouncyCastleProvider.jcell_PROVIDER_NAME :jnone)
+(defun BouncyCastleProvider.jstatic_PROVIDER_NAME ()
+  (when (eq BouncyCastleProvider.jcell_PROVIDER_NAME :jnone) (setf BouncyCastleProvider.jcell_PROVIDER_NAME "BC"))
+  BouncyCastleProvider.jcell_PROVIDER_NAME)
+(defun (setf BouncyCastleProvider.jstatic_PROVIDER_NAME) (value) (setf BouncyCastleProvider.jcell_PROVIDER_NAME value))
+
+    
+(defun BouncyCastleProvider.jnew_0 ()
+  (let ((this (make-instance 'BouncyCastleProvider)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
+
+    
+(unless (fboundp 'jm_setParameter_2) (defgeneric jm_setParameter_2 (this p1 p2)))
+(defmethod jm_setParameter_2 ((this BouncyCastleProvider) _parameterName _parameter)
+  (declare (ignorable this _parameterName _parameter))
+  (let ()
+    (block jreturn nil)))
 
 
-function BouncyCastleProvider.new()
-    local self = setmetatable(Provider.new(BouncyCastleProvider.PROVIDER_NAME, 1.41, BouncyCastleProvider.info), BouncyCastleProvider)
-        -- super(...) made self above
-    return self
-end
-
-
-function BouncyCastleProvider:setParameter(parameterName, parameter)
-end
-
-BouncyCastleProvider.info = "BouncyCastle Security Provider v1.41"
-BouncyCastleProvider.PROVIDER_NAME = "BC"
-
-return BouncyCastleProvider
 

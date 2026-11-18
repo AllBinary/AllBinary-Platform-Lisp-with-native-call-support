@@ -26,11 +26,13 @@
 (defun ExceptionUtil.jstatic_instance ()
   (when (eq ExceptionUtil.jcell_instance :jnone) (setf ExceptionUtil.jcell_instance (ExceptionUtil.jnew_0)))
   ExceptionUtil.jcell_instance)
+(defun (setf ExceptionUtil.jstatic_instance) (value) (setf ExceptionUtil.jcell_instance value))
 
 (defvar ExceptionUtil.jcell_PRETEND_EXCEPTION :jnone)
 (defun ExceptionUtil.jstatic_PRETEND_EXCEPTION ()
   (when (eq ExceptionUtil.jcell_PRETEND_EXCEPTION :jnone) (setf ExceptionUtil.jcell_PRETEND_EXCEPTION (JR.newException "Exception" "Not Really An Exception")))
   ExceptionUtil.jcell_PRETEND_EXCEPTION)
+(defun (setf ExceptionUtil.jstatic_PRETEND_EXCEPTION) (value) (setf ExceptionUtil.jcell_PRETEND_EXCEPTION value))
 
     
 (defun ExceptionUtil.jm_getInstance_0 ()

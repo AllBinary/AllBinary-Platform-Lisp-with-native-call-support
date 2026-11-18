@@ -1,115 +1,111 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.io
 
--- local BufferedWriter = require("java.io.BufferedWriter")
--- local FileWriter = require("java.io.FileWriter")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local AbFile = require("org.allbinary.logic.io.file.AbFile")
-local AbFileNativeUtil = require("org.allbinary.logic.io.file.AbFileNativeUtil")
-local AbPathData = require("org.allbinary.logic.io.path.AbPathData")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonLabels = require("org.allbinary.string.CommonLabels")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass BufferedWriterUtil (JObject)
+  ((f_logUtil :initform nil)
+   (f_commonStrings :initform nil)
+   (f_commonLabels :initform nil)
+   (f_REMOVING_OLD :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar BufferedWriterUtil.jcell_instance :jnone)
+(defun BufferedWriterUtil.jstatic_instance ()
+  (when (eq BufferedWriterUtil.jcell_instance :jnone) (setf BufferedWriterUtil.jcell_instance (BufferedWriterUtil.jnew_0)))
+  BufferedWriterUtil.jcell_instance)
+(defun (setf BufferedWriterUtil.jstatic_instance) (value) (setf BufferedWriterUtil.jcell_instance value))
 
-local BufferedWriterUtil = {}
-BufferedWriterUtil.__index = BufferedWriterUtil
-BufferedWriterUtil.className = "BufferedWriterUtil"
+(defun BufferedWriterUtil.jnew_0 ()
+  (let ((this (make-instance 'BufferedWriterUtil)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_commonStrings) (CommonStrings.jm_getInstance_0))
+    (setf (slot-value this 'f_commonLabels) (CommonLabels.jm_getInstance_0))
+    (setf (slot-value this 'f_REMOVING_OLD) "Remove old for overwriting: ")
+    this))
 
-function BufferedWriterUtil:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.commonLabels = CommonLabels.getInstance()
-    self.REMOVING_OLD = "Remove old for overwriting: "
-end
+    
+(defun BufferedWriterUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (BufferedWriterUtil.jstatic_instance)))))
 
-function BufferedWriterUtil.new()
-    local self = setmetatable({}, BufferedWriterUtil)
-    self:_init_fields()
-    return self
-end
+    
+(unless (fboundp 'jm_overwrite_2) (defgeneric jm_overwrite_2 (this p1 p2)))
+(defmethod jm_overwrite_2 ((this BufferedWriterUtil) (_path string) (_data string))
+  (declare (ignorable this _path _data))
+  (let (_abFile _name _abFileDirectory _stringBuilder _result)
+  (declare (ignorable _abFile _name _abFileDirectory _stringBuilder _result))
+    (block jreturn
+        (setf _abFile (AbFile.jm_createAbFile_1 _path))
+        (if (jm_exists_0 _abFile)
+            (progn
+            (jm_putF_3 (slot-value this 'f_logUtil) (JR.concat (slot-value this 'f_REMOVING_OLD) _path) this (slot-value (slot-value this 'f_commonStrings) 'f_CREATE))
+            (jm_delete_0 _abFile))
+            (progn
+            (setf _name (jm_removeNameFromPath_1 (AbPathData.jm_getInstance_0) _path))
+            (setf _abFileDirectory (AbFile.jm_createAbFile_1 _name))
+            (if (jm_exists_0 _abFileDirectory)
+                (progn
+                nil)
+                (progn
+                (setf _stringBuilder (StringMaker.jnew_0))
+                (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 (jm_append_1 (jm_append_1 (jm_append_1 _stringBuilder (slot-value (slot-value this 'f_commonStrings) 'f_CREATE)) (slot-value (slot-value this 'f_commonLabels) 'f_COLON_SEP)) _name)) this (slot-value (slot-value this 'f_commonStrings) 'f_CREATE))
+                (setf _result (jm_mkdirs_0 _abFileDirectory))
+                (jm_delete_2 _stringBuilder 0 (jm_length_0 _stringBuilder))
+                (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 (jm_appendboolean_1 (jm_append_1 _stringBuilder (slot-value (slot-value this 'f_commonLabels) 'f_RESULT_)) _result)) this (slot-value (slot-value this 'f_commonStrings) 'f_CREATE))))))
+        (jm_write_2 this _abFile _data))))
+
+    
+(unless (fboundp 'jm_overwrite_2) (defgeneric jm_overwrite_2 (this p1 p2)))
+(defmethod jm_overwrite_2 ((this BufferedWriterUtil) (_abFile t) (_data string))
+  (declare (ignorable this _abFile _data))
+  (let (_name _abFileDirectory _stringBuilder _result)
+  (declare (ignorable _name _abFileDirectory _stringBuilder _result))
+    (block jreturn
+        (if (jm_exists_0 _abFile)
+            (progn
+            (jm_putF_3 (slot-value this 'f_logUtil) (JR.concat (slot-value this 'f_REMOVING_OLD) (JR.str (jm_getPath_0 _abFile))) this (slot-value (slot-value this 'f_commonStrings) 'f_CREATE))
+            (jm_delete_0 _abFile))
+            (progn
+            (setf _name (jm_removeNameFromPath_1 (AbPathData.jm_getInstance_0) (jm_getAbsolutePath_0 _abFile)))
+            (setf _abFileDirectory (AbFile.jm_createAbFile_1 _name))
+            (if (jm_exists_0 _abFileDirectory)
+                (progn
+                nil)
+                (progn
+                (setf _stringBuilder (StringMaker.jnew_0))
+                (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 (jm_append_1 (jm_append_1 (jm_append_1 _stringBuilder (slot-value (slot-value this 'f_commonStrings) 'f_CREATE)) (slot-value (slot-value this 'f_commonLabels) 'f_COLON_SEP)) _name)) this (slot-value (slot-value this 'f_commonStrings) 'f_CREATE))
+                (setf _result (jm_mkdirs_0 _abFileDirectory))
+                (jm_delete_2 _stringBuilder 0 (jm_length_0 _stringBuilder))
+                (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 (jm_appendboolean_1 (jm_append_1 _stringBuilder (slot-value (slot-value this 'f_commonLabels) 'f_RESULT_)) _result)) this (slot-value (slot-value this 'f_commonStrings) 'f_CREATE))))))
+        (jm_write_2 this _abFile _data))))
+
+    
+(unless (fboundp 'jm_write_2) (defgeneric jm_write_2 (this p1 p2)))
+(defmethod jm_write_2 ((this BufferedWriterUtil) _abFile _data)
+  (declare (ignorable this _abFile _data))
+  (let (_fileOut)
+  (declare (ignorable _fileOut))
+    (block jreturn
+        (setf _fileOut (BufferedWriter.jnew_1 (FileWriter.jnew_1 (AbFileNativeUtil.jm_get_1 _abFile))))
+        (jm_write_3 _fileOut _data 0 (length _data))
+        (jm_newLine_0 _fileOut)
+        (jm_flush_0 _fileOut))))
 
 
-function BufferedWriterUtil.getInstance()
-        return BufferedWriterUtil.instance
-end
-
-
--- throws Exception
-function BufferedWriterUtil:overwrite(path, data)
-        local abFile = AbFile.createAbFile(path)
-        if abFile:exists() then
-            self.logUtil:putF(self.REMOVING_OLD .. path, self, self.commonStrings.CREATE)
-            abFile:delete()
-        else
-            local name = AbPathData.getInstance():removeNameFromPath(path)
-            local abFileDirectory = AbFile.createAbFile(name)
-            if abFileDirectory:exists() then
-            else
-                local stringBuilder = StringMaker.new()
-                self.logUtil:putF(tostring(stringBuilder:append(self.commonStrings.CREATE):append(self.commonLabels.COLON_SEP):append(name)), self, self.commonStrings.CREATE)
-                local result = abFileDirectory:mkdirs()
-                stringBuilder:delete(0, stringBuilder:length())
-                self.logUtil:putF(tostring(stringBuilder:append(self.commonLabels.RESULT_):appendboolean(result)), self, self.commonStrings.CREATE)
-            end
-        end
-        self:write(abFile, data)
-end
-
-
--- throws Exception
--- Java overloaded method: Lua keeps the last definition
-function BufferedWriterUtil:overwrite(abFile, data)
-        if abFile:exists() then
-            self.logUtil:putF(self.REMOVING_OLD .. tostring(abFile:getPath()), self, self.commonStrings.CREATE)
-            abFile:delete()
-        else
-            local name = AbPathData.getInstance():removeNameFromPath(abFile:getAbsolutePath())
-            local abFileDirectory = AbFile.createAbFile(name)
-            if abFileDirectory:exists() then
-            else
-                local stringBuilder = StringMaker.new()
-                self.logUtil:putF(tostring(stringBuilder:append(self.commonStrings.CREATE):append(self.commonLabels.COLON_SEP):append(name)), self, self.commonStrings.CREATE)
-                local result = abFileDirectory:mkdirs()
-                stringBuilder:delete(0, stringBuilder:length())
-                self.logUtil:putF(tostring(stringBuilder:append(self.commonLabels.RESULT_):appendboolean(result)), self, self.commonStrings.CREATE)
-            end
-        end
-        self:write(abFile, data)
-end
-
-
--- throws Exception
-function BufferedWriterUtil:write(abFile, data)
-        local fileOut = BufferedWriter.new(FileWriter.new(AbFileNativeUtil.get(abFile)))
-        fileOut:write(data, 0, #data)
-        fileOut:newLine()
-        fileOut:flush()
-end
-
-BufferedWriterUtil.instance = BufferedWriterUtil.new()
-
-return BufferedWriterUtil
 

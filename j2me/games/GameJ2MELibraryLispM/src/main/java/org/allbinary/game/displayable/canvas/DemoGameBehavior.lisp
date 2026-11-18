@@ -1,110 +1,123 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2022 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.displayable.canvas
 
-local GameTypeFactory = require("org.allbinary.game.GameTypeFactory")
-local NullPaintable = require("org.allbinary.graphics.paint.NullPaintable")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local AbeClientInformationInterface = require("org.allbinary.logic.system.security.licensing.AbeClientInformationInterface")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass DemoGameBehavior (JObject)
+  ((f_logUtil :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar DemoGameBehavior.jcell_instance :jnone)
+(defun DemoGameBehavior.jstatic_instance ()
+  (when (eq DemoGameBehavior.jcell_instance :jnone) (setf DemoGameBehavior.jcell_instance (DemoGameBehavior.jnew_0)))
+  DemoGameBehavior.jcell_instance)
+(defun (setf DemoGameBehavior.jstatic_instance) (value) (setf DemoGameBehavior.jcell_instance value))
 
-local DemoGameBehavior = {}
-DemoGameBehavior.__index = DemoGameBehavior
-DemoGameBehavior.className = "DemoGameBehavior"
+(defun DemoGameBehavior.jnew_0 ()
+  (let ((this (make-instance 'DemoGameBehavior)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    this))
 
-function DemoGameBehavior:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-end
+    
+(defun DemoGameBehavior.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (DemoGameBehavior.jstatic_instance)))))
 
-function DemoGameBehavior.new()
-    local self = setmetatable({}, DemoGameBehavior)
-    self:_init_fields()
-    return self
-end
+    
+(unless (fboundp 'jm_init_0) (defgeneric jm_init_0 (this)))
+(defmethod jm_init_0 ((this DemoGameBehavior))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_pause_1) (defgeneric jm_pause_1 (this p1)))
+(defmethod jm_pause_1 ((this DemoGameBehavior) _allBinaryGameCanvas)
+  (declare (ignorable this _allBinaryGameCanvas))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_unPause_1) (defgeneric jm_unPause_1 (this p1)))
+(defmethod jm_unPause_1 ((this DemoGameBehavior) _allBinaryGameCanvas)
+  (declare (ignorable this _allBinaryGameCanvas))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_updateTouch_1) (defgeneric jm_updateTouch_1 (this p1)))
+(defmethod jm_updateTouch_1 ((this DemoGameBehavior) _allBinaryGameCanvas)
+  (declare (ignorable this _allBinaryGameCanvas))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_updateScreenButtonPaintable_1) (defgeneric jm_updateScreenButtonPaintable_1 (this p1)))
+(defmethod jm_updateScreenButtonPaintable_1 ((this DemoGameBehavior) _allBinaryGameCanvas)
+  (declare (ignorable this _allBinaryGameCanvas))
+  (let ()
+    (block jreturn
+        (jm_setTouchPaintableP_1 _allBinaryGameCanvas (NullPaintable.jm_getInstance_0)))))
+
+    
+(unless (fboundp 'jm_setGameState_1) (defgeneric jm_setGameState_1 (this p1)))
+(defmethod jm_setGameState_1 ((this DemoGameBehavior) _allBinaryGameCanvas)
+  (declare (ignorable this _allBinaryGameCanvas))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_removeAllGameKeyInputListeners_1) (defgeneric jm_removeAllGameKeyInputListeners_1 (this p1)))
+(defmethod jm_removeAllGameKeyInputListeners_1 ((this DemoGameBehavior) _allBinaryGameCanvas)
+  (declare (ignorable this _allBinaryGameCanvas))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_updateEndGameProcessor_1) (defgeneric jm_updateEndGameProcessor_1 (this p1)))
+(defmethod jm_updateEndGameProcessor_1 ((this DemoGameBehavior) _allBinaryGameCanvas)
+  (declare (ignorable this _allBinaryGameCanvas))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_buildGame_1) (defgeneric jm_buildGame_1 (this p1)))
+(defmethod jm_buildGame_1 ((this DemoGameBehavior) _allBinaryGameCanvas)
+  (declare (ignorable this _allBinaryGameCanvas))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_run_1) (defgeneric jm_run_1 (this p1)))
+(defmethod jm_run_1 ((this DemoGameBehavior) _allBinaryGameCanvas)
+  (declare (ignorable this _allBinaryGameCanvas))
+  (let (_commonStrings)
+  (declare (ignorable _commonStrings))
+    (block jreturn
+        (setf _commonStrings (CommonStrings.jm_getInstance_0))
+        (jm_putF_3 (slot-value this 'f_logUtil) (JR.toString (slot-value (GameTypeFactory.jm_getInstance_0) 'f_BOT)) this (slot-value _commonStrings 'f_RUN)))))
+
+    
+(unless (fboundp 'jm_setHighScore_6) (defgeneric jm_setHighScore_6 (this p1 p2 p3 p4 p5 p6)))
+(defmethod jm_setHighScore_6 ((this DemoGameBehavior) _abeClientInformation _allBinaryGameCanvas _name _score _autoSubmit _isLast)
+  (declare (ignorable this _abeClientInformation _allBinaryGameCanvas _name _score _autoSubmit _isLast))
+  (let ()
+    (block jreturn nil)))
 
 
-function DemoGameBehavior.getInstance()
-        return DemoGameBehavior.instance
-end
-
-
--- throws Exception
-function DemoGameBehavior:init()
-end
-
-
-function DemoGameBehavior:pause(allBinaryGameCanvas)
-end
-
-
-function DemoGameBehavior:unPause(allBinaryGameCanvas)
-end
-
-
--- throws Exception
-function DemoGameBehavior:updateTouch(allBinaryGameCanvas)
-end
-
-
--- throws Exception
-function DemoGameBehavior:updateScreenButtonPaintable(allBinaryGameCanvas)
-        allBinaryGameCanvas:setTouchPaintableP(NullPaintable.getInstance())
-end
-
-
--- throws Exception
-function DemoGameBehavior:setGameState(allBinaryGameCanvas)
-end
-
-
-function DemoGameBehavior:removeAllGameKeyInputListeners(allBinaryGameCanvas)
-end
-
-
--- throws Exception
-function DemoGameBehavior:updateEndGameProcessor(allBinaryGameCanvas)
-end
-
-
--- throws Exception
-function DemoGameBehavior:buildGame(allBinaryGameCanvas)
-end
-
-
--- throws Exception
-function DemoGameBehavior:run(allBinaryGameCanvas)
-        local commonStrings = CommonStrings.getInstance()
-        self.logUtil:putF(tostring(GameTypeFactory.getInstance().BOT), self, commonStrings.RUN)
-end
-
-
--- throws Exception
-function DemoGameBehavior:setHighScore(abeClientInformation, allBinaryGameCanvas, name, score, autoSubmit, isLast)
-end
-
-DemoGameBehavior.instance = DemoGameBehavior.new()
-
-return DemoGameBehavior
 

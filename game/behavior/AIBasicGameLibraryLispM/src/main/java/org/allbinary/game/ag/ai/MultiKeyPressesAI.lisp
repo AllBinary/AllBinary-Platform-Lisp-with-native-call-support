@@ -1,111 +1,110 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.ag.ai
 
-local GameInput = require("org.allbinary.game.input.GameInput")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local GameTickTimeDelayHelper = require("org.allbinary.time.GameTickTimeDelayHelper")
-local GameTickTimeDelayHelperFactory = require("org.allbinary.time.GameTickTimeDelayHelperFactory")
-local TimeDelayHelper = require("org.allbinary.time.TimeDelayHelper")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
-local KeyPressesAI = require("org.allbinary.game.ag.ai.KeyPressesAI")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass MultiKeyPressesAI (KeyPressesAI)
+  ((f_toggleTimeHelper :initform nil)
+   (f_gameTickTimeDelayHelper :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun MultiKeyPressesAI.jnew_3 (_hashtable _ownerLayerInterface _gameInput)
+  (declare (ignorable _hashtable _ownerLayerInterface _gameInput))
+  (let ((this (make-instance 'MultiKeyPressesAI)))
+    (setf (slot-value this 'f_toggleTimeHelper) (TimeDelayHelper.jnew_1 600))
+    (setf (slot-value this 'f_gameTickTimeDelayHelper) (GameTickTimeDelayHelperFactory.jm_getInstance_0))
+  (let ()
+    (block jreturn
+        nil
+        (jm_update_0 this)))
+    this))
 
-local MultiKeyPressesAI = {}
-MultiKeyPressesAI.__index = MultiKeyPressesAI
-MultiKeyPressesAI.className = "MultiKeyPressesAI"
-setmetatable(MultiKeyPressesAI, {__index = KeyPressesAI})
+    
+(unless (fboundp 'jm_processAI_1) (defgeneric jm_processAI_1 (this p1)))
+(defmethod jm_processAI_1 ((this MultiKeyPressesAI) _allBinaryLayerManager)
+  (declare (ignorable this _allBinaryLayerManager))
+  (let ()
+    (block jreturn nil)))
 
-function MultiKeyPressesAI:_init_fields()
-    self.toggleTimeHelper = TimeDelayHelper.new(600)
-    self.gameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance()
-end
+    
+(unless (fboundp 'jm_update_0) (defgeneric jm_update_0 (this)))
+(defmethod jm_update_0 ((this MultiKeyPressesAI))
+  (declare (ignorable this))
+  (let (_gameInput _keys _size _key _index)
+  (declare (ignorable _gameInput _keys _size _key _index))
+    (block jreturn
+        (setf _gameInput (jm_getGameInput_0 this))
+        (setf _keys (slot-value this 'f_keys))
+        (setf _size (length _keys))
+        (if (jm_isOn_0 this)
+            (progn
+            (progn
+                (setf _index 0)
+                (block jbreak (loop while (< _index _size) do
+                    (block jcontinue
+                (setf _key (jm_intValue_0 (aref _keys _index)))
+                (if (/= _key (JR.i32 (- 1)))
+                    (progn
+                    (jm_add_1 _gameInput (jm_getInstanceForKey_2 (slot-value this 'f_gameKeyEventFactory) this _key)))))
+                    (setf _index (JR.i32 (+ _index 1)))))))
+            (progn
+            (progn
+                (setf _index 0)
+                (block jbreak (loop while (< _index _size) do
+                    (block jcontinue
+                (setf _key (jm_intValue_0 (aref _keys _index)))
+                (if (/= _key (JR.i32 (- 1)))
+                    (progn
+                    (jm_addForRemoval_1 _gameInput (jm_getInstanceForKey_2 (slot-value this 'f_gameKeyEventFactory) this _key)))))
+                    (setf _index (JR.i32 (+ _index 1)))))))))))
+
+    
+(unless (fboundp 'jm_toggle_0) (defgeneric jm_toggle_0 (this)))
+(defmethod jm_toggle_0 ((this MultiKeyPressesAI))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (if (jm_isTime_1 (slot-value this 'f_toggleTimeHelper) (slot-value (slot-value this 'f_gameTickTimeDelayHelper) 'f_startTime))
+            (progn
+            (call-next-method this)
+            (jm_update_0 this))))))
+
+    
+(unless (fboundp 'jm_disable_0) (defgeneric jm_disable_0 (this)))
+(defmethod jm_disable_0 ((this MultiKeyPressesAI))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (if (jm_isTime_1 (slot-value this 'f_toggleTimeHelper) (slot-value (slot-value this 'f_gameTickTimeDelayHelper) 'f_startTime))
+            (progn
+            (call-next-method this)
+            (jm_update_0 this))))))
+
+    
+(unless (fboundp 'jm_enable_0) (defgeneric jm_enable_0 (this)))
+(defmethod jm_enable_0 ((this MultiKeyPressesAI))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (if (jm_isTime_1 (slot-value this 'f_toggleTimeHelper) (slot-value (slot-value this 'f_gameTickTimeDelayHelper) 'f_startTime))
+            (progn
+            (call-next-method this)
+            (jm_update_0 this))))))
 
 
-function MultiKeyPressesAI.new(hashtable, ownerLayerInterface, gameInput)
-    local self = setmetatable(KeyPressesAI.new(hashtable, ownerLayerInterface, gameInput), MultiKeyPressesAI)
-    self:_init_fields()
-        -- super(...) made self above
-        self:update()
-    return self
-end
-
-
--- throws Exception
-function MultiKeyPressesAI:processAI(allBinaryLayerManager)
-end
-
-
--- throws Exception
-function MultiKeyPressesAI:update()
-        local gameInput = self:getGameInput()
-        local keys = self.keys
-        local size = (keys.n or #keys)
-        if self:isOn() then
-            for index = 0, size - 1 do
-                local key = math.tointeger(keys[index + 1] // 1)
-                if key ~= -1 then
-                    gameInput:add(self.gameKeyEventFactory:getInstanceForKey(self, key))
-                end
-            end
-        else
-            for index = 0, size - 1 do
-                local key = math.tointeger(keys[index + 1] // 1)
-                if key ~= -1 then
-                    gameInput:addForRemoval(self.gameKeyEventFactory:getInstanceForKey(self, key))
-                end
-            end
-        end
-end
-
-
--- throws Exception
-function MultiKeyPressesAI:toggle()
-        if self.toggleTimeHelper:isTime(self.gameTickTimeDelayHelper.startTime) then
-            KeyPressesAI.toggle(self)
-            self:update()
-        end
-end
-
-
--- throws Exception
-function MultiKeyPressesAI:disable()
-        if self.toggleTimeHelper:isTime(self.gameTickTimeDelayHelper.startTime) then
-            KeyPressesAI.disable(self)
-            self:update()
-        end
-end
-
-
--- throws Exception
-function MultiKeyPressesAI:enable()
-        if self.toggleTimeHelper:isTime(self.gameTickTimeDelayHelper.startTime) then
-            KeyPressesAI.enable(self)
-            self:update()
-        end
-end
-
-return MultiKeyPressesAI
 

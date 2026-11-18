@@ -1,63 +1,48 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2022 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(defclass PostGameCommandFactory (JObject)
+  ())
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defvar PostGameCommandFactory.jcell_instance :jnone)
+(defun PostGameCommandFactory.jstatic_instance ()
+  (when (eq PostGameCommandFactory.jcell_instance :jnone) (setf PostGameCommandFactory.jcell_instance (PostGameCommandFactory.jnew_0)))
+  PostGameCommandFactory.jcell_instance)
+(defun (setf PostGameCommandFactory.jstatic_instance) (value) (setf PostGameCommandFactory.jcell_instance value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun PostGameCommandFactory.jnew_0 ()
+  (let ((this (make-instance 'PostGameCommandFactory)))
+    this))
 
-local PostGameCommandFactory = {}
-PostGameCommandFactory.__index = PostGameCommandFactory
-PostGameCommandFactory.className = "PostGameCommandFactory"
+    
+(defun PostGameCommandFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (error (JR.newException "RuntimeException")))))
 
-function PostGameCommandFactory.new()
-    local self = setmetatable({}, PostGameCommandFactory)
-    return self
-end
+    
+(unless (fboundp 'jm_addCommands_1) (defgeneric jm_addCommands_1 (this p1)))
+(defmethod jm_addCommands_1 ((this PostGameCommandFactory) _canvas)
+  (declare (ignorable this _canvas))
+  (let ()
+    (block jreturn nil)))
 
 
-function PostGameCommandFactory.getInstance()
-        error(java_exception("RuntimeException"), 0)
-end
-
-
-function PostGameCommandFactory:addCommands(canvas)
-end
-
-PostGameCommandFactory.instance = PostGameCommandFactory.new()
-
-return PostGameCommandFactory
 

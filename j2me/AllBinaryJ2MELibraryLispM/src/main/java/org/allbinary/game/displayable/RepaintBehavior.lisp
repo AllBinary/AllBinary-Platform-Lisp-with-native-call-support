@@ -1,74 +1,67 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2022 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.displayable
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local DisplayInfoSingleton = require("org.allbinary.graphics.displayable.DisplayInfoSingleton")
-local OpenGLFeatureFactory = require("org.allbinary.graphics.opengles.OpenGLFeatureFactory")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local NullRunnable = require("org.allbinary.thread.NullRunnable")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass RepaintBehavior (JObject)
+  ((f_logUtil :initform nil)
+   (f_NAME :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar RepaintBehavior.jcell_instance :jnone)
+(defun RepaintBehavior.jstatic_instance ()
+  (when (eq RepaintBehavior.jcell_instance :jnone) (setf RepaintBehavior.jcell_instance (RepaintBehavior.jnew_0)))
+  RepaintBehavior.jcell_instance)
+(defun (setf RepaintBehavior.jstatic_instance) (value) (setf RepaintBehavior.jcell_instance value))
 
-local RepaintBehavior = {}
-RepaintBehavior.__index = RepaintBehavior
-RepaintBehavior.className = "RepaintBehavior"
+(defun RepaintBehavior.jnew_0 ()
+  (let ((this (make-instance 'RepaintBehavior)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_NAME) "RepaintBehavior")
+    this))
 
-function RepaintBehavior:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.NAME = "RepaintBehavior"
-end
+    
+(defun RepaintBehavior.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (RepaintBehavior.jstatic_instance)))))
 
-function RepaintBehavior.new()
-    local self = setmetatable({}, RepaintBehavior)
-    self:_init_fields()
-    return self
-end
+    
+(unless (fboundp 'jm_repaint_1) (defgeneric jm_repaint_1 (this p1)))
+(defmethod jm_repaint_1 ((this RepaintBehavior) _canvas)
+  (declare (ignorable this _canvas))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_onChangeRepaint_1) (defgeneric jm_onChangeRepaint_1 (this p1)))
+(defmethod jm_onChangeRepaint_1 ((this RepaintBehavior) _canvas)
+  (declare (ignorable this _canvas))
+  (let (_features _openGLFeatureFactory _thread)
+  (declare (ignorable _features _openGLFeatureFactory _thread))
+    (block jreturn
+        (setf _features (Features.jm_getInstance_0))
+        (setf _openGLFeatureFactory (OpenGLFeatureFactory.jm_getInstance_0))
+        (if (jm_isFeature_1 _features (slot-value _openGLFeatureFactory 'f_OPENGL))
+            (progn
+            (jm_process_0 (DisplayInfoSingleton.jm_getInstance_0)))
+            (progn
+            (setf _thread (Thread.jnew_2 (RepaintRunnable.jnew_1 _canvas) (slot-value this 'f_NAME)))
+            (jm_start_0 _thread))))))
 
 
-function RepaintBehavior.getInstance()
-        return RepaintBehavior.instance
-end
-
-
-function RepaintBehavior:repaint(canvas)
-end
-
-
-function RepaintBehavior:onChangeRepaint(canvas)
-        local features = Features.getInstance()
-        local openGLFeatureFactory = OpenGLFeatureFactory.getInstance()
-        if features:isFeature(openGLFeatureFactory.OPENGL) then
-            DisplayInfoSingleton.getInstance():process()
-        else
-            local thread = Thread.new(RepaintRunnable.new(canvas), self.NAME)
-            thread:start()
-        end
-end
-
-RepaintBehavior.instance = RepaintBehavior.new()
-
-return RepaintBehavior
 

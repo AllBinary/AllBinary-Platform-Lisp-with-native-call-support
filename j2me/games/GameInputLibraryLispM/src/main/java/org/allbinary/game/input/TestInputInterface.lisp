@@ -1,66 +1,65 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.input
 
-local PaintableInterface = require("org.allbinary.graphics.paint.PaintableInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass TestInputInterface (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun TestInputInterface.jnew_0 ()
+  (let ((this (make-instance 'TestInputInterface)))
+    this))
 
--- Java interface
-local TestInputInterface = {}
-TestInputInterface.__index = TestInputInterface
-TestInputInterface.className = "TestInputInterface"
-setmetatable(TestInputInterface, {__index = PaintableInterface})
+    
+(unless (fboundp 'jm_up_0) (defgeneric jm_up_0 (this)))
+(defmethod jm_up_0 ((this TestInputInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "up")))
+
+    
+(unless (fboundp 'jm_down_0) (defgeneric jm_down_0 (this)))
+(defmethod jm_down_0 ((this TestInputInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "down")))
+
+    
+(unless (fboundp 'jm_left_0) (defgeneric jm_left_0 (this)))
+(defmethod jm_left_0 ((this TestInputInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "left")))
+
+    
+(unless (fboundp 'jm_right_0) (defgeneric jm_right_0 (this)))
+(defmethod jm_right_0 ((this TestInputInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "right")))
+
+    
+(unless (fboundp 'jm_strafeLeft_0) (defgeneric jm_strafeLeft_0 (this)))
+(defmethod jm_strafeLeft_0 ((this TestInputInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "strafeLeft")))
+
+    
+(unless (fboundp 'jm_strafeRight_0) (defgeneric jm_strafeRight_0 (this)))
+(defmethod jm_strafeRight_0 ((this TestInputInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "strafeRight")))
 
 
-function TestInputInterface:up()
-    error("abstract method up")
-end
-
-
-function TestInputInterface:down()
-    error("abstract method down")
-end
-
-
-function TestInputInterface:left()
-    error("abstract method left")
-end
-
-
-function TestInputInterface:right()
-    error("abstract method right")
-end
-
-
-function TestInputInterface:strafeLeft()
-    error("abstract method strafeLeft")
-end
-
-
-function TestInputInterface:strafeRight()
-    error("abstract method strafeRight")
-end
-
-return TestInputInterface
 

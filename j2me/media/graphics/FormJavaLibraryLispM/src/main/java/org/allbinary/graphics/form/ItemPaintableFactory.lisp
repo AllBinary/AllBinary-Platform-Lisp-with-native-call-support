@@ -1,53 +1,49 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.form
 
-local ItemPaintable = require("org.allbinary.graphics.form.ItemPaintable")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ItemPaintableFactory (ItemPaintable)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar ItemPaintableFactory.jcell_instance :jnone)
+(defun ItemPaintableFactory.jstatic_instance ()
+  (when (eq ItemPaintableFactory.jcell_instance :jnone) (setf ItemPaintableFactory.jcell_instance (ItemPaintableFactory.jnew_0)))
+  ItemPaintableFactory.jcell_instance)
+(defun (setf ItemPaintableFactory.jstatic_instance) (value) (setf ItemPaintableFactory.jcell_instance value))
 
-local ItemPaintableFactory = {}
-ItemPaintableFactory.__index = ItemPaintableFactory
-ItemPaintableFactory.className = "ItemPaintableFactory"
-setmetatable(ItemPaintableFactory, {__index = ItemPaintable})
+(defun ItemPaintableFactory.jnew_0 ()
+  (let ((this (make-instance 'ItemPaintableFactory)))
+    this))
 
-function ItemPaintableFactory.new()
-    local self = setmetatable(ItemPaintable.new(), ItemPaintableFactory)
-    return self
-end
+    
+(defun ItemPaintableFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (ItemPaintableFactory.jstatic_instance)))))
+
+    
+(unless (fboundp 'jm_getInstanceItemPaintable_1) (defgeneric jm_getInstanceItemPaintable_1 (this p1)))
+(defmethod jm_getInstanceItemPaintable_1 ((this ItemPaintableFactory) _paintableForm)
+  (declare (ignorable this _paintableForm))
+  (let ()
+    (block jreturn
+        (return-from jreturn (ItemPaintableFactory.jstatic_instance)))))
 
 
-function ItemPaintableFactory.getInstance()
-        return ItemPaintableFactory.instance
-end
-
-
--- throws Exception
-function ItemPaintableFactory:getInstanceItemPaintable(paintableForm)
-        return ItemPaintableFactory.instance
-end
-
-ItemPaintableFactory.instance = ItemPaintableFactory.new()
-
-return ItemPaintableFactory
 

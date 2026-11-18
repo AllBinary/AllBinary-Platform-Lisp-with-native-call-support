@@ -1,44 +1,36 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.android.input.motion
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.android.input.motion
 
-local AnalogLocationInput = require("org.allbinary.game.input.analog.AnalogLocationInput")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass AnalogLocationInputProcessor (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun AnalogLocationInputProcessor.jnew_0 ()
+  (let ((this (make-instance 'AnalogLocationInputProcessor)))
+    this))
 
-local AnalogLocationInputProcessor = {}
-AnalogLocationInputProcessor.__index = AnalogLocationInputProcessor
-AnalogLocationInputProcessor.className = "AnalogLocationInputProcessor"
-
-function AnalogLocationInputProcessor.new()
-    local self = setmetatable({}, AnalogLocationInputProcessor)
-    return self
-end
+    
+(unless (fboundp 'jm_process_2) (defgeneric jm_process_2 (this p1 p2)))
+(defmethod jm_process_2 ((this AnalogLocationInputProcessor) _allbinaryLayerManager _analogLocationInput)
+  (declare (ignorable this _allbinaryLayerManager _analogLocationInput))
+  (let ()
+    (block jreturn nil)))
 
 
-function AnalogLocationInputProcessor:process(allbinaryLayerManager, analogLocationInput)
-end
-
-return AnalogLocationInputProcessor
 

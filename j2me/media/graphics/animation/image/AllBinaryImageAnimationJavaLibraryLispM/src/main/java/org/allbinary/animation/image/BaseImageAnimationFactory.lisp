@@ -1,124 +1,130 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation.image
 
--- local Image = require("javax.microedition.lcdui.Image")
-local Animation = require("org.allbinary.animation.Animation")
-local AnimationBehaviorFactory = require("org.allbinary.animation.AnimationBehaviorFactory")
-local AnimationInterfaceFactoryInterface = require("org.allbinary.animation.AnimationInterfaceFactoryInterface")
-local NullAnimationFactory = require("org.allbinary.animation.NullAnimationFactory")
-local AnimationFactoryImageScaleUtil = require("org.allbinary.image.AnimationFactoryImageScaleUtil")
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local ScaleProperties = require("org.allbinary.media.ScaleProperties")
-local CommonLabels = require("org.allbinary.string.CommonLabels")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass BaseImageAnimationFactory (JObject)
+  ((f_animationFactoryImageScaleUtil :initform nil)
+   (f_image :initform nil)
+   (f_animationBehaviorFactory :initform nil)
+   (f_sequenceArray :initform nil)
+   (f_animationFactoryInitializationVisitor :initform nil)
+   (f_scaleProperties :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun BaseImageAnimationFactory.jm_createFactoryBase_5 (_image _sequenceArray _width _height _animationBehaviorFactory)
+  (declare (ignorable _image _sequenceArray _width _height _animationBehaviorFactory))
+  (let ()
+    (block jreturn
+        (return-from jreturn (BaseImageAnimationFactory.jnew_7 _image _sequenceArray _width _height 0 0 _animationBehaviorFactory)))))
 
-local BaseImageAnimationFactory = {}
-BaseImageAnimationFactory.__index = BaseImageAnimationFactory
-BaseImageAnimationFactory.className = "BaseImageAnimationFactory"
+    
+(defun BaseImageAnimationFactory.jnew_7 (_image _sequenceArray _width _height _dx _dy _animationBehaviorFactory)
+  (declare (ignorable _image _sequenceArray _width _height _dx _dy _animationBehaviorFactory))
+  (let ((this (make-instance 'BaseImageAnimationFactory)))
+    (setf (slot-value this 'f_animationFactoryImageScaleUtil) (AnimationFactoryImageScaleUtil.jm_getInstance_0))
+    
+    
+    
+    
+    (setf (slot-value this 'f_scaleProperties) (ScaleProperties.jstatic_instance))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_animationFactoryInitializationVisitor) (AnimationFactoryInitializationVisitor.jnew_0))
+        (setf (slot-value this 'f_image) _image)
+        (setf (slot-value (slot-value this 'f_animationFactoryInitializationVisitor) 'f_width) _width)
+        (setf (slot-value (slot-value this 'f_animationFactoryInitializationVisitor) 'f_height) _height)
+        (setf (slot-value this 'f_animationBehaviorFactory) _animationBehaviorFactory)
+        (setf (slot-value this 'f_sequenceArray) _sequenceArray)
+        (setf (slot-value (slot-value this 'f_animationFactoryInitializationVisitor) 'f_dx) _dx)
+        (setf (slot-value (slot-value this 'f_animationFactoryInitializationVisitor) 'f_dy) _dy)))
+    this))
 
-function BaseImageAnimationFactory:_init_fields()
-    self.animationFactoryImageScaleUtil = AnimationFactoryImageScaleUtil.getInstance()
-    self.image = nil
-    self.animationBehaviorFactory = nil
-    self.sequenceArray = nil
-    self.animationFactoryInitializationVisitor = nil
-    self.scaleProperties = ScaleProperties.instance
-end
+    
+(unless (fboundp 'jm_getInstance_1) (defgeneric jm_getInstance_1 (this p1)))
+(defmethod jm_getInstance_1 ((this BaseImageAnimationFactory) _instanceId)
+  (declare (ignorable this _instanceId))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getInstance_1 (NullAnimationFactory.jm_getFactoryInstance_0) _instanceId)))))
+
+    
+(unless (fboundp 'jm_getImage_0) (defgeneric jm_getImage_0 (this)))
+(defmethod jm_getImage_0 ((this BaseImageAnimationFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_image)))))
+
+    
+(unless (fboundp 'jm_getSequenceArray_0) (defgeneric jm_getSequenceArray_0 (this)))
+(defmethod jm_getSequenceArray_0 ((this BaseImageAnimationFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_sequenceArray)))))
+
+    
+(unless (fboundp 'jm_setInitialScale_1) (defgeneric jm_setInitialScale_1 (this p1)))
+(defmethod jm_setInitialScale_1 ((this BaseImageAnimationFactory) _scaleProperties)
+  (declare (ignorable this _scaleProperties))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_scaleProperties) _scaleProperties)
+        (if (slot-value (slot-value this 'f_scaleProperties) 'f_shouldScale)
+            (progn
+            (setf (slot-value (slot-value this 'f_scaleProperties) 'f_scaleWidth) (JR.i32 (* (slot-value (slot-value this 'f_animationFactoryInitializationVisitor) 'f_width) (slot-value (slot-value this 'f_scaleProperties) 'f_scaleX))))
+            (setf (slot-value (slot-value this 'f_scaleProperties) 'f_scaleHeight) (JR.i32 (* (slot-value (slot-value this 'f_animationFactoryInitializationVisitor) 'f_height) (slot-value (slot-value this 'f_scaleProperties) 'f_scaleY)))))
+            (progn
+            nil)))))
+
+    
+(unless (fboundp 'jm_getAnimationFactoryInitializationVisitorP_0) (defgeneric jm_getAnimationFactoryInitializationVisitorP_0 (this)))
+(defmethod jm_getAnimationFactoryInitializationVisitorP_0 ((this BaseImageAnimationFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_animationFactoryInitializationVisitor)))))
+
+    
+(unless (fboundp 'jm_getScalePropertiesP_0) (defgeneric jm_getScalePropertiesP_0 (this)))
+(defmethod jm_getScalePropertiesP_0 ((this BaseImageAnimationFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_scaleProperties)))))
+
+    
+(unless (fboundp 'jm_toString_0) (defgeneric jm_toString_0 (this)))
+(defmethod jm_toString_0 ((this BaseImageAnimationFactory))
+  (declare (ignorable this))
+  (let (_commonSeps _commonLabels _stringBuffer)
+  (declare (ignorable _commonSeps _commonLabels _stringBuffer))
+    (block jreturn
+        (setf _commonSeps (CommonSeps.jm_getInstance_0))
+        (setf _commonLabels (CommonLabels.jm_getInstance_0))
+        (setf _stringBuffer (StringMaker.jnew_0))
+        (jm_append_1 _stringBuffer (call-next-method this))
+        (jm_append_1 _stringBuffer (slot-value _commonLabels 'f_HEIGHT_LABEL))
+        (jm_appendint_1 _stringBuffer (jm_getHeight_0 (slot-value this 'f_image)))
+        (jm_append_1 _stringBuffer (slot-value _commonSeps 'f_SPACE))
+        (jm_append_1 _stringBuffer (jm_toString_0 (slot-value this 'f_animationFactoryInitializationVisitor)))
+        (return-from jreturn (jm_toString_0 _stringBuffer)))))
 
 
--- throws Exception
-function BaseImageAnimationFactory.createFactoryBase(image, sequenceArray, width, height, animationBehaviorFactory)
-        return BaseImageAnimationFactory.new(image, sequenceArray, width, height, 0, 0, animationBehaviorFactory)
-end
-
-
-function BaseImageAnimationFactory.new(image, sequenceArray, width, height, dx, dy, animationBehaviorFactory)
-    local self = setmetatable({}, BaseImageAnimationFactory)
-    self:_init_fields()
-        self.animationFactoryInitializationVisitor = AnimationFactoryInitializationVisitor.new()
-        self.image = image
-        self.animationFactoryInitializationVisitor.width = width
-        self.animationFactoryInitializationVisitor.height = height
-        self.animationBehaviorFactory = animationBehaviorFactory
-        self.sequenceArray = sequenceArray
-        self.animationFactoryInitializationVisitor.dx = dx
-        self.animationFactoryInitializationVisitor.dy = dy
-    return self
-end
-
-
--- throws Exception
-function BaseImageAnimationFactory:getInstance(instanceId)
-        return NullAnimationFactory.getFactoryInstance():getInstance(instanceId)
-end
-
-
-function BaseImageAnimationFactory:getImage()
-        return self.image
-end
-
-
-function BaseImageAnimationFactory:getSequenceArray()
-        return self.sequenceArray
-end
-
-
-function BaseImageAnimationFactory:setInitialScale(scaleProperties)
-        self.scaleProperties = scaleProperties
-        if self.scaleProperties.shouldScale then
-            self.scaleProperties.scaleWidth = java_int((self.animationFactoryInitializationVisitor.width * self.scaleProperties.scaleX))
-            self.scaleProperties.scaleHeight = java_int((self.animationFactoryInitializationVisitor.height * self.scaleProperties.scaleY))
-        else
-        end
-end
-
-
-function BaseImageAnimationFactory:getAnimationFactoryInitializationVisitorP()
-        return self.animationFactoryInitializationVisitor
-end
-
-
-function BaseImageAnimationFactory:getScalePropertiesP()
-        return self.scaleProperties
-end
-
-
-function BaseImageAnimationFactory:toString()
-        local commonSeps = CommonSeps.getInstance()
-        local commonLabels = CommonLabels.getInstance()
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append(self.className)
-        stringBuffer:append(commonLabels.HEIGHT_LABEL)
-        stringBuffer:appendint(java_int(self.image:getHeight()))
-        stringBuffer:append(commonSeps.SPACE)
-        stringBuffer:append(tostring(self.animationFactoryInitializationVisitor))
-        return tostring(stringBuffer)
-end
-BaseImageAnimationFactory.__tostring = function(self) return self:toString() end
-
-return BaseImageAnimationFactory
 

@@ -1,74 +1,61 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.displayable.canvas
 
-local AndroidUtil = require("org.allbinary.AndroidUtil")
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local OpenGLFeatureFactory = require("org.allbinary.graphics.opengles.OpenGLFeatureFactory")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local GameRunnable = require("org.allbinary.game.displayable.canvas.GameRunnable")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass GameCanvasPauseRunnable (GameRunnable)
+  ((f_logUtil :initform nil)
+   (f_allBinaryGameCanvas :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun GameCanvasPauseRunnable.jnew_1 (_allBinaryGameCanvas)
+  (declare (ignorable _allBinaryGameCanvas))
+  (let ((this (make-instance 'GameCanvasPauseRunnable)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_allBinaryGameCanvas) _allBinaryGameCanvas)))
+    this))
 
-local GameCanvasPauseRunnable = {}
-GameCanvasPauseRunnable.__index = GameCanvasPauseRunnable
-GameCanvasPauseRunnable.className = "GameCanvasPauseRunnable"
-setmetatable(GameCanvasPauseRunnable, {__index = GameRunnable})
+    
+(unless (fboundp 'jm_run_0) (defgeneric jm_run_0 (this)))
+(defmethod jm_run_0 ((this GameCanvasPauseRunnable))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
 
-function GameCanvasPauseRunnable:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.allBinaryGameCanvas = nil
-end
+    
+(unless (fboundp 'jm_processLoopSleep_0) (defgeneric jm_processLoopSleep_0 (this)))
+(defmethod jm_processLoopSleep_0 ((this GameCanvasPauseRunnable))
+  (declare (ignorable this))
+  (let (_features _isOpenGL _commonStrings)
+  (declare (ignorable _features _isOpenGL _commonStrings))
+    (block jreturn
+        (handler-case (progn
+            (setf _features (Features.jm_getInstance_0))
+            (setf _isOpenGL (jm_isDefault_1 _features (slot-value (OpenGLFeatureFactory.jm_getInstance_0) 'f_OPENGL)))
+            (if _isOpenGL
+                (progn
+                (jm_processSleep_0 (slot-value this 'f_allBinaryGameCanvas)))))
+            (error (_e) (declare (ignorable _e))
+            (setf _commonStrings (CommonStrings.jm_getInstance_0))
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value _commonStrings 'f_EXCEPTION) this (slot-value _commonStrings 'f_RUN) _e))))))
 
 
-function GameCanvasPauseRunnable.new(allBinaryGameCanvas)
-    local self = setmetatable(GameRunnable.new(), GameCanvasPauseRunnable)
-    self:_init_fields()
-        self.allBinaryGameCanvas = allBinaryGameCanvas
-    return self
-end
-
-
-function GameCanvasPauseRunnable:run()
-end
-
-
--- throws Exception
-function GameCanvasPauseRunnable:processLoopSleep()
-        local try_ok, try_error = pcall(function()
-            local features = Features.getInstance()
-            local isOpenGL = features:isDefault(OpenGLFeatureFactory.getInstance().OPENGL)
-            if isOpenGL then
-                self.allBinaryGameCanvas:processSleep()
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, commonStrings.RUN, e)
-        end
-end
-
-return GameCanvasPauseRunnable
 

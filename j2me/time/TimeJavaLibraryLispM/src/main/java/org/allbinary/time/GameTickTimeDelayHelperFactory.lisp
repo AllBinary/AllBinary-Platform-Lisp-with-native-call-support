@@ -25,6 +25,7 @@
 (defun GameTickTimeDelayHelperFactory.jstatic_instance ()
   (when (eq GameTickTimeDelayHelperFactory.jcell_instance :jnone) (setf GameTickTimeDelayHelperFactory.jcell_instance (GameTickTimeDelayHelper.jnew_1 (JR.i32 (- 1)))))
   GameTickTimeDelayHelperFactory.jcell_instance)
+(defun (setf GameTickTimeDelayHelperFactory.jstatic_instance) (value) (setf GameTickTimeDelayHelperFactory.jcell_instance value))
 
     
 (defun GameTickTimeDelayHelperFactory.jm_getInstance_0 ()

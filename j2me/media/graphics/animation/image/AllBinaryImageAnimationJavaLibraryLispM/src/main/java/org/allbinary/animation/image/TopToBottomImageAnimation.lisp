@@ -1,93 +1,92 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation.image
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
--- local Image = require("javax.microedition.lcdui.Image")
--- local Sprite = require("javax.microedition.lcdui.game.Sprite")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local Anchor = require("org.allbinary.graphics.Anchor")
-local ImageSegmentAnimation = require("org.allbinary.animation.image.ImageSegmentAnimation")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass TopToBottomImageAnimation (ImageSegmentAnimation)
+  ((f_currentHeight :initform 0)
+   (f_anchor :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun TopToBottomImageAnimation.jnew_3 (_image _sequenceArray _animationBehavior)
+  (declare (ignorable _image _sequenceArray _animationBehavior))
+  (let ((this (make-instance 'TopToBottomImageAnimation)))
+    
+    (setf (slot-value this 'f_anchor) (Anchor.jstatic_TOP_LEFT))
+  (let ()
+    (block jreturn
+        nil
+        (setf (slot-value this 'f_currentHeight) 0)
+        (if (eq (aref (jm_getSequence_0 this) 0) (JR.i32 (- 1)))
+            (progn
+            (jm_setFrame_1 this (JR.i32 (- (jm_getSize_0 this) 1)))))))
+    this))
 
-local TopToBottomImageAnimation = {}
-TopToBottomImageAnimation.__index = TopToBottomImageAnimation
-TopToBottomImageAnimation.className = "TopToBottomImageAnimation"
-setmetatable(TopToBottomImageAnimation, {__index = ImageSegmentAnimation})
+    
+(unless (fboundp 'jm_nextFrame_0) (defgeneric jm_nextFrame_0 (this)))
+(defmethod jm_nextFrame_0 ((this TopToBottomImageAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (if (eq (aref (jm_getSequence_0 this) 0) (JR.i32 (- 1)))
+            (progn
+            (jm_previousFrame_0 this))
+            (progn
+            (call-next-method this)))
+        (jm_update_0 this))))
 
-function TopToBottomImageAnimation:_init_fields()
-    self.currentHeight = nil
-    self.anchor = Anchor.TOP_LEFT
-end
+    
+(unless (fboundp 'jm_previousFrame_0) (defgeneric jm_previousFrame_0 (this)))
+(defmethod jm_previousFrame_0 ((this TopToBottomImageAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (if (eq (aref (jm_getSequence_0 this) 0) (JR.i32 (- 1)))
+            (progn
+            (jm_nextFrame_0 this))
+            (progn
+            (call-next-method this)))
+        (jm_update_0 this))))
 
+    
+(unless (fboundp 'jm_setFrame_1) (defgeneric jm_setFrame_1 (this p1)))
+(defmethod jm_setFrame_1 ((this TopToBottomImageAnimation) _index)
+  (declare (ignorable this _index))
+  (let ()
+    (block jreturn
+        (call-next-method this _index)
+        (jm_update_0 this))))
 
-function TopToBottomImageAnimation.new(image, sequenceArray, animationBehavior)
-    local self = setmetatable(ImageSegmentAnimation.new(image, sequenceArray, animationBehavior), TopToBottomImageAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self.currentHeight = 0
-        if self:getSequence()[1] == -1 then
-            self:setFrame(self:getSize() - 1)
-        end
-    return self
-end
+    
+(unless (fboundp 'jm_update_0) (defgeneric jm_update_0 (this)))
+(defmethod jm_update_0 ((this TopToBottomImageAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_currentHeight) (JR.idiv (JR.i32 (* (jm_getDrawHeight_0 this) (jm_getFrame_0 this))) (jm_getSize_0 this))))))
 
-
-function TopToBottomImageAnimation:nextFrame()
-        if self:getSequence()[1] == -1 then
-            ImageSegmentAnimation.previousFrame(self)
-        else
-            ImageSegmentAnimation.nextFrame(self)
-        end
-        self:update()
-end
-
-
-function TopToBottomImageAnimation:previousFrame()
-        if self:getSequence()[1] == -1 then
-            ImageSegmentAnimation.nextFrame(self)
-        else
-            ImageSegmentAnimation.previousFrame(self)
-        end
-        self:update()
-end
-
-
-function TopToBottomImageAnimation:setFrame(index)
-        ImageSegmentAnimation.setFrame(self, index)
-        self:update()
-end
-
-
-function TopToBottomImageAnimation:update()
-        self.currentHeight = self:getDrawHeight() * self:getFrame() / self:getSize()
-end
+    
+(unless (fboundp 'jm_paintXY_3) (defgeneric jm_paintXY_3 (this p1 p2 p3)))
+(defmethod jm_paintXY_3 ((this TopToBottomImageAnimation) _graphics _x _y)
+  (declare (ignorable this _graphics _x _y))
+  (let ()
+    (block jreturn
+        (jm_drawRegion_9 _graphics (jm_getImage_0 this) (jm_getStartX_0 this) (jm_getStartY_0 this) (jm_getDrawWidth_0 this) (slot-value this 'f_currentHeight) (Sprite.jstatic_TRANS_NONE) _x _y (slot-value this 'f_anchor)))))
 
 
-function TopToBottomImageAnimation:paintXY(graphics, x, y)
-        graphics:drawRegion(self:getImage(), self:getStartX(), self:getStartY(), self:getDrawWidth(), self.currentHeight, Sprite.TRANS_NONE, x, y, self.anchor)
-end
-
-return TopToBottomImageAnimation
 

@@ -1,81 +1,71 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.configuration
 
--- local CommandListener = require("javax.microedition.lcdui.CommandListener")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local CommandForm = require("org.allbinary.graphics.displayable.screen.CommandForm")
-local Init = require("org.allbinary.init.Init")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass InGameOptionsFormFactory (JObject)
+  ((f_logUtil :initform nil)
+   (f_SINGLETON :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar InGameOptionsFormFactory.jcell_instance :jnone)
+(defun InGameOptionsFormFactory.jstatic_instance ()
+  (when (eq InGameOptionsFormFactory.jcell_instance :jnone) (setf InGameOptionsFormFactory.jcell_instance (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT)))
+  InGameOptionsFormFactory.jcell_instance)
+(defun (setf InGameOptionsFormFactory.jstatic_instance) (value) (setf InGameOptionsFormFactory.jcell_instance value))
 
-local InGameOptionsFormFactory = {}
-InGameOptionsFormFactory.__index = InGameOptionsFormFactory
-InGameOptionsFormFactory.className = "InGameOptionsFormFactory"
+(defun InGameOptionsFormFactory.jnew_0 ()
+  (let ((this (make-instance 'InGameOptionsFormFactory)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_SINGLETON) (CommandForm.jm_getNullCommandForm_0))
+    this))
 
-function InGameOptionsFormFactory:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.SINGLETON = CommandForm.getNullCommandForm()
-end
+    
+(defun InGameOptionsFormFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (if (eq (InGameOptionsFormFactory.jstatic_instance) (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT))
+            (progn
+            (setf (InGameOptionsFormFactory.jstatic_instance) (InGameOptionsFormFactory.jnew_0))))
+        (return-from jreturn (InGameOptionsFormFactory.jstatic_instance)))))
 
-function InGameOptionsFormFactory.new()
-    local self = setmetatable({}, InGameOptionsFormFactory)
-    self:_init_fields()
-    return self
-end
+    
+(unless (fboundp 'jm_init_5) (defgeneric jm_init_5 (this p1 p2 p3 p4 p5)))
+(defmethod jm_init_5 ((this InGameOptionsFormFactory) _commandListener _initInterface _title _backgrounBasicColor _foregroundBasicColor)
+  (declare (ignorable this _commandListener _initInterface _title _backgrounBasicColor _foregroundBasicColor))
+  (let (_commonStrings)
+  (declare (ignorable _commonStrings))
+    (block jreturn
+        (handler-case (progn
+            (if (eq (slot-value this 'f_SINGLETON) (CommandForm.jm_getNullCommandForm_0))
+                (progn
+                (jm_init_0 _initInterface)
+                (setf (slot-value this 'f_SINGLETON) (InGameOptionsForm.jnew_4 _commandListener _title _backgrounBasicColor _foregroundBasicColor)))))
+            (error (_e) (declare (ignorable _e))
+            (setf _commonStrings (CommonStrings.jm_getInstance_0))
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value _commonStrings 'f_EXCEPTION) this (slot-value _commonStrings 'f_INIT) _e))))))
 
-
-function InGameOptionsFormFactory.getInstance()
-        if InGameOptionsFormFactory.instance == NullUtil.getInstance().NULL_OBJECT then
-            InGameOptionsFormFactory.instance = InGameOptionsFormFactory.new()
-        end
-        return InGameOptionsFormFactory.instance
-end
-
-
-function InGameOptionsFormFactory:init(commandListener, initInterface, title, backgrounBasicColor, foregroundBasicColor)
-        local try_ok, try_error = pcall(function()
-            if self.SINGLETON == CommandForm.getNullCommandForm() then
-                initInterface:init()
-                self.SINGLETON = InGameOptionsForm.new(commandListener, title, backgrounBasicColor, foregroundBasicColor)
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, commonStrings.INIT, e)
-        end
-end
+    
+(unless (fboundp 'jm_get_0) (defgeneric jm_get_0 (this)))
+(defmethod jm_get_0 ((this InGameOptionsFormFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_SINGLETON)))))
 
 
-function InGameOptionsFormFactory:get()
-        return self.SINGLETON
-end
-
-InGameOptionsFormFactory.instance = NullUtil.getInstance().NULL_OBJECT
-
-return InGameOptionsFormFactory
 

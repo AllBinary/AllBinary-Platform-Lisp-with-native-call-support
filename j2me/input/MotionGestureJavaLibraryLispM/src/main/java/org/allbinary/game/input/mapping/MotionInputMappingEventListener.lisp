@@ -1,57 +1,46 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.mapping
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.input.mapping
 
-local InputMappingEvent = require("org.allbinary.game.input.mapping.event.InputMappingEvent")
-local InputMappingEventListenerInterface = require("org.allbinary.game.input.mapping.event.InputMappingEventListenerInterface")
-local GameKeyCompleteMotionGestureInputEventFactory = require("org.allbinary.game.input.motion.action.GameKeyCompleteMotionGestureInputEventFactory")
-local BasicTouchInputFactory = require("org.allbinary.input.motion.button.BasicTouchInputFactory")
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventStrings = require("org.allbinary.logic.util.event.EventStrings")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass MotionInputMappingEventListener (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun MotionInputMappingEventListener.jnew_0 ()
+  (let ((this (make-instance 'MotionInputMappingEventListener)))
+    this))
 
-local MotionInputMappingEventListener = {}
-MotionInputMappingEventListener.__index = MotionInputMappingEventListener
-MotionInputMappingEventListener.className = "MotionInputMappingEventListener"
+    
+(unless (fboundp 'jm_onEvent_1) (defgeneric jm_onEvent_1 (this p1)))
+(defmethod jm_onEvent_1 ((this MotionInputMappingEventListener) _eventObject)
+  (declare (ignorable this _eventObject))
+  (let ()
+    (block jreturn
+        (ForcedLogUtil.jm_log_2 (slot-value (EventStrings.jm_getInstance_0) 'f_PERFORMANCE_MESSAGE) this))))
 
-function MotionInputMappingEventListener.new()
-    local self = setmetatable({}, MotionInputMappingEventListener)
-    return self
-end
-
-
-function MotionInputMappingEventListener:onEvent(eventObject)
-        ForcedLogUtil.log(EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
-end
+    
+(unless (fboundp 'jm_onInputMappingEvent_1) (defgeneric jm_onInputMappingEvent_1 (this p1)))
+(defmethod jm_onInputMappingEvent_1 ((this MotionInputMappingEventListener) _inputMappingEvent)
+  (declare (ignorable this _inputMappingEvent))
+  (let ()
+    (block jreturn
+        (jm_updateAll_0 (GameKeyCompleteMotionGestureInputEventFactory.jm_getInstance_0))
+        (jm_updateAll_1 (BasicTouchInputFactory.jm_getInstance_0) (jm_getInputToGameKeyMapping_0 _inputMappingEvent)))))
 
 
--- throws Exception
-function MotionInputMappingEventListener:onInputMappingEvent(inputMappingEvent)
-        GameKeyCompleteMotionGestureInputEventFactory.getInstance():updateAll()
-        BasicTouchInputFactory.getInstance():updateAll(inputMappingEvent:getInputToGameKeyMapping())
-end
-
-return MotionInputMappingEventListener
 

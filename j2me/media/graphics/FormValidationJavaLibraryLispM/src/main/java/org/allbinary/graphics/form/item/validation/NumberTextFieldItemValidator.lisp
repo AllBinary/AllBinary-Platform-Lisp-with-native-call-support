@@ -1,129 +1,125 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form.item.validation
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.form.item.validation
 
-local ABTextFieldItem = require("org.allbinary.graphics.form.item.ABTextFieldItem")
-local ValidatorBase = require("org.allbinary.logic.control.validate.ValidatorBase")
-local BooleanFactory = require("org.allbinary.logic.java.bool.BooleanFactory")
-local SmallIntegerSingletonFactory = require("org.allbinary.logic.math.SmallIntegerSingletonFactory")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass NumberTextFieldItemValidator (ValidatorBase)
+  ((f_textFieldItem :initform nil)
+   (f_min :initform 0)
+   (f_max :initform 0)
+   (f_maxChars :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun NumberTextFieldItemValidator.jnew_4 (_textFieldItem _maxChars _min _max)
+  (declare (ignorable _textFieldItem _maxChars _min _max))
+  (let ((this (make-instance 'NumberTextFieldItemValidator)))
+    
+    
+    
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_textFieldItem) _textFieldItem)
+        (setf (slot-value this 'f_min) _min)
+        (setf (slot-value this 'f_max) _max)
+        (setf (slot-value this 'f_maxChars) _maxChars)))
+    this))
 
-local NumberTextFieldItemValidator = {}
-NumberTextFieldItemValidator.__index = NumberTextFieldItemValidator
-NumberTextFieldItemValidator.className = "NumberTextFieldItemValidator"
-setmetatable(NumberTextFieldItemValidator, {__index = ValidatorBase})
+    
+(unless (fboundp 'jm_isNumberValid_1) (defgeneric jm_isNumberValid_1 (this p1)))
+(defmethod jm_isNumberValid_1 ((this NumberTextFieldItemValidator) _value)
+  (declare (ignorable this _value))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value (BooleanFactory.jm_getInstance_0) 'f_TRUE)))))
 
-function NumberTextFieldItemValidator:_init_fields()
-    self.textFieldItem = nil
-    self.min = nil
-    self.max = nil
-    self.maxChars = nil
-end
+    
+(unless (fboundp 'jm_toNumberVector_1) (defgeneric jm_toNumberVector_1 (this p1)))
+(defmethod jm_toNumberVector_1 ((this NumberTextFieldItemValidator) _value)
+  (declare (ignorable this _value))
+  (let ()
+    (block jreturn
+        (return-from jreturn (BasicArrayListD.jnew_0)))))
+
+    
+(unless (fboundp 'jm_isValid_0) (defgeneric jm_isValid_0 (this)))
+(defmethod jm_isValid_0 ((this NumberTextFieldItemValidator))
+  (declare (ignorable this))
+  (let (_result _string _textLength)
+  (declare (ignorable _result _string _textLength))
+    (block jreturn
+        (setf _result (slot-value (BooleanFactory.jm_getInstance_0) 'f_TRUE))
+        (setf _string (jm_getString_0 (slot-value this 'f_textFieldItem)))
+        (setf _textLength (length _string))
+        (if (and (> _textLength 0) (< _textLength (slot-value this 'f_maxChars)))
+            (progn
+            (handler-case (progn
+                (Integer.jm_parseInt_1 (jm_getString_0 (slot-value this 'f_textFieldItem))))
+                (error (_e) (declare (ignorable _e))
+                (setf _result (slot-value (BooleanFactory.jm_getInstance_0) 'f_FALSE)))))
+            (progn
+            (if (< _textLength 1)
+                (progn
+                (setf _result (slot-value (BooleanFactory.jm_getInstance_0) 'f_FALSE)))
+                (if (> _textLength (slot-value this 'f_maxChars))
+                (progn
+                (setf _result (slot-value (BooleanFactory.jm_getInstance_0) 'f_FALSE)))))))
+        (return-from jreturn _result))))
+
+    
+(unless (fboundp 'jm_toList_0) (defgeneric jm_toList_0 (this)))
+(defmethod jm_toList_0 ((this NumberTextFieldItemValidator))
+  (declare (ignorable this))
+  (let (_list _string _textLength _label _name _smallIntegerSingletonFactory _stringMaker _number)
+  (declare (ignorable _list _string _textLength _label _name _smallIntegerSingletonFactory _stringMaker _number))
+    (block jreturn
+        (setf _list (BasicArrayListD.jnew_0))
+        (setf _string (jm_getString_0 (slot-value this 'f_textFieldItem)))
+        (setf _textLength (length _string))
+        (setf _label (jm_getLabel_0 (slot-value this 'f_textFieldItem)))
+        (setf _name (JR.substring _label 0 (JR.i32 (- (length _label) 2))))
+        (setf _smallIntegerSingletonFactory (SmallIntegerSingletonFactory.jm_getInstance_0))
+        (setf _stringMaker (StringMaker.jnew_0))
+        (if (and (> _textLength 0) (< _textLength (slot-value this 'f_maxChars)))
+            (progn
+            (handler-case (progn
+                (setf _number (jm_createInstance_1 _smallIntegerSingletonFactory (Integer.jm_parseInt_1 (jm_getString_0 (slot-value this 'f_textFieldItem)))))
+                (if (> (jm_intValue_0 _number) (slot-value this 'f_min))
+                    (progn
+                    (jm_delete_2 _stringMaker 0 (jm_length_0 _stringMaker))
+                    (jm_add_1 _list (jm_toString_0 (jm_append_1 (jm_append_1 _stringMaker _name) " is to small"))))
+                    (if (> (jm_intValue_0 _number) (slot-value this 'f_max))
+                    (progn
+                    (jm_delete_2 _stringMaker 0 (jm_length_0 _stringMaker))
+                    (jm_add_1 _list (jm_toString_0 (jm_append_1 (jm_append_1 _stringMaker _name) " is to large")))))))
+                (error (_e) (declare (ignorable _e))
+                (jm_delete_2 _stringMaker 0 (jm_length_0 _stringMaker))
+                (jm_add_1 _list (jm_toString_0 (jm_append_1 (jm_append_1 _stringMaker _name) " is not a number"))))))
+            (progn
+            (if (< _textLength 1)
+                (progn
+                (jm_delete_2 _stringMaker 0 (jm_length_0 _stringMaker))
+                (jm_add_1 _list (jm_toString_0 (jm_append_1 (jm_append_1 _stringMaker _name) " is to short"))))
+                (if (> _textLength (slot-value this 'f_maxChars))
+                (progn
+                (jm_delete_2 _stringMaker 0 (jm_length_0 _stringMaker))
+                (jm_add_1 _list (jm_toString_0 (jm_append_1 (jm_append_1 _stringMaker _name) " is to long"))))))))
+        (return-from jreturn _list))))
 
 
-function NumberTextFieldItemValidator.new(textFieldItem, maxChars, min, max)
-    local self = setmetatable(ValidatorBase.new(), NumberTextFieldItemValidator)
-    self:_init_fields()
-        self.textFieldItem = textFieldItem
-        self.min = min
-        self.max = max
-        self.maxChars = maxChars
-    return self
-end
-
-
-function NumberTextFieldItemValidator:isNumberValid(value)
-        return BooleanFactory.getInstance().TRUE
-end
-
-
-function NumberTextFieldItemValidator:toNumberVector(value)
-        return BasicArrayListD.new()
-end
-
-
-function NumberTextFieldItemValidator:isValid()
-        local result = BooleanFactory.getInstance().TRUE
-        local string = self.textFieldItem:getString()
-        local textLength = #string
-        if textLength > 0 and textLength < self.maxChars then
-            local try_ok, try_error = pcall(function()
-                math.tointeger(tonumber(self.textFieldItem:getString()))
-            end)
-            if not try_ok then
-                local e = try_error
-                result = BooleanFactory.getInstance().FALSE
-            end
-        else
-            if textLength < 1 then
-                result = BooleanFactory.getInstance().FALSE
-            elseif textLength > self.maxChars then
-                result = BooleanFactory.getInstance().FALSE
-            end
-        end
-        return result
-end
-
-
-function NumberTextFieldItemValidator:toList()
-        local list = BasicArrayListD.new()
-        local string = self.textFieldItem:getString()
-        local textLength = #string
-        local label = self.textFieldItem:getLabel()
-        local name = string.sub(label, (0) + 1, #label - 2)
-        local smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance()
-        local stringMaker = StringMaker.new()
-        if textLength > 0 and textLength < self.maxChars then
-            local try_ok, try_error = pcall(function()
-                local number = smallIntegerSingletonFactory:createInstance(math.tointeger(tonumber(self.textFieldItem:getString())))
-                if math.tointeger(number // 1) > self.min then
-                    stringMaker:delete(0, stringMaker:length())
-                    list:add(tostring(stringMaker:append(name):append(" is to small")))
-                elseif math.tointeger(number // 1) > self.max then
-                    stringMaker:delete(0, stringMaker:length())
-                    list:add(tostring(stringMaker:append(name):append(" is to large")))
-                end
-            end)
-            if not try_ok then
-                local e = try_error
-                stringMaker:delete(0, stringMaker:length())
-                list:add(tostring(stringMaker:append(name):append(" is not a number")))
-            end
-        else
-            if textLength < 1 then
-                stringMaker:delete(0, stringMaker:length())
-                list:add(tostring(stringMaker:append(name):append(" is to short")))
-            elseif textLength > self.maxChars then
-                stringMaker:delete(0, stringMaker:length())
-                list:add(tostring(stringMaker:append(name):append(" is to long")))
-            end
-        end
-        return list
-end
-
-return NumberTextFieldItemValidator
 

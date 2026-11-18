@@ -1,49 +1,45 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.crypt.jcehelper
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2022 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.system.security.crypt.jcehelper
 
-local CryptInterface = require("org.allbinary.init.crypt.jcehelper.CryptInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass NoCrypt (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun NoCrypt.jnew_0 ()
+  (let ((this (make-instance 'NoCrypt)))
+    this))
 
-local NoCrypt = {}
-NoCrypt.__index = NoCrypt
-NoCrypt.className = "NoCrypt"
+    
+(unless (fboundp 'jm_encrypt_1) (defgeneric jm_encrypt_1 (this p1)))
+(defmethod jm_encrypt_1 ((this NoCrypt) _array)
+  (declare (ignorable this _array))
+  (let ()
+    (block jreturn
+        (return-from jreturn _array))))
 
-function NoCrypt.new()
-    local self = setmetatable({}, NoCrypt)
-    return self
-end
-
-
-function NoCrypt:encrypt(array)
-        return array
-end
+    
+(unless (fboundp 'jm_decrypt_1) (defgeneric jm_decrypt_1 (this p1)))
+(defmethod jm_decrypt_1 ((this NoCrypt) _array)
+  (declare (ignorable this _array))
+  (let ()
+    (block jreturn
+        (return-from jreturn _array))))
 
 
-function NoCrypt:decrypt(array)
-        return array
-end
-
-return NoCrypt
 

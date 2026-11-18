@@ -1,183 +1,238 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.physics.velocity
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.physics.velocity
 
-local BasicVelocityProperties = require("org.allbinary.game.physics.velocity.BasicVelocityProperties")
-local VelocityInterface = require("org.allbinary.game.physics.velocity.VelocityInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass VelocityProperties (BasicVelocityProperties)
+  ((f_maxForwardVelocity :initform 0)
+   (f_maxReverseVelocity :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar VelocityProperties.jcell_NULL_VELOCITY_PROPERTIES :jnone)
+(defun VelocityProperties.jstatic_NULL_VELOCITY_PROPERTIES ()
+  (when (eq VelocityProperties.jcell_NULL_VELOCITY_PROPERTIES :jnone) (setf VelocityProperties.jcell_NULL_VELOCITY_PROPERTIES (VelocityProperties.jnew_2 0 0)))
+  VelocityProperties.jcell_NULL_VELOCITY_PROPERTIES)
+(defun (setf VelocityProperties.jstatic_NULL_VELOCITY_PROPERTIES) (value) (setf VelocityProperties.jcell_NULL_VELOCITY_PROPERTIES value))
 
-local VelocityProperties = {}
-VelocityProperties.__index = VelocityProperties
-VelocityProperties.className = "VelocityProperties"
-setmetatable(VelocityProperties, {__index = BasicVelocityProperties})
+    
+(defun VelocityProperties.jnew_2 (_maxForwardVelocity _maxReverseVelocity)
+  (declare (ignorable _maxForwardVelocity _maxReverseVelocity))
+  (let ((this (make-instance 'VelocityProperties)))
+    
+    
+  (let ()
+    (block jreturn
+        (jm_setMaxForwardVelocity_1 this _maxForwardVelocity)
+        (jm_setMaxReverseVelocity_1 this _maxReverseVelocity)))
+    this))
 
-function VelocityProperties:_init_fields()
-    self.maxForwardVelocity = 0
-    self.maxReverseVelocity = 0
-end
+    
+(unless (fboundp 'jm_getMaxForwardVelocity_0) (defgeneric jm_getMaxForwardVelocity_0 (this)))
+(defmethod jm_getMaxForwardVelocity_0 ((this VelocityProperties))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_maxForwardVelocity)))))
+
+    
+(unless (fboundp 'jm_setMaxForwardVelocity_1) (defgeneric jm_setMaxForwardVelocity_1 (this p1)))
+(defmethod jm_setMaxForwardVelocity_1 ((this VelocityProperties) _maxForwardVelocity)
+  (declare (ignorable this _maxForwardVelocity))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_maxForwardVelocity) _maxForwardVelocity))))
+
+    
+(unless (fboundp 'jm_getMaxReverseVelocity_0) (defgeneric jm_getMaxReverseVelocity_0 (this)))
+(defmethod jm_getMaxReverseVelocity_0 ((this VelocityProperties))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_maxReverseVelocity)))))
+
+    
+(unless (fboundp 'jm_setMaxReverseVelocity_1) (defgeneric jm_setMaxReverseVelocity_1 (this p1)))
+(defmethod jm_setMaxReverseVelocity_1 ((this VelocityProperties) _maxReverseVelocity)
+  (declare (ignorable this _maxReverseVelocity))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_maxReverseVelocity) _maxReverseVelocity))))
+
+    
+(unless (fboundp 'jm_limitMaxXYForwardVelocity_0) (defgeneric jm_limitMaxXYForwardVelocity_0 (this)))
+(defmethod jm_limitMaxXYForwardVelocity_0 ((this VelocityProperties))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_limitMaxXYVelocity_1 this (jm_getMaxForwardVelocity_0 this)))))
+
+    
+(unless (fboundp 'jm_limitMaxXYReverseVelocity_0) (defgeneric jm_limitMaxXYReverseVelocity_0 (this)))
+(defmethod jm_limitMaxXYReverseVelocity_0 ((this VelocityProperties))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_limitMaxXYVelocity_1 this (jm_getMaxReverseVelocity_0 this)))))
+
+    
+(unless (fboundp 'jm_limitMaxYForwardVelocity_0) (defgeneric jm_limitMaxYForwardVelocity_0 (this)))
+(defmethod jm_limitMaxYForwardVelocity_0 ((this VelocityProperties))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_limitMaxYVelocity_1 this (jm_getMaxForwardVelocity_0 this)))))
+
+    
+(unless (fboundp 'jm_limitMaxYReverseVelocity_0) (defgeneric jm_limitMaxYReverseVelocity_0 (this)))
+(defmethod jm_limitMaxYReverseVelocity_0 ((this VelocityProperties))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_limitMaxYVelocity_1 this (jm_getMaxReverseVelocity_0 this)))))
+
+    
+(unless (fboundp 'jm_limitMaxXForwardVelocity_0) (defgeneric jm_limitMaxXForwardVelocity_0 (this)))
+(defmethod jm_limitMaxXForwardVelocity_0 ((this VelocityProperties))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_limitMaxXVelocity_1 this (jm_getMaxForwardVelocity_0 this)))))
+
+    
+(unless (fboundp 'jm_limitMaxXReverseVelocity_0) (defgeneric jm_limitMaxXReverseVelocity_0 (this)))
+(defmethod jm_limitMaxXReverseVelocity_0 ((this VelocityProperties))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_limitMaxXVelocity_1 this (jm_getMaxReverseVelocity_0 this)))))
+
+    
+(unless (fboundp 'jm_isOverXYMaxForwardVelocity_0) (defgeneric jm_isOverXYMaxForwardVelocity_0 (this)))
+(defmethod jm_isOverXYMaxForwardVelocity_0 ((this VelocityProperties))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_isOverXYMaxVelocity_1 this (jm_getMaxForwardVelocity_0 this))))))
+
+    
+(unless (fboundp 'jm_isOverXYMaxReverseVelocity_0) (defgeneric jm_isOverXYMaxReverseVelocity_0 (this)))
+(defmethod jm_isOverXYMaxReverseVelocity_0 ((this VelocityProperties))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_isOverXYMaxVelocity_1 this (jm_getMaxReverseVelocity_0 this))))))
+
+    
+(unless (fboundp 'jm_limitXYToForwardAndReverseMaxVelocity_0) (defgeneric jm_limitXYToForwardAndReverseMaxVelocity_0 (this)))
+(defmethod jm_limitXYToForwardAndReverseMaxVelocity_0 ((this VelocityProperties))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_limitMaxXYForwardVelocity_0 this)
+        (jm_limitMaxXYReverseVelocity_0 this))))
+
+    
+(unless (fboundp 'jm_limitMaxXYVelocity_1) (defgeneric jm_limitMaxXYVelocity_1 (this p1)))
+(defmethod jm_limitMaxXYVelocity_1 ((this VelocityProperties) _maxVelocity)
+  (declare (ignorable this _maxVelocity))
+  (let ()
+    (block jreturn
+        (jm_limitMaxXVelocity_1 this _maxVelocity)
+        (jm_limitMaxYVelocity_1 this _maxVelocity))))
+
+    
+(unless (fboundp 'jm_limitMaxPositiveYVelocity_1) (defgeneric jm_limitMaxPositiveYVelocity_1 (this p1)))
+(defmethod jm_limitMaxPositiveYVelocity_1 ((this VelocityProperties) _maxVelocity)
+  (declare (ignorable this _maxVelocity))
+  (let ()
+    (block jreturn
+        (if (> (jm_getUnscaled_0 (slot-value this 'f_velocityYBasicDecimal)) _maxVelocity)
+            (progn
+            (jm_setint_1 (slot-value this 'f_velocityYBasicDecimal) _maxVelocity))))))
+
+    
+(unless (fboundp 'jm_limitMaxNegativeYVelocity_1) (defgeneric jm_limitMaxNegativeYVelocity_1 (this p1)))
+(defmethod jm_limitMaxNegativeYVelocity_1 ((this VelocityProperties) _maxVelocity)
+  (declare (ignorable this _maxVelocity))
+  (let ()
+    (block jreturn
+        (if (< (jm_getUnscaled_0 (slot-value this 'f_velocityYBasicDecimal)) (JR.i32 (- _maxVelocity)))
+            (progn
+            (jm_setint_1 (slot-value this 'f_velocityYBasicDecimal) (JR.i32 (- _maxVelocity))))))))
+
+    
+(unless (fboundp 'jm_limitMaxYVelocity_1) (defgeneric jm_limitMaxYVelocity_1 (this p1)))
+(defmethod jm_limitMaxYVelocity_1 ((this VelocityProperties) _maxVelocity)
+  (declare (ignorable this _maxVelocity))
+  (let ()
+    (block jreturn
+        (jm_limitMaxPositiveYVelocity_1 this _maxVelocity)
+        (jm_limitMaxNegativeYVelocity_1 this _maxVelocity))))
+
+    
+(unless (fboundp 'jm_limitMaxXVelocity_1) (defgeneric jm_limitMaxXVelocity_1 (this p1)))
+(defmethod jm_limitMaxXVelocity_1 ((this VelocityProperties) _maxVelocity)
+  (declare (ignorable this _maxVelocity))
+  (let ()
+    (block jreturn
+        (if (> (jm_getUnscaled_0 (slot-value this 'f_velocityXBasicDecimal)) _maxVelocity)
+            (progn
+            (jm_setint_1 (slot-value this 'f_velocityXBasicDecimal) _maxVelocity)))
+        (if (< (jm_getUnscaled_0 (slot-value this 'f_velocityXBasicDecimal)) (JR.i32 (- _maxVelocity)))
+            (progn
+            (jm_setint_1 (slot-value this 'f_velocityXBasicDecimal) (JR.i32 (- _maxVelocity))))))))
+
+    
+(unless (fboundp 'jm_isOverXYMaxVelocity_1) (defgeneric jm_isOverXYMaxVelocity_1 (this p1)))
+(defmethod jm_isOverXYMaxVelocity_1 ((this VelocityProperties) _maxVelocity)
+  (declare (ignorable this _maxVelocity))
+  (let ()
+    (block jreturn
+        (if (> (jm_getUnscaled_0 (slot-value this 'f_velocityXBasicDecimal)) _maxVelocity)
+            (progn
+            (return-from jreturn t)))
+        (if (< (jm_getUnscaled_0 (slot-value this 'f_velocityXBasicDecimal)) (JR.i32 (- _maxVelocity)))
+            (progn
+            (return-from jreturn t)))
+        (if (> (jm_getUnscaled_0 (slot-value this 'f_velocityYBasicDecimal)) _maxVelocity)
+            (progn
+            (return-from jreturn t)))
+        (if (< (jm_getUnscaled_0 (slot-value this 'f_velocityYBasicDecimal)) (JR.i32 (- _maxVelocity)))
+            (progn
+            (return-from jreturn t)))
+        (return-from jreturn nil))))
+
+    
+(unless (fboundp 'jm_setVelocityi_3) (defgeneric jm_setVelocityi_3 (this p1 p2 p3)))
+(defmethod jm_setVelocityi_3 ((this VelocityProperties) _magnitude _angle _otherAngle)
+  (declare (ignorable this _magnitude _angle _otherAngle))
+  (let ()
+    (block jreturn
+        (call-next-method this _magnitude _angle _otherAngle)
+        (jm_limitXYToForwardAndReverseMaxVelocity_0 this))))
+
+    
+(unless (fboundp 'jm_addVelocityi_3) (defgeneric jm_addVelocityi_3 (this p1 p2 p3)))
+(defmethod jm_addVelocityi_3 ((this VelocityProperties) _magnitude _angle _otherAngle)
+  (declare (ignorable this _magnitude _angle _otherAngle))
+  (let ()
+    (block jreturn
+        (call-next-method this _magnitude _angle _otherAngle)
+        (jm_limitXYToForwardAndReverseMaxVelocity_0 this))))
 
 
-function VelocityProperties.new(maxForwardVelocity, maxReverseVelocity)
-    local self = setmetatable(BasicVelocityProperties.new(), VelocityProperties)
-    self:_init_fields()
-        self:setMaxForwardVelocity(maxForwardVelocity)
-        self:setMaxReverseVelocity(maxReverseVelocity)
-    return self
-end
-
-
-function VelocityProperties:getMaxForwardVelocity()
-        return self.maxForwardVelocity
-end
-
-
-function VelocityProperties:setMaxForwardVelocity(maxForwardVelocity)
-        self.maxForwardVelocity = maxForwardVelocity
-end
-
-
-function VelocityProperties:getMaxReverseVelocity()
-        return self.maxReverseVelocity
-end
-
-
-function VelocityProperties:setMaxReverseVelocity(maxReverseVelocity)
-        self.maxReverseVelocity = maxReverseVelocity
-end
-
-
-function VelocityProperties:limitMaxXYForwardVelocity()
-        self:limitMaxXYVelocity(self:getMaxForwardVelocity())
-end
-
-
-function VelocityProperties:limitMaxXYReverseVelocity()
-        self:limitMaxXYVelocity(self:getMaxReverseVelocity())
-end
-
-
-function VelocityProperties:limitMaxYForwardVelocity()
-        self:limitMaxYVelocity(self:getMaxForwardVelocity())
-end
-
-
-function VelocityProperties:limitMaxYReverseVelocity()
-        self:limitMaxYVelocity(self:getMaxReverseVelocity())
-end
-
-
-function VelocityProperties:limitMaxXForwardVelocity()
-        self:limitMaxXVelocity(self:getMaxForwardVelocity())
-end
-
-
-function VelocityProperties:limitMaxXReverseVelocity()
-        self:limitMaxXVelocity(self:getMaxReverseVelocity())
-end
-
-
-function VelocityProperties:isOverXYMaxForwardVelocity()
-        return self:isOverXYMaxVelocity(self:getMaxForwardVelocity())
-end
-
-
-function VelocityProperties:isOverXYMaxReverseVelocity()
-        return self:isOverXYMaxVelocity(self:getMaxReverseVelocity())
-end
-
-
-function VelocityProperties:limitXYToForwardAndReverseMaxVelocity()
-        self:limitMaxXYForwardVelocity()
-        self:limitMaxXYReverseVelocity()
-end
-
-
-function VelocityProperties:limitMaxXYVelocity(maxVelocity)
-        self:limitMaxXVelocity(maxVelocity)
-        self:limitMaxYVelocity(maxVelocity)
-end
-
-
-function VelocityProperties:limitMaxPositiveYVelocity(maxVelocity)
-        if self.velocityYBasicDecimal:getUnscaled() > maxVelocity then
-            self.velocityYBasicDecimal:setint(maxVelocity)
-        end
-end
-
-
-function VelocityProperties:limitMaxNegativeYVelocity(maxVelocity)
-        if self.velocityYBasicDecimal:getUnscaled() < -maxVelocity then
-            self.velocityYBasicDecimal:setint(-maxVelocity)
-        end
-end
-
-
-function VelocityProperties:limitMaxYVelocity(maxVelocity)
-        self:limitMaxPositiveYVelocity(maxVelocity)
-        self:limitMaxNegativeYVelocity(maxVelocity)
-end
-
-
-function VelocityProperties:limitMaxXVelocity(maxVelocity)
-        if self.velocityXBasicDecimal:getUnscaled() > maxVelocity then
-            self.velocityXBasicDecimal:setint(maxVelocity)
-        end
-        if self.velocityXBasicDecimal:getUnscaled() < -maxVelocity then
-            self.velocityXBasicDecimal:setint(-maxVelocity)
-        end
-end
-
-
-function VelocityProperties:isOverXYMaxVelocity(maxVelocity)
-        if self.velocityXBasicDecimal:getUnscaled() > maxVelocity then
-            return true
-        end
-        if self.velocityXBasicDecimal:getUnscaled() < -maxVelocity then
-            return true
-        end
-        if self.velocityYBasicDecimal:getUnscaled() > maxVelocity then
-            return true
-        end
-        if self.velocityYBasicDecimal:getUnscaled() < -maxVelocity then
-            return true
-        end
-        return false
-end
-
-
-function VelocityProperties:setVelocityi(magnitude, angle, otherAngle)
-        BasicVelocityProperties.setVelocityi(self, magnitude, angle, otherAngle)
-        self:limitXYToForwardAndReverseMaxVelocity()
-end
-
-
-function VelocityProperties:addVelocityi(magnitude, angle, otherAngle)
-        BasicVelocityProperties.addVelocityi(self, magnitude, angle, otherAngle)
-        self:limitXYToForwardAndReverseMaxVelocity()
-end
-
-VelocityProperties.NULL_VELOCITY_PROPERTIES = VelocityProperties.new(0, 0)
-
-return VelocityProperties
 

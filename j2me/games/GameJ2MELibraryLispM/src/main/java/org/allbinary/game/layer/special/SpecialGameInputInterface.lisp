@@ -1,110 +1,101 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.special
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.layer.special
 
-local GameKeyEvent = require("org.allbinary.game.input.event.GameKeyEvent")
-local PaintableInterface = require("org.allbinary.graphics.paint.PaintableInterface")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass SpecialGameInputInterface (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun SpecialGameInputInterface.jnew_0 ()
+  (let ((this (make-instance 'SpecialGameInputInterface)))
+    this))
 
--- Java interface
-local SpecialGameInputInterface = {}
-SpecialGameInputInterface.__index = SpecialGameInputInterface
-SpecialGameInputInterface.className = "SpecialGameInputInterface"
-setmetatable(SpecialGameInputInterface, {__index = PaintableInterface})
+    
+(unless (fboundp 'jm_up_0) (defgeneric jm_up_0 (this)))
+(defmethod jm_up_0 ((this SpecialGameInputInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "up")))
 
+    
+(unless (fboundp 'jm_down_0) (defgeneric jm_down_0 (this)))
+(defmethod jm_down_0 ((this SpecialGameInputInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "down")))
 
--- throws Exception
-function SpecialGameInputInterface:up()
-    error("abstract method up")
-end
+    
+(unless (fboundp 'jm_right_0) (defgeneric jm_right_0 (this)))
+(defmethod jm_right_0 ((this SpecialGameInputInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "right")))
 
+    
+(unless (fboundp 'jm_left_0) (defgeneric jm_left_0 (this)))
+(defmethod jm_left_0 ((this SpecialGameInputInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "left")))
 
--- throws Exception
-function SpecialGameInputInterface:down()
-    error("abstract method down")
-end
+    
+(unless (fboundp 'jm_strafeLeft_0) (defgeneric jm_strafeLeft_0 (this)))
+(defmethod jm_strafeLeft_0 ((this SpecialGameInputInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "strafeLeft")))
 
+    
+(unless (fboundp 'jm_strafeRight_0) (defgeneric jm_strafeRight_0 (this)))
+(defmethod jm_strafeRight_0 ((this SpecialGameInputInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "strafeRight")))
 
--- throws Exception
-function SpecialGameInputInterface:right()
-    error("abstract method right")
-end
+    
+(unless (fboundp 'jm_fire_2) (defgeneric jm_fire_2 (this p1 p2)))
+(defmethod jm_fire_2 ((this SpecialGameInputInterface) _layerManager _gameKeyEvent)
+  (declare (ignorable this _layerManager _gameKeyEvent))
+  (error (JR.newException "AbstractMethodError" "fire")))
 
+    
+(unless (fboundp 'jm_special1_2) (defgeneric jm_special1_2 (this p1 p2)))
+(defmethod jm_special1_2 ((this SpecialGameInputInterface) _layerManager _gameKeyEvent)
+  (declare (ignorable this _layerManager _gameKeyEvent))
+  (error (JR.newException "AbstractMethodError" "special1")))
 
--- throws Exception
-function SpecialGameInputInterface:left()
-    error("abstract method left")
-end
+    
+(unless (fboundp 'jm_special2_2) (defgeneric jm_special2_2 (this p1 p2)))
+(defmethod jm_special2_2 ((this SpecialGameInputInterface) _layerManager _gameKeyEvent)
+  (declare (ignorable this _layerManager _gameKeyEvent))
+  (error (JR.newException "AbstractMethodError" "special2")))
 
+    
+(unless (fboundp 'jm_special3_2) (defgeneric jm_special3_2 (this p1 p2)))
+(defmethod jm_special3_2 ((this SpecialGameInputInterface) _layerManager _gameKeyEvent)
+  (declare (ignorable this _layerManager _gameKeyEvent))
+  (error (JR.newException "AbstractMethodError" "special3")))
 
--- throws Exception
-function SpecialGameInputInterface:strafeLeft()
-    error("abstract method strafeLeft")
-end
+    
+(unless (fboundp 'jm_special4_2) (defgeneric jm_special4_2 (this p1 p2)))
+(defmethod jm_special4_2 ((this SpecialGameInputInterface) _layerManager _gameKeyEvent)
+  (declare (ignorable this _layerManager _gameKeyEvent))
+  (error (JR.newException "AbstractMethodError" "special4")))
 
-
--- throws Exception
-function SpecialGameInputInterface:strafeRight()
-    error("abstract method strafeRight")
-end
-
-
--- throws Exception
-function SpecialGameInputInterface:fire(layerManager, gameKeyEvent)
-    error("abstract method fire")
-end
-
-
--- throws Exception
-function SpecialGameInputInterface:special1(layerManager, gameKeyEvent)
-    error("abstract method special1")
-end
-
-
--- throws Exception
-function SpecialGameInputInterface:special2(layerManager, gameKeyEvent)
-    error("abstract method special2")
-end
-
-
--- throws Exception
-function SpecialGameInputInterface:special3(layerManager, gameKeyEvent)
-    error("abstract method special3")
-end
-
-
--- throws Exception
-function SpecialGameInputInterface:special4(layerManager, gameKeyEvent)
-    error("abstract method special4")
-end
+    
+(unless (fboundp 'jm_special5_2) (defgeneric jm_special5_2 (this p1 p2)))
+(defmethod jm_special5_2 ((this SpecialGameInputInterface) _layerManager _gameKeyEvent)
+  (declare (ignorable this _layerManager _gameKeyEvent))
+  (error (JR.newException "AbstractMethodError" "special5")))
 
 
--- throws Exception
-function SpecialGameInputInterface:special5(layerManager, gameKeyEvent)
-    error("abstract method special5")
-end
-
-return SpecialGameInputInterface
 

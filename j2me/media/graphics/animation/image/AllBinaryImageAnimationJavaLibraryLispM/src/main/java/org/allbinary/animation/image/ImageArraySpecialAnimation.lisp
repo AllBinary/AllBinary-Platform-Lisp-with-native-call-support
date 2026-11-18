@@ -1,101 +1,102 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation.image
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
--- local Image = require("javax.microedition.lcdui.Image")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local SpecialAnimationInterface = require("org.allbinary.animation.special.SpecialAnimationInterface")
-local DisplayInfoSingleton = require("org.allbinary.graphics.displayable.DisplayInfoSingleton")
-local GameTickTimeDelayHelperFactory = require("org.allbinary.time.GameTickTimeDelayHelperFactory")
-local TimeDelayHelper = require("org.allbinary.time.TimeDelayHelper")
-local ImageArrayAnimation = require("org.allbinary.animation.image.ImageArrayAnimation")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ImageArraySpecialAnimation (ImageArrayAnimation)
+  ((f_timeDelayHelper :initform nil)
+   (f_loopCount :initform 0)
+   (f_loopCountTotal :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun ImageArraySpecialAnimation.jnew_2 (_imageArray _animationBehavior)
+  (declare (ignorable _imageArray _animationBehavior))
+  (let ((this (make-instance 'ImageArraySpecialAnimation)))
+    (setf (slot-value this 'f_timeDelayHelper) (TimeDelayHelper.jnew_1 270))
+    (setf (slot-value this 'f_loopCount) 0)
+    (setf (slot-value this 'f_loopCountTotal) 1)
+  (let ()
+    (block jreturn
+        nil
+        (jm_reset_0 this)))
+    this))
 
-local ImageArraySpecialAnimation = {}
-ImageArraySpecialAnimation.__index = ImageArraySpecialAnimation
-ImageArraySpecialAnimation.className = "ImageArraySpecialAnimation"
-setmetatable(ImageArraySpecialAnimation, {__index = ImageArrayAnimation})
+    
+(unless (fboundp 'jm_getLoopCount_0) (defgeneric jm_getLoopCount_0 (this)))
+(defmethod jm_getLoopCount_0 ((this ImageArraySpecialAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_loopCount)))))
 
-function ImageArraySpecialAnimation:_init_fields()
-    self.timeDelayHelper = TimeDelayHelper.new(270)
-    self.loopCount = 0
-    self.loopCountTotal = 1
-end
+    
+(unless (fboundp 'jm_setLastFrame_0) (defgeneric jm_setLastFrame_0 (this)))
+(defmethod jm_setLastFrame_0 ((this ImageArraySpecialAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_setIndex_1 (slot-value this 'f_circularIndexUtil) (JR.i32 (- (jm_getSize_0 (slot-value this 'f_circularIndexUtil)) 1))))))
+
+    
+(unless (fboundp 'jm_reset_0) (defgeneric jm_reset_0 (this)))
+(defmethod jm_reset_0 ((this ImageArraySpecialAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_setFrame_1 this (JR.i32 (- (jm_getSize_0 this) 1)))
+        (setf (slot-value this 'f_loopCount) 0))))
+
+    
+(unless (fboundp 'jm_nextFrame_0) (defgeneric jm_nextFrame_0 (this)))
+(defmethod jm_nextFrame_0 ((this ImageArraySpecialAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (if (> (jm_getFrame_0 this) 0)
+            (progn
+            (if (jm_isTime_1 (slot-value this 'f_timeDelayHelper) (slot-value (GameTickTimeDelayHelperFactory.jm_getInstance_0) 'f_startTime))
+                (progn
+                (jm_previousFrame_0 this)
+                (if (eq (jm_getFrame_0 this) 0)
+                    (progn
+                    (setf (slot-value this 'f_loopCount) (JR.i32 (+ (slot-value this 'f_loopCount) 1))))))))))))
+
+    
+(unless (fboundp 'jm_isComplete_0) (defgeneric jm_isComplete_0 (this)))
+(defmethod jm_isComplete_0 ((this ImageArraySpecialAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (if (or (< (slot-value this 'f_loopCount) (slot-value this 'f_loopCountTotal)) (not (eq (jm_getFrame_0 this) 0)))
+            (progn
+            (return-from jreturn nil))
+            (progn
+            (return-from jreturn t))))))
+
+    
+(unless (fboundp 'jm_paintXY_3) (defgeneric jm_paintXY_3 (this p1 p2 p3)))
+(defmethod jm_paintXY_3 ((this ImageArraySpecialAnimation) _graphics _x _y)
+  (declare (ignorable this _graphics _x _y))
+  (let ()
+    (block jreturn
+        (setf _x (JR.i32 (- (jm_getLastHalfWidth_0 (DisplayInfoSingleton.jm_getInstance_0)) (ash (jm_getWidth_0 (jm_getImage_1 this (jm_getIndex_0 (slot-value this 'f_circularIndexUtil)))) (- (logand 1 31))))))
+        (setf _y 5)
+        (call-next-method this _graphics _x _y))))
 
 
-function ImageArraySpecialAnimation.new(imageArray, animationBehavior)
-    local self = setmetatable(ImageArrayAnimation.new(imageArray, animationBehavior), ImageArraySpecialAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self:reset()
-    return self
-end
-
-
-function ImageArraySpecialAnimation:getLoopCount()
-        return self.loopCount
-end
-
-
-function ImageArraySpecialAnimation:setLastFrame()
-        self.circularIndexUtil:setIndex(self.circularIndexUtil:getSize() - 1)
-end
-
-
-function ImageArraySpecialAnimation:reset()
-        self:setFrame(self:getSize() - 1)
-        self.loopCount = 0
-end
-
-
-function ImageArraySpecialAnimation:nextFrame()
-        if self:getFrame() > 0 then
-            if self.timeDelayHelper:isTime(GameTickTimeDelayHelperFactory.getInstance().startTime) then
-                self:previousFrame()
-                if self:getFrame() == 0 then
-                    self.loopCount = self.loopCount + 1
-                end
-            end
-        end
-end
-
-
-function ImageArraySpecialAnimation:isComplete()
-        if self.loopCount < self.loopCountTotal or self:getFrame() ~= 0 then
-            return false
-        else
-            return true
-        end
-end
-
-
-function ImageArraySpecialAnimation:paintXY(graphics, x, y)
-        x = DisplayInfoSingleton.getInstance():getLastHalfWidth() - (((self:getImage(self.circularIndexUtil:getIndex()):getWidth()) // (1 << (1))))
-        y = 5
-        ImageArrayAnimation.paintXY(self, graphics, x, y)
-end
-
-return ImageArraySpecialAnimation
 

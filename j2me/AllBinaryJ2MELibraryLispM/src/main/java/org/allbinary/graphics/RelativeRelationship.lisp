@@ -1,80 +1,90 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics
 
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListUtil = require("org.allbinary.util.BasicArrayListUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass RelativeRelationship (JObject)
+  ((f_typesAllowedList :initform nil)
+   (f_x :initform 0)
+   (f_y :initform 0)
+   (f_z :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar RelativeRelationship.jcell_NULL_RELATIVE_RELATIONSHIP :jnone)
+(defun RelativeRelationship.jstatic_NULL_RELATIVE_RELATIONSHIP ()
+  (when (eq RelativeRelationship.jcell_NULL_RELATIVE_RELATIONSHIP :jnone) (setf RelativeRelationship.jcell_NULL_RELATIVE_RELATIONSHIP (RelativeRelationship.jnew_2 (slot-value (PointFactory.jm_getInstance_0) 'f_ZERO_ZERO) (jm_getImmutableInstance_0 (BasicArrayListUtil.jm_getInstance_0)))))
+  RelativeRelationship.jcell_NULL_RELATIVE_RELATIONSHIP)
+(defun (setf RelativeRelationship.jstatic_NULL_RELATIVE_RELATIONSHIP) (value) (setf RelativeRelationship.jcell_NULL_RELATIVE_RELATIONSHIP value))
 
-local RelativeRelationship = {}
-RelativeRelationship.__index = RelativeRelationship
-RelativeRelationship.className = "RelativeRelationship"
+    
+(defun RelativeRelationship.jnew_2 (_point _typesAllowedList)
+  (declare (ignorable _point _typesAllowedList))
+  (let ((this (make-instance 'RelativeRelationship)))
+    
+    
+    
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_x) (jm_getX_0 _point))
+        (setf (slot-value this 'f_y) (jm_getY_0 _point))
+        (setf (slot-value this 'f_z) (jm_getZ_0 _point))
+        (setf (slot-value this 'f_typesAllowedList) _typesAllowedList)))
+    this))
 
-function RelativeRelationship:_init_fields()
-    self.typesAllowedList = nil
-    self.x = nil
-    self.y = nil
-    self.z = nil
-end
+    
+(unless (fboundp 'jm_getX_0) (defgeneric jm_getX_0 (this)))
+(defmethod jm_getX_0 ((this RelativeRelationship))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_x)))))
+
+    
+(unless (fboundp 'jm_getY_0) (defgeneric jm_getY_0 (this)))
+(defmethod jm_getY_0 ((this RelativeRelationship))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_y)))))
+
+    
+(unless (fboundp 'jm_getZ_0) (defgeneric jm_getZ_0 (this)))
+(defmethod jm_getZ_0 ((this RelativeRelationship))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_z)))))
+
+    
+(unless (fboundp 'jm_getTypesAllowedList_0) (defgeneric jm_getTypesAllowedList_0 (this)))
+(defmethod jm_getTypesAllowedList_0 ((this RelativeRelationship))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_typesAllowedList)))))
+
+    
+(unless (fboundp 'jm_setTypesAllowedList_1) (defgeneric jm_setTypesAllowedList_1 (this p1)))
+(defmethod jm_setTypesAllowedList_1 ((this RelativeRelationship) _typesAllowedList)
+  (declare (ignorable this _typesAllowedList))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_typesAllowedList) _typesAllowedList))))
 
 
-function RelativeRelationship.new(point, typesAllowedList)
-    local self = setmetatable({}, RelativeRelationship)
-    self:_init_fields()
-        self.x = point:getX()
-        self.y = point:getY()
-        self.z = point:getZ()
-        self.typesAllowedList = typesAllowedList
-    return self
-end
-
-
-function RelativeRelationship:getX()
-        return self.x
-end
-
-
-function RelativeRelationship:getY()
-        return self.y
-end
-
-
-function RelativeRelationship:getZ()
-        return self.z
-end
-
-
-function RelativeRelationship:getTypesAllowedList()
-        return self.typesAllowedList
-end
-
-
-function RelativeRelationship:setTypesAllowedList(typesAllowedList)
-        self.typesAllowedList = typesAllowedList
-end
-
-RelativeRelationship.NULL_RELATIVE_RELATIONSHIP = RelativeRelationship.new(PointFactory.getInstance().ZERO_ZERO, BasicArrayListUtil.getInstance():getImmutableInstance())
-
-return RelativeRelationship
 

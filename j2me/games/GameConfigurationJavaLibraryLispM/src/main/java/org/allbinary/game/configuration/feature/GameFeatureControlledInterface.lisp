@@ -1,50 +1,47 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.feature
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.configuration.feature
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass GameFeatureControlledInterface (JObject)
+  ())
+
+(defun GameFeatureControlledInterface.jnew_0 ()
+  (let ((this (make-instance 'GameFeatureControlledInterface)))
+    this))
+
+    
+(unless (fboundp 'jm_init_1) (defgeneric jm_init_1 (this p1)))
+(defmethod jm_init_1 ((this GameFeatureControlledInterface) _level)
+  (declare (ignorable this _level))
+  (error (JR.newException "AbstractMethodError" "init")))
+
+    
+(unless (fboundp 'jm_isFeature_0) (defgeneric jm_isFeature_0 (this)))
+(defmethod jm_isFeature_0 ((this GameFeatureControlledInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "isFeature")))
+
+    
+(unless (fboundp 'jm_isLoadingLevel_1) (defgeneric jm_isLoadingLevel_1 (this p1)))
+(defmethod jm_isLoadingLevel_1 ((this GameFeatureControlledInterface) _level)
+  (declare (ignorable this _level))
+  (error (JR.newException "AbstractMethodError" "isLoadingLevel")))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local GameFeatureControlledInterface = {}
-GameFeatureControlledInterface.__index = GameFeatureControlledInterface
-GameFeatureControlledInterface.className = "GameFeatureControlledInterface"
-
-
--- throws Exception
-function GameFeatureControlledInterface:init(level)
-    error("abstract method init")
-end
-
-
-function GameFeatureControlledInterface:isFeature()
-    error("abstract method isFeature")
-end
-
-
-function GameFeatureControlledInterface:isLoadingLevel(level)
-    error("abstract method isLoadingLevel")
-end
-
-return GameFeatureControlledInterface
 

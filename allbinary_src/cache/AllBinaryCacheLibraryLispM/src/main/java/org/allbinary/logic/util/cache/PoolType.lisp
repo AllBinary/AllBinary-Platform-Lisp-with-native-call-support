@@ -1,57 +1,53 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2007 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic.util.cache
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2007 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.util.cache
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass PoolType (JObject)
+  ((f_cacheType :initform nil)))
+
+    
+(defun PoolType.jnew_1 (_cacheType)
+  (declare (ignorable _cacheType))
+  (let ((this (make-instance 'PoolType)))
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_cacheType) _cacheType)))
+    this))
+
+    
+(unless (fboundp 'jm_getCacheType_0) (defgeneric jm_getCacheType_0 (this)))
+(defmethod jm_getCacheType_0 ((this PoolType))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_cacheType)))))
+
+    
+(unless (fboundp 'jm_toString_0) (defgeneric jm_toString_0 (this)))
+(defmethod jm_toString_0 ((this PoolType))
+  (declare (ignorable this))
+  (let (_POOL_TYPE)
+  (declare (ignorable _POOL_TYPE))
+    (block jreturn
+        (setf _POOL_TYPE "PoolType: ")
+        (return-from jreturn (JR.concat _POOL_TYPE (jm_toString_0 (jm_getCacheType_0 this)))))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local PoolType = {}
-PoolType.__index = PoolType
-PoolType.className = "PoolType"
-
-function PoolType:_init_fields()
-    self.cacheType = nil
-end
-
-
-function PoolType.new(cacheType)
-    local self = setmetatable({}, PoolType)
-    self:_init_fields()
-        self.cacheType = cacheType
-    return self
-end
-
-
-function PoolType:getCacheType()
-        return self.cacheType
-end
-
-
-function PoolType:toString()
-        local POOL_TYPE = "PoolType: "
-        return POOL_TYPE .. tostring(self:getCacheType())
-end
-PoolType.__tostring = function(self) return self:toString() end
-
-return PoolType
 

@@ -28,6 +28,7 @@
 (defun EventStrings.jstatic_instance ()
   (when (eq EventStrings.jcell_instance :jnone) (setf EventStrings.jcell_instance (EventStrings.jnew_0)))
   EventStrings.jcell_instance)
+(defun (setf EventStrings.jstatic_instance) (value) (setf EventStrings.jcell_instance value))
 
 (defun EventStrings.jnew_0 ()
   (let ((this (make-instance 'EventStrings)))

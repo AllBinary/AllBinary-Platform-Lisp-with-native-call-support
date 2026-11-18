@@ -1,80 +1,75 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.hud.event
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.layer.hud.event
 
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
-local NullEventListener = require("org.allbinary.logic.util.event.NullEventListener")
-local BasicEventHandler = require("org.allbinary.logic.util.event.handler.BasicEventHandler")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass GameNotificationEventHandler (BasicEventHandler)
+  ((f_enabled :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar GameNotificationEventHandler.jcell_instance :jnone)
+(defun GameNotificationEventHandler.jstatic_instance ()
+  (when (eq GameNotificationEventHandler.jcell_instance :jnone) (setf GameNotificationEventHandler.jcell_instance (GameNotificationEventHandler.jnew_0)))
+  GameNotificationEventHandler.jcell_instance)
+(defun (setf GameNotificationEventHandler.jstatic_instance) (value) (setf GameNotificationEventHandler.jcell_instance value))
 
-local GameNotificationEventHandler = {}
-GameNotificationEventHandler.__index = GameNotificationEventHandler
-GameNotificationEventHandler.className = "GameNotificationEventHandler"
-setmetatable(GameNotificationEventHandler, {__index = BasicEventHandler})
+    
+(defun GameNotificationEventHandler.jnew_0 ()
+  (let ((this (make-instance 'GameNotificationEventHandler)))
+    (setf (slot-value this 'f_enabled) t)
+  (let ()
+    (block jreturn nil))
+    this))
 
-function GameNotificationEventHandler:_init_fields()
-    self.enabled = true
-end
+    
+(unless (fboundp 'jm_removeAllListeners_0) (defgeneric jm_removeAllListeners_0 (this)))
+(defmethod jm_removeAllListeners_0 ((this GameNotificationEventHandler))
+  (declare (ignorable this))
+  (let (_eventListenerInterface _list)
+  (declare (ignorable _eventListenerInterface _list))
+    (block jreturn
+        (setf _eventListenerInterface (NullEventListener.jstatic_NULL_EVENT_LISTENER))
+        (setf _list (slot-value this 'f_eventListenerInterfaceList))
+        (if (> (jm_size_0 _list) 0)
+            (progn
+            (setf _eventListenerInterface (aref (slot-value _list 'f_objectArray) 0))))
+        (call-next-method this)
+        (if (not (eq _eventListenerInterface (NullEventListener.jstatic_NULL_EVENT_LISTENER)))
+            (progn
+            (jm_addListenerInterface_1 this _eventListenerInterface))))))
+
+    
+(defun GameNotificationEventHandler.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (GameNotificationEventHandler.jstatic_instance)))))
+
+    
+(unless (fboundp 'jm_process_2) (defgeneric jm_process_2 (this p1 p2)))
+(defmethod jm_process_2 ((this GameNotificationEventHandler) _eventObject _eventListenerInterface)
+  (declare (ignorable this _eventObject _eventListenerInterface))
+  (let (_gameNotificationListenerInterface)
+  (declare (ignorable _gameNotificationListenerInterface))
+    (block jreturn
+        (if (not (slot-value this 'f_enabled))
+            (progn
+            (return-from jreturn)))
+        (setf _gameNotificationListenerInterface _eventListenerInterface)
+        (jm_onGameNotificationEvent_1 _gameNotificationListenerInterface _eventObject))))
 
 
-function GameNotificationEventHandler.new()
-    local self = setmetatable(BasicEventHandler.new(), GameNotificationEventHandler)
-    self:_init_fields()
-    return self
-end
-
-
-function GameNotificationEventHandler:removeAllListeners()
-        local eventListenerInterface = NullEventListener.NULL_EVENT_LISTENER
-        local list = self.eventListenerInterfaceList
-        if list:size() > 0 then
-            eventListenerInterface = list.objectArray[1]
-        end
-        BasicEventHandler.removeAllListeners(self)
-        if eventListenerInterface ~= NullEventListener.NULL_EVENT_LISTENER then
-            self:addListenerInterface(eventListenerInterface)
-        end
-end
-
-
-function GameNotificationEventHandler.getInstance()
-        return GameNotificationEventHandler.instance
-end
-
-
--- throws Exception
-function GameNotificationEventHandler:process(eventObject, eventListenerInterface)
-        if not self.enabled then
-            return
-        end
-        local gameNotificationListenerInterface = eventListenerInterface
-        gameNotificationListenerInterface:onGameNotificationEvent(eventObject)
-end
-
-GameNotificationEventHandler.instance = GameNotificationEventHandler.new()
-
-return GameNotificationEventHandler
 

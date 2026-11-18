@@ -1,161 +1,173 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io.file
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.io.file
 
--- local FilenameFilter = require("java.io.FilenameFilter")
--- local IOException = require("java.io.IOException")
--- local URI = require("java.net.URI")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass AbFileInterface (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun AbFileInterface.jnew_0 ()
+  (let ((this (make-instance 'AbFileInterface)))
+    this))
 
--- Java interface
-local AbFileInterface = {}
-AbFileInterface.__index = AbFileInterface
-AbFileInterface.className = "AbFileInterface"
+    
+(unless (fboundp 'jm_canRead_0) (defgeneric jm_canRead_0 (this)))
+(defmethod jm_canRead_0 ((this AbFileInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "canRead")))
+
+    
+(unless (fboundp 'jm_canWrite_0) (defgeneric jm_canWrite_0 (this)))
+(defmethod jm_canWrite_0 ((this AbFileInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "canWrite")))
+
+    
+(unless (fboundp 'jm_createNewFile_0) (defgeneric jm_createNewFile_0 (this)))
+(defmethod jm_createNewFile_0 ((this AbFileInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "createNewFile")))
+
+    
+(unless (fboundp 'jm_delete_0) (defgeneric jm_delete_0 (this)))
+(defmethod jm_delete_0 ((this AbFileInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "delete")))
+
+    
+(unless (fboundp 'jm_deleteOnExit_0) (defgeneric jm_deleteOnExit_0 (this)))
+(defmethod jm_deleteOnExit_0 ((this AbFileInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "deleteOnExit")))
+
+    
+(unless (fboundp 'jm_exists_0) (defgeneric jm_exists_0 (this)))
+(defmethod jm_exists_0 ((this AbFileInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "exists")))
+
+    
+(unless (fboundp 'jm_getAbsolutePath_0) (defgeneric jm_getAbsolutePath_0 (this)))
+(defmethod jm_getAbsolutePath_0 ((this AbFileInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "getAbsolutePath")))
+
+    
+(unless (fboundp 'jm_getCanonicalPath_0) (defgeneric jm_getCanonicalPath_0 (this)))
+(defmethod jm_getCanonicalPath_0 ((this AbFileInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "getCanonicalPath")))
+
+    
+(unless (fboundp 'jm_getParent_0) (defgeneric jm_getParent_0 (this)))
+(defmethod jm_getParent_0 ((this AbFileInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "getParent")))
+
+    
+(unless (fboundp 'jm_getPath_0) (defgeneric jm_getPath_0 (this)))
+(defmethod jm_getPath_0 ((this AbFileInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "getPath")))
+
+    
+(unless (fboundp 'jm_isAbsolute_0) (defgeneric jm_isAbsolute_0 (this)))
+(defmethod jm_isAbsolute_0 ((this AbFileInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "isAbsolute")))
+
+    
+(unless (fboundp 'jm_isDirectory_0) (defgeneric jm_isDirectory_0 (this)))
+(defmethod jm_isDirectory_0 ((this AbFileInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "isDirectory")))
+
+    
+(unless (fboundp 'jm_isFile_0) (defgeneric jm_isFile_0 (this)))
+(defmethod jm_isFile_0 ((this AbFileInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "isFile")))
+
+    
+(unless (fboundp 'jm_isHidden_0) (defgeneric jm_isHidden_0 (this)))
+(defmethod jm_isHidden_0 ((this AbFileInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "isHidden")))
+
+    
+(unless (fboundp 'jm_lastModified_0) (defgeneric jm_lastModified_0 (this)))
+(defmethod jm_lastModified_0 ((this AbFileInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "lastModified")))
+
+    
+(unless (fboundp 'jm_length_0) (defgeneric jm_length_0 (this)))
+(defmethod jm_length_0 ((this AbFileInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "length")))
+
+    
+(unless (fboundp 'jm_list_0) (defgeneric jm_list_0 (this)))
+(defmethod jm_list_0 ((this AbFileInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "list")))
+
+    
+(unless (fboundp 'jm_listWithFilter_1) (defgeneric jm_listWithFilter_1 (this p1)))
+(defmethod jm_listWithFilter_1 ((this AbFileInterface) _filter)
+  (declare (ignorable this _filter))
+  (error (JR.newException "AbstractMethodError" "listWithFilter")))
+
+    
+(unless (fboundp 'jm_mkdir_0) (defgeneric jm_mkdir_0 (this)))
+(defmethod jm_mkdir_0 ((this AbFileInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "mkdir")))
+
+    
+(unless (fboundp 'jm_mkdirs_0) (defgeneric jm_mkdirs_0 (this)))
+(defmethod jm_mkdirs_0 ((this AbFileInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "mkdirs")))
+
+    
+(unless (fboundp 'jm_setLastModified_1) (defgeneric jm_setLastModified_1 (this p1)))
+(defmethod jm_setLastModified_1 ((this AbFileInterface) _time)
+  (declare (ignorable this _time))
+  (error (JR.newException "AbstractMethodError" "setLastModified")))
+
+    
+(unless (fboundp 'jm_setReadOnly_0) (defgeneric jm_setReadOnly_0 (this)))
+(defmethod jm_setReadOnly_0 ((this AbFileInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "setReadOnly")))
+
+    
+(unless (fboundp 'jm_toString_0) (defgeneric jm_toString_0 (this)))
+(defmethod jm_toString_0 ((this AbFileInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "toString")))
+
+    
+(unless (fboundp 'jm_toURI_0) (defgeneric jm_toURI_0 (this)))
+(defmethod jm_toURI_0 ((this AbFileInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "toURI")))
 
 
-function AbFileInterface:canRead()
-    error("abstract method canRead")
-end
-
-
-function AbFileInterface:canWrite()
-    error("abstract method canWrite")
-end
-
-
--- throws IOException
-function AbFileInterface:createNewFile()
-    error("abstract method createNewFile")
-end
-
-
--- throws IOException
-function AbFileInterface:delete()
-    error("abstract method delete")
-end
-
-
-function AbFileInterface:deleteOnExit()
-    error("abstract method deleteOnExit")
-end
-
-
-function AbFileInterface:exists()
-    error("abstract method exists")
-end
-
-
-function AbFileInterface:getAbsolutePath()
-    error("abstract method getAbsolutePath")
-end
-
-
--- throws IOException
-function AbFileInterface:getCanonicalPath()
-    error("abstract method getCanonicalPath")
-end
-
-
-function AbFileInterface:getParent()
-    error("abstract method getParent")
-end
-
-
-function AbFileInterface:getPath()
-    error("abstract method getPath")
-end
-
-
-function AbFileInterface:isAbsolute()
-    error("abstract method isAbsolute")
-end
-
-
-function AbFileInterface:isDirectory()
-    error("abstract method isDirectory")
-end
-
-
-function AbFileInterface:isFile()
-    error("abstract method isFile")
-end
-
-
-function AbFileInterface:isHidden()
-    error("abstract method isHidden")
-end
-
-
-function AbFileInterface:lastModified()
-    error("abstract method lastModified")
-end
-
-
-function AbFileInterface:length()
-    error("abstract method length")
-end
-
-
-function AbFileInterface:list()
-    error("abstract method list")
-end
-
-
-function AbFileInterface:listWithFilter(filter)
-    error("abstract method listWithFilter")
-end
-
-
-function AbFileInterface:mkdir()
-    error("abstract method mkdir")
-end
-
-
-function AbFileInterface:mkdirs()
-    error("abstract method mkdirs")
-end
-
-
-function AbFileInterface:setLastModified(time)
-    error("abstract method setLastModified")
-end
-
-
-function AbFileInterface:setReadOnly()
-    error("abstract method setReadOnly")
-end
-
-
-function AbFileInterface:toString()
-    error("abstract method toString")
-end
-AbFileInterface.__tostring = function(self) return self:toString() end
-
-
-function AbFileInterface:toURI()
-    error("abstract method toURI")
-end
-
-return AbFileInterface
 

@@ -1,41 +1,35 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.business.advertisement
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2025 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.business.advertisement
 
-local SoftwareInformation = require("org.allbinary.logic.system.SoftwareInformation")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass GameAdStateFactoryInterface (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun GameAdStateFactoryInterface.jnew_0 ()
+  (let ((this (make-instance 'GameAdStateFactoryInterface)))
+    this))
 
--- Java interface
-local GameAdStateFactoryInterface = {}
-GameAdStateFactoryInterface.__index = GameAdStateFactoryInterface
-GameAdStateFactoryInterface.className = "GameAdStateFactoryInterface"
+    
+(unless (fboundp 'jm_getInstanceForApp_1) (defgeneric jm_getInstanceForApp_1 (this p1)))
+(defmethod jm_getInstanceForApp_1 ((this GameAdStateFactoryInterface) _softwareInformation)
+  (declare (ignorable this _softwareInformation))
+  (error (JR.newException "AbstractMethodError" "getInstanceForApp")))
 
 
--- throws Exception
-function GameAdStateFactoryInterface:getInstanceForApp(softwareInformation)
-    error("abstract method getInstanceForApp")
-end
-
-return GameAdStateFactoryInterface
 

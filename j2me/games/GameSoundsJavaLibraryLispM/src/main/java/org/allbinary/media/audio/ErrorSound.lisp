@@ -1,49 +1,45 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.media.audio
 
-local CompositeSound = require("org.allbinary.media.audio.CompositeSound")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ErrorSound (CompositeSound)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar ErrorSound.jcell_soundInterface :jnone)
+(defun ErrorSound.jstatic_soundInterface ()
+  (when (eq ErrorSound.jcell_soundInterface :jnone) (setf ErrorSound.jcell_soundInterface (ErrorSound.jnew_0)))
+  ErrorSound.jcell_soundInterface)
+(defun (setf ErrorSound.jstatic_soundInterface) (value) (setf ErrorSound.jcell_soundInterface value))
 
-local ErrorSound = {}
-ErrorSound.__index = ErrorSound
-ErrorSound.className = "ErrorSound"
-setmetatable(ErrorSound, {__index = CompositeSound})
+    
+(defun ErrorSound.jnew_0 ()
+  (let ((this (make-instance 'ErrorSound)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
+
+    
+(defun ErrorSound.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (ErrorSound.jstatic_soundInterface)))))
 
 
-function ErrorSound.new()
-    local self = setmetatable(CompositeSound.new("resource:/wav/error.wav"), ErrorSound)
-        -- super(...) made self above
-    return self
-end
-
-
-function ErrorSound.getInstance()
-        return ErrorSound.soundInterface
-end
-
-ErrorSound.soundInterface = ErrorSound.new()
-
-return ErrorSound
 

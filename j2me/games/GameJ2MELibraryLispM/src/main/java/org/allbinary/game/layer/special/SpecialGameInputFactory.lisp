@@ -1,40 +1,35 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.special
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2025 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.layer.special
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass SpecialGameInputFactory (JObject)
+  ())
+
+(defvar SpecialGameInputFactory.jcell_NO_SPECIAL_GAME_INPUT :jnone)
+(defun SpecialGameInputFactory.jstatic_NO_SPECIAL_GAME_INPUT ()
+  (when (eq SpecialGameInputFactory.jcell_NO_SPECIAL_GAME_INPUT :jnone) (setf SpecialGameInputFactory.jcell_NO_SPECIAL_GAME_INPUT (SpecialGameInput.jnew_0)))
+  SpecialGameInputFactory.jcell_NO_SPECIAL_GAME_INPUT)
+(defun (setf SpecialGameInputFactory.jstatic_NO_SPECIAL_GAME_INPUT) (value) (setf SpecialGameInputFactory.jcell_NO_SPECIAL_GAME_INPUT value))
+
+(defun SpecialGameInputFactory.jnew_0 ()
+  (let ((this (make-instance 'SpecialGameInputFactory)))
+    this))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local SpecialGameInputFactory = {}
-SpecialGameInputFactory.__index = SpecialGameInputFactory
-SpecialGameInputFactory.className = "SpecialGameInputFactory"
-
-function SpecialGameInputFactory.new()
-    local self = setmetatable({}, SpecialGameInputFactory)
-    return self
-end
-
-SpecialGameInputFactory.NO_SPECIAL_GAME_INPUT = SpecialGameInput.new()
-
-return SpecialGameInputFactory
 

@@ -1,119 +1,119 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.collision
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.collision
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local CollidableCompositeLayer = require("org.allbinary.game.layer.CollidableCompositeLayer")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonLabels = require("org.allbinary.string.CommonLabels")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local CollidableInterface = require("org.allbinary.game.collision.CollidableInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(defclass CollidableBaseBehavior (JObject)
+  ((f_logUtil :initform nil)
+   (f_commonStrings :initform nil)
+   (f_layerCollisionUtil :initform nil)
+   (f_collidable :initform nil)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(defun CollidableBaseBehavior.jnew_1 (_collidable)
+  (declare (ignorable _collidable))
+  (let ((this (make-instance 'CollidableBaseBehavior)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_commonStrings) (CommonStrings.jm_getInstance_0))
+    (setf (slot-value this 'f_layerCollisionUtil) (LayerCollisionUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_collidable) t)
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_collidable) _collidable)))
+    this))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(unless (fboundp 'jm_update_0) (defgeneric jm_update_0 (this)))
+(defmethod jm_update_0 ((this CollidableBaseBehavior))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
 
-local CollidableBaseBehavior = {}
-CollidableBaseBehavior.__index = CollidableBaseBehavior
-CollidableBaseBehavior.className = "CollidableBaseBehavior"
+    
+(unless (fboundp 'jm_getName_0) (defgeneric jm_getName_0 (this)))
+(defmethod jm_getName_0 ((this CollidableBaseBehavior))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (JR.className this)))))
 
-function CollidableBaseBehavior:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.layerCollisionUtil = LayerCollisionUtil.getInstance()
-    self.collidable = true
-end
+    
+(unless (fboundp 'jm_setCollidable_1) (defgeneric jm_setCollidable_1 (this p1)))
+(defmethod jm_setCollidable_1 ((this CollidableBaseBehavior) _collidable)
+  (declare (ignorable this _collidable))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_collidable) _collidable))))
+
+    
+(unless (fboundp 'jm_isCollidable_1) (defgeneric jm_isCollidable_1 (this p1)))
+(defmethod jm_isCollidable_1 ((this CollidableBaseBehavior) _ownerLayer)
+  (declare (ignorable this _ownerLayer))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_collidable)))))
+
+    
+(unless (fboundp 'jm_collide_2) (defgeneric jm_collide_2 (this p1 p2)))
+(defmethod jm_collide_2 ((this CollidableBaseBehavior) _ownerLayer _allbinaryCollidableLayer)
+  (declare (ignorable this _ownerLayer _allbinaryCollidableLayer))
+  (let ()
+    (block jreturn
+        (error (JR.newException "Exception" (jm_toString_0 (jm_append_1 (jm_append_1 (jm_append_1 (StringMaker.jnew_0) (slot-value (slot-value this 'f_commonStrings) 'f_NOT_IMPLEMENTED)) (slot-value (CommonLabels.jm_getInstance_0) 'f_COLON_SEP)) (JR.className this))))))))
+
+    
+(unless (fboundp 'jm_isCollision_2) (defgeneric jm_isCollision_2 (this p1 p2)))
+(defmethod jm_isCollision_2 ((this CollidableBaseBehavior) _ownerLayer _collisionLayer)
+  (declare (ignorable this _ownerLayer _collisionLayer))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_isCollision_2 (slot-value this 'f_layerCollisionUtil) _ownerLayer _collisionLayer)))))
+
+    
+(unless (fboundp 'jm_isCollisionInterface_2) (defgeneric jm_isCollisionInterface_2 (this p1 p2)))
+(defmethod jm_isCollisionInterface_2 ((this CollidableBaseBehavior) _ownerLayer _collidableInterfaceCompositeInterface)
+  (declare (ignorable this _ownerLayer _collidableInterfaceCompositeInterface))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_isCollision_2 (slot-value this 'f_layerCollisionUtil) _ownerLayer _collidableInterfaceCompositeInterface)))))
+
+    
+(unless (fboundp 'jm_collideInterface_2) (defgeneric jm_collideInterface_2 (this p1 p2)))
+(defmethod jm_collideInterface_2 ((this CollidableBaseBehavior) _ownerLayer _collidableInterfaceCompositeInterface)
+  (declare (ignorable this _ownerLayer _collidableInterfaceCompositeInterface))
+  (let ()
+    (block jreturn
+        (error (JR.newException "Exception" (slot-value (slot-value this 'f_commonStrings) 'f_NOT_IMPLEMENTED))))))
+
+    
+(unless (fboundp 'jm_paint_2) (defgeneric jm_paint_2 (this p1 p2)))
+(defmethod jm_paint_2 ((this CollidableBaseBehavior) _ownerLayer _graphics)
+  (declare (ignorable this _ownerLayer _graphics))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_getCollisionTypeWith_1) (defgeneric jm_getCollisionTypeWith_1 (this p1)))
+(defmethod jm_getCollisionTypeWith_1 ((this CollidableBaseBehavior) _layerInterface)
+  (declare (ignorable this _layerInterface))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value (CollisionTypeFactory.jm_getInstance_0) 'f_NONE)))))
 
 
-function CollidableBaseBehavior.new(collidable)
-    local self = setmetatable({}, CollidableBaseBehavior)
-    self:_init_fields()
-        self.collidable = collidable
-    return self
-end
-
-
-function CollidableBaseBehavior:update()
-end
-
-
-function CollidableBaseBehavior:getName()
-        return getmetatable(self).className
-end
-
-
-function CollidableBaseBehavior:setCollidable(collidable)
-        self.collidable = collidable
-end
-
-
-function CollidableBaseBehavior:isCollidable(ownerLayer)
-        return self.collidable
-end
-
-
--- throws Exception
-function CollidableBaseBehavior:collide(ownerLayer, allbinaryCollidableLayer)
-        error(java_exception("Exception", tostring(StringMaker.new():append(self.commonStrings.NOT_IMPLEMENTED):append(CommonLabels.getInstance().COLON_SEP):append(getmetatable(self).className))), 0)
-end
-
-
-function CollidableBaseBehavior:isCollision(ownerLayer, collisionLayer)
-        return self.layerCollisionUtil:isCollision(ownerLayer, collisionLayer)
-end
-
-
-function CollidableBaseBehavior:isCollisionInterface(ownerLayer, collidableInterfaceCompositeInterface)
-        return self.layerCollisionUtil:isCollision(ownerLayer, collidableInterfaceCompositeInterface)
-end
-
-
--- throws Exception
-function CollidableBaseBehavior:collideInterface(ownerLayer, collidableInterfaceCompositeInterface)
-        error(java_exception("Exception", self.commonStrings.NOT_IMPLEMENTED), 0)
-end
-
-
-function CollidableBaseBehavior:paint(ownerLayer, graphics)
-end
-
-
-function CollidableBaseBehavior:getCollisionTypeWith(layerInterface)
-        return CollisionTypeFactory.getInstance().NONE
-end
-
-return CollidableBaseBehavior
 

@@ -1,78 +1,68 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.pickup.life
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.ag.layer.pickup.life
 
-local FeaturedAnimationInterfaceFactoryInterfaceFactory = require("org.allbinary.animation.FeaturedAnimationInterfaceFactoryInterfaceFactory")
-local CountedPickedUpLayerInterfaceFactory = require("org.allbinary.game.layer.pickup.CountedPickedUpLayerInterfaceFactory")
-local IconLayerFactory = require("org.allbinary.game.layer.pickup.IconLayerFactory")
-local PickedUpLayerInterfaceFactory = require("org.allbinary.game.layer.pickup.PickedUpLayerInterfaceFactory")
-local PickedUpLayerInterfaceFactoryInterface = require("org.allbinary.game.layer.pickup.PickedUpLayerInterfaceFactoryInterface")
-local PickedUpLayerTypeFactory = require("org.allbinary.game.layer.pickup.PickedUpLayerTypeFactory")
-local PickupProcessorInterface = require("org.allbinary.game.layer.pickup.PickupProcessorInterface")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass LifePickedUpLayerInterfaceFactory (PickedUpLayerInterfaceFactory)
+  ((f_pool :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar LifePickedUpLayerInterfaceFactory.jcell_pickedUpLayerInterfaceFactoryInterface :jnone)
+(defun LifePickedUpLayerInterfaceFactory.jstatic_pickedUpLayerInterfaceFactoryInterface ()
+  (when (eq LifePickedUpLayerInterfaceFactory.jcell_pickedUpLayerInterfaceFactoryInterface :jnone) (setf LifePickedUpLayerInterfaceFactory.jcell_pickedUpLayerInterfaceFactoryInterface (CountedPickedUpLayerInterfaceFactory.jstatic_NULL_COUNTED_PICKUP_LAYER_FACTORY)))
+  LifePickedUpLayerInterfaceFactory.jcell_pickedUpLayerInterfaceFactoryInterface)
+(defun (setf LifePickedUpLayerInterfaceFactory.jstatic_pickedUpLayerInterfaceFactoryInterface) (value) (setf LifePickedUpLayerInterfaceFactory.jcell_pickedUpLayerInterfaceFactoryInterface value))
 
-local LifePickedUpLayerInterfaceFactory = {}
-LifePickedUpLayerInterfaceFactory.__index = LifePickedUpLayerInterfaceFactory
-LifePickedUpLayerInterfaceFactory.className = "LifePickedUpLayerInterfaceFactory"
-setmetatable(LifePickedUpLayerInterfaceFactory, {__index = PickedUpLayerInterfaceFactory})
+    
+(defun LifePickedUpLayerInterfaceFactory.jm_init_0 ()
+  (let ()
+    (block jreturn
+        (setf (LifePickedUpLayerInterfaceFactory.jstatic_pickedUpLayerInterfaceFactoryInterface) (LifePickedUpLayerInterfaceFactory.jnew_0)))))
 
-function LifePickedUpLayerInterfaceFactory:_init_fields()
-    self.pool = LifeLayerCircularStaticPool.new(LifeLayerFactory.new(), 1)
-end
+    
+(defun LifePickedUpLayerInterfaceFactory.jnew_0 ()
+  (let ((this (make-instance 'LifePickedUpLayerInterfaceFactory)))
+    (setf (slot-value this 'f_pool) (LifeLayerCircularStaticPool.jnew_2 (LifeLayerFactory.jnew_0) 1))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
+    
+(unless (fboundp 'jm_getTotal_0) (defgeneric jm_getTotal_0 (this)))
+(defmethod jm_getTotal_0 ((this LifePickedUpLayerInterfaceFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn 1))))
 
--- throws Exception
-function LifePickedUpLayerInterfaceFactory.init()
-        LifePickedUpLayerInterfaceFactory.pickedUpLayerInterfaceFactoryInterface = LifePickedUpLayerInterfaceFactory.new()
-end
+    
+(defun LifePickedUpLayerInterfaceFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (LifePickedUpLayerInterfaceFactory.jstatic_pickedUpLayerInterfaceFactoryInterface)))))
 
-
-function LifePickedUpLayerInterfaceFactory.new()
-    local self = setmetatable(PickedUpLayerInterfaceFactory.new(PickedUpLayerTypeFactory.getInstance().LIFE, IconLayerFactory.getInstance(FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance():get(LifeResources.getInstance().RESOURCE):getInstance(0), 10, 10), FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance():get(LifeResources.getInstance().RESOURCE):getInstance(0)), LifePickedUpLayerInterfaceFactory)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
-
-
-function LifePickedUpLayerInterfaceFactory:getTotal()
-        return 1
-end
-
-
-function LifePickedUpLayerInterfaceFactory.getInstance()
-        return LifePickedUpLayerInterfaceFactory.pickedUpLayerInterfaceFactoryInterface
-end
+    
+(unless (fboundp 'jm_process_1) (defgeneric jm_process_1 (this p1)))
+(defmethod jm_process_1 ((this LifePickedUpLayerInterfaceFactory) _sourceLayerInterface)
+  (declare (ignorable this _sourceLayerInterface))
+  (let ()
+    (block jreturn
+        (jm_visit_1 (slot-value this 'f_pool) _sourceLayerInterface))))
 
 
--- throws Exception
-function LifePickedUpLayerInterfaceFactory:process(sourceLayerInterface)
-        self.pool:visit(sourceLayerInterface)
-end
-
-LifePickedUpLayerInterfaceFactory.pickedUpLayerInterfaceFactoryInterface = CountedPickedUpLayerInterfaceFactory.NULL_COUNTED_PICKUP_LAYER_FACTORY
-
-return LifePickedUpLayerInterfaceFactory
 

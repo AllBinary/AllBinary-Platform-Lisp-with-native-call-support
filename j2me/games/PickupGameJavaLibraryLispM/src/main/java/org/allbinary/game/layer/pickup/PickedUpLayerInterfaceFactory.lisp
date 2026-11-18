@@ -1,68 +1,65 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.pickup
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.layer.pickup
 
-local Animation = require("org.allbinary.animation.Animation")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local PickedUpLayerInterfaceFactoryBase = require("org.allbinary.game.layer.pickup.PickedUpLayerInterfaceFactoryBase")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass PickedUpLayerInterfaceFactory (PickedUpLayerInterfaceFactoryBase)
+  ((f_pickedUpLayerType :initform nil)
+   (f_iconLayer :initform nil)
+   (f_animationInterface :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun PickedUpLayerInterfaceFactory.jnew_3 (_pickeUpLayerType _iconLayer _animationInterface)
+  (declare (ignorable _pickeUpLayerType _iconLayer _animationInterface))
+  (let ((this (make-instance 'PickedUpLayerInterfaceFactory)))
+    
+    
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_pickedUpLayerType) _pickeUpLayerType)
+        (setf (slot-value this 'f_animationInterface) _animationInterface)
+        (setf (slot-value this 'f_iconLayer) _iconLayer)))
+    this))
 
-local PickedUpLayerInterfaceFactory = {}
-PickedUpLayerInterfaceFactory.__index = PickedUpLayerInterfaceFactory
-PickedUpLayerInterfaceFactory.className = "PickedUpLayerInterfaceFactory"
-setmetatable(PickedUpLayerInterfaceFactory, {__index = PickedUpLayerInterfaceFactoryBase})
+    
+(unless (fboundp 'jm_getIconLayer_0) (defgeneric jm_getIconLayer_0 (this)))
+(defmethod jm_getIconLayer_0 ((this PickedUpLayerInterfaceFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_iconLayer)))))
 
-function PickedUpLayerInterfaceFactory:_init_fields()
-    self.pickedUpLayerType = nil
-    self.iconLayer = nil
-    self.animationInterface = nil
-end
+    
+(unless (fboundp 'jm_getAnimationInterface_0) (defgeneric jm_getAnimationInterface_0 (this)))
+(defmethod jm_getAnimationInterface_0 ((this PickedUpLayerInterfaceFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_animationInterface)))))
 
-
-function PickedUpLayerInterfaceFactory.new(pickeUpLayerType, iconLayer, animationInterface)
-    local self = setmetatable(PickedUpLayerInterfaceFactoryBase.new(), PickedUpLayerInterfaceFactory)
-    self:_init_fields()
-        self.pickedUpLayerType = pickeUpLayerType
-        self.animationInterface = animationInterface
-        self.iconLayer = iconLayer
-    return self
-end
-
-
-function PickedUpLayerInterfaceFactory:getIconLayer()
-        return self.iconLayer
-end
+    
+(unless (fboundp 'jm_getPickedUpLayerType_0) (defgeneric jm_getPickedUpLayerType_0 (this)))
+(defmethod jm_getPickedUpLayerType_0 ((this PickedUpLayerInterfaceFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_pickedUpLayerType)))))
 
 
-function PickedUpLayerInterfaceFactory:getAnimationInterface()
-        return self.animationInterface
-end
-
-
-function PickedUpLayerInterfaceFactory:getPickedUpLayerType()
-        return self.pickedUpLayerType
-end
-
-return PickedUpLayerInterfaceFactory
 

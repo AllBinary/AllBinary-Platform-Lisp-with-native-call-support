@@ -25,6 +25,7 @@
 (defun LogConfigTypes.jstatic_LOGGING ()
   (when (eq LogConfigTypes.jcell_LOGGING :jnone) (setf LogConfigTypes.jcell_LOGGING (BasicArrayListD.jnew_0)))
   LogConfigTypes.jcell_LOGGING)
+(defun (setf LogConfigTypes.jstatic_LOGGING) (value) (setf LogConfigTypes.jcell_LOGGING value))
 
     
 (defun LogConfigTypes.jnew_0 ()

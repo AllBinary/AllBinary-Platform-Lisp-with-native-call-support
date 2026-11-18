@@ -1,75 +1,60 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.midlet
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.midlet
 
-local ProgressCanvasFactory = require("org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory")
-local MyCommandsFactory = require("org.allbinary.graphics.displayable.command.MyCommandsFactory")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonLabels = require("org.allbinary.string.CommonLabels")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
--- java.lang.Runnable has no Lua module
-local Runnable = {}
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass DemoRunnable (JObject)
+  ((f_logUtil :initform nil)
+   (f_commonStrings :initform nil)
+   (f_demoGameMidlet :initform nil)
+   (f_startDemoGameMidletEvent :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun DemoRunnable.jnew_1 (_demoGameMidlet)
+  (declare (ignorable _demoGameMidlet))
+  (let ((this (make-instance 'DemoRunnable)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_commonStrings) (CommonStrings.jm_getInstance_0))
+    
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_demoGameMidlet) _demoGameMidlet)
+        (setf (slot-value this 'f_startDemoGameMidletEvent) (DemoGameMidletEvent.jnew_2 (slot-value this 'f_demoGameMidlet) (slot-value (DemoGameMidletStateFactory.jm_getInstance_0) 'f_START_DEMO)))))
+    this))
 
-local DemoRunnable = {}
-DemoRunnable.__index = DemoRunnable
-DemoRunnable.className = "DemoRunnable"
-
-function DemoRunnable:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.demoGameMidlet = nil
-    self.startDemoGameMidletEvent = nil
-end
-
-
-function DemoRunnable.new(demoGameMidlet)
-    local self = setmetatable({}, DemoRunnable)
-    self:_init_fields()
-        self.demoGameMidlet = demoGameMidlet
-        self.startDemoGameMidletEvent = DemoGameMidletEvent.new(self.demoGameMidlet, DemoGameMidletStateFactory.getInstance().START_DEMO)
-    return self
-end
+    
+(unless (fboundp 'jm_run_0) (defgeneric jm_run_0 (this)))
+(defmethod jm_run_0 ((this DemoRunnable))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (handler-case (progn
+            (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 (jm_append_1 (jm_append_1 (StringMaker.jnew_0) (slot-value (CommonLabels.jm_getInstance_0) 'f_START_LABEL)) "GameCanvasRunnableInterface")) this (slot-value (slot-value this 'f_commonStrings) 'f_RUN))
+            (jm_commandAction_2 (slot-value this 'f_demoGameMidlet) (slot-value (MyCommandsFactory.jm_getInstance_0) 'f_SET_DISPLAYABLE) (ProgressCanvasFactory.jm_getInstance_0))
+            (jm_setGameCanvasRunnableInterface_1 (slot-value this 'f_demoGameMidlet) (jm_createDemoGameCanvasRunnableInterface_0 (slot-value this 'f_demoGameMidlet)))
+            (jm_demoSetup_0 (slot-value this 'f_demoGameMidlet))
+            (jm_fireEvent_1 (DemoGameMidletEventHandler.jm_getInstance_0) (slot-value this 'f_startDemoGameMidletEvent))
+            (jm_startGameCanvasRunnableInterface_0 (slot-value this 'f_demoGameMidlet))
+            (jm_postDemoSetup_0 (slot-value this 'f_demoGameMidlet))
+            (jm_putF_3 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_END_RUNNABLE) this (slot-value (slot-value this 'f_commonStrings) 'f_RUN)))
+            (error (_e) (declare (ignorable _e))
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_EXCEPTION) this (slot-value (slot-value this 'f_commonStrings) 'f_RUN) _e))))))
 
 
-function DemoRunnable:run()
-        local try_ok, try_error = pcall(function()
-            self.logUtil:putF(tostring(StringMaker.new():append(CommonLabels.getInstance().START_LABEL):append("GameCanvasRunnableInterface")), self, self.commonStrings.RUN)
-            self.demoGameMidlet:commandAction(MyCommandsFactory.getInstance().SET_DISPLAYABLE, ProgressCanvasFactory.getInstance())
-            self.demoGameMidlet:setGameCanvasRunnableInterface(self.demoGameMidlet:createDemoGameCanvasRunnableInterface())
-            self.demoGameMidlet:demoSetup()
-            DemoGameMidletEventHandler.getInstance():fireEvent(self.startDemoGameMidletEvent)
-            self.demoGameMidlet:startGameCanvasRunnableInterface()
-            self.demoGameMidlet:postDemoSetup()
-            self.logUtil:putF(self.commonStrings.END_RUNNABLE, self, self.commonStrings.RUN)
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.commonStrings.RUN, e)
-        end
-end
-
-return DemoRunnable
 

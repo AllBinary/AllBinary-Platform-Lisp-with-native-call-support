@@ -1,56 +1,53 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.layer
 
-local ABHashtable = require("org.allbinary.util.ABHashtable")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass LayerPlacementInterface (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun LayerPlacementInterface.jnew_0 ()
+  (let ((this (make-instance 'LayerPlacementInterface)))
+    this))
 
--- Java interface
-local LayerPlacementInterface = {}
-LayerPlacementInterface.__index = LayerPlacementInterface
-LayerPlacementInterface.className = "LayerPlacementInterface"
+    
+(unless (fboundp 'jm_getWidth_0) (defgeneric jm_getWidth_0 (this)))
+(defmethod jm_getWidth_0 ((this LayerPlacementInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "getWidth")))
+
+    
+(unless (fboundp 'jm_getHeight_0) (defgeneric jm_getHeight_0 (this)))
+(defmethod jm_getHeight_0 ((this LayerPlacementInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "getHeight")))
+
+    
+(unless (fboundp 'jm_getLayerType_0) (defgeneric jm_getLayerType_0 (this)))
+(defmethod jm_getLayerType_0 ((this LayerPlacementInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "getLayerType")))
+
+    
+(unless (fboundp 'jm_getInstance_0) (defgeneric jm_getInstance_0 (this)))
+(defmethod jm_getInstance_0 ((this LayerPlacementInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "getInstance")))
 
 
-function LayerPlacementInterface:getWidth()
-    error("abstract method getWidth")
-end
-
-
-function LayerPlacementInterface:getHeight()
-    error("abstract method getHeight")
-end
-
-
-function LayerPlacementInterface:getLayerType()
-    error("abstract method getLayerType")
-end
-
-
--- throws Exception
-function LayerPlacementInterface:getInstance()
-    error("abstract method getInstance")
-end
-
-return LayerPlacementInterface
 

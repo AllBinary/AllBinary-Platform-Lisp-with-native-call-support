@@ -1,31 +1,27 @@
--- 
--- To change this license header, choose License Headers in Project Properties. 
--- To change this template file, choose Tools | Templates 
--- and open the template in the editor.  
--- Generated Code Do Not Modify
--- package org.allbinary.game
+;;;; 
+;;;; To change this license header, choose License Headers in Project Properties. 
+;;;; To change this template file, choose Tools | Templates 
+;;;; and open the template in the editor.  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass ChallengerInterface (JObject)
+  ())
+
+(defun ChallengerInterface.jnew_0 ()
+  (let ((this (make-instance 'ChallengerInterface)))
+    this))
+
+    
+(unless (fboundp 'jm_setWinner_1) (defgeneric jm_setWinner_1 (this p1)))
+(defmethod jm_setWinner_1 ((this ChallengerInterface) _isWinner)
+  (declare (ignorable this _isWinner))
+  (error (JR.newException "AbstractMethodError" "setWinner")))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local ChallengerInterface = {}
-ChallengerInterface.__index = ChallengerInterface
-ChallengerInterface.className = "ChallengerInterface"
-
-
-function ChallengerInterface:setWinner(isWinner)
-    error("abstract method setWinner")
-end
-
-return ChallengerInterface
 

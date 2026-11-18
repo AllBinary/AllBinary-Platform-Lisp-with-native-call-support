@@ -30,6 +30,7 @@
 (defun CharacterSetData.jstatic_instance ()
   (when (eq CharacterSetData.jcell_instance :jnone) (setf CharacterSetData.jcell_instance (CharacterSetData.jnew_0)))
   CharacterSetData.jcell_instance)
+(defun (setf CharacterSetData.jstatic_instance) (value) (setf CharacterSetData.jcell_instance value))
 
     
 (defun CharacterSetData.jm_getInstance_0 ()

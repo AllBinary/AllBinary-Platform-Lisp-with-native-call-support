@@ -1,104 +1,87 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.resource
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.resource
 
-local PointFactory = require("org.allbinary.graphics.PointFactory")
-local RelativeRelationship = require("org.allbinary.graphics.RelativeRelationship")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local RelativeLayerRelationship = require("org.allbinary.layer.relationship.RelativeLayerRelationship")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local BasicArrayListUtil = require("org.allbinary.util.BasicArrayListUtil")
-local FeaturedResourceFactory = require("org.allbinary.game.resource.FeaturedResourceFactory")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(defclass FeaturedResourceRelativeRelationshipFactory (FeaturedResourceFactory)
+  ((f_basicArrayListUtil :initform nil)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defvar FeaturedResourceRelativeRelationshipFactory.jcell_INSTANCE :jnone)
+(defun FeaturedResourceRelativeRelationshipFactory.jstatic_INSTANCE ()
+  (when (eq FeaturedResourceRelativeRelationshipFactory.jcell_INSTANCE :jnone) (setf FeaturedResourceRelativeRelationshipFactory.jcell_INSTANCE (FeaturedResourceRelativeRelationshipFactory.jnew_0)))
+  FeaturedResourceRelativeRelationshipFactory.jcell_INSTANCE)
+(defun (setf FeaturedResourceRelativeRelationshipFactory.jstatic_INSTANCE) (value) (setf FeaturedResourceRelativeRelationshipFactory.jcell_INSTANCE value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun FeaturedResourceRelativeRelationshipFactory.jnew_0 ()
+  (let ((this (make-instance 'FeaturedResourceRelativeRelationshipFactory)))
+    (setf (slot-value this 'f_basicArrayListUtil) (BasicArrayListUtil.jm_getInstance_0))
+  (let ()
+    (block jreturn nil))
+    this))
 
-local FeaturedResourceRelativeRelationshipFactory = {}
-FeaturedResourceRelativeRelationshipFactory.__index = FeaturedResourceRelativeRelationshipFactory
-FeaturedResourceRelativeRelationshipFactory.className = "FeaturedResourceRelativeRelationshipFactory"
-setmetatable(FeaturedResourceRelativeRelationshipFactory, {__index = FeaturedResourceFactory})
+    
+(defun FeaturedResourceRelativeRelationshipFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (FeaturedResourceRelativeRelationshipFactory.jstatic_INSTANCE)))))
 
-function FeaturedResourceRelativeRelationshipFactory:_init_fields()
-    self.basicArrayListUtil = BasicArrayListUtil.getInstance()
-end
+    
+(unless (fboundp 'jm_getRelativeRelationshipList_2) (defgeneric jm_getRelativeRelationshipList_2 (this p1 p2)))
+(defmethod jm_getRelativeRelationshipList_2 ((this FeaturedResourceRelativeRelationshipFactory) _resource _layer)
+  (declare (ignorable this _resource _layer))
+  (let (_featureReleaseList _size _featureInterface _list _index)
+  (declare (ignorable _featureReleaseList _size _featureInterface _list _index))
+    (block jreturn
+        (setf _featureReleaseList (jm_getList_0 this))
+        (setf _size (jm_size_0 (jm_getList_0 this)))
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (setf _featureInterface (aref (slot-value _featureReleaseList 'f_objectArray) _index))
+            (if (jm_isFeature_0 _featureInterface)
+                (progn
+                (setf _list (jm_getResourceRelativeRelationshipList_1 _featureInterface _resource))
+                (if (not (eq _list (jm_getImmutableInstance_0 (slot-value this 'f_basicArrayListUtil))))
+                    (progn
+                    (return-from jreturn (jm_duplicate_2 this _list _layer)))))))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (error (JR.newException "Exception" (jm_toString_0 (jm_append_1 (jm_append_1 (StringMaker.jnew_0) "Not available for current feature selection or Resource: ") _resource)))))))
 
-
-function FeaturedResourceRelativeRelationshipFactory.new()
-    local self = setmetatable(FeaturedResourceFactory.new(), FeaturedResourceRelativeRelationshipFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function FeaturedResourceRelativeRelationshipFactory.getInstance()
-        return FeaturedResourceRelativeRelationshipFactory.INSTANCE
-end
-
-
--- throws Exception
-function FeaturedResourceRelativeRelationshipFactory:getRelativeRelationshipList(resource, layer)
-        local featureReleaseList = self:getList()
-        local size = self:getList():size()
-        for index = 0, size - 1 do
-            local featureInterface = featureReleaseList.objectArray[index + 1]
-            if featureInterface:isFeature() then
-                local list = featureInterface:getResourceRelativeRelationshipList(resource)
-                if list ~= self.basicArrayListUtil:getImmutableInstance() then
-                    return self:duplicate(list, layer)
-                end
-            end
-        end
-        error(java_exception("Exception", tostring(StringMaker.new():append("Not available for current feature selection or Resource: "):append(resource))), 0)
-end
+    
+(unless (fboundp 'jm_duplicate_2) (defgeneric jm_duplicate_2 (this p1 p2)))
+(defmethod jm_duplicate_2 ((this FeaturedResourceRelativeRelationshipFactory) _list _layer)
+  (declare (ignorable this _list _layer))
+  (let (_pointFactory _newList _size _relativeRelationship _index)
+  (declare (ignorable _pointFactory _newList _size _relativeRelationship _index))
+    (block jreturn
+        (setf _pointFactory (PointFactory.jm_getInstance_0))
+        (setf _newList (BasicArrayListD.jnew_0))
+        (setf _size (jm_size_0 _list))
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (setf _relativeRelationship (aref (slot-value _list 'f_objectArray) _index))
+            (jm_add_1 _newList (RelativeLayerRelationship.jnew_3 _layer (jm_createXY_2 _pointFactory (jm_getX_0 _relativeRelationship) (jm_getY_0 _relativeRelationship)) (jm_getImmutableInstance_0 (BasicArrayListUtil.jm_getInstance_0)))))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (return-from jreturn _newList))))
 
 
--- throws Exception
-function FeaturedResourceRelativeRelationshipFactory:duplicate(list, layer)
-        local pointFactory = PointFactory.getInstance()
-        local newList = BasicArrayListD.new()
-        local size = list:size()
-        for index = 0, size - 1 do
-            local relativeRelationship = list.objectArray[index + 1]
-            newList:add(RelativeLayerRelationship.new(layer, pointFactory:createXY(relativeRelationship:getX(), relativeRelationship:getY()), BasicArrayListUtil.getInstance():getImmutableInstance()))
-        end
-        return newList
-end
-
-FeaturedResourceRelativeRelationshipFactory.INSTANCE = FeaturedResourceRelativeRelationshipFactory.new()
-
-return FeaturedResourceRelativeRelationshipFactory
 

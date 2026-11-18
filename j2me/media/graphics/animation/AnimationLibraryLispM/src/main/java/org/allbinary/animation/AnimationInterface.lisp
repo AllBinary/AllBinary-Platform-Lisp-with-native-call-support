@@ -1,48 +1,41 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local LocationPaintableInterface = require("org.allbinary.graphics.paint.LocationPaintableInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass AnimationInterface (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun AnimationInterface.jnew_0 ()
+  (let ((this (make-instance 'AnimationInterface)))
+    this))
 
--- Java interface
-local AnimationInterface = {}
-AnimationInterface.__index = AnimationInterface
-AnimationInterface.className = "AnimationInterface"
-setmetatable(AnimationInterface, {__index = LocationPaintableInterface})
+    
+(unless (fboundp 'jm_nextFrame_0) (defgeneric jm_nextFrame_0 (this)))
+(defmethod jm_nextFrame_0 ((this AnimationInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "nextFrame")))
 
-
--- throws Exception
-function AnimationInterface:nextFrame()
-    error("abstract method nextFrame")
-end
+    
+(unless (fboundp 'jm_paintThreedXYZ_4) (defgeneric jm_paintThreedXYZ_4 (this p1 p2 p3 p4)))
+(defmethod jm_paintThreedXYZ_4 ((this AnimationInterface) _graphics _x _y _z)
+  (declare (ignorable this _graphics _x _y _z))
+  (error (JR.newException "AbstractMethodError" "paintThreedXYZ")))
 
 
-function AnimationInterface:paintThreedXYZ(graphics, x, y, z)
-    error("abstract method paintThreedXYZ")
-end
-
-return AnimationInterface
 

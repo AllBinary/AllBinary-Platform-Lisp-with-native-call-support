@@ -1,70 +1,69 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.image
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.image
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
--- local Image = require("javax.microedition.lcdui.Image")
-local Animation = require("org.allbinary.animation.Animation")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass AnimationFrameToImageUtil (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar AnimationFrameToImageUtil.jcell_instance :jnone)
+(defun AnimationFrameToImageUtil.jstatic_instance ()
+  (when (eq AnimationFrameToImageUtil.jcell_instance :jnone) (setf AnimationFrameToImageUtil.jcell_instance (AnimationFrameToImageUtil.jnew_0)))
+  AnimationFrameToImageUtil.jcell_instance)
+(defun (setf AnimationFrameToImageUtil.jstatic_instance) (value) (setf AnimationFrameToImageUtil.jcell_instance value))
 
-local AnimationFrameToImageUtil = {}
-AnimationFrameToImageUtil.__index = AnimationFrameToImageUtil
-AnimationFrameToImageUtil.className = "AnimationFrameToImageUtil"
+(defun AnimationFrameToImageUtil.jnew_0 ()
+  (let ((this (make-instance 'AnimationFrameToImageUtil)))
+    this))
 
-function AnimationFrameToImageUtil.new()
-    local self = setmetatable({}, AnimationFrameToImageUtil)
-    return self
-end
+    
+(defun AnimationFrameToImageUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (AnimationFrameToImageUtil.jstatic_instance)))))
+
+    
+(unless (fboundp 'jm_getInstanceTranslate_3) (defgeneric jm_getInstanceTranslate_3 (this p1 p2 p3)))
+(defmethod jm_getInstanceTranslate_3 ((this AnimationFrameToImageUtil) _width _height _animationInterface)
+  (declare (ignorable this _width _height _animationInterface))
+  (let (_image _graphics _tranlateX _tranlateY)
+  (declare (ignorable _image _graphics _tranlateX _tranlateY))
+    (block jreturn
+        (setf _image (jm_get_3 (GameFeatureImageCacheFactory.jm_getInstance_0) (JR.className (AnimationFrameToImageUtil.jstatic_instance)) (ash (JR.i32 (* _width 3)) (- (logand 1 31))) (ash (JR.i32 (* _height 3)) (- (logand 1 31)))))
+        (setf _graphics (jm_getGraphics_0 _image))
+        (setf _tranlateX (ash _width (- (logand 2 31))))
+        (setf _tranlateY (ash _height (- (logand 2 31))))
+        (jm_translate_2 _graphics _tranlateX _tranlateY)
+        (jm_paintXY_3 _animationInterface _graphics 0 0)
+        (jm_translate_2 _graphics (JR.i32 (- _tranlateX)) (JR.i32 (- _tranlateY)))
+        (return-from jreturn _image))))
+
+    
+(unless (fboundp 'jm_getInstanceWH_3) (defgeneric jm_getInstanceWH_3 (this p1 p2 p3)))
+(defmethod jm_getInstanceWH_3 ((this AnimationFrameToImageUtil) _width _height _animationInterface)
+  (declare (ignorable this _width _height _animationInterface))
+  (let (_image _graphics)
+  (declare (ignorable _image _graphics))
+    (block jreturn
+        (setf _image (jm_get_3 (GameFeatureImageCacheFactory.jm_getInstance_0) (JR.className (AnimationFrameToImageUtil.jstatic_instance)) _width _height))
+        (setf _graphics (jm_getGraphics_0 _image))
+        (jm_paintXY_3 _animationInterface _graphics 0 0)
+        (return-from jreturn _image))))
 
 
-function AnimationFrameToImageUtil.getInstance()
-        return AnimationFrameToImageUtil.instance
-end
-
-
--- throws Exception
-function AnimationFrameToImageUtil:getInstanceTranslate(width, height, animationInterface)
-        local image = GameFeatureImageCacheFactory.getInstance():get(getmetatable(AnimationFrameToImageUtil.instance).className, ((((width * 3)) // (1 << (1)))), ((((height * 3)) // (1 << (1)))))
-        local graphics = image:getGraphics()
-        local tranlateX = (((width) // (1 << (2))))
-        local tranlateY = (((height) // (1 << (2))))
-        graphics:translate(tranlateX, tranlateY)
-        animationInterface:paintXY(graphics, 0, 0)
-        graphics:translate(-tranlateX, -tranlateY)
-        return image
-end
-
-
--- throws Exception
-function AnimationFrameToImageUtil:getInstanceWH(width, height, animationInterface)
-        local image = GameFeatureImageCacheFactory.getInstance():get(getmetatable(AnimationFrameToImageUtil.instance).className, width, height)
-        local graphics = image:getGraphics()
-        animationInterface:paintXY(graphics, 0, 0)
-        return image
-end
-
-AnimationFrameToImageUtil.instance = AnimationFrameToImageUtil.new()
-
-return AnimationFrameToImageUtil
 

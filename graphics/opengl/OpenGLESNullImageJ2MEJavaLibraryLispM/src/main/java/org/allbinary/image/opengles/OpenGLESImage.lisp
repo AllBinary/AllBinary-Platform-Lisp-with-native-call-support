@@ -1,102 +1,99 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.image.opengles
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.image.opengles
 
--- local GL = require("javax.microedition.khronos.opengles.GL")
--- local GL10 = require("javax.microedition.khronos.opengles.GL10")
--- local Image = require("javax.microedition.lcdui.Image")
--- local NullImage = require("javax.microedition.lcdui.NullImage")
-local PlatformBitmapBase = require("org.allbinary.platform.graphics.PlatformBitmapBase")
-local PlatformBitmapBaseFactory = require("org.allbinary.platform.graphics.PlatformBitmapBaseFactory")
-local PlatformTextureBaseFactory = require("org.allbinary.platform.opengles.PlatformTextureBaseFactory")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local OpenGLSurfaceChangedInterface = require("org.allbinary.image.opengles.OpenGLSurfaceChangedInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+;OpenGLESNullImageJ2MEJavaLibrary
+(defclass OpenGLESImage (JObject)
+  ((f_commonStrings :initform nil)
+   (f_textureFactory :initform nil)
+   (f_openGLBitmap :initform nil)
+   (f_openGLESImageProperties :initform nil)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defvar OpenGLESImage.jcell_NULL_OPENGL_IMAGE :jnone)
+(defun OpenGLESImage.jstatic_NULL_OPENGL_IMAGE ()
+  (when (eq OpenGLESImage.jcell_NULL_OPENGL_IMAGE :jnone) (setf OpenGLESImage.jcell_NULL_OPENGL_IMAGE (OpenGLESImage.jnew_3 (NullImage.jstatic_NULL_IMAGE) (PlatformBitmapBaseFactory.jstatic_NULL_PLATFORM_BITMAP_BASE_FACTORY) (PlatformTextureBaseFactory.jstatic_NULL_PLATFORM_TEXTURE_BASE_FACTORY))))
+  OpenGLESImage.jcell_NULL_OPENGL_IMAGE)
+(defun (setf OpenGLESImage.jstatic_NULL_OPENGL_IMAGE) (value) (setf OpenGLESImage.jcell_NULL_OPENGL_IMAGE value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar OpenGLESImage.jcell_texture2dList :jnone)
+(defun OpenGLESImage.jstatic_texture2dList ()
+  (when (eq OpenGLESImage.jcell_texture2dList :jnone) (setf OpenGLESImage.jcell_texture2dList (BasicArrayListD.jnew_0)))
+  OpenGLESImage.jcell_texture2dList)
+(defun (setf OpenGLESImage.jstatic_texture2dList) (value) (setf OpenGLESImage.jcell_texture2dList value))
 
---OpenGLESNullImageJ2MEJavaLibrary
-local OpenGLESImage = {}
-OpenGLESImage.__index = OpenGLESImage
-OpenGLESImage.className = "OpenGLESImage"
+(defvar OpenGLESImage.jcell_TYPE :jnone)
+(defun OpenGLESImage.jstatic_TYPE ()
+  (when (eq OpenGLESImage.jcell_TYPE :jnone) (setf OpenGLESImage.jcell_TYPE 4))
+  OpenGLESImage.jcell_TYPE)
+(defun (setf OpenGLESImage.jstatic_TYPE) (value) (setf OpenGLESImage.jcell_TYPE value))
 
-function OpenGLESImage:_init_fields()
-    self.commonStrings = CommonStrings.getInstance()
-    self.textureFactory = nil
-    self.openGLBitmap = nil
-    self.openGLESImageProperties = OpenGLESImageProperties.new()
-end
+    
+(defun OpenGLESImage.jnew_3 (_image _bitmapFactory _textureFactory)
+  (declare (ignorable _image _bitmapFactory _textureFactory))
+  (let ((this (make-instance 'OpenGLESImage)))
+    (setf (slot-value this 'f_commonStrings) (CommonStrings.jm_getInstance_0))
+    
+    
+    (setf (slot-value this 'f_openGLESImageProperties) (OpenGLESImageProperties.jnew_0))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_openGLBitmap) (jm_createBitmap_1 _bitmapFactory _image))
+        (setf (slot-value this 'f_textureFactory) _textureFactory)))
+    this))
+
+    
+(unless (fboundp 'jm_set_1) (defgeneric jm_set_1 (this p1)))
+(defmethod jm_set_1 ((this OpenGLESImage) _gl)
+  (declare (ignorable this _gl))
+  (let ()
+    (block jreturn
+        (error (JR.newException "Exception" (slot-value (slot-value this 'f_commonStrings) 'f_NOT_IMPLEMENTED))))))
+
+    
+(unless (fboundp 'jm_initTexture_1) (defgeneric jm_initTexture_1 (this p1)))
+(defmethod jm_initTexture_1 ((this OpenGLESImage) _gl)
+  (declare (ignorable this _gl))
+  (let ()
+    (block jreturn
+        (return-from jreturn nil))))
+
+    
+(unless (fboundp 'jm_drawRegion_9) (defgeneric jm_drawRegion_9 (this p1 p2 p3 p4 p5 p6 p7 p8 p9)))
+(defmethod jm_drawRegion_9 ((this OpenGLESImage) _gl _viewHeight _x_src _y_src _width _height _x _y _z)
+  (declare (ignorable this _gl _viewHeight _x_src _y_src _width _height _x _y _z))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_draw_4) (defgeneric jm_draw_4 (this p1 p2 p3 p4)))
+(defmethod jm_draw_4 ((this OpenGLESImage) _gl _x _y _z)
+  (declare (ignorable this _gl _x _y _z))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_getType_0) (defgeneric jm_getType_0 (this)))
+(defmethod jm_getType_0 ((this OpenGLESImage))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (OpenGLESImage.jstatic_TYPE)))))
 
 
-function OpenGLESImage.new(image, bitmapFactory, textureFactory)
-    local self = setmetatable({}, OpenGLESImage)
-    self:_init_fields()
-        self.openGLBitmap = bitmapFactory:createBitmap(image)
-        self.textureFactory = textureFactory
-    return self
-end
-
-
--- throws Exception
-function OpenGLESImage:set(gl)
-        error(java_exception("Exception", self.commonStrings.NOT_IMPLEMENTED), 0)
-end
-
-
-function OpenGLESImage:initTexture(gl)
-        return false
-end
-
-
-function OpenGLESImage:drawRegion(gl, viewHeight, x_src, y_src, width, height, x, y, z)
-end
-
-
-function OpenGLESImage:draw(gl, x, y, z)
-end
-
-
-function OpenGLESImage:getType()
-        return OpenGLESImage.TYPE
-end
-
-OpenGLESImage.NULL_OPENGL_IMAGE = OpenGLESImage.new(NullImage.NULL_IMAGE, PlatformBitmapBaseFactory.NULL_PLATFORM_BITMAP_BASE_FACTORY, PlatformTextureBaseFactory.NULL_PLATFORM_TEXTURE_BASE_FACTORY)
-OpenGLESImage.texture2dList = BasicArrayListD.new()
-OpenGLESImage.TYPE = 4
-
-return OpenGLESImage
 

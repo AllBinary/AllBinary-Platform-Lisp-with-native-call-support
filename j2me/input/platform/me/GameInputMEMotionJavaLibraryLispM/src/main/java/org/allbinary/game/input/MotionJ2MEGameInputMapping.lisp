@@ -1,46 +1,37 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.input
 
-local InputToGameKeyMapping = require("org.allbinary.game.input.mapping.InputToGameKeyMapping")
-local J2MEGameInputMapping = require("org.allbinary.game.input.J2MEGameInputMapping")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass MotionJ2MEGameInputMapping (J2MEGameInputMapping)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun MotionJ2MEGameInputMapping.jnew_0 ()
+  (let ((this (make-instance 'MotionJ2MEGameInputMapping)))
+    this))
 
-local MotionJ2MEGameInputMapping = {}
-MotionJ2MEGameInputMapping.__index = MotionJ2MEGameInputMapping
-MotionJ2MEGameInputMapping.className = "MotionJ2MEGameInputMapping"
-setmetatable(MotionJ2MEGameInputMapping, {__index = J2MEGameInputMapping})
-
-function MotionJ2MEGameInputMapping.new()
-    local self = setmetatable(J2MEGameInputMapping.new(), MotionJ2MEGameInputMapping)
-    return self
-end
+    
+(unless (fboundp 'jm_getDefault_0) (defgeneric jm_getDefault_0 (this)))
+(defmethod jm_getDefault_0 ((this MotionJ2MEGameInputMapping))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getInputMapping_0 (MotionJ2MEDefaultGameInputMapping.jnew_0))))))
 
 
-function MotionJ2MEGameInputMapping:getDefault()
-        return MotionJ2MEDefaultGameInputMapping.new():getInputMapping()
-end
-
-return MotionJ2MEGameInputMapping
 

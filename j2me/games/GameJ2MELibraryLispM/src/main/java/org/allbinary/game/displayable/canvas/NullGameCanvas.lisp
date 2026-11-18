@@ -1,160 +1,167 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.displayable.canvas
 
--- local CommandListener = require("javax.microedition.lcdui.CommandListener")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
--- local NullCommandListener = require("javax.microedition.lcdui.NullCommandListener")
-local BasicBuildGameInitializerFactory = require("org.allbinary.game.init.BasicBuildGameInitializerFactory")
-local AllBinaryGameLayerManager = require("org.allbinary.game.layer.AllBinaryGameLayerManager")
-local NoHighScoresFactory = require("org.allbinary.game.score.NoHighScoresFactory")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local AllBinaryGameCanvas = require("org.allbinary.game.displayable.canvas.AllBinaryGameCanvas")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(defclass NullGameCanvas (AllBinaryGameCanvas)
+  ((f_runningNull :initform nil)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defvar NullGameCanvas.jcell_instance :jnone)
+(defun NullGameCanvas.jstatic_instance ()
+  (when (eq NullGameCanvas.jcell_instance :jnone) (setf NullGameCanvas.jcell_instance (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT)))
+  NullGameCanvas.jcell_instance)
+(defun (setf NullGameCanvas.jstatic_instance) (value) (setf NullGameCanvas.jcell_instance value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar NullGameCanvas.jcell_NO_GAME :jnone)
+(defun NullGameCanvas.jstatic_NO_GAME ()
+  (when (eq NullGameCanvas.jcell_NO_GAME :jnone) (setf NullGameCanvas.jcell_NO_GAME "No Background Game"))
+  NullGameCanvas.jcell_NO_GAME)
+(defun (setf NullGameCanvas.jstatic_NO_GAME) (value) (setf NullGameCanvas.jcell_NO_GAME value))
 
-local NullGameCanvas = {}
-NullGameCanvas.__index = NullGameCanvas
-NullGameCanvas.className = "NullGameCanvas"
-setmetatable(NullGameCanvas, {__index = AllBinaryGameCanvas})
+(defvar NullGameCanvas.jcell_TYPE :jnone)
+(defun NullGameCanvas.jstatic_TYPE ()
+  (when (eq NullGameCanvas.jcell_TYPE :jnone) (setf NullGameCanvas.jcell_TYPE 1))
+  NullGameCanvas.jcell_TYPE)
+(defun (setf NullGameCanvas.jstatic_TYPE) (value) (setf NullGameCanvas.jcell_TYPE value))
 
-function NullGameCanvas:_init_fields()
-    self.runningNull = true
-end
+    
+(defun NullGameCanvas.jm_createNull_0 ()
+  (let ()
+    (block jreturn
+        (handler-case (progn
+            (return-from jreturn (NullGameCanvas.jnew_1 (AllBinaryGameLayerManager.jm_getNullInstance_0))))
+            (error (_e) (declare (ignorable _e))
+            (jm_put_4 (LogUtil.jm_getInstance_0) (slot-value (CommonStrings.jm_getInstance_0) 'f_EXCEPTION) "NullGameCanvas" (slot-value (CommonStrings.jm_getInstance_0) 'f_GET_INSTANCE) _e)
+            (error (JR.newException "RuntimeException")))))))
+
+    
+(defun NullGameCanvas.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (if (eq (NullGameCanvas.jstatic_instance) (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT))
+            (progn
+            (setf (NullGameCanvas.jstatic_instance) (NullGameCanvas.jm_createNull_0))))
+        (return-from jreturn (NullGameCanvas.jstatic_instance)))))
+
+    
+(defun NullGameCanvas.jm_createCanvas_1 (_gameLayerManager)
+  (declare (ignorable _gameLayerManager))
+  (let (_nullGameCanvas)
+  (declare (ignorable _nullGameCanvas))
+    (block jreturn
+        (setf _nullGameCanvas (NullGameCanvas.jnew_1 _gameLayerManager))
+        (jm_setInitialized_1 _nullGameCanvas t)
+        (jm_setTitle_1 _nullGameCanvas (NullGameCanvas.jstatic_NO_GAME))
+        (return-from jreturn _nullGameCanvas))))
+
+    
+(defun NullGameCanvas.jnew_1 (_gameLayerManager)
+  (declare (ignorable _gameLayerManager))
+  (let ((this (make-instance 'NullGameCanvas)))
+    (setf (slot-value this 'f_runningNull) t)
+  (let ()
+    (block jreturn
+        nil
+        (jm_setWait_1 this 1200)))
+    this))
+
+    
+(unless (fboundp 'jm_isGameOver_0) (defgeneric jm_isGameOver_0 (this)))
+(defmethod jm_isGameOver_0 ((this NullGameCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn nil))))
+
+    
+(unless (fboundp 'jm_setRunning_1) (defgeneric jm_setRunning_1 (this p1)))
+(defmethod jm_setRunning_1 ((this NullGameCanvas) _running)
+  (declare (ignorable this _running))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_runningNull) _running))))
+
+    
+(unless (fboundp 'jm_isRunning_0) (defgeneric jm_isRunning_0 (this)))
+(defmethod jm_isRunning_0 ((this NullGameCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_runningNull)))))
+
+    
+(unless (fboundp 'jm_pause_0) (defgeneric jm_pause_0 (this)))
+(defmethod jm_pause_0 ((this NullGameCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_setPaused_1 this t))))
+
+    
+(unless (fboundp 'jm_unPause_0) (defgeneric jm_unPause_0 (this)))
+(defmethod jm_unPause_0 ((this NullGameCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_setPaused_1 this nil))))
+
+    
+(unless (fboundp 'jm_initCommands_1) (defgeneric jm_initCommands_1 (this p1)))
+(defmethod jm_initCommands_1 ((this NullGameCanvas) _cmdListener)
+  (declare (ignorable this _cmdListener))
+  (let ()
+    (block jreturn
+        (jm_removeAllCommands_0 this)
+        (jm_setCommandListener_1 this _cmdListener))))
+
+    
+(unless (fboundp 'jm_buildGameInit_1) (defgeneric jm_buildGameInit_1 (this p1)))
+(defmethod jm_buildGameInit_1 ((this NullGameCanvas) _isProgress)
+  (declare (ignorable this _isProgress))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_draw_1) (defgeneric jm_draw_1 (this p1)))
+(defmethod jm_draw_1 ((this NullGameCanvas) _graphics)
+  (declare (ignorable this _graphics))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_run_0) (defgeneric jm_run_0 (this)))
+(defmethod jm_run_0 ((this NullGameCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (handler-case (progn
+            (jm_putF_3 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_START_RUNNABLE) this (slot-value (slot-value this 'f_commonStrings) 'f_RUN))
+            (jm_putF_3 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_END_RUNNABLE) this (slot-value (slot-value this 'f_commonStrings) 'f_RUN)))
+            (error (_e) (declare (ignorable _e))
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_EXCEPTION) this (slot-value (slot-value this 'f_commonStrings) 'f_RUN) _e))))))
+
+    
+(unless (fboundp 'jm_getType_0) (defgeneric jm_getType_0 (this)))
+(defmethod jm_getType_0 ((this NullGameCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (NullGameCanvas.jstatic_TYPE)))))
 
 
-function NullGameCanvas.createNull()
-        local try_ok, try_error = pcall(function()
-            return NullGameCanvas.new(AllBinaryGameLayerManager.getNullInstance())
-        end)
-        if not try_ok then
-            local e = try_error
-            LogUtil.getInstance():put(CommonStrings.getInstance().EXCEPTION, "NullGameCanvas", CommonStrings.getInstance().GET_INSTANCE, e)
-            error(java_exception("RuntimeException"), 0)
-        end
-end
-
-
-function NullGameCanvas.getInstance()
-        if NullGameCanvas.instance == NullUtil.getInstance().NULL_OBJECT then
-            NullGameCanvas.instance = NullGameCanvas.createNull()
-        end
-        return NullGameCanvas.instance
-end
-
-
--- throws Exception
-function NullGameCanvas.createCanvas(gameLayerManager)
-        local nullGameCanvas = NullGameCanvas.new(gameLayerManager)
-        nullGameCanvas:setInitialized(true)
-        nullGameCanvas:setTitle(NullGameCanvas.NO_GAME)
-        return nullGameCanvas
-end
-
-
-function NullGameCanvas.new(gameLayerManager)
-    local self = setmetatable(AllBinaryGameCanvas.new(NullCommandListener.NULL_COMMAND_LISTENER, gameLayerManager, NoHighScoresFactory.getInstance(), BasicBuildGameInitializerFactory.NULL_BASE_BUILD_GMAE_INITIALIZER_FACTORY, false), NullGameCanvas)
-    self:_init_fields()
-        -- super(...) made self above
-        AllBinaryGameCanvas.setWait(self, 1200)
-    return self
-end
-
-
-function NullGameCanvas:isGameOver()
-        return false
-end
-
-
-function NullGameCanvas:setRunning(running)
-        self.runningNull = running
-end
-
-
-function NullGameCanvas:isRunning()
-        return self.runningNull
-end
-
-
-function NullGameCanvas:pause()
-        self:setPaused(true)
-end
-
-
-function NullGameCanvas:unPause()
-        self:setPaused(false)
-end
-
-
-function NullGameCanvas:initCommands(cmdListener)
-        self:removeAllCommands()
-        self:setCommandListener(cmdListener)
-end
-
-
--- throws Exception
-function NullGameCanvas:buildGameInit(isProgress)
-end
-
-
-function NullGameCanvas:draw(graphics)
-end
-
-
-function NullGameCanvas:run()
-        local try_ok, try_error = pcall(function()
-            self.logUtil:putF(self.commonStrings.START_RUNNABLE, self, self.commonStrings.RUN)
-            self.logUtil:putF(self.commonStrings.END_RUNNABLE, self, self.commonStrings.RUN)
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.commonStrings.RUN, e)
-        end
-end
-
-
-function NullGameCanvas:getType()
-        return NullGameCanvas.TYPE
-end
-
-NullGameCanvas.instance = NullUtil.getInstance().NULL_OBJECT
-NullGameCanvas.NO_GAME = "No Background Game"
-NullGameCanvas.TYPE = 1
-
-return NullGameCanvas
 

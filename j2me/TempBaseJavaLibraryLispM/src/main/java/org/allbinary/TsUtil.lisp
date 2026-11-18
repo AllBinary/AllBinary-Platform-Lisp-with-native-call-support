@@ -26,6 +26,7 @@
 (defun TsUtil.jstatic_instance ()
   (when (eq TsUtil.jcell_instance :jnone) (setf TsUtil.jcell_instance (TsUtil.jnew_0)))
   TsUtil.jcell_instance)
+(defun (setf TsUtil.jstatic_instance) (value) (setf TsUtil.jcell_instance value))
 
 (defun TsUtil.jnew_0 ()
   (let ((this (make-instance 'TsUtil)))
@@ -59,7 +60,7 @@
   (declare (ignorable this _anyType))
   (let ()
     (block jreturn
-        (return-from jreturn (JR.className _anyType)))))
+        (return-from jreturn (jm_hashCode_0 _anyType)))))
 
     
 (unless (fboundp 'jm_waitFor_2) (defgeneric jm_waitFor_2 (this p1 p2)))
@@ -69,7 +70,7 @@
   (declare (ignorable _anyType))
     (block jreturn
         (setf _anyType _any)
-        (JR.className _anyType))))
+        (jm_wait_1 _anyType _timeoutMillis))))
 
     
 (unless (fboundp 'jm_compareTo_2) (defgeneric jm_compareTo_2 (this p1 p2)))

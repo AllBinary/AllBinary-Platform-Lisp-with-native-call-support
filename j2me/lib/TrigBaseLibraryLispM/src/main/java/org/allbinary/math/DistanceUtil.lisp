@@ -25,6 +25,7 @@
 (defun DistanceUtil.jstatic_instance ()
   (when (eq DistanceUtil.jcell_instance :jnone) (setf DistanceUtil.jcell_instance (DistanceUtil.jnew_0)))
   DistanceUtil.jcell_instance)
+(defun (setf DistanceUtil.jstatic_instance) (value) (setf DistanceUtil.jcell_instance value))
 
 (defun DistanceUtil.jnew_0 ()
   (let ((this (make-instance 'DistanceUtil)))

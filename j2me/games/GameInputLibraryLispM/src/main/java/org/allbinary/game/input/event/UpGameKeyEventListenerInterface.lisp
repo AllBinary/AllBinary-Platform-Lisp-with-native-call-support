@@ -1,42 +1,35 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.event
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.input.event
 
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass UpGameKeyEventListenerInterface (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun UpGameKeyEventListenerInterface.jnew_0 ()
+  (let ((this (make-instance 'UpGameKeyEventListenerInterface)))
+    this))
 
--- Java interface
-local UpGameKeyEventListenerInterface = {}
-UpGameKeyEventListenerInterface.__index = UpGameKeyEventListenerInterface
-UpGameKeyEventListenerInterface.className = "UpGameKeyEventListenerInterface"
-setmetatable(UpGameKeyEventListenerInterface, {__index = EventListenerInterface})
+    
+(unless (fboundp 'jm_onUpGameKeyEvent_1) (defgeneric jm_onUpGameKeyEvent_1 (this p1)))
+(defmethod jm_onUpGameKeyEvent_1 ((this UpGameKeyEventListenerInterface) _gameKeyEvent)
+  (declare (ignorable this _gameKeyEvent))
+  (error (JR.newException "AbstractMethodError" "onUpGameKeyEvent")))
 
 
--- throws Exception
-function UpGameKeyEventListenerInterface:onUpGameKeyEvent(gameKeyEvent)
-    error("abstract method onUpGameKeyEvent")
-end
-
-return UpGameKeyEventListenerInterface
 

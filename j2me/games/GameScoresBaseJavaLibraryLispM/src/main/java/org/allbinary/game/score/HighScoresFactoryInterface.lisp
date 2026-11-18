@@ -1,50 +1,47 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.score
 
-local GameInfo = require("org.allbinary.game.GameInfo")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass HighScoresFactoryInterface (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun HighScoresFactoryInterface.jnew_0 ()
+  (let ((this (make-instance 'HighScoresFactoryInterface)))
+    this))
 
--- Java interface
-local HighScoresFactoryInterface = {}
-HighScoresFactoryInterface.__index = HighScoresFactoryInterface
-HighScoresFactoryInterface.className = "HighScoresFactoryInterface"
+    
+(unless (fboundp 'jm_fetchHighScores_2) (defgeneric jm_fetchHighScores_2 (this p1 p2)))
+(defmethod jm_fetchHighScores_2 ((this HighScoresFactoryInterface) _gameInfo _highScoresResultsListener)
+  (declare (ignorable this _gameInfo _highScoresResultsListener))
+  (error (JR.newException "AbstractMethodError" "fetchHighScores")))
+
+    
+(unless (fboundp 'jm_fetchHighScoresPreload_3) (defgeneric jm_fetchHighScoresPreload_3 (this p1 p2 p3)))
+(defmethod jm_fetchHighScoresPreload_3 ((this HighScoresFactoryInterface) _gameInfo _highScoresResultsListener _preload)
+  (declare (ignorable this _gameInfo _highScoresResultsListener _preload))
+  (error (JR.newException "AbstractMethodError" "fetchHighScoresPreload")))
+
+    
+(unless (fboundp 'jm_createHighScoresHelper_0) (defgeneric jm_createHighScoresHelper_0 (this)))
+(defmethod jm_createHighScoresHelper_0 ((this HighScoresFactoryInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "createHighScoresHelper")))
 
 
-function HighScoresFactoryInterface:fetchHighScores(gameInfo, highScoresResultsListener)
-    error("abstract method fetchHighScores")
-end
-
-
-function HighScoresFactoryInterface:fetchHighScoresPreload(gameInfo, highScoresResultsListener, preload)
-    error("abstract method fetchHighScoresPreload")
-end
-
-
-function HighScoresFactoryInterface:createHighScoresHelper()
-    error("abstract method createHighScoresHelper")
-end
-
-return HighScoresFactoryInterface
 

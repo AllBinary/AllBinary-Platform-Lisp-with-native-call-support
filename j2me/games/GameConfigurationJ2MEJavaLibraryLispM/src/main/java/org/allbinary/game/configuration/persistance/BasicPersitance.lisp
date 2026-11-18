@@ -1,119 +1,125 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.persistance
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.configuration.persistance
 
--- local RecordStore = require("javax.microedition.rms.RecordStore")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local PreLogUtil = require("org.allbinary.logic.communication.log.PreLogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local AbeClientInformationInterface = require("org.allbinary.logic.system.security.licensing.AbeClientInformationInterface")
-local PlatformRecordIdUtil = require("org.allbinary.persistance.PlatformRecordIdUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass BasicPersitance (JObject)
+  ((f_logUtil :initform nil)
+   (f_commonStrings :initform nil)
+   (f_persistanceStrings :initform nil)
+   (f_platformRecordIdUtil :initform nil)
+   (f_recordId :initform nil)
+   (f_valueList :initform nil)
+   (f_idList :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun BasicPersitance.jnew_1 (_recordId)
+  (declare (ignorable _recordId))
+  (let ((this (make-instance 'BasicPersitance)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_commonStrings) (CommonStrings.jm_getInstance_0))
+    (setf (slot-value this 'f_persistanceStrings) (PersistanceStrings.jm_getInstance_0))
+    (setf (slot-value this 'f_platformRecordIdUtil) (PlatformRecordIdUtil.jm_getInstance_0))
+    
+    (setf (slot-value this 'f_valueList) (BasicArrayListD.jnew_0))
+    (setf (slot-value this 'f_idList) (BasicArrayListD.jnew_0))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_recordId) _recordId)))
+    this))
 
-local BasicPersitance = {}
-BasicPersitance.__index = BasicPersitance
-BasicPersitance.className = "BasicPersitance"
+    
+(unless (fboundp 'jm_deleteRecoreStore_1) (defgeneric jm_deleteRecoreStore_1 (this p1)))
+(defmethod jm_deleteRecoreStore_1 ((this BasicPersitance) _abeClientInformation)
+  (declare (ignorable this _abeClientInformation))
+  (let ()
+    (block jreturn
+        (RecordStore.jm_deleteRecordStore_1 (jm_getRecordId_1 this _abeClientInformation)))))
 
-function BasicPersitance:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.persistanceStrings = PersistanceStrings.getInstance()
-    self.platformRecordIdUtil = PlatformRecordIdUtil.getInstance()
-    self.recordId = nil
-    self.valueList = BasicArrayListD.new()
-    self.idList = BasicArrayListD.new()
-end
+    
+(unless (fboundp 'jm_deleteAll_1) (defgeneric jm_deleteAll_1 (this p1)))
+(defmethod jm_deleteAll_1 ((this BasicPersitance) _abeClientInformation)
+  (declare (ignorable this _abeClientInformation))
+  (let (_size _integer _index)
+  (declare (ignorable _size _integer _index))
+    (block jreturn
+        (setf _size (jm_size_0 (slot-value this 'f_idList)))
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (setf _integer (aref (slot-value (slot-value this 'f_idList) 'f_objectArray) _index))
+            (jm_delete_2 this _abeClientInformation (jm_intValue_0 _integer)))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (jm_clear_0 this))))
+
+    
+(unless (fboundp 'jm_delete_2) (defgeneric jm_delete_2 (this p1 p2)))
+(defmethod jm_delete_2 ((this BasicPersitance) _abeClientInformation _deleteId)
+  (declare (ignorable this _abeClientInformation _deleteId))
+  (let (_recordStore)
+  (declare (ignorable _recordStore))
+    (block jreturn
+        (setf _recordStore (NullRecordStore.jstatic_NULL_RECORD_STORE))
+        (unwind-protect (handler-case (progn
+            (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 (jm_appendint_1 (jm_append_1 (StringMaker.jnew_0) (slot-value (slot-value this 'f_persistanceStrings) 'f_DELETING_WITH_ID)) _deleteId)) this (slot-value (slot-value this 'f_commonStrings) 'f_delete))
+            (setf _recordStore (RecordStore.jm_openRecordStore_2 (jm_getRecordId_1 this _abeClientInformation) t))
+            (jm_deleteRecord_1 _recordStore _deleteId))
+            (error (_e) (declare (ignorable _e))
+            (error _e)))
+            (progn
+            (if (not (null _recordStore))
+                (progn
+                (PreLogUtil.jm_put_3 (slot-value (slot-value this 'f_persistanceStrings) 'f_CLOSING_RECORDSTORE) this (slot-value (slot-value this 'f_commonStrings) 'f_delete))
+                (jm_closeRecordStore_0 _recordStore))))))))
+
+    
+(unless (fboundp 'jm_getRecordId_1) (defgeneric jm_getRecordId_1 (this p1)))
+(defmethod jm_getRecordId_1 ((this BasicPersitance) _abeClientInformation)
+  (declare (ignorable this _abeClientInformation))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getRecordId_2 (slot-value this 'f_platformRecordIdUtil) _abeClientInformation (slot-value this 'f_recordId))))))
+
+    
+(unless (fboundp 'jm_getList_0) (defgeneric jm_getList_0 (this)))
+(defmethod jm_getList_0 ((this BasicPersitance))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_valueList)))))
+
+    
+(unless (fboundp 'jm_getIds_0) (defgeneric jm_getIds_0 (this)))
+(defmethod jm_getIds_0 ((this BasicPersitance))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_idList)))))
+
+    
+(unless (fboundp 'jm_clear_0) (defgeneric jm_clear_0 (this)))
+(defmethod jm_clear_0 ((this BasicPersitance))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_clear_0 (slot-value this 'f_valueList))
+        (jm_clear_0 (slot-value this 'f_idList)))))
 
 
-function BasicPersitance.new(recordId)
-    local self = setmetatable({}, BasicPersitance)
-    self:_init_fields()
-        self.recordId = recordId
-    return self
-end
-
-
--- throws Exception
-function BasicPersitance:deleteRecoreStore(abeClientInformation)
-        RecordStore.deleteRecordStore(self:getRecordId(abeClientInformation))
-end
-
-
--- throws Exception
-function BasicPersitance:deleteAll(abeClientInformation)
-        local size = self.idList:size()
-        for index = 0, size - 1 do
-            local integer = self.idList.objectArray[index + 1]
-            self:delete(abeClientInformation, math.tointeger(integer // 1))
-        end
-        self:clear()
-end
-
-
--- throws Exception
-function BasicPersitance:delete(abeClientInformation, deleteId)
-        local recordStore = NullRecordStore.NULL_RECORD_STORE
-        local try_ok, try_error = pcall(function()
-            self.logUtil:putF(tostring(StringMaker.new():append(self.persistanceStrings.DELETING_WITH_ID):appendint(deleteId)), self, self.commonStrings.delete)
-            recordStore = RecordStore.openRecordStore(self:getRecordId(abeClientInformation), true)
-            recordStore:deleteRecord(deleteId)
-        end)
-        if not try_ok then
-            local e = try_error
-            error(e, 0)
-        end
-        do -- finally
-            if recordStore ~= nil then
-                PreLogUtil.put(self.persistanceStrings.CLOSING_RECORDSTORE, self, self.commonStrings.delete)
-                recordStore:closeRecordStore()
-            end
-        end
-end
-
-
-function BasicPersitance:getRecordId(abeClientInformation)
-        return self.platformRecordIdUtil:getRecordId(abeClientInformation, self.recordId)
-end
-
-
-function BasicPersitance:getList()
-        return self.valueList
-end
-
-
-function BasicPersitance:getIds()
-        return self.idList
-end
-
-
-function BasicPersitance:clear()
-        self.valueList:clear()
-        self.idList:clear()
-end
-
-return BasicPersitance
 

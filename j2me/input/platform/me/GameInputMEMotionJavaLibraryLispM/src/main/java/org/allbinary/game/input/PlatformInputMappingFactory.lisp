@@ -1,69 +1,60 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.input
 
-local PersistentInputMapping = require("org.allbinary.game.input.mapping.PersistentInputMapping")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass PlatformInputMappingFactory (JObject)
+  ((f_logUtil :initform nil)
+   (f_inputToGameKeyMapping :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar PlatformInputMappingFactory.jcell_instance :jnone)
+(defun PlatformInputMappingFactory.jstatic_instance ()
+  (when (eq PlatformInputMappingFactory.jcell_instance :jnone) (setf PlatformInputMappingFactory.jcell_instance (PlatformInputMappingFactory.jnew_0)))
+  PlatformInputMappingFactory.jcell_instance)
+(defun (setf PlatformInputMappingFactory.jstatic_instance) (value) (setf PlatformInputMappingFactory.jcell_instance value))
 
-local PlatformInputMappingFactory = {}
-PlatformInputMappingFactory.__index = PlatformInputMappingFactory
-PlatformInputMappingFactory.className = "PlatformInputMappingFactory"
+(defun PlatformInputMappingFactory.jnew_0 ()
+  (let ((this (make-instance 'PlatformInputMappingFactory)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_inputToGameKeyMapping) (PersistentInputMapping.jm_getNullInstance_0))
+    this))
 
-function PlatformInputMappingFactory:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.inputToGameKeyMapping = PersistentInputMapping.getNullInstance()
-end
+    
+(defun PlatformInputMappingFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (PlatformInputMappingFactory.jstatic_instance)))))
 
-function PlatformInputMappingFactory.new()
-    local self = setmetatable({}, PlatformInputMappingFactory)
-    self:_init_fields()
-    return self
-end
+    
+(unless (fboundp 'jm_getPersistentInputMappingInstance_0) (defgeneric jm_getPersistentInputMappingInstance_0 (this)))
+(defmethod jm_getPersistentInputMappingInstance_0 ((this PlatformInputMappingFactory))
+  (declare (ignorable this))
+  (let (_commonStrings)
+  (declare (ignorable _commonStrings))
+    (block jreturn
+        (handler-case (progn
+            (if (eq (slot-value this 'f_inputToGameKeyMapping) (PersistentInputMapping.jm_getNullInstance_0))
+                (progn
+                (setf (slot-value this 'f_inputToGameKeyMapping) (MotionJ2MEGameInputMapping.jnew_0)))))
+            (error (_e) (declare (ignorable _e))
+            (setf _commonStrings (CommonStrings.jm_getInstance_0))
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value _commonStrings 'f_EXCEPTION) this (slot-value _commonStrings 'f_GET_INSTANCE) _e)))
+        (return-from jreturn (slot-value this 'f_inputToGameKeyMapping)))))
 
 
-function PlatformInputMappingFactory.getInstance()
-        return PlatformInputMappingFactory.instance
-end
-
-
-function PlatformInputMappingFactory:getPersistentInputMappingInstance()
-        local try_ok, try_error = pcall(function()
-            if self.inputToGameKeyMapping == PersistentInputMapping.getNullInstance() then
-                self.inputToGameKeyMapping = MotionJ2MEGameInputMapping.new()
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, commonStrings.GET_INSTANCE, e)
-        end
-        return self.inputToGameKeyMapping
-end
-
-PlatformInputMappingFactory.instance = PlatformInputMappingFactory.new()
-
-return PlatformInputMappingFactory
 

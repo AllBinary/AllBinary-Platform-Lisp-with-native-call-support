@@ -1,98 +1,90 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.input
 
-local NullUtil = require("org.allbinary.logic.NullUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(defclass GameKeyMappingFactory (JObject)
+  ((f_intKeyToGameKey :initform nil)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defvar GameKeyMappingFactory.jcell_instance :jnone)
+(defun GameKeyMappingFactory.jstatic_instance ()
+  (when (eq GameKeyMappingFactory.jcell_instance :jnone) (setf GameKeyMappingFactory.jcell_instance (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT)))
+  GameKeyMappingFactory.jcell_instance)
+(defun (setf GameKeyMappingFactory.jstatic_instance) (value) (setf GameKeyMappingFactory.jcell_instance value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun GameKeyMappingFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (if (eq (GameKeyMappingFactory.jstatic_instance) (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT))
+            (progn
+            (setf (GameKeyMappingFactory.jstatic_instance) (GameKeyMappingFactory.jnew_0))))
+        (return-from jreturn (GameKeyMappingFactory.jstatic_instance)))))
 
-local GameKeyMappingFactory = {}
-GameKeyMappingFactory.__index = GameKeyMappingFactory
-GameKeyMappingFactory.className = "GameKeyMappingFactory"
+    
+(defun GameKeyMappingFactory.jnew_0 ()
+  (let ((this (make-instance 'GameKeyMappingFactory)))
+    (setf (slot-value this 'f_intKeyToGameKey) (JR.newArray nil (slot-value (InputFactory.jm_getInstance_0) 'f_MAX)))
+  (let (_gameKeyFactory)
+  (declare (ignorable _gameKeyFactory))
+    (block jreturn
+        (setf _gameKeyFactory (GameKeyFactory.jm_getInstance_0))
+        (jm_setGameKey_1 this (slot-value _gameKeyFactory 'f_NONE))
+        (jm_setGameKey_1 this (slot-value _gameKeyFactory 'f_UP))
+        (jm_setGameKey_1 this (slot-value _gameKeyFactory 'f_DOWN))
+        (jm_setGameKey_1 this (slot-value _gameKeyFactory 'f_LEFT))
+        (jm_setGameKey_1 this (slot-value _gameKeyFactory 'f_RIGHT))
+        (jm_setGameKey_1 this (slot-value _gameKeyFactory 'f_KEY_POUND))
+        (jm_setGameKey_1 this (slot-value _gameKeyFactory 'f_KEY_STAR))
+        (jm_setGameKey_1 this (slot-value _gameKeyFactory 'f_KEY_NUM0))
+        (jm_setGameKey_1 this (slot-value _gameKeyFactory 'f_KEY_NUM1))
+        (jm_setGameKey_1 this (slot-value _gameKeyFactory 'f_KEY_NUM2))
+        (jm_setGameKey_1 this (slot-value _gameKeyFactory 'f_KEY_NUM3))
+        (jm_setGameKey_1 this (slot-value _gameKeyFactory 'f_KEY_NUM4))
+        (jm_setGameKey_1 this (slot-value _gameKeyFactory 'f_KEY_NUM5))
+        (jm_setGameKey_1 this (slot-value _gameKeyFactory 'f_KEY_NUM6))
+        (jm_setGameKey_1 this (slot-value _gameKeyFactory 'f_KEY_NUM7))
+        (jm_setGameKey_1 this (slot-value _gameKeyFactory 'f_KEY_NUM8))
+        (jm_setGameKey_1 this (slot-value _gameKeyFactory 'f_KEY_NUM9))
+        (jm_setGameKey_1 this (slot-value _gameKeyFactory 'f_GAME_A))
+        (jm_setGameKey_1 this (slot-value _gameKeyFactory 'f_GAME_B))
+        (jm_setGameKey_1 this (slot-value _gameKeyFactory 'f_GAME_C))
+        (jm_setGameKey_1 this (slot-value _gameKeyFactory 'f_GAME_D))
+        (jm_setGameKey_1 this (slot-value _gameKeyFactory 'f_FIRE))
+        (jm_setGameKey_1 this (slot-value _gameKeyFactory 'f_LEVEL_DOWN))
+        (jm_setGameKey_1 this (slot-value _gameKeyFactory 'f_LEVEL_UP))))
+    this))
 
-function GameKeyMappingFactory:_init_fields()
-    self.intKeyToGameKey = java_new_array(nil, InputFactory.getInstance().MAX)
-end
+    
+(unless (fboundp 'jm_getGameKey_1) (defgeneric jm_getGameKey_1 (this p1)))
+(defmethod jm_getGameKey_1 ((this GameKeyMappingFactory) _key)
+  (declare (ignorable this _key))
+  (let ()
+    (block jreturn
+        (return-from jreturn (aref (slot-value this 'f_intKeyToGameKey) _key)))))
 
-
-function GameKeyMappingFactory.getInstance()
-        if GameKeyMappingFactory.instance == NullUtil.getInstance().NULL_OBJECT then
-            GameKeyMappingFactory.instance = GameKeyMappingFactory.new()
-        end
-        return GameKeyMappingFactory.instance
-end
-
-
-function GameKeyMappingFactory.new()
-    local self = setmetatable({}, GameKeyMappingFactory)
-    self:_init_fields()
-        local gameKeyFactory = GameKeyFactory.getInstance()
-        self:setGameKey(gameKeyFactory.NONE)
-        self:setGameKey(gameKeyFactory.UP)
-        self:setGameKey(gameKeyFactory.DOWN)
-        self:setGameKey(gameKeyFactory.LEFT)
-        self:setGameKey(gameKeyFactory.RIGHT)
-        self:setGameKey(gameKeyFactory.KEY_POUND)
-        self:setGameKey(gameKeyFactory.KEY_STAR)
-        self:setGameKey(gameKeyFactory.KEY_NUM0)
-        self:setGameKey(gameKeyFactory.KEY_NUM1)
-        self:setGameKey(gameKeyFactory.KEY_NUM2)
-        self:setGameKey(gameKeyFactory.KEY_NUM3)
-        self:setGameKey(gameKeyFactory.KEY_NUM4)
-        self:setGameKey(gameKeyFactory.KEY_NUM5)
-        self:setGameKey(gameKeyFactory.KEY_NUM6)
-        self:setGameKey(gameKeyFactory.KEY_NUM7)
-        self:setGameKey(gameKeyFactory.KEY_NUM8)
-        self:setGameKey(gameKeyFactory.KEY_NUM9)
-        self:setGameKey(gameKeyFactory.GAME_A)
-        self:setGameKey(gameKeyFactory.GAME_B)
-        self:setGameKey(gameKeyFactory.GAME_C)
-        self:setGameKey(gameKeyFactory.GAME_D)
-        self:setGameKey(gameKeyFactory.FIRE)
-        self:setGameKey(gameKeyFactory.LEVEL_DOWN)
-        self:setGameKey(gameKeyFactory.LEVEL_UP)
-    return self
-end
-
-
-function GameKeyMappingFactory:getGameKey(key)
-        return self.intKeyToGameKey[key + 1]
-end
+    
+(unless (fboundp 'jm_setGameKey_1) (defgeneric jm_setGameKey_1 (this p1)))
+(defmethod jm_setGameKey_1 ((this GameKeyMappingFactory) _gameKey)
+  (declare (ignorable this _gameKey))
+  (let ()
+    (block jreturn
+        (setf (aref (slot-value this 'f_intKeyToGameKey) (jm_getId_0 _gameKey)) _gameKey))))
 
 
-function GameKeyMappingFactory:setGameKey(gameKey)
-        self.intKeyToGameKey[gameKey:getId() + 1] = gameKey
-end
-
-GameKeyMappingFactory.instance = NullUtil.getInstance().NULL_OBJECT
-
-return GameKeyMappingFactory
 

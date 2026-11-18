@@ -1,79 +1,85 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.licensing.registration
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.system.security.licensing.registration
 
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass RegistrationConfiguration (JObject)
+  ((f_registrationCode :initform nil)
+   (f_NAME :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar RegistrationConfiguration.jcell_SINGLETON :jnone)
+(defun RegistrationConfiguration.jstatic_SINGLETON ()
+  (when (eq RegistrationConfiguration.jcell_SINGLETON :jnone) (setf RegistrationConfiguration.jcell_SINGLETON (RegistrationConfiguration.jnew_0)))
+  RegistrationConfiguration.jcell_SINGLETON)
+(defun (setf RegistrationConfiguration.jstatic_SINGLETON) (value) (setf RegistrationConfiguration.jcell_SINGLETON value))
 
-local RegistrationConfiguration = {}
-RegistrationConfiguration.__index = RegistrationConfiguration
-RegistrationConfiguration.className = "RegistrationConfiguration"
+    
+(defun RegistrationConfiguration.jnew_0 ()
+  (let ((this (make-instance 'RegistrationConfiguration)))
+    (setf (slot-value this 'f_registrationCode) "No Registration Code")
+    (setf (slot-value this 'f_NAME) "registrationid")
+  (let ()
+    (block jreturn nil))
+    this))
 
-function RegistrationConfiguration:_init_fields()
-    self.registrationCode = "No Registration Code"
-    self.NAME = "registrationid"
-end
+    
+(defun RegistrationConfiguration.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (RegistrationConfiguration.jstatic_SINGLETON)))))
+
+    
+(unless (fboundp 'jm_read_0) (defgeneric jm_read_0 (this)))
+(defmethod jm_read_0 ((this RegistrationConfiguration))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_write_0) (defgeneric jm_write_0 (this)))
+(defmethod jm_write_0 ((this RegistrationConfiguration))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_toString_0) (defgeneric jm_toString_0 (this)))
+(defmethod jm_toString_0 ((this RegistrationConfiguration))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_toString_0 (jm_append_1 (jm_append_1 (StringMaker.jnew_0) "Registration Code: ") (jm_getRegistrationCode_0 this)))))))
+
+    
+(unless (fboundp 'jm_setRegistrationCode_1) (defgeneric jm_setRegistrationCode_1 (this p1)))
+(defmethod jm_setRegistrationCode_1 ((this RegistrationConfiguration) _registrationCode)
+  (declare (ignorable this _registrationCode))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_registrationCode) _registrationCode))))
+
+    
+(unless (fboundp 'jm_getRegistrationCode_0) (defgeneric jm_getRegistrationCode_0 (this)))
+(defmethod jm_getRegistrationCode_0 ((this RegistrationConfiguration))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_registrationCode)))))
 
 
-function RegistrationConfiguration.new()
-    local self = setmetatable({}, RegistrationConfiguration)
-    self:_init_fields()
-    return self
-end
-
-
-function RegistrationConfiguration.getInstance()
-        return RegistrationConfiguration.SINGLETON
-end
-
-
--- throws Exception
-function RegistrationConfiguration:read()
-end
-
-
--- throws Exception
-function RegistrationConfiguration:write()
-end
-
-
-function RegistrationConfiguration:toString()
-        return tostring(StringMaker.new():append("Registration Code: "):append(self:getRegistrationCode()))
-end
-RegistrationConfiguration.__tostring = function(self) return self:toString() end
-
-
-function RegistrationConfiguration:setRegistrationCode(registrationCode)
-        self.registrationCode = registrationCode
-end
-
-
-function RegistrationConfiguration:getRegistrationCode()
-        return self.registrationCode
-end
-
-RegistrationConfiguration.SINGLETON = RegistrationConfiguration.new()
-
-return RegistrationConfiguration
 

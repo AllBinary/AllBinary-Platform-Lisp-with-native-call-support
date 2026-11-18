@@ -1,97 +1,72 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.displayable.canvas
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
--- local Image = require("javax.microedition.lcdui.Image")
--- local NullCanvas = require("javax.microedition.lcdui.NullCanvas")
--- local NullImage = require("javax.microedition.lcdui.NullImage")
-local Anchor = require("org.allbinary.graphics.Anchor")
-local MyCanvas = require("org.allbinary.graphics.displayable.MyCanvas")
-local ProcessPaintable = require("org.allbinary.graphics.paint.ProcessPaintable")
-local CircularIndexUtil = require("org.allbinary.util.CircularIndexUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(defclass BufferedGameCanvasPaintHelper (ProcessPaintable)
+  ((f_gameCanvas :initform nil)
+   (f_offScreenImage :initform nil)
+   (f_previousImage :initform nil)
+   (f_circularIndexUtil :initform nil)
+   (f_drawCircularIndexUtil :initform nil)
+   (f_anchor :initform 0)))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(defvar BufferedGameCanvasPaintHelper.jcell_MAX_IMAGES :jnone)
+(defun BufferedGameCanvasPaintHelper.jstatic_MAX_IMAGES ()
+  (when (eq BufferedGameCanvasPaintHelper.jcell_MAX_IMAGES :jnone) (setf BufferedGameCanvasPaintHelper.jcell_MAX_IMAGES 4))
+  BufferedGameCanvasPaintHelper.jcell_MAX_IMAGES)
+(defun (setf BufferedGameCanvasPaintHelper.jstatic_MAX_IMAGES) (value) (setf BufferedGameCanvasPaintHelper.jcell_MAX_IMAGES value))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(defun BufferedGameCanvasPaintHelper.jnew_1 (_gameCanvas)
+  (declare (ignorable _gameCanvas))
+  (let ((this (make-instance 'BufferedGameCanvasPaintHelper)))
+    (setf (slot-value this 'f_gameCanvas) (NullCanvas.jstatic_NULL_CANVAS))
+    (setf (slot-value this 'f_offScreenImage) (JR.newArray nil (BufferedGameCanvasPaintHelper.jstatic_MAX_IMAGES)))
+    (setf (slot-value this 'f_previousImage) (NullImage.jstatic_NULL_IMAGE))
+    (setf (slot-value this 'f_circularIndexUtil) (CircularIndexUtil.jm_createInstance_1 (BufferedGameCanvasPaintHelper.jstatic_MAX_IMAGES)))
+    (setf (slot-value this 'f_drawCircularIndexUtil) (CircularIndexUtil.jm_createInstanceAt_2 (JR.i32 (- (BufferedGameCanvasPaintHelper.jstatic_MAX_IMAGES) 1)) (BufferedGameCanvasPaintHelper.jstatic_MAX_IMAGES)))
+    (setf (slot-value this 'f_anchor) (Anchor.jstatic_TOP_LEFT))
+  (let ()
+    (block jreturn
+        (error (JR.newException "Exception" "No Longer Used"))))
+    this))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(unless (fboundp 'jm_process_0) (defgeneric jm_process_0 (this)))
+(defmethod jm_process_0 ((this BufferedGameCanvasPaintHelper))
+  (declare (ignorable this))
+  (let (_myCanvas)
+  (declare (ignorable _myCanvas))
+    (block jreturn
+        (setf _myCanvas (slot-value this 'f_gameCanvas))
+        (jm_draw_1 _myCanvas (jm_getGraphics_0 (aref (slot-value this 'f_offScreenImage) (jm_getIndex_0 (slot-value this 'f_circularIndexUtil)))))
+        (jm_next_0 (slot-value this 'f_circularIndexUtil))
+        (jm_next_0 (slot-value this 'f_drawCircularIndexUtil)))))
 
-local BufferedGameCanvasPaintHelper = {}
-BufferedGameCanvasPaintHelper.__index = BufferedGameCanvasPaintHelper
-BufferedGameCanvasPaintHelper.className = "BufferedGameCanvasPaintHelper"
-setmetatable(BufferedGameCanvasPaintHelper, {__index = ProcessPaintable})
-
-function BufferedGameCanvasPaintHelper:_init_fields()
-    self.gameCanvas = NullCanvas.NULL_CANVAS
-    self.offScreenImage = java_new_array(nil, BufferedGameCanvasPaintHelper.MAX_IMAGES)
-    self.previousImage = NullImage.NULL_IMAGE
-    self.circularIndexUtil = CircularIndexUtil.createInstance(BufferedGameCanvasPaintHelper.MAX_IMAGES)
-    self.drawCircularIndexUtil = CircularIndexUtil.createInstanceAt(BufferedGameCanvasPaintHelper.MAX_IMAGES - 1, BufferedGameCanvasPaintHelper.MAX_IMAGES)
-    self.anchor = Anchor.TOP_LEFT
-end
-
-
-function BufferedGameCanvasPaintHelper.new(gameCanvas)
-    local self = setmetatable(ProcessPaintable.new(), BufferedGameCanvasPaintHelper)
-    self:_init_fields()
-        error(java_exception("Exception", "No Longer Used"), 0)
-    return self
-end
+    
+(unless (fboundp 'jm_paint_1) (defgeneric jm_paint_1 (this p1)))
+(defmethod jm_paint_1 ((this BufferedGameCanvasPaintHelper) _graphics)
+  (declare (ignorable this _graphics))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_previousImage) (aref (slot-value this 'f_offScreenImage) (jm_getIndex_0 (slot-value this 'f_drawCircularIndexUtil))))
+        (jm_drawImage_4 _graphics (slot-value this 'f_previousImage) 0 0 (slot-value this 'f_anchor)))))
 
 
-function BufferedGameCanvasPaintHelper:process()
-        local myCanvas = (self.gameCanvas)
-        myCanvas:draw(self.offScreenImage[self.circularIndexUtil:getIndex() + 1]:getGraphics())
-        self.circularIndexUtil:next()
-        self.drawCircularIndexUtil:next()
-end
-
-
-function BufferedGameCanvasPaintHelper:paint(graphics)
-        self.previousImage = self.offScreenImage[self.drawCircularIndexUtil:getIndex() + 1]
-        graphics:drawImage(self.previousImage, 0, 0, self.anchor)
-end
-
-BufferedGameCanvasPaintHelper.MAX_IMAGES = 4
-
-return BufferedGameCanvasPaintHelper
 

@@ -1,237 +1,252 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.form
 
--- local Command = require("javax.microedition.lcdui.Command")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local J2MEUtil = require("org.allbinary.J2MEUtil")
-local Animation = require("org.allbinary.animation.Animation")
-local NullAnimationFactory = require("org.allbinary.animation.NullAnimationFactory")
-local RectangleAdjustedAnimation = require("org.allbinary.animation.vector.RectangleAdjustedAnimation")
-local RectangleFilledAdjustedAnimation = require("org.allbinary.animation.vector.RectangleFilledAdjustedAnimation")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local UpdateMyFontInterface = require("org.allbinary.graphics.font.UpdateMyFontInterface")
-local CommandTextItem = require("org.allbinary.graphics.form.item.CommandTextItem")
-local ABCustomItem = require("org.allbinary.graphics.form.item.ABCustomItem")
-local ScrollCurrentSelectionForm = require("org.allbinary.graphics.form.ScrollCurrentSelectionForm")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(defclass CommandCurrentSelectionForm (ScrollCurrentSelectionForm)
+  ((f_selectedAnimationArray :initform nil)
+   (f_unSelectedAnimationArray :initform nil)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(defun CommandCurrentSelectionForm.jnew_6 (_title _items _border _moveForSmallScreen _backgroundBasicColor _foregroundBasicColor)
+  (declare (ignorable _title _items _border _moveForSmallScreen _backgroundBasicColor _foregroundBasicColor))
+  (let ((this (make-instance 'CommandCurrentSelectionForm)))
+    (setf (slot-value this 'f_selectedAnimationArray) (JR.newArray nil 16))
+    (setf (slot-value this 'f_unSelectedAnimationArray) (JR.newArray nil 16))
+  (let ()
+    (block jreturn
+        nil
+        (jm_initAnimations_0 this)
+        (jm_addAll_1 this _items)))
+    this))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(unless (fboundp 'jm_updateMeasurement_1) (defgeneric jm_updateMeasurement_1 (this p1)))
+(defmethod jm_updateMeasurement_1 ((this CommandCurrentSelectionForm) _graphics)
+  (declare (ignorable this _graphics))
+  (let ()
+    (block jreturn
+        (jm_updateAll_2 this _graphics (jm_getAllitems_0 this))
+        (call-next-method this _graphics))))
 
-local CommandCurrentSelectionForm = {}
-CommandCurrentSelectionForm.__index = CommandCurrentSelectionForm
-CommandCurrentSelectionForm.className = "CommandCurrentSelectionForm"
-setmetatable(CommandCurrentSelectionForm, {__index = ScrollCurrentSelectionForm})
+    
+(unless (fboundp 'jm_initAnimations_0) (defgeneric jm_initAnimations_0 (this)))
+(defmethod jm_initAnimations_0 ((this CommandCurrentSelectionForm))
+  (declare (ignorable this))
+  (let (_nullAnimation _index)
+  (declare (ignorable _nullAnimation _index))
+    (block jreturn
+        (setf _nullAnimation (jm_getInstance_1 (NullAnimationFactory.jm_getFactoryInstance_0) 0))
+        (progn
+            (setf _index (length (slot-value this 'f_selectedAnimationArray)))
+            (block jbreak (loop while (>= (setf _index (JR.i32 (- _index 1))) 0) do
+                (block jcontinue
+            (setf (aref (slot-value this 'f_selectedAnimationArray) _index) _nullAnimation)))))
+        (progn
+            (setf _index (length (slot-value this 'f_unSelectedAnimationArray)))
+            (block jbreak (loop while (>= (setf _index (JR.i32 (- _index 1))) 0) do
+                (block jcontinue
+            (setf (aref (slot-value this 'f_unSelectedAnimationArray) _index) _nullAnimation))))))))
 
-function CommandCurrentSelectionForm:_init_fields()
-    self.selectedAnimationArray = java_new_array(nil, 16)
-    self.unSelectedAnimationArray = java_new_array(nil, 16)
-end
+    
+(unless (fboundp 'jm_addAll_1) (defgeneric jm_addAll_1 (this p1)))
+(defmethod jm_addAll_1 ((this CommandCurrentSelectionForm) _items)
+  (declare (ignorable this _items))
+  (let (_index)
+  (declare (ignorable _index))
+    (block jreturn
+        (progn
+            (setf _index (length _items))
+            (block jbreak (loop while (>= (setf _index (JR.i32 (- _index 1))) 0) do
+                (block jcontinue
+            (jm_addAt_2 this _index (aref _items _index)))))))))
+
+    
+(unless (fboundp 'jm_addAt_2) (defgeneric jm_addAt_2 (this p1 p2)))
+(defmethod jm_addAt_2 ((this CommandCurrentSelectionForm) _index _item)
+  (declare (ignorable this _index _item))
+  (let (_basicColorFactory _buttonColor _selectedButtonColor _width _height _adjustedBorder _offset _rectWidth _rectHeight)
+  (declare (ignorable _basicColorFactory _buttonColor _selectedButtonColor _width _height _adjustedBorder _offset _rectWidth _rectHeight))
+    (block jreturn
+        (setf _basicColorFactory (BasicColorFactory.jm_getInstance_0))
+        (setf _buttonColor (slot-value _basicColorFactory 'f_TRANSPARENT_GREY))
+        (setf _selectedButtonColor (slot-value _basicColorFactory 'f_TRANSPARENT_RED))
+        (setf _width (jm_getMinimumWidth_0 _item))
+        (setf _height (jm_getMinimumHeight_0 _item))
+        (setf _adjustedBorder 3)
+        (setf _offset (JR.i32 (- (JR.i32 (+ (slot-value this 'f_halfBorder) _adjustedBorder)))))
+        (setf _rectWidth (JR.i32 (- (JR.i32 (+ _width (slot-value this 'f_border))) _adjustedBorder)))
+        (setf _rectHeight (JR.i32 (- (JR.i32 (+ _height (slot-value this 'f_border))) _adjustedBorder)))
+        (if (or (J2MEUtil.jm_isJ2ME_0) (J2MEUtil.jm_isHTML_0))
+            (progn
+            (setf (aref (slot-value this 'f_selectedAnimationArray) _index) (RectangleAdjustedAnimation.jnew_5 _rectWidth _rectHeight _offset _offset _selectedButtonColor)))
+            (progn
+            (setf (aref (slot-value this 'f_selectedAnimationArray) _index) (RectangleFilledAdjustedAnimation.jnew_5 _rectWidth _rectHeight _offset _offset _selectedButtonColor))))
+        (setf _adjustedBorder 4)
+        (if (or (J2MEUtil.jm_isJ2ME_0) (J2MEUtil.jm_isHTML_0))
+            (progn
+            (setf (aref (slot-value this 'f_unSelectedAnimationArray) _index) (RectangleAdjustedAnimation.jnew_5 _rectWidth _rectHeight _offset _offset _buttonColor)))
+            (progn
+            (setf (aref (slot-value this 'f_unSelectedAnimationArray) _index) (RectangleFilledAdjustedAnimation.jnew_5 _rectWidth _rectHeight _offset _offset _buttonColor)))))))
+
+    
+(unless (fboundp 'jm_updateAll_2) (defgeneric jm_updateAll_2 (this p1 p2)))
+(defmethod jm_updateAll_2 ((this CommandCurrentSelectionForm) _graphics _items)
+  (declare (ignorable this _graphics _items))
+  (let (_index)
+  (declare (ignorable _index))
+    (block jreturn
+        (progn
+            (setf _index (length _items))
+            (block jbreak (loop while (>= (setf _index (JR.i32 (- _index 1))) 0) do
+                (block jcontinue
+            (jm_preMeasurement_1 (aref _items _index) _graphics)
+            (jm_updateAt_2 this _index (aref _items _index)))))))))
+
+    
+(unless (fboundp 'jm_updateAt_2) (defgeneric jm_updateAt_2 (this p1 p2)))
+(defmethod jm_updateAt_2 ((this CommandCurrentSelectionForm) _index _item)
+  (declare (ignorable this _index _item))
+  (let (_basicColorFactory _buttonColor _selectedButtonColor _width _height _adjustedBorder _offset _rectWidth _rectHeight _rectangleAdjustedAnimation)
+  (declare (ignorable _basicColorFactory _buttonColor _selectedButtonColor _width _height _adjustedBorder _offset _rectWidth _rectHeight _rectangleAdjustedAnimation))
+    (block jreturn
+        (setf _basicColorFactory (BasicColorFactory.jm_getInstance_0))
+        (setf _buttonColor (slot-value _basicColorFactory 'f_TRANSPARENT_GREY))
+        (setf _selectedButtonColor (slot-value _basicColorFactory 'f_TRANSPARENT_RED))
+        (setf _width (jm_getMinimumWidth_0 _item))
+        (setf _height (jm_getMinimumHeight_0 _item))
+        (setf _adjustedBorder 3)
+        (setf _offset (JR.i32 (- (JR.i32 (+ (slot-value this 'f_halfBorder) _adjustedBorder)))))
+        (setf _rectWidth (JR.i32 (- (JR.i32 (+ _width (slot-value this 'f_border))) _adjustedBorder)))
+        (setf _rectHeight (JR.i32 (- (JR.i32 (+ _height (slot-value this 'f_border))) _adjustedBorder)))
+        (if (or (J2MEUtil.jm_isJ2ME_0) (J2MEUtil.jm_isHTML_0))
+            (progn
+            (setf _rectangleAdjustedAnimation (aref (slot-value this 'f_selectedAnimationArray) _index))
+            (jm_setWidth_1 _rectangleAdjustedAnimation _rectWidth)
+            (jm_setHeight_1 _rectangleAdjustedAnimation _rectHeight)
+            (jm_setOffsetX_1 _rectangleAdjustedAnimation _offset)
+            (jm_setOffsetY_1 _rectangleAdjustedAnimation _offset)
+            (jm_setBasicColorP_1 _rectangleAdjustedAnimation _selectedButtonColor))
+            (progn
+            (setf _rectangleAdjustedAnimation (aref (slot-value this 'f_selectedAnimationArray) _index))
+            (jm_setWidth_1 _rectangleAdjustedAnimation _rectWidth)
+            (jm_setHeight_1 _rectangleAdjustedAnimation _rectHeight)
+            (jm_setOffsetX_1 _rectangleAdjustedAnimation _offset)
+            (jm_setOffsetY_1 _rectangleAdjustedAnimation _offset)
+            (jm_setBasicColorP_1 _rectangleAdjustedAnimation _selectedButtonColor)))
+        (setf _adjustedBorder 4)
+        (if (or (J2MEUtil.jm_isJ2ME_0) (J2MEUtil.jm_isHTML_0))
+            (progn
+            (setf _rectangleAdjustedAnimation (aref (slot-value this 'f_unSelectedAnimationArray) _index))
+            (jm_setWidth_1 _rectangleAdjustedAnimation _rectWidth)
+            (jm_setHeight_1 _rectangleAdjustedAnimation _rectHeight)
+            (jm_setOffsetX_1 _rectangleAdjustedAnimation _offset)
+            (jm_setOffsetY_1 _rectangleAdjustedAnimation _offset)
+            (jm_setBasicColorP_1 _rectangleAdjustedAnimation _buttonColor))
+            (progn
+            (setf _rectangleAdjustedAnimation (aref (slot-value this 'f_unSelectedAnimationArray) _index))
+            (jm_setWidth_1 _rectangleAdjustedAnimation _rectWidth)
+            (jm_setHeight_1 _rectangleAdjustedAnimation _rectHeight)
+            (jm_setOffsetX_1 _rectangleAdjustedAnimation _offset)
+            (jm_setOffsetY_1 _rectangleAdjustedAnimation _offset)
+            (jm_setBasicColorP_1 _rectangleAdjustedAnimation _buttonColor))))))
+
+    
+(unless (fboundp 'jm_getSelectedCommand_0) (defgeneric jm_getSelectedCommand_0 (this)))
+(defmethod jm_getSelectedCommand_0 ((this CommandCurrentSelectionForm))
+  (declare (ignorable this))
+  (let (_index _commandTextItem)
+  (declare (ignorable _index _commandTextItem))
+    (block jreturn
+        (setf _index (jm_getSelectedIndex_0 this))
+        (setf _commandTextItem (jm_get_1 this _index))
+        (return-from jreturn (jm_getCommand_0 _commandTextItem)))))
+
+    
+(unless (fboundp 'jm_append_1) (defgeneric jm_append_1 (this p1)))
+(defmethod jm_append_1 ((this CommandCurrentSelectionForm) _item)
+  (declare (ignorable this _item))
+  (let (_result)
+  (declare (ignorable _result))
+    (block jreturn
+        (setf _result (call-next-method this _item))
+        (jm_addAt_2 this _result _item)
+        (return-from jreturn _result))))
+
+    
+(unless (fboundp 'jm_delete_1) (defgeneric jm_delete_1 (this p1)))
+(defmethod jm_delete_1 ((this CommandCurrentSelectionForm) _itemNum)
+  (declare (ignorable this _itemNum))
+  (let ()
+    (block jreturn
+        (call-next-method this _itemNum))))
+
+    
+(unless (fboundp 'jm_deleteAll_0) (defgeneric jm_deleteAll_0 (this)))
+(defmethod jm_deleteAll_0 ((this CommandCurrentSelectionForm))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_initAnimations_0 this)
+        (call-next-method this))))
+
+    
+(unless (fboundp 'jm_insert_2) (defgeneric jm_insert_2 (this p1 p2)))
+(defmethod jm_insert_2 ((this CommandCurrentSelectionForm) _itemNum _item)
+  (declare (ignorable this _itemNum _item))
+  (let ()
+    (block jreturn
+        (call-next-method this _itemNum _item))))
+
+    
+(unless (fboundp 'jm_set_2) (defgeneric jm_set_2 (this p1 p2)))
+(defmethod jm_set_2 ((this CommandCurrentSelectionForm) _itemNum _item)
+  (declare (ignorable this _itemNum _item))
+  (let ()
+    (block jreturn
+        (call-next-method this _itemNum _item))))
+
+    
+(unless (fboundp 'jm_paint_1) (defgeneric jm_paint_1 (this p1)))
+(defmethod jm_paint_1 ((this CommandCurrentSelectionForm) _graphics)
+  (declare (ignorable this _graphics))
+  (let ()
+    (block jreturn
+        (jm_process_1 (slot-value this 'f_myFontProcessor) _graphics)
+        (call-next-method this _graphics))))
+
+    
+(unless (fboundp 'jm_paintItem_5) (defgeneric jm_paintItem_5 (this p1 p2 p3 p4 p5)))
+(defmethod jm_paintItem_5 ((this CommandCurrentSelectionForm) _graphics _index _item _x _y)
+  (declare (ignorable this _graphics _index _item _x _y))
+  (let ()
+    (block jreturn
+        (jm_paintXY_3 (aref (slot-value this 'f_selectedAnimationArray) _index) _graphics _x _y)
+        (return-from jreturn (call-next-method this _graphics _index _item _x _y)))))
+
+    
+(unless (fboundp 'jm_paintUnselectedItem_5) (defgeneric jm_paintUnselectedItem_5 (this p1 p2 p3 p4 p5)))
+(defmethod jm_paintUnselectedItem_5 ((this CommandCurrentSelectionForm) _graphics _index _item _x _y)
+  (declare (ignorable this _graphics _index _item _x _y))
+  (let ()
+    (block jreturn
+        (jm_paintXY_3 (aref (slot-value this 'f_unSelectedAnimationArray) _index) _graphics _x _y)
+        (return-from jreturn (call-next-method this _graphics _index _item _x _y)))))
 
 
-function CommandCurrentSelectionForm.new(title, items, border, moveForSmallScreen, backgroundBasicColor, foregroundBasicColor)
-    local self = setmetatable(ScrollCurrentSelectionForm.new(title, items, ItemPaintableFactory.getInstance(), border, -3, moveForSmallScreen, backgroundBasicColor, foregroundBasicColor), CommandCurrentSelectionForm)
-    self:_init_fields()
-        -- super(...) made self above
-        self:initAnimations()
-        self:addAll(items)
-    return self
-end
-
-
-function CommandCurrentSelectionForm:updateMeasurement(graphics)
-        self:updateAll(graphics, self:getAllitems())
-        ScrollCurrentSelectionForm.updateMeasurement(self, graphics)
-end
-
-
-function CommandCurrentSelectionForm:initAnimations()
-        local nullAnimation = NullAnimationFactory.getFactoryInstance():getInstance(0)
-        do
-            local index = (self.selectedAnimationArray.n or #self.selectedAnimationArray)
-            while (function() index = index - 1 return index end)() >= 0 do
-            self.selectedAnimationArray[index + 1] = nullAnimation
-            end
-        end
-        do
-            local index = (self.unSelectedAnimationArray.n or #self.unSelectedAnimationArray)
-            while (function() index = index - 1 return index end)() >= 0 do
-            self.unSelectedAnimationArray[index + 1] = nullAnimation
-            end
-        end
-end
-
-
-function CommandCurrentSelectionForm:addAll(items)
-        do
-            local index = (items.n or #items)
-            while (function() index = index - 1 return index end)() >= 0 do
-            self:addAt(index, items[index + 1])
-            end
-        end
-end
-
-
-function CommandCurrentSelectionForm:addAt(index, item)
-        local basicColorFactory = BasicColorFactory.getInstance()
-        local buttonColor = basicColorFactory.TRANSPARENT_GREY
-        local selectedButtonColor = basicColorFactory.TRANSPARENT_RED
-        local width = item:getMinimumWidth()
-        local height = item:getMinimumHeight()
-        local adjustedBorder = 3
-        local offset = -(self.halfBorder + adjustedBorder)
-        local rectWidth = width + self.border - adjustedBorder
-        local rectHeight = height + self.border - adjustedBorder
-        if J2MEUtil.isJ2ME() or J2MEUtil.isHTML() then
-            self.selectedAnimationArray[index + 1] = RectangleAdjustedAnimation.new(rectWidth, rectHeight, offset, offset, selectedButtonColor)
-        else
-            self.selectedAnimationArray[index + 1] = RectangleFilledAdjustedAnimation.new(rectWidth, rectHeight, offset, offset, selectedButtonColor)
-        end
-        adjustedBorder = 4
-        if J2MEUtil.isJ2ME() or J2MEUtil.isHTML() then
-            self.unSelectedAnimationArray[index + 1] = RectangleAdjustedAnimation.new(rectWidth, rectHeight, offset, offset, buttonColor)
-        else
-            self.unSelectedAnimationArray[index + 1] = RectangleFilledAdjustedAnimation.new(rectWidth, rectHeight, offset, offset, buttonColor)
-        end
-end
-
-
-function CommandCurrentSelectionForm:updateAll(graphics, items)
-        do
-            local index = (items.n or #items)
-            while (function() index = index - 1 return index end)() >= 0 do
-            items[index + 1]:preMeasurement(graphics)
-            self:updateAt(index, items[index + 1])
-            end
-        end
-end
-
-
-function CommandCurrentSelectionForm:updateAt(index, item)
-        local basicColorFactory = BasicColorFactory.getInstance()
-        local buttonColor = basicColorFactory.TRANSPARENT_GREY
-        local selectedButtonColor = basicColorFactory.TRANSPARENT_RED
-        local width = item:getMinimumWidth()
-        local height = item:getMinimumHeight()
-        local adjustedBorder = 3
-        local offset = -(self.halfBorder + adjustedBorder)
-        local rectWidth = width + self.border - adjustedBorder
-        local rectHeight = height + self.border - adjustedBorder
-        if J2MEUtil.isJ2ME() or J2MEUtil.isHTML() then
-            local rectangleAdjustedAnimation = self.selectedAnimationArray[index + 1]
-            rectangleAdjustedAnimation:setWidth(rectWidth)
-            rectangleAdjustedAnimation:setHeight(rectHeight)
-            rectangleAdjustedAnimation:setOffsetX(offset)
-            rectangleAdjustedAnimation:setOffsetY(offset)
-            rectangleAdjustedAnimation:setBasicColorP(selectedButtonColor)
-        else
-            local rectangleAdjustedAnimation = self.selectedAnimationArray[index + 1]
-            rectangleAdjustedAnimation:setWidth(rectWidth)
-            rectangleAdjustedAnimation:setHeight(rectHeight)
-            rectangleAdjustedAnimation:setOffsetX(offset)
-            rectangleAdjustedAnimation:setOffsetY(offset)
-            rectangleAdjustedAnimation:setBasicColorP(selectedButtonColor)
-        end
-        adjustedBorder = 4
-        if J2MEUtil.isJ2ME() or J2MEUtil.isHTML() then
-            local rectangleAdjustedAnimation = self.unSelectedAnimationArray[index + 1]
-            rectangleAdjustedAnimation:setWidth(rectWidth)
-            rectangleAdjustedAnimation:setHeight(rectHeight)
-            rectangleAdjustedAnimation:setOffsetX(offset)
-            rectangleAdjustedAnimation:setOffsetY(offset)
-            rectangleAdjustedAnimation:setBasicColorP(buttonColor)
-        else
-            local rectangleAdjustedAnimation = self.unSelectedAnimationArray[index + 1]
-            rectangleAdjustedAnimation:setWidth(rectWidth)
-            rectangleAdjustedAnimation:setHeight(rectHeight)
-            rectangleAdjustedAnimation:setOffsetX(offset)
-            rectangleAdjustedAnimation:setOffsetY(offset)
-            rectangleAdjustedAnimation:setBasicColorP(buttonColor)
-        end
-end
-
-
-function CommandCurrentSelectionForm:getSelectedCommand()
-        local index = ScrollCurrentSelectionForm.getSelectedIndex(self)
-        local commandTextItem = self:get(index)
-        return commandTextItem:getCommand()
-end
-
-
-function CommandCurrentSelectionForm:append(item)
-        local result = ScrollCurrentSelectionForm.append(self, item)
-        self:addAt(result, item)
-        return result
-end
-
-
-function CommandCurrentSelectionForm:delete(itemNum)
-        ScrollCurrentSelectionForm.delete(self, itemNum)
-end
-
-
-function CommandCurrentSelectionForm:deleteAll()
-        self:initAnimations()
-        ScrollCurrentSelectionForm.deleteAll(self)
-end
-
-
-function CommandCurrentSelectionForm:insert(itemNum, item)
-        ScrollCurrentSelectionForm.insert(self, itemNum, item)
-end
-
-
-function CommandCurrentSelectionForm:set(itemNum, item)
-        ScrollCurrentSelectionForm.set(self, itemNum, item)
-end
-
-
-function CommandCurrentSelectionForm:paint(graphics)
-        self.myFontProcessor:process(graphics)
-        ScrollCurrentSelectionForm.paint(self, graphics)
-end
-
-
--- throws Exception
-function CommandCurrentSelectionForm:paintItem(graphics, index, item, x, y)
-        self.selectedAnimationArray[index + 1]:paintXY(graphics, x, y)
-        return ScrollCurrentSelectionForm.paintItem(self, graphics, index, item, x, y)
-end
-
-
--- throws Exception
-function CommandCurrentSelectionForm:paintUnselectedItem(graphics, index, item, x, y)
-        self.unSelectedAnimationArray[index + 1]:paintXY(graphics, x, y)
-        return ScrollCurrentSelectionForm.paintUnselectedItem(self, graphics, index, item, x, y)
-end
-
-return CommandCurrentSelectionForm
 

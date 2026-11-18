@@ -1,42 +1,35 @@
--- Generated Code Do Not Modify
--- package org.allbinary.view
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.view
 
-local GameInitializedListenerInterface = require("org.allbinary.game.configuration.event.GameInitializedListenerInterface")
-local DemoGameMidletEventListener = require("org.allbinary.game.midlet.DemoGameMidletEventListener")
-local MidletCompositeInterface = require("org.allbinary.midlet.MidletCompositeInterface")
-local EmulatorViewInterface = require("org.allbinary.view.EmulatorViewInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass AllBinaryMidletViewInterface (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun AllBinaryMidletViewInterface.jnew_0 ()
+  (let ((this (make-instance 'AllBinaryMidletViewInterface)))
+    this))
 
--- Java interface
-local AllBinaryMidletViewInterface = {}
-AllBinaryMidletViewInterface.__index = AllBinaryMidletViewInterface
-AllBinaryMidletViewInterface.className = "AllBinaryMidletViewInterface"
-setmetatable(AllBinaryMidletViewInterface, {__index = MidletCompositeInterface})
+    
+(unless (fboundp 'jm_onResume_0) (defgeneric jm_onResume_0 (this)))
+(defmethod jm_onResume_0 ((this AllBinaryMidletViewInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "onResume")))
 
+    
+(unless (fboundp 'jm_onPause_0) (defgeneric jm_onPause_0 (this)))
+(defmethod jm_onPause_0 ((this AllBinaryMidletViewInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "onPause")))
 
-function AllBinaryMidletViewInterface:onResume()
-    error("abstract method onResume")
-end
-
-
-function AllBinaryMidletViewInterface:onPause()
-    error("abstract method onPause")
-end
+    
+(unless (fboundp 'jm_onDestroy_0) (defgeneric jm_onDestroy_0 (this)))
+(defmethod jm_onDestroy_0 ((this AllBinaryMidletViewInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "onDestroy")))
 
 
-function AllBinaryMidletViewInterface:onDestroy()
-    error("abstract method onDestroy")
-end
-
-return AllBinaryMidletViewInterface
 

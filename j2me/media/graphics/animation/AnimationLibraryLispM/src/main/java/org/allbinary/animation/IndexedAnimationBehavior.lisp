@@ -1,56 +1,50 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2022 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation
 
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass IndexedAnimationBehavior (AnimationBehavior)
+  ((f_frameDelayTime :initform 0)
+   (f_loopTotal :initform 0)
+   (f_elapsedTime :initform 0)
+   (f_loopIndex :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun IndexedAnimationBehavior.jnew_2 (_loopTotal _frameDelayTime)
+  (declare (ignorable _loopTotal _frameDelayTime))
+  (let ((this (make-instance 'IndexedAnimationBehavior)))
+    
+    
+    
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_loopTotal) _loopTotal)
+        (setf (slot-value this 'f_frameDelayTime) _frameDelayTime)))
+    this))
 
-local IndexedAnimationBehavior = {}
-IndexedAnimationBehavior.__index = IndexedAnimationBehavior
-IndexedAnimationBehavior.className = "IndexedAnimationBehavior"
-setmetatable(IndexedAnimationBehavior, {__index = AnimationBehavior})
-
-function IndexedAnimationBehavior:_init_fields()
-    self.frameDelayTime = nil
-    self.loopTotal = nil
-    self.elapsedTime = 0
-    self.loopIndex = 0
-end
-
-
-function IndexedAnimationBehavior.new(loopTotal, frameDelayTime)
-    local self = setmetatable(AnimationBehavior.new(), IndexedAnimationBehavior)
-    self:_init_fields()
-        self.loopTotal = loopTotal
-        self.frameDelayTime = frameDelayTime
-    return self
-end
+    
+(unless (fboundp 'jm_reset_0) (defgeneric jm_reset_0 (this)))
+(defmethod jm_reset_0 ((this IndexedAnimationBehavior))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_loopIndex) 0))))
 
 
-function IndexedAnimationBehavior:reset()
-        self.loopIndex = 0
-end
-
-return IndexedAnimationBehavior
 

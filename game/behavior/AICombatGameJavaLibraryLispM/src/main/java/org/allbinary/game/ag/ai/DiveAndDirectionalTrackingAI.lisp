@@ -1,348 +1,387 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.ag.ai
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
-local ArtificialIntelligenceInterface = require("org.allbinary.ai.ArtificialIntelligenceInterface")
-local Direction = require("org.allbinary.direction.Direction")
-local DirectionFactory = require("org.allbinary.direction.DirectionFactory")
-local DirectionalCompositeInterface = require("org.allbinary.direction.DirectionalCompositeInterface")
-local DirectionalInterface = require("org.allbinary.direction.DirectionalInterface")
-local BasicAI = require("org.allbinary.game.ai.BasicAI")
-local DestroyedEvent = require("org.allbinary.game.combat.destroy.event.DestroyedEvent")
-local DestroyedEventHandler = require("org.allbinary.game.combat.destroy.event.DestroyedEventHandler")
-local DestroyedEventListenerInterface = require("org.allbinary.game.combat.destroy.event.DestroyedEventListenerInterface")
-local Group = require("org.allbinary.game.identification.Group")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local BasicVelocityProperties = require("org.allbinary.game.physics.velocity.BasicVelocityProperties")
-local VelocityInterfaceCompositeInterface = require("org.allbinary.game.physics.velocity.VelocityInterfaceCompositeInterface")
-local TrackingEvent = require("org.allbinary.game.tracking.TrackingEvent")
-local TrackingEventHandler = require("org.allbinary.game.tracking.TrackingEventHandler")
-local TrackingEventListenerInterface = require("org.allbinary.game.tracking.TrackingEventListenerInterface")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
-local MathUtil = require("org.allbinary.logic.math.MathUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventStrings = require("org.allbinary.logic.util.event.EventStrings")
-local Visitor = require("org.allbinary.logic.util.visitor.Visitor")
-local GameTickTimeDelayHelper = require("org.allbinary.time.GameTickTimeDelayHelper")
-local GameTickTimeDelayHelperFactory = require("org.allbinary.time.GameTickTimeDelayHelperFactory")
-local TimeDelayHelper = require("org.allbinary.time.TimeDelayHelper")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass DiveAndDirectionalTrackingAI (BasicAI)
+  ((f_mathUtil :initform nil)
+   (f_directionFactory :initform nil)
+   (f_gameTickTimeDelayHelper :initform nil)
+   (f_timeDelayHelper :initform nil)
+   (f_list :initform nil)
+   (f_directionalInterface :initform nil)
+   (f_velocityInterface :initform nil)
+   (f_directionToKeyMap :initform nil)
+   (f_initialDropped :initform nil)
+   (f_diveP :initform nil)
+   (f_directionOfTarget :initform nil)
+   (f_MIN_DISTANCE :initform 0)
+   (f_lastTrackingLayerInterface :initform nil)
+   (f_artificialIntelligenceInterface :initform nil)
+   (f_aiVistor :initform nil)
+   (f_lastDirection :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun DiveAndDirectionalTrackingAI.jnew_4 (_ownerLayerInterface _artificialIntelligenceInterface _gameInput _visitor)
+  (declare (ignorable _ownerLayerInterface _artificialIntelligenceInterface _gameInput _visitor))
+  (let ((this (make-instance 'DiveAndDirectionalTrackingAI)))
+    (setf (slot-value this 'f_mathUtil) (MathUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_directionFactory) (DirectionFactory.jm_getInstance_0))
+    (setf (slot-value this 'f_gameTickTimeDelayHelper) (GameTickTimeDelayHelperFactory.jm_getInstance_0))
+    (setf (slot-value this 'f_timeDelayHelper) (TimeDelayHelper.jnew_1 500))
+    (setf (slot-value this 'f_list) (BasicArrayListD.jnew_0))
+    
+    
+    (setf (slot-value this 'f_directionToKeyMap) (vector (Canvas.jstatic_LEFT) (Canvas.jstatic_DOWN) (Canvas.jstatic_UP) (Canvas.jstatic_RIGHT)))
+    
+    
+    (setf (slot-value this 'f_directionOfTarget) (Direction.jm_getInstance_1 0))
+    (setf (slot-value this 'f_MIN_DISTANCE) 40)
+    (setf (slot-value this 'f_lastTrackingLayerInterface) (AllBinaryLayer.jstatic_NULL_ALLBINARY_LAYER))
+    
+    
+    (setf (slot-value this 'f_lastDirection) (slot-value (DirectionFactory.jm_getInstance_0) 'f_NO_DIRECTION))
+  (let (_directionalCompositeInterface _velocityInterfaceCompositeInterface)
+  (declare (ignorable _directionalCompositeInterface _velocityInterfaceCompositeInterface))
+    (block jreturn
+        nil
+        (setf (slot-value this 'f_aiVistor) _visitor)
+        (setf (slot-value this 'f_artificialIntelligenceInterface) _artificialIntelligenceInterface)
+        (setf _directionalCompositeInterface (jm_getOwnerLayerInterface_0 this))
+        (setf (slot-value this 'f_directionalInterface) (jm_getDirectionalInterface_0 _directionalCompositeInterface))
+        (setf _velocityInterfaceCompositeInterface (jm_getOwnerLayerInterface_0 this))
+        (setf (slot-value this 'f_velocityInterface) (jm_getVelocityProperties_0 _velocityInterfaceCompositeInterface))
+        (jm_addListenerInterface_1 (DestroyedEventHandler.jm_getInstance_0) this)
+        (jm_init_0 this)))
+    this))
 
-local DiveAndDirectionalTrackingAI = {}
-DiveAndDirectionalTrackingAI.__index = DiveAndDirectionalTrackingAI
-DiveAndDirectionalTrackingAI.className = "DiveAndDirectionalTrackingAI"
-setmetatable(DiveAndDirectionalTrackingAI, {__index = BasicAI})
+    
+(unless (fboundp 'jm_processAI_1) (defgeneric jm_processAI_1 (this p1)))
+(defmethod jm_processAI_1 ((this DiveAndDirectionalTrackingAI) _allBinaryLayerManager)
+  (declare (ignorable this _allBinaryLayerManager))
+  (let ()
+    (block jreturn
+        (if (jm_isBeyondTarget_0 this)
+            (progn
+            (jm_init_0 this)
+            (jm_zero_0 (slot-value this 'f_velocityInterface))))
+        (if (not (slot-value this 'f_diveP))
+            (progn
+            (jm_target_1 this _allBinaryLayerManager))
+            (progn
+            (jm_dive_0 this)
+            (jm_attack_0 this)))
+        (jm_clear_0 (slot-value this 'f_list)))))
 
-function DiveAndDirectionalTrackingAI:_init_fields()
-    self.mathUtil = MathUtil.getInstance()
-    self.directionFactory = DirectionFactory.getInstance()
-    self.gameTickTimeDelayHelper = GameTickTimeDelayHelperFactory.getInstance()
-    self.timeDelayHelper = TimeDelayHelper.new(500)
-    self.list = BasicArrayListD.new()
-    self.directionalInterface = nil
-    self.velocityInterface = nil
-    self.directionToKeyMap = {Canvas.LEFT, Canvas.DOWN, Canvas.UP, Canvas.RIGHT}
-    self.initialDropped = false
-    self.diveP = false
-    self.directionOfTarget = Direction.getInstance(0)
-    self.MIN_DISTANCE = 40
-    self.lastTrackingLayerInterface = AllBinaryLayer.NULL_ALLBINARY_LAYER
-    self.artificialIntelligenceInterface = nil
-    self.aiVistor = nil
-    self.lastDirection = DirectionFactory.getInstance().NO_DIRECTION
-end
+    
+(unless (fboundp 'jm_init_0) (defgeneric jm_init_0 (this)))
+(defmethod jm_init_0 ((this DiveAndDirectionalTrackingAI))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_diveP) nil)
+        (setf (slot-value this 'f_directionOfTarget) (slot-value (DirectionFactory.jm_getInstance_0) 'f_NOT_BORDERED_WITH))
+        (jm_addListenerInterface_1 (TrackingEventHandler.jm_getInstance_0) this))))
+
+    
+(unless (fboundp 'jm_target_1) (defgeneric jm_target_1 (this p1)))
+(defmethod jm_target_1 ((this DiveAndDirectionalTrackingAI) _allBinaryLayerManager)
+  (declare (ignorable this _allBinaryLayerManager))
+  (let (_lastTrackingEvent _layerInterface _ownerLayerInterface _groupArray _ownerGroupArray _x _y _yDistance _xDistance _directionFactory)
+  (declare (ignorable _lastTrackingEvent _layerInterface _ownerLayerInterface _groupArray _ownerGroupArray _x _y _yDistance _xDistance _directionFactory))
+    (block jreturn
+        (if (= (jm_size_0 (slot-value this 'f_list)) 0)
+            (progn
+            (return-from jreturn)))
+        (setf _lastTrackingEvent (jm_removeAt_1 (slot-value this 'f_list) 0))
+        (setf (slot-value this 'f_lastTrackingLayerInterface) (jm_getLayerInterface_0 _lastTrackingEvent))
+        (setf _layerInterface (slot-value this 'f_lastTrackingLayerInterface))
+        (setf _ownerLayerInterface (jm_getOwnerLayerInterface_0 this))
+        (setf _groupArray (jm_getGroupInterface_0 _layerInterface))
+        (setf _ownerGroupArray (jm_getGroupInterface_0 _ownerLayerInterface))
+        (if (eq _groupArray _ownerGroupArray)
+            (progn
+            (return-from jreturn)))
+        (setf _x (jm_getXP_0 (slot-value this 'f_lastTrackingLayerInterface)))
+        (setf _y (jm_getYP_0 (slot-value this 'f_lastTrackingLayerInterface)))
+        (setf _yDistance (JR.i32 (- (JR.i32 (- (jm_getYP_0 _ownerLayerInterface) _y)) (jm_getHeight_0 _ownerLayerInterface))))
+        (setf _xDistance (JR.i32 (- (JR.i32 (- (jm_getXP_0 _ownerLayerInterface) _x)) (jm_getWidth_0 _ownerLayerInterface))))
+        (setf _directionFactory (DirectionFactory.jm_getInstance_0))
+        (if (> (jm_abs_1 (slot-value this 'f_mathUtil) _yDistance) (jm_abs_1 (slot-value this 'f_mathUtil) _xDistance))
+            (progn
+            (if (> _yDistance (slot-value this 'f_MIN_DISTANCE))
+                (progn
+                (setf (slot-value this 'f_directionOfTarget) (slot-value _directionFactory 'f_UP)))
+                (if (< _yDistance (JR.i32 (- (slot-value this 'f_MIN_DISTANCE))))
+                (progn
+                (setf (slot-value this 'f_directionOfTarget) (slot-value _directionFactory 'f_DOWN))))))
+            (progn
+            (if (> _xDistance (slot-value this 'f_MIN_DISTANCE))
+                (progn
+                (setf (slot-value this 'f_directionOfTarget) (slot-value _directionFactory 'f_LEFT)))
+                (if (< _xDistance (JR.i32 (- (slot-value this 'f_MIN_DISTANCE))))
+                (progn
+                (setf (slot-value this 'f_directionOfTarget) (slot-value _directionFactory 'f_RIGHT)))))))
+        (if (and (not (slot-value this 'f_initialDropped)) (not (eq (slot-value this 'f_directionOfTarget) (slot-value _directionFactory 'f_NOT_BORDERED_WITH))))
+            (progn
+            (jm_drop_0 this)))
+        (if (slot-value this 'f_initialDropped)
+            (progn
+            (if (or (eq (slot-value this 'f_directionOfTarget) (slot-value _directionFactory 'f_UP)) (eq (slot-value this 'f_directionOfTarget) (slot-value _directionFactory 'f_DOWN)))
+                (progn
+                (jm_verticalTargeting_1 this _x))
+                (if (or (eq (slot-value this 'f_directionOfTarget) (slot-value _directionFactory 'f_LEFT)) (eq (slot-value this 'f_directionOfTarget) (slot-value _directionFactory 'f_RIGHT)))
+                (progn
+                (jm_horizontalTargeting_1 this _y))
+                (progn
+                (jm_processAI_1 (slot-value this 'f_artificialIntelligenceInterface) _allBinaryLayerManager)))))))))
+
+    
+(unless (fboundp 'jm_verticalTargeting_1) (defgeneric jm_verticalTargeting_1 (this p1)))
+(defmethod jm_verticalTargeting_1 ((this DiveAndDirectionalTrackingAI) _x)
+  (declare (ignorable this _x))
+  (let (_ownerLayerInterface)
+  (declare (ignorable _ownerLayerInterface))
+    (block jreturn
+        (setf _ownerLayerInterface (jm_getOwnerLayerInterface_0 this))
+        (if (< (jm_getXP_0 _ownerLayerInterface) _x)
+            (progn
+            (jm_moveRight_0 this)))
+        (if (> (jm_getXP_0 _ownerLayerInterface) _x)
+            (progn
+            (jm_moveLeft_0 this)))
+        (if (and (> (jm_getXP_0 _ownerLayerInterface) (JR.i32 (- _x 3))) (< (jm_getXP_0 _ownerLayerInterface) (JR.i32 (+ _x 3))))
+            (progn
+            (jm_setDive_0 this))))))
+
+    
+(unless (fboundp 'jm_horizontalTargeting_1) (defgeneric jm_horizontalTargeting_1 (this p1)))
+(defmethod jm_horizontalTargeting_1 ((this DiveAndDirectionalTrackingAI) _y)
+  (declare (ignorable this _y))
+  (let (_ownerLayerInterface)
+  (declare (ignorable _ownerLayerInterface))
+    (block jreturn
+        (setf _ownerLayerInterface (jm_getOwnerLayerInterface_0 this))
+        (if (< (jm_getYP_0 _ownerLayerInterface) _y)
+            (progn
+            (jm_moveDown_0 this)))
+        (if (> (jm_getYP_0 _ownerLayerInterface) _y)
+            (progn
+            (jm_moveUp_0 this)))
+        (if (and (> (jm_getYP_0 _ownerLayerInterface) (JR.i32 (- _y 3))) (< (jm_getYP_0 _ownerLayerInterface) (JR.i32 (+ _y 3))))
+            (progn
+            (jm_setDive_0 this))))))
+
+    
+(unless (fboundp 'jm_setDive_0) (defgeneric jm_setDive_0 (this)))
+(defmethod jm_setDive_0 ((this DiveAndDirectionalTrackingAI))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_diveP) t)
+        (jm_zero_0 (slot-value this 'f_velocityInterface))
+        (jm_removeListener_1 (TrackingEventHandler.jm_getInstance_0) this))))
+
+    
+(unless (fboundp 'jm_moveRight_0) (defgeneric jm_moveRight_0 (this)))
+(defmethod jm_moveRight_0 ((this DiveAndDirectionalTrackingAI))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_setLastDirection_1 this (slot-value (slot-value this 'f_directionFactory) 'f_RIGHT))
+        (jm_setFrameByDirection_1 (slot-value this 'f_directionalInterface) (slot-value this 'f_lastDirection))
+        (jm_visit_1 (slot-value this 'f_aiVistor) this))))
+
+    
+(unless (fboundp 'jm_moveLeft_0) (defgeneric jm_moveLeft_0 (this)))
+(defmethod jm_moveLeft_0 ((this DiveAndDirectionalTrackingAI))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_setLastDirection_1 this (slot-value (slot-value this 'f_directionFactory) 'f_LEFT))
+        (jm_setFrameByDirection_1 (slot-value this 'f_directionalInterface) (slot-value this 'f_lastDirection))
+        (jm_visit_1 (slot-value this 'f_aiVistor) this))))
+
+    
+(unless (fboundp 'jm_moveDown_0) (defgeneric jm_moveDown_0 (this)))
+(defmethod jm_moveDown_0 ((this DiveAndDirectionalTrackingAI))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_setLastDirection_1 this (slot-value (slot-value this 'f_directionFactory) 'f_DOWN))
+        (jm_setFrameByDirection_1 (slot-value this 'f_directionalInterface) (slot-value this 'f_lastDirection))
+        (jm_visit_1 (slot-value this 'f_aiVistor) this))))
+
+    
+(unless (fboundp 'jm_moveUp_0) (defgeneric jm_moveUp_0 (this)))
+(defmethod jm_moveUp_0 ((this DiveAndDirectionalTrackingAI))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_setLastDirection_1 this (slot-value (slot-value this 'f_directionFactory) 'f_UP))
+        (jm_setFrameByDirection_1 (slot-value this 'f_directionalInterface) (slot-value this 'f_lastDirection))
+        (jm_visit_1 (slot-value this 'f_aiVistor) this))))
+
+    
+(unless (fboundp 'jm_dive_0) (defgeneric jm_dive_0 (this)))
+(defmethod jm_dive_0 ((this DiveAndDirectionalTrackingAI))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_setFrameByDirection_1 (slot-value this 'f_directionalInterface) (slot-value this 'f_directionOfTarget))
+        (jm_visit_1 (slot-value this 'f_aiVistor) this))))
+
+    
+(unless (fboundp 'jm_attack_0) (defgeneric jm_attack_0 (this)))
+(defmethod jm_attack_0 ((this DiveAndDirectionalTrackingAI))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_processKeyAI_1 this (Canvas.jstatic_KEY_NUM1)))))
+
+    
+(unless (fboundp 'jm_drop_0) (defgeneric jm_drop_0 (this)))
+(defmethod jm_drop_0 ((this DiveAndDirectionalTrackingAI))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (if (jm_isTime_1 (slot-value this 'f_timeDelayHelper) (slot-value (slot-value this 'f_gameTickTimeDelayHelper) 'f_startTime))
+            (progn
+            (setf (slot-value this 'f_initialDropped) t)
+            (jm_visit_1 (slot-value this 'f_aiVistor) this))))))
+
+    
+(unless (fboundp 'jm_isBeyondTarget_0) (defgeneric jm_isBeyondTarget_0 (this)))
+(defmethod jm_isBeyondTarget_0 ((this DiveAndDirectionalTrackingAI))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (if (eq (slot-value this 'f_directionOfTarget) (slot-value (slot-value this 'f_directionFactory) 'f_DOWN))
+            (progn
+            (if (> (jm_getYP_0 (jm_getOwnerLayerInterface_0 this)) (JR.i32 (+ (jm_getYP_0 (slot-value this 'f_lastTrackingLayerInterface)) (slot-value this 'f_MIN_DISTANCE))))
+                (progn
+                (return-from jreturn t))
+                (progn
+                (return-from jreturn nil))))
+            (if (eq (slot-value this 'f_directionOfTarget) (slot-value (slot-value this 'f_directionFactory) 'f_UP))
+            (progn
+            (if (< (jm_getYP_0 (jm_getOwnerLayerInterface_0 this)) (JR.i32 (+ (jm_getYP_0 (slot-value this 'f_lastTrackingLayerInterface)) (slot-value this 'f_MIN_DISTANCE))))
+                (progn
+                (return-from jreturn t))
+                (progn
+                (return-from jreturn nil))))
+            (if (eq (slot-value this 'f_directionOfTarget) (slot-value (slot-value this 'f_directionFactory) 'f_RIGHT))
+            (progn
+            (if (> (jm_getXP_0 (jm_getOwnerLayerInterface_0 this)) (JR.i32 (+ (jm_getXP_0 (slot-value this 'f_lastTrackingLayerInterface)) (slot-value this 'f_MIN_DISTANCE))))
+                (progn
+                (return-from jreturn t))
+                (progn
+                (return-from jreturn nil))))
+            (if (eq (slot-value this 'f_directionOfTarget) (slot-value (slot-value this 'f_directionFactory) 'f_LEFT))
+            (progn
+            (if (< (jm_getXP_0 (jm_getOwnerLayerInterface_0 this)) (JR.i32 (+ (jm_getXP_0 (slot-value this 'f_lastTrackingLayerInterface)) (slot-value this 'f_MIN_DISTANCE))))
+                (progn
+                (return-from jreturn t))
+                (progn
+                (return-from jreturn nil))))
+            (progn
+            (return-from jreturn nil)))))))))
+
+    
+(unless (fboundp 'jm_onEvent_1) (defgeneric jm_onEvent_1 (this p1)))
+(defmethod jm_onEvent_1 ((this DiveAndDirectionalTrackingAI) _eventObject)
+  (declare (ignorable this _eventObject))
+  (let ()
+    (block jreturn
+        (ForcedLogUtil.jm_log_2 (slot-value (EventStrings.jm_getInstance_0) 'f_PERFORMANCE_MESSAGE) this))))
+
+    
+(unless (fboundp 'jm_onMovement_1) (defgeneric jm_onMovement_1 (this p1)))
+(defmethod jm_onMovement_1 ((this DiveAndDirectionalTrackingAI) _trackingEvent)
+  (declare (ignorable this _trackingEvent))
+  (let ()
+    (block jreturn
+        (jm_add_1 (slot-value this 'f_list) _trackingEvent))))
+
+    
+(unless (fboundp 'jm_onDestroyed_1) (defgeneric jm_onDestroyed_1 (this p1)))
+(defmethod jm_onDestroyed_1 ((this DiveAndDirectionalTrackingAI) _destroyedEvent)
+  (declare (ignorable this _destroyedEvent))
+  (let ()
+    (block jreturn
+        (if (eq (jm_getOwnerLayerInterface_0 this) (jm_getLayerInterface_0 _destroyedEvent))
+            (progn
+            (jm_removeListener_1 (TrackingEventHandler.jm_getInstance_0) this)
+            (jm_removeListener_1 (DestroyedEventHandler.jm_getInstance_0) this))))))
+
+    
+(unless (fboundp 'jm_setLastDirection_1) (defgeneric jm_setLastDirection_1 (this p1)))
+(defmethod jm_setLastDirection_1 ((this DiveAndDirectionalTrackingAI) _lastDirection)
+  (declare (ignorable this _lastDirection))
+  (let (_value)
+  (declare (ignorable _value))
+    (block jreturn
+        (setf (slot-value this 'f_lastDirection) _lastDirection)
+        (setf _value (jm_getValue_0 (jm_getLastDirection_0 this)))
+        (if (< _value 4)
+            (progn
+            (jm_setLastKey_1 this (aref (slot-value this 'f_directionToKeyMap) _value)))))))
+
+    
+(unless (fboundp 'jm_setLastKey_1) (defgeneric jm_setLastKey_1 (this p1)))
+(defmethod jm_setLastKey_1 ((this DiveAndDirectionalTrackingAI) _lastKey)
+  (declare (ignorable this _lastKey))
+  (let ()
+    (block jreturn
+        (call-next-method this _lastKey)
+        (if (eq (jm_getLastKey_0 this) (Canvas.jstatic_LEFT))
+            (progn
+            (setf (slot-value this 'f_lastDirection) (slot-value (DirectionFactory.jm_getInstance_0) 'f_LEFT)))
+            (if (eq (jm_getLastKey_0 this) (Canvas.jstatic_DOWN))
+            (progn
+            (setf (slot-value this 'f_lastDirection) (slot-value (DirectionFactory.jm_getInstance_0) 'f_DOWN)))
+            (if (eq (jm_getLastKey_0 this) (Canvas.jstatic_UP))
+            (progn
+            (setf (slot-value this 'f_lastDirection) (slot-value (DirectionFactory.jm_getInstance_0) 'f_UP)))
+            (if (eq (jm_getLastKey_0 this) (Canvas.jstatic_RIGHT))
+            (progn
+            (setf (slot-value this 'f_lastDirection) (slot-value (DirectionFactory.jm_getInstance_0) 'f_RIGHT))))))))))
+
+    
+(unless (fboundp 'jm_getLastDirection_0) (defgeneric jm_getLastDirection_0 (this)))
+(defmethod jm_getLastDirection_0 ((this DiveAndDirectionalTrackingAI))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_lastDirection)))))
+
+    
+(unless (fboundp 'jm_toString_0) (defgeneric jm_toString_0 (this)))
+(defmethod jm_toString_0 ((this DiveAndDirectionalTrackingAI))
+  (declare (ignorable this))
+  (let (_stringBuffer)
+  (declare (ignorable _stringBuffer))
+    (block jreturn
+        (setf _stringBuffer (StringMaker.jnew_0))
+        (jm_append_1 _stringBuffer (call-next-method this))
+        (jm_append_1 _stringBuffer " LastDirection: ")
+        (jm_append_1 _stringBuffer (jm_toString_1 (StringUtil.jm_getInstance_0) (jm_getLastDirection_0 this)))
+        (return-from jreturn (jm_toString_0 _stringBuffer)))))
 
 
-function DiveAndDirectionalTrackingAI.new(ownerLayerInterface, artificialIntelligenceInterface, gameInput, visitor)
-    local self = setmetatable(BasicAI.new(ownerLayerInterface, gameInput), DiveAndDirectionalTrackingAI)
-    self:_init_fields()
-        -- super(...) made self above
-        self.aiVistor = visitor
-        self.artificialIntelligenceInterface = artificialIntelligenceInterface
-        local directionalCompositeInterface = self:getOwnerLayerInterface()
-        self.directionalInterface = directionalCompositeInterface:getDirectionalInterface()
-        local velocityInterfaceCompositeInterface = self:getOwnerLayerInterface()
-        self.velocityInterface = velocityInterfaceCompositeInterface:getVelocityProperties()
-        DestroyedEventHandler.getInstance():addListenerInterface(self)
-        self:init()
-    return self
-end
-
-
--- throws Exception
-function DiveAndDirectionalTrackingAI:processAI(allBinaryLayerManager)
-        if self:isBeyondTarget() then
-            self:init()
-            self.velocityInterface:zero()
-        end
-        if not self.diveP then
-            self:target(allBinaryLayerManager)
-        else
-            self:dive()
-            self:attack()
-        end
-        self.list:clear()
-end
-
-
-function DiveAndDirectionalTrackingAI:init()
-        self.diveP = false
-        self.directionOfTarget = DirectionFactory.getInstance().NOT_BORDERED_WITH
-        TrackingEventHandler.getInstance():addListenerInterface(self)
-end
-
-
--- throws Exception
-function DiveAndDirectionalTrackingAI:target(allBinaryLayerManager)
-        if self.list:size() == 0 then
-            return
-        end
-        local lastTrackingEvent = self.list:removeAt(0)
-        self.lastTrackingLayerInterface = lastTrackingEvent:getLayerInterface()
-        local layerInterface = self.lastTrackingLayerInterface
-        local ownerLayerInterface = self:getOwnerLayerInterface()
-        local groupArray = layerInterface:getGroupInterface()
-        local ownerGroupArray = ownerLayerInterface:getGroupInterface()
-        if groupArray == ownerGroupArray then
-            return
-        end
-        local x = self.lastTrackingLayerInterface:getXP()
-        local y = self.lastTrackingLayerInterface:getYP()
-        local yDistance = ownerLayerInterface:getYP() - y - ownerLayerInterface:getHeight()
-        local xDistance = ownerLayerInterface:getXP() - x - ownerLayerInterface:getWidth()
-        local directionFactory = DirectionFactory.getInstance()
-        if self.mathUtil:abs(yDistance) > self.mathUtil:abs(xDistance) then
-            if yDistance > self.MIN_DISTANCE then
-                self.directionOfTarget = directionFactory.UP
-            elseif yDistance < -self.MIN_DISTANCE then
-                self.directionOfTarget = directionFactory.DOWN
-            end
-        else
-            if xDistance > self.MIN_DISTANCE then
-                self.directionOfTarget = directionFactory.LEFT
-            elseif xDistance < -self.MIN_DISTANCE then
-                self.directionOfTarget = directionFactory.RIGHT
-            end
-        end
-        if not self.initialDropped and self.directionOfTarget ~= directionFactory.NOT_BORDERED_WITH then
-            self:drop()
-        end
-        if self.initialDropped then
-            if self.directionOfTarget == directionFactory.UP or self.directionOfTarget == directionFactory.DOWN then
-                self:verticalTargeting(x)
-            elseif self.directionOfTarget == directionFactory.LEFT or self.directionOfTarget == directionFactory.RIGHT then
-                self:horizontalTargeting(y)
-            else
-                self.artificialIntelligenceInterface:processAI(allBinaryLayerManager)
-            end
-        end
-end
-
-
--- throws Exception
-function DiveAndDirectionalTrackingAI:verticalTargeting(x)
-        local ownerLayerInterface = self:getOwnerLayerInterface()
-        if ownerLayerInterface:getXP() < x then
-            self:moveRight()
-        end
-        if ownerLayerInterface:getXP() > x then
-            self:moveLeft()
-        end
-        if ownerLayerInterface:getXP() > x - 3 and ownerLayerInterface:getXP() < x + 3 then
-            self:setDive()
-        end
-end
-
-
--- throws Exception
-function DiveAndDirectionalTrackingAI:horizontalTargeting(y)
-        local ownerLayerInterface = self:getOwnerLayerInterface()
-        if ownerLayerInterface:getYP() < y then
-            self:moveDown()
-        end
-        if ownerLayerInterface:getYP() > y then
-            self:moveUp()
-        end
-        if ownerLayerInterface:getYP() > y - 3 and ownerLayerInterface:getYP() < y + 3 then
-            self:setDive()
-        end
-end
-
-
-function DiveAndDirectionalTrackingAI:setDive()
-        self.diveP = true
-        self.velocityInterface:zero()
-        TrackingEventHandler.getInstance():removeListener(self)
-end
-
-
--- throws Exception
-function DiveAndDirectionalTrackingAI:moveRight()
-        self:setLastDirection(self.directionFactory.RIGHT)
-        self.directionalInterface:setFrameByDirection(self.lastDirection)
-        self.aiVistor:visit(self)
-end
-
-
--- throws Exception
-function DiveAndDirectionalTrackingAI:moveLeft()
-        self:setLastDirection(self.directionFactory.LEFT)
-        self.directionalInterface:setFrameByDirection(self.lastDirection)
-        self.aiVistor:visit(self)
-end
-
-
--- throws Exception
-function DiveAndDirectionalTrackingAI:moveDown()
-        self:setLastDirection(self.directionFactory.DOWN)
-        self.directionalInterface:setFrameByDirection(self.lastDirection)
-        self.aiVistor:visit(self)
-end
-
-
--- throws Exception
-function DiveAndDirectionalTrackingAI:moveUp()
-        self:setLastDirection(self.directionFactory.UP)
-        self.directionalInterface:setFrameByDirection(self.lastDirection)
-        self.aiVistor:visit(self)
-end
-
-
--- throws Exception
-function DiveAndDirectionalTrackingAI:dive()
-        self.directionalInterface:setFrameByDirection(self.directionOfTarget)
-        self.aiVistor:visit(self)
-end
-
-
--- throws Exception
-function DiveAndDirectionalTrackingAI:attack()
-        BasicAI.processKeyAI(self, Canvas.KEY_NUM1)
-end
-
-
--- throws Exception
-function DiveAndDirectionalTrackingAI:drop()
-        if self.timeDelayHelper:isTime(self.gameTickTimeDelayHelper.startTime) then
-            self.initialDropped = true
-            self.aiVistor:visit(self)
-        end
-end
-
-
-function DiveAndDirectionalTrackingAI:isBeyondTarget()
-        if self.directionOfTarget == self.directionFactory.DOWN then
-            if self:getOwnerLayerInterface():getYP() > self.lastTrackingLayerInterface:getYP() + self.MIN_DISTANCE then
-                return true
-            else
-                return false
-            end
-        elseif self.directionOfTarget == self.directionFactory.UP then
-            if self:getOwnerLayerInterface():getYP() < self.lastTrackingLayerInterface:getYP() + self.MIN_DISTANCE then
-                return true
-            else
-                return false
-            end
-        elseif self.directionOfTarget == self.directionFactory.RIGHT then
-            if self:getOwnerLayerInterface():getXP() > self.lastTrackingLayerInterface:getXP() + self.MIN_DISTANCE then
-                return true
-            else
-                return false
-            end
-        elseif self.directionOfTarget == self.directionFactory.LEFT then
-            if self:getOwnerLayerInterface():getXP() < self.lastTrackingLayerInterface:getXP() + self.MIN_DISTANCE then
-                return true
-            else
-                return false
-            end
-        else
-            return false
-        end
-end
-
-
-function DiveAndDirectionalTrackingAI:onEvent(eventObject)
-        ForcedLogUtil.log(EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
-end
-
-
-function DiveAndDirectionalTrackingAI:onMovement(trackingEvent)
-        self.list:add(trackingEvent)
-end
-
-
-function DiveAndDirectionalTrackingAI:onDestroyed(destroyedEvent)
-        if self:getOwnerLayerInterface() == destroyedEvent:getLayerInterface() then
-            TrackingEventHandler.getInstance():removeListener(self)
-            DestroyedEventHandler.getInstance():removeListener(self)
-        end
-end
-
-
-function DiveAndDirectionalTrackingAI:setLastDirection(lastDirection)
-        self.lastDirection = lastDirection
-        local value = self:getLastDirection():getValue()
-        if value < 4 then
-            BasicAI.setLastKey(self, self.directionToKeyMap[value + 1])
-        end
-end
-
-
-function DiveAndDirectionalTrackingAI:setLastKey(lastKey)
-        BasicAI.setLastKey(self, lastKey)
-        if self:getLastKey() == Canvas.LEFT then
-            self.lastDirection = DirectionFactory.getInstance().LEFT
-        elseif self:getLastKey() == Canvas.DOWN then
-            self.lastDirection = DirectionFactory.getInstance().DOWN
-        elseif self:getLastKey() == Canvas.UP then
-            self.lastDirection = DirectionFactory.getInstance().UP
-        elseif self:getLastKey() == Canvas.RIGHT then
-            self.lastDirection = DirectionFactory.getInstance().RIGHT
-        end
-end
-
-
-function DiveAndDirectionalTrackingAI:getLastDirection()
-        return self.lastDirection
-end
-
-
-function DiveAndDirectionalTrackingAI:toString()
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append(tostring(BasicAI))
-        stringBuffer:append(" LastDirection: ")
-        stringBuffer:append(StringUtil.getInstance():toString(self:getLastDirection()))
-        return tostring(stringBuffer)
-end
-DiveAndDirectionalTrackingAI.__tostring = function(self) return self:toString() end
-
-return DiveAndDirectionalTrackingAI
 

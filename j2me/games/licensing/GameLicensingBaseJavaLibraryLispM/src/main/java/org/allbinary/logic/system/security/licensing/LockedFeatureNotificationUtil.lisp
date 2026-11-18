@@ -1,73 +1,61 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.licensing
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.system.security.licensing
 
-local GameNotificationEvent = require("org.allbinary.game.layer.hud.event.GameNotificationEvent")
-local GameNotificationEventHandler = require("org.allbinary.game.layer.hud.event.GameNotificationEventHandler")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local BooleanFactory = require("org.allbinary.logic.java.bool.BooleanFactory")
-local SmallIntegerSingletonFactory = require("org.allbinary.logic.math.SmallIntegerSingletonFactory")
-local ErrorSound = require("org.allbinary.media.audio.ErrorSound")
-local PrimaryPlayerQueueFactory = require("org.allbinary.media.audio.PrimaryPlayerQueueFactory")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass LockedFeatureNotificationUtil (JObject)
+  ((f_gameNotificationEvent :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar LockedFeatureNotificationUtil.jcell_instance :jnone)
+(defun LockedFeatureNotificationUtil.jstatic_instance ()
+  (when (eq LockedFeatureNotificationUtil.jcell_instance :jnone) (setf LockedFeatureNotificationUtil.jcell_instance (LockedFeatureNotificationUtil.jnew_0)))
+  LockedFeatureNotificationUtil.jcell_instance)
+(defun (setf LockedFeatureNotificationUtil.jstatic_instance) (value) (setf LockedFeatureNotificationUtil.jcell_instance value))
 
-local LockedFeatureNotificationUtil = {}
-LockedFeatureNotificationUtil.__index = LockedFeatureNotificationUtil
-LockedFeatureNotificationUtil.className = "LockedFeatureNotificationUtil"
+(defun LockedFeatureNotificationUtil.jnew_0 ()
+  (let ((this (make-instance 'LockedFeatureNotificationUtil)))
+    (setf (slot-value this 'f_gameNotificationEvent) (GameNotificationEvent.jnew_5 this (slot-value (LicenseStrings.jm_getInstance_0) 'f_LOCKED) (jm_getAt_1 (SmallIntegerSingletonFactory.jm_getInstance_0) 3) (slot-value (BasicColorFactory.jm_getInstance_0) 'f_RED) (slot-value (BooleanFactory.jm_getInstance_0) 'f_FALSE)))
+    this))
 
-function LockedFeatureNotificationUtil:_init_fields()
-    self.gameNotificationEvent = GameNotificationEvent.new(self, LicenseStrings.getInstance().LOCKED, SmallIntegerSingletonFactory.getInstance():getAt(3), BasicColorFactory.getInstance().RED, BooleanFactory.getInstance().FALSE)
-end
+    
+(defun LockedFeatureNotificationUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (LockedFeatureNotificationUtil.jstatic_instance)))))
 
-function LockedFeatureNotificationUtil.new()
-    local self = setmetatable({}, LockedFeatureNotificationUtil)
-    self:_init_fields()
-    return self
-end
+    
+(unless (fboundp 'jm_fire_0) (defgeneric jm_fire_0 (this)))
+(defmethod jm_fire_0 ((this LockedFeatureNotificationUtil))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_add_1 (PrimaryPlayerQueueFactory.jm_getInstance_0) (ErrorSound.jm_getInstance_0))
+        (jm_fireEvent_1 (GameNotificationEventHandler.jm_getInstance_0) (slot-value this 'f_gameNotificationEvent)))))
 
-
-function LockedFeatureNotificationUtil.getInstance()
-        return LockedFeatureNotificationUtil.instance
-end
-
-
--- throws Exception
-function LockedFeatureNotificationUtil:fire()
-        PrimaryPlayerQueueFactory.getInstance():add(ErrorSound.getInstance())
-        GameNotificationEventHandler.getInstance():fireEvent(self.gameNotificationEvent)
-end
+    
+(unless (fboundp 'jm_fireWithColor_1) (defgeneric jm_fireWithColor_1 (this p1)))
+(defmethod jm_fireWithColor_1 ((this LockedFeatureNotificationUtil) _basicColor)
+  (declare (ignorable this _basicColor))
+  (let ()
+    (block jreturn
+        (jm_add_1 (PrimaryPlayerQueueFactory.jm_getInstance_0) (ErrorSound.jm_getInstance_0))
+        (jm_setBasicColorP_1 (slot-value this 'f_gameNotificationEvent) _basicColor)
+        (jm_fireEvent_1 (GameNotificationEventHandler.jm_getInstance_0) (slot-value this 'f_gameNotificationEvent)))))
 
 
--- throws Exception
-function LockedFeatureNotificationUtil:fireWithColor(basicColor)
-        PrimaryPlayerQueueFactory.getInstance():add(ErrorSound.getInstance())
-        self.gameNotificationEvent:setBasicColorP(basicColor)
-        GameNotificationEventHandler.getInstance():fireEvent(self.gameNotificationEvent)
-end
-
-LockedFeatureNotificationUtil.instance = LockedFeatureNotificationUtil.new()
-
-return LockedFeatureNotificationUtil
 

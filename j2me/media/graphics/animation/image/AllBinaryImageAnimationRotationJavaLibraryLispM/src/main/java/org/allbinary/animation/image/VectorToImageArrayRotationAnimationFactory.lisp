@@ -1,90 +1,76 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation.image
 
--- local Image = require("javax.microedition.lcdui.Image")
--- local NullImage = require("javax.microedition.lcdui.NullImage")
-local Animation = require("org.allbinary.animation.Animation")
-local AnimationBehaviorFactory = require("org.allbinary.animation.AnimationBehaviorFactory")
-local VectorAnimation = require("org.allbinary.animation.VectorAnimation")
-local GameConfigurationCentral = require("org.allbinary.game.configuration.GameConfigurationCentral")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local AnimationFrameToImageUtil = require("org.allbinary.image.AnimationFrameToImageUtil")
-local PrimitiveIntUtil = require("org.allbinary.logic.math.PrimitiveIntUtil")
-local AngleFactory = require("org.allbinary.math.AngleFactory")
-local AngleInfo = require("org.allbinary.math.AngleInfo")
-local ScaleProperties = require("org.allbinary.media.ScaleProperties")
-local ImageToRotationImageArrayUtil = require("org.allbinary.media.image.ImageToRotationImageArrayUtil")
-local VectorInfo = require("org.allbinary.vector.VectorInfo")
-local BaseImageAnimationFactory = require("org.allbinary.animation.image.BaseImageAnimationFactory")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass VectorToImageArrayRotationAnimationFactory (BaseImageAnimationFactory)
+  ((f_imageArray :initform nil)
+   (f_angleIncrement :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun VectorToImageArrayRotationAnimationFactory.jnew_3 (_vectorInfo _basicColor _animationBehaviorFactory)
+  (declare (ignorable _vectorInfo _basicColor _animationBehaviorFactory))
+  (let ((this (make-instance 'VectorToImageArrayRotationAnimationFactory)))
+    (setf (slot-value this 'f_imageArray) (NullImage.jstatic_NULL_IMAGE_ARRAY))
+    
+  (let ()
+    (block jreturn
+        nil
+        (jm_init_0 this)))
+    this))
 
-local VectorToImageArrayRotationAnimationFactory = {}
-VectorToImageArrayRotationAnimationFactory.__index = VectorToImageArrayRotationAnimationFactory
-VectorToImageArrayRotationAnimationFactory.className = "VectorToImageArrayRotationAnimationFactory"
-setmetatable(VectorToImageArrayRotationAnimationFactory, {__index = BaseImageAnimationFactory})
+    
+(unless (fboundp 'jm_init_0) (defgeneric jm_init_0 (this)))
+(defmethod jm_init_0 ((this VectorToImageArrayRotationAnimationFactory))
+  (declare (ignorable this))
+  (let (_angleFactory)
+  (declare (ignorable _angleFactory))
+    (block jreturn
+        (setf _angleFactory (AngleFactory.jm_getInstance_0))
+        (setf (slot-value this 'f_angleIncrement) (JR.idiv (slot-value _angleFactory 'f_TOTAL_ANGLE) (jm_getGameControlFidelity_0 (GameConfigurationCentral.jm_getInstance_0))))
+        (setf (slot-value this 'f_imageArray) (jm_generate_3 (ImageToRotationImageArrayUtil.jm_getInstance_0) (jm_getImage_0 this) (jm_getAngleIncrement_0 this) (slot-value _angleFactory 'f_TOTAL_ANGLE))))))
 
-function VectorToImageArrayRotationAnimationFactory:_init_fields()
-    self.imageArray = NullImage.NULL_IMAGE_ARRAY
-    self.angleIncrement = 0
-end
+    
+(unless (fboundp 'jm_getInstance_1) (defgeneric jm_getInstance_1 (this p1)))
+(defmethod jm_getInstance_1 ((this VectorToImageArrayRotationAnimationFactory) _instanceId)
+  (declare (ignorable this _instanceId))
+  (let ()
+    (block jreturn
+        (if (or (not (eq (slot-value (slot-value this 'f_animationFactoryInitializationVisitor) 'f_dx) 0)) (not (eq (slot-value (slot-value this 'f_animationFactoryInitializationVisitor) 'f_dy) 0)))
+            (progn
+            (return-from jreturn (AdjustedImageArrayRotationAnimation.jnew_6 (slot-value this 'f_imageArray) (AngleInfo.jm_getInstance_1 (JR.i16 (jm_getAngleIncrement_0 this))) (slot-value (AngleFactory.jm_getInstance_0) 'f_TOTAL_ANGLE) (slot-value (slot-value this 'f_animationFactoryInitializationVisitor) 'f_dx) (slot-value (slot-value this 'f_animationFactoryInitializationVisitor) 'f_dy) (jm_getOrCreateInstance_0 (slot-value this 'f_animationBehaviorFactory)))))
+            (progn
+            (return-from jreturn (AdjustedImageArrayRotationAnimation.jm_createAnimation_4 (slot-value this 'f_imageArray) (AngleInfo.jm_getInstance_1 (JR.i16 (slot-value this 'f_angleIncrement))) (slot-value (AngleFactory.jm_getInstance_0) 'f_TOTAL_ANGLE) (jm_getOrCreateInstance_0 (slot-value this 'f_animationBehaviorFactory)))))))))
 
+    
+(unless (fboundp 'jm_getAngleIncrement_0) (defgeneric jm_getAngleIncrement_0 (this)))
+(defmethod jm_getAngleIncrement_0 ((this VectorToImageArrayRotationAnimationFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_angleIncrement)))))
 
-function VectorToImageArrayRotationAnimationFactory.new(vectorInfo, basicColor, animationBehaviorFactory)
-    local self = setmetatable(BaseImageAnimationFactory.new(AnimationFrameToImageUtil.getInstance():getInstanceTranslate(vectorInfo:getWidth(), vectorInfo:getHeight(), VectorAnimation.createVectorAnimation(vectorInfo:getPoints(), basicColor, animationBehaviorFactory:getOrCreateInstance())), PrimitiveIntUtil.getArrayInstance(), 0, 0, 0, 0, animationBehaviorFactory), VectorToImageArrayRotationAnimationFactory)
-    self:_init_fields()
-        -- super(...) made self above
-        self:init()
-    return self
-end
-
-
--- throws Exception
-function VectorToImageArrayRotationAnimationFactory:init()
-        local angleFactory = AngleFactory.getInstance()
-        self.angleIncrement = angleFactory.TOTAL_ANGLE / GameConfigurationCentral.getInstance():getGameControlFidelity()
-        self.imageArray = ImageToRotationImageArrayUtil.getInstance():generate(self:getImage(), self:getAngleIncrement(), java_int(angleFactory.TOTAL_ANGLE))
-end
-
-
--- throws Exception
-function VectorToImageArrayRotationAnimationFactory:getInstance(instanceId)
-        if self.animationFactoryInitializationVisitor.dx ~= 0 or self.animationFactoryInitializationVisitor.dy ~= 0 then
-            return AdjustedImageArrayRotationAnimation.new(self.imageArray, AngleInfo.getInstance(self:getAngleIncrement()), java_int(AngleFactory.getInstance().TOTAL_ANGLE), self.animationFactoryInitializationVisitor.dx, self.animationFactoryInitializationVisitor.dy, self.animationBehaviorFactory:getOrCreateInstance())
-        else
-            return AdjustedImageArrayRotationAnimation.createAnimation(self.imageArray, AngleInfo.getInstance(self.angleIncrement), java_int(AngleFactory.getInstance().TOTAL_ANGLE), self.animationBehaviorFactory:getOrCreateInstance())
-        end
-end
+    
+(unless (fboundp 'jm_setInitialScale_1) (defgeneric jm_setInitialScale_1 (this p1)))
+(defmethod jm_setInitialScale_1 ((this VectorToImageArrayRotationAnimationFactory) _scaleProperties)
+  (declare (ignorable this _scaleProperties))
+  (let ()
+    (block jreturn nil)))
 
 
-function VectorToImageArrayRotationAnimationFactory:getAngleIncrement()
-        return self.angleIncrement
-end
-
-
-function VectorToImageArrayRotationAnimationFactory:setInitialScale(scaleProperties)
-end
-
-return VectorToImageArrayRotationAnimationFactory
 

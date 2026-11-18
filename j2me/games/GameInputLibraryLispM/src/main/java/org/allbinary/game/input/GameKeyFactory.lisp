@@ -1,79 +1,91 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.input
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local CommonPhoneStrings = require("org.allbinary.string.CommonPhoneStrings")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass GameKeyFactory (JObject)
+  ((f_NONE :initform nil)
+   (f_UP :initform nil)
+   (f_DOWN :initform nil)
+   (f_LEFT :initform nil)
+   (f_RIGHT :initform nil)
+   (f_KEY_POUND :initform nil)
+   (f_KEY_STAR :initform nil)
+   (f_KEY_NUM0 :initform nil)
+   (f_KEY_NUM1 :initform nil)
+   (f_KEY_NUM2 :initform nil)
+   (f_KEY_NUM3 :initform nil)
+   (f_KEY_NUM4 :initform nil)
+   (f_KEY_NUM5 :initform nil)
+   (f_KEY_NUM6 :initform nil)
+   (f_KEY_NUM7 :initform nil)
+   (f_KEY_NUM8 :initform nil)
+   (f_KEY_NUM9 :initform nil)
+   (f_GAME_A :initform nil)
+   (f_GAME_B :initform nil)
+   (f_GAME_C :initform nil)
+   (f_GAME_D :initform nil)
+   (f_FIRE :initform nil)
+   (f_LEVEL_DOWN :initform nil)
+   (f_LEVEL_UP :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar GameKeyFactory.jcell_instance :jnone)
+(defun GameKeyFactory.jstatic_instance ()
+  (when (eq GameKeyFactory.jcell_instance :jnone) (setf GameKeyFactory.jcell_instance (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT)))
+  GameKeyFactory.jcell_instance)
+(defun (setf GameKeyFactory.jstatic_instance) (value) (setf GameKeyFactory.jcell_instance value))
 
-local GameKeyFactory = {}
-GameKeyFactory.__index = GameKeyFactory
-GameKeyFactory.className = "GameKeyFactory"
+(defun GameKeyFactory.jnew_0 ()
+  (let ((this (make-instance 'GameKeyFactory)))
+    (setf (slot-value this 'f_NONE) (GameKey.jnew_2 (JR.i32 (- (slot-value (InputFactory.jm_getInstance_0) 'f_MAX) 1)) "None"))
+    (setf (slot-value this 'f_UP) (GameKey.jnew_2 (Canvas.jstatic_UP) (slot-value (CommonPhoneStrings.jm_getInstance_0) 'f_UP)))
+    (setf (slot-value this 'f_DOWN) (GameKey.jnew_2 (Canvas.jstatic_DOWN) (slot-value (CommonPhoneStrings.jm_getInstance_0) 'f_DOWN)))
+    (setf (slot-value this 'f_LEFT) (GameKey.jnew_2 (Canvas.jstatic_LEFT) (slot-value (CommonPhoneStrings.jm_getInstance_0) 'f_LEFT)))
+    (setf (slot-value this 'f_RIGHT) (GameKey.jnew_2 (Canvas.jstatic_RIGHT) (slot-value (CommonPhoneStrings.jm_getInstance_0) 'f_RIGHT)))
+    (setf (slot-value this 'f_KEY_POUND) (GameKey.jnew_2 (Canvas.jstatic_KEY_POUND) "POUND"))
+    (setf (slot-value this 'f_KEY_STAR) (GameKey.jnew_2 (Canvas.jstatic_KEY_STAR) "STAR"))
+    (setf (slot-value this 'f_KEY_NUM0) (GameKey.jnew_2 (Canvas.jstatic_KEY_NUM0) (slot-value (CommonPhoneStrings.jm_getInstance_0) 'f_ZERO)))
+    (setf (slot-value this 'f_KEY_NUM1) (GameKey.jnew_2 (Canvas.jstatic_KEY_NUM1) (slot-value (CommonPhoneStrings.jm_getInstance_0) 'f_ONE)))
+    (setf (slot-value this 'f_KEY_NUM2) (GameKey.jnew_2 (Canvas.jstatic_KEY_NUM2) (slot-value (CommonPhoneStrings.jm_getInstance_0) 'f_TWO)))
+    (setf (slot-value this 'f_KEY_NUM3) (GameKey.jnew_2 (Canvas.jstatic_KEY_NUM3) (slot-value (CommonPhoneStrings.jm_getInstance_0) 'f_THREE)))
+    (setf (slot-value this 'f_KEY_NUM4) (GameKey.jnew_2 (Canvas.jstatic_KEY_NUM4) (slot-value (CommonPhoneStrings.jm_getInstance_0) 'f_FOUR)))
+    (setf (slot-value this 'f_KEY_NUM5) (GameKey.jnew_2 (Canvas.jstatic_KEY_NUM5) (slot-value (CommonPhoneStrings.jm_getInstance_0) 'f_FIVE)))
+    (setf (slot-value this 'f_KEY_NUM6) (GameKey.jnew_2 (Canvas.jstatic_KEY_NUM6) (slot-value (CommonPhoneStrings.jm_getInstance_0) 'f_SIX)))
+    (setf (slot-value this 'f_KEY_NUM7) (GameKey.jnew_2 (Canvas.jstatic_KEY_NUM7) (slot-value (CommonPhoneStrings.jm_getInstance_0) 'f_SEVEN)))
+    (setf (slot-value this 'f_KEY_NUM8) (GameKey.jnew_2 (Canvas.jstatic_KEY_NUM8) (slot-value (CommonPhoneStrings.jm_getInstance_0) 'f_EIGHT)))
+    (setf (slot-value this 'f_KEY_NUM9) (GameKey.jnew_2 (Canvas.jstatic_KEY_NUM9) (slot-value (CommonPhoneStrings.jm_getInstance_0) 'f_NINE)))
+    (setf (slot-value this 'f_GAME_A) (GameKey.jnew_2 (Canvas.jstatic_GAME_A) "Game A"))
+    (setf (slot-value this 'f_GAME_B) (GameKey.jnew_2 (Canvas.jstatic_GAME_B) "Game B"))
+    (setf (slot-value this 'f_GAME_C) (GameKey.jnew_2 (Canvas.jstatic_GAME_C) "Game C"))
+    (setf (slot-value this 'f_GAME_D) (GameKey.jnew_2 (Canvas.jstatic_GAME_D) "Game D"))
+    (setf (slot-value this 'f_FIRE) (GameKey.jnew_2 (Canvas.jstatic_FIRE) (slot-value (CommonPhoneStrings.jm_getInstance_0) 'f_FIRE)))
+    (setf (slot-value this 'f_LEVEL_DOWN) (GameKey.jnew_2 (JR.i32 (+ (Canvas.jstatic_KEY_NUM9) 1)) "Cheat Level Up"))
+    (setf (slot-value this 'f_LEVEL_UP) (GameKey.jnew_2 (JR.i32 (+ (Canvas.jstatic_KEY_NUM9) 2)) "Cheat Level Down"))
+    this))
 
-function GameKeyFactory:_init_fields()
-    self.NONE = GameKey.new(InputFactory.getInstance().MAX - 1, "None")
-    self.UP = GameKey.new(Canvas.UP, CommonPhoneStrings.getInstance().UP)
-    self.DOWN = GameKey.new(Canvas.DOWN, CommonPhoneStrings.getInstance().DOWN)
-    self.LEFT = GameKey.new(Canvas.LEFT, CommonPhoneStrings.getInstance().LEFT)
-    self.RIGHT = GameKey.new(Canvas.RIGHT, CommonPhoneStrings.getInstance().RIGHT)
-    self.KEY_POUND = GameKey.new(Canvas.KEY_POUND, "POUND")
-    self.KEY_STAR = GameKey.new(Canvas.KEY_STAR, "STAR")
-    self.KEY_NUM0 = GameKey.new(Canvas.KEY_NUM0, CommonPhoneStrings.getInstance().ZERO)
-    self.KEY_NUM1 = GameKey.new(Canvas.KEY_NUM1, CommonPhoneStrings.getInstance().ONE)
-    self.KEY_NUM2 = GameKey.new(Canvas.KEY_NUM2, CommonPhoneStrings.getInstance().TWO)
-    self.KEY_NUM3 = GameKey.new(Canvas.KEY_NUM3, CommonPhoneStrings.getInstance().THREE)
-    self.KEY_NUM4 = GameKey.new(Canvas.KEY_NUM4, CommonPhoneStrings.getInstance().FOUR)
-    self.KEY_NUM5 = GameKey.new(Canvas.KEY_NUM5, CommonPhoneStrings.getInstance().FIVE)
-    self.KEY_NUM6 = GameKey.new(Canvas.KEY_NUM6, CommonPhoneStrings.getInstance().SIX)
-    self.KEY_NUM7 = GameKey.new(Canvas.KEY_NUM7, CommonPhoneStrings.getInstance().SEVEN)
-    self.KEY_NUM8 = GameKey.new(Canvas.KEY_NUM8, CommonPhoneStrings.getInstance().EIGHT)
-    self.KEY_NUM9 = GameKey.new(Canvas.KEY_NUM9, CommonPhoneStrings.getInstance().NINE)
-    self.GAME_A = GameKey.new(Canvas.GAME_A, "Game A")
-    self.GAME_B = GameKey.new(Canvas.GAME_B, "Game B")
-    self.GAME_C = GameKey.new(Canvas.GAME_C, "Game C")
-    self.GAME_D = GameKey.new(Canvas.GAME_D, "Game D")
-    self.FIRE = GameKey.new(Canvas.FIRE, CommonPhoneStrings.getInstance().FIRE)
-    self.LEVEL_DOWN = GameKey.new(Canvas.KEY_NUM9 + 1, "Cheat Level Up")
-    self.LEVEL_UP = GameKey.new(Canvas.KEY_NUM9 + 2, "Cheat Level Down")
-end
-
-function GameKeyFactory.new()
-    local self = setmetatable({}, GameKeyFactory)
-    self:_init_fields()
-    return self
-end
+    
+(defun GameKeyFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (if (eq (GameKeyFactory.jstatic_instance) (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT))
+            (progn
+            (setf (GameKeyFactory.jstatic_instance) (GameKeyFactory.jnew_0))))
+        (return-from jreturn (GameKeyFactory.jstatic_instance)))))
 
 
-function GameKeyFactory.getInstance()
-        if GameKeyFactory.instance == NullUtil.getInstance().NULL_OBJECT then
-            GameKeyFactory.instance = GameKeyFactory.new()
-        end
-        return GameKeyFactory.instance
-end
-
-GameKeyFactory.instance = NullUtil.getInstance().NULL_OBJECT
-
-return GameKeyFactory
 

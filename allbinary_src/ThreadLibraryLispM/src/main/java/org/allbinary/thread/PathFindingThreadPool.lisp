@@ -26,6 +26,7 @@
 (defun PathFindingThreadPool.jstatic_instance ()
   (when (eq PathFindingThreadPool.jcell_instance :jnone) (setf PathFindingThreadPool.jcell_instance (PathFindingThreadPool.jnew_3 "PathFinding" 1 1)))
   PathFindingThreadPool.jcell_instance)
+(defun (setf PathFindingThreadPool.jstatic_instance) (value) (setf PathFindingThreadPool.jcell_instance value))
 
     
 (defun PathFindingThreadPool.jm_getInstance_0 ()

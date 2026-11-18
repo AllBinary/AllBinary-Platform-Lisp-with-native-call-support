@@ -27,6 +27,7 @@
 (defun LogConfigTypeFactory.jstatic_instance ()
   (when (eq LogConfigTypeFactory.jcell_instance :jnone) (setf LogConfigTypeFactory.jcell_instance (LogConfigTypeFactory.jnew_0)))
   LogConfigTypeFactory.jcell_instance)
+(defun (setf LogConfigTypeFactory.jstatic_instance) (value) (setf LogConfigTypeFactory.jcell_instance value))
 
     
 (defun LogConfigTypeFactory.jm_getInstance_0 ()
@@ -42,8 +43,8 @@
     (setf (slot-value this 'f_FACTORYERROR) (LogConfigType.jnew_2 "Factory Error" (slot-value this 'f_NO_DESCRIPTION)))
   (let ()
     (block jreturn
-        (JR.className (LogConfigTypes.jstatic_LOGGING))
-        (JR.className (LogConfigTypes.jstatic_LOGGING))))
+        (jm_add_1 (LogConfigTypes.jstatic_LOGGING) (slot-value this 'f_OS))
+        (jm_add_1 (LogConfigTypes.jstatic_LOGGING) (slot-value this 'f_FACTORYERROR))))
     this))
 
 

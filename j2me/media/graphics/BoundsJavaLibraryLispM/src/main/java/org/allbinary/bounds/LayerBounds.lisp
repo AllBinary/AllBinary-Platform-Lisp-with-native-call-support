@@ -1,72 +1,68 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.bounds
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.bounds
 
-local BoundsChangeEvent = require("org.allbinary.bounds.event.BoundsChangeEvent")
-local BoundsChangeEventListener = require("org.allbinary.bounds.event.BoundsChangeEventListener")
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventStrings = require("org.allbinary.logic.util.event.EventStrings")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass LayerBounds (JObject)
+  ((f_logUtil :initform nil)
+   (f_rectangle :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun LayerBounds.jnew_1 (_rectangle)
+  (declare (ignorable _rectangle))
+  (let ((this (make-instance 'LayerBounds)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_rectangle) _rectangle)))
+    this))
 
-local LayerBounds = {}
-LayerBounds.__index = LayerBounds
-LayerBounds.className = "LayerBounds"
+    
+(unless (fboundp 'jm_getRectangleP_0) (defgeneric jm_getRectangleP_0 (this)))
+(defmethod jm_getRectangleP_0 ((this LayerBounds))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_rectangle)))))
 
-function LayerBounds:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.rectangle = nil
-end
+    
+(unless (fboundp 'jm_visit_1) (defgeneric jm_visit_1 (this p1)))
+(defmethod jm_visit_1 ((this LayerBounds) _boundsVisitorInterface)
+  (declare (ignorable this _boundsVisitorInterface))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_onEvent_1) (defgeneric jm_onEvent_1 (this p1)))
+(defmethod jm_onEvent_1 ((this LayerBounds) _eventObject)
+  (declare (ignorable this _eventObject))
+  (let ()
+    (block jreturn
+        (ForcedLogUtil.jm_log_2 (slot-value (EventStrings.jm_getInstance_0) 'f_PERFORMANCE_MESSAGE) this))))
+
+    
+(unless (fboundp 'jm_onBoundsChangeEvent_1) (defgeneric jm_onBoundsChangeEvent_1 (this p1)))
+(defmethod jm_onBoundsChangeEvent_1 ((this LayerBounds) _boundsChangeEvent)
+  (declare (ignorable this _boundsChangeEvent))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_rectangle) (jm_getRectangle_0 _boundsChangeEvent)))))
 
 
-function LayerBounds.new(rectangle)
-    local self = setmetatable({}, LayerBounds)
-    self:_init_fields()
-        self.rectangle = rectangle
-    return self
-end
-
-
-function LayerBounds:getRectangleP()
-        return self.rectangle
-end
-
-
-function LayerBounds:visit(boundsVisitorInterface)
-end
-
-
-function LayerBounds:onEvent(eventObject)
-        ForcedLogUtil.log(EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
-end
-
-
-function LayerBounds:onBoundsChangeEvent(boundsChangeEvent)
-        self.rectangle = boundsChangeEvent:getRectangle()
-end
-
-return LayerBounds
 

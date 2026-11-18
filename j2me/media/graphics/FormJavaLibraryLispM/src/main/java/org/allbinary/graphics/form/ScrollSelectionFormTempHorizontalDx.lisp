@@ -1,54 +1,43 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.form
 
-local ABCustomItem = require("org.allbinary.graphics.form.item.ABCustomItem")
-local ItemIndexDx = require("org.allbinary.graphics.form.ItemIndexDx")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ScrollSelectionFormTempHorizontalDx (ItemIndexDx)
+  ((f_scrollSelectionForm :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun ScrollSelectionFormTempHorizontalDx.jnew_1 (_scrollSelectionForm)
+  (declare (ignorable _scrollSelectionForm))
+  (let ((this (make-instance 'ScrollSelectionFormTempHorizontalDx)))
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_scrollSelectionForm) _scrollSelectionForm)))
+    this))
 
-local ScrollSelectionFormTempHorizontalDx = {}
-ScrollSelectionFormTempHorizontalDx.__index = ScrollSelectionFormTempHorizontalDx
-ScrollSelectionFormTempHorizontalDx.className = "ScrollSelectionFormTempHorizontalDx"
-setmetatable(ScrollSelectionFormTempHorizontalDx, {__index = ItemIndexDx})
-
-function ScrollSelectionFormTempHorizontalDx:_init_fields()
-    self.scrollSelectionForm = nil
-end
-
-
-function ScrollSelectionFormTempHorizontalDx.new(scrollSelectionForm)
-    local self = setmetatable(ItemIndexDx.new(), ScrollSelectionFormTempHorizontalDx)
-    self:_init_fields()
-        self.scrollSelectionForm = scrollSelectionForm
-    return self
-end
+    
+(unless (fboundp 'jm_getDx_4) (defgeneric jm_getDx_4 (this p1 p2 p3 p4)))
+(defmethod jm_getDx_4 ((this ScrollSelectionFormTempHorizontalDx) _index _item _dx _dy)
+  (declare (ignorable this _index _item _dx _dy))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getSelectedIndexForPointTempHorizontalDx_4 (slot-value this 'f_scrollSelectionForm) _index _item _dx _dy)))))
 
 
--- throws Exception
-function ScrollSelectionFormTempHorizontalDx:getDx(index, item, dx, dy)
-        return self.scrollSelectionForm:getSelectedIndexForPointTempHorizontalDx(index, item, dx, dy)
-end
-
-return ScrollSelectionFormTempHorizontalDx
 

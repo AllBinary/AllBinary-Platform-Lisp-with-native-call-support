@@ -30,6 +30,7 @@
 (defun MathData.jstatic_instance ()
   (when (eq MathData.jcell_instance :jnone) (setf MathData.jcell_instance (MathData.jnew_0)))
   MathData.jcell_instance)
+(defun (setf MathData.jstatic_instance) (value) (setf MathData.jcell_instance value))
 
     
 (defun MathData.jm_getInstance_0 ()

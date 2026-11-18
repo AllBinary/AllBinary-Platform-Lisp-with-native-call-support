@@ -1,67 +1,66 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.drop
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.layer.drop
 
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local BasicLayerProcessor = require("org.allbinary.layer.BasicLayerProcessor")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass DropLayerProcessor (BasicLayerProcessor)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar DropLayerProcessor.jcell_LAYER_PROCESSOR :jnone)
+(defun DropLayerProcessor.jstatic_LAYER_PROCESSOR ()
+  (when (eq DropLayerProcessor.jcell_LAYER_PROCESSOR :jnone) (setf DropLayerProcessor.jcell_LAYER_PROCESSOR (DropLayerProcessor.jnew_0)))
+  DropLayerProcessor.jcell_LAYER_PROCESSOR)
+(defun (setf DropLayerProcessor.jstatic_LAYER_PROCESSOR) (value) (setf DropLayerProcessor.jcell_LAYER_PROCESSOR value))
 
-local DropLayerProcessor = {}
-DropLayerProcessor.__index = DropLayerProcessor
-DropLayerProcessor.className = "DropLayerProcessor"
-setmetatable(DropLayerProcessor, {__index = BasicLayerProcessor})
+    
+(defun DropLayerProcessor.jnew_0 ()
+  (let ((this (make-instance 'DropLayerProcessor)))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(defun DropLayerProcessor.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (DropLayerProcessor.jstatic_LAYER_PROCESSOR)))))
+
+    
+(unless (fboundp 'jm_process_1) (defgeneric jm_process_1 (this p1)))
+(defmethod jm_process_1 ((this DropLayerProcessor) _allBinaryLayerManager)
+  (declare (ignorable this _allBinaryLayerManager))
+  (let (_list _size _layerInterface _dropLayerInterface _index)
+  (declare (ignorable _list _size _layerInterface _dropLayerInterface _index))
+    (block jreturn
+        (setf _list (jm_getList_0 this))
+        (setf _size (jm_size_0 _list))
+        (setf _layerInterface nil)
+        (setf _dropLayerInterface nil)
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (setf _layerInterface (aref (slot-value _list 'f_objectArray) _index))
+            (setf _dropLayerInterface _layerInterface)
+            (setf _layerInterface (jm_getDroppedLayer_0 _dropLayerInterface))
+            (jm_append_1 _allBinaryLayerManager _layerInterface))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (jm_clear_0 _list))))
 
 
-function DropLayerProcessor.new()
-    local self = setmetatable(BasicLayerProcessor.new(), DropLayerProcessor)
-    return self
-end
-
-
-function DropLayerProcessor.getInstance()
-        return DropLayerProcessor.LAYER_PROCESSOR
-end
-
-
--- throws Exception
-function DropLayerProcessor:process(allBinaryLayerManager)
-        local list = self:getList()
-        local size = list:size()
-        local layerInterface = nil
-        local dropLayerInterface = nil
-        for index = 0, size - 1 do
-            layerInterface = list.objectArray[index + 1]
-            dropLayerInterface = layerInterface
-            layerInterface = dropLayerInterface:getDroppedLayer()
-            allBinaryLayerManager:append(layerInterface)
-        end
-        list:clear()
-end
-
-DropLayerProcessor.LAYER_PROCESSOR = DropLayerProcessor.new()
-
-return DropLayerProcessor
 

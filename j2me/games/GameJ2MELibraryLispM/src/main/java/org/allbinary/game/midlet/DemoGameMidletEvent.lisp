@@ -1,63 +1,60 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.midlet
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.midlet
 
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass DemoGameMidletEvent (AllBinaryEventObject)
+  ((f_demoGameMidletState :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun DemoGameMidletEvent.jnew_2 (_anyType _demoGameMidletState)
+  (declare (ignorable _anyType _demoGameMidletState))
+  (let ((this (make-instance 'DemoGameMidletEvent)))
+    
+  (let ()
+    (block jreturn
+        nil
+        (setf (slot-value this 'f_demoGameMidletState) _demoGameMidletState)))
+    this))
 
-local DemoGameMidletEvent = {}
-DemoGameMidletEvent.__index = DemoGameMidletEvent
-DemoGameMidletEvent.className = "DemoGameMidletEvent"
-setmetatable(DemoGameMidletEvent, {__index = AllBinaryEventObject})
+    
+(unless (fboundp 'jm_init_1) (defgeneric jm_init_1 (this p1)))
+(defmethod jm_init_1 ((this DemoGameMidletEvent) _anyType)
+  (declare (ignorable this _anyType))
+  (let ()
+    (block jreturn
+        (jm_setSource_1 this _anyType))))
 
-function DemoGameMidletEvent:_init_fields()
-    self.demoGameMidletState = nil
-end
+    
+(unless (fboundp 'jm_setDemoGameMidletState_1) (defgeneric jm_setDemoGameMidletState_1 (this p1)))
+(defmethod jm_setDemoGameMidletState_1 ((this DemoGameMidletEvent) _demoGameMidletState)
+  (declare (ignorable this _demoGameMidletState))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_demoGameMidletState) _demoGameMidletState))))
 
-
-function DemoGameMidletEvent.new(anyType, demoGameMidletState)
-    local self = setmetatable(AllBinaryEventObject.new(anyType), DemoGameMidletEvent)
-    self:_init_fields()
-        -- super(...) made self above
-        self.demoGameMidletState = demoGameMidletState
-    return self
-end
-
-
-function DemoGameMidletEvent:init(anyType)
-        self:setSource(anyType)
-end
-
-
-function DemoGameMidletEvent:setDemoGameMidletState(demoGameMidletState)
-        self.demoGameMidletState = demoGameMidletState
-end
+    
+(unless (fboundp 'jm_getDemoGameMidletState_0) (defgeneric jm_getDemoGameMidletState_0 (this)))
+(defmethod jm_getDemoGameMidletState_0 ((this DemoGameMidletEvent))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_demoGameMidletState)))))
 
 
-function DemoGameMidletEvent:getDemoGameMidletState()
-        return self.demoGameMidletState
-end
-
-return DemoGameMidletEvent
 

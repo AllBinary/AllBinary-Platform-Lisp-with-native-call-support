@@ -1,91 +1,81 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai.tactical
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.ag.ai.tactical
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
-local BasicAI = require("org.allbinary.game.ai.BasicAI")
-local InputProbability = require("org.allbinary.game.ag.ai.InputProbability")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local MyRandomFactory = require("org.allbinary.game.rand.MyRandomFactory")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local Visitor = require("org.allbinary.logic.util.visitor.Visitor")
-local GameTickTimeDelayHelperFactory = require("org.allbinary.time.GameTickTimeDelayHelperFactory")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass BasicRandomAI (BasicAI)
+  ((f_i_random :initform 0)
+   (f_inputProbability :initform nil)
+   (f_visitor :initform nil)
+   (f_keyArray :initform nil)
+   (f_myRandomFactory :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun BasicRandomAI.jnew_4 (_ownerLayerInterface _gameInput _inputProbability _visitor)
+  (declare (ignorable _ownerLayerInterface _gameInput _inputProbability _visitor))
+  (let ((this (make-instance 'BasicRandomAI)))
+    (setf (slot-value this 'f_i_random) 0)
+    
+    
+    (setf (slot-value this 'f_keyArray) (vector (Canvas.jstatic_UP) (Canvas.jstatic_DOWN) (Canvas.jstatic_LEFT) (Canvas.jstatic_RIGHT) (Canvas.jstatic_KEY_NUM1) (Canvas.jstatic_KEY_NUM7) (Canvas.jstatic_KEY_NUM9)))
+    (setf (slot-value this 'f_myRandomFactory) (MyRandomFactory.jm_getInstance_0))
+  (let ()
+    (block jreturn
+        nil
+        (setf (slot-value this 'f_inputProbability) _inputProbability)
+        (setf (slot-value this 'f_visitor) _visitor)))
+    this))
 
-local BasicRandomAI = {}
-BasicRandomAI.__index = BasicRandomAI
-BasicRandomAI.className = "BasicRandomAI"
-setmetatable(BasicRandomAI, {__index = BasicAI})
+    
+(unless (fboundp 'jm_processAI_1) (defgeneric jm_processAI_1 (this p1)))
+(defmethod jm_processAI_1 ((this BasicRandomAI) _allBinaryLayerManager)
+  (declare (ignorable this _allBinaryLayerManager))
+  (let (_repeat _repeatLikelyhoodIntegerArray _likelyhoodIntegerArray _size _likelyhoodIntegerKeyArray _key _index)
+  (declare (ignorable _repeat _repeatLikelyhoodIntegerArray _likelyhoodIntegerArray _size _likelyhoodIntegerKeyArray _key _index))
+    (block jreturn
+        (if (jm_isTime_1 (jm_getTimeDelayHelper_0 (slot-value this 'f_inputProbability)) (slot-value (GameTickTimeDelayHelperFactory.jm_getInstance_0) 'f_startTime))
+            (progn
+            (setf (slot-value this 'f_i_random) (jm_getAbsoluteNextInt_1 (slot-value this 'f_myRandomFactory) (jm_getMax_0 (slot-value this 'f_inputProbability))))
+            (setf _repeat nil)
+            (setf _repeatLikelyhoodIntegerArray (jm_getRepeatLikelyhoodIntegerArray_0 (slot-value this 'f_inputProbability)))
+            (if (and (not (eq (jm_getLastKey_0 this) (JR.i32 (- 1)))) (>= (jm_intValue_0 (aref _repeatLikelyhoodIntegerArray (jm_getLastKey_0 this))) (slot-value this 'f_i_random)))
+                (progn
+                (setf _repeat t)))
+            (if (not _repeat)
+                (progn
+                (setf _likelyhoodIntegerArray (jm_getLikelyhoodIntegerArray_0 (slot-value this 'f_inputProbability)))
+                (setf (slot-value this 'f_i_random) (jm_getAbsoluteNextInt_1 (slot-value this 'f_myRandomFactory) (jm_getMax_0 (slot-value this 'f_inputProbability))))
+                (setf _size (length (slot-value this 'f_keyArray)))
+                (setf _likelyhoodIntegerKeyArray nil)
+                (progn
+                    (setf _index 0)
+                    (block jbreak (loop while (< _index _size) do
+                        (block jcontinue
+                    (setf _key (aref (slot-value this 'f_keyArray) _index))
+                    (setf _likelyhoodIntegerKeyArray (aref _likelyhoodIntegerArray _key))
+                    (if (and (>= (length _likelyhoodIntegerArray) _key) (not (null (aref _likelyhoodIntegerKeyArray 0))))
+                        (progn
+                        (if (and (>= (slot-value this 'f_i_random) (jm_intValue_0 (aref _likelyhoodIntegerKeyArray 0))) (< (slot-value this 'f_i_random) (jm_intValue_0 (aref _likelyhoodIntegerKeyArray 1))))
+                            (progn
+                            (jm_setLastKey_1 this _key)
+                            (return-from jbreak))))))
+                        (setf _index (JR.i32 (+ _index 1))))))))
+            (jm_visit_1 (slot-value this 'f_visitor) this))))))
 
-function BasicRandomAI:_init_fields()
-    self.i_random = 0
-    self.inputProbability = nil
-    self.visitor = nil
-    self.keyArray = {Canvas.UP, Canvas.DOWN, Canvas.LEFT, Canvas.RIGHT, Canvas.KEY_NUM1, Canvas.KEY_NUM7, Canvas.KEY_NUM9}
-    self.myRandomFactory = MyRandomFactory.getInstance()
-end
 
-
-function BasicRandomAI.new(ownerLayerInterface, gameInput, inputProbability, visitor)
-    local self = setmetatable(BasicAI.new(ownerLayerInterface, gameInput), BasicRandomAI)
-    self:_init_fields()
-        -- super(...) made self above
-        self.inputProbability = inputProbability
-        self.visitor = visitor
-    return self
-end
-
-
--- throws Exception
-function BasicRandomAI:processAI(allBinaryLayerManager)
-        if self.inputProbability:getTimeDelayHelper():isTime(GameTickTimeDelayHelperFactory.getInstance().startTime) then
-            self.i_random = self.myRandomFactory:getAbsoluteNextInt(self.inputProbability:getMax())
-            local repeat_ = false
-            local repeatLikelyhoodIntegerArray = self.inputProbability:getRepeatLikelyhoodIntegerArray()
-            if self:getLastKey() ~= -1 and math.tointeger(repeatLikelyhoodIntegerArray[self:getLastKey() + 1] // 1) >= self.i_random then
-                repeat_ = true
-            end
-            if not repeat_ then
-                local likelyhoodIntegerArray = self.inputProbability:getLikelyhoodIntegerArray()
-                self.i_random = self.myRandomFactory:getAbsoluteNextInt(self.inputProbability:getMax())
-                local size = (self.keyArray.n or #self.keyArray)
-                local likelyhoodIntegerKeyArray = nil
-                for index = 0, size - 1 do
-                    local key = self.keyArray[index + 1]
-                    likelyhoodIntegerKeyArray = likelyhoodIntegerArray[key + 1]
-                    if (likelyhoodIntegerArray.n or #likelyhoodIntegerArray) >= key and likelyhoodIntegerKeyArray[1] ~= nil then
-                        if self.i_random >= math.tointeger(likelyhoodIntegerKeyArray[1] // 1) and self.i_random < math.tointeger(likelyhoodIntegerKeyArray[2] // 1) then
-                            self:setLastKey(key)
-                            break
-                        end
-                    end
-                end
-            end
-            self.visitor:visit(self)
-        end
-end
-
-return BasicRandomAI
 

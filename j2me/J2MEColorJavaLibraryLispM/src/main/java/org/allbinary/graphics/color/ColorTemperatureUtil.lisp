@@ -25,6 +25,7 @@
 (defun ColorTemperatureUtil.jstatic_instance ()
   (when (eq ColorTemperatureUtil.jcell_instance :jnone) (setf ColorTemperatureUtil.jcell_instance (ColorTemperatureUtil.jnew_0)))
   ColorTemperatureUtil.jcell_instance)
+(defun (setf ColorTemperatureUtil.jstatic_instance) (value) (setf ColorTemperatureUtil.jcell_instance value))
 
 (defun ColorTemperatureUtil.jnew_0 ()
   (let ((this (make-instance 'ColorTemperatureUtil)))

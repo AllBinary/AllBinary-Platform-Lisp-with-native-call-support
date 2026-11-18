@@ -1,64 +1,60 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.gesture
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.input.motion.gesture
 
-local InputFactory = require("org.allbinary.game.input.InputFactory")
-local NullUtil = require("org.allbinary.logic.NullUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass TrackballMotionGestureFactory (JObject)
+  ((f_LEFT :initform nil)
+   (f_RIGHT :initform nil)
+   (f_UP :initform nil)
+   (f_DOWN :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar TrackballMotionGestureFactory.jcell_instance :jnone)
+(defun TrackballMotionGestureFactory.jstatic_instance ()
+  (when (eq TrackballMotionGestureFactory.jcell_instance :jnone) (setf TrackballMotionGestureFactory.jcell_instance (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT)))
+  TrackballMotionGestureFactory.jcell_instance)
+(defun (setf TrackballMotionGestureFactory.jstatic_instance) (value) (setf TrackballMotionGestureFactory.jcell_instance value))
 
-local TrackballMotionGestureFactory = {}
-TrackballMotionGestureFactory.__index = TrackballMotionGestureFactory
-TrackballMotionGestureFactory.className = "TrackballMotionGestureFactory"
+    
+(defun TrackballMotionGestureFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (if (eq (TrackballMotionGestureFactory.jstatic_instance) (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT))
+            (progn
+            (setf (TrackballMotionGestureFactory.jstatic_instance) (TrackballMotionGestureFactory.jnew_0))))
+        (return-from jreturn (TrackballMotionGestureFactory.jstatic_instance)))))
 
-function TrackballMotionGestureFactory:_init_fields()
-    self.LEFT = nil
-    self.RIGHT = nil
-    self.UP = nil
-    self.DOWN = nil
-end
+    
+(defun TrackballMotionGestureFactory.jnew_0 ()
+  (let ((this (make-instance 'TrackballMotionGestureFactory)))
+    
+    
+    
+    
+  (let (_MAX)
+  (declare (ignorable _MAX))
+    (block jreturn
+        (setf _MAX (slot-value (InputFactory.jm_getInstance_0) 'f_MAX))
+        (setf (slot-value this 'f_LEFT) (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 26)) "L Trackball"))
+        (setf (slot-value this 'f_RIGHT) (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 27)) "R Trackball"))
+        (setf (slot-value this 'f_UP) (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 28)) "Up Trackball"))
+        (setf (slot-value this 'f_DOWN) (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 29)) "D Trackball"))))
+    this))
 
 
-function TrackballMotionGestureFactory.getInstance()
-        if TrackballMotionGestureFactory.instance == NullUtil.getInstance().NULL_OBJECT then
-            TrackballMotionGestureFactory.instance = TrackballMotionGestureFactory.new()
-        end
-        return TrackballMotionGestureFactory.instance
-end
-
-
-function TrackballMotionGestureFactory.new()
-    local self = setmetatable({}, TrackballMotionGestureFactory)
-    self:_init_fields()
-        local MAX = InputFactory.getInstance().MAX
-        self.LEFT = MotionGestureInput.new(MAX - 26, "L Trackball")
-        self.RIGHT = MotionGestureInput.new(MAX - 27, "R Trackball")
-        self.UP = MotionGestureInput.new(MAX - 28, "Up Trackball")
-        self.DOWN = MotionGestureInput.new(MAX - 29, "D Trackball")
-    return self
-end
-
-TrackballMotionGestureFactory.instance = NullUtil.getInstance().NULL_OBJECT
-
-return TrackballMotionGestureFactory
 

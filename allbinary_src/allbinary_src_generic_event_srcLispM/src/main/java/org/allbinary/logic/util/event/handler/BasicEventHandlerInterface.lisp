@@ -1,57 +1,53 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.util.event.handler
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.util.event.handler
 
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass BasicEventHandlerInterface (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun BasicEventHandlerInterface.jnew_0 ()
+  (let ((this (make-instance 'BasicEventHandlerInterface)))
+    this))
 
--- Java interface
-local BasicEventHandlerInterface = {}
-BasicEventHandlerInterface.__index = BasicEventHandlerInterface
-BasicEventHandlerInterface.className = "BasicEventHandlerInterface"
+    
+(unless (fboundp 'jm_addListenerInterface_1) (defgeneric jm_addListenerInterface_1 (this p1)))
+(defmethod jm_addListenerInterface_1 ((this BasicEventHandlerInterface) _eventListenerInterface)
+  (declare (ignorable this _eventListenerInterface))
+  (error (JR.newException "AbstractMethodError" "addListenerInterface")))
+
+    
+(unless (fboundp 'jm_fireEvent_1) (defgeneric jm_fireEvent_1 (this p1)))
+(defmethod jm_fireEvent_1 ((this BasicEventHandlerInterface) _eventObject)
+  (declare (ignorable this _eventObject))
+  (error (JR.newException "AbstractMethodError" "fireEvent")))
+
+    
+(unless (fboundp 'jm_removeAllListeners_0) (defgeneric jm_removeAllListeners_0 (this)))
+(defmethod jm_removeAllListeners_0 ((this BasicEventHandlerInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "removeAllListeners")))
+
+    
+(unless (fboundp 'jm_removeListener_1) (defgeneric jm_removeListener_1 (this p1)))
+(defmethod jm_removeListener_1 ((this BasicEventHandlerInterface) _eventListenerInterface)
+  (declare (ignorable this _eventListenerInterface))
+  (error (JR.newException "AbstractMethodError" "removeListener")))
 
 
-function BasicEventHandlerInterface:addListenerInterface(eventListenerInterface)
-    error("abstract method addListenerInterface")
-end
-
-
--- throws Exception
-function BasicEventHandlerInterface:fireEvent(eventObject)
-    error("abstract method fireEvent")
-end
-
-
-function BasicEventHandlerInterface:removeAllListeners()
-    error("abstract method removeAllListeners")
-end
-
-
-function BasicEventHandlerInterface:removeListener(eventListenerInterface)
-    error("abstract method removeListener")
-end
-
-return BasicEventHandlerInterface
 

@@ -27,6 +27,7 @@
 (defun AngleInfo.jstatic_ANGLE ()
   (when (eq AngleInfo.jcell_ANGLE :jnone) (setf AngleInfo.jcell_ANGLE "Angle: "))
   AngleInfo.jcell_ANGLE)
+(defun (setf AngleInfo.jstatic_ANGLE) (value) (setf AngleInfo.jcell_ANGLE value))
 
     
 (defun AngleInfo.jm_getInstance_1 (_angleIncrement)

@@ -1,69 +1,60 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.ag.ai
 
-local BasicAI = require("org.allbinary.game.ai.BasicAI")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local DisplayInfoSingleton = require("org.allbinary.graphics.displayable.DisplayInfoSingleton")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ScrollOverAllowOutsideAtEndAI (BasicAI)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun ScrollOverAllowOutsideAtEndAI.jnew_2 (_ownerLayerInterface _gameInput)
+  (declare (ignorable _ownerLayerInterface _gameInput))
+  (let ((this (make-instance 'ScrollOverAllowOutsideAtEndAI)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
-local ScrollOverAllowOutsideAtEndAI = {}
-ScrollOverAllowOutsideAtEndAI.__index = ScrollOverAllowOutsideAtEndAI
-ScrollOverAllowOutsideAtEndAI.className = "ScrollOverAllowOutsideAtEndAI"
-setmetatable(ScrollOverAllowOutsideAtEndAI, {__index = BasicAI})
+    
+(unless (fboundp 'jm_processAI_1) (defgeneric jm_processAI_1 (this p1)))
+(defmethod jm_processAI_1 ((this ScrollOverAllowOutsideAtEndAI) _allBinaryLayerManager)
+  (declare (ignorable this _allBinaryLayerManager))
+  (let (_ownerLayerInterface _x _y _width _height _displayInfo)
+  (declare (ignorable _ownerLayerInterface _x _y _width _height _displayInfo))
+    (block jreturn
+        (setf _ownerLayerInterface (jm_getOwnerLayerInterface_0 this))
+        (setf _x (jm_getXP_0 _ownerLayerInterface))
+        (setf _y (jm_getYP_0 _ownerLayerInterface))
+        (setf _width (jm_getWidth_0 _ownerLayerInterface))
+        (setf _height (jm_getHeight_0 _ownerLayerInterface))
+        (setf _displayInfo (DisplayInfoSingleton.jm_getInstance_0))
+        (if (> _x (jm_getLastWidth_0 _displayInfo))
+            (progn
+            (jm_setPosition_3 _ownerLayerInterface (JR.i32 (- _width)) _y (jm_getZP_0 _ownerLayerInterface))))
+        (if (> _y (jm_getLastHeight_0 _displayInfo))
+            (progn
+            (jm_setPosition_3 _ownerLayerInterface _x (JR.i32 (- _height)) (jm_getZP_0 _ownerLayerInterface))))
+        (if (< _x (JR.i32 (- _width)))
+            (progn
+            (jm_setPosition_3 _ownerLayerInterface (JR.i32 (+ (jm_getLastWidth_0 _displayInfo) _width)) _y (jm_getZP_0 _ownerLayerInterface))))
+        (if (< _y (JR.i32 (- _height)))
+            (progn
+            (jm_setPosition_3 _ownerLayerInterface _x (JR.i32 (+ (jm_getLastHeight_0 _displayInfo) _height)) (jm_getZP_0 _ownerLayerInterface)))))))
 
 
-function ScrollOverAllowOutsideAtEndAI.new(ownerLayerInterface, gameInput)
-    local self = setmetatable(BasicAI.new(ownerLayerInterface, gameInput), ScrollOverAllowOutsideAtEndAI)
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function ScrollOverAllowOutsideAtEndAI:processAI(allBinaryLayerManager)
-        local ownerLayerInterface = self:getOwnerLayerInterface()
-        local x = ownerLayerInterface:getXP()
-        local y = ownerLayerInterface:getYP()
-        local width = ownerLayerInterface:getWidth()
-        local height = ownerLayerInterface:getHeight()
-        local displayInfo = DisplayInfoSingleton.getInstance()
-        if x > displayInfo:getLastWidth() then
-            ownerLayerInterface:setPosition(-width, y, ownerLayerInterface:getZP())
-        end
-        if y > displayInfo:getLastHeight() then
-            ownerLayerInterface:setPosition(x, -height, ownerLayerInterface:getZP())
-        end
-        if x < -width then
-            ownerLayerInterface:setPosition(displayInfo:getLastWidth() + width, y, ownerLayerInterface:getZP())
-        end
-        if y < -height then
-            ownerLayerInterface:setPosition(x, displayInfo:getLastHeight() + height, ownerLayerInterface:getZP())
-        end
-end
-
-return ScrollOverAllowOutsideAtEndAI
 

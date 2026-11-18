@@ -1,54 +1,46 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.android.input.motion
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.android.input.motion
 
-local AnalogLocationInput = require("org.allbinary.game.input.analog.AnalogLocationInput")
-local AnalogLocationInputFactory = require("org.allbinary.game.input.analog.AnalogLocationInputFactory")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local AnalogControllerVisitor = require("org.allbinary.android.input.motion.AnalogControllerVisitor")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass AllAnalogControllerVisitor (AnalogControllerVisitor)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun AllAnalogControllerVisitor.jnew_0 ()
+  (let ((this (make-instance 'AllAnalogControllerVisitor)))
+    this))
 
-local AllAnalogControllerVisitor = {}
-AllAnalogControllerVisitor.__index = AllAnalogControllerVisitor
-AllAnalogControllerVisitor.className = "AllAnalogControllerVisitor"
-setmetatable(AllAnalogControllerVisitor, {__index = AnalogControllerVisitor})
+    
+(unless (fboundp 'jm_process_2) (defgeneric jm_process_2 (this p1 p2)))
+(defmethod jm_process_2 ((this AllAnalogControllerVisitor) _allbinaryLayerManager _analogLocationInputProcessor)
+  (declare (ignorable this _allbinaryLayerManager _analogLocationInputProcessor))
+  (let (_analogLocationInputList _analogLocationInput _index)
+  (declare (ignorable _analogLocationInputList _analogLocationInput _index))
+    (block jreturn
+        (setf _analogLocationInputList (jm_getList_0 (AnalogLocationInputFactory.jm_getInstance_0)))
+        (setf _analogLocationInput nil)
+        (progn
+            (setf _index (JR.i32 (- (jm_size_0 _analogLocationInputList) 1)))
+            (block jbreak (loop while (>= _index 0) do
+                (block jcontinue
+            (setf _analogLocationInput (jm_get_1 _analogLocationInputList _index))
+            (jm_process_2 _analogLocationInputProcessor _allbinaryLayerManager _analogLocationInput))
+                (setf _index (JR.i32 (- _index 1)))))))))
 
-function AllAnalogControllerVisitor.new()
-    local self = setmetatable(AnalogControllerVisitor.new(), AllAnalogControllerVisitor)
-    return self
-end
 
-
-function AllAnalogControllerVisitor:process(allbinaryLayerManager, analogLocationInputProcessor)
-        local analogLocationInputList = AnalogLocationInputFactory.getInstance():getList()
-        local analogLocationInput = nil
-        for index = analogLocationInputList:size() - 1, 0, -1 do
-            analogLocationInput = analogLocationInputList:get(index)
-            analogLocationInputProcessor:process(allbinaryLayerManager, analogLocationInput)
-        end
-end
-
-return AllAnalogControllerVisitor
 

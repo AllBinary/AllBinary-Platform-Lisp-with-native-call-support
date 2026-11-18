@@ -1,117 +1,121 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.resource
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.resource
 
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local GameFeatureControlledInterface = require("org.allbinary.game.configuration.feature.GameFeatureControlledInterface")
-local GraphicsFeatureFactory = require("org.allbinary.game.configuration.feature.GraphicsFeatureFactory")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local CommonLabels = require("org.allbinary.string.CommonLabels")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass FeaturedResourceFactory (JObject)
+  ((f_logUtil :initform nil)
+   (f_list :initform nil)
+   (f_commonStrings :initform nil)
+   (f_ANIMATION_FEATURES :initform nil)
+   (f_IMAGE_LABEL :initform nil)
+   (f_IMAGE_GRAPHICS_ARRAY :initform nil)
+   (f_IMAGE_GRAPHICS_ROTATION :initform nil)
+   (f_SPRITE_QUARTER :initform nil)
+   (f_SPRITE_FULL :initform nil)
+   (f_IS_LOADING_LEVEL_LABEL :initform nil)
+   (f_IS_FEATURE :initform nil)
+   (f_GAME_FEATURE_CONTROLLED :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun FeaturedResourceFactory.jnew_0 ()
+  (let ((this (make-instance 'FeaturedResourceFactory)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_list) (BasicArrayListD.jnew_0))
+    (setf (slot-value this 'f_commonStrings) (CommonStrings.jm_getInstance_0))
+    (setf (slot-value this 'f_ANIMATION_FEATURES) "Animation Features: Vector: ")
+    (setf (slot-value this 'f_IMAGE_LABEL) " Image: ")
+    (setf (slot-value this 'f_IMAGE_GRAPHICS_ARRAY) "Image Array: ")
+    (setf (slot-value this 'f_IMAGE_GRAPHICS_ROTATION) "Image Rotate: ")
+    (setf (slot-value this 'f_SPRITE_QUARTER) " Sprite Quarter: ")
+    (setf (slot-value this 'f_SPRITE_FULL) " Sprite Full: ")
+    (setf (slot-value this 'f_IS_LOADING_LEVEL_LABEL) " isLoadingLevel ")
+    (setf (slot-value this 'f_IS_FEATURE) " isFeature: ")
+    (setf (slot-value this 'f_GAME_FEATURE_CONTROLLED) "GameFeatureControlledInterface: ")
+  (let ()
+    (block jreturn nil))
+    this))
 
-local FeaturedResourceFactory = {}
-FeaturedResourceFactory.__index = FeaturedResourceFactory
-FeaturedResourceFactory.className = "FeaturedResourceFactory"
+    
+(unless (fboundp 'jm_init_1) (defgeneric jm_init_1 (this p1)))
+(defmethod jm_init_1 ((this FeaturedResourceFactory) _level)
+  (declare (ignorable this _level))
+  (let (_size _featureInterface _isLoadingLevel _isFeature _index _features _graphicsFeatureFactory _stringBuffer)
+  (declare (ignorable _size _featureInterface _isLoadingLevel _isFeature _index _features _graphicsFeatureFactory _stringBuffer))
+    (block jreturn
+        (setf _size (jm_size_0 (slot-value this 'f_list)))
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (setf _featureInterface (aref (slot-value (slot-value this 'f_list) 'f_objectArray) _index))
+            (setf _isLoadingLevel (jm_isLoadingLevel_1 _featureInterface _level))
+            (setf _isFeature (jm_isFeature_0 _featureInterface))
+            (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 (jm_appendboolean_1 (jm_append_1 (jm_appendboolean_1 (jm_append_1 (jm_append_1 (jm_append_1 (jm_append_1 (jm_append_1 (StringMaker.jnew_0) (slot-value this 'f_GAME_FEATURE_CONTROLLED)) (jm_toString_0 _featureInterface)) (slot-value this 'f_IS_LOADING_LEVEL_LABEL)) (jm_getLevelString_1 (ResourceLoadingLevelFactory.jm_getInstance_0) _level)) (slot-value (CommonSeps.jm_getInstance_0) 'f_COLON_SEP)) _isLoadingLevel) (slot-value this 'f_IS_FEATURE)) _isFeature)) this (slot-value (slot-value this 'f_commonStrings) 'f_INIT))
+            (if (and _isLoadingLevel _isFeature)
+                (progn
+                (jm_init_1 _featureInterface _level))))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (setf _features (Features.jm_getInstance_0))
+        (setf _graphicsFeatureFactory (GraphicsFeatureFactory.jm_getInstance_0))
+        (setf _stringBuffer (StringMaker.jnew_0))
+        (jm_append_1 _stringBuffer (slot-value this 'f_ANIMATION_FEATURES))
+        (jm_appendboolean_1 _stringBuffer (jm_isFeature_1 _features (slot-value _graphicsFeatureFactory 'f_VECTOR_GRAPHICS)))
+        (jm_append_1 _stringBuffer (slot-value this 'f_IMAGE_LABEL))
+        (jm_appendboolean_1 _stringBuffer (jm_isFeature_1 _features (slot-value _graphicsFeatureFactory 'f_IMAGE_GRAPHICS)))
+        (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 _stringBuffer) this (slot-value (slot-value this 'f_commonStrings) 'f_INIT))
+        (if (jm_isFeature_1 _features (slot-value _graphicsFeatureFactory 'f_IMAGE_GRAPHICS))
+            (progn
+            (jm_delete_2 _stringBuffer 0 (jm_length_0 _stringBuffer))
+            (jm_append_1 _stringBuffer (slot-value this 'f_IMAGE_GRAPHICS_ARRAY))
+            (jm_appendboolean_1 _stringBuffer (jm_isFeature_1 _features (slot-value _graphicsFeatureFactory 'f_IMAGE_TO_ARRAY_GRAPHICS)))
+            (jm_append_1 _stringBuffer (slot-value this 'f_IMAGE_GRAPHICS_ROTATION))
+            (jm_appendboolean_1 _stringBuffer (jm_isFeature_1 _features (slot-value _graphicsFeatureFactory 'f_IMAGE_TO_ARRAY_GRAPHICS)))
+            (jm_append_1 _stringBuffer (slot-value this 'f_SPRITE_QUARTER))
+            (jm_appendboolean_1 _stringBuffer (jm_isFeature_1 _features (slot-value _graphicsFeatureFactory 'f_SPRITE_QUARTER_ROTATION_GRAPHICS)))
+            (jm_append_1 _stringBuffer (slot-value this 'f_SPRITE_FULL))
+            (jm_appendboolean_1 _stringBuffer (jm_isFeature_1 _features (slot-value _graphicsFeatureFactory 'f_SPRITE_FULL_GRAPHICS)))
+            (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 _stringBuffer) this (slot-value (slot-value this 'f_commonStrings) 'f_INIT)))))))
 
-function FeaturedResourceFactory:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.list = BasicArrayListD.new()
-    self.commonStrings = CommonStrings.getInstance()
-    self.ANIMATION_FEATURES = "Animation Features: Vector: "
-    self.IMAGE_LABEL = " Image: "
-    self.IMAGE_GRAPHICS_ARRAY = "Image Array: "
-    self.IMAGE_GRAPHICS_ROTATION = "Image Rotate: "
-    self.SPRITE_QUARTER = " Sprite Quarter: "
-    self.SPRITE_FULL = " Sprite Full: "
-    self.IS_LOADING_LEVEL_LABEL = " isLoadingLevel "
-    self.IS_FEATURE = " isFeature: "
-    self.GAME_FEATURE_CONTROLLED = "GameFeatureControlledInterface: "
-end
+    
+(unless (fboundp 'jm_clear_0) (defgeneric jm_clear_0 (this)))
+(defmethod jm_clear_0 ((this FeaturedResourceFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_clear_0 (slot-value this 'f_list)))))
 
+    
+(unless (fboundp 'jm_add_1) (defgeneric jm_add_1 (this p1)))
+(defmethod jm_add_1 ((this FeaturedResourceFactory) _featureInterface)
+  (declare (ignorable this _featureInterface))
+  (let ()
+    (block jreturn
+        (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 (jm_append_1 (jm_append_1 (StringMaker.jnew_0) (slot-value (CommonLabels.jm_getInstance_0) 'f_START_LABEL)) (jm_toString_1 (StringUtil.jm_getInstance_0) _featureInterface))) this (slot-value (slot-value this 'f_commonStrings) 'f_ADD))
+        (jm_add_1 (slot-value this 'f_list) _featureInterface))))
 
-function FeaturedResourceFactory.new()
-    local self = setmetatable({}, FeaturedResourceFactory)
-    self:_init_fields()
-    return self
-end
-
-
--- throws Exception
-function FeaturedResourceFactory:init(level)
-        local size = self.list:size()
-        for index = 0, size - 1 do
-            local featureInterface = self.list.objectArray[index + 1]
-            local isLoadingLevel = featureInterface:isLoadingLevel(level)
-            local isFeature = featureInterface:isFeature()
-            self.logUtil:putF(tostring(StringMaker.new():append(self.GAME_FEATURE_CONTROLLED):append(tostring(featureInterface)):append(self.IS_LOADING_LEVEL_LABEL):append(ResourceLoadingLevelFactory.getInstance():getLevelString(level)):append(CommonSeps.getInstance().COLON_SEP):appendboolean(isLoadingLevel):append(self.IS_FEATURE):appendboolean(isFeature)), self, self.commonStrings.INIT)
-            if isLoadingLevel and isFeature then
-                featureInterface:init(level)
-            end
-        end
-        local features = Features.getInstance()
-        local graphicsFeatureFactory = GraphicsFeatureFactory.getInstance()
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append(self.ANIMATION_FEATURES)
-        stringBuffer:appendboolean(features:isFeature(graphicsFeatureFactory.VECTOR_GRAPHICS))
-        stringBuffer:append(self.IMAGE_LABEL)
-        stringBuffer:appendboolean(features:isFeature(graphicsFeatureFactory.IMAGE_GRAPHICS))
-        self.logUtil:putF(tostring(stringBuffer), self, self.commonStrings.INIT)
-        if features:isFeature(graphicsFeatureFactory.IMAGE_GRAPHICS) then
-            stringBuffer:delete(0, stringBuffer:length())
-            stringBuffer:append(self.IMAGE_GRAPHICS_ARRAY)
-            stringBuffer:appendboolean(features:isFeature(graphicsFeatureFactory.IMAGE_TO_ARRAY_GRAPHICS))
-            stringBuffer:append(self.IMAGE_GRAPHICS_ROTATION)
-            stringBuffer:appendboolean(features:isFeature(graphicsFeatureFactory.IMAGE_TO_ARRAY_GRAPHICS))
-            stringBuffer:append(self.SPRITE_QUARTER)
-            stringBuffer:appendboolean(features:isFeature(graphicsFeatureFactory.SPRITE_QUARTER_ROTATION_GRAPHICS))
-            stringBuffer:append(self.SPRITE_FULL)
-            stringBuffer:appendboolean(features:isFeature(graphicsFeatureFactory.SPRITE_FULL_GRAPHICS))
-            self.logUtil:putF(tostring(stringBuffer), self, self.commonStrings.INIT)
-        end
-end
-
-
-function FeaturedResourceFactory:clear()
-        self.list:clear()
-end
-
-
-function FeaturedResourceFactory:add(featureInterface)
-        self.logUtil:putF(tostring(StringMaker.new():append(CommonLabels.getInstance().START_LABEL):append(StringUtil.getInstance():toString(featureInterface))), self, self.commonStrings.ADD)
-        self.list:add(featureInterface)
-end
+    
+(unless (fboundp 'jm_getList_0) (defgeneric jm_getList_0 (this)))
+(defmethod jm_getList_0 ((this FeaturedResourceFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_list)))))
 
 
-function FeaturedResourceFactory:getList()
-        return self.list
-end
-
-return FeaturedResourceFactory
 

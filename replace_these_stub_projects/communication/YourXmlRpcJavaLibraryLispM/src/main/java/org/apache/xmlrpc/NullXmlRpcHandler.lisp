@@ -1,50 +1,43 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.apache.xmlrpc
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2025 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.apache.xmlrpc
 
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local XmlRpcHandler = require("org.apache.xmlrpc.XmlRpcHandler")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass NullXmlRpcHandler (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar NullXmlRpcHandler.jcell_NULL_XML_RPC_HANDLER :jnone)
+(defun NullXmlRpcHandler.jstatic_NULL_XML_RPC_HANDLER ()
+  (when (eq NullXmlRpcHandler.jcell_NULL_XML_RPC_HANDLER :jnone) (setf NullXmlRpcHandler.jcell_NULL_XML_RPC_HANDLER (NullXmlRpcHandler.jnew_0)))
+  NullXmlRpcHandler.jcell_NULL_XML_RPC_HANDLER)
+(defun (setf NullXmlRpcHandler.jstatic_NULL_XML_RPC_HANDLER) (value) (setf NullXmlRpcHandler.jcell_NULL_XML_RPC_HANDLER value))
 
-local NullXmlRpcHandler = {}
-NullXmlRpcHandler.__index = NullXmlRpcHandler
-NullXmlRpcHandler.className = "NullXmlRpcHandler"
+(defun NullXmlRpcHandler.jnew_0 ()
+  (let ((this (make-instance 'NullXmlRpcHandler)))
+    this))
 
-function NullXmlRpcHandler.new()
-    local self = setmetatable({}, NullXmlRpcHandler)
-    return self
-end
+    
+(unless (fboundp 'jm_execute_2) (defgeneric jm_execute_2 (this p1 p2)))
+(defmethod jm_execute_2 ((this NullXmlRpcHandler) _method _params)
+  (declare (ignorable this _method _params))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT)))))
 
 
--- throws Exception
-function NullXmlRpcHandler:execute(method, params)
-        return NullUtil.getInstance().NULL_OBJECT
-end
-
-NullXmlRpcHandler.NULL_XML_RPC_HANDLER = NullXmlRpcHandler.new()
-
-return NullXmlRpcHandler
 

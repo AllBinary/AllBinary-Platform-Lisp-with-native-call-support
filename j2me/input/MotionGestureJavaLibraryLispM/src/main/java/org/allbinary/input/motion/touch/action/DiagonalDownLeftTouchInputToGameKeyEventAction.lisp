@@ -1,55 +1,48 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.touch.action
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.input.motion.touch.action
 
-local PlatformInputMappingFactory = require("org.allbinary.game.input.PlatformInputMappingFactory")
-local GameKeyCompleteMotionGestureInputEvent = require("org.allbinary.game.input.motion.action.GameKeyCompleteMotionGestureInputEvent")
-local TouchMotionGestureFactory = require("org.allbinary.input.motion.gesture.TouchMotionGestureFactory")
-local NullUtil = require("org.allbinary.logic.NullUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass DiagonalDownLeftTouchInputToGameKeyEventAction (GameKeyCompleteMotionGestureInputEvent)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar DiagonalDownLeftTouchInputToGameKeyEventAction.jcell_instance :jnone)
+(defun DiagonalDownLeftTouchInputToGameKeyEventAction.jstatic_instance ()
+  (when (eq DiagonalDownLeftTouchInputToGameKeyEventAction.jcell_instance :jnone) (setf DiagonalDownLeftTouchInputToGameKeyEventAction.jcell_instance (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT)))
+  DiagonalDownLeftTouchInputToGameKeyEventAction.jcell_instance)
+(defun (setf DiagonalDownLeftTouchInputToGameKeyEventAction.jstatic_instance) (value) (setf DiagonalDownLeftTouchInputToGameKeyEventAction.jcell_instance value))
 
-local DiagonalDownLeftTouchInputToGameKeyEventAction = {}
-DiagonalDownLeftTouchInputToGameKeyEventAction.__index = DiagonalDownLeftTouchInputToGameKeyEventAction
-DiagonalDownLeftTouchInputToGameKeyEventAction.className = "DiagonalDownLeftTouchInputToGameKeyEventAction"
-setmetatable(DiagonalDownLeftTouchInputToGameKeyEventAction, {__index = GameKeyCompleteMotionGestureInputEvent})
+    
+(defun DiagonalDownLeftTouchInputToGameKeyEventAction.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (if (eq (DiagonalDownLeftTouchInputToGameKeyEventAction.jstatic_instance) (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT))
+            (progn
+            (setf (DiagonalDownLeftTouchInputToGameKeyEventAction.jstatic_instance) (DiagonalDownLeftTouchInputToGameKeyEventAction.jnew_0))))
+        (return-from jreturn (DiagonalDownLeftTouchInputToGameKeyEventAction.jstatic_instance)))))
+
+    
+(defun DiagonalDownLeftTouchInputToGameKeyEventAction.jnew_0 ()
+  (let ((this (make-instance 'DiagonalDownLeftTouchInputToGameKeyEventAction)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
 
-function DiagonalDownLeftTouchInputToGameKeyEventAction.getInstance()
-        if DiagonalDownLeftTouchInputToGameKeyEventAction.instance == NullUtil.getInstance().NULL_OBJECT then
-            DiagonalDownLeftTouchInputToGameKeyEventAction.instance = DiagonalDownLeftTouchInputToGameKeyEventAction.new()
-        end
-        return DiagonalDownLeftTouchInputToGameKeyEventAction.instance
-end
-
-
-function DiagonalDownLeftTouchInputToGameKeyEventAction.new()
-    local self = setmetatable(GameKeyCompleteMotionGestureInputEvent.new("Diagonal Down Left Action", TouchMotionGestureFactory.getInstance().DIAGONAL_DOWN_LEFT, PlatformInputMappingFactory.getInstance():getPersistentInputMappingInstance():getInputMapping()), DiagonalDownLeftTouchInputToGameKeyEventAction)
-        -- super(...) made self above
-    return self
-end
-
-DiagonalDownLeftTouchInputToGameKeyEventAction.instance = NullUtil.getInstance().NULL_OBJECT
-
-return DiagonalDownLeftTouchInputToGameKeyEventAction
 

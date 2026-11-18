@@ -1,121 +1,137 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation.text
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2022 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation.text
 
--- local Font = require("javax.microedition.lcdui.Font")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local IndexedAnimation = require("org.allbinary.animation.IndexedAnimation")
-local RawKeyEventListener = require("org.allbinary.game.input.event.RawKeyEventListener")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local UpdateMyFontInterface = require("org.allbinary.graphics.font.UpdateMyFontInterface")
-local CustomTextBox = require("org.allbinary.graphics.form.item.CustomTextBox")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local TextInterface = require("org.allbinary.animation.text.TextInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass CustomTextBoxIndexedAnimation (IndexedAnimation)
+  ((f_customTextBox :initform nil)
+   (f_lastText :initform nil)
+   (f_hasChanged :initform nil)
+   (f_textChangeListener :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun CustomTextBoxIndexedAnimation.jnew_1 (_customTextBox)
+  (declare (ignorable _customTextBox))
+  (let ((this (make-instance 'CustomTextBoxIndexedAnimation)))
+    
+    (setf (slot-value this 'f_lastText) (slot-value (StringUtil.jm_getInstance_0) 'f_INIT_STRING))
+    (setf (slot-value this 'f_hasChanged) t)
+    (setf (slot-value this 'f_textChangeListener) (TextChangeListener.jm_getInstance_0))
+  (let ()
+    (block jreturn
+        nil
+        (setf (slot-value this 'f_customTextBox) _customTextBox)))
+    this))
 
-local CustomTextBoxIndexedAnimation = {}
-CustomTextBoxIndexedAnimation.__index = CustomTextBoxIndexedAnimation
-CustomTextBoxIndexedAnimation.className = "CustomTextBoxIndexedAnimation"
-setmetatable(CustomTextBoxIndexedAnimation, {__index = IndexedAnimation})
+    
+(unless (fboundp 'jm_setBasicColorP_1) (defgeneric jm_setBasicColorP_1 (this p1)))
+(defmethod jm_setBasicColorP_1 ((this CustomTextBoxIndexedAnimation) _basicColor)
+  (declare (ignorable this _basicColor))
+  (let ()
+    (block jreturn
+        (jm_setForegroundBasicColorP_1 (jm_getTextFieldItem_0 (slot-value this 'f_customTextBox)) _basicColor))))
 
-function CustomTextBoxIndexedAnimation:_init_fields()
-    self.customTextBox = nil
-    self.lastText = StringUtil.getInstance().INIT_STRING
-    self.hasChanged = true
-    self.textChangeListener = TextChangeListener.getInstance()
-end
+    
+(unless (fboundp 'jm_setBackgroundBasicColorP_1) (defgeneric jm_setBackgroundBasicColorP_1 (this p1)))
+(defmethod jm_setBackgroundBasicColorP_1 ((this CustomTextBoxIndexedAnimation) _basicColor)
+  (declare (ignorable this _basicColor))
+  (let ()
+    (block jreturn
+        (jm_setBackgroundBasicColorP_1 (jm_getTextFieldItem_0 (slot-value this 'f_customTextBox)) _basicColor))))
+
+    
+(unless (fboundp 'jm_setTextWithOnMeasure_2) (defgeneric jm_setTextWithOnMeasure_2 (this p1 p2)))
+(defmethod jm_setTextWithOnMeasure_2 ((this CustomTextBoxIndexedAnimation) _text _textChangeListener)
+  (declare (ignorable this _text _textChangeListener))
+  (let ()
+    (block jreturn
+        (jm_setText_1 this _text)
+        (setf (slot-value this 'f_textChangeListener) _textChangeListener))))
+
+    
+(unless (fboundp 'jm_updateMeasurement_1) (defgeneric jm_updateMeasurement_1 (this p1)))
+(defmethod jm_updateMeasurement_1 ((this CustomTextBoxIndexedAnimation) _graphics)
+  (declare (ignorable this _graphics))
+  (let (_font)
+  (declare (ignorable _font))
+    (block jreturn
+        (setf _font (jm_getFont_0 _graphics))
+        (jm_onMeasure_0 (slot-value this 'f_textChangeListener))
+        (setf (slot-value this 'f_textChangeListener) (TextChangeListener.jm_getInstance_0)))))
+
+    
+(unless (fboundp 'jm_setText_1) (defgeneric jm_setText_1 (this p1)))
+(defmethod jm_setText_1 ((this CustomTextBoxIndexedAnimation) _text)
+  (declare (ignorable this _text))
+  (let ()
+    (block jreturn
+        (if (not (eq (slot-value this 'f_lastText) _text))
+            (progn
+            (setf (slot-value this 'f_hasChanged) t)
+            (setf (slot-value this 'f_lastText) _text)
+            (jm_setString_1 (jm_getTextFieldItem_0 (slot-value this 'f_customTextBox)) _text))))))
+
+    
+(unless (fboundp 'jm_getText_0) (defgeneric jm_getText_0 (this)))
+(defmethod jm_getText_0 ((this CustomTextBoxIndexedAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getString_0 (jm_getTextFieldItem_0 (slot-value this 'f_customTextBox)))))))
+
+    
+(unless (fboundp 'jm_onEventRaw_3) (defgeneric jm_onEventRaw_3 (this p1 p2 p3)))
+(defmethod jm_onEventRaw_3 ((this CustomTextBoxIndexedAnimation) _keyCode _deviceId _repeated)
+  (declare (ignorable this _keyCode _deviceId _repeated))
+  (let ()
+    (block jreturn
+        (jm_onEventRaw_3 (slot-value this 'f_customTextBox) _keyCode _deviceId _repeated))))
+
+    
+(unless (fboundp 'jm_getFontHeight_0) (defgeneric jm_getFontHeight_0 (this)))
+(defmethod jm_getFontHeight_0 ((this CustomTextBoxIndexedAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getFontHeight_0 (jm_getTextFieldItem_0 (slot-value this 'f_customTextBox)))))))
+
+    
+(unless (fboundp 'jm_paintXY_3) (defgeneric jm_paintXY_3 (this p1 p2 p3)))
+(defmethod jm_paintXY_3 ((this CustomTextBoxIndexedAnimation) _graphics _x _y)
+  (declare (ignorable this _graphics _x _y))
+  (let ()
+    (block jreturn
+        (jm_paintXY_3 (slot-value this 'f_customTextBox) _graphics _x _y))))
+
+    
+(unless (fboundp 'jm_paintThreedXYZ_4) (defgeneric jm_paintThreedXYZ_4 (this p1 p2 p3 p4)))
+(defmethod jm_paintThreedXYZ_4 ((this CustomTextBoxIndexedAnimation) _graphics _x _y _z)
+  (declare (ignorable this _graphics _x _y _z))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_getWidth_0) (defgeneric jm_getWidth_0 (this)))
+(defmethod jm_getWidth_0 ((this CustomTextBoxIndexedAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (call-next-method this)))))
 
 
-function CustomTextBoxIndexedAnimation.new(customTextBox)
-    local self = setmetatable(IndexedAnimation.new(AnimationBehavior.getInstance()), CustomTextBoxIndexedAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self.customTextBox = customTextBox
-    return self
-end
-
-
-function CustomTextBoxIndexedAnimation:setBasicColorP(basicColor)
-        self.customTextBox:getTextFieldItem():setForegroundBasicColorP(basicColor)
-end
-
-
-function CustomTextBoxIndexedAnimation:setBackgroundBasicColorP(basicColor)
-        self.customTextBox:getTextFieldItem():setBackgroundBasicColorP(basicColor)
-end
-
-
-function CustomTextBoxIndexedAnimation:setTextWithOnMeasure(text, textChangeListener)
-        self:setText(text)
-        self.textChangeListener = textChangeListener
-end
-
-
-function CustomTextBoxIndexedAnimation:updateMeasurement(graphics)
-        local font = graphics:getFont()
-        self.textChangeListener:onMeasure()
-        self.textChangeListener = TextChangeListener.getInstance()
-end
-
-
-function CustomTextBoxIndexedAnimation:setText(text)
-        if self.lastText ~= text then
-            self.hasChanged = true
-            self.lastText = text
-            self.customTextBox:getTextFieldItem():setString(text)
-        end
-end
-
-
-function CustomTextBoxIndexedAnimation:getText()
-        return self.customTextBox:getTextFieldItem():getString()
-end
-
-
-function CustomTextBoxIndexedAnimation:onEventRaw(keyCode, deviceId, repeated)
-        self.customTextBox:onEventRaw(keyCode, deviceId, repeated)
-end
-
-
-function CustomTextBoxIndexedAnimation:getFontHeight()
-        return self.customTextBox:getTextFieldItem():getFontHeight()
-end
-
-
-function CustomTextBoxIndexedAnimation:paintXY(graphics, x, y)
-        self.customTextBox:paintXY(graphics, x, y)
-end
-
-
-function CustomTextBoxIndexedAnimation:paintThreedXYZ(graphics, x, y, z)
-end
-
-
-function CustomTextBoxIndexedAnimation:getWidth()
-        return IndexedAnimation.getWidth(self)
-end
-
-return CustomTextBoxIndexedAnimation
 

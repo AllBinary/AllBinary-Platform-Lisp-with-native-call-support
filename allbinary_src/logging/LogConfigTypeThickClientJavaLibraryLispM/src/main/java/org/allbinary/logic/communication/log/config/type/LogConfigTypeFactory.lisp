@@ -1,61 +1,63 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic.communication.log.config.type
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2022 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.communication.log.config.type
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass LogConfigTypeFactory (JObject)
+  ((f_NO_DESCRIPTION :initform nil)
+   (f_OS :initform nil)
+   (f_FACTORYERROR :initform nil)
+   (f_FILE :initform nil)
+   (f_FILEERROR :initform nil)
+   (f_IDLOGGING :initform nil)
+   (f_REPLACE :initform nil)
+   (f_REPLACE_INFO :initform nil)
+   (f_REPLACEERROR :initform nil)))
+
+(defvar LogConfigTypeFactory.jcell_instance :jnone)
+(defun LogConfigTypeFactory.jstatic_instance ()
+  (when (eq LogConfigTypeFactory.jcell_instance :jnone) (setf LogConfigTypeFactory.jcell_instance (LogConfigTypeFactory.jnew_0)))
+  LogConfigTypeFactory.jcell_instance)
+(defun (setf LogConfigTypeFactory.jstatic_instance) (value) (setf LogConfigTypeFactory.jcell_instance value))
+
+    
+(defun LogConfigTypeFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (LogConfigTypeFactory.jstatic_instance)))))
+
+    
+(defun LogConfigTypeFactory.jnew_0 ()
+  (let ((this (make-instance 'LogConfigTypeFactory)))
+    (setf (slot-value this 'f_NO_DESCRIPTION) "No Description")
+    (setf (slot-value this 'f_OS) (LogConfigType.jnew_2 "Operating System" (slot-value this 'f_NO_DESCRIPTION)))
+    (setf (slot-value this 'f_FACTORYERROR) (LogConfigType.jnew_2 "Factory Error" (slot-value this 'f_NO_DESCRIPTION)))
+    (setf (slot-value this 'f_FILE) (LogConfigType.jnew_2 "File" (slot-value this 'f_NO_DESCRIPTION)))
+    (setf (slot-value this 'f_FILEERROR) (LogConfigType.jnew_2 "File Error" (slot-value this 'f_NO_DESCRIPTION)))
+    (setf (slot-value this 'f_IDLOGGING) (LogConfigType.jnew_2 "ID Logging" (slot-value this 'f_NO_DESCRIPTION)))
+    (setf (slot-value this 'f_REPLACE) (LogConfigType.jnew_2 "Replace" (slot-value this 'f_NO_DESCRIPTION)))
+    (setf (slot-value this 'f_REPLACE_INFO) (LogConfigType.jnew_2 "Replace Info" (slot-value this 'f_NO_DESCRIPTION)))
+    (setf (slot-value this 'f_REPLACEERROR) (LogConfigType.jnew_2 "Replace Error" (slot-value this 'f_NO_DESCRIPTION)))
+  (let ()
+    (block jreturn
+        (jm_add_1 (LogConfigTypes.jstatic_LOGGING) (slot-value this 'f_OS))
+        (jm_add_1 (LogConfigTypes.jstatic_LOGGING) (slot-value this 'f_FACTORYERROR))))
+    this))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local LogConfigTypeFactory = {}
-LogConfigTypeFactory.__index = LogConfigTypeFactory
-LogConfigTypeFactory.className = "LogConfigTypeFactory"
-
-function LogConfigTypeFactory:_init_fields()
-    self.NO_DESCRIPTION = "No Description"
-    self.OS = LogConfigType.new("Operating System", self.NO_DESCRIPTION)
-    self.FACTORYERROR = LogConfigType.new("Factory Error", self.NO_DESCRIPTION)
-    self.FILE = LogConfigType.new("File", self.NO_DESCRIPTION)
-    self.FILEERROR = LogConfigType.new("File Error", self.NO_DESCRIPTION)
-    self.IDLOGGING = LogConfigType.new("ID Logging", self.NO_DESCRIPTION)
-    self.REPLACE = LogConfigType.new("Replace", self.NO_DESCRIPTION)
-    self.REPLACE_INFO = LogConfigType.new("Replace Info", self.NO_DESCRIPTION)
-    self.REPLACEERROR = LogConfigType.new("Replace Error", self.NO_DESCRIPTION)
-end
-
-
-function LogConfigTypeFactory.getInstance()
-        return LogConfigTypeFactory.instance
-end
-
-
-function LogConfigTypeFactory.new()
-    local self = setmetatable({}, LogConfigTypeFactory)
-    self:_init_fields()
-        LogConfigTypes.LOGGING:add(self.OS)
-        LogConfigTypes.LOGGING:add(self.FACTORYERROR)
-    return self
-end
-
-LogConfigTypeFactory.instance = LogConfigTypeFactory.new()
-
-return LogConfigTypeFactory
 

@@ -25,6 +25,7 @@
 (defun NullRunnable.jstatic_instance ()
   (when (eq NullRunnable.jcell_instance :jnone) (setf NullRunnable.jcell_instance (NullRunnable.jnew_0)))
   NullRunnable.jcell_instance)
+(defun (setf NullRunnable.jstatic_instance) (value) (setf NullRunnable.jcell_instance value))
 
     
 (defun NullRunnable.jm_getInstance_0 ()

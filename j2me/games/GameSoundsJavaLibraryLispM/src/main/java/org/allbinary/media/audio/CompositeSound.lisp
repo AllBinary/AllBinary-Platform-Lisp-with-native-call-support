@@ -1,48 +1,42 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.media.audio
 
-local Sound = require("org.allbinary.media.audio.Sound")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass CompositeSound (Sound)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun CompositeSound.jnew_1 (_resource)
+  (declare (ignorable _resource))
+  (let ((this (make-instance 'CompositeSound)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
-local CompositeSound = {}
-CompositeSound.__index = CompositeSound
-CompositeSound.className = "CompositeSound"
-setmetatable(CompositeSound, {__index = Sound})
-
-
-function CompositeSound.new(resource)
-    local self = setmetatable(Sound.new(resource), CompositeSound)
-        -- super(...) made self above
-    return self
-end
+    
+(unless (fboundp 'jm_init_0) (defgeneric jm_init_0 (this)))
+(defmethod jm_init_0 ((this CompositeSound))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_setPlayerP_1 this (PlayerComposite.jnew_2 (AllBinaryMediaManager.jm_createPlayer_1 (jm_getResource_0 this)) 570)))))
 
 
--- throws Exception
-function CompositeSound:init()
-        self:setPlayerP(PlayerComposite.new(AllBinaryMediaManager.createPlayer(self:getResource()), 570))
-end
-
-return CompositeSound
 

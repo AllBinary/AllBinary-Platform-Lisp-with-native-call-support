@@ -1,49 +1,45 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.input.motion.button
 
-local TouchButtonResource = require("org.allbinary.input.motion.button.TouchButtonResource")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass TouchButtonFireResource (TouchButtonResource)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar TouchButtonFireResource.jcell_instance :jnone)
+(defun TouchButtonFireResource.jstatic_instance ()
+  (when (eq TouchButtonFireResource.jcell_instance :jnone) (setf TouchButtonFireResource.jcell_instance (TouchButtonFireResource.jnew_0)))
+  TouchButtonFireResource.jcell_instance)
+(defun (setf TouchButtonFireResource.jstatic_instance) (value) (setf TouchButtonFireResource.jcell_instance value))
 
-local TouchButtonFireResource = {}
-TouchButtonFireResource.__index = TouchButtonFireResource
-TouchButtonFireResource.className = "TouchButtonFireResource"
-setmetatable(TouchButtonFireResource, {__index = TouchButtonResource})
+    
+(defun TouchButtonFireResource.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (TouchButtonFireResource.jstatic_instance)))))
+
+    
+(defun TouchButtonFireResource.jnew_0 ()
+  (let ((this (make-instance 'TouchButtonFireResource)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
 
-function TouchButtonFireResource.getInstance()
-        return TouchButtonFireResource.instance
-end
-
-
-function TouchButtonFireResource.new()
-    local self = setmetatable(TouchButtonResource.new("/touch_button_fire_64_by_64.png", "/touch_button_fire_hint_64_by_64.png"), TouchButtonFireResource)
-        -- super(...) made self above
-    return self
-end
-
-TouchButtonFireResource.instance = TouchButtonFireResource.new()
-
-return TouchButtonFireResource
 

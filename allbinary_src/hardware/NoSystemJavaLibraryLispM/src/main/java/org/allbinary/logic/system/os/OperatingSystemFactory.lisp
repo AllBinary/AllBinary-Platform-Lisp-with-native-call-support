@@ -26,6 +26,7 @@
 (defun OperatingSystemFactory.jstatic_instance ()
   (when (eq OperatingSystemFactory.jcell_instance :jnone) (setf OperatingSystemFactory.jcell_instance (OperatingSystemFactory.jnew_0)))
   OperatingSystemFactory.jcell_instance)
+(defun (setf OperatingSystemFactory.jstatic_instance) (value) (setf OperatingSystemFactory.jcell_instance value))
 
     
 (defun OperatingSystemFactory.jm_getInstance_0 ()

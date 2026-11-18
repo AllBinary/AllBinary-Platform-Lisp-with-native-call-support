@@ -1,51 +1,50 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2025 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.opengles
 
--- local GL10 = require("javax.microedition.khronos.opengles.GL10")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass OpenGLVUtilBase (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun OpenGLVUtilBase.jnew_0 ()
+  (let ((this (make-instance 'OpenGLVUtilBase)))
+    this))
 
-local OpenGLVUtilBase = {}
-OpenGLVUtilBase.__index = OpenGLVUtilBase
-OpenGLVUtilBase.className = "OpenGLVUtilBase"
+    
+(unless (fboundp 'jm_glTexEnvix_4) (defgeneric jm_glTexEnvix_4 (this p1 p2 p3 p4)))
+(defmethod jm_glTexEnvix_4 ((this OpenGLVUtilBase) _gl _target _pname _param)
+  (declare (ignorable this _gl _target _pname _param))
+  (let ()
+    (block jreturn nil)))
 
-function OpenGLVUtilBase.new()
-    local self = setmetatable({}, OpenGLVUtilBase)
-    return self
-end
+    
+(unless (fboundp 'jm_glTexParameterix_4) (defgeneric jm_glTexParameterix_4 (this p1 p2 p3 p4)))
+(defmethod jm_glTexParameterix_4 ((this OpenGLVUtilBase) _gl _target _pname _param)
+  (declare (ignorable this _gl _target _pname _param))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_glGenerateMipmap_4) (defgeneric jm_glGenerateMipmap_4 (this p1 p2 p3 p4)))
+(defmethod jm_glGenerateMipmap_4 ((this OpenGLVUtilBase) _gl _textureId _target _generateMipMap)
+  (declare (ignorable this _gl _textureId _target _generateMipMap))
+  (let ()
+    (block jreturn nil)))
 
 
-function OpenGLVUtilBase:glTexEnvix(gl, target, pname, param)
-end
-
-
-function OpenGLVUtilBase:glTexParameterix(gl, target, pname, param)
-end
-
-
-function OpenGLVUtilBase:glGenerateMipmap(gl, textureId, target, generateMipMap)
-end
-
-return OpenGLVUtilBase
 

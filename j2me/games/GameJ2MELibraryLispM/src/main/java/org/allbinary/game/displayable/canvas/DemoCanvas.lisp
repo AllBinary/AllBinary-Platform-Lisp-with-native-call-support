@@ -1,933 +1,1090 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
-
--- local Command = require("javax.microedition.lcdui.Command")
--- local CommandListener = require("javax.microedition.lcdui.CommandListener")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
--- local Item = require("javax.microedition.lcdui.Item")
-local J2MEUtil = require("org.allbinary.J2MEUtil")
-local Animation = require("org.allbinary.animation.Animation")
-local IndexedAnimationBehavior = require("org.allbinary.animation.IndexedAnimationBehavior")
-local SpecialAnimation = require("org.allbinary.animation.special.SpecialAnimation")
-local GameAdStateFactory = require("org.allbinary.business.advertisement.GameAdStateFactory")
-local BaseGameStatistics = require("org.allbinary.canvas.BaseGameStatistics")
-local CustomGameMenuUtil = require("org.allbinary.canvas.CustomGameMenuUtil")
-local FullScreenUtil = require("org.allbinary.canvas.FullScreenUtil")
-local GameStatisticsFactory = require("org.allbinary.canvas.GameStatisticsFactory")
-local RunnableCanvas = require("org.allbinary.canvas.RunnableCanvas")
-local GameAdState = require("org.allbinary.game.GameAdState")
-local GameInfo = require("org.allbinary.game.GameInfo")
-local GameCommandsFactory = require("org.allbinary.game.commands.GameCommandsFactory")
-local ChangedGameFeatureListener = require("org.allbinary.game.configuration.event.ChangedGameFeatureListener")
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local GameFeatureFactory = require("org.allbinary.game.configuration.feature.GameFeatureFactory")
-local InputFeatureFactory = require("org.allbinary.game.configuration.feature.InputFeatureFactory")
-local MainFeatureFactory = require("org.allbinary.game.configuration.feature.MainFeatureFactory")
-local BasicBuildGameInitializerFactory = require("org.allbinary.game.init.BasicBuildGameInitializerFactory")
-local GameInitializationUtil = require("org.allbinary.game.init.GameInitializationUtil")
-local GameInputStrings = require("org.allbinary.game.input.GameInputStrings")
-local GameKey = require("org.allbinary.game.input.GameKey")
-local GameKeyFactory = require("org.allbinary.game.input.GameKeyFactory")
-local PlatformInputMappingFactory = require("org.allbinary.game.input.PlatformInputMappingFactory")
-local DownGameKeyEventHandler = require("org.allbinary.game.input.event.DownGameKeyEventHandler")
-local GameKeyEvent = require("org.allbinary.game.input.event.GameKeyEvent")
-local GameKeyEventFactory = require("org.allbinary.game.input.event.GameKeyEventFactory")
-local GameKeyEventHandler = require("org.allbinary.game.input.event.GameKeyEventHandler")
-local UpGameKeyEventHandler = require("org.allbinary.game.input.event.UpGameKeyEventHandler")
-local InputToGameKeyMapping = require("org.allbinary.game.input.mapping.InputToGameKeyMapping")
-local AllBinaryGameLayerManager = require("org.allbinary.game.layer.AllBinaryGameLayerManager")
-local SWTUtil = require("org.allbinary.game.layer.SWTUtil")
-local DemoGameMidlet = require("org.allbinary.game.midlet.DemoGameMidlet")
-local HighScoreCommands = require("org.allbinary.game.score.HighScoreCommands")
-local HighScores = require("org.allbinary.game.score.HighScores")
-local HighScoresFactoryInterface = require("org.allbinary.game.score.HighScoresFactoryInterface")
-local HighScoresHelper = require("org.allbinary.game.score.HighScoresHelper")
-local HighScoresHelperBase = require("org.allbinary.game.score.HighScoresHelperBase")
-local HighScoresPaintable = require("org.allbinary.game.score.HighScoresPaintable")
-local NullHighScoresSingletonFactory = require("org.allbinary.game.score.NullHighScoresSingletonFactory")
-local GameState = require("org.allbinary.game.state.GameState")
-local GameStateFactory = require("org.allbinary.game.state.GameStateFactory")
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local ResizableListenerHandler = require("org.allbinary.graphics.ResizableListenerHandler")
-local ProgressCanvas = require("org.allbinary.graphics.canvas.transition.progress.ProgressCanvas")
-local ProgressCanvasFactory = require("org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local MyCommandsFactory = require("org.allbinary.graphics.displayable.command.MyCommandsFactory")
-local DisplayChangeEvent = require("org.allbinary.graphics.displayable.event.DisplayChangeEvent")
-local DisplayChangeEventHandler = require("org.allbinary.graphics.displayable.event.DisplayChangeEventHandler")
-local DisplayChangeEventListener = require("org.allbinary.graphics.displayable.event.DisplayChangeEventListener")
-local FullScreenPaintableFactory = require("org.allbinary.graphics.displayable.screen.FullScreenPaintableFactory")
-local CommandCurrentSelectionFormFactory = require("org.allbinary.graphics.form.CommandCurrentSelectionFormFactory")
-local FormType = require("org.allbinary.graphics.form.FormType")
-local FormTypeFactory = require("org.allbinary.graphics.form.FormTypeFactory")
-local ScrollSelectionForm = require("org.allbinary.graphics.form.ScrollSelectionForm")
-local ScrollSelectionFormNoneFactory = require("org.allbinary.graphics.form.ScrollSelectionFormNoneFactory")
-local CommandTextItemArrayFactory = require("org.allbinary.graphics.form.item.CommandTextItemArrayFactory")
-local ABCustomItem = require("org.allbinary.graphics.form.item.ABCustomItem")
-local CurrentDisplayableFactory = require("org.allbinary.graphics.opengles.CurrentDisplayableFactory")
-local OpenGLFeatureFactory = require("org.allbinary.graphics.opengles.OpenGLFeatureFactory")
-local OpenGLFeatureUtil = require("org.allbinary.graphics.opengles.OpenGLFeatureUtil")
-local OpenGLThreadUtil = require("org.allbinary.graphics.opengles.OpenGLThreadUtil")
-local InitUpdatePaintable = require("org.allbinary.graphics.paint.InitUpdatePaintable")
-local NullPaintable = require("org.allbinary.graphics.paint.NullPaintable")
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
-local PaintableInterface = require("org.allbinary.graphics.paint.PaintableInterface")
-local StatePaintable = require("org.allbinary.graphics.paint.StatePaintable")
-local StatePaintableFactory = require("org.allbinary.graphics.paint.StatePaintableFactory")
-local BasicMotionGesturesHandler = require("org.allbinary.input.motion.gesture.observer.BasicMotionGesturesHandler")
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
-local PreLogUtil = require("org.allbinary.logic.communication.log.PreLogUtil")
-local SmallIntegerSingletonFactory = require("org.allbinary.logic.math.SmallIntegerSingletonFactory")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local OperatingSystemFactory = require("org.allbinary.logic.system.os.OperatingSystemFactory")
-local AbeClientInformationInterface = require("org.allbinary.logic.system.security.licensing.AbeClientInformationInterface")
-local InApplicationPurchaseFactory = require("org.allbinary.logic.system.security.licensing.InApplicationPurchaseFactory")
-local LockableFeature = require("org.allbinary.logic.system.security.licensing.LockableFeature")
-local LockableFeatureFactory = require("org.allbinary.logic.system.security.licensing.LockableFeatureFactory")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventStrings = require("org.allbinary.logic.util.event.EventStrings")
-local AllBinaryMediaManager = require("org.allbinary.media.audio.AllBinaryMediaManager")
-local EarlySoundsFactory = require("org.allbinary.media.audio.EarlySoundsFactory")
-local PrimaryPlayerQueueFactory = require("org.allbinary.media.audio.PrimaryPlayerQueueFactory")
-local SecondaryPlayerQueueFactory = require("org.allbinary.media.audio.SecondaryPlayerQueueFactory")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
-local NullThread = require("org.allbinary.thread.NullThread")
-local ThreadFactoryUtil = require("org.allbinary.thread.ThreadFactoryUtil")
-local ThreadUtil = require("org.allbinary.thread.ThreadUtil")
-local TimeDelayHelper = require("org.allbinary.time.TimeDelayHelper")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local GameCanvasRunnableInterface = require("org.allbinary.game.displayable.canvas.GameCanvasRunnableInterface")
-local MenuListener = require("org.allbinary.game.displayable.canvas.MenuListener")
-local DemoPaintableInterface = require("org.allbinary.game.displayable.canvas.DemoPaintableInterface")
-
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
-
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local DemoCanvas = {}
-DemoCanvas.__index = DemoCanvas
-DemoCanvas.className = "DemoCanvas"
-setmetatable(DemoCanvas, {__index = RunnableCanvas})
-
-function DemoCanvas:_init_fields()
-    self.basicColorFactory = BasicColorFactory.getInstance()
-    self.myCommandsFactory = MyCommandsFactory.getInstance()
-    self.gameAdStateFactory = GameAdStateFactory.getInstance()
-    self.gameInputStrings = GameInputStrings.getInstance()
-    self.gameStateFactory = GameStateFactory.getInstance()
-    self.threadFactoryUtil = ThreadFactoryUtil.getInstance()
-    self.formUtil = FormUtil.getInstance()
-    self.fullscreenPaintable = FullScreenPaintableFactory.getInstance().paintable
-    self.basicGameDemoPaintable = StatePaintableFactory.getInstance()
-    self.specialAnimationInterface = SpecialAnimation.getInstance()
-    self.paintedSpecialAnimationInterface = SpecialAnimation.getInstance()
-    self.fullScreenUtil = FullScreenUtil.getInstance()
-    self.gameCanvas = NullGameCanvas.getInstance()
-    self.highScoresHelper = HighScoresHelper.new()
-    self.realHighScoresPaintable = HighScoresPaintable.new()
-    self.highScoresPaintable = NullPaintable.getInstance()
-    self.state = 0
-    self.canvasThread = NullThread.NULL_THREAD
-    self.timeDelayHelper = TimeDelayHelper.new(6000)
-    self.basicColor = self.basicColorFactory.RED
-    self.abeClientInformation = nil
-    self.highScoresFactoryInterface = nil
-    self.menuInputProcessor = NoMenuInputProcessor.getInstance()
-    self.menuForm = ScrollSelectionForm.getNullScrollSelectionForm()
-    self.gameInitializationInterfaceFactoryInterface = nil
-    self.initialized = false
-    self.demoGameRunnable = nil
-    self.defaultPaintableInterface = NullPaintable.getInstance()
-    self.paintableInterface = NullPaintable.getInstance()
-    self.overlayPaintable = nil
-    self.progressPaintable = ProgressCanvasFactory.getLazyInstance()
-    self.tempWait = NullWaitGameRunnable.getInstance().WAIT
-    self.inputToGameKeyMapping = PlatformInputMappingFactory.getInstance():getPersistentInputMappingInstance():getInputMapping()
-    self.gameRunnable = NullWaitGameRunnable.getInstance()
-    self.isSingleKeyRepeatableProcessing = Features.getInstance():isFeature(InputFeatureFactory.getInstance().SINGLE_KEY_REPEAT_PRESS)
-    self.NONE = GameKeyFactory.getInstance().NONE
-    self.gameKeyEventFactory = GameKeyEventFactory.getInstance()
-    self.lastKeyNotMapped = -1
-    self.SET_STATE = "setState"
-    self.baseGameStatistics = GameStatisticsFactory.getInstance()
-end
-
-
-function DemoCanvas.new(abeClientInformation, commandListener, highScoresFactoryInterface, paintable, overlayPaintable, gameInitializationInterfaceFactoryInterface, isContinue)
-    local self = setmetatable(RunnableCanvas.new(commandListener, CurrentDisplayableFactory.getInstance().DEFAULT_CHILD_NAME_LIST, true), DemoCanvas)
-    self:_init_fields()
-        -- super(...) made self above
-        self.abeClientInformation = abeClientInformation
-        self:setWait(NullWaitGameRunnable.getInstance().WAIT)
-        self.gameInitializationInterfaceFactoryInterface = gameInitializationInterfaceFactoryInterface
-        GameInitializationUtil.getInstance():initDemo(abeClientInformation, self, gameInitializationInterfaceFactoryInterface)
-        ResizableListenerHandler.getInstance():fireEvent(false)
-        self.overlayPaintable = overlayPaintable
-        self.highScoresFactoryInterface = highScoresFactoryInterface
-        self:setDefaultPaintableInterface(paintable)
-        self:setPaintableInterface(self:getDefaultPaintableInterface())
-        if isContinue then
-            self:addCommand(GameCommandsFactory.getInstance().CONTINUE_COMMAND)
-        end
-        if ChangedGameFeatureListener.getInstance():isChangedFeature(GameFeatureFactory.getInstance().SOUND) then
-            self:mediaInit()
-        end
-        self.demoGameRunnable = DemoGameStartupRunnable.new(self)
-        DisplayChangeEventHandler.getInstance():addListenerInterface(self)
-    return self
-end
-
-
-function DemoCanvas:onEvent(eventObject)
-        ForcedLogUtil.log(EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
-end
-
-
-function DemoCanvas:onDisplayChangeEvent(displayChangeEvent)
-        local try_ok, try_error = pcall(function()
-            self.logUtil:putF(tostring(StringMaker.new():append(self.commonLabels.START_LABEL):append(tostring(self.displayInfo))), self, self.canvasStrings.ON_DISPLAY_CHANGE_EVENT)
-            local scrollSelectionForm = self:getMenuForm()
-            if scrollSelectionForm ~= nil then
-                local formType = FormTypeFactory.getInstance():getFormType()
-                local rectangle = self.formUtil:createFormRectangle()
-                scrollSelectionForm:init(rectangle, formType)
-            end
-            self.overlayPaintable:init()
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.canvasStrings.ON_DISPLAY_CHANGE_EVENT, e)
-        end
-end
-
-
-function DemoCanvas:getCustomCommands()
-        local gameCommandsFactory = GameCommandsFactory.getInstance()
-        if J2MEUtil.isHTML() then
-            local commandArray = {gameCommandsFactory.START_COMMAND, HighScoreCommands.getInstance().DISPLAY, GameInputMappingCanvas.DISPLAY, gameCommandsFactory.DISPLAY_ABOUT}
-            return commandArray
-        else
-            local commandList = BasicArrayListD.new()
-            commandList:add(gameCommandsFactory.START_COMMAND)
-            local inApplicationPurchaseFactory = InApplicationPurchaseFactory.getInstance()
-            if inApplicationPurchaseFactory:isEnabled() then
-                local list = LockableFeatureFactory.getInstance():getList()
-                if list:size() > 0 and not inApplicationPurchaseFactory:isPurchased(list:get(0)) then
-                    commandList:add(gameCommandsFactory.BUY_COMMAND)
-                end
-            end
-            commandList:add(HighScoreCommands.getInstance().DISPLAY)
-            local try_ok, try_error = pcall(function()
-                local isOverScan = OperatingSystemFactory.getInstance():getOperatingSystemInstance():isOverScan()
-                if SWTUtil.isSWT then
-                    commandList:add(GameInputMappingCanvas.DISPLAY)
-                elseif not isOverScan then
-                    commandList:add(gameCommandsFactory.DISPLAY_OPTIONS)
-                    commandList:add(gameCommandsFactory.DISPLAY_LOAD_FORM)
-                    commandList:add(GameInputMappingCanvas.DISPLAY)
-                end
-            end)
-            if not try_ok then
-                local e = try_error
-            end
-            commandList:add(gameCommandsFactory.DISPLAY_ABOUT)
-            local commandArray = commandList:toArray()
-            return commandArray
-        end
-end
-
-
-function DemoCanvas:initCommands(cmdListener)
-        self:removeAllCommands()
-        local commandArray = self:getCustomCommands()
-        local size = (commandArray.n or #commandArray)
-        for index = 0, size - 1 do
-            self:addCommand(commandArray[index + 1])
-        end
-        CustomGameMenuUtil.add(self)
-        self:setCommandListener(cmdListener)
-end
-
-
--- throws Exception
-function DemoCanvas:initPostPaint()
-end
-
-
--- throws Exception
-function DemoCanvas:mediaInit()
-        AllBinaryMediaManager.init(EarlySoundsFactory.getInstance())
-end
-
-
-function DemoCanvas:itemStateChanged(item)
-        ForcedLogUtil.log(self.commonStrings.NOT_IMPLEMENTED, self)
-end
-
-
--- throws Exception
-function DemoCanvas:initMenu()
-        self:close()
-        local commandTextItemArrayFactory = DemoLimitedCommandTextItemArrayFactory.getInstance():getCommandTextItemArrayFactory()
-        local items = commandTextItemArrayFactory:getInstance(self:getCommandStack(), self.basicColorFactory.BLACK, self.basicColorFactory.WHITE)
-        local formType = FormTypeFactory.getInstance():getFormType()
-        local rectangle = self.formUtil:createFormRectangle()
-        PreLogUtil.put(tostring(StringMaker.new():append(self.commonLabels.START_LABEL):append(tostring(self.displayInfo))), self, "initMenu")
-        local scrollSelectionForm = CommandCurrentSelectionFormFactory.getInstance(StringUtil.getInstance().EMPTY_STRING, items, rectangle, formType, 15, true, self.basicColorFactory.BLACK, self.basicColorFactory.WHITE)
-        self:setMenuForm(scrollSelectionForm)
-        local formType2 = FormTypeFactory.getInstance():getFormType()
-        local rectangle2 = self.formUtil:createFormRectangle()
-        scrollSelectionForm:init(rectangle2, formType2)
-        if self:getMenuForm() ~= ScrollSelectionFormNoneFactory.getInstance() then
-            self:setMenuInputProcessor(CommandFormInputProcessor.new(BasicArrayListD.new(), -1, self, self:getMenuForm()))
-        end
-        self:open()
-end
-
-
-function DemoCanvas:open()
-        BasicMotionGesturesHandler.getInstance():addListenerInterface(self:getMenuInputProcessor())
-        GameKeyEventHandler.getInstance():addListener(self:getMenuInputProcessor())
-end
-
-
-function DemoCanvas:close()
-        BasicMotionGesturesHandler.getInstance():removeListener(self:getMenuInputProcessor())
-        GameKeyEventHandler.getInstance():removeListener(self:getMenuInputProcessor())
-end
-
-
-function DemoCanvas:getSourceId()
-        return DemoCanvas.id
-end
-
-
-function DemoCanvas:keyPressed(keyCode)
-        self:keyPressedByDevice(keyCode, 0)
-end
-
-
-function DemoCanvas:keyReleased(keyCode)
-        self:keyReleasedByDevice(keyCode, 0)
-end
-
-
-function DemoCanvas:keyRepeated(keyCode)
-        self:keyRepeatedByDevice(keyCode, 0)
-end
-
-
-function DemoCanvas:keyPressedByDevice(keyCode, deviceId)
-        self:addGameKeyEvent(keyCode, false)
-end
-
-
-function DemoCanvas:keyReleasedByDevice(keyCode, deviceId)
-        self:removeGameKeyEvent(keyCode, false)
-end
-
-
-function DemoCanvas:keyRepeatedByDevice(keyCode, deviceId)
-        if self.isSingleKeyRepeatableProcessing then
-            self:addGameKeyEvent(keyCode, true)
-        end
-end
-
-
-function DemoCanvas:addGameKeyEvent(keyCode, repeated)
-        local try_ok, try_error = pcall(function()
-            local gameKey = self.inputToGameKeyMapping:getInstanceForCanvas(self, keyCode)
-            if gameKey ~= self.NONE then
-                local gameKeyEvent = self.gameKeyEventFactory:getInstanceForInput(self, gameKey)
-                DownGameKeyEventHandler.getInstance():fireEvent(gameKeyEvent)
-            else
-                if self.lastKeyNotMapped ~= keyCode then
-                    self.lastKeyNotMapped = keyCode
-                    self.logUtil:putF(tostring(StringMaker.new():append(self.gameInputStrings.NO_KEY):appendint(keyCode)), self, self.gameInputStrings.ADD_KEY_EVENT)
-                end
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put("Key Event Error", self, self.gameInputStrings.ADD_KEY_EVENT, e)
-        end
-end
-
-
-function DemoCanvas:removeGameKeyEvent(keyCode, repeated)
-        local try_ok, try_error = pcall(function()
-            local gameKey = self.inputToGameKeyMapping:getInstanceForCanvas(self, keyCode)
-            if gameKey ~= self.NONE then
-                local gameKeyEvent = self.gameKeyEventFactory:getInstanceForInput(self, gameKey)
-                UpGameKeyEventHandler.getInstance():fireEvent(gameKeyEvent)
-            else
-                self.logUtil:putF(tostring(StringMaker.new():append(self.gameInputStrings.NO_KEY):appendint(keyCode)), self, self.gameInputStrings.REMOVE_KEY_EVENT)
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put("Key Event Error", self, self.gameInputStrings.REMOVE_KEY_EVENT, e)
-        end
-end
-
-
-function DemoCanvas:pause()
-        self:close()
-        self:setPaused(true)
-        self.gameRunnable = NullWaitGameRunnable.getInstance()
-        self.gameCanvas:pause()
-end
-
-
-function DemoCanvas:unPause()
-        self:open()
-        self.gameCanvas:unPause()
-        self.gameRunnable = self.gameCanvas.gameRunnable
-        self:setPaused(false)
-end
-
-
-function DemoCanvas:isPausable()
-        if CurrentDisplayableFactory.getInstance():getUsedRunnable() == NullWaitGameRunnable.getInstance() then
-            return true
-        else
-            return false
-        end
-end
-
-
-function DemoCanvas:isGameOver()
-        self.logUtil:putF(tostring(StringMaker.new():append(self.commonStrings.NOT_IMPLEMENTED):append(" since not a game")), self, "isGameOver")
-        return false
-end
-
-
--- throws Exception
-function DemoCanvas:setLoadStateHashtable(hashtable)
-        self.logUtil:putF("Trying to continue a demo lol - only continue a game canvas not the demo", self, "setLoadStateHashtable")
-end
-
-
--- throws Exception
-function DemoCanvas:getLoadStateHashtable()
-        self.logUtil:putF("Trying to continue a demo lol - only continue a game canvas not the demo", self, "getLoadStateHashtable")
-        return self.stdUtil.NULL_TABLE
-end
-
-
--- throws Exception
-function DemoCanvas:getCurrentStateHashtable()
-        self.logUtil:putF("Trying to save the AI lol", self, "getCurrentStateHashtable")
-        return self.stdUtil.NULL_TABLE
-end
-
-
-function DemoCanvas:setHighScoreSubmitted(isNotUsed)
-end
-
-
-function DemoCanvas:paint(graphics)
-        self.paintableInterface:paint(graphics)
-        self.paintedSpecialAnimationInterface:paintXY(graphics, 0, 0)
-        self.highScoresPaintable:paint(graphics)
-        self:getBasicGameDemoPaintable():paint(graphics)
-        self.overlayPaintable:paint(graphics)
-        self.fullscreenPaintable:paint(graphics)
-        self.progressPaintable:paint(graphics)
-end
-
-
-function DemoCanvas:paintThreed(graphics)
-        self.paintableInterface:paintThreed(graphics)
-        self.paintedSpecialAnimationInterface:paintThreedXYZ(graphics, 0, 0, 0)
-end
-
-
-function DemoCanvas:processGameOver()
-        self.logUtil:putF("Not Implemented since not a game", self, "setGameOver")
-end
-
-
-function DemoCanvas:demoStateChange()
-        local newState = self.state + 1
-        if newState > 2 then
-            newState = 0
-        elseif newState == 2 then
-            if not self.highScoresHelper:isAnyHighScores() then
-                newState = 0
-            else
-                local highScores = self.highScoresHelper:getNextHighScores()
-                if highScores == NullHighScoresSingletonFactory.getInstance() then
-                    newState = 0
-                else
-                    self:getRealHighScoresPaintable():setHighScores(highScores)
-                end
-            end
-        end
-        self:setState(newState)
-        self:updateDemoState()
-end
-
-
-function DemoCanvas:updateDemoState()
-        PreLogUtil.put(tostring(SmallIntegerSingletonFactory.getInstance():createInstance(self.state)), self, self.SET_STATE)
-        self:getBasicGameDemoPaintable():setState(self.state)
-        if self.state == 0 then
-            self.highScoresPaintable = NullPaintable.getInstance()
-            self.paintedSpecialAnimationInterface = self:getSpecialAnimationInterface()
-            if not self.demoGameRunnable:isRunning() and self.gameCanvas:isInitialized() then
-                self:getSpecialAnimationInterface():reset()
-            end
-        elseif self.state == 1 then
-            self.paintedSpecialAnimationInterface = SpecialAnimation.getInstance()
-        elseif self.state == 2 then
-            self.highScoresPaintable = self:getRealHighScoresPaintable()
-        end
-        local gameAdState = self.gameAdStateFactory:getCurrentInstance()
-        gameAdState:processPageAdState()
-end
-
-
--- throws Exception
-function DemoCanvas:getNextRandom()
-        error(java_exception("Exception", self.commonStrings.NOT_IMPLEMENTED), 0)
-end
-
-
--- throws Exception
-function DemoCanvas:createGameLayerManager(randomValue)
-        error(java_exception("Exception", self.commonStrings.NOT_IMPLEMENTED), 0)
-end
-
-
--- throws Exception
-function DemoCanvas:createRunnable(randomLevel)
-        error(java_exception("Exception", self.commonStrings.NOT_IMPLEMENTED), 0)
-end
-
-
--- throws Exception
-function DemoCanvas:create()
-        PreLogUtil.put(self.commonStrings.START, self, "create")
-        self.highScoresPaintable = NullPaintable.getInstance()
-        local randomLevel = self:getNextRandom()
-        self.gameCanvas = self:createRunnable(randomLevel)
-        self.basicColor = self.gameCanvas:getLayerManager():getForegroundBasicColor()
-        self:getRealHighScoresPaintable():setBasicColorP(self.basicColor)
-        self.gameCanvas:setGameCanvasStartListener(self)
-        local gameInfo = self.gameCanvas:getLayerManager():getGameInfo()
-        self:getHighScoresFactoryInterface():fetchHighScores(gameInfo, self.highScoresHelper)
-end
-
-
--- throws Exception
-function DemoCanvas:start()
-        local gameCanvas = self.gameCanvas
-        PreLogUtil.put(tostring(StringMaker.new():append("Game Thread in DemoCanvas: "):append(self.stringUtil:toString(gameCanvas))), self, self.commonStrings.START)
-        self.canvasThread = self.threadFactoryUtil:getInstanceGameCanvasRunnable(gameCanvas)
-        self.gameCanvas:setThread(self.canvasThread)
-        self.threadFactoryUtil:start(self.canvasThread)
-        if self:getWait() == NullWaitGameRunnable.getInstance().WAIT then
-            self:setWait(self:getTempWait())
-        end
-end
-
-
-function DemoCanvas:preDemoProcess()
-        if not self.gameCanvas:isInitialized() or self.gameCanvas:getTitle() == NullGameCanvas.NO_GAME then
-            if AllBinaryMediaManager.update() then
-                if not PrimaryPlayerQueueFactory.getInstance():process() then
-                    SecondaryPlayerQueueFactory.getInstance():process()
-                end
-            end
-        end
-        self.overlayPaintable:update()
-end
-
-
--- throws Exception
-function DemoCanvas:process()
-        RunnableCanvas.process(self)
-        self:getMenuInputProcessor():processInputList()
-        self:preDemoProcess()
-        if self.state == 0 then
-            local indexedAnimationBehavior = (self:getSpecialAnimationInterface():getAnimationBehavior())
-            if indexedAnimationBehavior.loopIndex < 1 then
-                self.timeDelayHelper:setStartTimeTNT()
-            end
-            local demoGameMidlet = self:getCustomCommandListener()
-            if self.gameCanvas ~= NullGameCanvas.getInstance() and self.gameCanvas:isGameOver() then
-                self:stopGameDemo()
-                local randomLevel = self:getNextRandom()
-                local gameInfo = self.gameCanvas:getLayerManager():getGameInfo()
-                gameInfo:setCurrentLevel(randomLevel)
-                self.gameCanvas:setGameOver(false)
-                self:start()
-            elseif self.gameCanvas == NullGameCanvas.getInstance() and demoGameMidlet:isReady() then
-                if not self.demoGameRunnable:isRunning() then
-                    self:startDemoGame()
-                    self.demoGameRunnable:setRunning(true)
-                    local thread = self.threadFactoryUtil:getInstanceForRunnable(self.demoGameRunnable)
-                    self.demoGameRunnable:setThread(thread)
-                    self.threadFactoryUtil:start(thread)
-                end
-            end
-        end
-end
-
-
--- throws Exception
-function DemoCanvas:startDemoGame()
-        DemoCanvasProgressUtil.showProgress(self)
-end
-
-
--- throws Exception
-function DemoCanvas:stopGameDemo()
-        if self.gameCanvas ~= NullGameCanvas.getInstance() then
-            self.logUtil:putF("Set Running False", self, "stopGameDemo")
-            self.gameCanvas:setRunning(false)
-        end
-        ThreadUtil.getInstance():join(self.canvasThread)
-end
-
-
-function DemoCanvas:showGamePaintable()
-        local METHOD_NAME = "showGamePaintable"
-        PreLogUtil.put(self.commonStrings.START, self, METHOD_NAME)
-        local isDefault = J2MEUtil.isHTML()
-        if self.gameCanvas ~= NullGameCanvas.getInstance() and (self.gameCanvas:isRunning() or isDefault or SWTUtil.isSWT) and not (self.gameCanvas:getType() == NullGameCanvas.TYPE) then
-            self.gameRunnable = self.gameCanvas.gameRunnable
-            PreLogUtil.put("Showing Game", self, METHOD_NAME)
-            self:setPaintableInterface(self.gameCanvas)
-        else
-            self.gameRunnable = NullWaitGameRunnable.getInstance()
-            PreLogUtil.put("Not Showing Game", self, METHOD_NAME)
-            self:setPaintableInterface(self:getDefaultPaintableInterface())
-        end
-end
-
-
-function DemoCanvas:isReadyForStateChange()
-        return not self.demoGameRunnable:isRunning() and self.gameCanvas:isInitialized()
-end
-
-
--- throws Exception
-function DemoCanvas:processGame()
-        self.gameRunnable:run()
-        if not self.specialAnimationInterface:isComplete() and self:isReadyForStateChange() then
-            self.specialAnimationInterface:nextFrame()
-        end
-        if self.timeDelayHelper:isTimeTNT() and self:isReadyForStateChange() then
-            self:demoStateChange()
-        else
-            self:process()
-        end
-end
-
-
-function DemoCanvas:run()
-        self.logUtil:putF(self.commonStrings.START_RUNNABLE, self, self.commonStrings.RUN)
-        local try_ok, try_error = pcall(function()
-            local progressCanvas = ProgressCanvasFactory.getInstance()
-            local features = Features.getInstance()
-            local openGLFeatureFactory = OpenGLFeatureFactory.getInstance()
-            progressCanvas:addNormalPortion(50, "Demo Thread")
-            self:setCurrentThread()
-            self:setRunning(true)
-            if features:isFeature(MainFeatureFactory.getInstance().LOAD_ONDEMAND) then
-                progressCanvas:end_()
-            else
-                progressCanvas:addNormalPortion(50, "Demo Thread Running")
-            end
-            self.fullScreenUtil:initOnRun(self, self:getCustomCommandListener())
-            self:initMenu()
-            self:initPostPaint()
-            self:updateDemoState()
-            if features:isDefault(openGLFeatureFactory.OPENGL_AS_GAME_THREAD) then
-                while self.gameCanvas == NullGameCanvas.getInstance() or not self.gameCanvas:isInitialized() do
-                    self.loopTimeHelper:setStartTimeTNT()
-                    self:processGame()
-                    self:processLoopSleep()
-                end
-                local demoGameRunnable = DemoGameRunnable.new(self)
-                local currentDisplayableFactory = CurrentDisplayableFactory.getInstance()
-                currentDisplayableFactory:setRunnable(demoGameRunnable)
-                currentDisplayableFactory:setMyCanvas(self)
-                OpenGLThreadUtil.getInstance():onResume()
-            end
-            if features:isDefault(openGLFeatureFactory.OPENGL_AS_GAME_THREAD) or J2MEUtil.isHTML() then
-                local demoGameRunnable = DemoGameRunnable.new(self)
-                local currentDisplayableFactory = CurrentDisplayableFactory.getInstance()
-                currentDisplayableFactory:setRunnable(demoGameRunnable)
-                currentDisplayableFactory:setMyCanvas(self)
-            else
-                while self:isRunning() do
-                    self:run3()
-                end
-                self:end_()
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.commonStrings.RUN, e)
-        end
-        self.logUtil:putF(self.commonStrings.END_RUNNABLE, self, self.commonStrings.RUN)
-end
-
-
--- throws Exception
-function DemoCanvas:run3()
-        self.loopTimeHelper:setStartTimeTNT()
-        self:processGame()
-        self:processLoopSleep()
-end
-
-
-function DemoCanvas:setRunning(running)
-        RunnableCanvas.setRunning(self, running)
-        local try_ok, try_error = pcall(function()
-            local features = Features.getInstance()
-            local openGLFeatureFactory = OpenGLFeatureFactory.getInstance()
-            if running then
-            else
-                if (features:isDefault(openGLFeatureFactory.OPENGL) or J2MEUtil.isHTML()) or SWTUtil.isSWT then
-                    local currentDisplayableFactory = CurrentDisplayableFactory.getInstance()
-                    currentDisplayableFactory:clearRunnable()
-                    self:end_()
-                end
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.SET_RUNNING, e)
-        end
-end
-
-
--- throws Exception
-function DemoCanvas:end_()
-        local progressCanvas = ProgressCanvasFactory.getInstance()
-        local features = Features.getInstance()
-        self.baseGameStatistics:add(tostring(StringMaker.new():append(DemoCanvas.BOT_GAME_STATS):append(tostring(self.baseGameStatistics)):append(CommonSeps.getInstance().NEW_LINE)))
-        self.baseGameStatistics:init()
-        if features:isFeature(MainFeatureFactory.getInstance().LOAD_ONDEMAND) then
-            progressCanvas:start()
-        end
-        self.logUtil:putF("Demo End", self, self.commonStrings.RUN)
-        self:close()
-        DisplayChangeEventHandler.getInstance():removeListener(self)
-        self:stopGameDemo()
-end
-
-
-function DemoCanvas:setGameState(gameState)
-end
-
-
-function DemoCanvas:getGameState()
-        return self.gameStateFactory.PLAYING_GAME_STATE
-end
-
-
-function DemoCanvas:getGameCanvasRunnableInterface()
-        return self.gameCanvas
-end
-
-
-function DemoCanvas:isDemoLoading()
-        local gameCanvas = self.gameCanvas
-        if gameCanvas == NullGameCanvas.getInstance() then
-            return true
-        elseif gameCanvas:isInitialized() then
-            return false
-        end
-        return true
-end
-
-
-function DemoCanvas:getState()
-        return self.state
-end
-
-
-function DemoCanvas:setState(state)
-        self.state = state
-end
-
-
-function DemoCanvas:isHighScoreSubmitted()
-        self.logUtil:putF("Wow the AI got a high score!", self, "isHighScoreSubmitted")
-        return false
-end
-
-
-function DemoCanvas:getRealHighScoresPaintable()
-        return self.realHighScoresPaintable
-end
-
-
-function DemoCanvas:setSpecialAnimationInterface(specialAnimationInterface)
-        specialAnimationInterface:setFrame(0)
-        self.specialAnimationInterface = specialAnimationInterface
-end
-
-
-function DemoCanvas:getSpecialAnimationInterface()
-        return self.specialAnimationInterface
-end
-
-
-function DemoCanvas:setPaintableInterface(paintableInterface)
-        self.paintableInterface = paintableInterface
-end
-
-
-function DemoCanvas:getPaintableInterface()
-        return self.paintableInterface
-end
-
-
-function DemoCanvas:setDefaultPaintableInterface(defaultPaintableInterface)
-        self.defaultPaintableInterface = defaultPaintableInterface
-end
-
-
-function DemoCanvas:getDefaultPaintableInterface()
-        return self.defaultPaintableInterface
-end
-
-
-function DemoCanvas:getHighScoresFactoryInterface()
-        return self.highScoresFactoryInterface
-end
-
-
-function DemoCanvas:setMenuInputProcessor(menuInputProcessor)
-        self.menuInputProcessor = menuInputProcessor
-end
-
-
-function DemoCanvas:getMenuInputProcessor()
-        return self.menuInputProcessor
-end
-
-
-function DemoCanvas:getMenuForm()
-        return self.menuForm
-end
-
-
-function DemoCanvas:setMenuForm(menuForm)
-        self.menuForm = menuForm
-end
-
-
-function DemoCanvas:isInitialized()
-        return self.initialized
-end
-
-
-function DemoCanvas:getOverlayPaintable()
-        return self.overlayPaintable
-end
-
-
-function DemoCanvas:setBasicGameDemoPaintable(basicGameDemoPaintable)
-        self.basicGameDemoPaintable = basicGameDemoPaintable
-end
-
-
-function DemoCanvas:getBasicGameDemoPaintable()
-        return self.basicGameDemoPaintable
-end
-
-
-function DemoCanvas:setTempWait(tempWait)
-        self.tempWait = tempWait
-end
-
-
-function DemoCanvas:getTempWait()
-        return self.tempWait
-end
-
-
-function DemoCanvas:isSingleThread()
-        return OpenGLFeatureUtil.getInstance():isAnyThreed() or SWTUtil.isSWT
-end
-
-
-function DemoCanvas:isRunningInAnotherThread()
-        local features = Features.getInstance()
-        local openGLFeatureFactory = OpenGLFeatureFactory.getInstance()
-        if features:isDefault(openGLFeatureFactory.OPENGL_AS_GAME_THREAD) then
-            return true
-        else
-            return self:isRunning()
-        end
-end
-
-
-function DemoCanvas:getGameInitializationInterfaceFactoryInterface()
-        return self.gameInitializationInterfaceFactoryInterface
-end
-
-
-function DemoCanvas:getType()
-        return DemoCanvas.TYPE
-end
-
-
-function DemoCanvas:getTitle()
-        return RunnableCanvas.getTitle(self)
-end
-
-
-function DemoCanvas:isPaused()
-        return RunnableCanvas.isPaused(self)
-end
-
-DemoCanvas.id = 0
-DemoCanvas.BOT_GAME_STATS = "Bot Game Statistics: "
-DemoCanvas.TYPE = 3
-
-return DemoCanvas
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.displayable.canvas
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass DemoCanvas (RunnableCanvas)
+  ((f_basicColorFactory :initform nil)
+   (f_myCommandsFactory :initform nil)
+   (f_gameAdStateFactory :initform nil)
+   (f_gameInputStrings :initform nil)
+   (f_gameStateFactory :initform nil)
+   (f_threadFactoryUtil :initform nil)
+   (f_formUtil :initform nil)
+   (f_fullscreenPaintable :initform nil)
+   (f_basicGameDemoPaintable :initform nil)
+   (f_specialAnimationInterface :initform nil)
+   (f_paintedSpecialAnimationInterface :initform nil)
+   (f_fullScreenUtil :initform nil)
+   (f_gameCanvas :initform nil)
+   (f_highScoresHelper :initform nil)
+   (f_realHighScoresPaintable :initform nil)
+   (f_highScoresPaintable :initform nil)
+   (f_state :initform 0)
+   (f_canvasThread :initform nil)
+   (f_timeDelayHelper :initform nil)
+   (f_basicColor :initform nil)
+   (f_abeClientInformation :initform nil)
+   (f_highScoresFactoryInterface :initform nil)
+   (f_menuInputProcessor :initform nil)
+   (f_menuForm :initform nil)
+   (f_gameInitializationInterfaceFactoryInterface :initform nil)
+   (f_initialized :initform nil)
+   (f_demoGameRunnable :initform nil)
+   (f_defaultPaintableInterface :initform nil)
+   (f_paintableInterface :initform nil)
+   (f_overlayPaintable :initform nil)
+   (f_progressPaintable :initform nil)
+   (f_tempWait :initform 0)
+   (f_inputToGameKeyMapping :initform nil)
+   (f_gameRunnable :initform nil)
+   (f_isSingleKeyRepeatableProcessing :initform nil)
+   (f_NONE :initform nil)
+   (f_gameKeyEventFactory :initform nil)
+   (f_lastKeyNotMapped :initform 0)
+   (f_SET_STATE :initform nil)
+   (f_baseGameStatistics :initform nil)))
+
+(defvar DemoCanvas.jcell_id :jnone)
+(defun DemoCanvas.jstatic_id ()
+  (when (eq DemoCanvas.jcell_id :jnone) (setf DemoCanvas.jcell_id 0))
+  DemoCanvas.jcell_id)
+(defun (setf DemoCanvas.jstatic_id) (value) (setf DemoCanvas.jcell_id value))
+
+(defvar DemoCanvas.jcell_BOT_GAME_STATS :jnone)
+(defun DemoCanvas.jstatic_BOT_GAME_STATS ()
+  (when (eq DemoCanvas.jcell_BOT_GAME_STATS :jnone) (setf DemoCanvas.jcell_BOT_GAME_STATS "Bot Game Statistics: "))
+  DemoCanvas.jcell_BOT_GAME_STATS)
+(defun (setf DemoCanvas.jstatic_BOT_GAME_STATS) (value) (setf DemoCanvas.jcell_BOT_GAME_STATS value))
+
+(defvar DemoCanvas.jcell_TYPE :jnone)
+(defun DemoCanvas.jstatic_TYPE ()
+  (when (eq DemoCanvas.jcell_TYPE :jnone) (setf DemoCanvas.jcell_TYPE 3))
+  DemoCanvas.jcell_TYPE)
+(defun (setf DemoCanvas.jstatic_TYPE) (value) (setf DemoCanvas.jcell_TYPE value))
+
+    
+(defun DemoCanvas.jnew_7 (_abeClientInformation _commandListener _highScoresFactoryInterface _paintable _overlayPaintable _gameInitializationInterfaceFactoryInterface _isContinue)
+  (declare (ignorable _abeClientInformation _commandListener _highScoresFactoryInterface _paintable _overlayPaintable _gameInitializationInterfaceFactoryInterface _isContinue))
+  (let ((this (make-instance 'DemoCanvas)))
+    (setf (slot-value this 'f_basicColorFactory) (BasicColorFactory.jm_getInstance_0))
+    (setf (slot-value this 'f_myCommandsFactory) (MyCommandsFactory.jm_getInstance_0))
+    (setf (slot-value this 'f_gameAdStateFactory) (GameAdStateFactory.jm_getInstance_0))
+    (setf (slot-value this 'f_gameInputStrings) (GameInputStrings.jm_getInstance_0))
+    (setf (slot-value this 'f_gameStateFactory) (GameStateFactory.jm_getInstance_0))
+    (setf (slot-value this 'f_threadFactoryUtil) (ThreadFactoryUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_formUtil) (FormUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_fullscreenPaintable) (slot-value (FullScreenPaintableFactory.jm_getInstance_0) 'f_paintable))
+    (setf (slot-value this 'f_basicGameDemoPaintable) (StatePaintableFactory.jm_getInstance_0))
+    (setf (slot-value this 'f_specialAnimationInterface) (SpecialAnimation.jm_getInstance_0))
+    (setf (slot-value this 'f_paintedSpecialAnimationInterface) (SpecialAnimation.jm_getInstance_0))
+    (setf (slot-value this 'f_fullScreenUtil) (FullScreenUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_gameCanvas) (NullGameCanvas.jm_getInstance_0))
+    (setf (slot-value this 'f_highScoresHelper) (HighScoresHelper.jnew_0))
+    (setf (slot-value this 'f_realHighScoresPaintable) (HighScoresPaintable.jnew_0))
+    (setf (slot-value this 'f_highScoresPaintable) (NullPaintable.jm_getInstance_0))
+    (setf (slot-value this 'f_state) 0)
+    (setf (slot-value this 'f_canvasThread) (NullThread.jstatic_NULL_THREAD))
+    (setf (slot-value this 'f_timeDelayHelper) (TimeDelayHelper.jnew_1 6000))
+    (setf (slot-value this 'f_basicColor) (slot-value (slot-value this 'f_basicColorFactory) 'f_RED))
+    
+    
+    (setf (slot-value this 'f_menuInputProcessor) (NoMenuInputProcessor.jm_getInstance_0))
+    (setf (slot-value this 'f_menuForm) (ScrollSelectionForm.jm_getNullScrollSelectionForm_0))
+    
+    
+    
+    (setf (slot-value this 'f_defaultPaintableInterface) (NullPaintable.jm_getInstance_0))
+    (setf (slot-value this 'f_paintableInterface) (NullPaintable.jm_getInstance_0))
+    
+    (setf (slot-value this 'f_progressPaintable) (ProgressCanvasFactory.jm_getLazyInstance_0))
+    (setf (slot-value this 'f_tempWait) (slot-value (NullWaitGameRunnable.jm_getInstance_0) 'f_WAIT))
+    (setf (slot-value this 'f_inputToGameKeyMapping) (jm_getInputMapping_0 (jm_getPersistentInputMappingInstance_0 (PlatformInputMappingFactory.jm_getInstance_0))))
+    (setf (slot-value this 'f_gameRunnable) (NullWaitGameRunnable.jm_getInstance_0))
+    (setf (slot-value this 'f_isSingleKeyRepeatableProcessing) (jm_isFeature_1 (Features.jm_getInstance_0) (slot-value (InputFeatureFactory.jm_getInstance_0) 'f_SINGLE_KEY_REPEAT_PRESS)))
+    (setf (slot-value this 'f_NONE) (slot-value (GameKeyFactory.jm_getInstance_0) 'f_NONE))
+    (setf (slot-value this 'f_gameKeyEventFactory) (GameKeyEventFactory.jm_getInstance_0))
+    (setf (slot-value this 'f_lastKeyNotMapped) (JR.i32 (- 1)))
+    (setf (slot-value this 'f_SET_STATE) "setState")
+    (setf (slot-value this 'f_baseGameStatistics) (GameStatisticsFactory.jm_getInstance_0))
+  (let ()
+    (block jreturn
+        nil
+        (setf (slot-value this 'f_abeClientInformation) _abeClientInformation)
+        (jm_setWait_1 this (slot-value (NullWaitGameRunnable.jm_getInstance_0) 'f_WAIT))
+        (setf (slot-value this 'f_gameInitializationInterfaceFactoryInterface) _gameInitializationInterfaceFactoryInterface)
+        (jm_initDemo_3 (GameInitializationUtil.jm_getInstance_0) _abeClientInformation this _gameInitializationInterfaceFactoryInterface)
+        (jm_fireEvent_1 (ResizableListenerHandler.jm_getInstance_0) nil)
+        (setf (slot-value this 'f_overlayPaintable) _overlayPaintable)
+        (setf (slot-value this 'f_highScoresFactoryInterface) _highScoresFactoryInterface)
+        (jm_setDefaultPaintableInterface_1 this _paintable)
+        (jm_setPaintableInterface_1 this (jm_getDefaultPaintableInterface_0 this))
+        (if _isContinue
+            (progn
+            (jm_addCommand_1 this (slot-value (GameCommandsFactory.jm_getInstance_0) 'f_CONTINUE_COMMAND))))
+        (if (jm_isChangedFeature_1 (ChangedGameFeatureListener.jm_getInstance_0) (slot-value (GameFeatureFactory.jm_getInstance_0) 'f_SOUND))
+            (progn
+            (jm_mediaInit_0 this)))
+        (setf (slot-value this 'f_demoGameRunnable) (DemoGameStartupRunnable.jnew_1 this))
+        (jm_addListenerInterface_1 (DisplayChangeEventHandler.jm_getInstance_0) this)))
+    this))
+
+    
+(unless (fboundp 'jm_onEvent_1) (defgeneric jm_onEvent_1 (this p1)))
+(defmethod jm_onEvent_1 ((this DemoCanvas) _eventObject)
+  (declare (ignorable this _eventObject))
+  (let ()
+    (block jreturn
+        (ForcedLogUtil.jm_log_2 (slot-value (EventStrings.jm_getInstance_0) 'f_PERFORMANCE_MESSAGE) this))))
+
+    
+(unless (fboundp 'jm_onDisplayChangeEvent_1) (defgeneric jm_onDisplayChangeEvent_1 (this p1)))
+(defmethod jm_onDisplayChangeEvent_1 ((this DemoCanvas) _displayChangeEvent)
+  (declare (ignorable this _displayChangeEvent))
+  (let (_scrollSelectionForm _formType _rectangle)
+  (declare (ignorable _scrollSelectionForm _formType _rectangle))
+    (block jreturn
+        (handler-case (progn
+            (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 (jm_append_1 (jm_append_1 (StringMaker.jnew_0) (slot-value (slot-value this 'f_commonLabels) 'f_START_LABEL)) (JR.toString (slot-value this 'f_displayInfo)))) this (slot-value (slot-value this 'f_canvasStrings) 'f_ON_DISPLAY_CHANGE_EVENT))
+            (setf _scrollSelectionForm (jm_getMenuForm_0 this))
+            (if (not (null _scrollSelectionForm))
+                (progn
+                (setf _formType (jm_getFormType_0 (FormTypeFactory.jm_getInstance_0)))
+                (setf _rectangle (jm_createFormRectangle_0 (slot-value this 'f_formUtil)))
+                (jm_init_2 _scrollSelectionForm _rectangle _formType)))
+            (jm_init_0 (slot-value this 'f_overlayPaintable)))
+            (error (_e) (declare (ignorable _e))
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_EXCEPTION) this (slot-value (slot-value this 'f_canvasStrings) 'f_ON_DISPLAY_CHANGE_EVENT) _e))))))
+
+    
+(unless (fboundp 'jm_getCustomCommands_0) (defgeneric jm_getCustomCommands_0 (this)))
+(defmethod jm_getCustomCommands_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let (_gameCommandsFactory _commandList _inApplicationPurchaseFactory _list _isOverScan _commandArray)
+  (declare (ignorable _gameCommandsFactory _commandList _inApplicationPurchaseFactory _list _isOverScan _commandArray))
+    (block jreturn
+        (setf _gameCommandsFactory (GameCommandsFactory.jm_getInstance_0))
+        (if (J2MEUtil.jm_isHTML_0)
+            (progn
+            (setf _commandArray (vector (slot-value _gameCommandsFactory 'f_START_COMMAND) (slot-value (HighScoreCommands.jm_getInstance_0) 'f_DISPLAY) (GameInputMappingCanvas.jstatic_DISPLAY) (slot-value _gameCommandsFactory 'f_DISPLAY_ABOUT)))
+            (return-from jreturn _commandArray))
+            (progn
+            (setf _commandList (BasicArrayListD.jnew_0))
+            (jm_add_1 _commandList (slot-value _gameCommandsFactory 'f_START_COMMAND))
+            (setf _inApplicationPurchaseFactory (InApplicationPurchaseFactory.jm_getInstance_0))
+            (if (jm_isEnabled_0 _inApplicationPurchaseFactory)
+                (progn
+                (setf _list (jm_getList_0 (LockableFeatureFactory.jm_getInstance_0)))
+                (if (and (> (jm_size_0 _list) 0) (not (jm_isPurchased_1 _inApplicationPurchaseFactory (jm_get_1 _list 0))))
+                    (progn
+                    (jm_add_1 _commandList (slot-value _gameCommandsFactory 'f_BUY_COMMAND))))))
+            (jm_add_1 _commandList (slot-value (HighScoreCommands.jm_getInstance_0) 'f_DISPLAY))
+            (handler-case (progn
+                (setf _isOverScan (jm_isOverScan_0 (jm_getOperatingSystemInstance_0 (OperatingSystemFactory.jm_getInstance_0))))
+                (if (SWTUtil.jstatic_isSWT)
+                    (progn
+                    (jm_add_1 _commandList (GameInputMappingCanvas.jstatic_DISPLAY)))
+                    (if (not _isOverScan)
+                    (progn
+                    (jm_add_1 _commandList (slot-value _gameCommandsFactory 'f_DISPLAY_OPTIONS))
+                    (jm_add_1 _commandList (slot-value _gameCommandsFactory 'f_DISPLAY_LOAD_FORM))
+                    (jm_add_1 _commandList (GameInputMappingCanvas.jstatic_DISPLAY))))))
+                (error (_e) (declare (ignorable _e))
+                nil))
+            (jm_add_1 _commandList (slot-value _gameCommandsFactory 'f_DISPLAY_ABOUT))
+            (setf _commandArray (jm_toArray_0 _commandList))
+            (return-from jreturn _commandArray))))))
+
+    
+(unless (fboundp 'jm_initCommands_1) (defgeneric jm_initCommands_1 (this p1)))
+(defmethod jm_initCommands_1 ((this DemoCanvas) _cmdListener)
+  (declare (ignorable this _cmdListener))
+  (let (_commandArray _size _index)
+  (declare (ignorable _commandArray _size _index))
+    (block jreturn
+        (jm_removeAllCommands_0 this)
+        (setf _commandArray (jm_getCustomCommands_0 this))
+        (setf _size (length _commandArray))
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (jm_addCommand_1 this (aref _commandArray _index)))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (CustomGameMenuUtil.jm_add_1 this)
+        (jm_setCommandListener_1 this _cmdListener))))
+
+    
+(unless (fboundp 'jm_initPostPaint_0) (defgeneric jm_initPostPaint_0 (this)))
+(defmethod jm_initPostPaint_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_mediaInit_0) (defgeneric jm_mediaInit_0 (this)))
+(defmethod jm_mediaInit_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (AllBinaryMediaManager.jm_init_1 (EarlySoundsFactory.jm_getInstance_0)))))
+
+    
+(unless (fboundp 'jm_itemStateChanged_1) (defgeneric jm_itemStateChanged_1 (this p1)))
+(defmethod jm_itemStateChanged_1 ((this DemoCanvas) _item)
+  (declare (ignorable this _item))
+  (let ()
+    (block jreturn
+        (ForcedLogUtil.jm_log_2 (slot-value (slot-value this 'f_commonStrings) 'f_NOT_IMPLEMENTED) this))))
+
+    
+(unless (fboundp 'jm_initMenu_0) (defgeneric jm_initMenu_0 (this)))
+(defmethod jm_initMenu_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let (_commandTextItemArrayFactory _items _formType _rectangle _scrollSelectionForm _formType2 _rectangle2)
+  (declare (ignorable _commandTextItemArrayFactory _items _formType _rectangle _scrollSelectionForm _formType2 _rectangle2))
+    (block jreturn
+        (jm_close_0 this)
+        (setf _commandTextItemArrayFactory (jm_getCommandTextItemArrayFactory_0 (DemoLimitedCommandTextItemArrayFactory.jm_getInstance_0)))
+        (setf _items (jm_getInstance_3 _commandTextItemArrayFactory (jm_getCommandStack_0 this) (slot-value (slot-value this 'f_basicColorFactory) 'f_BLACK) (slot-value (slot-value this 'f_basicColorFactory) 'f_WHITE)))
+        (setf _formType (jm_getFormType_0 (FormTypeFactory.jm_getInstance_0)))
+        (setf _rectangle (jm_createFormRectangle_0 (slot-value this 'f_formUtil)))
+        (PreLogUtil.jm_put_3 (jm_toString_0 (jm_append_1 (jm_append_1 (StringMaker.jnew_0) (slot-value (slot-value this 'f_commonLabels) 'f_START_LABEL)) (JR.toString (slot-value this 'f_displayInfo)))) this "initMenu")
+        (setf _scrollSelectionForm (CommandCurrentSelectionFormFactory.jm_getInstance_8 (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) _items _rectangle _formType 15 t (slot-value (slot-value this 'f_basicColorFactory) 'f_BLACK) (slot-value (slot-value this 'f_basicColorFactory) 'f_WHITE)))
+        (jm_setMenuForm_1 this _scrollSelectionForm)
+        (setf _formType2 (jm_getFormType_0 (FormTypeFactory.jm_getInstance_0)))
+        (setf _rectangle2 (jm_createFormRectangle_0 (slot-value this 'f_formUtil)))
+        (jm_init_2 _scrollSelectionForm _rectangle2 _formType2)
+        (if (not (eq (jm_getMenuForm_0 this) (ScrollSelectionFormNoneFactory.jm_getInstance_0)))
+            (progn
+            (jm_setMenuInputProcessor_1 this (CommandFormInputProcessor.jnew_4 (BasicArrayListD.jnew_0) (JR.i32 (- 1)) this (jm_getMenuForm_0 this)))))
+        (jm_open_0 this))))
+
+    
+(unless (fboundp 'jm_open_0) (defgeneric jm_open_0 (this)))
+(defmethod jm_open_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_addListenerInterface_1 (BasicMotionGesturesHandler.jm_getInstance_0) (jm_getMenuInputProcessor_0 this))
+        (jm_addListener_1 (GameKeyEventHandler.jm_getInstance_0) (jm_getMenuInputProcessor_0 this)))))
+
+    
+(unless (fboundp 'jm_close_0) (defgeneric jm_close_0 (this)))
+(defmethod jm_close_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_removeListener_1 (BasicMotionGesturesHandler.jm_getInstance_0) (jm_getMenuInputProcessor_0 this))
+        (jm_removeListener_1 (GameKeyEventHandler.jm_getInstance_0) (jm_getMenuInputProcessor_0 this)))))
+
+    
+(unless (fboundp 'jm_getSourceId_0) (defgeneric jm_getSourceId_0 (this)))
+(defmethod jm_getSourceId_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (DemoCanvas.jstatic_id)))))
+
+    
+(unless (fboundp 'jm_keyPressed_1) (defgeneric jm_keyPressed_1 (this p1)))
+(defmethod jm_keyPressed_1 ((this DemoCanvas) _keyCode)
+  (declare (ignorable this _keyCode))
+  (let ()
+    (block jreturn
+        (jm_keyPressedByDevice_2 this _keyCode 0))))
+
+    
+(unless (fboundp 'jm_keyReleased_1) (defgeneric jm_keyReleased_1 (this p1)))
+(defmethod jm_keyReleased_1 ((this DemoCanvas) _keyCode)
+  (declare (ignorable this _keyCode))
+  (let ()
+    (block jreturn
+        (jm_keyReleasedByDevice_2 this _keyCode 0))))
+
+    
+(unless (fboundp 'jm_keyRepeated_1) (defgeneric jm_keyRepeated_1 (this p1)))
+(defmethod jm_keyRepeated_1 ((this DemoCanvas) _keyCode)
+  (declare (ignorable this _keyCode))
+  (let ()
+    (block jreturn
+        (jm_keyRepeatedByDevice_2 this _keyCode 0))))
+
+    
+(unless (fboundp 'jm_keyPressedByDevice_2) (defgeneric jm_keyPressedByDevice_2 (this p1 p2)))
+(defmethod jm_keyPressedByDevice_2 ((this DemoCanvas) _keyCode _deviceId)
+  (declare (ignorable this _keyCode _deviceId))
+  (let ()
+    (block jreturn
+        (jm_addGameKeyEvent_2 this _keyCode nil))))
+
+    
+(unless (fboundp 'jm_keyReleasedByDevice_2) (defgeneric jm_keyReleasedByDevice_2 (this p1 p2)))
+(defmethod jm_keyReleasedByDevice_2 ((this DemoCanvas) _keyCode _deviceId)
+  (declare (ignorable this _keyCode _deviceId))
+  (let ()
+    (block jreturn
+        (jm_removeGameKeyEvent_2 this _keyCode nil))))
+
+    
+(unless (fboundp 'jm_keyRepeatedByDevice_2) (defgeneric jm_keyRepeatedByDevice_2 (this p1 p2)))
+(defmethod jm_keyRepeatedByDevice_2 ((this DemoCanvas) _keyCode _deviceId)
+  (declare (ignorable this _keyCode _deviceId))
+  (let ()
+    (block jreturn
+        (if (slot-value this 'f_isSingleKeyRepeatableProcessing)
+            (progn
+            (jm_addGameKeyEvent_2 this _keyCode t))))))
+
+    
+(unless (fboundp 'jm_addGameKeyEvent_2) (defgeneric jm_addGameKeyEvent_2 (this p1 p2)))
+(defmethod jm_addGameKeyEvent_2 ((this DemoCanvas) _keyCode _repeated)
+  (declare (ignorable this _keyCode _repeated))
+  (let (_gameKey _gameKeyEvent)
+  (declare (ignorable _gameKey _gameKeyEvent))
+    (block jreturn
+        (handler-case (progn
+            (setf _gameKey (jm_getInstanceForCanvas_2 (slot-value this 'f_inputToGameKeyMapping) this _keyCode))
+            (if (not (eq _gameKey (slot-value this 'f_NONE)))
+                (progn
+                (setf _gameKeyEvent (jm_getInstanceForInput_2 (slot-value this 'f_gameKeyEventFactory) this _gameKey))
+                (jm_fireEvent_1 (DownGameKeyEventHandler.jm_getInstance_0) _gameKeyEvent))
+                (progn
+                (if (/= (slot-value this 'f_lastKeyNotMapped) _keyCode)
+                    (progn
+                    (setf (slot-value this 'f_lastKeyNotMapped) _keyCode)
+                    (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 (jm_appendint_1 (jm_append_1 (StringMaker.jnew_0) (slot-value (slot-value this 'f_gameInputStrings) 'f_NO_KEY)) _keyCode)) this (slot-value (slot-value this 'f_gameInputStrings) 'f_ADD_KEY_EVENT)))))))
+            (error (_e) (declare (ignorable _e))
+            (jm_put_4 (slot-value this 'f_logUtil) "Key Event Error" this (slot-value (slot-value this 'f_gameInputStrings) 'f_ADD_KEY_EVENT) _e))))))
+
+    
+(unless (fboundp 'jm_removeGameKeyEvent_2) (defgeneric jm_removeGameKeyEvent_2 (this p1 p2)))
+(defmethod jm_removeGameKeyEvent_2 ((this DemoCanvas) _keyCode _repeated)
+  (declare (ignorable this _keyCode _repeated))
+  (let (_gameKey _gameKeyEvent)
+  (declare (ignorable _gameKey _gameKeyEvent))
+    (block jreturn
+        (handler-case (progn
+            (setf _gameKey (jm_getInstanceForCanvas_2 (slot-value this 'f_inputToGameKeyMapping) this _keyCode))
+            (if (not (eq _gameKey (slot-value this 'f_NONE)))
+                (progn
+                (setf _gameKeyEvent (jm_getInstanceForInput_2 (slot-value this 'f_gameKeyEventFactory) this _gameKey))
+                (jm_fireEvent_1 (UpGameKeyEventHandler.jm_getInstance_0) _gameKeyEvent))
+                (progn
+                (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 (jm_appendint_1 (jm_append_1 (StringMaker.jnew_0) (slot-value (slot-value this 'f_gameInputStrings) 'f_NO_KEY)) _keyCode)) this (slot-value (slot-value this 'f_gameInputStrings) 'f_REMOVE_KEY_EVENT)))))
+            (error (_e) (declare (ignorable _e))
+            (jm_put_4 (slot-value this 'f_logUtil) "Key Event Error" this (slot-value (slot-value this 'f_gameInputStrings) 'f_REMOVE_KEY_EVENT) _e))))))
+
+    
+(unless (fboundp 'jm_pause_0) (defgeneric jm_pause_0 (this)))
+(defmethod jm_pause_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_close_0 this)
+        (jm_setPaused_1 this t)
+        (setf (slot-value this 'f_gameRunnable) (NullWaitGameRunnable.jm_getInstance_0))
+        (jm_pause_0 (slot-value this 'f_gameCanvas)))))
+
+    
+(unless (fboundp 'jm_unPause_0) (defgeneric jm_unPause_0 (this)))
+(defmethod jm_unPause_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_open_0 this)
+        (jm_unPause_0 (slot-value this 'f_gameCanvas))
+        (setf (slot-value this 'f_gameRunnable) (slot-value (slot-value this 'f_gameCanvas) 'f_gameRunnable))
+        (jm_setPaused_1 this nil))))
+
+    
+(unless (fboundp 'jm_isPausable_0) (defgeneric jm_isPausable_0 (this)))
+(defmethod jm_isPausable_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (if (eq (jm_getUsedRunnable_0 (CurrentDisplayableFactory.jm_getInstance_0)) (NullWaitGameRunnable.jm_getInstance_0))
+            (progn
+            (return-from jreturn t))
+            (progn
+            (return-from jreturn nil))))))
+
+    
+(unless (fboundp 'jm_isGameOver_0) (defgeneric jm_isGameOver_0 (this)))
+(defmethod jm_isGameOver_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 (jm_append_1 (jm_append_1 (StringMaker.jnew_0) (slot-value (slot-value this 'f_commonStrings) 'f_NOT_IMPLEMENTED)) " since not a game")) this "isGameOver")
+        (return-from jreturn nil))))
+
+    
+(unless (fboundp 'jm_setLoadStateHashtable_1) (defgeneric jm_setLoadStateHashtable_1 (this p1)))
+(defmethod jm_setLoadStateHashtable_1 ((this DemoCanvas) _hashtable)
+  (declare (ignorable this _hashtable))
+  (let ()
+    (block jreturn
+        (jm_putF_3 (slot-value this 'f_logUtil) "Trying to continue a demo lol - only continue a game canvas not the demo" this "setLoadStateHashtable"))))
+
+    
+(unless (fboundp 'jm_getLoadStateHashtable_0) (defgeneric jm_getLoadStateHashtable_0 (this)))
+(defmethod jm_getLoadStateHashtable_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_putF_3 (slot-value this 'f_logUtil) "Trying to continue a demo lol - only continue a game canvas not the demo" this "getLoadStateHashtable")
+        (return-from jreturn (slot-value (slot-value this 'f_stdUtil) 'f_NULL_TABLE)))))
+
+    
+(unless (fboundp 'jm_getCurrentStateHashtable_0) (defgeneric jm_getCurrentStateHashtable_0 (this)))
+(defmethod jm_getCurrentStateHashtable_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_putF_3 (slot-value this 'f_logUtil) "Trying to save the AI lol" this "getCurrentStateHashtable")
+        (return-from jreturn (slot-value (slot-value this 'f_stdUtil) 'f_NULL_TABLE)))))
+
+    
+(unless (fboundp 'jm_setHighScoreSubmitted_1) (defgeneric jm_setHighScoreSubmitted_1 (this p1)))
+(defmethod jm_setHighScoreSubmitted_1 ((this DemoCanvas) _isNotUsed)
+  (declare (ignorable this _isNotUsed))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_paint_1) (defgeneric jm_paint_1 (this p1)))
+(defmethod jm_paint_1 ((this DemoCanvas) _graphics)
+  (declare (ignorable this _graphics))
+  (let ()
+    (block jreturn
+        (jm_paint_1 (slot-value this 'f_paintableInterface) _graphics)
+        (jm_paintXY_3 (slot-value this 'f_paintedSpecialAnimationInterface) _graphics 0 0)
+        (jm_paint_1 (slot-value this 'f_highScoresPaintable) _graphics)
+        (jm_paint_1 (jm_getBasicGameDemoPaintable_0 this) _graphics)
+        (jm_paint_1 (slot-value this 'f_overlayPaintable) _graphics)
+        (jm_paint_1 (slot-value this 'f_fullscreenPaintable) _graphics)
+        (jm_paint_1 (slot-value this 'f_progressPaintable) _graphics))))
+
+    
+(unless (fboundp 'jm_paintThreed_1) (defgeneric jm_paintThreed_1 (this p1)))
+(defmethod jm_paintThreed_1 ((this DemoCanvas) _graphics)
+  (declare (ignorable this _graphics))
+  (let ()
+    (block jreturn
+        (jm_paintThreed_1 (slot-value this 'f_paintableInterface) _graphics)
+        (jm_paintThreedXYZ_4 (slot-value this 'f_paintedSpecialAnimationInterface) _graphics 0 0 0))))
+
+    
+(unless (fboundp 'jm_processGameOver_0) (defgeneric jm_processGameOver_0 (this)))
+(defmethod jm_processGameOver_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_putF_3 (slot-value this 'f_logUtil) "Not Implemented since not a game" this "setGameOver"))))
+
+    
+(unless (fboundp 'jm_demoStateChange_0) (defgeneric jm_demoStateChange_0 (this)))
+(defmethod jm_demoStateChange_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let (_newState _highScores)
+  (declare (ignorable _newState _highScores))
+    (block jreturn
+        (setf _newState (JR.i32 (+ (slot-value this 'f_state) 1)))
+        (if (> _newState 2)
+            (progn
+            (setf _newState 0))
+            (if (= _newState 2)
+            (progn
+            (if (not (jm_isAnyHighScores_0 (slot-value this 'f_highScoresHelper)))
+                (progn
+                (setf _newState 0))
+                (progn
+                (setf _highScores (jm_getNextHighScores_0 (slot-value this 'f_highScoresHelper)))
+                (if (eq _highScores (NullHighScoresSingletonFactory.jm_getInstance_0))
+                    (progn
+                    (setf _newState 0))
+                    (progn
+                    (jm_setHighScores_1 (jm_getRealHighScoresPaintable_0 this) _highScores))))))))
+        (jm_setState_1 this _newState)
+        (jm_updateDemoState_0 this))))
+
+    
+(unless (fboundp 'jm_updateDemoState_0) (defgeneric jm_updateDemoState_0 (this)))
+(defmethod jm_updateDemoState_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let (_gameAdState)
+  (declare (ignorable _gameAdState))
+    (block jreturn
+        (PreLogUtil.jm_put_3 (JR.toString (jm_createInstance_1 (SmallIntegerSingletonFactory.jm_getInstance_0) (slot-value this 'f_state))) this (slot-value this 'f_SET_STATE))
+        (jm_setState_1 (jm_getBasicGameDemoPaintable_0 this) (slot-value this 'f_state))
+        (if (= (slot-value this 'f_state) 0)
+            (progn
+            (setf (slot-value this 'f_highScoresPaintable) (NullPaintable.jm_getInstance_0))
+            (setf (slot-value this 'f_paintedSpecialAnimationInterface) (jm_getSpecialAnimationInterface_0 this))
+            (if (and (not (jm_isRunning_0 (slot-value this 'f_demoGameRunnable))) (jm_isInitialized_0 (slot-value this 'f_gameCanvas)))
+                (progn
+                (jm_reset_0 (jm_getSpecialAnimationInterface_0 this)))))
+            (if (= (slot-value this 'f_state) 1)
+            (progn
+            (setf (slot-value this 'f_paintedSpecialAnimationInterface) (SpecialAnimation.jm_getInstance_0)))
+            (if (= (slot-value this 'f_state) 2)
+            (progn
+            (setf (slot-value this 'f_highScoresPaintable) (jm_getRealHighScoresPaintable_0 this))))))
+        (setf _gameAdState (jm_getCurrentInstance_0 (slot-value this 'f_gameAdStateFactory)))
+        (jm_processPageAdState_0 _gameAdState))))
+
+    
+(unless (fboundp 'jm_getNextRandom_0) (defgeneric jm_getNextRandom_0 (this)))
+(defmethod jm_getNextRandom_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (error (JR.newException "Exception" (slot-value (slot-value this 'f_commonStrings) 'f_NOT_IMPLEMENTED))))))
+
+    
+(unless (fboundp 'jm_createGameLayerManager_1) (defgeneric jm_createGameLayerManager_1 (this p1)))
+(defmethod jm_createGameLayerManager_1 ((this DemoCanvas) _randomValue)
+  (declare (ignorable this _randomValue))
+  (let ()
+    (block jreturn
+        (error (JR.newException "Exception" (slot-value (slot-value this 'f_commonStrings) 'f_NOT_IMPLEMENTED))))))
+
+    
+(unless (fboundp 'jm_createRunnable_1) (defgeneric jm_createRunnable_1 (this p1)))
+(defmethod jm_createRunnable_1 ((this DemoCanvas) _randomLevel)
+  (declare (ignorable this _randomLevel))
+  (let ()
+    (block jreturn
+        (error (JR.newException "Exception" (slot-value (slot-value this 'f_commonStrings) 'f_NOT_IMPLEMENTED))))))
+
+    
+(unless (fboundp 'jm_create_0) (defgeneric jm_create_0 (this)))
+(defmethod jm_create_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let (_randomLevel _gameInfo)
+  (declare (ignorable _randomLevel _gameInfo))
+    (block jreturn
+        (PreLogUtil.jm_put_3 (slot-value (slot-value this 'f_commonStrings) 'f_START) this "create")
+        (setf (slot-value this 'f_highScoresPaintable) (NullPaintable.jm_getInstance_0))
+        (setf _randomLevel (jm_getNextRandom_0 this))
+        (setf (slot-value this 'f_gameCanvas) (jm_createRunnable_1 this _randomLevel))
+        (setf (slot-value this 'f_basicColor) (jm_getForegroundBasicColor_0 (jm_getLayerManager_0 (slot-value this 'f_gameCanvas))))
+        (jm_setBasicColorP_1 (jm_getRealHighScoresPaintable_0 this) (slot-value this 'f_basicColor))
+        (jm_setGameCanvasStartListener_1 (slot-value this 'f_gameCanvas) this)
+        (setf _gameInfo (jm_getGameInfo_0 (jm_getLayerManager_0 (slot-value this 'f_gameCanvas))))
+        (jm_fetchHighScores_2 (jm_getHighScoresFactoryInterface_0 this) _gameInfo (slot-value this 'f_highScoresHelper)))))
+
+    
+(unless (fboundp 'jm_start_0) (defgeneric jm_start_0 (this)))
+(defmethod jm_start_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let (_gameCanvas)
+  (declare (ignorable _gameCanvas))
+    (block jreturn
+        (setf _gameCanvas (slot-value this 'f_gameCanvas))
+        (PreLogUtil.jm_put_3 (jm_toString_0 (jm_append_1 (jm_append_1 (StringMaker.jnew_0) "Game Thread in DemoCanvas: ") (JR.toString (slot-value this 'f_stringUtil)))) this (slot-value (slot-value this 'f_commonStrings) 'f_START))
+        (setf (slot-value this 'f_canvasThread) (jm_getInstanceGameCanvasRunnable_1 (slot-value this 'f_threadFactoryUtil) _gameCanvas))
+        (jm_setThread_1 (slot-value this 'f_gameCanvas) (slot-value this 'f_canvasThread))
+        (jm_start_1 (slot-value this 'f_threadFactoryUtil) (slot-value this 'f_canvasThread))
+        (if (eq (jm_getWait_0 this) (slot-value (NullWaitGameRunnable.jm_getInstance_0) 'f_WAIT))
+            (progn
+            (jm_setWait_1 this (jm_getTempWait_0 this)))))))
+
+    
+(unless (fboundp 'jm_preDemoProcess_0) (defgeneric jm_preDemoProcess_0 (this)))
+(defmethod jm_preDemoProcess_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (if (or (not (jm_isInitialized_0 (slot-value this 'f_gameCanvas))) (eq (jm_getTitle_0 (slot-value this 'f_gameCanvas)) (NullGameCanvas.jstatic_NO_GAME)))
+            (progn
+            (if (AllBinaryMediaManager.jm_update_0)
+                (progn
+                (if (not (jm_process_0 (PrimaryPlayerQueueFactory.jm_getInstance_0)))
+                    (progn
+                    (jm_process_0 (SecondaryPlayerQueueFactory.jm_getInstance_0))))))))
+        (jm_update_0 (slot-value this 'f_overlayPaintable)))))
+
+    
+(unless (fboundp 'jm_process_0) (defgeneric jm_process_0 (this)))
+(defmethod jm_process_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let (_indexedAnimationBehavior _demoGameMidlet _thread _randomLevel _gameInfo)
+  (declare (ignorable _indexedAnimationBehavior _demoGameMidlet _thread _randomLevel _gameInfo))
+    (block jreturn
+        (call-next-method this)
+        (jm_processInputList_0 (jm_getMenuInputProcessor_0 this))
+        (jm_preDemoProcess_0 this)
+        (if (= (slot-value this 'f_state) 0)
+            (progn
+            (setf _indexedAnimationBehavior (jm_getAnimationBehavior_0 (jm_getSpecialAnimationInterface_0 this)))
+            (if (< (slot-value _indexedAnimationBehavior 'f_loopIndex) 1)
+                (progn
+                (jm_setStartTimeTNT_0 (slot-value this 'f_timeDelayHelper))))
+            (setf _demoGameMidlet (jm_getCustomCommandListener_0 this))
+            (if (and (not (eq (slot-value this 'f_gameCanvas) (NullGameCanvas.jm_getInstance_0))) (jm_isGameOver_0 (slot-value this 'f_gameCanvas)))
+                (progn
+                (jm_stopGameDemo_0 this)
+                (setf _randomLevel (jm_getNextRandom_0 this))
+                (setf _gameInfo (jm_getGameInfo_0 (jm_getLayerManager_0 (slot-value this 'f_gameCanvas))))
+                (jm_setCurrentLevel_1 _gameInfo _randomLevel)
+                (jm_setGameOver_1 (slot-value this 'f_gameCanvas) nil)
+                (jm_start_0 this))
+                (if (and (eq (slot-value this 'f_gameCanvas) (NullGameCanvas.jm_getInstance_0)) (jm_isReady_0 _demoGameMidlet))
+                (progn
+                (if (not (jm_isRunning_0 (slot-value this 'f_demoGameRunnable)))
+                    (progn
+                    (jm_startDemoGame_0 this)
+                    (jm_setRunning_1 (slot-value this 'f_demoGameRunnable) t)
+                    (setf _thread (jm_getInstanceForRunnable_1 (slot-value this 'f_threadFactoryUtil) (slot-value this 'f_demoGameRunnable)))
+                    (jm_setThread_1 (slot-value this 'f_demoGameRunnable) _thread)
+                    (jm_start_1 (slot-value this 'f_threadFactoryUtil) _thread)))))))))))
+
+    
+(unless (fboundp 'jm_startDemoGame_0) (defgeneric jm_startDemoGame_0 (this)))
+(defmethod jm_startDemoGame_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (DemoCanvasProgressUtil.jm_showProgress_1 this))))
+
+    
+(unless (fboundp 'jm_stopGameDemo_0) (defgeneric jm_stopGameDemo_0 (this)))
+(defmethod jm_stopGameDemo_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (if (not (eq (slot-value this 'f_gameCanvas) (NullGameCanvas.jm_getInstance_0)))
+            (progn
+            (jm_putF_3 (slot-value this 'f_logUtil) "Set Running False" this "stopGameDemo")
+            (jm_setRunning_1 (slot-value this 'f_gameCanvas) nil)))
+        (jm_join_1 (ThreadUtil.jm_getInstance_0) (slot-value this 'f_canvasThread)))))
+
+    
+(unless (fboundp 'jm_showGamePaintable_0) (defgeneric jm_showGamePaintable_0 (this)))
+(defmethod jm_showGamePaintable_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let (_METHOD_NAME _isDefault)
+  (declare (ignorable _METHOD_NAME _isDefault))
+    (block jreturn
+        (setf _METHOD_NAME "showGamePaintable")
+        (PreLogUtil.jm_put_3 (slot-value (slot-value this 'f_commonStrings) 'f_START) this _METHOD_NAME)
+        (setf _isDefault (J2MEUtil.jm_isHTML_0))
+        (if (and (and (not (eq (slot-value this 'f_gameCanvas) (NullGameCanvas.jm_getInstance_0))) (or (or (jm_isRunning_0 (slot-value this 'f_gameCanvas)) _isDefault) (SWTUtil.jstatic_isSWT))) (not (eq (jm_getType_0 (slot-value this 'f_gameCanvas)) (NullGameCanvas.jstatic_TYPE))))
+            (progn
+            (setf (slot-value this 'f_gameRunnable) (slot-value (slot-value this 'f_gameCanvas) 'f_gameRunnable))
+            (PreLogUtil.jm_put_3 "Showing Game" this _METHOD_NAME)
+            (jm_setPaintableInterface_1 this (slot-value this 'f_gameCanvas)))
+            (progn
+            (setf (slot-value this 'f_gameRunnable) (NullWaitGameRunnable.jm_getInstance_0))
+            (PreLogUtil.jm_put_3 "Not Showing Game" this _METHOD_NAME)
+            (jm_setPaintableInterface_1 this (jm_getDefaultPaintableInterface_0 this)))))))
+
+    
+(unless (fboundp 'jm_isReadyForStateChange_0) (defgeneric jm_isReadyForStateChange_0 (this)))
+(defmethod jm_isReadyForStateChange_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (and (not (jm_isRunning_0 (slot-value this 'f_demoGameRunnable))) (jm_isInitialized_0 (slot-value this 'f_gameCanvas)))))))
+
+    
+(unless (fboundp 'jm_processGame_0) (defgeneric jm_processGame_0 (this)))
+(defmethod jm_processGame_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_run_0 (slot-value this 'f_gameRunnable))
+        (if (and (not (jm_isComplete_0 (slot-value this 'f_specialAnimationInterface))) (jm_isReadyForStateChange_0 this))
+            (progn
+            (jm_nextFrame_0 (slot-value this 'f_specialAnimationInterface))))
+        (if (and (jm_isTimeTNT_0 (slot-value this 'f_timeDelayHelper)) (jm_isReadyForStateChange_0 this))
+            (progn
+            (jm_demoStateChange_0 this))
+            (progn
+            (jm_process_0 this))))))
+
+    
+(unless (fboundp 'jm_run_0) (defgeneric jm_run_0 (this)))
+(defmethod jm_run_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let (_progressCanvas _features _openGLFeatureFactory _demoGameRunnable _currentDisplayableFactory)
+  (declare (ignorable _progressCanvas _features _openGLFeatureFactory _demoGameRunnable _currentDisplayableFactory))
+    (block jreturn
+        (jm_putF_3 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_START_RUNNABLE) this (slot-value (slot-value this 'f_commonStrings) 'f_RUN))
+        (handler-case (progn
+            (setf _progressCanvas (ProgressCanvasFactory.jm_getInstance_0))
+            (setf _features (Features.jm_getInstance_0))
+            (setf _openGLFeatureFactory (OpenGLFeatureFactory.jm_getInstance_0))
+            (jm_addNormalPortion_2 _progressCanvas 50 "Demo Thread")
+            (jm_setCurrentThread_0 this)
+            (jm_setRunning_1 this t)
+            (if (jm_isFeature_1 _features (slot-value (MainFeatureFactory.jm_getInstance_0) 'f_LOAD_ONDEMAND))
+                (progn
+                (jm_end_0 _progressCanvas))
+                (progn
+                (jm_addNormalPortion_2 _progressCanvas 50 "Demo Thread Running")))
+            (jm_initOnRun_2 (slot-value this 'f_fullScreenUtil) this (jm_getCustomCommandListener_0 this))
+            (jm_initMenu_0 this)
+            (jm_initPostPaint_0 this)
+            (jm_updateDemoState_0 this)
+            (if (jm_isDefault_1 _features (slot-value _openGLFeatureFactory 'f_OPENGL_AS_GAME_THREAD))
+                (progn
+                (block jbreak (loop while (or (eq (slot-value this 'f_gameCanvas) (NullGameCanvas.jm_getInstance_0)) (not (jm_isInitialized_0 (slot-value this 'f_gameCanvas)))) do
+                        (block jcontinue
+                    (jm_setStartTimeTNT_0 (slot-value this 'f_loopTimeHelper))
+                    (jm_processGame_0 this)
+                    (jm_processLoopSleep_0 this))))
+                (setf _demoGameRunnable (DemoGameRunnable.jnew_1 this))
+                (setf _currentDisplayableFactory (CurrentDisplayableFactory.jm_getInstance_0))
+                (jm_setRunnable_1 _currentDisplayableFactory _demoGameRunnable)
+                (jm_setMyCanvas_1 _currentDisplayableFactory this)
+                (jm_onResume_0 (OpenGLThreadUtil.jm_getInstance_0))))
+            (if (or (jm_isDefault_1 _features (slot-value _openGLFeatureFactory 'f_OPENGL_AS_GAME_THREAD)) (J2MEUtil.jm_isHTML_0))
+                (progn
+                (setf _demoGameRunnable (DemoGameRunnable.jnew_1 this))
+                (setf _currentDisplayableFactory (CurrentDisplayableFactory.jm_getInstance_0))
+                (jm_setRunnable_1 _currentDisplayableFactory _demoGameRunnable)
+                (jm_setMyCanvas_1 _currentDisplayableFactory this))
+                (progn
+                (block jbreak (loop while (jm_isRunning_0 this) do
+                        (block jcontinue
+                    (jm_run3_0 this))))
+                (jm_end_0 this))))
+            (error (_e) (declare (ignorable _e))
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_EXCEPTION) this (slot-value (slot-value this 'f_commonStrings) 'f_RUN) _e)))
+        (jm_putF_3 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_END_RUNNABLE) this (slot-value (slot-value this 'f_commonStrings) 'f_RUN)))))
+
+    
+(unless (fboundp 'jm_run3_0) (defgeneric jm_run3_0 (this)))
+(defmethod jm_run3_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_setStartTimeTNT_0 (slot-value this 'f_loopTimeHelper))
+        (jm_processGame_0 this)
+        (jm_processLoopSleep_0 this))))
+
+    
+(unless (fboundp 'jm_setRunning_1) (defgeneric jm_setRunning_1 (this p1)))
+(defmethod jm_setRunning_1 ((this DemoCanvas) _running)
+  (declare (ignorable this _running))
+  (let (_features _openGLFeatureFactory _currentDisplayableFactory)
+  (declare (ignorable _features _openGLFeatureFactory _currentDisplayableFactory))
+    (block jreturn
+        (call-next-method this _running)
+        (handler-case (progn
+            (setf _features (Features.jm_getInstance_0))
+            (setf _openGLFeatureFactory (OpenGLFeatureFactory.jm_getInstance_0))
+            (if _running
+                (progn
+                nil)
+                (progn
+                (if (or (or (jm_isDefault_1 _features (slot-value _openGLFeatureFactory 'f_OPENGL)) (J2MEUtil.jm_isHTML_0)) (SWTUtil.jstatic_isSWT))
+                    (progn
+                    (setf _currentDisplayableFactory (CurrentDisplayableFactory.jm_getInstance_0))
+                    (jm_clearRunnable_0 _currentDisplayableFactory)
+                    (jm_end_0 this))))))
+            (error (_e) (declare (ignorable _e))
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_EXCEPTION) this (slot-value this 'f_SET_RUNNING) _e))))))
+
+    
+(unless (fboundp 'jm_end_0) (defgeneric jm_end_0 (this)))
+(defmethod jm_end_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let (_progressCanvas _features)
+  (declare (ignorable _progressCanvas _features))
+    (block jreturn
+        (setf _progressCanvas (ProgressCanvasFactory.jm_getInstance_0))
+        (setf _features (Features.jm_getInstance_0))
+        (jm_add_1 (slot-value this 'f_baseGameStatistics) (jm_toString_0 (jm_append_1 (jm_append_1 (jm_append_1 (StringMaker.jnew_0) (DemoCanvas.jstatic_BOT_GAME_STATS)) (jm_toString_0 (slot-value this 'f_baseGameStatistics))) (slot-value (CommonSeps.jm_getInstance_0) 'f_NEW_LINE))))
+        (jm_init_0 (slot-value this 'f_baseGameStatistics))
+        (if (jm_isFeature_1 _features (slot-value (MainFeatureFactory.jm_getInstance_0) 'f_LOAD_ONDEMAND))
+            (progn
+            (jm_start_0 _progressCanvas)))
+        (jm_putF_3 (slot-value this 'f_logUtil) "Demo End" this (slot-value (slot-value this 'f_commonStrings) 'f_RUN))
+        (jm_close_0 this)
+        (jm_removeListener_1 (DisplayChangeEventHandler.jm_getInstance_0) this)
+        (jm_stopGameDemo_0 this))))
+
+    
+(unless (fboundp 'jm_setGameState_1) (defgeneric jm_setGameState_1 (this p1)))
+(defmethod jm_setGameState_1 ((this DemoCanvas) _gameState)
+  (declare (ignorable this _gameState))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_getGameState_0) (defgeneric jm_getGameState_0 (this)))
+(defmethod jm_getGameState_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value (slot-value this 'f_gameStateFactory) 'f_PLAYING_GAME_STATE)))))
+
+    
+(unless (fboundp 'jm_getGameCanvasRunnableInterface_0) (defgeneric jm_getGameCanvasRunnableInterface_0 (this)))
+(defmethod jm_getGameCanvasRunnableInterface_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_gameCanvas)))))
+
+    
+(unless (fboundp 'jm_isDemoLoading_0) (defgeneric jm_isDemoLoading_0 (this)))
+(defmethod jm_isDemoLoading_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let (_gameCanvas)
+  (declare (ignorable _gameCanvas))
+    (block jreturn
+        (setf _gameCanvas (slot-value this 'f_gameCanvas))
+        (if (eq _gameCanvas (NullGameCanvas.jm_getInstance_0))
+            (progn
+            (return-from jreturn t))
+            (if (jm_isInitialized_0 _gameCanvas)
+            (progn
+            (return-from jreturn nil))))
+        (return-from jreturn t))))
+
+    
+(unless (fboundp 'jm_getState_0) (defgeneric jm_getState_0 (this)))
+(defmethod jm_getState_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_state)))))
+
+    
+(unless (fboundp 'jm_setState_1) (defgeneric jm_setState_1 (this p1)))
+(defmethod jm_setState_1 ((this DemoCanvas) _state)
+  (declare (ignorable this _state))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_state) _state))))
+
+    
+(unless (fboundp 'jm_isHighScoreSubmitted_0) (defgeneric jm_isHighScoreSubmitted_0 (this)))
+(defmethod jm_isHighScoreSubmitted_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_putF_3 (slot-value this 'f_logUtil) "Wow the AI got a high score!" this "isHighScoreSubmitted")
+        (return-from jreturn nil))))
+
+    
+(unless (fboundp 'jm_getRealHighScoresPaintable_0) (defgeneric jm_getRealHighScoresPaintable_0 (this)))
+(defmethod jm_getRealHighScoresPaintable_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_realHighScoresPaintable)))))
+
+    
+(unless (fboundp 'jm_setSpecialAnimationInterface_1) (defgeneric jm_setSpecialAnimationInterface_1 (this p1)))
+(defmethod jm_setSpecialAnimationInterface_1 ((this DemoCanvas) _specialAnimationInterface)
+  (declare (ignorable this _specialAnimationInterface))
+  (let ()
+    (block jreturn
+        (jm_setFrame_1 _specialAnimationInterface 0)
+        (setf (slot-value this 'f_specialAnimationInterface) _specialAnimationInterface))))
+
+    
+(unless (fboundp 'jm_getSpecialAnimationInterface_0) (defgeneric jm_getSpecialAnimationInterface_0 (this)))
+(defmethod jm_getSpecialAnimationInterface_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_specialAnimationInterface)))))
+
+    
+(unless (fboundp 'jm_setPaintableInterface_1) (defgeneric jm_setPaintableInterface_1 (this p1)))
+(defmethod jm_setPaintableInterface_1 ((this DemoCanvas) _paintableInterface)
+  (declare (ignorable this _paintableInterface))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_paintableInterface) _paintableInterface))))
+
+    
+(unless (fboundp 'jm_getPaintableInterface_0) (defgeneric jm_getPaintableInterface_0 (this)))
+(defmethod jm_getPaintableInterface_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_paintableInterface)))))
+
+    
+(unless (fboundp 'jm_setDefaultPaintableInterface_1) (defgeneric jm_setDefaultPaintableInterface_1 (this p1)))
+(defmethod jm_setDefaultPaintableInterface_1 ((this DemoCanvas) _defaultPaintableInterface)
+  (declare (ignorable this _defaultPaintableInterface))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_defaultPaintableInterface) _defaultPaintableInterface))))
+
+    
+(unless (fboundp 'jm_getDefaultPaintableInterface_0) (defgeneric jm_getDefaultPaintableInterface_0 (this)))
+(defmethod jm_getDefaultPaintableInterface_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_defaultPaintableInterface)))))
+
+    
+(unless (fboundp 'jm_getHighScoresFactoryInterface_0) (defgeneric jm_getHighScoresFactoryInterface_0 (this)))
+(defmethod jm_getHighScoresFactoryInterface_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_highScoresFactoryInterface)))))
+
+    
+(unless (fboundp 'jm_setMenuInputProcessor_1) (defgeneric jm_setMenuInputProcessor_1 (this p1)))
+(defmethod jm_setMenuInputProcessor_1 ((this DemoCanvas) _menuInputProcessor)
+  (declare (ignorable this _menuInputProcessor))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_menuInputProcessor) _menuInputProcessor))))
+
+    
+(unless (fboundp 'jm_getMenuInputProcessor_0) (defgeneric jm_getMenuInputProcessor_0 (this)))
+(defmethod jm_getMenuInputProcessor_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_menuInputProcessor)))))
+
+    
+(unless (fboundp 'jm_getMenuForm_0) (defgeneric jm_getMenuForm_0 (this)))
+(defmethod jm_getMenuForm_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_menuForm)))))
+
+    
+(unless (fboundp 'jm_setMenuForm_1) (defgeneric jm_setMenuForm_1 (this p1)))
+(defmethod jm_setMenuForm_1 ((this DemoCanvas) _menuForm)
+  (declare (ignorable this _menuForm))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_menuForm) _menuForm))))
+
+    
+(unless (fboundp 'jm_isInitialized_0) (defgeneric jm_isInitialized_0 (this)))
+(defmethod jm_isInitialized_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_initialized)))))
+
+    
+(unless (fboundp 'jm_getOverlayPaintable_0) (defgeneric jm_getOverlayPaintable_0 (this)))
+(defmethod jm_getOverlayPaintable_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_overlayPaintable)))))
+
+    
+(unless (fboundp 'jm_setBasicGameDemoPaintable_1) (defgeneric jm_setBasicGameDemoPaintable_1 (this p1)))
+(defmethod jm_setBasicGameDemoPaintable_1 ((this DemoCanvas) _basicGameDemoPaintable)
+  (declare (ignorable this _basicGameDemoPaintable))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_basicGameDemoPaintable) _basicGameDemoPaintable))))
+
+    
+(unless (fboundp 'jm_getBasicGameDemoPaintable_0) (defgeneric jm_getBasicGameDemoPaintable_0 (this)))
+(defmethod jm_getBasicGameDemoPaintable_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_basicGameDemoPaintable)))))
+
+    
+(unless (fboundp 'jm_setTempWait_1) (defgeneric jm_setTempWait_1 (this p1)))
+(defmethod jm_setTempWait_1 ((this DemoCanvas) _tempWait)
+  (declare (ignorable this _tempWait))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_tempWait) _tempWait))))
+
+    
+(unless (fboundp 'jm_getTempWait_0) (defgeneric jm_getTempWait_0 (this)))
+(defmethod jm_getTempWait_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_tempWait)))))
+
+    
+(unless (fboundp 'jm_isSingleThread_0) (defgeneric jm_isSingleThread_0 (this)))
+(defmethod jm_isSingleThread_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (or (jm_isAnyThreed_0 (OpenGLFeatureUtil.jm_getInstance_0)) (SWTUtil.jstatic_isSWT))))))
+
+    
+(unless (fboundp 'jm_isRunningInAnotherThread_0) (defgeneric jm_isRunningInAnotherThread_0 (this)))
+(defmethod jm_isRunningInAnotherThread_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let (_features _openGLFeatureFactory)
+  (declare (ignorable _features _openGLFeatureFactory))
+    (block jreturn
+        (setf _features (Features.jm_getInstance_0))
+        (setf _openGLFeatureFactory (OpenGLFeatureFactory.jm_getInstance_0))
+        (if (jm_isDefault_1 _features (slot-value _openGLFeatureFactory 'f_OPENGL_AS_GAME_THREAD))
+            (progn
+            (return-from jreturn t))
+            (progn
+            (return-from jreturn (jm_isRunning_0 this)))))))
+
+    
+(unless (fboundp 'jm_getGameInitializationInterfaceFactoryInterface_0) (defgeneric jm_getGameInitializationInterfaceFactoryInterface_0 (this)))
+(defmethod jm_getGameInitializationInterfaceFactoryInterface_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_gameInitializationInterfaceFactoryInterface)))))
+
+    
+(unless (fboundp 'jm_getType_0) (defgeneric jm_getType_0 (this)))
+(defmethod jm_getType_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (DemoCanvas.jstatic_TYPE)))))
+
+    
+(unless (fboundp 'jm_getTitle_0) (defgeneric jm_getTitle_0 (this)))
+(defmethod jm_getTitle_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (call-next-method this)))))
+
+    
+(unless (fboundp 'jm_isPaused_0) (defgeneric jm_isPaused_0 (this)))
+(defmethod jm_isPaused_0 ((this DemoCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (call-next-method this)))))
+
+
 

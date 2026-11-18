@@ -1,60 +1,56 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.content
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.content
 
--- local Command = require("javax.microedition.lcdui.Command")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass CommandUriAction (JObject)
+  ((f_logUtil :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar CommandUriAction.jcell_instance :jnone)
+(defun CommandUriAction.jstatic_instance ()
+  (when (eq CommandUriAction.jcell_instance :jnone) (setf CommandUriAction.jcell_instance (CommandUriAction.jnew_0)))
+  CommandUriAction.jcell_instance)
+(defun (setf CommandUriAction.jstatic_instance) (value) (setf CommandUriAction.jcell_instance value))
 
-local CommandUriAction = {}
-CommandUriAction.__index = CommandUriAction
-CommandUriAction.className = "CommandUriAction"
+(defun CommandUriAction.jnew_0 ()
+  (let ((this (make-instance 'CommandUriAction)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    this))
 
-function CommandUriAction:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-end
+    
+(defun CommandUriAction.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (CommandUriAction.jstatic_instance)))))
 
-function CommandUriAction.new()
-    local self = setmetatable({}, CommandUriAction)
-    self:_init_fields()
-    return self
-end
+    
+(unless (fboundp 'jm_add_2) (defgeneric jm_add_2 (this p1 p2)))
+(defmethod jm_add_2 ((this CommandUriAction) _command _url)
+  (declare (ignorable this _command _url))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_process_1) (defgeneric jm_process_1 (this p1)))
+(defmethod jm_process_1 ((this CommandUriAction) _command)
+  (declare (ignorable this _command))
+  (let ()
+    (block jreturn nil)))
 
 
-function CommandUriAction.getInstance()
-        return CommandUriAction.instance
-end
-
-
-function CommandUriAction:add(command, url)
-end
-
-
-function CommandUriAction:process(command)
-end
-
-CommandUriAction.instance = CommandUriAction.new()
-
-return CommandUriAction
 

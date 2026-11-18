@@ -1,45 +1,37 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.platform.graphics
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2022 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.platform.graphics
 
--- local Image = require("javax.microedition.lcdui.Image")
--- local NullImage = require("javax.microedition.lcdui.NullImage")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass PlatformBitmapBase (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun PlatformBitmapBase.jnew_0 ()
+  (let ((this (make-instance 'PlatformBitmapBase)))
+    this))
 
-local PlatformBitmapBase = {}
-PlatformBitmapBase.__index = PlatformBitmapBase
-PlatformBitmapBase.className = "PlatformBitmapBase"
-
-function PlatformBitmapBase.new()
-    local self = setmetatable({}, PlatformBitmapBase)
-    return self
-end
+    
+(unless (fboundp 'jm_getImage_0) (defgeneric jm_getImage_0 (this)))
+(defmethod jm_getImage_0 ((this PlatformBitmapBase))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (NullImage.jstatic_NULL_IMAGE)))))
 
 
-function PlatformBitmapBase:getImage()
-        return NullImage.NULL_IMAGE
-end
-
-return PlatformBitmapBase
 

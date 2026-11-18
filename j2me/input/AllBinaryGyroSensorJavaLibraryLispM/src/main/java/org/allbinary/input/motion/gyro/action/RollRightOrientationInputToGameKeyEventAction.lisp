@@ -1,55 +1,48 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.gyro.action
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.input.motion.gyro.action
 
-local PlatformInputMappingFactory = require("org.allbinary.game.input.PlatformInputMappingFactory")
-local GameKeyCompleteMotionGestureInputEvent = require("org.allbinary.game.input.motion.action.GameKeyCompleteMotionGestureInputEvent")
-local OrientationMotionGestureFactory = require("org.allbinary.input.gyro.OrientationMotionGestureFactory")
-local NullUtil = require("org.allbinary.logic.NullUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass RollRightOrientationInputToGameKeyEventAction (GameKeyCompleteMotionGestureInputEvent)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar RollRightOrientationInputToGameKeyEventAction.jcell_instance :jnone)
+(defun RollRightOrientationInputToGameKeyEventAction.jstatic_instance ()
+  (when (eq RollRightOrientationInputToGameKeyEventAction.jcell_instance :jnone) (setf RollRightOrientationInputToGameKeyEventAction.jcell_instance (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT)))
+  RollRightOrientationInputToGameKeyEventAction.jcell_instance)
+(defun (setf RollRightOrientationInputToGameKeyEventAction.jstatic_instance) (value) (setf RollRightOrientationInputToGameKeyEventAction.jcell_instance value))
 
-local RollRightOrientationInputToGameKeyEventAction = {}
-RollRightOrientationInputToGameKeyEventAction.__index = RollRightOrientationInputToGameKeyEventAction
-RollRightOrientationInputToGameKeyEventAction.className = "RollRightOrientationInputToGameKeyEventAction"
-setmetatable(RollRightOrientationInputToGameKeyEventAction, {__index = GameKeyCompleteMotionGestureInputEvent})
+    
+(defun RollRightOrientationInputToGameKeyEventAction.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (if (eq (RollRightOrientationInputToGameKeyEventAction.jstatic_instance) (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT))
+            (progn
+            (setf (RollRightOrientationInputToGameKeyEventAction.jstatic_instance) (RollRightOrientationInputToGameKeyEventAction.jnew_0))))
+        (return-from jreturn (RollRightOrientationInputToGameKeyEventAction.jstatic_instance)))))
+
+    
+(defun RollRightOrientationInputToGameKeyEventAction.jnew_0 ()
+  (let ((this (make-instance 'RollRightOrientationInputToGameKeyEventAction)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
 
-function RollRightOrientationInputToGameKeyEventAction.getInstance()
-        if RollRightOrientationInputToGameKeyEventAction.instance == NullUtil.getInstance().NULL_OBJECT then
-            RollRightOrientationInputToGameKeyEventAction.instance = RollRightOrientationInputToGameKeyEventAction.new()
-        end
-        return RollRightOrientationInputToGameKeyEventAction.instance
-end
-
-
-function RollRightOrientationInputToGameKeyEventAction.new()
-    local self = setmetatable(GameKeyCompleteMotionGestureInputEvent.new("Roll Right Action", OrientationMotionGestureFactory.getInstance().ROLL_RIGHT, PlatformInputMappingFactory.getInstance():getPersistentInputMappingInstance():getInputMapping()), RollRightOrientationInputToGameKeyEventAction)
-        -- super(...) made self above
-    return self
-end
-
-RollRightOrientationInputToGameKeyEventAction.instance = NullUtil.getInstance().NULL_OBJECT
-
-return RollRightOrientationInputToGameKeyEventAction
 

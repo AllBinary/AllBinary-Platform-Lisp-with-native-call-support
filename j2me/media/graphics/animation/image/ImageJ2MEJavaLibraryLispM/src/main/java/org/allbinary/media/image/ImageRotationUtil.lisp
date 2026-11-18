@@ -1,59 +1,53 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.image
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.media.image
 
--- local Image = require("javax.microedition.lcdui.Image")
-local Anchor = require("org.allbinary.graphics.Anchor")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ImageRotationUtil (JObject)
+  ((f_anchor :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar ImageRotationUtil.jcell_instance :jnone)
+(defun ImageRotationUtil.jstatic_instance ()
+  (when (eq ImageRotationUtil.jcell_instance :jnone) (setf ImageRotationUtil.jcell_instance (ImageRotationUtil.jnew_0)))
+  ImageRotationUtil.jcell_instance)
+(defun (setf ImageRotationUtil.jstatic_instance) (value) (setf ImageRotationUtil.jcell_instance value))
 
-local ImageRotationUtil = {}
-ImageRotationUtil.__index = ImageRotationUtil
-ImageRotationUtil.className = "ImageRotationUtil"
+    
+(defun ImageRotationUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (ImageRotationUtil.jstatic_instance)))))
 
-function ImageRotationUtil:_init_fields()
-    self.anchor = Anchor.TOP_LEFT
-end
+    
+(defun ImageRotationUtil.jnew_0 ()
+  (let ((this (make-instance 'ImageRotationUtil)))
+    (setf (slot-value this 'f_anchor) (Anchor.jstatic_TOP_LEFT))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(unless (fboundp 'jm_createRotatedImage_2) (defgeneric jm_createRotatedImage_2 (this p1 p2)))
+(defmethod jm_createRotatedImage_2 ((this ImageRotationUtil) _originalImage _rotationInDegrees)
+  (declare (ignorable this _originalImage _rotationInDegrees))
+  (let ()
+    (block jreturn
+        (return-from jreturn _originalImage))))
 
 
-function ImageRotationUtil.getInstance()
-        return ImageRotationUtil.instance
-end
-
-
-function ImageRotationUtil.new()
-    local self = setmetatable({}, ImageRotationUtil)
-    self:_init_fields()
-    return self
-end
-
-
--- throws Exception
-function ImageRotationUtil:createRotatedImage(originalImage, rotationInDegrees)
-        return originalImage
-end
-
-ImageRotationUtil.instance = ImageRotationUtil.new()
-
-return ImageRotationUtil
 

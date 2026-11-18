@@ -25,6 +25,7 @@
 (defun NoTimeDelayHelper.jstatic_SINGLETON ()
   (when (eq NoTimeDelayHelper.jcell_SINGLETON :jnone) (setf NoTimeDelayHelper.jcell_SINGLETON (NoTimeDelayHelper.jnew_0)))
   NoTimeDelayHelper.jcell_SINGLETON)
+(defun (setf NoTimeDelayHelper.jstatic_SINGLETON) (value) (setf NoTimeDelayHelper.jcell_SINGLETON value))
 
     
 (defun NoTimeDelayHelper.jnew_0 ()

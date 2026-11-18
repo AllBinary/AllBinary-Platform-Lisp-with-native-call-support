@@ -1,65 +1,52 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.ag.ai
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
-local BasicAI = require("org.allbinary.game.ai.BasicAI")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass SpinnerAI (BasicAI)
+  ((f_isEven :initform nil)
+   (f_direction :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun SpinnerAI.jnew_3 (_direction _ownerLayerInterface _gameInput)
+  (declare (ignorable _direction _ownerLayerInterface _gameInput))
+  (let ((this (make-instance 'SpinnerAI)))
+    
+    
+  (let ()
+    (block jreturn
+        nil
+        (setf (slot-value this 'f_direction) _direction)))
+    this))
 
-local SpinnerAI = {}
-SpinnerAI.__index = SpinnerAI
-SpinnerAI.className = "SpinnerAI"
-setmetatable(SpinnerAI, {__index = BasicAI})
-
-function SpinnerAI:_init_fields()
-    self.isEven = false
-    self.direction = nil
-end
-
-
-function SpinnerAI.new(direction, ownerLayerInterface, gameInput)
-    local self = setmetatable(BasicAI.new(ownerLayerInterface, gameInput), SpinnerAI)
-    self:_init_fields()
-        -- super(...) made self above
-        self.direction = direction
-    return self
-end
+    
+(unless (fboundp 'jm_processAI_1) (defgeneric jm_processAI_1 (this p1)))
+(defmethod jm_processAI_1 ((this SpinnerAI) _allBinaryLayerManager)
+  (declare (ignorable this _allBinaryLayerManager))
+  (let ()
+    (block jreturn
+        (if (slot-value this 'f_isEven)
+            (progn
+            (jm_processKeyAI_1 this (aref (slot-value this 'f_direction) 0))
+            (setf (slot-value this 'f_isEven) nil))
+            (progn
+            (jm_processKeyAI_1 this (Canvas.jstatic_KEY_NUM1))
+            (setf (slot-value this 'f_isEven) t))))))
 
 
--- throws Exception
-function SpinnerAI:processAI(allBinaryLayerManager)
-        if self.isEven then
-            BasicAI.processKeyAI(self, self.direction[1])
-            self.isEven = false
-        else
-            BasicAI.processKeyAI(self, Canvas.KEY_NUM1)
-            self.isEven = true
-        end
-end
-
-return SpinnerAI
 

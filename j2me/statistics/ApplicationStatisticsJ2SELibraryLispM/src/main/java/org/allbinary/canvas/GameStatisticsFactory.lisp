@@ -26,6 +26,7 @@
 (defun GameStatisticsFactory.jstatic_instance ()
   (when (eq GameStatisticsFactory.jcell_instance :jnone) (setf GameStatisticsFactory.jcell_instance (GameStatisticsFactory.jnew_0)))
   GameStatisticsFactory.jcell_instance)
+(defun (setf GameStatisticsFactory.jstatic_instance) (value) (setf GameStatisticsFactory.jcell_instance value))
 
 (defun GameStatisticsFactory.jnew_0 ()
   (let ((this (make-instance 'GameStatisticsFactory)))

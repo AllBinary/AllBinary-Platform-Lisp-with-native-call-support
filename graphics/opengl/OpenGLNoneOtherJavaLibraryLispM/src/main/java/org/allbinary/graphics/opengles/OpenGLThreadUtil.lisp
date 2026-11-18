@@ -1,45 +1,50 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.opengles
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass OpenGLThreadUtil (JObject)
+  ())
+
+(defvar OpenGLThreadUtil.jcell_instance :jnone)
+(defun OpenGLThreadUtil.jstatic_instance ()
+  (when (eq OpenGLThreadUtil.jcell_instance :jnone) (setf OpenGLThreadUtil.jcell_instance (OpenGLThreadUtil.jnew_0)))
+  OpenGLThreadUtil.jcell_instance)
+(defun (setf OpenGLThreadUtil.jstatic_instance) (value) (setf OpenGLThreadUtil.jcell_instance value))
+
+(defun OpenGLThreadUtil.jnew_0 ()
+  (let ((this (make-instance 'OpenGLThreadUtil)))
+    this))
+
+    
+(defun OpenGLThreadUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (OpenGLThreadUtil.jstatic_instance)))))
+
+    
+(unless (fboundp 'jm_set_1) (defgeneric jm_set_1 (this p1)))
+(defmethod jm_set_1 ((this OpenGLThreadUtil) _glSurfaceView)
+  (declare (ignorable this _glSurfaceView))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_onPause_0) (defgeneric jm_onPause_0 (this)))
+(defmethod jm_onPause_0 ((this OpenGLThreadUtil))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_onResume_0) (defgeneric jm_onResume_0 (this)))
+(defmethod jm_onResume_0 ((this OpenGLThreadUtil))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local OpenGLThreadUtil = {}
-OpenGLThreadUtil.__index = OpenGLThreadUtil
-OpenGLThreadUtil.className = "OpenGLThreadUtil"
-
-function OpenGLThreadUtil.new()
-    local self = setmetatable({}, OpenGLThreadUtil)
-    return self
-end
-
-
-function OpenGLThreadUtil.getInstance()
-        return OpenGLThreadUtil.instance
-end
-
-
-function OpenGLThreadUtil:set(glSurfaceView)
-end
-
-
-function OpenGLThreadUtil:onPause()
-end
-
-
-function OpenGLThreadUtil:onResume()
-end
-
-OpenGLThreadUtil.instance = OpenGLThreadUtil.new()
-
-return OpenGLThreadUtil
 

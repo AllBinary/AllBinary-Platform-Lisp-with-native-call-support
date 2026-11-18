@@ -25,6 +25,7 @@
 (defun LinuxOperatingSystemFactory.jstatic_instance ()
   (when (eq LinuxOperatingSystemFactory.jcell_instance :jnone) (setf LinuxOperatingSystemFactory.jcell_instance (LinuxOperatingSystemFactory.jnew_0)))
   LinuxOperatingSystemFactory.jcell_instance)
+(defun (setf LinuxOperatingSystemFactory.jstatic_instance) (value) (setf LinuxOperatingSystemFactory.jcell_instance value))
 
     
 (defun LinuxOperatingSystemFactory.jm_getInstance_0 ()
@@ -62,7 +63,7 @@
                     (error (JR.newException "Exception" (JR.concat "Specific Linux OS Not Supported: " _osName)))))))
             (return-from jreturn _operatingSystemInterface))
             (error (_e) (declare (ignorable _e))
-            (if (JR.className (LogConfigTypes.jstatic_LOGGING))
+            (if (jm_contains_1 (LogConfigTypes.jstatic_LOGGING) (slot-value (LogConfigTypeFactory.jm_getInstance_0) 'f_FACTORYERROR))
                 (progn
                 (setf _commonStrings (CommonStrings.jm_getInstance_0))
                 (jm_put_4 (slot-value this 'f_logUtil) (slot-value _commonStrings 'f_EXCEPTION) this (slot-value _commonStrings 'f_GET_INSTANCE) _e)))

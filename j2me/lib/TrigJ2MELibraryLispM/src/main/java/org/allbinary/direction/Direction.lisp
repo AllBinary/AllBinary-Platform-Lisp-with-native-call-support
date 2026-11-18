@@ -1,101 +1,106 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.direction
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.direction
 
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(defclass Direction (JObject)
+  ((f_name :initform nil)
+   (f_otherName :initform nil)
+   (f_value :initform 0)
+   (f_frameFactor :initform 0)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defvar Direction.jcell_directionArray :jnone)
+(defun Direction.jstatic_directionArray ()
+  (when (eq Direction.jcell_directionArray :jnone) (setf Direction.jcell_directionArray (JR.newArray nil 13)))
+  Direction.jcell_directionArray)
+(defun (setf Direction.jstatic_directionArray) (value) (setf Direction.jcell_directionArray value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun Direction.jnew_4 (_name _otherName _value _frameFactor)
+  (declare (ignorable _name _otherName _value _frameFactor))
+  (let ((this (make-instance 'Direction)))
+    
+    
+    
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_name) _name)
+        (setf (slot-value this 'f_otherName) _otherName)
+        (setf (slot-value this 'f_value) _value)
+        (setf (slot-value this 'f_frameFactor) _frameFactor)
+        (setf (aref (Direction.jstatic_directionArray) _value) this)))
+    this))
 
-local Direction = {}
-Direction.__index = Direction
-Direction.className = "Direction"
+    
+(defun Direction.jm_getInstance_1 (_direction)
+  (declare (ignorable _direction))
+  (let ()
+    (block jreturn
+        (return-from jreturn (aref (Direction.jstatic_directionArray) _direction)))))
 
-function Direction:_init_fields()
-    self.name = nil
-    self.otherName = nil
-    self.value = nil
-    self.frameFactor = nil
-end
+    
+(unless (fboundp 'jm_getValue_0) (defgeneric jm_getValue_0 (this)))
+(defmethod jm_getValue_0 ((this Direction))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_value)))))
+
+    
+(unless (fboundp 'jm_getFrameFactor_0) (defgeneric jm_getFrameFactor_0 (this)))
+(defmethod jm_getFrameFactor_0 ((this Direction))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_frameFactor)))))
+
+    
+(unless (fboundp 'jm_getOtherName_0) (defgeneric jm_getOtherName_0 (this)))
+(defmethod jm_getOtherName_0 ((this Direction))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_otherName)))))
+
+    
+(unless (fboundp 'jm_getName_0) (defgeneric jm_getName_0 (this)))
+(defmethod jm_getName_0 ((this Direction))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_name)))))
+
+    
+(unless (fboundp 'jm_toString_0) (defgeneric jm_toString_0 (this)))
+(defmethod jm_toString_0 ((this Direction))
+  (declare (ignorable this))
+  (let (_stringBuffer)
+  (declare (ignorable _stringBuffer))
+    (block jreturn
+        (setf _stringBuffer (StringMaker.jnew_0))
+        (jm_append_1 _stringBuffer "Direction: ")
+        (jm_append_1 _stringBuffer (jm_getName_0 this))
+        (jm_append_1 _stringBuffer " Or: ")
+        (jm_append_1 _stringBuffer (jm_getOtherName_0 this))
+        (jm_append_1 _stringBuffer " Value: ")
+        (jm_appendint_1 _stringBuffer (slot-value this 'f_value))
+        (return-from jreturn (jm_toString_0 _stringBuffer)))))
 
 
-function Direction.new(name, otherName, value, frameFactor)
-    local self = setmetatable({}, Direction)
-    self:_init_fields()
-        self.name = name
-        self.otherName = otherName
-        self.value = value
-        self.frameFactor = frameFactor
-        Direction.directionArray[value + 1] = self
-    return self
-end
-
-
-function Direction.getInstance(direction)
-        return Direction.directionArray[direction + 1]
-end
-
-
-function Direction:getValue()
-        return self.value
-end
-
-
-function Direction:getFrameFactor()
-        return self.frameFactor
-end
-
-
-function Direction:getOtherName()
-        return self.otherName
-end
-
-
-function Direction:getName()
-        return self.name
-end
-
-
-function Direction:toString()
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append("Direction: ")
-        stringBuffer:append(self:getName())
-        stringBuffer:append(" Or: ")
-        stringBuffer:append(self:getOtherName())
-        stringBuffer:append(" Value: ")
-        stringBuffer:appendint(self.value)
-        return tostring(stringBuffer)
-end
-Direction.__tostring = function(self) return self:toString() end
-
-Direction.directionArray = java_new_array(nil, 13)
-
-return Direction
 

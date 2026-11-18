@@ -1,62 +1,54 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics
 
--- local IOException = require("java.io.IOException")
--- local InputStream = require("java.io.InputStream")
--- local Image = require("javax.microedition.lcdui.Image")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local PlatformBitmapBase = require("org.allbinary.platform.graphics.PlatformBitmapBase")
-local PlatformBitmapBaseFactory = require("org.allbinary.platform.graphics.PlatformBitmapBaseFactory")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass OpenGLBitmapFactory (PlatformBitmapBaseFactory)
+  ((f_ARGB_8888 :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar OpenGLBitmapFactory.jcell_instance :jnone)
+(defun OpenGLBitmapFactory.jstatic_instance ()
+  (when (eq OpenGLBitmapFactory.jcell_instance :jnone) (setf OpenGLBitmapFactory.jcell_instance (OpenGLBitmapFactory.jnew_0)))
+  OpenGLBitmapFactory.jcell_instance)
+(defun (setf OpenGLBitmapFactory.jstatic_instance) (value) (setf OpenGLBitmapFactory.jcell_instance value))
 
-local OpenGLBitmapFactory = {}
-OpenGLBitmapFactory.__index = OpenGLBitmapFactory
-OpenGLBitmapFactory.className = "OpenGLBitmapFactory"
-setmetatable(OpenGLBitmapFactory, {__index = PlatformBitmapBaseFactory})
+(defun OpenGLBitmapFactory.jnew_0 ()
+  (let ((this (make-instance 'OpenGLBitmapFactory)))
+    (setf (slot-value this 'f_ARGB_8888) (OpenGLBitmapConfig.jnew_1 (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT)))
+    this))
 
-function OpenGLBitmapFactory:_init_fields()
-    self.ARGB_8888 = OpenGLBitmapConfig.new(NullUtil.getInstance().NULL_OBJECT)
-end
+    
+(defun OpenGLBitmapFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (OpenGLBitmapFactory.jstatic_instance)))))
 
-function OpenGLBitmapFactory.new()
-    local self = setmetatable(PlatformBitmapBaseFactory.new(), OpenGLBitmapFactory)
-    self:_init_fields()
-    return self
-end
+    
+(unless (fboundp 'jm_createBitmap_3) (defgeneric jm_createBitmap_3 (this p1 p2 p3)))
+(defmethod jm_createBitmap_3 ((this OpenGLBitmapFactory) _width _height _config)
+  (declare (ignorable this _width _height _config))
+  (let ()
+    (block jreturn
+        (return-from jreturn (OpenGLBitmap.jnew_1 (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT))))))
+
+    
+(unless (fboundp 'jm_decodeStream_1) (defgeneric jm_decodeStream_1 (this p1)))
+(defmethod jm_decodeStream_1 ((this OpenGLBitmapFactory) _inputStream)
+  (declare (ignorable this _inputStream))
+  (let ()
+    (block jreturn
+        (return-from jreturn (OpenGLBitmap.jnew_1 (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT))))))
+
+    
+(unless (fboundp 'jm_createBitmap_1) (defgeneric jm_createBitmap_1 (this p1)))
+(defmethod jm_createBitmap_1 ((this OpenGLBitmapFactory) _image)
+  (declare (ignorable this _image))
+  (let ()
+    (block jreturn
+        (return-from jreturn (OpenGLBitmap.jnew_1 (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT))))))
 
 
-function OpenGLBitmapFactory.getInstance()
-        return OpenGLBitmapFactory.instance
-end
-
-
-function OpenGLBitmapFactory:createBitmap(width, height, config)
-        return OpenGLBitmap.new(NullUtil.getInstance().NULL_OBJECT)
-end
-
-
--- throws IOException
-function OpenGLBitmapFactory:decodeStream(inputStream)
-        return OpenGLBitmap.new(NullUtil.getInstance().NULL_OBJECT)
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function OpenGLBitmapFactory:createBitmap(image)
-        return OpenGLBitmap.new(NullUtil.getInstance().NULL_OBJECT)
-end
-
-OpenGLBitmapFactory.instance = OpenGLBitmapFactory.new()
-
-return OpenGLBitmapFactory
 

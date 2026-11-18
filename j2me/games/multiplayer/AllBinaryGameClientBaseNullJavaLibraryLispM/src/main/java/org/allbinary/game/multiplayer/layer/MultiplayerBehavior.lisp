@@ -1,55 +1,61 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.multiplayer.layer
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.multiplayer.layer
 
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass MultiplayerBehavior (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar MultiplayerBehavior.jcell_NULL_MULTIPLAYER_BEHAVIOR :jnone)
+(defun MultiplayerBehavior.jstatic_NULL_MULTIPLAYER_BEHAVIOR ()
+  (when (eq MultiplayerBehavior.jcell_NULL_MULTIPLAYER_BEHAVIOR :jnone) (setf MultiplayerBehavior.jcell_NULL_MULTIPLAYER_BEHAVIOR (MultiplayerBehavior.jnew_1 (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING))))
+  MultiplayerBehavior.jcell_NULL_MULTIPLAYER_BEHAVIOR)
+(defun (setf MultiplayerBehavior.jstatic_NULL_MULTIPLAYER_BEHAVIOR) (value) (setf MultiplayerBehavior.jcell_NULL_MULTIPLAYER_BEHAVIOR value))
 
-local MultiplayerBehavior = {}
-MultiplayerBehavior.__index = MultiplayerBehavior
-MultiplayerBehavior.className = "MultiplayerBehavior"
+    
+(defun MultiplayerBehavior.jnew_1 (_username)
+  (declare (ignorable _username))
+  (let ((this (make-instance 'MultiplayerBehavior)))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(unless (fboundp 'jm_startTick_0) (defgeneric jm_startTick_0 (this)))
+(defmethod jm_startTick_0 ((this MultiplayerBehavior))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_endTick_0) (defgeneric jm_endTick_0 (this)))
+(defmethod jm_endTick_0 ((this MultiplayerBehavior))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_getApproximateElapsed_0) (defgeneric jm_getApproximateElapsed_0 (this)))
+(defmethod jm_getApproximateElapsed_0 ((this MultiplayerBehavior))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn 0))))
 
 
-function MultiplayerBehavior.new(username)
-    local self = setmetatable({}, MultiplayerBehavior)
-    return self
-end
-
-
-function MultiplayerBehavior:startTick()
-end
-
-
-function MultiplayerBehavior:endTick()
-end
-
-
-function MultiplayerBehavior:getApproximateElapsed()
-        return 0
-end
-
-MultiplayerBehavior.NULL_MULTIPLAYER_BEHAVIOR = MultiplayerBehavior.new(StringUtil.getInstance().EMPTY_STRING)
-
-return MultiplayerBehavior
 

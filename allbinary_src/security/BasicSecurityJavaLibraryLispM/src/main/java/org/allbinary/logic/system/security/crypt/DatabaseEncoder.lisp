@@ -1,99 +1,81 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.crypt
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.system.security.crypt
 
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local PreLogUtil = require("org.allbinary.logic.communication.log.PreLogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local Tokenizer = require("org.allbinary.logic.string.tokens.Tokenizer")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(defclass DatabaseEncoder (JObject)
+  ())
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(defun DatabaseEncoder.jnew_0 ()
+  (let ((this (make-instance 'DatabaseEncoder)))
+  (let ()
+    (block jreturn nil))
+    this))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun DatabaseEncoder.jm_encode_1 (_value)
+  (declare (ignorable _value))
+  (let (_array _stringBuffer _index _commonStrings)
+  (declare (ignorable _array _stringBuffer _index _commonStrings))
+    (block jreturn
+        (handler-case (progn
+            (setf _array _value)
+            (setf _stringBuffer (StringMaker.jnew_0))
+            (progn
+                (setf _index 0)
+                (block jbreak (loop while (< _index (length _array)) do
+                    (block jcontinue
+                (jm_append_1 _stringBuffer (jm_toString_0 (aref _array _index)))
+                (if (< _index (JR.i32 (- (length _array) 1)))
+                    (progn
+                    (jm_append_1 _stringBuffer (slot-value (CommonSeps.jm_getInstance_0) 'f_SPACE)))))
+                    (setf _index (JR.i32 (+ _index 1))))))
+            (return-from jreturn (jm_toString_0 _stringBuffer)))
+            (error (_e) (declare (ignorable _e))
+            (setf _commonStrings (CommonStrings.jm_getInstance_0))
+            (PreLogUtil.jm_putOE_4 (slot-value _commonStrings 'f_EXCEPTION) "DatabaseEncoder" "decode" _e)
+            (return-from jreturn (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING)))))))
 
-local DatabaseEncoder = {}
-DatabaseEncoder.__index = DatabaseEncoder
-DatabaseEncoder.className = "DatabaseEncoder"
+    
+(defun DatabaseEncoder.jm_decode_1 (_value)
+  (declare (ignorable _value))
+  (let (_tokenizer _vector _size _decode _byteOfData _index _commonStrings)
+  (declare (ignorable _tokenizer _vector _size _decode _byteOfData _index _commonStrings))
+    (block jreturn
+        (handler-case (progn
+            (setf _tokenizer (Tokenizer.jnew_1 (slot-value (CommonSeps.jm_getInstance_0) 'f_SPACE)))
+            (setf _vector (jm_getTokensFromString_2 _tokenizer _value (BasicArrayListD.jnew_0)))
+            (setf _size (jm_size_0 _vector))
+            (setf _decode (JR.newArray 0 _size))
+            (setf _byteOfData nil)
+            (progn
+                (setf _index 0)
+                (block jbreak (loop while (< _index _size) do
+                    (block jcontinue
+                (setf _byteOfData (aref (slot-value _vector 'f_objectArray) _index))
+                (setf (aref _decode _index) (Byte.jm_parseByte_1 _byteOfData)))
+                    (setf _index (JR.i32 (+ _index 1))))))
+            (return-from jreturn _decode))
+            (error (_e) (declare (ignorable _e))
+            (setf _commonStrings (CommonStrings.jm_getInstance_0))
+            (PreLogUtil.jm_putSE_4 (slot-value _commonStrings 'f_EXCEPTION) "DatabaseEncoder" "decode" _e)
+            (return-from jreturn (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_BYTE_ARRAY)))))))
 
 
-function DatabaseEncoder.new()
-    local self = setmetatable({}, DatabaseEncoder)
-    return self
-end
-
-
-function DatabaseEncoder.encode(value)
-        local try_ok, try_error = pcall(function()
-            local array = value
-            local stringBuffer = StringMaker.new()
-            for index = 0, (array.n or #array) - 1 do
-                stringBuffer:append(tostring(array[index + 1]))
-                if index < (array.n or #array) - 1 then
-                    stringBuffer:append(CommonSeps.getInstance().SPACE)
-                end
-            end
-            return tostring(stringBuffer)
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            PreLogUtil.putOE(commonStrings.EXCEPTION, "DatabaseEncoder", "decode", e)
-            return StringUtil.getInstance().EMPTY_STRING
-        end
-end
-
-
-function DatabaseEncoder.decode(value)
-        local try_ok, try_error = pcall(function()
-            local tokenizer = Tokenizer.new(CommonSeps.getInstance().SPACE)
-            local vector = tokenizer:getTokensFromString(value, BasicArrayListD.new())
-            local size = vector:size()
-            local decode = java_new_array(0, size)
-            local byteOfData = nil
-            for index = 0, size - 1 do
-                byteOfData = vector.objectArray[index + 1]
-                decode[index + 1] = Byte.parseByte(byteOfData)
-            end
-            return decode
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            PreLogUtil.putSE(commonStrings.EXCEPTION, "DatabaseEncoder", "decode", e)
-            return NullUtil.getInstance().NULL_BYTE_ARRAY
-        end
-end
-
-return DatabaseEncoder
 

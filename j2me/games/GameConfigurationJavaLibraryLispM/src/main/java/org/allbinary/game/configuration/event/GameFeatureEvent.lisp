@@ -1,58 +1,52 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.event
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.configuration.event
 
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass GameFeatureEvent (AllBinaryEventObject)
+  ((f_whatChanged :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun GameFeatureEvent.jnew_2 (_anyType _whatChanged)
+  (declare (ignorable _anyType _whatChanged))
+  (let ((this (make-instance 'GameFeatureEvent)))
+    
+  (let ()
+    (block jreturn
+        nil
+        (setf (slot-value this 'f_whatChanged) _whatChanged)))
+    this))
 
-local GameFeatureEvent = {}
-GameFeatureEvent.__index = GameFeatureEvent
-GameFeatureEvent.className = "GameFeatureEvent"
-setmetatable(GameFeatureEvent, {__index = AllBinaryEventObject})
+    
+(unless (fboundp 'jm_getWhatChanged_0) (defgeneric jm_getWhatChanged_0 (this)))
+(defmethod jm_getWhatChanged_0 ((this GameFeatureEvent))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_whatChanged)))))
 
-function GameFeatureEvent:_init_fields()
-    self.whatChanged = nil
-end
-
-
-function GameFeatureEvent.new(anyType, whatChanged)
-    local self = setmetatable(AllBinaryEventObject.new(anyType), GameFeatureEvent)
-    self:_init_fields()
-        -- super(...) made self above
-        self.whatChanged = whatChanged
-    return self
-end
-
-
-function GameFeatureEvent:getWhatChanged()
-        return self.whatChanged
-end
+    
+(unless (fboundp 'jm_getGameOption_0) (defgeneric jm_getGameOption_0 (this)))
+(defmethod jm_getGameOption_0 ((this GameFeatureEvent))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getSource_0 this)))))
 
 
-function GameFeatureEvent:getGameOption()
-        return self:getSource()
-end
-
-return GameFeatureEvent
 

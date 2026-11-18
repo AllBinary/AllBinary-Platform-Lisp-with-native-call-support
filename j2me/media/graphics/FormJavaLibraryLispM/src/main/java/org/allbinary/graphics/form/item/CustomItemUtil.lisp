@@ -1,58 +1,42 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form.item
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.form.item
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass CustomItemUtil (JObject)
+  ((f_CUSTOM_ITEM_ARRAY :initform nil)))
+
+(defvar CustomItemUtil.jcell_instance :jnone)
+(defun CustomItemUtil.jstatic_instance ()
+  (when (eq CustomItemUtil.jcell_instance :jnone) (setf CustomItemUtil.jcell_instance (CustomItemUtil.jnew_0)))
+  CustomItemUtil.jcell_instance)
+(defun (setf CustomItemUtil.jstatic_instance) (value) (setf CustomItemUtil.jcell_instance value))
+
+(defun CustomItemUtil.jnew_0 ()
+  (let ((this (make-instance 'CustomItemUtil)))
+    (setf (slot-value this 'f_CUSTOM_ITEM_ARRAY) (JR.newArray nil 0))
+    this))
+
+    
+(defun CustomItemUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (CustomItemUtil.jstatic_instance)))))
 
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
-
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local CustomItemUtil = {}
-CustomItemUtil.__index = CustomItemUtil
-CustomItemUtil.className = "CustomItemUtil"
-
-function CustomItemUtil:_init_fields()
-    self.CUSTOM_ITEM_ARRAY = java_new_array(nil, 0)
-end
-
-function CustomItemUtil.new()
-    local self = setmetatable({}, CustomItemUtil)
-    self:_init_fields()
-    return self
-end
-
-
-function CustomItemUtil.getInstance()
-        return CustomItemUtil.instance
-end
-
-CustomItemUtil.instance = CustomItemUtil.new()
-
-return CustomItemUtil
 

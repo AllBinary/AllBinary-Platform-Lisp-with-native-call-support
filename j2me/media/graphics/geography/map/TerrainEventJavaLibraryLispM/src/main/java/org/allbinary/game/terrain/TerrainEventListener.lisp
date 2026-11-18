@@ -1,53 +1,43 @@
--- Generated Code Do Not Modify
--- package org.allbinary.game.terrain
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.terrain
 
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventStrings = require("org.allbinary.logic.util.event.EventStrings")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local TerrainEventListenerInterface = require("org.allbinary.game.terrain.TerrainEventListenerInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass TerrainEventListener (JObject)
+  ((f_list :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun TerrainEventListener.jnew_0 ()
+  (let ((this (make-instance 'TerrainEventListener)))
+    (setf (slot-value this 'f_list) (BasicArrayListD.jnew_0))
+    this))
 
-local TerrainEventListener = {}
-TerrainEventListener.__index = TerrainEventListener
-TerrainEventListener.className = "TerrainEventListener"
+    
+(unless (fboundp 'jm_onEvent_1) (defgeneric jm_onEvent_1 (this p1)))
+(defmethod jm_onEvent_1 ((this TerrainEventListener) _eventObject)
+  (declare (ignorable this _eventObject))
+  (let ()
+    (block jreturn
+        (ForcedLogUtil.jm_log_2 (slot-value (EventStrings.jm_getInstance_0) 'f_PERFORMANCE_MESSAGE) this))))
 
-function TerrainEventListener:_init_fields()
-    self.list = BasicArrayListD.new()
-end
+    
+(unless (fboundp 'jm_onTerrainEvent_1) (defgeneric jm_onTerrainEvent_1 (this p1)))
+(defmethod jm_onTerrainEvent_1 ((this TerrainEventListener) _terrainEvent)
+  (declare (ignorable this _terrainEvent))
+  (let ()
+    (block jreturn
+        (jm_clear_0 (slot-value this 'f_list))
+        (jm_add_1 (slot-value this 'f_list) _terrainEvent))))
 
-function TerrainEventListener.new()
-    local self = setmetatable({}, TerrainEventListener)
-    self:_init_fields()
-    return self
-end
-
-
-function TerrainEventListener:onEvent(eventObject)
-        ForcedLogUtil.log(EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
-end
-
-
-function TerrainEventListener:onTerrainEvent(terrainEvent)
-        self.list:clear()
-        self.list:add(terrainEvent)
-end
+    
+(unless (fboundp 'jm_getList_0) (defgeneric jm_getList_0 (this)))
+(defmethod jm_getList_0 ((this TerrainEventListener))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_list)))))
 
 
-function TerrainEventListener:getList()
-        return self.list
-end
-
-return TerrainEventListener
 

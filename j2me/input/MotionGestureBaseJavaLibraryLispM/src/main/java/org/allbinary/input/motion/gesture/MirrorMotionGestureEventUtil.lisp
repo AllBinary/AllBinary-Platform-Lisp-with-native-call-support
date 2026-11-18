@@ -1,81 +1,78 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.gesture
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.input.motion.gesture
 
-local GPoint = require("org.allbinary.graphics.GPoint")
-local PointFactory = require("org.allbinary.graphics.PointFactory")
-local MotionEventCircularPool = require("org.allbinary.input.motion.gesture.observer.MotionEventCircularPool")
-local MotionGestureEvent = require("org.allbinary.input.motion.gesture.observer.MotionGestureEvent")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass MirrorMotionGestureEventUtil (JObject)
+  ((f_motionEventCircularPool :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar MirrorMotionGestureEventUtil.jcell_instance :jnone)
+(defun MirrorMotionGestureEventUtil.jstatic_instance ()
+  (when (eq MirrorMotionGestureEventUtil.jcell_instance :jnone) (setf MirrorMotionGestureEventUtil.jcell_instance (MirrorMotionGestureEventUtil.jnew_0)))
+  MirrorMotionGestureEventUtil.jcell_instance)
+(defun (setf MirrorMotionGestureEventUtil.jstatic_instance) (value) (setf MirrorMotionGestureEventUtil.jcell_instance value))
 
-local MirrorMotionGestureEventUtil = {}
-MirrorMotionGestureEventUtil.__index = MirrorMotionGestureEventUtil
-MirrorMotionGestureEventUtil.className = "MirrorMotionGestureEventUtil"
+    
+(defun MirrorMotionGestureEventUtil.jnew_0 ()
+  (let ((this (make-instance 'MirrorMotionGestureEventUtil)))
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_motionEventCircularPool) (MotionEventCircularPool.jm_createPool_1 (Integer.jstatic_MAX_VALUE)))))
+    this))
 
-function MirrorMotionGestureEventUtil:_init_fields()
-    self.motionEventCircularPool = nil
-end
+    
+(unless (fboundp 'jm_mirrorVerticle_2) (defgeneric jm_mirrorVerticle_2 (this p1 p2)))
+(defmethod jm_mirrorVerticle_2 ((this MirrorMotionGestureEventUtil) _motionGestureEvent _halfWidth)
+  (declare (ignorable this _motionGestureEvent _halfWidth))
+  (let (_event _previousNewX _currentNewX _pointFactory _mirroredPreviousPoint _mirroredCurrentPoint)
+  (declare (ignorable _event _previousNewX _currentNewX _pointFactory _mirroredPreviousPoint _mirroredCurrentPoint))
+    (block jreturn
+        (setf _event (jm_getInstance_1 (slot-value this 'f_motionEventCircularPool) (jm_getMotionGesture_0 _motionGestureEvent)))
+        (setf _previousNewX (jm_getNewX_2 this (jm_getX_0 (jm_getPreviousPoint_0 _motionGestureEvent)) _halfWidth))
+        (setf _currentNewX (jm_getNewX_2 this (jm_getX_0 (jm_getCurrentPoint_0 _motionGestureEvent)) _halfWidth))
+        (setf _pointFactory (PointFactory.jm_getInstance_0))
+        (setf _mirroredPreviousPoint (jm_createXY_2 _pointFactory _previousNewX (jm_getY_0 (jm_getPreviousPoint_0 _motionGestureEvent))))
+        (setf _mirroredCurrentPoint (jm_createXY_2 _pointFactory _currentNewX (jm_getY_0 (jm_getCurrentPoint_0 _motionGestureEvent))))
+        (jm_setPreviousPoint_1 _event _mirroredPreviousPoint)
+        (jm_setCurrentPoint_1 _event _mirroredCurrentPoint)
+        (return-from jreturn _event))))
+
+    
+(unless (fboundp 'jm_getNewX_2) (defgeneric jm_getNewX_2 (this p1 p2)))
+(defmethod jm_getNewX_2 ((this MirrorMotionGestureEventUtil) _x _halfWidth)
+  (declare (ignorable this _x _halfWidth))
+  (let (_newX)
+  (declare (ignorable _newX))
+    (block jreturn
+        (setf _newX 0)
+        (if (> _x _halfWidth)
+            (progn
+            (setf _newX (JR.i32 (- _halfWidth (JR.i32 (- _x _halfWidth))))))
+            (progn
+            (setf _newX (JR.i32 (+ _halfWidth (JR.i32 (- _halfWidth _x)))))))
+        (return-from jreturn _newX))))
+
+    
+(defun MirrorMotionGestureEventUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (MirrorMotionGestureEventUtil.jstatic_instance)))))
 
 
-function MirrorMotionGestureEventUtil.new()
-    local self = setmetatable({}, MirrorMotionGestureEventUtil)
-    self:_init_fields()
-        self.motionEventCircularPool = MotionEventCircularPool.createPool(Integer.MAX_VALUE)
-    return self
-end
-
-
--- throws Exception
-function MirrorMotionGestureEventUtil:mirrorVerticle(motionGestureEvent, halfWidth)
-        local event = self.motionEventCircularPool:getInstance(motionGestureEvent:getMotionGesture())
-        local previousNewX = self:getNewX(motionGestureEvent:getPreviousPoint():getX(), halfWidth)
-        local currentNewX = self:getNewX(motionGestureEvent:getCurrentPoint():getX(), halfWidth)
-        local pointFactory = PointFactory.getInstance()
-        local mirroredPreviousPoint = pointFactory:createXY(previousNewX, motionGestureEvent:getPreviousPoint():getY())
-        local mirroredCurrentPoint = pointFactory:createXY(currentNewX, motionGestureEvent:getCurrentPoint():getY())
-        event:setPreviousPoint(mirroredPreviousPoint)
-        event:setCurrentPoint(mirroredCurrentPoint)
-        return event
-end
-
-
-function MirrorMotionGestureEventUtil:getNewX(x, halfWidth)
-        local newX = 0
-        if x > halfWidth then
-            newX = halfWidth - (x - halfWidth)
-        else
-            newX = halfWidth + (halfWidth - x)
-        end
-        return newX
-end
-
-
-function MirrorMotionGestureEventUtil.getInstance()
-        return MirrorMotionGestureEventUtil.instance
-end
-
-MirrorMotionGestureEventUtil.instance = MirrorMotionGestureEventUtil.new()
-
-return MirrorMotionGestureEventUtil
 

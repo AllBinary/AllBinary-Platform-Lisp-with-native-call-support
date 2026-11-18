@@ -27,6 +27,7 @@
 (defun ItemColorFactory.jstatic_instance ()
   (when (eq ItemColorFactory.jcell_instance :jnone) (setf ItemColorFactory.jcell_instance (ItemColorFactory.jnew_0)))
   ItemColorFactory.jcell_instance)
+(defun (setf ItemColorFactory.jstatic_instance) (value) (setf ItemColorFactory.jcell_instance value))
 
 (defun ItemColorFactory.jnew_0 ()
   (let ((this (make-instance 'ItemColorFactory)))

@@ -1,102 +1,101 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation
 
-local PointFactory = require("org.allbinary.graphics.PointFactory")
-local BasicGraphicsPipeline = require("org.allbinary.graphics.pipeline.BasicGraphicsPipeline")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListS = require("org.allbinary.util.BasicArrayListS")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass VectorMirrorGenerator (JObject)
+  ((f_logUtil :initform nil)
+   (f_vectorAnimationUtil :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar VectorMirrorGenerator.jcell_instance :jnone)
+(defun VectorMirrorGenerator.jstatic_instance ()
+  (when (eq VectorMirrorGenerator.jcell_instance :jnone) (setf VectorMirrorGenerator.jcell_instance (VectorMirrorGenerator.jnew_0)))
+  VectorMirrorGenerator.jcell_instance)
+(defun (setf VectorMirrorGenerator.jstatic_instance) (value) (setf VectorMirrorGenerator.jcell_instance value))
 
-local VectorMirrorGenerator = {}
-VectorMirrorGenerator.__index = VectorMirrorGenerator
-VectorMirrorGenerator.className = "VectorMirrorGenerator"
+    
+(defun VectorMirrorGenerator.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (VectorMirrorGenerator.jstatic_instance)))))
 
-function VectorMirrorGenerator:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.vectorAnimationUtil = VectorAnimationUtil.getInstance()
-end
+    
+(defun VectorMirrorGenerator.jnew_0 ()
+  (let ((this (make-instance 'VectorMirrorGenerator)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_vectorAnimationUtil) (VectorAnimationUtil.jm_getInstance_0))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(unless (fboundp 'jm_getInstance_2) (defgeneric jm_getInstance_2 (this p1 p2)))
+(defmethod jm_getInstance_2 ((this VectorMirrorGenerator) (_points vector) (_width integer))
+  (declare (ignorable this _points _width))
+  (let (_pointFactory _pointBasicArrayList _nextPoints _size2 _size _pointsBasicArrayList _index _frame _newPoints _commonStrings)
+  (declare (ignorable _pointFactory _pointBasicArrayList _nextPoints _size2 _size _pointsBasicArrayList _index _frame _newPoints _commonStrings))
+    (block jreturn
+        (handler-case (progn
+            (setf _pointFactory (PointFactory.jm_getInstance_0))
+            (setf _pointBasicArrayList nil)
+            (setf _nextPoints nil)
+            (setf _size2 0)
+            (setf _size (length _points))
+            (setf _pointsBasicArrayList (BasicArrayListS.jnew_1 _size))
+            (progn
+                (setf _frame 0)
+                (block jbreak (loop while (< _frame _size) do
+                    (block jcontinue
+                (setf _nextPoints (aref _points _frame))
+                (setf _size2 (length _nextPoints))
+                (setf _pointBasicArrayList (BasicArrayListS.jnew_1 _size2))
+                (progn
+                    (setf _index 0)
+                    (block jbreak (loop while (< _index _size2) do
+                        (block jcontinue
+                    (jm_add_1 _pointBasicArrayList (jm_createXY_2 _pointFactory (aref (aref _nextPoints _index) 0) (aref (aref _nextPoints _index) 1))))
+                        (setf _index (JR.i32 (+ _index 1))))))
+                (jm_add_1 _pointsBasicArrayList _pointBasicArrayList))
+                    (setf _frame (JR.i32 (+ _frame 1))))))
+            (progn
+                (setf _index 0)
+                (block jbreak (loop while (< _index (length _points)) do
+                    (block jcontinue
+                (jm_add_1 _pointsBasicArrayList (jm_getInstance_2 this (aref (slot-value _pointsBasicArrayList 'f_objectArray) _index) _width)))
+                    (setf _index (JR.i32 (+ _index 1))))))
+            (setf _newPoints (jm_toAnimationArrayFromListOfPointList_1 (slot-value this 'f_vectorAnimationUtil) _pointsBasicArrayList))
+            (return-from jreturn _newPoints))
+            (error (_e) (declare (ignorable _e))
+            (setf _commonStrings (CommonStrings.jm_getInstance_0))
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value _commonStrings 'f_EXCEPTION) this (slot-value _commonStrings 'f_GET_INSTANCE) _e)
+            (return-from jreturn (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_INT_ARRAY_ARRAY_ARRAY)))))))
+
+    
+(unless (fboundp 'jm_getInstance_2) (defgeneric jm_getInstance_2 (this p1 p2)))
+(defmethod jm_getInstance_2 ((this VectorMirrorGenerator) (_pointBasicArrayList t) (_width integer))
+  (declare (ignorable this _pointBasicArrayList _width))
+  (let (_graphicsPipe)
+  (declare (ignorable _graphicsPipe))
+    (block jreturn
+        (setf _graphicsPipe (BasicGraphicsPipeline.jnew_1 _pointBasicArrayList))
+        (jm_createMatrix_0 _graphicsPipe)
+        (jm_mirror_1 _graphicsPipe _width)
+        (return-from jreturn (jm_getMatrix_0 _graphicsPipe)))))
 
 
-function VectorMirrorGenerator.getInstance()
-        return VectorMirrorGenerator.instance
-end
-
-
-function VectorMirrorGenerator.new()
-    local self = setmetatable({}, VectorMirrorGenerator)
-    self:_init_fields()
-    return self
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function VectorMirrorGenerator:getInstance(points, width)
-        local try_ok, try_error = pcall(function()
-            local pointFactory = PointFactory.getInstance()
-            local pointBasicArrayList = nil
-            local nextPoints = nil
-            local size2 = 0
-            local size = (points.n or #points)
-            local pointsBasicArrayList = BasicArrayListS.new(size)
-            for frame = 0, size - 1 do
-                nextPoints = points[frame + 1]
-                size2 = (nextPoints.n or #nextPoints)
-                pointBasicArrayList = BasicArrayListS.new(size2)
-                for index = 0, size2 - 1 do
-                    pointBasicArrayList:add(pointFactory:createXY(nextPoints[index + 1][1], nextPoints[index + 1][2]))
-                end
-                pointsBasicArrayList:add(pointBasicArrayList)
-            end
-            for index = 0, (points.n or #points) - 1 do
-                pointsBasicArrayList:add(self:getInstance(pointsBasicArrayList.objectArray[index + 1], width))
-            end
-            local newPoints = self.vectorAnimationUtil:toAnimationArrayFromListOfPointList(pointsBasicArrayList)
-            return newPoints
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, commonStrings.GET_INSTANCE, e)
-            return NullUtil.getInstance().NULL_INT_ARRAY_ARRAY_ARRAY
-        end
-end
-
-
--- throws Exception
--- Java overloaded method: Lua keeps the last definition
-function VectorMirrorGenerator:getInstance(pointBasicArrayList, width)
-        local graphicsPipe = BasicGraphicsPipeline.new(pointBasicArrayList)
-        graphicsPipe:createMatrix()
-        graphicsPipe:mirror(width)
-        return graphicsPipe:getMatrix()
-end
-
-VectorMirrorGenerator.instance = VectorMirrorGenerator.new()
-
-return VectorMirrorGenerator
 

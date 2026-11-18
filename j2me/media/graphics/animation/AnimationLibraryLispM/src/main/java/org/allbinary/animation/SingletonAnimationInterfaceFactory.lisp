@@ -1,64 +1,58 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation
 
-local ScaleProperties = require("org.allbinary.media.ScaleProperties")
-local AnimationInterfaceFactoryInterface = require("org.allbinary.animation.AnimationInterfaceFactoryInterface")
-local ProceduralAnimationInterfaceFactoryInterface = require("org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass SingletonAnimationInterfaceFactory (JObject)
+  ((f_animationInterface :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun SingletonAnimationInterfaceFactory.jnew_1 (_animationInterface)
+  (declare (ignorable _animationInterface))
+  (let ((this (make-instance 'SingletonAnimationInterfaceFactory)))
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_animationInterface) _animationInterface)))
+    this))
 
-local SingletonAnimationInterfaceFactory = {}
-SingletonAnimationInterfaceFactory.__index = SingletonAnimationInterfaceFactory
-SingletonAnimationInterfaceFactory.className = "SingletonAnimationInterfaceFactory"
+    
+(unless (fboundp 'jm_getInstance_1) (defgeneric jm_getInstance_1 (this p1)))
+(defmethod jm_getInstance_1 ((this SingletonAnimationInterfaceFactory) _instanceId)
+  (declare (ignorable this _instanceId))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_animationInterface)))))
 
-function SingletonAnimationInterfaceFactory:_init_fields()
-    self.animationInterface = nil
-end
+    
+(unless (fboundp 'jm_getInstanceAnimation_1) (defgeneric jm_getInstanceAnimation_1 (this p1)))
+(defmethod jm_getInstanceAnimation_1 ((this SingletonAnimationInterfaceFactory) _animationInterface)
+  (declare (ignorable this _animationInterface))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_animationInterface)))))
 
-
-function SingletonAnimationInterfaceFactory.new(animationInterface)
-    local self = setmetatable({}, SingletonAnimationInterfaceFactory)
-    self:_init_fields()
-        self.animationInterface = animationInterface
-    return self
-end
-
-
--- throws Exception
-function SingletonAnimationInterfaceFactory:getInstance(instanceId)
-        return self.animationInterface
-end
-
-
--- throws Exception
-function SingletonAnimationInterfaceFactory:getInstanceAnimation(animationInterface)
-        return self.animationInterface
-end
+    
+(unless (fboundp 'jm_setInitialScale_1) (defgeneric jm_setInitialScale_1 (this p1)))
+(defmethod jm_setInitialScale_1 ((this SingletonAnimationInterfaceFactory) _scaleProperties)
+  (declare (ignorable this _scaleProperties))
+  (let ()
+    (block jreturn nil)))
 
 
-function SingletonAnimationInterfaceFactory:setInitialScale(scaleProperties)
-end
-
-return SingletonAnimationInterfaceFactory
 

@@ -1,197 +1,200 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.mapping
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.input.mapping
 
--- local Enumeration = require("java.util.Enumeration")
-local GamePersistanceStrings = require("org.allbinary.game.configuration.persistance.GamePersistanceStrings")
-local Input = require("org.allbinary.game.input.Input")
-local InputPersistance = require("org.allbinary.game.input.InputPersistance")
-local InputMappingEvent = require("org.allbinary.game.input.mapping.event.InputMappingEvent")
-local InputMappingEventListenerInterface = require("org.allbinary.game.input.mapping.event.InputMappingEventListenerInterface")
-local NullInputMappingEventListener = require("org.allbinary.game.input.mapping.event.NullInputMappingEventListener")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local PreLogUtil = require("org.allbinary.logic.communication.log.PreLogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local AbeClientInformationInterface = require("org.allbinary.logic.system.security.licensing.AbeClientInformationInterface")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local EnumerationUtil = require("org.allbinary.util.EnumerationUtil")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+;GameInputNoPersistanceLibrary
+(defclass PersistentInputMapping (JObject)
+  ((f_logUtil :initform nil)
+   (f_commonStrings :initform nil)
+   (f_enumerationUtil :initform nil)
+   (f_inputMapping :initform nil)
+   (f_inputMappingEventListenerInterface :initform nil)
+   (f_inputPersistance :initform nil)
+   (f_inputMappingEvent :initform nil)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defvar PersistentInputMapping.jcell_instance :jnone)
+(defun PersistentInputMapping.jstatic_instance ()
+  (when (eq PersistentInputMapping.jcell_instance :jnone) (setf PersistentInputMapping.jcell_instance (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT)))
+  PersistentInputMapping.jcell_instance)
+(defun (setf PersistentInputMapping.jstatic_instance) (value) (setf PersistentInputMapping.jcell_instance value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun PersistentInputMapping.jm_getNullInstance_0 ()
+  (let ()
+    (block jreturn
+        (if (eq (PersistentInputMapping.jstatic_instance) (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT))
+            (progn
+            (setf (PersistentInputMapping.jstatic_instance) (PersistentInputMapping.jnew_1 (slot-value (GamePersistanceStrings.jm_getInstance_0) 'f_SAVED_INPUT_CONFIGURATION_RECORD_ID)))))
+        (return-from jreturn (PersistentInputMapping.jstatic_instance)))))
 
---GameInputNoPersistanceLibrary
-local PersistentInputMapping = {}
-PersistentInputMapping.__index = PersistentInputMapping
-PersistentInputMapping.className = "PersistentInputMapping"
+    
+(defun PersistentInputMapping.jnew_1 (_name)
+  (declare (ignorable _name))
+  (let ((this (make-instance 'PersistentInputMapping)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_commonStrings) (CommonStrings.jm_getInstance_0))
+    (setf (slot-value this 'f_enumerationUtil) (EnumerationUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_inputMapping) (InputToGameKeyMapping.jnew_0))
+    (setf (slot-value this 'f_inputMappingEventListenerInterface) (NullInputMappingEventListener.jstatic_NULL_INPUT_MAPPING_EVENT_LISTENER))
+    
+    (setf (slot-value this 'f_inputMappingEvent) (InputMappingEvent.jnew_1 this))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_inputPersistance) (InputPersistance.jnew_1 _name))))
+    this))
 
-function PersistentInputMapping:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.enumerationUtil = EnumerationUtil.getInstance()
-    self.inputMapping = InputToGameKeyMapping.new()
-    self.inputMappingEventListenerInterface = NullInputMappingEventListener.NULL_INPUT_MAPPING_EVENT_LISTENER
-    self.inputPersistance = nil
-    self.inputMappingEvent = InputMappingEvent.new(self)
-end
+    
+(unless (fboundp 'jm_getTotalMapped_0) (defgeneric jm_getTotalMapped_0 (this)))
+(defmethod jm_getTotalMapped_0 ((this PersistentInputMapping))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_size_0 (jm_getHashtable_0 (jm_getInputMapping_0 this)))))))
+
+    
+(unless (fboundp 'jm_isDefaultNew_0) (defgeneric jm_isDefaultNew_0 (this)))
+(defmethod jm_isDefaultNew_0 ((this PersistentInputMapping))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn nil))))
+
+    
+(unless (fboundp 'jm_getDefault_0) (defgeneric jm_getDefault_0 (this)))
+(defmethod jm_getDefault_0 ((this PersistentInputMapping))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (InputToGameKeyMapping.jm_getNullInstance_0)))))
+
+    
+(unless (fboundp 'jm_setDefault_1) (defgeneric jm_setDefault_1 (this p1)))
+(defmethod jm_setDefault_1 ((this PersistentInputMapping) _abeClientInformation)
+  (declare (ignorable this _abeClientInformation))
+  (let ()
+    (block jreturn
+        (jm_removeAll_0 (jm_getInputMapping_0 this))
+        (jm_addMapping_1 (jm_getInputMapping_0 this) (jm_getDefault_0 this))
+        (jm_save_1 this _abeClientInformation))))
+
+    
+(unless (fboundp 'jm_update_1) (defgeneric jm_update_1 (this p1)))
+(defmethod jm_update_1 ((this PersistentInputMapping) _abeClientInformation)
+  (declare (ignorable this _abeClientInformation))
+  (let ()
+    (block jreturn
+        (jm_deleteAll_1 (slot-value this 'f_inputPersistance) _abeClientInformation)
+        (jm_save_1 this _abeClientInformation))))
+
+    
+(unless (fboundp 'jm_save_1) (defgeneric jm_save_1 (this p1)))
+(defmethod jm_save_1 ((this PersistentInputMapping) _abeClientInformation)
+  (declare (ignorable this _abeClientInformation))
+  (let ()
+    (block jreturn
+        (jm_save_2 (slot-value this 'f_inputPersistance) _abeClientInformation (jm_getHashtable_0 (jm_getInputMapping_0 this)))
+        (jm_setInputToGameKeyMapping_1 (slot-value this 'f_inputMappingEvent) (jm_getInputMapping_0 this))
+        (if (not (null (jm_getInputMappingEventListenerInterface_0 this)))
+            (progn
+            (jm_onInputMappingEvent_1 (jm_getInputMappingEventListenerInterface_0 this) (slot-value this 'f_inputMappingEvent)))))))
+
+    
+(unless (fboundp 'jm_init_1) (defgeneric jm_init_1 (this p1)))
+(defmethod jm_init_1 ((this PersistentInputMapping) _abeClientInformation)
+  (declare (ignorable this _abeClientInformation))
+  (let (_list _totalMappedTo _size _hashtable _enumeration _mappedToInput _gameActionInput _index _stringBuffer)
+  (declare (ignorable _list _totalMappedTo _size _hashtable _enumeration _mappedToInput _gameActionInput _index _stringBuffer))
+    (block jreturn
+        (jm_putF_3 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_START) this (slot-value (slot-value this 'f_commonStrings) 'f_INIT))
+        (handler-case (progn
+            (jm_loadAll_1 (slot-value this 'f_inputPersistance) _abeClientInformation))
+            (error (_e) (declare (ignorable _e))
+            (PreLogUtil.jm_putOE_4 (slot-value (slot-value this 'f_commonStrings) 'f_EXCEPTION) this (slot-value (slot-value this 'f_commonStrings) 'f_INIT) _e)
+            (jm_deleteRecoreStore_1 (slot-value this 'f_inputPersistance) _abeClientInformation)
+            (jm_setDefault_1 this _abeClientInformation)
+            (jm_loadAll_1 (slot-value this 'f_inputPersistance) _abeClientInformation)))
+        (setf _list (jm_getList_0 (slot-value this 'f_inputPersistance)))
+        (setf _totalMappedTo 0)
+        (setf _size (jm_size_0 _list))
+        (setf _hashtable nil)
+        (setf _enumeration nil)
+        (setf _mappedToInput nil)
+        (setf _gameActionInput nil)
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (setf _hashtable (aref (slot-value _list 'f_objectArray) _index))
+            (setf _enumeration (jm_keys_0 _hashtable))
+            (block jbreak (loop while (jm_hasMoreElements_1 (slot-value this 'f_enumerationUtil) _enumeration) do
+                    (block jcontinue
+                (setf _mappedToInput (jm_nextElement_1 (slot-value this 'f_enumerationUtil) _enumeration))
+                (setf _gameActionInput (jm_get_1 _hashtable _mappedToInput))
+                (setf _totalMappedTo (JR.i32 (+ _totalMappedTo 1)))
+                (jm_add_2 (jm_getInputMapping_0 this) _gameActionInput _mappedToInput)))))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (setf _stringBuffer (StringMaker.jnew_0))
+        (jm_append_1 _stringBuffer "End - Total Loaded Keys Mapped: ")
+        (jm_appendint_1 _stringBuffer (jm_getTotalMapped_0 this))
+        (jm_append_1 _stringBuffer " to: ")
+        (jm_appendint_1 _stringBuffer _totalMappedTo)
+        (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 _stringBuffer) this (slot-value (slot-value this 'f_commonStrings) 'f_INIT)))))
+
+    
+(unless (fboundp 'jm_setInputMappingEventListenerInterface_1) (defgeneric jm_setInputMappingEventListenerInterface_1 (this p1)))
+(defmethod jm_setInputMappingEventListenerInterface_1 ((this PersistentInputMapping) _inputMappingEventListenerInterface)
+  (declare (ignorable this _inputMappingEventListenerInterface))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_inputMappingEventListenerInterface) _inputMappingEventListenerInterface))))
+
+    
+(unless (fboundp 'jm_getInputMappingEventListenerInterface_0) (defgeneric jm_getInputMappingEventListenerInterface_0 (this)))
+(defmethod jm_getInputMappingEventListenerInterface_0 ((this PersistentInputMapping))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_inputMappingEventListenerInterface)))))
+
+    
+(unless (fboundp 'jm_getInputMapping_0) (defgeneric jm_getInputMapping_0 (this)))
+(defmethod jm_getInputMapping_0 ((this PersistentInputMapping))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_inputMapping)))))
+
+    
+(unless (fboundp 'jm_isDelete_1) (defgeneric jm_isDelete_1 (this p1)))
+(defmethod jm_isDelete_1 ((this PersistentInputMapping) _input)
+  (declare (ignorable this _input))
+  (let ()
+    (block jreturn
+        (error (JR.newException "Exception" (slot-value (slot-value this 'f_commonStrings) 'f_NOT_IMPLEMENTED))))))
+
+    
+(unless (fboundp 'jm_isSystemInput_1) (defgeneric jm_isSystemInput_1 (this p1)))
+(defmethod jm_isSystemInput_1 ((this PersistentInputMapping) _input)
+  (declare (ignorable this _input))
+  (let ()
+    (block jreturn
+        (error (JR.newException "Exception" (slot-value (slot-value this 'f_commonStrings) 'f_NOT_IMPLEMENTED))))))
 
 
-function PersistentInputMapping.getNullInstance()
-        if PersistentInputMapping.instance == NullUtil.getInstance().NULL_OBJECT then
-            PersistentInputMapping.instance = PersistentInputMapping.new(GamePersistanceStrings.getInstance().SAVED_INPUT_CONFIGURATION_RECORD_ID)
-        end
-        return PersistentInputMapping.instance
-end
-
-
-function PersistentInputMapping.new(name)
-    local self = setmetatable({}, PersistentInputMapping)
-    self:_init_fields()
-        self.inputPersistance = InputPersistance.new(name)
-    return self
-end
-
-
-function PersistentInputMapping:getTotalMapped()
-        return self:getInputMapping():getHashtable():size()
-end
-
-
-function PersistentInputMapping:isDefaultNew()
-        return false
-end
-
-
-function PersistentInputMapping:getDefault()
-        return InputToGameKeyMapping.getNullInstance()
-end
-
-
--- throws Exception
-function PersistentInputMapping:setDefault(abeClientInformation)
-        self:getInputMapping():removeAll()
-        self:getInputMapping():addMapping(self:getDefault())
-        self:save(abeClientInformation)
-end
-
-
--- throws Exception
-function PersistentInputMapping:update(abeClientInformation)
-        self.inputPersistance:deleteAll(abeClientInformation)
-        self:save(abeClientInformation)
-end
-
-
--- throws Exception
-function PersistentInputMapping:save(abeClientInformation)
-        self.inputPersistance:save(abeClientInformation, self:getInputMapping():getHashtable())
-        self.inputMappingEvent:setInputToGameKeyMapping(self:getInputMapping())
-        if self:getInputMappingEventListenerInterface() ~= nil then
-            self:getInputMappingEventListenerInterface():onInputMappingEvent(self.inputMappingEvent)
-        end
-end
-
-
--- throws Exception
-function PersistentInputMapping:init(abeClientInformation)
-        self.logUtil:putF(self.commonStrings.START, self, self.commonStrings.INIT)
-        local try_ok, try_error = pcall(function()
-            self.inputPersistance:loadAll(abeClientInformation)
-        end)
-        if not try_ok then
-            local e = try_error
-            PreLogUtil.putOE(self.commonStrings.EXCEPTION, self, self.commonStrings.INIT, e)
-            self.inputPersistance:deleteRecoreStore(abeClientInformation)
-            self:setDefault(abeClientInformation)
-            self.inputPersistance:loadAll(abeClientInformation)
-        end
-        local list = self.inputPersistance:getList()
-        local totalMappedTo = 0
-        local size = list:size()
-        local hashtable = nil
-        local enumeration = nil
-        local mappedToInput = nil
-        local gameActionInput = nil
-        for index = 0, size - 1 do
-            hashtable = list.objectArray[index + 1]
-            enumeration = hashtable:keys()
-            while self.enumerationUtil:hasMoreElements(enumeration) do
-                mappedToInput = self.enumerationUtil:nextElement(enumeration)
-                gameActionInput = hashtable:get(mappedToInput)
-                totalMappedTo = totalMappedTo + 1
-                self:getInputMapping():add(gameActionInput, mappedToInput)
-            end
-        end
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append("End - Total Loaded Keys Mapped: ")
-        stringBuffer:appendint(self:getTotalMapped())
-        stringBuffer:append(" to: ")
-        stringBuffer:appendint(totalMappedTo)
-        self.logUtil:putF(tostring(stringBuffer), self, self.commonStrings.INIT)
-end
-
-
-function PersistentInputMapping:setInputMappingEventListenerInterface(inputMappingEventListenerInterface)
-        self.inputMappingEventListenerInterface = inputMappingEventListenerInterface
-end
-
-
-function PersistentInputMapping:getInputMappingEventListenerInterface()
-        return self.inputMappingEventListenerInterface
-end
-
-
-function PersistentInputMapping:getInputMapping()
-        return self.inputMapping
-end
-
-
--- throws Exception
-function PersistentInputMapping:isDelete(input)
-        error(java_exception("Exception", self.commonStrings.NOT_IMPLEMENTED), 0)
-end
-
-
--- throws Exception
-function PersistentInputMapping:isSystemInput(input)
-        error(java_exception("Exception", self.commonStrings.NOT_IMPLEMENTED), 0)
-end
-
-PersistentInputMapping.instance = NullUtil.getInstance().NULL_OBJECT
-
-return PersistentInputMapping
 

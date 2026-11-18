@@ -1,59 +1,50 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2022 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.layer
 
--- local Image = require("javax.microedition.lcdui.Image")
--- local Sprite = require("javax.microedition.lcdui.game.Sprite")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local SpriteFactoryInterface = require("org.allbinary.game.layer.SpriteFactoryInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass SpriteFactory (JObject)
+  ((f_logUtil :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar SpriteFactory.jcell_instance :jnone)
+(defun SpriteFactory.jstatic_instance ()
+  (when (eq SpriteFactory.jcell_instance :jnone) (setf SpriteFactory.jcell_instance (SpriteFactory.jnew_0)))
+  SpriteFactory.jcell_instance)
+(defun (setf SpriteFactory.jstatic_instance) (value) (setf SpriteFactory.jcell_instance value))
 
-local SpriteFactory = {}
-SpriteFactory.__index = SpriteFactory
-SpriteFactory.className = "SpriteFactory"
+(defun SpriteFactory.jnew_0 ()
+  (let ((this (make-instance 'SpriteFactory)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    this))
 
-function SpriteFactory:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-end
+    
+(defun SpriteFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (SpriteFactory.jstatic_instance)))))
 
-function SpriteFactory.new()
-    local self = setmetatable({}, SpriteFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function SpriteFactory.getInstance()
-        return SpriteFactory.instance
-end
+    
+(unless (fboundp 'jm_createSprite_3) (defgeneric jm_createSprite_3 (this p1 p2 p3)))
+(defmethod jm_createSprite_3 ((this SpriteFactory) _image _frameWidth _frameHeight)
+  (declare (ignorable this _image _frameWidth _frameHeight))
+  (let ()
+    (block jreturn
+        (return-from jreturn (Sprite.jnew_3 _image _frameWidth _frameHeight)))))
 
 
-function SpriteFactory:createSprite(image, frameWidth, frameHeight)
-        return Sprite.new(image, frameWidth, frameHeight)
-end
-
-SpriteFactory.instance = SpriteFactory.new()
-
-return SpriteFactory
 

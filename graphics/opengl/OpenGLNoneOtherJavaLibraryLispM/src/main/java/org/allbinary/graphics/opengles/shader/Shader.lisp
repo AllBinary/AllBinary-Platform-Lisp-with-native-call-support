@@ -1,49 +1,36 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles.shader
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2025 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.opengles.shader
 
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListUtil = require("org.allbinary.util.BasicArrayListUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass Shader (JObject)
+  ((f_shaderName :initform nil)
+   (f_shaderStringList :initform nil)
+   (f_shaderAsString :initform nil)
+   (f_shaderHandle :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun Shader.jnew_0 ()
+  (let ((this (make-instance 'Shader)))
+    (setf (slot-value this 'f_shaderName) (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING))
+    (setf (slot-value this 'f_shaderStringList) (jm_getImmutableInstance_0 (BasicArrayListUtil.jm_getInstance_0)))
+    (setf (slot-value this 'f_shaderAsString) (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING))
+    
+    this))
 
-local Shader = {}
-Shader.__index = Shader
-Shader.className = "Shader"
 
-function Shader:_init_fields()
-    self.shaderName = StringUtil.getInstance().EMPTY_STRING
-    self.shaderStringList = BasicArrayListUtil.getInstance():getImmutableInstance()
-    self.shaderAsString = StringUtil.getInstance().EMPTY_STRING
-    self.shaderHandle = 0
-end
-
-function Shader.new()
-    local self = setmetatable({}, Shader)
-    self:_init_fields()
-    return self
-end
-
-return Shader
 

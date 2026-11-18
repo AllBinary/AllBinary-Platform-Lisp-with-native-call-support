@@ -1,39 +1,35 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2022 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.media.audio
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass Controllable2 (JObject)
+  ())
+
+(defun Controllable2.jnew_0 ()
+  (let ((this (make-instance 'Controllable2)))
+    this))
+
+    
+(unless (fboundp 'jm_setVolume_2) (defgeneric jm_setVolume_2 (this p1 p2)))
+(defmethod jm_setVolume_2 ((this Controllable2) _leftVolume _rightVolume)
+  (declare (ignorable this _leftVolume _rightVolume))
+  (error (JR.newException "AbstractMethodError" "setVolume")))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local Controllable2 = {}
-Controllable2.__index = Controllable2
-Controllable2.className = "Controllable2"
-
-
-function Controllable2:setVolume(leftVolume, rightVolume)
-    error("abstract method setVolume")
-end
-
-return Controllable2
 

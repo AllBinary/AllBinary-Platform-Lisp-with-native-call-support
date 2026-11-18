@@ -1,49 +1,46 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.image
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.image
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass ImageCacheFactory (JObject)
+  ())
+
+(defvar ImageCacheFactory.jcell_IMAGE_CACHE :jnone)
+(defun ImageCacheFactory.jstatic_IMAGE_CACHE ()
+  (when (eq ImageCacheFactory.jcell_IMAGE_CACHE :jnone) (setf ImageCacheFactory.jcell_IMAGE_CACHE (ImageCache.jnew_0)))
+  ImageCacheFactory.jcell_IMAGE_CACHE)
+(defun (setf ImageCacheFactory.jstatic_IMAGE_CACHE) (value) (setf ImageCacheFactory.jcell_IMAGE_CACHE value))
+
+(defun ImageCacheFactory.jnew_0 ()
+  (let ((this (make-instance 'ImageCacheFactory)))
+    this))
+
+    
+(defun ImageCacheFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (ImageCacheFactory.jstatic_IMAGE_CACHE)))))
+
+    
+(defun ImageCacheFactory.jm_init_0 ()
+  (let ()
+    (block jreturn nil)))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ImageCacheFactory = {}
-ImageCacheFactory.__index = ImageCacheFactory
-ImageCacheFactory.className = "ImageCacheFactory"
-
-function ImageCacheFactory.new()
-    local self = setmetatable({}, ImageCacheFactory)
-    return self
-end
-
-
-function ImageCacheFactory.getInstance()
-        return ImageCacheFactory.IMAGE_CACHE
-end
-
-
-function ImageCacheFactory.init()
-end
-
-ImageCacheFactory.IMAGE_CACHE = ImageCache.new()
-
-return ImageCacheFactory
 

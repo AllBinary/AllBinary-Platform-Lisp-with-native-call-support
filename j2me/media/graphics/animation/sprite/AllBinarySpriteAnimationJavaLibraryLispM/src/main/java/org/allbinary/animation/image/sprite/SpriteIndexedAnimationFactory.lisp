@@ -1,105 +1,96 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image.sprite
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation.image.sprite
 
--- local Image = require("javax.microedition.lcdui.Image")
--- local Sprite = require("javax.microedition.lcdui.game.Sprite")
-local AndroidUtil = require("org.allbinary.AndroidUtil")
-local Animation = require("org.allbinary.animation.Animation")
-local AnimationBehaviorFactory = require("org.allbinary.animation.AnimationBehaviorFactory")
-local ProceduralAnimationInterfaceFactoryInterface = require("org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface")
-local BaseImageAnimationFactory = require("org.allbinary.animation.image.BaseImageAnimationFactory")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorUtil = require("org.allbinary.graphics.color.BasicColorUtil")
-local AnimationFactorySpriteScaleUtil = require("org.allbinary.image.sprite.AnimationFactorySpriteScaleUtil")
-local PrimitiveIntUtil = require("org.allbinary.logic.math.PrimitiveIntUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass SpriteIndexedAnimationFactory (BaseImageAnimationFactory)
+  ((f_animationFactorySpriteScaleUtil :initform nil)
+   (f_basicColorArray :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun SpriteIndexedAnimationFactory.jm_createCWHDXY_7 (_image _basicColorArray _width _height _dx _dy _animationBehaviorFactory)
+  (declare (ignorable _image _basicColorArray _width _height _dx _dy _animationBehaviorFactory))
+  (let ()
+    (block jreturn
+        (return-from jreturn (SpriteIndexedAnimationFactory.jnew_8 _image _basicColorArray (PrimitiveIntUtil.jm_getArrayInstance_0) _width _height _dx _dy _animationBehaviorFactory)))))
 
-local SpriteIndexedAnimationFactory = {}
-SpriteIndexedAnimationFactory.__index = SpriteIndexedAnimationFactory
-SpriteIndexedAnimationFactory.className = "SpriteIndexedAnimationFactory"
-setmetatable(SpriteIndexedAnimationFactory, {__index = BaseImageAnimationFactory})
+    
+(defun SpriteIndexedAnimationFactory.jm_createCWH_5 (_image _basicColorArray _width _height _animationBehaviorFactory)
+  (declare (ignorable _image _basicColorArray _width _height _animationBehaviorFactory))
+  (let (_spriteIndexedAnimationFactory)
+  (declare (ignorable _spriteIndexedAnimationFactory))
+    (block jreturn
+        (setf _spriteIndexedAnimationFactory (SpriteIndexedAnimationFactory.jnew_8 _image _basicColorArray (PrimitiveIntUtil.jm_getArrayInstance_0) _width _height 0 0 _animationBehaviorFactory))
+        (jm_initHWH_0 _spriteIndexedAnimationFactory)
+        (return-from jreturn _spriteIndexedAnimationFactory))))
 
-function SpriteIndexedAnimationFactory:_init_fields()
-    self.animationFactorySpriteScaleUtil = AnimationFactorySpriteScaleUtil.getInstance()
-    self.basicColorArray = BasicColorUtil.getInstance().ZERO_ARRAY
-end
+    
+(defun SpriteIndexedAnimationFactory.jm_createWH_4 (_image _width _height _animationBehaviorFactory)
+  (declare (ignorable _image _width _height _animationBehaviorFactory))
+  (let ()
+    (block jreturn
+        (return-from jreturn (SpriteIndexedAnimationFactory.jnew_8 _image (slot-value (BasicColorUtil.jm_getInstance_0) 'f_ZERO_ARRAY) (PrimitiveIntUtil.jm_getArrayInstance_0) _width _height 0 0 _animationBehaviorFactory)))))
 
+    
+(defun SpriteIndexedAnimationFactory.jnew_8 (_image _basicColorArray _sequenceArray _width _height _dx _dy _animationBehaviorFactory)
+  (declare (ignorable _image _basicColorArray _sequenceArray _width _height _dx _dy _animationBehaviorFactory))
+  (let ((this (make-instance 'SpriteIndexedAnimationFactory)))
+    (setf (slot-value this 'f_animationFactorySpriteScaleUtil) (AnimationFactorySpriteScaleUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_basicColorArray) (slot-value (BasicColorUtil.jm_getInstance_0) 'f_ZERO_ARRAY))
+  (let ()
+    (block jreturn
+        nil
+        (setf (slot-value this 'f_basicColorArray) _basicColorArray)))
+    this))
 
--- throws Exception
-function SpriteIndexedAnimationFactory.createCWHDXY(image, basicColorArray, width, height, dx, dy, animationBehaviorFactory)
-        return SpriteIndexedAnimationFactory.new(image, basicColorArray, PrimitiveIntUtil.getArrayInstance(), width, height, dx, dy, animationBehaviorFactory)
-end
+    
+(unless (fboundp 'jm_initHWH_0) (defgeneric jm_initHWH_0 (this)))
+(defmethod jm_initHWH_0 ((this SpriteIndexedAnimationFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (setf (slot-value (slot-value this 'f_animationFactoryInitializationVisitor) 'f_dx) (JR.i32 (- (ash (slot-value (slot-value this 'f_animationFactoryInitializationVisitor) 'f_width) (- (logand 2 31))))))
+        (setf (slot-value (slot-value this 'f_animationFactoryInitializationVisitor) 'f_dy) (JR.i32 (- (ash (slot-value (slot-value this 'f_animationFactoryInitializationVisitor) 'f_height) (- (logand 2 31))))))
+        (if (AndroidUtil.jm_isAndroid_0)
+            (progn
+            (setf (slot-value (slot-value this 'f_animationFactoryInitializationVisitor) 'f_dx) (JR.i32 (+ (slot-value (slot-value this 'f_animationFactoryInitializationVisitor) 'f_dx) 3))))))))
 
+    
+(unless (fboundp 'jm_getInstance_1) (defgeneric jm_getInstance_1 (this p1)))
+(defmethod jm_getInstance_1 ((this SpriteIndexedAnimationFactory) _instanceId)
+  (declare (ignorable this _instanceId))
+  (let (_sprite)
+  (declare (ignorable _sprite))
+    (block jreturn
+        (setf _sprite (jm_createImage_5 (slot-value this 'f_animationFactorySpriteScaleUtil) (jm_getImage_0 this) (slot-value (slot-value this 'f_animationFactoryInitializationVisitor) 'f_width) (slot-value (slot-value this 'f_animationFactoryInitializationVisitor) 'f_height) (slot-value (slot-value this 'f_scaleProperties) 'f_scaleWidth) (slot-value (slot-value this 'f_scaleProperties) 'f_scaleHeight)))
+        (if (or (not (eq (slot-value (slot-value this 'f_animationFactoryInitializationVisitor) 'f_dx) 0)) (not (eq (slot-value (slot-value this 'f_animationFactoryInitializationVisitor) 'f_dy) 0)))
+            (progn
+            (return-from jreturn (AdjustedSpriteIndexedAnimation.jnew_6 _sprite (jm_getImage_0 this) (slot-value this 'f_basicColorArray) (slot-value (slot-value this 'f_animationFactoryInitializationVisitor) 'f_dx) (slot-value (slot-value this 'f_animationFactoryInitializationVisitor) 'f_dy) (jm_getOrCreateInstance_0 (slot-value this 'f_animationBehaviorFactory)))))
+            (progn
+            (return-from jreturn (SpriteIndexedAnimation.jnew_4 _sprite (jm_getImage_0 this) (slot-value this 'f_basicColorArray) (jm_getOrCreateInstance_0 (slot-value this 'f_animationBehaviorFactory)))))))))
 
--- throws Exception
-function SpriteIndexedAnimationFactory.createCWH(image, basicColorArray, width, height, animationBehaviorFactory)
-        local spriteIndexedAnimationFactory = SpriteIndexedAnimationFactory.new(image, basicColorArray, PrimitiveIntUtil.getArrayInstance(), width, height, 0, 0, animationBehaviorFactory)
-        spriteIndexedAnimationFactory:initHWH()
-        return spriteIndexedAnimationFactory
-end
-
-
--- throws Exception
-function SpriteIndexedAnimationFactory.createWH(image, width, height, animationBehaviorFactory)
-        return SpriteIndexedAnimationFactory.new(image, BasicColorUtil.getInstance().ZERO_ARRAY, PrimitiveIntUtil.getArrayInstance(), width, height, 0, 0, animationBehaviorFactory)
-end
-
-
-function SpriteIndexedAnimationFactory.new(image, basicColorArray, sequenceArray, width, height, dx, dy, animationBehaviorFactory)
-    local self = setmetatable(BaseImageAnimationFactory.new(image, sequenceArray, width, height, dx, dy, animationBehaviorFactory), SpriteIndexedAnimationFactory)
-    self:_init_fields()
-        -- super(...) made self above
-        self.basicColorArray = basicColorArray
-    return self
-end
-
-
-function SpriteIndexedAnimationFactory:initHWH()
-        self.animationFactoryInitializationVisitor.dx = -(((self.animationFactoryInitializationVisitor.width) // (1 << (2))))
-        self.animationFactoryInitializationVisitor.dy = -(((self.animationFactoryInitializationVisitor.height) // (1 << (2))))
-        if AndroidUtil.isAndroid() then
-            self.animationFactoryInitializationVisitor.dx = self.animationFactoryInitializationVisitor.dx + (3)
-        end
-end
-
-
--- throws Exception
-function SpriteIndexedAnimationFactory:getInstance(instanceId)
-        local sprite = self.animationFactorySpriteScaleUtil:createImage(self:getImage(), self.animationFactoryInitializationVisitor.width, self.animationFactoryInitializationVisitor.height, self.scaleProperties.scaleWidth, self.scaleProperties.scaleHeight)
-        if self.animationFactoryInitializationVisitor.dx ~= 0 or self.animationFactoryInitializationVisitor.dy ~= 0 then
-            return AdjustedSpriteIndexedAnimation.new(sprite, self:getImage(), self.basicColorArray, self.animationFactoryInitializationVisitor.dx, self.animationFactoryInitializationVisitor.dy, self.animationBehaviorFactory:getOrCreateInstance())
-        else
-            return SpriteIndexedAnimation.new(sprite, self:getImage(), self.basicColorArray, self.animationBehaviorFactory:getOrCreateInstance())
-        end
-end
+    
+(unless (fboundp 'jm_getInstanceAnimation_1) (defgeneric jm_getInstanceAnimation_1 (this p1)))
+(defmethod jm_getInstanceAnimation_1 ((this SpriteIndexedAnimationFactory) _animationInterface)
+  (declare (ignorable this _animationInterface))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getInstance_1 this 0)))))
 
 
--- throws Exception
-function SpriteIndexedAnimationFactory:getInstanceAnimation(animationInterface)
-        return self:getInstance(0)
-end
-
-return SpriteIndexedAnimationFactory
 

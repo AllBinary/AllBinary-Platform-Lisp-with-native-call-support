@@ -27,6 +27,7 @@
 (defun BasicArrayListUtil.jstatic_instance ()
   (when (eq BasicArrayListUtil.jcell_instance :jnone) (setf BasicArrayListUtil.jcell_instance (BasicArrayListUtil.jnew_0)))
   BasicArrayListUtil.jcell_instance)
+(defun (setf BasicArrayListUtil.jstatic_instance) (value) (setf BasicArrayListUtil.jcell_instance value))
 
 (defun BasicArrayListUtil.jnew_0 ()
   (let ((this (make-instance 'BasicArrayListUtil)))

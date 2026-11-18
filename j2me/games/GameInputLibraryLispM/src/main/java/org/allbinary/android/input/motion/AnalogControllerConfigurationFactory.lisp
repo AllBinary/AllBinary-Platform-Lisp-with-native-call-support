@@ -1,69 +1,68 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.android.input.motion
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.android.input.motion
 
-local AnalogControllerConfigurationEvent = require("org.allbinary.android.input.motion.event.AnalogControllerConfigurationEvent")
-local AnalogControllerConfigurationEventHandler = require("org.allbinary.android.input.motion.event.AnalogControllerConfigurationEventHandler")
-local ScaleFactorFactory = require("org.allbinary.logic.math.ScaleFactorFactory")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass AnalogControllerConfigurationFactory (JObject)
+  ((f_SCALE_FACTOR :initform 0)
+   (f_SCALE_VALUE :initform 0)
+   (f_available :initform nil)
+   (f_analogControllerConfigurationEvent :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar AnalogControllerConfigurationFactory.jcell_instance :jnone)
+(defun AnalogControllerConfigurationFactory.jstatic_instance ()
+  (when (eq AnalogControllerConfigurationFactory.jcell_instance :jnone) (setf AnalogControllerConfigurationFactory.jcell_instance (AnalogControllerConfigurationFactory.jnew_0)))
+  AnalogControllerConfigurationFactory.jcell_instance)
+(defun (setf AnalogControllerConfigurationFactory.jstatic_instance) (value) (setf AnalogControllerConfigurationFactory.jcell_instance value))
 
-local AnalogControllerConfigurationFactory = {}
-AnalogControllerConfigurationFactory.__index = AnalogControllerConfigurationFactory
-AnalogControllerConfigurationFactory.className = "AnalogControllerConfigurationFactory"
+    
+(defun AnalogControllerConfigurationFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (AnalogControllerConfigurationFactory.jstatic_instance)))))
 
-function AnalogControllerConfigurationFactory:_init_fields()
-    self.SCALE_FACTOR = ScaleFactorFactory.getInstance().DEFAULT_SCALE_FACTOR
-    self.SCALE_VALUE = ScaleFactorFactory.getInstance().DEFAULT_SCALE_VALUE
-    self.available = false
-    self.analogControllerConfigurationEvent = AnalogControllerConfigurationEvent.new(self)
-end
+    
+(defun AnalogControllerConfigurationFactory.jnew_0 ()
+  (let ((this (make-instance 'AnalogControllerConfigurationFactory)))
+    (setf (slot-value this 'f_SCALE_FACTOR) (slot-value (ScaleFactorFactory.jm_getInstance_0) 'f_DEFAULT_SCALE_FACTOR))
+    (setf (slot-value this 'f_SCALE_VALUE) (slot-value (ScaleFactorFactory.jm_getInstance_0) 'f_DEFAULT_SCALE_VALUE))
+    
+    (setf (slot-value this 'f_analogControllerConfigurationEvent) (AnalogControllerConfigurationEvent.jnew_1 this))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(unless (fboundp 'jm_isAvailable_0) (defgeneric jm_isAvailable_0 (this)))
+(defmethod jm_isAvailable_0 ((this AnalogControllerConfigurationFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_available)))))
+
+    
+(unless (fboundp 'jm_setAvailable_1) (defgeneric jm_setAvailable_1 (this p1)))
+(defmethod jm_setAvailable_1 ((this AnalogControllerConfigurationFactory) _available)
+  (declare (ignorable this _available))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_available) _available)
+        (jm_fireEvent_1 (AnalogControllerConfigurationEventHandler.jm_getInstance_0) (slot-value this 'f_analogControllerConfigurationEvent)))))
 
 
-function AnalogControllerConfigurationFactory.getInstance()
-        return AnalogControllerConfigurationFactory.instance
-end
-
-
-function AnalogControllerConfigurationFactory.new()
-    local self = setmetatable({}, AnalogControllerConfigurationFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function AnalogControllerConfigurationFactory:isAvailable()
-        return self.available
-end
-
-
--- throws Exception
-function AnalogControllerConfigurationFactory:setAvailable(available)
-        self.available = available
-        AnalogControllerConfigurationEventHandler.getInstance():fireEvent(self.analogControllerConfigurationEvent)
-end
-
-AnalogControllerConfigurationFactory.instance = AnalogControllerConfigurationFactory.new()
-
-return AnalogControllerConfigurationFactory
 

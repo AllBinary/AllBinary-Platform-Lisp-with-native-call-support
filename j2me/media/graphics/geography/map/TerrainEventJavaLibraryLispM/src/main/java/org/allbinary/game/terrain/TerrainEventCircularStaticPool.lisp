@@ -1,64 +1,61 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.terrain
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.terrain
 
-local AllBinaryEventCircularPool = require("org.allbinary.logic.util.event.AllBinaryEventCircularPool")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass TerrainEventCircularStaticPool (JObject)
+  ((f_EVENT_POOL :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar TerrainEventCircularStaticPool.jcell_instance :jnone)
+(defun TerrainEventCircularStaticPool.jstatic_instance ()
+  (when (eq TerrainEventCircularStaticPool.jcell_instance :jnone) (setf TerrainEventCircularStaticPool.jcell_instance (TerrainEventCircularStaticPool.jnew_0)))
+  TerrainEventCircularStaticPool.jcell_instance)
+(defun (setf TerrainEventCircularStaticPool.jstatic_instance) (value) (setf TerrainEventCircularStaticPool.jcell_instance value))
 
-local TerrainEventCircularStaticPool = {}
-TerrainEventCircularStaticPool.__index = TerrainEventCircularStaticPool
-TerrainEventCircularStaticPool.className = "TerrainEventCircularStaticPool"
+(defun TerrainEventCircularStaticPool.jnew_0 ()
+  (let ((this (make-instance 'TerrainEventCircularStaticPool)))
+    (setf (slot-value this 'f_EVENT_POOL) (AllBinaryEventCircularPool.jnew_1 20))
+    this))
 
-function TerrainEventCircularStaticPool:_init_fields()
-    self.EVENT_POOL = AllBinaryEventCircularPool.new(20)
-end
+    
+(defun TerrainEventCircularStaticPool.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (TerrainEventCircularStaticPool.jstatic_instance)))))
 
-function TerrainEventCircularStaticPool.new()
-    local self = setmetatable({}, TerrainEventCircularStaticPool)
-    self:_init_fields()
-    return self
-end
+    
+(unless (fboundp 'jm_init_0) (defgeneric jm_init_0 (this)))
+(defmethod jm_init_0 ((this TerrainEventCircularStaticPool))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_initAllBinaryEventCircularPool_1 (slot-value this 'f_EVENT_POOL) (TerrainEventFactory.jnew_0)))))
+
+    
+(unless (fboundp 'jm_getNext_1) (defgeneric jm_getNext_1 (this p1)))
+(defmethod jm_getNext_1 ((this TerrainEventCircularStaticPool) _basicTerrainInfo)
+  (declare (ignorable this _basicTerrainInfo))
+  (let (_trackingEvent)
+  (declare (ignorable _trackingEvent))
+    (block jreturn
+        (setf _trackingEvent (jm_getNextInstance_0 (slot-value this 'f_EVENT_POOL)))
+        (jm_setBasicTerrainInfoForCircularStaticPool_1 _trackingEvent _basicTerrainInfo)
+        (return-from jreturn _trackingEvent))))
 
 
-function TerrainEventCircularStaticPool.getInstance()
-        return TerrainEventCircularStaticPool.instance
-end
-
-
-function TerrainEventCircularStaticPool:init()
-        self.EVENT_POOL:initAllBinaryEventCircularPool(TerrainEventFactory.new())
-end
-
-
--- throws Exception
-function TerrainEventCircularStaticPool:getNext(basicTerrainInfo)
-        local trackingEvent = self.EVENT_POOL:getNextInstance()
-        trackingEvent:setBasicTerrainInfoForCircularStaticPool(basicTerrainInfo)
-        return trackingEvent
-end
-
-TerrainEventCircularStaticPool.instance = TerrainEventCircularStaticPool.new()
-
-return TerrainEventCircularStaticPool
 

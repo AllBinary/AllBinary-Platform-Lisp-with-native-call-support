@@ -1,92 +1,99 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.paint
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.paint
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local NullPaintable = require("org.allbinary.graphics.paint.NullPaintable")
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
-local StatePaintable = require("org.allbinary.graphics.paint.StatePaintable")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass BasicGameDemoPaintable (StatePaintable)
+  ((f_mainDemoStatePaintable :initform nil)
+   (f_ownershipPaintable :initform nil)
+   (f_helpPaintableInterface :initform nil)
+   (f_currentStatePaintable :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun BasicGameDemoPaintable.jnew_3 (_mainDemoStatePaintable _ownershipPaintable _helpPaintableInterface)
+  (declare (ignorable _mainDemoStatePaintable _ownershipPaintable _helpPaintableInterface))
+  (let ((this (make-instance 'BasicGameDemoPaintable)))
+    
+    
+    
+    (setf (slot-value this 'f_currentStatePaintable) (NullPaintable.jm_getInstance_0))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_mainDemoStatePaintable) _mainDemoStatePaintable)
+        (jm_setCurrentStatePaintable_1 this (NullPaintable.jm_getInstance_0))
+        (setf (slot-value this 'f_ownershipPaintable) _ownershipPaintable)
+        (setf (slot-value this 'f_helpPaintableInterface) _helpPaintableInterface)))
+    this))
 
-local BasicGameDemoPaintable = {}
-BasicGameDemoPaintable.__index = BasicGameDemoPaintable
-BasicGameDemoPaintable.className = "BasicGameDemoPaintable"
-setmetatable(BasicGameDemoPaintable, {__index = StatePaintable})
+    
+(unless (fboundp 'jm_setState_1) (defgeneric jm_setState_1 (this p1)))
+(defmethod jm_setState_1 ((this BasicGameDemoPaintable) _state)
+  (declare (ignorable this _state))
+  (let ()
+    (block jreturn
+        (if (= _state 0)
+            (progn
+            (jm_setCurrentStatePaintable_1 this (jm_getMainDemoStatePaintable_0 this)))
+            (if (= _state 1)
+            (progn
+            (jm_setCurrentStatePaintable_1 this (slot-value this 'f_helpPaintableInterface)))
+            (progn
+            (jm_setCurrentStatePaintable_1 this (slot-value this 'f_ownershipPaintable))))))))
 
-function BasicGameDemoPaintable:_init_fields()
-    self.mainDemoStatePaintable = nil
-    self.ownershipPaintable = nil
-    self.helpPaintableInterface = nil
-    self.currentStatePaintable = NullPaintable.getInstance()
-end
+    
+(unless (fboundp 'jm_paint_1) (defgeneric jm_paint_1 (this p1)))
+(defmethod jm_paint_1 ((this BasicGameDemoPaintable) _graphics)
+  (declare (ignorable this _graphics))
+  (let ()
+    (block jreturn
+        (jm_paint_1 (jm_getCurrentStatePaintable_0 this) _graphics))))
+
+    
+(unless (fboundp 'jm_getHelpPaintableInterface_0) (defgeneric jm_getHelpPaintableInterface_0 (this)))
+(defmethod jm_getHelpPaintableInterface_0 ((this BasicGameDemoPaintable))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_helpPaintableInterface)))))
+
+    
+(unless (fboundp 'jm_setCurrentStatePaintable_1) (defgeneric jm_setCurrentStatePaintable_1 (this p1)))
+(defmethod jm_setCurrentStatePaintable_1 ((this BasicGameDemoPaintable) _currentStatePaintable)
+  (declare (ignorable this _currentStatePaintable))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_currentStatePaintable) _currentStatePaintable))))
+
+    
+(unless (fboundp 'jm_getCurrentStatePaintable_0) (defgeneric jm_getCurrentStatePaintable_0 (this)))
+(defmethod jm_getCurrentStatePaintable_0 ((this BasicGameDemoPaintable))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_currentStatePaintable)))))
+
+    
+(unless (fboundp 'jm_getMainDemoStatePaintable_0) (defgeneric jm_getMainDemoStatePaintable_0 (this)))
+(defmethod jm_getMainDemoStatePaintable_0 ((this BasicGameDemoPaintable))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_mainDemoStatePaintable)))))
 
 
-function BasicGameDemoPaintable.new(mainDemoStatePaintable, ownershipPaintable, helpPaintableInterface)
-    local self = setmetatable(StatePaintable.new(), BasicGameDemoPaintable)
-    self:_init_fields()
-        self.mainDemoStatePaintable = mainDemoStatePaintable
-        self:setCurrentStatePaintable(NullPaintable.getInstance())
-        self.ownershipPaintable = ownershipPaintable
-        self.helpPaintableInterface = helpPaintableInterface
-    return self
-end
-
-
-function BasicGameDemoPaintable:setState(state)
-        if state == 0 then
-            self:setCurrentStatePaintable(self:getMainDemoStatePaintable())
-        elseif state == 1 then
-            self:setCurrentStatePaintable(self.helpPaintableInterface)
-        else
-            self:setCurrentStatePaintable(self.ownershipPaintable)
-        end
-end
-
-
-function BasicGameDemoPaintable:paint(graphics)
-        self:getCurrentStatePaintable():paint(graphics)
-end
-
-
-function BasicGameDemoPaintable:getHelpPaintableInterface()
-        return self.helpPaintableInterface
-end
-
-
-function BasicGameDemoPaintable:setCurrentStatePaintable(currentStatePaintable)
-        self.currentStatePaintable = currentStatePaintable
-end
-
-
-function BasicGameDemoPaintable:getCurrentStatePaintable()
-        return self.currentStatePaintable
-end
-
-
-function BasicGameDemoPaintable:getMainDemoStatePaintable()
-        return self.mainDemoStatePaintable
-end
-
-return BasicGameDemoPaintable
 

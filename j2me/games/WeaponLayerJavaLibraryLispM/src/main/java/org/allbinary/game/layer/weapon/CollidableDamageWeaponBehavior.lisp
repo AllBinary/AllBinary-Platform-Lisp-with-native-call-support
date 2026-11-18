@@ -1,117 +1,121 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.weapon
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.layer.weapon
 
-local CollidableHelperFactory = require("org.allbinary.game.collision.CollidableHelperFactory")
-local CollidableInterfaceCompositeInterface = require("org.allbinary.game.collision.CollidableInterfaceCompositeInterface")
-local CollisionHelper = require("org.allbinary.game.collision.CollisionHelper")
-local CollisionType = require("org.allbinary.game.collision.CollisionType")
-local CollisionTypeFactory = require("org.allbinary.game.collision.CollisionTypeFactory")
-local DamageableInterface = require("org.allbinary.game.combat.damage.DamageableInterface")
-local CollidableCompositeLayer = require("org.allbinary.game.layer.CollidableCompositeLayer")
-local CollidableDestroyableDamageableBehavior = require("org.allbinary.game.layer.special.CollidableDestroyableDamageableBehavior")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass CollidableDamageWeaponBehavior (CollidableDestroyableDamageableBehavior)
+  ((f_collided :initform nil)
+   (f_collisionHelper :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun CollidableDamageWeaponBehavior.jnew_1 (_collidable)
+  (declare (ignorable _collidable))
+  (let ((this (make-instance 'CollidableDamageWeaponBehavior)))
+    
+    
+  (let ()
+    (block jreturn
+        nil
+        (jm_setCollided_1 this nil)
+        (jm_setCollidable_1 this t)
+        (setf (slot-value this 'f_collisionHelper) (CollidableHelperFactory.jm_getInstance_0))))
+    this))
 
-local CollidableDamageWeaponBehavior = {}
-CollidableDamageWeaponBehavior.__index = CollidableDamageWeaponBehavior
-CollidableDamageWeaponBehavior.className = "CollidableDamageWeaponBehavior"
-setmetatable(CollidableDamageWeaponBehavior, {__index = CollidableDestroyableDamageableBehavior})
+    
+(unless (fboundp 'jm_init_1) (defgeneric jm_init_1 (this p1)))
+(defmethod jm_init_1 ((this CollidableDamageWeaponBehavior) _sourceLayerInterface)
+  (declare (ignorable this _sourceLayerInterface))
+  (let ()
+    (block jreturn
+        (jm_setCollided_1 this nil)
+        (jm_setOwnerLayerInterface_1 (slot-value this 'f_collisionHelper) _sourceLayerInterface))))
 
-function CollidableDamageWeaponBehavior:_init_fields()
-    self.collided = false
-    self.collisionHelper = nil
-end
+    
+(unless (fboundp 'jm_isCollision_2) (defgeneric jm_isCollision_2 (this p1 p2)))
+(defmethod jm_isCollision_2 ((this CollidableDamageWeaponBehavior) _ownerLayer _collisionLayer)
+  (declare (ignorable this _ownerLayer _collisionLayer))
+  (let ()
+    (block jreturn
+        (if (jm_isCollidable_1 (slot-value this 'f_collisionHelper) _collisionLayer)
+            (progn
+            (if (not (eq (aref (jm_getGroupInterface_0 _ownerLayer) 0) (aref (jm_getGroupInterface_0 _collisionLayer) 0)))
+                (progn
+                (return-from jreturn (call-next-method this _ownerLayer _collisionLayer))))))
+        (return-from jreturn nil))))
+
+    
+(unless (fboundp 'jm_collide_2) (defgeneric jm_collide_2 (this p1 p2)))
+(defmethod jm_collide_2 ((this CollidableDamageWeaponBehavior) _ownerLayer _collisionLayer)
+  (declare (ignorable this _ownerLayer _collisionLayer))
+  (let ()
+    (block jreturn
+        (call-next-method this _ownerLayer _collisionLayer)
+        (setf (slot-value this 'f_collided) t))))
+
+    
+(unless (fboundp 'jm_isCollisionInterface_2) (defgeneric jm_isCollisionInterface_2 (this p1 p2)))
+(defmethod jm_isCollisionInterface_2 ((this CollidableDamageWeaponBehavior) _ownerLayer _collidableInterfaceCompositeInterface)
+  (declare (ignorable this _ownerLayer _collidableInterfaceCompositeInterface))
+  (let (_layerInterface)
+  (declare (ignorable _layerInterface))
+    (block jreturn
+        (if (jm_isCollidable_1 (slot-value this 'f_collisionHelper) _collidableInterfaceCompositeInterface)
+            (progn
+            (setf _layerInterface _collidableInterfaceCompositeInterface)
+            (if (not (eq (aref (jm_getGroupInterface_0 _ownerLayer) 0) (aref (jm_getGroupInterface_0 _layerInterface) 0)))
+                (progn
+                (if (jm_isCollision_2 (slot-value this 'f_layerCollisionUtil) _ownerLayer _layerInterface)
+                    (progn
+                    (return-from jreturn t)))))))
+        (return-from jreturn nil))))
+
+    
+(unless (fboundp 'jm_collideInterface_2) (defgeneric jm_collideInterface_2 (this p1 p2)))
+(defmethod jm_collideInterface_2 ((this CollidableDamageWeaponBehavior) _ownerLayer _collidableInterfaceCompositeInterface)
+  (declare (ignorable this _ownerLayer _collidableInterfaceCompositeInterface))
+  (let ()
+    (block jreturn
+        (jm_process_2 (slot-value this 'f_damageUtil) _ownerLayer _collidableInterfaceCompositeInterface)
+        (setf (slot-value this 'f_collided) t))))
+
+    
+(unless (fboundp 'jm_getCollisionTypeWith_1) (defgeneric jm_getCollisionTypeWith_1 (this p1)))
+(defmethod jm_getCollisionTypeWith_1 ((this CollidableDamageWeaponBehavior) _layerInterface)
+  (declare (ignorable this _layerInterface))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value (CollisionTypeFactory.jm_getInstance_0) 'f_COLLISION)))))
+
+    
+(unless (fboundp 'jm_isCollided_0) (defgeneric jm_isCollided_0 (this)))
+(defmethod jm_isCollided_0 ((this CollidableDamageWeaponBehavior))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_collided)))))
+
+    
+(unless (fboundp 'jm_setCollided_1) (defgeneric jm_setCollided_1 (this p1)))
+(defmethod jm_setCollided_1 ((this CollidableDamageWeaponBehavior) _collided)
+  (declare (ignorable this _collided))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_collided) _collided))))
 
 
-function CollidableDamageWeaponBehavior.new(collidable)
-    local self = setmetatable(CollidableDestroyableDamageableBehavior.new(collidable), CollidableDamageWeaponBehavior)
-    self:_init_fields()
-        -- super(...) made self above
-        self:setCollided(false)
-        self:setCollidable(true)
-        self.collisionHelper = CollidableHelperFactory.getInstance()
-    return self
-end
-
-
-function CollidableDamageWeaponBehavior:init(sourceLayerInterface)
-        self:setCollided(false)
-        self.collisionHelper:setOwnerLayerInterface(sourceLayerInterface)
-end
-
-
-function CollidableDamageWeaponBehavior:isCollision(ownerLayer, collisionLayer)
-        if self.collisionHelper:isCollidable(collisionLayer) then
-            if ownerLayer:getGroupInterface()[1] ~= collisionLayer:getGroupInterface()[1] then
-                return CollidableDestroyableDamageableBehavior.isCollision(self, ownerLayer, collisionLayer)
-            end
-        end
-        return false
-end
-
-
--- throws Exception
-function CollidableDamageWeaponBehavior:collide(ownerLayer, collisionLayer)
-        CollidableDestroyableDamageableBehavior.collide(self, ownerLayer, collisionLayer)
-        self.collided = true
-end
-
-
-function CollidableDamageWeaponBehavior:isCollisionInterface(ownerLayer, collidableInterfaceCompositeInterface)
-        if self.collisionHelper:isCollidable(collidableInterfaceCompositeInterface) then
-            local layerInterface = collidableInterfaceCompositeInterface
-            if ownerLayer:getGroupInterface()[1] ~= layerInterface:getGroupInterface()[1] then
-                if self.layerCollisionUtil:isCollision(ownerLayer, layerInterface) then
-                    return true
-                end
-            end
-        end
-        return false
-end
-
-
--- throws Exception
-function CollidableDamageWeaponBehavior:collideInterface(ownerLayer, collidableInterfaceCompositeInterface)
-        self.damageUtil:process(ownerLayer, collidableInterfaceCompositeInterface)
-        self.collided = true
-end
-
-
-function CollidableDamageWeaponBehavior:getCollisionTypeWith(layerInterface)
-        return CollisionTypeFactory.getInstance().COLLISION
-end
-
-
-function CollidableDamageWeaponBehavior:isCollided()
-        return self.collided
-end
-
-
-function CollidableDamageWeaponBehavior:setCollided(collided)
-        self.collided = collided
-end
-
-return CollidableDamageWeaponBehavior
 

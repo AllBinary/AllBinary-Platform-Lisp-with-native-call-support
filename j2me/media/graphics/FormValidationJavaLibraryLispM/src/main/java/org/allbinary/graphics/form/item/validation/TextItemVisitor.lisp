@@ -1,52 +1,46 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form.item.validation
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.form.item.validation
 
-local BooleanFactory = require("org.allbinary.logic.java.bool.BooleanFactory")
-local Visitor = require("org.allbinary.logic.util.visitor.Visitor")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass TextItemVisitor (Visitor)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun TextItemVisitor.jnew_0 ()
+  (let ((this (make-instance 'TextItemVisitor)))
+  (let ()
+    (block jreturn nil))
+    this))
 
-local TextItemVisitor = {}
-TextItemVisitor.__index = TextItemVisitor
-TextItemVisitor.className = "TextItemVisitor"
-setmetatable(TextItemVisitor, {__index = Visitor})
+    
+(unless (fboundp 'jm_visit_1) (defgeneric jm_visit_1 (this p1)))
+(defmethod jm_visit_1 ((this TextItemVisitor) _anyType)
+  (declare (ignorable this _anyType))
+  (let (_value)
+  (declare (ignorable _value))
+    (block jreturn
+        (setf _value _anyType)
+        (if (< (length _value) 2)
+            (progn
+            (return-from jreturn (slot-value (BooleanFactory.jm_getInstance_0) 'f_TRUE)))
+            (progn
+            (return-from jreturn (slot-value (BooleanFactory.jm_getInstance_0) 'f_FALSE)))))))
 
 
-function TextItemVisitor.new()
-    local self = setmetatable(Visitor.new(), TextItemVisitor)
-    return self
-end
-
-
-function TextItemVisitor:visit(anyType)
-        local value = anyType
-        if #value < 2 then
-            return BooleanFactory.getInstance().TRUE
-        else
-            return BooleanFactory.getInstance().FALSE
-        end
-end
-
-return TextItemVisitor
 

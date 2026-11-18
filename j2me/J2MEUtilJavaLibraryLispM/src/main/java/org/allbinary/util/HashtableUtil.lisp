@@ -25,6 +25,7 @@
 (defun HashtableUtil.jstatic_instance ()
   (when (eq HashtableUtil.jcell_instance :jnone) (setf HashtableUtil.jcell_instance (HashtableUtil.jnew_0)))
   HashtableUtil.jcell_instance)
+(defun (setf HashtableUtil.jstatic_instance) (value) (setf HashtableUtil.jcell_instance value))
 
 (defun HashtableUtil.jnew_0 ()
   (let ((this (make-instance 'HashtableUtil)))

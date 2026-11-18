@@ -1,50 +1,46 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.media.audio
 
-local CompositeSound = require("org.allbinary.media.audio.CompositeSound")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+;Use 8hz16bitmono for most J2ME
+(defclass FireworksSound (CompositeSound)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar FireworksSound.jcell_soundInterface :jnone)
+(defun FireworksSound.jstatic_soundInterface ()
+  (when (eq FireworksSound.jcell_soundInterface :jnone) (setf FireworksSound.jcell_soundInterface (FireworksSound.jnew_0)))
+  FireworksSound.jcell_soundInterface)
+(defun (setf FireworksSound.jstatic_soundInterface) (value) (setf FireworksSound.jcell_soundInterface value))
 
---Use 8hz16bitmono for most J2ME
-local FireworksSound = {}
-FireworksSound.__index = FireworksSound
-FireworksSound.className = "FireworksSound"
-setmetatable(FireworksSound, {__index = CompositeSound})
+    
+(defun FireworksSound.jnew_0 ()
+  (let ((this (make-instance 'FireworksSound)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
+
+    
+(defun FireworksSound.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (FireworksSound.jstatic_soundInterface)))))
 
 
-function FireworksSound.new()
-    local self = setmetatable(CompositeSound.new("resource:/wav/fireworks.wav"), FireworksSound)
-        -- super(...) made self above
-    return self
-end
-
-
-function FireworksSound.getInstance()
-        return FireworksSound.soundInterface
-end
-
-FireworksSound.soundInterface = FireworksSound.new()
-
-return FireworksSound
 

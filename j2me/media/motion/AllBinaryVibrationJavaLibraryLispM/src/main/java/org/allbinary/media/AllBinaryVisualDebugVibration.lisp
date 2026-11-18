@@ -1,79 +1,71 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.media
 
--- local Font = require("javax.microedition.lcdui.Font")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Anchor = require("org.allbinary.graphics.Anchor")
-local DisplayInfoSingleton = require("org.allbinary.graphics.displayable.DisplayInfoSingleton")
-local MyFontProcessor = require("org.allbinary.graphics.font.MyFontProcessor")
-local UpdateMyFontInterface = require("org.allbinary.graphics.font.UpdateMyFontInterface")
-local UpdateMyFontProcessor = require("org.allbinary.graphics.font.UpdateMyFontProcessor")
-local TimeDelayHelper = require("org.allbinary.time.TimeDelayHelper")
-local AllBinaryVibrationME = require("org.allbinary.media.AllBinaryVibrationME")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass AllBinaryVisualDebugVibration (AllBinaryVibrationME)
+  ((f_displayInfoSingleton :initform nil)
+   (f_timeDelayHelper :initform nil)
+   (f_VIBRATING :initform nil)
+   (f_myFontProcessor :initform nil)
+   (f_anchor :initform 0)
+   (f_width :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun AllBinaryVisualDebugVibration.jnew_0 ()
+  (let ((this (make-instance 'AllBinaryVisualDebugVibration)))
+    (setf (slot-value this 'f_displayInfoSingleton) (DisplayInfoSingleton.jm_getInstance_0))
+    (setf (slot-value this 'f_timeDelayHelper) (TimeDelayHelper.jnew_1 (Integer.jstatic_MAX_VALUE)))
+    (setf (slot-value this 'f_VIBRATING) "Vibrating")
+    (setf (slot-value this 'f_myFontProcessor) (UpdateMyFontProcessor.jnew_1 this))
+    (setf (slot-value this 'f_anchor) (Anchor.jstatic_TOP_LEFT))
+    
+    this))
 
-local AllBinaryVisualDebugVibration = {}
-AllBinaryVisualDebugVibration.__index = AllBinaryVisualDebugVibration
-AllBinaryVisualDebugVibration.className = "AllBinaryVisualDebugVibration"
-setmetatable(AllBinaryVisualDebugVibration, {__index = AllBinaryVibrationME})
+    
+(unless (fboundp 'jm_updateMeasurement_1) (defgeneric jm_updateMeasurement_1 (this p1)))
+(defmethod jm_updateMeasurement_1 ((this AllBinaryVisualDebugVibration) _graphics)
+  (declare (ignorable this _graphics))
+  (let (_font)
+  (declare (ignorable _font))
+    (block jreturn
+        (setf _font (jm_getFont_0 _graphics))
+        (setf (slot-value this 'f_width) (jm_stringWidth_1 _font (slot-value this 'f_VIBRATING)))
+        (setf (slot-value this 'f_myFontProcessor) (MyFontProcessor.jm_getInstance_0)))))
 
-function AllBinaryVisualDebugVibration:_init_fields()
-    self.displayInfoSingleton = DisplayInfoSingleton.getInstance()
-    self.timeDelayHelper = TimeDelayHelper.new(Integer.MAX_VALUE)
-    self.VIBRATING = "Vibrating"
-    self.myFontProcessor = UpdateMyFontProcessor.new(self)
-    self.anchor = Anchor.TOP_LEFT
-    self.width = 0
-end
+    
+(unless (fboundp 'jm_vibrate_3) (defgeneric jm_vibrate_3 (this p1 p2 p3)))
+(defmethod jm_vibrate_3 ((this AllBinaryVisualDebugVibration) _duration _type _volume)
+  (declare (ignorable this _duration _type _volume))
+  (let ()
+    (block jreturn
+        (setf (slot-value (slot-value this 'f_timeDelayHelper) 'f_delay) _duration))))
 
-function AllBinaryVisualDebugVibration.new()
-    local self = setmetatable(AllBinaryVibrationME.new(), AllBinaryVisualDebugVibration)
-    self:_init_fields()
-    return self
-end
-
-
-function AllBinaryVisualDebugVibration:updateMeasurement(graphics)
-        local font = graphics:getFont()
-        self.width = font:stringWidth(self.VIBRATING)
-        self.myFontProcessor = MyFontProcessor.getInstance()
-end
+    
+(unless (fboundp 'jm_paint_1) (defgeneric jm_paint_1 (this p1)))
+(defmethod jm_paint_1 ((this AllBinaryVisualDebugVibration) _graphics)
+  (declare (ignorable this _graphics))
+  (let ()
+    (block jreturn
+        (if (jm_isTimeTNT_0 (slot-value this 'f_timeDelayHelper))
+            (progn
+            (setf (slot-value (slot-value this 'f_timeDelayHelper) 'f_delay) (Integer.jstatic_MAX_VALUE))
+            (jm_process_1 (slot-value this 'f_myFontProcessor) _graphics)
+            (jm_drawString_4 _graphics (slot-value this 'f_VIBRATING) (JR.i32 (- (jm_getLastHalfWidth_0 (slot-value this 'f_displayInfoSingleton)) (ash (slot-value this 'f_width) (- (logand 1 31))))) 0 (slot-value this 'f_anchor)))))))
 
 
-function AllBinaryVisualDebugVibration:vibrate(duration, type, volume)
-        self.timeDelayHelper.delay = duration
-end
-
-
-function AllBinaryVisualDebugVibration:paint(graphics)
-        if self.timeDelayHelper:isTimeTNT() then
-            self.timeDelayHelper.delay = Integer.MAX_VALUE
-            self.myFontProcessor:process(graphics)
-            graphics:drawString(self.VIBRATING, self.displayInfoSingleton:getLastHalfWidth() - (((self.width) // (1 << (1)))), 0, self.anchor)
-        end
-end
-
-return AllBinaryVisualDebugVibration
 

@@ -1,70 +1,62 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.hud.basic.notification
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.ag.layer.hud.basic.notification
 
-local BasicHudFactory = require("org.allbinary.game.graphics.hud.BasicHudFactory")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass NoGameNotificationHudSingleton (JObject)
+  ((f_logUtil :initform nil)
+   (f_gameNotificationHud :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar NoGameNotificationHudSingleton.jcell_instance :jnone)
+(defun NoGameNotificationHudSingleton.jstatic_instance ()
+  (when (eq NoGameNotificationHudSingleton.jcell_instance :jnone) (setf NoGameNotificationHudSingleton.jcell_instance (NoGameNotificationHudSingleton.jnew_0)))
+  NoGameNotificationHudSingleton.jcell_instance)
+(defun (setf NoGameNotificationHudSingleton.jstatic_instance) (value) (setf NoGameNotificationHudSingleton.jcell_instance value))
 
-local NoGameNotificationHudSingleton = {}
-NoGameNotificationHudSingleton.__index = NoGameNotificationHudSingleton
-NoGameNotificationHudSingleton.className = "NoGameNotificationHudSingleton"
+    
+(defun NoGameNotificationHudSingleton.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (NoGameNotificationHudSingleton.jstatic_instance)))))
 
-function NoGameNotificationHudSingleton:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.gameNotificationHud = GameNotificationHud.NULL_GAME_NOTIFICATION
-end
+    
+(defun NoGameNotificationHudSingleton.jnew_0 ()
+  (let ((this (make-instance 'NoGameNotificationHudSingleton)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_gameNotificationHud) (GameNotificationHud.jstatic_NULL_GAME_NOTIFICATION))
+  (let (_basicHudFactory _commonStrings)
+  (declare (ignorable _basicHudFactory _commonStrings))
+    (block jreturn
+        (handler-case (progn
+            (setf _basicHudFactory (BasicHudFactory.jm_getInstance_0))
+            (setf (slot-value this 'f_gameNotificationHud) (NoGameGameNotificationHud.jnew_0)))
+            (error (_e) (declare (ignorable _e))
+            (setf _commonStrings (CommonStrings.jm_getInstance_0))
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value _commonStrings 'f_EXCEPTION) this (slot-value _commonStrings 'f_CONSTRUCTOR) _e)))))
+    this))
+
+    
+(unless (fboundp 'jm_getGameNotificationHud_0) (defgeneric jm_getGameNotificationHud_0 (this)))
+(defmethod jm_getGameNotificationHud_0 ((this NoGameNotificationHudSingleton))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_gameNotificationHud)))))
 
 
-function NoGameNotificationHudSingleton.getInstance()
-        return NoGameNotificationHudSingleton.instance
-end
-
-
-function NoGameNotificationHudSingleton.new()
-    local self = setmetatable({}, NoGameNotificationHudSingleton)
-    self:_init_fields()
-        local try_ok, try_error = pcall(function()
-            local basicHudFactory = BasicHudFactory.getInstance()
-            self.gameNotificationHud = NoGameGameNotificationHud.new()
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, commonStrings.CONSTRUCTOR, e)
-        end
-    return self
-end
-
-
-function NoGameNotificationHudSingleton:getGameNotificationHud()
-        return self.gameNotificationHud
-end
-
-NoGameNotificationHudSingleton.instance = NoGameNotificationHudSingleton.new()
-
-return NoGameNotificationHudSingleton
 

@@ -1,66 +1,66 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.math.vector
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.math.vector
 
-local NoDecimalTrigTable = require("org.allbinary.math.NoDecimalTrigTable")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass AxisMathVectorUtil (JObject)
+  ((f_noDecimalTrigTable :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar AxisMathVectorUtil.jcell_instance :jnone)
+(defun AxisMathVectorUtil.jstatic_instance ()
+  (when (eq AxisMathVectorUtil.jcell_instance :jnone) (setf AxisMathVectorUtil.jcell_instance (AxisMathVectorUtil.jnew_0)))
+  AxisMathVectorUtil.jcell_instance)
+(defun (setf AxisMathVectorUtil.jstatic_instance) (value) (setf AxisMathVectorUtil.jcell_instance value))
 
-local AxisMathVectorUtil = {}
-AxisMathVectorUtil.__index = AxisMathVectorUtil
-AxisMathVectorUtil.className = "AxisMathVectorUtil"
+(defun AxisMathVectorUtil.jnew_0 ()
+  (let ((this (make-instance 'AxisMathVectorUtil)))
+    (setf (slot-value this 'f_noDecimalTrigTable) (NoDecimalTrigTable.jm_getInstance_0))
+    this))
 
-function AxisMathVectorUtil:_init_fields()
-    self.noDecimalTrigTable = NoDecimalTrigTable.getInstance()
-end
+    
+(defun AxisMathVectorUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (AxisMathVectorUtil.jstatic_instance)))))
 
-function AxisMathVectorUtil.new()
-    local self = setmetatable({}, AxisMathVectorUtil)
-    self:_init_fields()
-    return self
-end
+    
+(unless (fboundp 'jm_calculateX_2) (defgeneric jm_calculateX_2 (this p1 p2)))
+(defmethod jm_calculateX_2 ((this AxisMathVectorUtil) _magnitude _angle)
+  (declare (ignorable this _magnitude _angle))
+  (let ()
+    (block jreturn
+        (return-from jreturn (JR.idiv (JR.i64 (* _magnitude (jm_cos_1 (slot-value this 'f_noDecimalTrigTable) _angle))) 10)))))
+
+    
+(unless (fboundp 'jm_calculateY_2) (defgeneric jm_calculateY_2 (this p1 p2)))
+(defmethod jm_calculateY_2 ((this AxisMathVectorUtil) _magnitude _angle)
+  (declare (ignorable this _magnitude _angle))
+  (let ()
+    (block jreturn
+        (return-from jreturn (JR.idiv (JR.i64 (* _magnitude (jm_sin_1 (slot-value this 'f_noDecimalTrigTable) _angle))) 10)))))
+
+    
+(unless (fboundp 'jm_calculateZ_2) (defgeneric jm_calculateZ_2 (this p1 p2)))
+(defmethod jm_calculateZ_2 ((this AxisMathVectorUtil) _magnitude _otherAngle)
+  (declare (ignorable this _magnitude _otherAngle))
+  (let ()
+    (block jreturn
+        (return-from jreturn (JR.idiv (JR.i64 (* _magnitude (jm_sin_1 (slot-value this 'f_noDecimalTrigTable) _otherAngle))) 10)))))
 
 
-function AxisMathVectorUtil.getInstance()
-        return AxisMathVectorUtil.instance
-end
-
-
-function AxisMathVectorUtil:calculateX(magnitude, angle)
-        return magnitude * self.noDecimalTrigTable:cos(angle) / 10
-end
-
-
-function AxisMathVectorUtil:calculateY(magnitude, angle)
-        return magnitude * self.noDecimalTrigTable:sin(angle) / 10
-end
-
-
-function AxisMathVectorUtil:calculateZ(magnitude, otherAngle)
-        return magnitude * self.noDecimalTrigTable:sin(otherAngle) / 10
-end
-
-AxisMathVectorUtil.instance = AxisMathVectorUtil.new()
-
-return AxisMathVectorUtil
 

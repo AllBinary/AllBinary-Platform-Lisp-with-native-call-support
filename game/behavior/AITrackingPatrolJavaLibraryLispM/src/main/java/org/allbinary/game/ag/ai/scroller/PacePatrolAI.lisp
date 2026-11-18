@@ -1,152 +1,152 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai.scroller
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.ag.ai.scroller
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
-local Direction = require("org.allbinary.direction.Direction")
-local DirectionCompositeInterface = require("org.allbinary.direction.DirectionCompositeInterface")
-local DirectionFactory = require("org.allbinary.direction.DirectionFactory")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local TrackingEvent = require("org.allbinary.game.tracking.TrackingEvent")
-local TrackingEventHandler = require("org.allbinary.game.tracking.TrackingEventHandler")
-local TrackingEventListenerInterface = require("org.allbinary.game.tracking.TrackingEventListenerInterface")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local LayerInterface = require("org.allbinary.layer.LayerInterface")
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventStrings = require("org.allbinary.logic.util.event.EventStrings")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local BasePatrolAI = require("org.allbinary.game.ag.ai.scroller.BasePatrolAI")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass PacePatrolAI (BasePatrolAI)
+  ((f_trackingList :initform nil)
+   (f_firingDistance :initform 0)
+   (f_isFollowLimitedByTerrain :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun PacePatrolAI.jnew_3 (_hashtable _ownerLayerInterface _gameInput)
+  (declare (ignorable _hashtable _ownerLayerInterface _gameInput))
+  (let ((this (make-instance 'PacePatrolAI)))
+    
+    
+    (setf (slot-value this 'f_isFollowLimitedByTerrain) nil)
+  (let ()
+    (block jreturn
+        nil
+        (jm_addListenerInterface_1 (TrackingEventHandler.jm_getInstance_0) this)
+        (setf (slot-value this 'f_trackingList) (BasicArrayListD.jnew_0))))
+    this))
 
-local PacePatrolAI = {}
-PacePatrolAI.__index = PacePatrolAI
-PacePatrolAI.className = "PacePatrolAI"
-setmetatable(PacePatrolAI, {__index = BasePatrolAI})
+    
+(unless (fboundp 'jm_processAI_1) (defgeneric jm_processAI_1 (this p1)))
+(defmethod jm_processAI_1 ((this PacePatrolAI) _allBinaryLayerManager)
+  (declare (ignorable this _allBinaryLayerManager))
+  (let (_direction _directionFactory)
+  (declare (ignorable _direction _directionFactory))
+    (block jreturn
+        (jm_update_0 this)
+        (setf _direction (jm_setFiringDirectionForTargetIfInRange_0 this))
+        (setf _directionFactory (DirectionFactory.jm_getInstance_0))
+        (if (eq _direction (slot-value _directionFactory 'f_LEFT))
+            (progn
+            (if (or (not (eq (slot-value this 'f_lastKeyDirection) (slot-value this 'f_keyDirection))) (not (slot-value this 'f_isFollowLimitedByTerrain)))
+                (progn
+                (jm_processKeyAI_1 this (Canvas.jstatic_LEFT))))
+            (setf (slot-value this 'f_keyDirection) (Canvas.jstatic_LEFT))
+            (setf (slot-value this 'f_lastKeyDirection) (slot-value this 'f_keyDirection))
+            (setf (slot-value this 'f_xTotalDistance) 0)
+            (jm_processKeyAI_1 this (Canvas.jstatic_KEY_NUM1)))
+            (if (eq _direction (slot-value _directionFactory 'f_RIGHT))
+            (progn
+            (if (or (not (eq (slot-value this 'f_lastKeyDirection) (slot-value this 'f_keyDirection))) (not (slot-value this 'f_isFollowLimitedByTerrain)))
+                (progn
+                (jm_processKeyAI_1 this (Canvas.jstatic_RIGHT))))
+            (setf (slot-value this 'f_keyDirection) (Canvas.jstatic_RIGHT))
+            (setf (slot-value this 'f_lastKeyDirection) (slot-value this 'f_keyDirection))
+            (setf (slot-value this 'f_xTotalDistance) 0)
+            (jm_processKeyAI_1 this (Canvas.jstatic_KEY_NUM1)))
+            (progn
+            (jm_processKeyAI_1 this (slot-value this 'f_keyDirection))))))))
 
-function PacePatrolAI:_init_fields()
-    self.trackingList = nil
-    self.firingDistance = 0
-    self.isFollowLimitedByTerrain = false
-end
+    
+(unless (fboundp 'jm_setFiringDirectionForTargetIfInRange_0) (defgeneric jm_setFiringDirectionForTargetIfInRange_0 (this)))
+(defmethod jm_setFiringDirectionForTargetIfInRange_0 ((this PacePatrolAI))
+  (declare (ignorable this))
+  (let (_directionFactory _ownerLayerInterface _direction _lastTrackingEvent _lastTrackingLayerInterface _directionCompositeInterface _size _x _y _yDistance _xDistance _absXDistance _absYDistance _index)
+  (declare (ignorable _directionFactory _ownerLayerInterface _direction _lastTrackingEvent _lastTrackingLayerInterface _directionCompositeInterface _size _x _y _yDistance _xDistance _absXDistance _absYDistance _index))
+    (block jreturn
+        (setf _directionFactory (DirectionFactory.jm_getInstance_0))
+        (setf _ownerLayerInterface (jm_getOwnerLayerInterface_0 this))
+        (setf _direction (slot-value _directionFactory 'f_NOT_BORDERED_WITH))
+        (setf _lastTrackingEvent nil)
+        (setf _lastTrackingLayerInterface nil)
+        (setf _directionCompositeInterface nil)
+        (setf _size (jm_size_0 (slot-value this 'f_trackingList)))
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (setf _lastTrackingEvent (jm_get_1 (slot-value this 'f_trackingList) 0))
+            (setf _lastTrackingLayerInterface (jm_getLayerInterface_0 _lastTrackingEvent))
+            (setf _x (jm_getXP_0 _lastTrackingLayerInterface))
+            (setf _y (jm_getYP_0 _lastTrackingLayerInterface))
+            (setf _yDistance (JR.i32 (- (JR.i32 (- (jm_getYP_0 _ownerLayerInterface) _y)) (jm_getHeight_0 _ownerLayerInterface))))
+            (setf _xDistance (JR.i32 (- (JR.i32 (- (jm_getXP_0 _ownerLayerInterface) _x)) (jm_getWidth_0 _ownerLayerInterface))))
+            (setf _absXDistance (abs _xDistance))
+            (setf _absYDistance (abs _yDistance))
+            (if (<= _absYDistance 100)
+                (progn
+                (if (< _absXDistance (JR.idiv (jm_getFiringDistance_0 this) 2))
+                    (progn
+                    (setf _directionCompositeInterface (jm_getOwnerLayerInterface_0 this))
+                    (if (and (< _xDistance 0) (eq (jm_getDirection_0 _directionCompositeInterface) (slot-value _directionFactory 'f_RIGHT)))
+                        (progn
+                        (setf _direction (slot-value _directionFactory 'f_RIGHT)))
+                        (if (and (> _xDistance 0) (eq (jm_getDirection_0 _directionCompositeInterface) (slot-value _directionFactory 'f_LEFT)))
+                        (progn
+                        (setf _direction (slot-value _directionFactory 'f_LEFT))))))))))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (return-from jreturn _direction))))
+
+    
+(unless (fboundp 'jm_disable_0) (defgeneric jm_disable_0 (this)))
+(defmethod jm_disable_0 ((this PacePatrolAI))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_onEvent_1) (defgeneric jm_onEvent_1 (this p1)))
+(defmethod jm_onEvent_1 ((this PacePatrolAI) _eventObject)
+  (declare (ignorable this _eventObject))
+  (let ()
+    (block jreturn
+        (ForcedLogUtil.jm_log_2 (slot-value (EventStrings.jm_getInstance_0) 'f_PERFORMANCE_MESSAGE) this))))
+
+    
+(unless (fboundp 'jm_onMovement_1) (defgeneric jm_onMovement_1 (this p1)))
+(defmethod jm_onMovement_1 ((this PacePatrolAI) _trackingEvent)
+  (declare (ignorable this _trackingEvent))
+  (let ()
+    (block jreturn
+        (jm_clear_0 (slot-value this 'f_trackingList))
+        (jm_add_1 (slot-value this 'f_trackingList) _trackingEvent))))
+
+    
+(unless (fboundp 'jm_getFiringDistance_0) (defgeneric jm_getFiringDistance_0 (this)))
+(defmethod jm_getFiringDistance_0 ((this PacePatrolAI))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_firingDistance)))))
+
+    
+(unless (fboundp 'jm_setFiringDistance_1) (defgeneric jm_setFiringDistance_1 (this p1)))
+(defmethod jm_setFiringDistance_1 ((this PacePatrolAI) _firingDistance)
+  (declare (ignorable this _firingDistance))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_firingDistance) _firingDistance))))
 
 
-function PacePatrolAI.new(hashtable, ownerLayerInterface, gameInput)
-    local self = setmetatable(BasePatrolAI.new(hashtable, ownerLayerInterface, gameInput), PacePatrolAI)
-    self:_init_fields()
-        -- super(...) made self above
-        TrackingEventHandler.getInstance():addListenerInterface(self)
-        self.trackingList = BasicArrayListD.new()
-    return self
-end
-
-
--- throws Exception
-function PacePatrolAI:processAI(allBinaryLayerManager)
-        self:update()
-        local direction = self:setFiringDirectionForTargetIfInRange()
-        local directionFactory = DirectionFactory.getInstance()
-        if direction == directionFactory.LEFT then
-            if self.lastKeyDirection ~= self.keyDirection or not self.isFollowLimitedByTerrain then
-                BasePatrolAI.processKeyAI(self, Canvas.LEFT)
-            end
-            self.keyDirection = Canvas.LEFT
-            self.lastKeyDirection = self.keyDirection
-            self.xTotalDistance = 0
-            BasePatrolAI.processKeyAI(self, Canvas.KEY_NUM1)
-        elseif direction == directionFactory.RIGHT then
-            if self.lastKeyDirection ~= self.keyDirection or not self.isFollowLimitedByTerrain then
-                BasePatrolAI.processKeyAI(self, Canvas.RIGHT)
-            end
-            self.keyDirection = Canvas.RIGHT
-            self.lastKeyDirection = self.keyDirection
-            self.xTotalDistance = 0
-            BasePatrolAI.processKeyAI(self, Canvas.KEY_NUM1)
-        else
-            BasePatrolAI.processKeyAI(self, self.keyDirection)
-        end
-end
-
-
-function PacePatrolAI:setFiringDirectionForTargetIfInRange()
-        local directionFactory = DirectionFactory.getInstance()
-        local ownerLayerInterface = self:getOwnerLayerInterface()
-        local direction = directionFactory.NOT_BORDERED_WITH
-        local lastTrackingEvent = nil
-        local lastTrackingLayerInterface = nil
-        local directionCompositeInterface = nil
-        local size = self.trackingList:size()
-        for index = 0, size - 1 do
-            lastTrackingEvent = self.trackingList:get(0)
-            lastTrackingLayerInterface = lastTrackingEvent:getLayerInterface()
-            local x = lastTrackingLayerInterface:getXP()
-            local y = lastTrackingLayerInterface:getYP()
-            local yDistance = ownerLayerInterface:getYP() - y - ownerLayerInterface:getHeight()
-            local xDistance = ownerLayerInterface:getXP() - x - ownerLayerInterface:getWidth()
-            local absXDistance = math.abs(xDistance)
-            local absYDistance = math.abs(yDistance)
-            if absYDistance <= 100 then
-                if absXDistance < java_idiv(self:getFiringDistance(), 2) then
-                    directionCompositeInterface = self:getOwnerLayerInterface()
-                    if xDistance < 0 and directionCompositeInterface:getDirection() == directionFactory.RIGHT then
-                        direction = directionFactory.RIGHT
-                    elseif xDistance > 0 and directionCompositeInterface:getDirection() == directionFactory.LEFT then
-                        direction = directionFactory.LEFT
-                    end
-                end
-            end
-        end
-        return direction
-end
-
-
-function PacePatrolAI:disable()
-end
-
-
-function PacePatrolAI:onEvent(eventObject)
-        ForcedLogUtil.log(EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
-end
-
-
-function PacePatrolAI:onMovement(trackingEvent)
-        self.trackingList:clear()
-        self.trackingList:add(trackingEvent)
-end
-
-
-function PacePatrolAI:getFiringDistance()
-        return self.firingDistance
-end
-
-
-function PacePatrolAI:setFiringDistance(firingDistance)
-        self.firingDistance = firingDistance
-end
-
-return PacePatrolAI
 

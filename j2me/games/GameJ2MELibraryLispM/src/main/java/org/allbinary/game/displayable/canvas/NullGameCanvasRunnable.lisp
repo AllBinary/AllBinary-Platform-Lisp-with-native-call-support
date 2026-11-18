@@ -1,163 +1,207 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2025 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.displayable.canvas
 
--- local CommandListener = require("javax.microedition.lcdui.CommandListener")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
--- local Item = require("javax.microedition.lcdui.Item")
-local GameState = require("org.allbinary.game.state.GameState")
-local GameStateFactory = require("org.allbinary.game.state.GameStateFactory")
-local StdUtil = require("org.allbinary.logic.StdUtil")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
-local GameCanvasRunnableInterface = require("org.allbinary.game.displayable.canvas.GameCanvasRunnableInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass NullGameCanvasRunnable (JObject)
+  ((f_gameStateFactory :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar NullGameCanvasRunnable.jcell_NULL_GAME_CANVAS_RUNNABLE :jnone)
+(defun NullGameCanvasRunnable.jstatic_NULL_GAME_CANVAS_RUNNABLE ()
+  (when (eq NullGameCanvasRunnable.jcell_NULL_GAME_CANVAS_RUNNABLE :jnone) (setf NullGameCanvasRunnable.jcell_NULL_GAME_CANVAS_RUNNABLE (NullGameCanvasRunnable.jnew_0)))
+  NullGameCanvasRunnable.jcell_NULL_GAME_CANVAS_RUNNABLE)
+(defun (setf NullGameCanvasRunnable.jstatic_NULL_GAME_CANVAS_RUNNABLE) (value) (setf NullGameCanvasRunnable.jcell_NULL_GAME_CANVAS_RUNNABLE value))
 
-local NullGameCanvasRunnable = {}
-NullGameCanvasRunnable.__index = NullGameCanvasRunnable
-NullGameCanvasRunnable.className = "NullGameCanvasRunnable"
+(defun NullGameCanvasRunnable.jnew_0 ()
+  (let ((this (make-instance 'NullGameCanvasRunnable)))
+    (setf (slot-value this 'f_gameStateFactory) (GameStateFactory.jm_getInstance_0))
+    this))
 
-function NullGameCanvasRunnable:_init_fields()
-    self.gameStateFactory = GameStateFactory.getInstance()
-end
+    
+(unless (fboundp 'jm_getTitle_0) (defgeneric jm_getTitle_0 (this)))
+(defmethod jm_getTitle_0 ((this NullGameCanvasRunnable))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING)))))
 
-function NullGameCanvasRunnable.new()
-    local self = setmetatable({}, NullGameCanvasRunnable)
-    self:_init_fields()
-    return self
-end
+    
+(unless (fboundp 'jm_isInitialized_0) (defgeneric jm_isInitialized_0 (this)))
+(defmethod jm_isInitialized_0 ((this NullGameCanvasRunnable))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn nil))))
+
+    
+(unless (fboundp 'jm_isPaused_0) (defgeneric jm_isPaused_0 (this)))
+(defmethod jm_isPaused_0 ((this NullGameCanvasRunnable))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn nil))))
+
+    
+(unless (fboundp 'jm_unPause_0) (defgeneric jm_unPause_0 (this)))
+(defmethod jm_unPause_0 ((this NullGameCanvasRunnable))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_pause_0) (defgeneric jm_pause_0 (this)))
+(defmethod jm_pause_0 ((this NullGameCanvasRunnable))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_isHighScoreSubmitted_0) (defgeneric jm_isHighScoreSubmitted_0 (this)))
+(defmethod jm_isHighScoreSubmitted_0 ((this NullGameCanvasRunnable))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn nil))))
+
+    
+(unless (fboundp 'jm_setHighScoreSubmitted_1) (defgeneric jm_setHighScoreSubmitted_1 (this p1)))
+(defmethod jm_setHighScoreSubmitted_1 ((this NullGameCanvasRunnable) _highScoreSubmitted)
+  (declare (ignorable this _highScoreSubmitted))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_processGameOver_0) (defgeneric jm_processGameOver_0 (this)))
+(defmethod jm_processGameOver_0 ((this NullGameCanvasRunnable))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_isGameOver_0) (defgeneric jm_isGameOver_0 (this)))
+(defmethod jm_isGameOver_0 ((this NullGameCanvasRunnable))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn nil))))
+
+    
+(unless (fboundp 'jm_initCommands_1) (defgeneric jm_initCommands_1 (this p1)))
+(defmethod jm_initCommands_1 ((this NullGameCanvasRunnable) _cmdListener)
+  (declare (ignorable this _cmdListener))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_getCurrentStateHashtable_0) (defgeneric jm_getCurrentStateHashtable_0 (this)))
+(defmethod jm_getCurrentStateHashtable_0 ((this NullGameCanvasRunnable))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value (StdUtil.jm_getInstance_0) 'f_NULL_TABLE)))))
+
+    
+(unless (fboundp 'jm_getLoadStateHashtable_0) (defgeneric jm_getLoadStateHashtable_0 (this)))
+(defmethod jm_getLoadStateHashtable_0 ((this NullGameCanvasRunnable))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value (StdUtil.jm_getInstance_0) 'f_NULL_TABLE)))))
+
+    
+(unless (fboundp 'jm_setLoadStateHashtable_1) (defgeneric jm_setLoadStateHashtable_1 (this p1)))
+(defmethod jm_setLoadStateHashtable_1 ((this NullGameCanvasRunnable) _hashtable)
+  (declare (ignorable this _hashtable))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_getType_0) (defgeneric jm_getType_0 (this)))
+(defmethod jm_getType_0 ((this NullGameCanvasRunnable))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (JR.i32 (- 1))))))
+
+    
+(unless (fboundp 'jm_setGameState_1) (defgeneric jm_setGameState_1 (this p1)))
+(defmethod jm_setGameState_1 ((this NullGameCanvasRunnable) _gameState)
+  (declare (ignorable this _gameState))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_getGameState_0) (defgeneric jm_getGameState_0 (this)))
+(defmethod jm_getGameState_0 ((this NullGameCanvasRunnable))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value (slot-value this 'f_gameStateFactory) 'f_NO_GAME_STATE)))))
+
+    
+(unless (fboundp 'jm_itemStateChanged_1) (defgeneric jm_itemStateChanged_1 (this p1)))
+(defmethod jm_itemStateChanged_1 ((this NullGameCanvasRunnable) _item)
+  (declare (ignorable this _item))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_paint_1) (defgeneric jm_paint_1 (this p1)))
+(defmethod jm_paint_1 ((this NullGameCanvasRunnable) _graphics)
+  (declare (ignorable this _graphics))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_paintThreed_1) (defgeneric jm_paintThreed_1 (this p1)))
+(defmethod jm_paintThreed_1 ((this NullGameCanvasRunnable) _graphics)
+  (declare (ignorable this _graphics))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_isRunning_0) (defgeneric jm_isRunning_0 (this)))
+(defmethod jm_isRunning_0 ((this NullGameCanvasRunnable))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn nil))))
+
+    
+(unless (fboundp 'jm_setRunning_1) (defgeneric jm_setRunning_1 (this p1)))
+(defmethod jm_setRunning_1 ((this NullGameCanvasRunnable) _isRunning)
+  (declare (ignorable this _isRunning))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_setThread_1) (defgeneric jm_setThread_1 (this p1)))
+(defmethod jm_setThread_1 ((this NullGameCanvasRunnable) _thread)
+  (declare (ignorable this _thread))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_run_0) (defgeneric jm_run_0 (this)))
+(defmethod jm_run_0 ((this NullGameCanvasRunnable))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
 
 
-function NullGameCanvasRunnable:getTitle()
-        return StringUtil.getInstance().EMPTY_STRING
-end
-
-
-function NullGameCanvasRunnable:isInitialized()
-        return false
-end
-
-
-function NullGameCanvasRunnable:isPaused()
-        return false
-end
-
-
-function NullGameCanvasRunnable:unPause()
-end
-
-
-function NullGameCanvasRunnable:pause()
-end
-
-
-function NullGameCanvasRunnable:isHighScoreSubmitted()
-        return false
-end
-
-
--- throws Exception
-function NullGameCanvasRunnable:setHighScoreSubmitted(highScoreSubmitted)
-end
-
-
--- throws Exception
-function NullGameCanvasRunnable:processGameOver()
-end
-
-
-function NullGameCanvasRunnable:isGameOver()
-        return false
-end
-
-
-function NullGameCanvasRunnable:initCommands(cmdListener)
-end
-
-
--- throws Exception
-function NullGameCanvasRunnable:getCurrentStateHashtable()
-        return StdUtil.getInstance().NULL_TABLE
-end
-
-
--- throws Exception
-function NullGameCanvasRunnable:getLoadStateHashtable()
-        return StdUtil.getInstance().NULL_TABLE
-end
-
-
--- throws Exception
-function NullGameCanvasRunnable:setLoadStateHashtable(hashtable)
-end
-
-
-function NullGameCanvasRunnable:getType()
-        return -1
-end
-
-
--- throws Exception
-function NullGameCanvasRunnable:setGameState(gameState)
-end
-
-
-function NullGameCanvasRunnable:getGameState()
-        return self.gameStateFactory.NO_GAME_STATE
-end
-
-
-function NullGameCanvasRunnable:itemStateChanged(item)
-end
-
-
-function NullGameCanvasRunnable:paint(graphics)
-end
-
-
-function NullGameCanvasRunnable:paintThreed(graphics)
-end
-
-
-function NullGameCanvasRunnable:isRunning()
-        return false
-end
-
-
-function NullGameCanvasRunnable:setRunning(isRunning)
-end
-
-
--- throws Exception
-function NullGameCanvasRunnable:setThread(thread)
-end
-
-
-function NullGameCanvasRunnable:run()
-end
-
-NullGameCanvasRunnable.NULL_GAME_CANVAS_RUNNABLE = NullGameCanvasRunnable.new()
-
-return NullGameCanvasRunnable
 

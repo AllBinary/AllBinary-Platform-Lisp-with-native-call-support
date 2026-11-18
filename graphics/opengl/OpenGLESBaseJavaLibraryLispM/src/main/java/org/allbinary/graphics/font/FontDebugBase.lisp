@@ -1,53 +1,52 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.font
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.font
 
--- local Font = require("javax.microedition.lcdui.Font")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+;OpenGLESBaseJavaLibrary
+(defclass FontDebugBase (JObject)
+  ((f_SET_FONT :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar FontDebugBase.jcell_instanceBase :jnone)
+(defun FontDebugBase.jstatic_instanceBase ()
+  (when (eq FontDebugBase.jcell_instanceBase :jnone) (setf FontDebugBase.jcell_instanceBase (FontDebugBase.jnew_0)))
+  FontDebugBase.jcell_instanceBase)
+(defun (setf FontDebugBase.jstatic_instanceBase) (value) (setf FontDebugBase.jcell_instanceBase value))
 
---OpenGLESBaseJavaLibrary
-local FontDebugBase = {}
-FontDebugBase.__index = FontDebugBase
-FontDebugBase.className = "FontDebugBase"
+(defun FontDebugBase.jnew_0 ()
+  (let ((this (make-instance 'FontDebugBase)))
+    (setf (slot-value this 'f_SET_FONT) "setFont")
+    this))
 
-function FontDebugBase:_init_fields()
-    self.SET_FONT = "setFont"
-end
+    
+(defun FontDebugBase.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (FontDebugBase.jstatic_instanceBase)))))
 
-function FontDebugBase.new()
-    local self = setmetatable({}, FontDebugBase)
-    self:_init_fields()
-    return self
-end
+    
+(unless (fboundp 'jm_debugMetrics_4) (defgeneric jm_debugMetrics_4 (this p1 p2 p3 p4)))
+(defmethod jm_debugMetrics_4 ((this FontDebugBase) _currentFont _convertedTextSize _displayMetrics _stringBuffer)
+  (declare (ignorable this _currentFont _convertedTextSize _displayMetrics _stringBuffer))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_debugDpi_2) (defgeneric jm_debugDpi_2 (this p1 p2)))
+(defmethod jm_debugDpi_2 ((this FontDebugBase) _densityDpi _stringBuffer)
+  (declare (ignorable this _densityDpi _stringBuffer))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_debugDimension_4) (defgeneric jm_debugDimension_4 (this p1 p2 p3 p4)))
+(defmethod jm_debugDimension_4 ((this FontDebugBase) _currentFont _convertedTextSize _longestDimensionTotalPixels _stringBuffer)
+  (declare (ignorable this _currentFont _convertedTextSize _longestDimensionTotalPixels _stringBuffer))
+  (let ()
+    (block jreturn nil)))
 
 
-function FontDebugBase.getInstance()
-        return FontDebugBase.instanceBase
-end
-
-
-function FontDebugBase:debugMetrics(currentFont, convertedTextSize, displayMetrics, stringBuffer)
-end
-
-
-function FontDebugBase:debugDpi(densityDpi, stringBuffer)
-end
-
-
-function FontDebugBase:debugDimension(currentFont, convertedTextSize, longestDimensionTotalPixels, stringBuffer)
-end
-
-FontDebugBase.instanceBase = FontDebugBase.new()
-
-return FontDebugBase
 

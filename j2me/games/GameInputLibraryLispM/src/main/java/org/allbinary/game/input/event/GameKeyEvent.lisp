@@ -1,119 +1,145 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.event
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.input.event
 
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass GameKeyEvent (AllBinaryEventObject)
+  ((f_sourceId :initform 0)
+   (f_repeated :initform nil)
+   (f_key :initform 0)
+   (f_gameActionKey :initform 0)
+   (f_originalKey :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar GameKeyEvent.jcell_NONE :jnone)
+(defun GameKeyEvent.jstatic_NONE ()
+  (when (eq GameKeyEvent.jcell_NONE :jnone) (setf GameKeyEvent.jcell_NONE (GameKeyEvent.jnew_6 (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT) (JR.i32 (- 1)) (JR.i32 (- 1)) (JR.i32 (- 1)) (JR.i32 (- 1)) nil)))
+  GameKeyEvent.jcell_NONE)
+(defun (setf GameKeyEvent.jstatic_NONE) (value) (setf GameKeyEvent.jcell_NONE value))
 
-local GameKeyEvent = {}
-GameKeyEvent.__index = GameKeyEvent
-GameKeyEvent.className = "GameKeyEvent"
-setmetatable(GameKeyEvent, {__index = AllBinaryEventObject})
+    
+(defun GameKeyEvent.jm_createEvent_3 (_anyType _sourceId _key)
+  (declare (ignorable _anyType _sourceId _key))
+  (let ()
+    (block jreturn
+        (return-from jreturn (GameKeyEvent.jnew_6 _anyType _sourceId 0 0 _key nil)))))
 
-function GameKeyEvent:_init_fields()
-    self.sourceId = nil
-    self.repeated = false
-    self.key = nil
-    self.gameActionKey = 0
-    self.originalKey = 0
-end
+    
+(defun GameKeyEvent.jnew_6 (_anyType _sourceId _originalKey _gameActionKey _key _repeated)
+  (declare (ignorable _anyType _sourceId _originalKey _gameActionKey _key _repeated))
+  (let ((this (make-instance 'GameKeyEvent)))
+    
+    
+    
+    
+    
+  (let ()
+    (block jreturn
+        nil
+        (setf (slot-value this 'f_sourceId) _sourceId)
+        (jm_setOriginalKey_1 this _originalKey)
+        (setf (slot-value this 'f_key) _key)
+        (jm_setGameActionKey_1 this _gameActionKey)
+        (jm_setRepeatEvents_1 this _repeated)))
+    this))
+
+    
+(unless (fboundp 'jm_init_1) (defgeneric jm_init_1 (this p1)))
+(defmethod jm_init_1 ((this GameKeyEvent) _anyType)
+  (declare (ignorable this _anyType))
+  (let ()
+    (block jreturn
+        (jm_setSource_1 this _anyType))))
+
+    
+(unless (fboundp 'jm_setRepeatEvents_1) (defgeneric jm_setRepeatEvents_1 (this p1)))
+(defmethod jm_setRepeatEvents_1 ((this GameKeyEvent) _repeated)
+  (declare (ignorable this _repeated))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_repeated) _repeated))))
+
+    
+(unless (fboundp 'jm_hasRepeatEvents_0) (defgeneric jm_hasRepeatEvents_0 (this)))
+(defmethod jm_hasRepeatEvents_0 ((this GameKeyEvent))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_repeated)))))
+
+    
+(unless (fboundp 'jm_getKey_0) (defgeneric jm_getKey_0 (this)))
+(defmethod jm_getKey_0 ((this GameKeyEvent))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_key)))))
+
+    
+(unless (fboundp 'jm_toString_0) (defgeneric jm_toString_0 (this)))
+(defmethod jm_toString_0 ((this GameKeyEvent))
+  (declare (ignorable this))
+  (let (_stringBuffer)
+  (declare (ignorable _stringBuffer))
+    (block jreturn
+        (setf _stringBuffer (StringMaker.jnew_0))
+        (jm_append_1 _stringBuffer (JR.unescape "\\nKey: "))
+        (jm_appendint_1 _stringBuffer (jm_getKey_0 this))
+        (return-from jreturn (jm_toString_0 _stringBuffer)))))
+
+    
+(unless (fboundp 'jm_getOriginalKey_0) (defgeneric jm_getOriginalKey_0 (this)))
+(defmethod jm_getOriginalKey_0 ((this GameKeyEvent))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_originalKey)))))
+
+    
+(unless (fboundp 'jm_setOriginalKey_1) (defgeneric jm_setOriginalKey_1 (this p1)))
+(defmethod jm_setOriginalKey_1 ((this GameKeyEvent) _originalKey)
+  (declare (ignorable this _originalKey))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_originalKey) _originalKey))))
+
+    
+(unless (fboundp 'jm_getGameActionKey_0) (defgeneric jm_getGameActionKey_0 (this)))
+(defmethod jm_getGameActionKey_0 ((this GameKeyEvent))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_gameActionKey)))))
+
+    
+(unless (fboundp 'jm_setGameActionKey_1) (defgeneric jm_setGameActionKey_1 (this p1)))
+(defmethod jm_setGameActionKey_1 ((this GameKeyEvent) _gameActionKey)
+  (declare (ignorable this _gameActionKey))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_gameActionKey) _gameActionKey))))
+
+    
+(unless (fboundp 'jm_getSourceId_0) (defgeneric jm_getSourceId_0 (this)))
+(defmethod jm_getSourceId_0 ((this GameKeyEvent))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_sourceId)))))
 
 
-function GameKeyEvent.createEvent(anyType, sourceId, key)
-        return GameKeyEvent.new(anyType, sourceId, 0, 0, key, false)
-end
-
-
-function GameKeyEvent.new(anyType, sourceId, originalKey, gameActionKey, key, repeated)
-    local self = setmetatable(AllBinaryEventObject.new(anyType), GameKeyEvent)
-    self:_init_fields()
-        -- super(...) made self above
-        self.sourceId = sourceId
-        self:setOriginalKey(originalKey)
-        self.key = key
-        self:setGameActionKey(gameActionKey)
-        self:setRepeatEvents(repeated)
-    return self
-end
-
-
-function GameKeyEvent:init(anyType)
-        self:setSource(anyType)
-end
-
-
-function GameKeyEvent:setRepeatEvents(repeated)
-        self.repeated = repeated
-end
-
-
-function GameKeyEvent:hasRepeatEvents()
-        return self.repeated
-end
-
-
-function GameKeyEvent:getKey()
-        return self.key
-end
-
-
-function GameKeyEvent:toString()
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append("\nKey: ")
-        stringBuffer:appendint(self:getKey())
-        return tostring(stringBuffer)
-end
-GameKeyEvent.__tostring = function(self) return self:toString() end
-
-
-function GameKeyEvent:getOriginalKey()
-        return self.originalKey
-end
-
-
-function GameKeyEvent:setOriginalKey(originalKey)
-        self.originalKey = originalKey
-end
-
-
-function GameKeyEvent:getGameActionKey()
-        return self.gameActionKey
-end
-
-
-function GameKeyEvent:setGameActionKey(gameActionKey)
-        self.gameActionKey = gameActionKey
-end
-
-
-function GameKeyEvent:getSourceId()
-        return self.sourceId
-end
-
-GameKeyEvent.NONE = GameKeyEvent.new(NullUtil.getInstance().NULL_OBJECT, -1, -1, -1, -1, false)
-
-return GameKeyEvent
 

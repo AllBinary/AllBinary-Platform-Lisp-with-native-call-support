@@ -1,57 +1,50 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.collision
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.collision
 
-local CollidableBaseBehaviorFactory = require("org.allbinary.game.collision.CollidableBaseBehaviorFactory")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass CollidableNeverCollideBehaviorFactory (CollidableBaseBehaviorFactory)
+  ((f_instance :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar CollidableNeverCollideBehaviorFactory.jcell_instanceC :jnone)
+(defun CollidableNeverCollideBehaviorFactory.jstatic_instanceC ()
+  (when (eq CollidableNeverCollideBehaviorFactory.jcell_instanceC :jnone) (setf CollidableNeverCollideBehaviorFactory.jcell_instanceC (CollidableNeverCollideBehaviorFactory.jnew_0)))
+  CollidableNeverCollideBehaviorFactory.jcell_instanceC)
+(defun (setf CollidableNeverCollideBehaviorFactory.jstatic_instanceC) (value) (setf CollidableNeverCollideBehaviorFactory.jcell_instanceC value))
 
-local CollidableNeverCollideBehaviorFactory = {}
-CollidableNeverCollideBehaviorFactory.__index = CollidableNeverCollideBehaviorFactory
-CollidableNeverCollideBehaviorFactory.className = "CollidableNeverCollideBehaviorFactory"
-setmetatable(CollidableNeverCollideBehaviorFactory, {__index = CollidableBaseBehaviorFactory})
+(defun CollidableNeverCollideBehaviorFactory.jnew_0 ()
+  (let ((this (make-instance 'CollidableNeverCollideBehaviorFactory)))
+    (setf (slot-value this 'f_instance) (CollidableNeverCollideBehavior.jnew_1 nil))
+    this))
 
-function CollidableNeverCollideBehaviorFactory:_init_fields()
-    self.instance = CollidableNeverCollideBehavior.new(false)
-end
+    
+(defun CollidableNeverCollideBehaviorFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (CollidableNeverCollideBehaviorFactory.jstatic_instanceC)))))
 
-function CollidableNeverCollideBehaviorFactory.new()
-    local self = setmetatable(CollidableBaseBehaviorFactory.new(), CollidableNeverCollideBehaviorFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function CollidableNeverCollideBehaviorFactory.getInstance()
-        return CollidableNeverCollideBehaviorFactory.instanceC
-end
+    
+(unless (fboundp 'jm_createBehavior_0) (defgeneric jm_createBehavior_0 (this)))
+(defmethod jm_createBehavior_0 ((this CollidableNeverCollideBehaviorFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_instance)))))
 
 
-function CollidableNeverCollideBehaviorFactory:createBehavior()
-        return self.instance
-end
-
-CollidableNeverCollideBehaviorFactory.instanceC = CollidableNeverCollideBehaviorFactory.new()
-
-return CollidableNeverCollideBehaviorFactory
 

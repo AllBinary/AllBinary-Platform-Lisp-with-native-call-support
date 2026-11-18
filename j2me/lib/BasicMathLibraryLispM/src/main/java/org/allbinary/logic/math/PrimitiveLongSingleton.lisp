@@ -29,6 +29,7 @@
 (defun PrimitiveLongSingleton.jstatic_instance ()
   (when (eq PrimitiveLongSingleton.jcell_instance :jnone) (setf PrimitiveLongSingleton.jcell_instance (PrimitiveLongSingleton.jnew_0)))
   PrimitiveLongSingleton.jcell_instance)
+(defun (setf PrimitiveLongSingleton.jstatic_instance) (value) (setf PrimitiveLongSingleton.jcell_instance value))
 
 (defun PrimitiveLongSingleton.jnew_0 ()
   (let ((this (make-instance 'PrimitiveLongSingleton)))

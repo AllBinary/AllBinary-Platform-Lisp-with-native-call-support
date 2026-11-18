@@ -1,169 +1,169 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2011 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2011 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation
 
-local FeatureResourceAnimationInterfaceFactoryInterface = require("org.allbinary.animation.resource.FeatureResourceAnimationInterfaceFactoryInterface")
-local GameConfigurationCentral = require("org.allbinary.game.configuration.GameConfigurationCentral")
-local FeaturedResourceFactory = require("org.allbinary.game.resource.FeaturedResourceFactory")
-local PointFactory = require("org.allbinary.graphics.PointFactory")
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local RectangleFactory = require("org.allbinary.graphics.RectangleFactory")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(defclass FeaturedAnimationInterfaceFactoryInterfaceFactory (FeaturedResourceFactory)
+  ())
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defvar FeaturedAnimationInterfaceFactoryInterfaceFactory.jcell_INSTANCE :jnone)
+(defun FeaturedAnimationInterfaceFactoryInterfaceFactory.jstatic_INSTANCE ()
+  (when (eq FeaturedAnimationInterfaceFactoryInterfaceFactory.jcell_INSTANCE :jnone) (setf FeaturedAnimationInterfaceFactoryInterfaceFactory.jcell_INSTANCE (FeaturedAnimationInterfaceFactoryInterfaceFactory.jnew_0)))
+  FeaturedAnimationInterfaceFactoryInterfaceFactory.jcell_INSTANCE)
+(defun (setf FeaturedAnimationInterfaceFactoryInterfaceFactory.jstatic_INSTANCE) (value) (setf FeaturedAnimationInterfaceFactoryInterfaceFactory.jcell_INSTANCE value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun FeaturedAnimationInterfaceFactoryInterfaceFactory.jnew_0 ()
+  (let ((this (make-instance 'FeaturedAnimationInterfaceFactoryInterfaceFactory)))
+  (let ()
+    (block jreturn nil))
+    this))
 
-local FeaturedAnimationInterfaceFactoryInterfaceFactory = {}
-FeaturedAnimationInterfaceFactoryInterfaceFactory.__index = FeaturedAnimationInterfaceFactoryInterfaceFactory
-FeaturedAnimationInterfaceFactoryInterfaceFactory.className = "FeaturedAnimationInterfaceFactoryInterfaceFactory"
-setmetatable(FeaturedAnimationInterfaceFactoryInterfaceFactory, {__index = FeaturedResourceFactory})
+    
+(defun FeaturedAnimationInterfaceFactoryInterfaceFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (FeaturedAnimationInterfaceFactoryInterfaceFactory.jstatic_INSTANCE)))))
+
+    
+(unless (fboundp 'jm_getRectangle_1) (defgeneric jm_getRectangle_1 (this p1)))
+(defmethod jm_getRectangle_1 ((this FeaturedAnimationInterfaceFactoryInterfaceFactory) _resource)
+  (declare (ignorable this _resource))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getRectangleXY_3 this _resource 0 0)))))
+
+    
+(unless (fboundp 'jm_getRectangleXY_3) (defgeneric jm_getRectangleXY_3 (this p1 p2 p3)))
+(defmethod jm_getRectangleXY_3 ((this FeaturedAnimationInterfaceFactoryInterfaceFactory) _resource _x _y)
+  (declare (ignorable this _resource _x _y))
+  (let (_pointFactory _list _scale _size _featureInterface _rectangle _index)
+  (declare (ignorable _pointFactory _list _scale _size _featureInterface _rectangle _index))
+    (block jreturn
+        (setf _pointFactory (PointFactory.jm_getInstance_0))
+        (setf _list (jm_getList_0 this))
+        (setf _scale (jm_intValue_0 (jm_getValue_0 (slot-value (GameConfigurationCentral.jm_getInstance_0) 'f_SCALE))))
+        (setf _size (jm_size_0 (jm_getList_0 this)))
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (setf _featureInterface (aref (slot-value _list 'f_objectArray) _index))
+            (if (jm_isFeature_0 _featureInterface)
+                (progn
+                (setf _rectangle (jm_getRectangle_1 _featureInterface _resource))
+                (if (not (eq _rectangle (RectangleFactory.jstatic_SINGLETON)))
+                    (progn
+                    (return-from jreturn (Rectangle.jnew_3 (jm_createXY_2 _pointFactory _x _y) (ash (JR.i32 (* (jm_getWidth_0 _rectangle) _scale)) (- (logand 1 31))) (ash (JR.i32 (* (jm_getHeight_0 _rectangle) _scale)) (- (logand 1 31))))))))))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (error (JR.newException "Exception" (jm_toString_0 (jm_append_1 (jm_append_1 (StringMaker.jnew_0) "No rectangle available for current feature selection or Resource: ") _resource)))))))
+
+    
+(unless (fboundp 'jm_getProcedural_1) (defgeneric jm_getProcedural_1 (this p1)))
+(defmethod jm_getProcedural_1 ((this FeaturedAnimationInterfaceFactoryInterfaceFactory) _resource)
+  (declare (ignorable this _resource))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getBasicAnimationInterfaceFactoryInstance_1 this _resource)))))
+
+    
+(unless (fboundp 'jm_get_1) (defgeneric jm_get_1 (this p1)))
+(defmethod jm_get_1 ((this FeaturedAnimationInterfaceFactoryInterfaceFactory) _resource)
+  (declare (ignorable this _resource))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getBasicAnimationInterfaceFactoryInstance_1 this _resource)))))
+
+    
+(unless (fboundp 'jm_getBasicAnimationInterfaceFactoryInstance_1) (defgeneric jm_getBasicAnimationInterfaceFactoryInstance_1 (this p1)))
+(defmethod jm_getBasicAnimationInterfaceFactoryInstance_1 ((this FeaturedAnimationInterfaceFactoryInterfaceFactory) _resource)
+  (declare (ignorable this _resource))
+  (let (_list _resourceTypeAvailableList _size _featureInterface _animationInterfaceFactoryInterface _index _stringBuffer _result _NO_ANIMATION_AVAILABLE_FROM _FOR_FACTORIES _FOR_RESOURCE _HAS_KEY _RESOURCES_LABEL _size2)
+  (declare (ignorable _list _resourceTypeAvailableList _size _featureInterface _animationInterfaceFactoryInterface _index _stringBuffer _result _NO_ANIMATION_AVAILABLE_FROM _FOR_FACTORIES _FOR_RESOURCE _HAS_KEY _RESOURCES_LABEL _size2))
+    (block jreturn
+        (setf _list (jm_getList_0 this))
+        (setf _resourceTypeAvailableList (BasicArrayListD.jnew_0))
+        (setf _size (jm_size_0 (jm_getList_0 this)))
+        (setf _featureInterface nil)
+        (setf _animationInterfaceFactoryInterface nil)
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (setf _featureInterface (aref (slot-value _list 'f_objectArray) _index))
+            (if (jm_isFeature_0 _featureInterface)
+                (progn
+                (jm_add_1 _resourceTypeAvailableList _featureInterface)
+                (setf _animationInterfaceFactoryInterface (jm_getBasicAnimationInterfaceFactoryInstance_1 _featureInterface _resource))
+                (if (not (eq _animationInterfaceFactoryInterface (NullAnimationFactory.jstatic_NULL_NOT_FOR_USE_ANIMATION_FACTORY)))
+                    (progn
+                    (return-from jreturn _animationInterfaceFactoryInterface))))))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (if (> (jm_size_0 _resourceTypeAvailableList) 0)
+            (progn
+            (setf _NO_ANIMATION_AVAILABLE_FROM "No animation available from: ")
+            (setf _FOR_FACTORIES " factories: ")
+            (setf _FOR_RESOURCE " for Resource: ")
+            (setf _HAS_KEY " has: ")
+            (setf _RESOURCES_LABEL " resources ")
+            (setf _stringBuffer (StringMaker.jnew_0))
+            (jm_append_1 _stringBuffer _NO_ANIMATION_AVAILABLE_FROM)
+            (jm_appendint_1 _stringBuffer (jm_size_0 _resourceTypeAvailableList))
+            (jm_append_1 _stringBuffer (slot-value (CommonSeps.jm_getInstance_0) 'f_FORWARD_SLASH))
+            (jm_appendint_1 _stringBuffer _size)
+            (jm_append_1 _stringBuffer _FOR_FACTORIES)
+            (setf _size2 (jm_size_0 _resourceTypeAvailableList))
+            (progn
+                (setf _index 0)
+                (block jbreak (loop while (< _index _size2) do
+                    (block jcontinue
+                (jm_append_1 _stringBuffer (JR.toString (jm_get_1 _resourceTypeAvailableList _index)))
+                (jm_append_1 _stringBuffer (slot-value (CommonSeps.jm_getInstance_0) 'f_COMMA_SEP)))
+                    (setf _index (JR.i32 (+ _index 1))))))
+            (jm_append_1 _stringBuffer _FOR_RESOURCE)
+            (jm_append_1 _stringBuffer _resource)
+            (progn
+                (setf _index 0)
+                (block jbreak (loop while (< _index _size) do
+                    (block jcontinue
+                (jm_append_1 _stringBuffer (slot-value (CommonSeps.jm_getInstance_0) 'f_NEW_LINE))
+                (setf _featureInterface (aref (slot-value _list 'f_objectArray) _index))
+                (if (jm_isFeature_0 _featureInterface)
+                    (progn
+                    (jm_append_1 _stringBuffer (jm_toString_1 (StringUtil.jm_getInstance_0) _featureInterface))
+                    (jm_append_1 _stringBuffer _HAS_KEY)
+                    (jm_appendint_1 _stringBuffer (jm_size_0 (jm_getHashtable_0 _featureInterface)))
+                    (jm_append_1 _stringBuffer _RESOURCES_LABEL))))
+                    (setf _index (JR.i32 (+ _index 1))))))
+            (error (JR.newException "Exception" (jm_toString_0 _stringBuffer))))
+            (progn
+            (setf _stringBuffer (StringMaker.jnew_0))
+            (progn
+                (setf _index 0)
+                (block jbreak (loop while (< _index _size) do
+                    (block jcontinue
+                (setf _featureInterface (aref (slot-value _list 'f_objectArray) _index))
+                (jm_append_1 _stringBuffer (jm_toString_0 _featureInterface))
+                (jm_append_1 _stringBuffer (slot-value (CommonSeps.jm_getInstance_0) 'f_SPACE)))
+                    (setf _index (JR.i32 (+ _index 1))))))
+            (setf _result (jm_toString_0 _stringBuffer))
+            (jm_delete_2 _stringBuffer 0 (jm_length_0 _stringBuffer))
+            (error (JR.newException "Exception" (jm_toString_0 (jm_append_1 (jm_append_1 (jm_append_1 (jm_append_1 _stringBuffer "No feature resource type available for Resource: ") _resource) " Resource Factories Available: ") _result)))))))))
 
 
-function FeaturedAnimationInterfaceFactoryInterfaceFactory.new()
-    local self = setmetatable(FeaturedResourceFactory.new(), FeaturedAnimationInterfaceFactoryInterfaceFactory)
-    return self
-end
-
-
-function FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance()
-        return FeaturedAnimationInterfaceFactoryInterfaceFactory.INSTANCE
-end
-
-
--- throws Exception
-function FeaturedAnimationInterfaceFactoryInterfaceFactory:getRectangle(resource)
-        return self:getRectangleXY(resource, 0, 0)
-end
-
-
--- throws Exception
-function FeaturedAnimationInterfaceFactoryInterfaceFactory:getRectangleXY(resource, x, y)
-        local pointFactory = PointFactory.getInstance()
-        local list = self:getList()
-        local scale = math.tointeger(GameConfigurationCentral.getInstance().SCALE:getValue() // 1)
-        local size = self:getList():size()
-        for index = 0, size - 1 do
-            local featureInterface = list.objectArray[index + 1]
-            if featureInterface:isFeature() then
-                local rectangle = featureInterface:getRectangle(resource)
-                if rectangle ~= RectangleFactory.SINGLETON then
-                    return Rectangle.new(pointFactory:createXY(x, y), ((((rectangle:getWidth() * scale)) // (1 << (1)))), ((((rectangle:getHeight() * scale)) // (1 << (1)))))
-                end
-            end
-        end
-        error(java_exception("Exception", tostring(StringMaker.new():append("No rectangle available for current feature selection or Resource: "):append(resource))), 0)
-end
-
-
--- throws Exception
-function FeaturedAnimationInterfaceFactoryInterfaceFactory:getProcedural(resource)
-        return self:getBasicAnimationInterfaceFactoryInstance(resource)
-end
-
-
--- throws Exception
-function FeaturedAnimationInterfaceFactoryInterfaceFactory:get(resource)
-        return self:getBasicAnimationInterfaceFactoryInstance(resource)
-end
-
-
--- throws Exception
-function FeaturedAnimationInterfaceFactoryInterfaceFactory:getBasicAnimationInterfaceFactoryInstance(resource)
-        local list = self:getList()
-        local resourceTypeAvailableList = BasicArrayListD.new()
-        local size = self:getList():size()
-        local featureInterface = nil
-        local animationInterfaceFactoryInterface = nil
-        for index = 0, size - 1 do
-            featureInterface = list.objectArray[index + 1]
-            if featureInterface:isFeature() then
-                resourceTypeAvailableList:add(featureInterface)
-                animationInterfaceFactoryInterface = featureInterface:getBasicAnimationInterfaceFactoryInstance(resource)
-                if animationInterfaceFactoryInterface ~= NullAnimationFactory.NULL_NOT_FOR_USE_ANIMATION_FACTORY then
-                    return animationInterfaceFactoryInterface
-                end
-            end
-        end
-        if resourceTypeAvailableList:size() > 0 then
-            local NO_ANIMATION_AVAILABLE_FROM = "No animation available from: "
-            local FOR_FACTORIES = " factories: "
-            local FOR_RESOURCE = " for Resource: "
-            local HAS_KEY = " has: "
-            local RESOURCES_LABEL = " resources "
-            local stringBuffer = StringMaker.new()
-            stringBuffer:append(NO_ANIMATION_AVAILABLE_FROM)
-            stringBuffer:appendint(resourceTypeAvailableList:size())
-            stringBuffer:append(CommonSeps.getInstance().FORWARD_SLASH)
-            stringBuffer:appendint(size)
-            stringBuffer:append(FOR_FACTORIES)
-            local size2 = resourceTypeAvailableList:size()
-            for index = 0, size2 - 1 do
-                stringBuffer:append(tostring(resourceTypeAvailableList:get(index)))
-                stringBuffer:append(CommonSeps.getInstance().COMMA_SEP)
-            end
-            stringBuffer:append(FOR_RESOURCE)
-            stringBuffer:append(resource)
-            for index = 0, size - 1 do
-                stringBuffer:append(CommonSeps.getInstance().NEW_LINE)
-                featureInterface = list.objectArray[index + 1]
-                if featureInterface:isFeature() then
-                    stringBuffer:append(StringUtil.getInstance():toString(featureInterface))
-                    stringBuffer:append(HAS_KEY)
-                    stringBuffer:appendint(featureInterface:getHashtable():size())
-                    stringBuffer:append(RESOURCES_LABEL)
-                end
-            end
-            error(java_exception("Exception", tostring(stringBuffer)), 0)
-        else
-            local stringBuffer = StringMaker.new()
-            for index = 0, size - 1 do
-                featureInterface = list.objectArray[index + 1]
-                stringBuffer:append(tostring(featureInterface))
-                stringBuffer:append(CommonSeps.getInstance().SPACE)
-            end
-            local result = tostring(stringBuffer)
-            stringBuffer:delete(0, stringBuffer:length())
-            error(java_exception("Exception", tostring(stringBuffer:append("No feature resource type available for Resource: "):append(resource):append(" Resource Factories Available: "):append(result))), 0)
-        end
-end
-
-FeaturedAnimationInterfaceFactoryInterfaceFactory.INSTANCE = FeaturedAnimationInterfaceFactoryInterfaceFactory.new()
-
-return FeaturedAnimationInterfaceFactoryInterfaceFactory
 

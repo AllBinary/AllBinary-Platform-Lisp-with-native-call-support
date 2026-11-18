@@ -29,6 +29,7 @@
 (defun SystemProperties.jstatic_instance ()
   (when (eq SystemProperties.jcell_instance :jnone) (setf SystemProperties.jcell_instance (SystemProperties.jnew_0)))
   SystemProperties.jcell_instance)
+(defun (setf SystemProperties.jstatic_instance) (value) (setf SystemProperties.jcell_instance value))
 
     
 (defun SystemProperties.jm_getInstance_0 ()

@@ -25,6 +25,7 @@
 (defun LicenseStupidTimerFactory.jstatic_instance ()
   (when (eq LicenseStupidTimerFactory.jcell_instance :jnone) (setf LicenseStupidTimerFactory.jcell_instance (StupidTimer.jnew_0)))
   LicenseStupidTimerFactory.jcell_instance)
+(defun (setf LicenseStupidTimerFactory.jstatic_instance) (value) (setf LicenseStupidTimerFactory.jcell_instance value))
 
 (defun LicenseStupidTimerFactory.jnew_0 ()
   (let ((this (make-instance 'LicenseStupidTimerFactory)))

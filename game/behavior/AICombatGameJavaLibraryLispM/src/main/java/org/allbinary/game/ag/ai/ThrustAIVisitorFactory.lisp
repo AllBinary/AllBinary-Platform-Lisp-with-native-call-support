@@ -1,45 +1,41 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.ag.ai
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass ThrustAIVisitorFactory (JObject)
+  ())
+
+(defvar ThrustAIVisitorFactory.jcell_instance :jnone)
+(defun ThrustAIVisitorFactory.jstatic_instance ()
+  (when (eq ThrustAIVisitorFactory.jcell_instance :jnone) (setf ThrustAIVisitorFactory.jcell_instance (ThrustAIVisitor.jnew_0)))
+  ThrustAIVisitorFactory.jcell_instance)
+(defun (setf ThrustAIVisitorFactory.jstatic_instance) (value) (setf ThrustAIVisitorFactory.jcell_instance value))
+
+(defun ThrustAIVisitorFactory.jnew_0 ()
+  (let ((this (make-instance 'ThrustAIVisitorFactory)))
+    this))
+
+    
+(defun ThrustAIVisitorFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (ThrustAIVisitorFactory.jstatic_instance)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ThrustAIVisitorFactory = {}
-ThrustAIVisitorFactory.__index = ThrustAIVisitorFactory
-ThrustAIVisitorFactory.className = "ThrustAIVisitorFactory"
-
-function ThrustAIVisitorFactory.new()
-    local self = setmetatable({}, ThrustAIVisitorFactory)
-    return self
-end
-
-
-function ThrustAIVisitorFactory.getInstance()
-        return ThrustAIVisitorFactory.instance
-end
-
-ThrustAIVisitorFactory.instance = ThrustAIVisitor.new()
-
-return ThrustAIVisitorFactory
 

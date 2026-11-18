@@ -1,67 +1,61 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.collision
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.collision
 
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local GameFeatureFactory = require("org.allbinary.game.configuration.feature.GameFeatureFactory")
-local OpenGLFeatureUtil = require("org.allbinary.graphics.opengles.OpenGLFeatureUtil")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass LayerCollisionUtil (JObject)
+  ((f_collisionProcessor :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar LayerCollisionUtil.jcell_instance :jnone)
+(defun LayerCollisionUtil.jstatic_instance ()
+  (when (eq LayerCollisionUtil.jcell_instance :jnone) (setf LayerCollisionUtil.jcell_instance (LayerCollisionUtil.jnew_0)))
+  LayerCollisionUtil.jcell_instance)
+(defun (setf LayerCollisionUtil.jstatic_instance) (value) (setf LayerCollisionUtil.jcell_instance value))
 
-local LayerCollisionUtil = {}
-LayerCollisionUtil.__index = LayerCollisionUtil
-LayerCollisionUtil.className = "LayerCollisionUtil"
+    
+(defun LayerCollisionUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (LayerCollisionUtil.jstatic_instance)))))
 
-function LayerCollisionUtil:_init_fields()
-    self.collisionProcessor = nil
-end
+    
+(defun LayerCollisionUtil.jnew_0 ()
+  (let ((this (make-instance 'LayerCollisionUtil)))
+    
+  (let (_features _gameFeatureFactory)
+  (declare (ignorable _features _gameFeatureFactory))
+    (block jreturn
+        (setf _features (Features.jm_getInstance_0))
+        (setf _gameFeatureFactory (GameFeatureFactory.jm_getInstance_0))
+        (if (and (jm_isAnyThreed_0 (OpenGLFeatureUtil.jm_getInstance_0)) (not (jm_isFeature_1 _features (slot-value _gameFeatureFactory 'f_COLLISIONS_FORCED_TWO_DIMENSIONAL))))
+            (progn
+            (setf (slot-value this 'f_collisionProcessor) (CollisionThreedProcessor.jnew_0)))
+            (progn
+            (setf (slot-value this 'f_collisionProcessor) (Collision2DProcessor.jnew_0))))))
+    this))
+
+    
+(unless (fboundp 'jm_isCollision_2) (defgeneric jm_isCollision_2 (this p1 p2)))
+(defmethod jm_isCollision_2 ((this LayerCollisionUtil) _myLayer _myLayer2)
+  (declare (ignorable this _myLayer _myLayer2))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_isCollision_2 (slot-value this 'f_collisionProcessor) _myLayer _myLayer2)))))
 
 
-function LayerCollisionUtil.getInstance()
-        return LayerCollisionUtil.instance
-end
-
-
-function LayerCollisionUtil.new()
-    local self = setmetatable({}, LayerCollisionUtil)
-    self:_init_fields()
-        local features = Features.getInstance()
-        local gameFeatureFactory = GameFeatureFactory.getInstance()
-        if OpenGLFeatureUtil.getInstance():isAnyThreed() and not features:isFeature(gameFeatureFactory.COLLISIONS_FORCED_TWO_DIMENSIONAL) then
-            self.collisionProcessor = CollisionThreedProcessor.new()
-        else
-            self.collisionProcessor = Collision2DProcessor.new()
-        end
-    return self
-end
-
-
-function LayerCollisionUtil:isCollision(myLayer, myLayer2)
-        return self.collisionProcessor:isCollision(myLayer, myLayer2)
-end
-
-LayerCollisionUtil.instance = LayerCollisionUtil.new()
-
-return LayerCollisionUtil
 

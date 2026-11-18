@@ -13,6 +13,7 @@
 (defun MathUtil.jstatic_instance ()
   (when (eq MathUtil.jcell_instance :jnone) (setf MathUtil.jcell_instance (MathUtil.jnew_0)))
   MathUtil.jcell_instance)
+(defun (setf MathUtil.jstatic_instance) (value) (setf MathUtil.jcell_instance value))
 
 (defun MathUtil.jnew_0 ()
   (let ((this (make-instance 'MathUtil)))

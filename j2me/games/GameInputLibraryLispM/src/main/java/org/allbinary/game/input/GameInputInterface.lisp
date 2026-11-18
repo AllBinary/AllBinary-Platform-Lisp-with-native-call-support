@@ -1,48 +1,41 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.input
 
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local NamedInterface = require("org.allbinary.layer.NamedInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass GameInputInterface (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun GameInputInterface.jnew_0 ()
+  (let ((this (make-instance 'GameInputInterface)))
+    this))
 
--- Java interface
-local GameInputInterface = {}
-GameInputInterface.__index = GameInputInterface
-GameInputInterface.className = "GameInputInterface"
-setmetatable(GameInputInterface, {__index = NamedInterface})
+    
+(unless (fboundp 'jm_processInput_1) (defgeneric jm_processInput_1 (this p1)))
+(defmethod jm_processInput_1 ((this GameInputInterface) _layerManager)
+  (declare (ignorable this _layerManager))
+  (error (JR.newException "AbstractMethodError" "processInput")))
 
-
--- throws Exception
-function GameInputInterface:processInput(layerManager)
-    error("abstract method processInput")
-end
+    
+(unless (fboundp 'jm_initInputProcessors_0) (defgeneric jm_initInputProcessors_0 (this)))
+(defmethod jm_initInputProcessors_0 ((this GameInputInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "initInputProcessors")))
 
 
-function GameInputInterface:initInputProcessors()
-    error("abstract method initInputProcessors")
-end
-
-return GameInputInterface
 

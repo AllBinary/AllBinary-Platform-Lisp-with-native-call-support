@@ -1,45 +1,37 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation
 
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local VectorAnimationFactoryInterface = require("org.allbinary.animation.VectorAnimationFactoryInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass VectorAnimationFactory (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun VectorAnimationFactory.jnew_0 ()
+  (let ((this (make-instance 'VectorAnimationFactory)))
+    this))
 
-local VectorAnimationFactory = {}
-VectorAnimationFactory.__index = VectorAnimationFactory
-VectorAnimationFactory.className = "VectorAnimationFactory"
-
-function VectorAnimationFactory.new()
-    local self = setmetatable({}, VectorAnimationFactory)
-    return self
-end
+    
+(unless (fboundp 'jm_getInstance_2) (defgeneric jm_getInstance_2 (this p1 p2)))
+(defmethod jm_getInstance_2 ((this VectorAnimationFactory) _points _basicColor)
+  (declare (ignorable this _points _basicColor))
+  (let ()
+    (block jreturn
+        (return-from jreturn (VectorAnimation.jnew_3 _points _basicColor (AnimationBehavior.jm_getInstance_0))))))
 
 
-function VectorAnimationFactory:getInstance(points, basicColor)
-        return VectorAnimation.new(points, basicColor, AnimationBehavior.getInstance())
-end
-
-return VectorAnimationFactory
 

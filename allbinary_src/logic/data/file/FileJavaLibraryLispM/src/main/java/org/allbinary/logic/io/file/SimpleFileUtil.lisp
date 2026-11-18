@@ -1,165 +1,139 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io.file
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2025 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.io.file
 
--- local ByteArrayOutputStream = require("java.io.ByteArrayOutputStream")
--- local InputStream = require("java.io.InputStream")
--- local OutputStream = require("java.io.OutputStream")
--- local Reader = require("java.io.Reader")
--- local Writer = require("java.io.Writer")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local NullOutputStream = require("org.allbinary.logic.io.NullOutputStream")
-local NullReader = require("org.allbinary.logic.io.NullReader")
-local NullWriter = require("org.allbinary.logic.io.NullWriter")
-local StreamUtil = require("org.allbinary.logic.io.StreamUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
--- Java library java.io.ByteArrayOutputStream
-local function java_byte_array_output_stream()
-    local stream = {buffer = {}}
-    function stream:write(value, offset, length)
-        if type(value) == "table" then
-            local first = (offset or 0) + 1
-            local last = first + (length or #value) - 1
-            for index = first, last do self.buffer[#self.buffer + 1] = string.char(value[index] % 256) end
-        elseif type(value) == "number" then
-            self.buffer[#self.buffer + 1] = string.char(value % 256)
-        else
-            self.buffer[#self.buffer + 1] = tostring(value)
-        end
-    end
-    function stream:toString() return table.concat(self.buffer) end
-    function stream:size() return #table.concat(self.buffer) end
-    function stream:reset() self.buffer = {} end
-    function stream:flush() end
-    function stream:close() end
-    return setmetatable(stream, {__tostring = function(self) return table.concat(self.buffer) end})
-end
+(defclass SimpleFileUtil (JObject)
+  ((f_logUtil :initform nil)
+   (f_NULL_WRITER :initform nil)
+   (f_NULL_READER :initform nil)
+   (f_commonStrings :initform nil)
+   (f_nullUtil :initform nil)
+   (f_streamUtil :initform nil)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defvar SimpleFileUtil.jcell_instance :jnone)
+(defun SimpleFileUtil.jstatic_instance ()
+  (when (eq SimpleFileUtil.jcell_instance :jnone) (setf SimpleFileUtil.jcell_instance (SimpleFileUtil.jnew_0)))
+  SimpleFileUtil.jcell_instance)
+(defun (setf SimpleFileUtil.jstatic_instance) (value) (setf SimpleFileUtil.jcell_instance value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun SimpleFileUtil.jnew_0 ()
+  (let ((this (make-instance 'SimpleFileUtil)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_NULL_WRITER) (SimpleFileUtil.jm_nullWriter_0))
+    (setf (slot-value this 'f_NULL_READER) (SimpleFileUtil.jm_nullReader_0))
+    (setf (slot-value this 'f_commonStrings) (CommonStrings.jm_getInstance_0))
+    (setf (slot-value this 'f_nullUtil) (NullUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_streamUtil) (StreamUtil.jm_getInstance_0))
+    this))
 
-local SimpleFileUtil = {}
-SimpleFileUtil.__index = SimpleFileUtil
-SimpleFileUtil.className = "SimpleFileUtil"
+    
+(defun SimpleFileUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (SimpleFileUtil.jstatic_instance)))))
 
-function SimpleFileUtil:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.NULL_WRITER = SimpleFileUtil.nullWriter()
-    self.NULL_READER = SimpleFileUtil.nullReader()
-    self.commonStrings = CommonStrings.getInstance()
-    self.nullUtil = NullUtil.getInstance()
-    self.streamUtil = StreamUtil.getInstance()
-end
+    
+(defun SimpleFileUtil.jm_nullOutputStream_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (NullOutputStream.jstatic_NULL_OUTPUT_STREAM)))))
 
-function SimpleFileUtil.new()
-    local self = setmetatable({}, SimpleFileUtil)
-    self:_init_fields()
-    return self
-end
+    
+(defun SimpleFileUtil.jm_nullWriter_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (NullWriter.jstatic_NULL_WRITER)))))
 
+    
+(defun SimpleFileUtil.jm_nullReader_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (NullReader.jstatic_NULL_READER)))))
 
-function SimpleFileUtil.getInstance()
-        return SimpleFileUtil.instance
-end
+    
+(unless (fboundp 'jm_loadFileAsList_3) (defgeneric jm_loadFileAsList_3 (this p1 p2 p3)))
+(defmethod jm_loadFileAsList_3 ((this SimpleFileUtil) _inputStream _max _byteArray1)
+  (declare (ignorable this _inputStream _max _byteArray1))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_loadFileAsListReturnLine_4 this _inputStream _max _byteArray1 0)))))
 
+    
+(unless (fboundp 'jm_loadFileAsListReturnLine_4) (defgeneric jm_loadFileAsListReturnLine_4 (this p1 p2 p3 p4)))
+(defmethod jm_loadFileAsListReturnLine_4 ((this SimpleFileUtil) _inputStream _max _byteArray1 _includeReturnLine)
+  (declare (ignorable this _inputStream _max _byteArray1 _includeReturnLine))
+  (let (_stringList _byteArray _outputStream2 _size _index _startIndex _returnLine _s)
+  (declare (ignorable _stringList _byteArray _outputStream2 _size _index _startIndex _returnLine _s))
+    (block jreturn
+        (setf _stringList (BasicArrayListD.jnew_0))
+        (if (null _inputStream)
+            (progn
+            (return-from jreturn _stringList)))
+        (setf _byteArray (slot-value (slot-value this 'f_nullUtil) 'f_NULL_BYTE_ARRAY))
+        (handler-case (progn
+            (setf _outputStream2 (ByteArrayOutputStream.jnew_1 _max))
+            (setf _byteArray (jm_getByteArray_3 (slot-value this 'f_streamUtil) _inputStream _outputStream2 _byteArray1))
+            (jm_close_1 (slot-value this 'f_streamUtil) _inputStream))
+            (error (_e) (declare (ignorable _e))
+            (jm_close_1 (slot-value this 'f_streamUtil) _inputStream)
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_EXCEPTION) this (slot-value (slot-value this 'f_commonStrings) 'f_ADD) _e)))
+        (if (null _byteArray)
+            (progn
+            (return-from jreturn _stringList)))
+        (setf _size (length _byteArray))
+        (setf _index 0)
+        (setf _startIndex 0)
+        (setf _returnLine 0)
+        (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (setf _startIndex _index)
+            (block jbreak (loop while (and (< _index (JR.i32 (- _size 1))) (/= (aref _byteArray _index) (JR.i8 10))) do
+                    (block jcontinue
+                (setf _index (JR.i32 (+ _index 1))))))
+            (if (= _includeReturnLine 0)
+                (progn
+                (if (and (> _index 0) (= (aref _byteArray (JR.i32 (- _index 1))) (JR.i8 13)))
+                    (progn
+                    (setf _returnLine 1))
+                    (progn
+                    (setf _returnLine 0)))))
+            (setf _s (JR.fromChars _byteArray _startIndex (JR.i32 (- (JR.i32 (- (JR.i32 (+ _index _includeReturnLine)) _returnLine)) _startIndex))))
+            (jm_add_1 _stringList _s)
+            (setf _index (JR.i32 (+ _index 1))))))
+        (return-from jreturn _stringList))))
 
-function SimpleFileUtil.nullOutputStream()
-        return NullOutputStream.NULL_OUTPUT_STREAM
-end
-
-
-function SimpleFileUtil.nullWriter()
-        return NullWriter.NULL_WRITER
-end
-
-
-function SimpleFileUtil.nullReader()
-        return NullReader.NULL_READER
-end
-
-
-function SimpleFileUtil:loadFileAsList(inputStream, max, byteArray1)
-        return self:loadFileAsListReturnLine(inputStream, max, byteArray1, 0)
-end
-
-
-function SimpleFileUtil:loadFileAsListReturnLine(inputStream, max, byteArray1, includeReturnLine)
-        local stringList = BasicArrayListD.new()
-        if inputStream == nil then
-            return stringList
-        end
-        local byteArray = self.nullUtil.NULL_BYTE_ARRAY
-        local try_ok, try_error = pcall(function()
-            local outputStream2 = java_byte_array_output_stream()
-            byteArray = self.streamUtil:getByteArray(inputStream, outputStream2, byteArray1)
-            self.streamUtil:close(inputStream)
-        end)
-        if not try_ok then
-            local e = try_error
-            self.streamUtil:close(inputStream)
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.commonStrings.ADD, e)
-        end
-        if byteArray == nil then
-            return stringList
-        end
-        local size = (byteArray.n or #byteArray)
-        local index = 0
-        local startIndex = 0
-        local returnLine = 0
-        while index < size do
-            startIndex = index
-            while index < size - 1 and byteArray[index + 1] ~= string.byte("\n") do
-                index = index + 1
-            end
-            if includeReturnLine == 0 then
-                if index > 0 and byteArray[index - 1 + 1] == string.byte("\r") then
-                    returnLine = 1
-                else
-                    returnLine = 0
-                end
-            end
-            local s = string.char(table.unpack(byteArray, startIndex, (index + includeReturnLine - returnLine - startIndex)))
-            stringList:add(s)
-            index = index + 1
-        end
-        return stringList
-end
+    
+(unless (fboundp 'jm_createStringFromArrayOfStrings_1) (defgeneric jm_createStringFromArrayOfStrings_1 (this p1)))
+(defmethod jm_createStringFromArrayOfStrings_1 ((this SimpleFileUtil) _stringArray)
+  (declare (ignorable this _stringArray))
+  (let (_stringMaker _size _index)
+  (declare (ignorable _stringMaker _size _index))
+    (block jreturn
+        (setf _stringMaker (StringMaker.jnew_0))
+        (setf _size (length _stringArray))
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (jm_append_1 _stringMaker (aref _stringArray _index)))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (return-from jreturn (jm_toString_0 _stringMaker)))))
 
 
-function SimpleFileUtil:createStringFromArrayOfStrings(stringArray)
-        local stringMaker = StringMaker.new()
-        local size = (stringArray.n or #stringArray)
-        for index = 0, size - 1 do
-            stringMaker:append(stringArray[index + 1])
-        end
-        return tostring(stringMaker)
-end
-
-SimpleFileUtil.instance = SimpleFileUtil.new()
-
-return SimpleFileUtil
 

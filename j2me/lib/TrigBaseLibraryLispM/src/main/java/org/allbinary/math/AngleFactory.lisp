@@ -35,6 +35,7 @@
 (defun AngleFactory.jstatic_instance ()
   (when (eq AngleFactory.jcell_instance :jnone) (setf AngleFactory.jcell_instance (AngleFactory.jnew_0)))
   AngleFactory.jcell_instance)
+(defun (setf AngleFactory.jstatic_instance) (value) (setf AngleFactory.jcell_instance value))
 
     
 (defun AngleFactory.jm_getInstance_0 ()

@@ -76,6 +76,7 @@
 (defun CommonStrings.jstatic_instance ()
   (when (eq CommonStrings.jcell_instance :jnone) (setf CommonStrings.jcell_instance (CommonStrings.jnew_0)))
   CommonStrings.jcell_instance)
+(defun (setf CommonStrings.jstatic_instance) (value) (setf CommonStrings.jcell_instance value))
 
 (defun CommonStrings.jnew_0 ()
   (let ((this (make-instance 'CommonStrings)))

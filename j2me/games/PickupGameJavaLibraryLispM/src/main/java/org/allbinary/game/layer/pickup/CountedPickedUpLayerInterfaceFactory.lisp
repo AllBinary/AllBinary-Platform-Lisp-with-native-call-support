@@ -1,88 +1,69 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.pickup
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.layer.pickup
 
-local Animation = require("org.allbinary.animation.Animation")
-local NullAnimationFactory = require("org.allbinary.animation.NullAnimationFactory")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local PickedUpLayerInterfaceFactory = require("org.allbinary.game.layer.pickup.PickedUpLayerInterfaceFactory")
-local CountedPickedUpLayerInterfaceFactoryInterface = require("org.allbinary.game.layer.pickup.CountedPickedUpLayerInterfaceFactoryInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(defclass CountedPickedUpLayerInterfaceFactory (PickedUpLayerInterfaceFactory)
+  ((f_id :initform 0)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defvar CountedPickedUpLayerInterfaceFactory.jcell_NULL_COUNTED_PICKUP_LAYER_FACTORY :jnone)
+(defun CountedPickedUpLayerInterfaceFactory.jstatic_NULL_COUNTED_PICKUP_LAYER_FACTORY ()
+  (when (eq CountedPickedUpLayerInterfaceFactory.jcell_NULL_COUNTED_PICKUP_LAYER_FACTORY :jnone) (setf CountedPickedUpLayerInterfaceFactory.jcell_NULL_COUNTED_PICKUP_LAYER_FACTORY (CountedPickedUpLayerInterfaceFactory.jnew_3 (slot-value (PickedUpLayerTypeFactory.jm_getInstance_0) 'f_NONE) (IconLayer.jstatic_NULL_ICON_LAYER) (jm_getInstance_1 (NullAnimationFactory.jm_getFactoryInstance_0) 0))))
+  CountedPickedUpLayerInterfaceFactory.jcell_NULL_COUNTED_PICKUP_LAYER_FACTORY)
+(defun (setf CountedPickedUpLayerInterfaceFactory.jstatic_NULL_COUNTED_PICKUP_LAYER_FACTORY) (value) (setf CountedPickedUpLayerInterfaceFactory.jcell_NULL_COUNTED_PICKUP_LAYER_FACTORY value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun CountedPickedUpLayerInterfaceFactory.jnew_3 (_pickeUpLayerType _iconLayer _animationInterface)
+  (declare (ignorable _pickeUpLayerType _iconLayer _animationInterface))
+  (let ((this (make-instance 'CountedPickedUpLayerInterfaceFactory)))
+    
+  (let (_list)
+  (declare (ignorable _list))
+    (block jreturn
+        nil
+        (setf _list (jm_getList_0 (CountedPickedUpLayerInterfaceFactoryPool.jm_getInstance_0)))
+        (setf (slot-value this 'f_id) (jm_size_0 _list))
+        (jm_add_1 _list this)))
+    this))
 
-local CountedPickedUpLayerInterfaceFactory = {}
-CountedPickedUpLayerInterfaceFactory.__index = CountedPickedUpLayerInterfaceFactory
-CountedPickedUpLayerInterfaceFactory.className = "CountedPickedUpLayerInterfaceFactory"
-setmetatable(CountedPickedUpLayerInterfaceFactory, {__index = PickedUpLayerInterfaceFactory})
+    
+(unless (fboundp 'jm_getNextInstance_4) (defgeneric jm_getNextInstance_4 (this p1 p2 p3 p4)))
+(defmethod jm_getNextInstance_4 ((this CountedPickedUpLayerInterfaceFactory) _hashtable _x _y _z)
+  (declare (ignorable this _hashtable _x _y _z))
+  (let ()
+    (block jreturn
+        (error (JR.newException "Exception" (slot-value (CommonStrings.jm_getInstance_0) 'f_NOT_IMPLEMENTED))))))
 
-function CountedPickedUpLayerInterfaceFactory:_init_fields()
-    self.id = nil
-end
+    
+(unless (fboundp 'jm_getTotal_0) (defgeneric jm_getTotal_0 (this)))
+(defmethod jm_getTotal_0 ((this CountedPickedUpLayerInterfaceFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (JR.i32 (- 1))))))
 
-
-function CountedPickedUpLayerInterfaceFactory.new(pickeUpLayerType, iconLayer, animationInterface)
-    local self = setmetatable(PickedUpLayerInterfaceFactory.new(pickeUpLayerType, iconLayer, animationInterface), CountedPickedUpLayerInterfaceFactory)
-    self:_init_fields()
-        -- super(...) made self above
-        local list = CountedPickedUpLayerInterfaceFactoryPool.getInstance():getList()
-        self.id = list:size()
-        list:add(self)
-    return self
-end
-
-
--- throws Exception
-function CountedPickedUpLayerInterfaceFactory:getNextInstance(hashtable, x, y, z)
-        error(java_exception("Exception", CommonStrings.getInstance().NOT_IMPLEMENTED), 0)
-end
+    
+(unless (fboundp 'jm_getId_0) (defgeneric jm_getId_0 (this)))
+(defmethod jm_getId_0 ((this CountedPickedUpLayerInterfaceFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_id)))))
 
 
-function CountedPickedUpLayerInterfaceFactory:getTotal()
-        return -1
-end
-
-
-function CountedPickedUpLayerInterfaceFactory:getId()
-        return self.id
-end
-
-CountedPickedUpLayerInterfaceFactory.NULL_COUNTED_PICKUP_LAYER_FACTORY = CountedPickedUpLayerInterfaceFactory.new(PickedUpLayerTypeFactory.getInstance().NONE, IconLayer.NULL_ICON_LAYER, NullAnimationFactory.getFactoryInstance():getInstance(0))
-
-return CountedPickedUpLayerInterfaceFactory
 

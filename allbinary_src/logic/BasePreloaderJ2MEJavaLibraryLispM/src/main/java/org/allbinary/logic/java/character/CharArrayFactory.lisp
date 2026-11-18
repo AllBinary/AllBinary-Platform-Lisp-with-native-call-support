@@ -25,6 +25,7 @@
 (defun CharArrayFactory.jstatic_instance ()
   (when (eq CharArrayFactory.jcell_instance :jnone) (setf CharArrayFactory.jcell_instance (CharArrayFactory.jnew_0)))
   CharArrayFactory.jcell_instance)
+(defun (setf CharArrayFactory.jstatic_instance) (value) (setf CharArrayFactory.jcell_instance value))
 
 (defun CharArrayFactory.jnew_0 ()
   (let ((this (make-instance 'CharArrayFactory)))

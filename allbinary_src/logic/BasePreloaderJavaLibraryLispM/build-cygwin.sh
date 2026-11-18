@@ -42,6 +42,15 @@ cp -R "$tree/." "$short_tree/"
 cd "$short_tree" || exit 1
 check="jcheck_$artifact.lisp"
 count=0
+( cd "$source_dir" && find . -type f -name '*.lisp' | sed 's|^\./||' | sort ) > "$object_dir/project-files.txt"
+sed 's|.*/||' "$object_dir/project-files.txt" > "$object_dir/project-names.txt"
+# Every class is in the one Lisp package allbinary, so two dependency classes with one simple name (Rectangle of
+# org.allbinary.graphics and of org.microemu.device.impl) are one class. Only the first is loaded, an org/allbinary one
+# before a third party one, and the others are listed in duplicate-classes.txt.
+find . -type f -name '*.lisp' ! -name 'allbinary_java.lisp' ! -name 'jcheck_*' ! -path './java/*' | sed 's|^\./||' \
+    | awk '{ print ($0 ~ /^org\/allbinary\// ? 0 : 1) "\t" $0 }' | sort -t "$(printf '\t')" -k1,1 -k2,2 | cut -f2 \
+    | awk -F/ -v skipped="$object_dir/duplicate-classes.txt" '{ if (seen[$NF]++) print > skipped; else print }' \
+    | sort > "$object_dir/dependency-files.txt"
 {
     echo '(load "allbinary_java.lisp")'
     echo '(in-package :allbinary)'
@@ -49,16 +58,19 @@ count=0
     # The hand written java.* classes (warnings count)
     echo '(handler-bind ((warning (lambda (w) (incf *jwarnings*) (format t "WARNING: ~a~%" w) (muffle-warning w))))'
     echo '  (with-compilation-unit ()'
-    find java -type f -name '*.lisp' 2>/dev/null | sort | while IFS= read -r file; do echo "    (load \"./$file\")"; done
+    # A java.* class of this project (java/lang/Override of J2MEOnlyJavaLibrary) is loaded once with the project below
+    find java -type f -name '*.lisp' 2>/dev/null | sort | while IFS= read -r file; do
+        grep -qxF "$file" "$object_dir/project-files.txt" || echo "    (load \"./$file\")"
+    done
     echo '))'
     # The dependencies: like Java a dependency is not checked again here since its own optional dependencies (TsUtil of
     # NoneOnlyJavaLibrary for LogJ2MEJavaLibrary) are not transitive so they are missing
     echo '(handler-bind ((warning (lambda (w) (muffle-warning w))))'
     echo '  (with-compilation-unit ()'
-    ( cd "$source_dir" && find . -type f -name '*.lisp' | sed 's|^\./||' | sort ) > "$object_dir/project-files.txt"
-    find . -type f -name '*.lisp' ! -name 'allbinary_java.lisp' ! -name 'jcheck_*' ! -path './java/*' | sed 's|^\./||' | sort | while IFS= read -r file; do
-        grep -qxF "$file" "$object_dir/project-files.txt" || echo "    (load \"./$file\")"
-    done
+    while IFS= read -r file; do
+        # A dependency class with the name of a project class (one Lisp package for every Java package) is replaced by it
+        grep -qxF "$file" "$object_dir/project-files.txt" || grep -qxF "$(basename "$file")" "$object_dir/project-names.txt" || echo "    (load \"./$file\")"
+    done < "$object_dir/dependency-files.txt"
     echo '))'
     # This project (warnings count)
     echo '(handler-bind ((warning (lambda (w) (incf *jwarnings*) (format t "WARNING: ~a~%" w) (muffle-warning w))))'
@@ -70,6 +82,9 @@ count=0
 } > "$check"
 count=$(find "$source_dir" -type f -name '*.lisp' | wc -l)
 echo "Lisp files: $count"
+if [ -s "$object_dir/duplicate-classes.txt" ]; then
+    echo "Lisp dependency classes not loaded (same simple name as a loaded class): $(tr '\n' ' ' < "$object_dir/duplicate-classes.txt")"
+fi
 
 output="$("$compiler" "${compiler_flags[@]}" "$check" 2>&1)"
 status=$?

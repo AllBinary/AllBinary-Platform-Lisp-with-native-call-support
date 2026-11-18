@@ -27,6 +27,7 @@
 (defun LogUtil.jstatic_instance ()
   (when (eq LogUtil.jcell_instance :jnone) (setf LogUtil.jcell_instance (LogUtil.jnew_0)))
   LogUtil.jcell_instance)
+(defun (setf LogUtil.jstatic_instance) (value) (setf LogUtil.jcell_instance value))
 
     
 (defun LogUtil.jm_getInstance_0 ()

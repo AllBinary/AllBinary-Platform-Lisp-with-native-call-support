@@ -1,84 +1,90 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.gesture
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.input.motion.gesture
 
-local InputFactory = require("org.allbinary.game.input.InputFactory")
-local NullUtil = require("org.allbinary.logic.NullUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass TouchMotionGestureFactory (JObject)
+  ((f_LEFT :initform nil)
+   (f_RIGHT :initform nil)
+   (f_UP :initform nil)
+   (f_DOWN :initform nil)
+   (f_PRESSED :initform nil)
+   (f_RELEASED :initform nil)
+   (f_DIAGONAL_DOWN_RIGHT :initform nil)
+   (f_DIAGONAL_DOWN_LEFT :initform nil)
+   (f_DIAGONAL_UP_RIGHT :initform nil)
+   (f_DIAGONAL_UP_LEFT :initform nil)
+   (f_SCROLL_UP :initform nil)
+   (f_SCROLL_DOWN :initform nil)
+   (f_NO_MOTION :initform nil)
+   (f_LAST_MOTION :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar TouchMotionGestureFactory.jcell_instance :jnone)
+(defun TouchMotionGestureFactory.jstatic_instance ()
+  (when (eq TouchMotionGestureFactory.jcell_instance :jnone) (setf TouchMotionGestureFactory.jcell_instance (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT)))
+  TouchMotionGestureFactory.jcell_instance)
+(defun (setf TouchMotionGestureFactory.jstatic_instance) (value) (setf TouchMotionGestureFactory.jcell_instance value))
 
-local TouchMotionGestureFactory = {}
-TouchMotionGestureFactory.__index = TouchMotionGestureFactory
-TouchMotionGestureFactory.className = "TouchMotionGestureFactory"
+    
+(defun TouchMotionGestureFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (if (eq (TouchMotionGestureFactory.jstatic_instance) (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT))
+            (progn
+            (setf (TouchMotionGestureFactory.jstatic_instance) (TouchMotionGestureFactory.jnew_0))))
+        (return-from jreturn (TouchMotionGestureFactory.jstatic_instance)))))
 
-function TouchMotionGestureFactory:_init_fields()
-    self.LEFT = nil
-    self.RIGHT = nil
-    self.UP = nil
-    self.DOWN = nil
-    self.PRESSED = nil
-    self.RELEASED = nil
-    self.DIAGONAL_DOWN_RIGHT = nil
-    self.DIAGONAL_DOWN_LEFT = nil
-    self.DIAGONAL_UP_RIGHT = nil
-    self.DIAGONAL_UP_LEFT = nil
-    self.SCROLL_UP = nil
-    self.SCROLL_DOWN = nil
-    self.NO_MOTION = nil
-    self.LAST_MOTION = nil
-end
+    
+(defun TouchMotionGestureFactory.jnew_0 ()
+  (let ((this (make-instance 'TouchMotionGestureFactory)))
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  (let (_MAX)
+  (declare (ignorable _MAX))
+    (block jreturn
+        (setf _MAX (slot-value (InputFactory.jm_getInstance_0) 'f_MAX))
+        (setf (slot-value this 'f_LEFT) (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 3)) "Left Touch"))
+        (setf (slot-value this 'f_RIGHT) (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 4)) "Right Touch"))
+        (setf (slot-value this 'f_UP) (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 5)) "Up Touch"))
+        (setf (slot-value this 'f_DOWN) (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 6)) "Down Touch"))
+        (setf (slot-value this 'f_PRESSED) (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 7)) "Screen Press"))
+        (setf (slot-value this 'f_RELEASED) (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 8)) "Released"))
+        (setf (slot-value this 'f_DIAGONAL_DOWN_RIGHT) (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 9)) "Diagonal Dn R"))
+        (setf (slot-value this 'f_DIAGONAL_DOWN_LEFT) (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 10)) "Diagonal Dn L"))
+        (setf (slot-value this 'f_DIAGONAL_UP_RIGHT) (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 11)) "Diagonal Up R"))
+        (setf (slot-value this 'f_DIAGONAL_UP_LEFT) (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 12)) "Diagonal Up L"))
+        (setf (slot-value this 'f_SCROLL_UP) (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 13)) "Scroll Up"))
+        (setf (slot-value this 'f_SCROLL_DOWN) (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 14)) "Scroll Down"))
+        (setf (slot-value this 'f_NO_MOTION) (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 2)) "No Motion"))
+        (setf (slot-value this 'f_LAST_MOTION) (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 19)) "Last Motion"))))
+    this))
 
 
-function TouchMotionGestureFactory.getInstance()
-        if TouchMotionGestureFactory.instance == NullUtil.getInstance().NULL_OBJECT then
-            TouchMotionGestureFactory.instance = TouchMotionGestureFactory.new()
-        end
-        return TouchMotionGestureFactory.instance
-end
-
-
-function TouchMotionGestureFactory.new()
-    local self = setmetatable({}, TouchMotionGestureFactory)
-    self:_init_fields()
-        local MAX = InputFactory.getInstance().MAX
-        self.LEFT = MotionGestureInput.new(MAX - 3, "Left Touch")
-        self.RIGHT = MotionGestureInput.new(MAX - 4, "Right Touch")
-        self.UP = MotionGestureInput.new(MAX - 5, "Up Touch")
-        self.DOWN = MotionGestureInput.new(MAX - 6, "Down Touch")
-        self.PRESSED = MotionGestureInput.new(MAX - 7, "Screen Press")
-        self.RELEASED = MotionGestureInput.new(MAX - 8, "Released")
-        self.DIAGONAL_DOWN_RIGHT = MotionGestureInput.new(MAX - 9, "Diagonal Dn R")
-        self.DIAGONAL_DOWN_LEFT = MotionGestureInput.new(MAX - 10, "Diagonal Dn L")
-        self.DIAGONAL_UP_RIGHT = MotionGestureInput.new(MAX - 11, "Diagonal Up R")
-        self.DIAGONAL_UP_LEFT = MotionGestureInput.new(MAX - 12, "Diagonal Up L")
-        self.SCROLL_UP = MotionGestureInput.new(MAX - 13, "Scroll Up")
-        self.SCROLL_DOWN = MotionGestureInput.new(MAX - 14, "Scroll Down")
-        self.NO_MOTION = MotionGestureInput.new(MAX - 2, "No Motion")
-        self.LAST_MOTION = MotionGestureInput.new(MAX - 19, "Last Motion")
-    return self
-end
-
-TouchMotionGestureFactory.instance = NullUtil.getInstance().NULL_OBJECT
-
-return TouchMotionGestureFactory
 

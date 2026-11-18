@@ -1,55 +1,51 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.layer
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass LayerPlacementType (JObject)
+  ((f_type :initform 0)))
+
+    
+(defun LayerPlacementType.jnew_1 (_type)
+  (declare (ignorable _type))
+  (let ((this (make-instance 'LayerPlacementType)))
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_type) _type)))
+    this))
+
+    
+(unless (fboundp 'jm_getType_0) (defgeneric jm_getType_0 (this)))
+(defmethod jm_getType_0 ((this LayerPlacementType))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_type)))))
+
+    
+(unless (fboundp 'jm_setType_1) (defgeneric jm_setType_1 (this p1)))
+(defmethod jm_setType_1 ((this LayerPlacementType) _type)
+  (declare (ignorable this _type))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_type) _type))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local LayerPlacementType = {}
-LayerPlacementType.__index = LayerPlacementType
-LayerPlacementType.className = "LayerPlacementType"
-
-function LayerPlacementType:_init_fields()
-    self.type = nil
-end
-
-
-function LayerPlacementType.new(type)
-    local self = setmetatable({}, LayerPlacementType)
-    self:_init_fields()
-        self.type = type
-    return self
-end
-
-
-function LayerPlacementType:getType()
-        return self.type
-end
-
-
-function LayerPlacementType:setType(type)
-        self.type = type
-end
-
-return LayerPlacementType
 

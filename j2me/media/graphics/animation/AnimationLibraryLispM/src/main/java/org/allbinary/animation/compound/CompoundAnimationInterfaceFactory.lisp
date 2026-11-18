@@ -1,87 +1,94 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation.compound
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation.compound
 
-local Animation = require("org.allbinary.animation.Animation")
-local AnimationBehaviorFactory = require("org.allbinary.animation.AnimationBehaviorFactory")
-local AnimationInterfaceFactoryInterface = require("org.allbinary.animation.AnimationInterfaceFactoryInterface")
-local NullAnimationFactory = require("org.allbinary.animation.NullAnimationFactory")
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
-local ScaleProperties = require("org.allbinary.media.ScaleProperties")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass CompoundAnimationInterfaceFactory (JObject)
+  ((f_basicAnimationInterfaceFactoryInterfaceArrayP :initform nil)
+   (f_animationBehaviorFactory :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun CompoundAnimationInterfaceFactory.jnew_2 (_basicAnimationInterfaceFactoryInterfaceArray _animationBehaviorFactory)
+  (declare (ignorable _basicAnimationInterfaceFactoryInterfaceArray _animationBehaviorFactory))
+  (let ((this (make-instance 'CompoundAnimationInterfaceFactory)))
+    
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_basicAnimationInterfaceFactoryInterfaceArrayP) _basicAnimationInterfaceFactoryInterfaceArray)
+        (setf (slot-value this 'f_animationBehaviorFactory) _animationBehaviorFactory)))
+    this))
 
-local CompoundAnimationInterfaceFactory = {}
-CompoundAnimationInterfaceFactory.__index = CompoundAnimationInterfaceFactory
-CompoundAnimationInterfaceFactory.className = "CompoundAnimationInterfaceFactory"
+    
+(unless (fboundp 'jm_getInstance_1) (defgeneric jm_getInstance_1 (this p1)))
+(defmethod jm_getInstance_1 ((this CompoundAnimationInterfaceFactory) _instanceId)
+  (declare (ignorable this _instanceId))
+  (let (_size _animationInterfaceArray _index)
+  (declare (ignorable _size _animationInterfaceArray _index))
+    (block jreturn
+        (setf _size (length (slot-value this 'f_basicAnimationInterfaceFactoryInterfaceArrayP)))
+        (setf _animationInterfaceArray (jm_createArray_1 this _size))
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (setf (aref _animationInterfaceArray _index) (jm_getInstance_1 (aref (slot-value this 'f_basicAnimationInterfaceFactoryInterfaceArrayP) _index) _instanceId)))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (return-from jreturn (jm_createAnimation_1 this _animationInterfaceArray)))))
 
-function CompoundAnimationInterfaceFactory:_init_fields()
-    self.basicAnimationInterfaceFactoryInterfaceArrayP = nil
-    self.animationBehaviorFactory = nil
-end
+    
+(unless (fboundp 'jm_createArray_1) (defgeneric jm_createArray_1 (this p1)))
+(defmethod jm_createArray_1 ((this CompoundAnimationInterfaceFactory) _size)
+  (declare (ignorable this _size))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value (NullAnimationFactory.jm_getFactoryInstance_0) 'f_EMPTY_ARRAY)))))
+
+    
+(unless (fboundp 'jm_createAnimation_1) (defgeneric jm_createAnimation_1 (this p1)))
+(defmethod jm_createAnimation_1 ((this CompoundAnimationInterfaceFactory) _animationInterfaceArray)
+  (declare (ignorable this _animationInterfaceArray))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getInstance_1 (NullAnimationFactory.jm_getFactoryInstance_0) 0)))))
+
+    
+(unless (fboundp 'jm_getBasicAnimationInterfaceFactoryInterfaceArray_0) (defgeneric jm_getBasicAnimationInterfaceFactoryInterfaceArray_0 (this)))
+(defmethod jm_getBasicAnimationInterfaceFactoryInterfaceArray_0 ((this CompoundAnimationInterfaceFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_basicAnimationInterfaceFactoryInterfaceArrayP)))))
+
+    
+(unless (fboundp 'jm_setInitialScale_1) (defgeneric jm_setInitialScale_1 (this p1)))
+(defmethod jm_setInitialScale_1 ((this CompoundAnimationInterfaceFactory) _scaleProperties)
+  (declare (ignorable this _scaleProperties))
+  (let (_size _index)
+  (declare (ignorable _size _index))
+    (block jreturn
+        (setf _size (length (slot-value this 'f_basicAnimationInterfaceFactoryInterfaceArrayP)))
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (jm_setInitialScale_1 (aref (slot-value this 'f_basicAnimationInterfaceFactoryInterfaceArrayP) _index) _scaleProperties))
+                (setf _index (JR.i32 (+ _index 1)))))))))
 
 
-function CompoundAnimationInterfaceFactory.new(basicAnimationInterfaceFactoryInterfaceArray, animationBehaviorFactory)
-    local self = setmetatable({}, CompoundAnimationInterfaceFactory)
-    self:_init_fields()
-        self.basicAnimationInterfaceFactoryInterfaceArrayP = basicAnimationInterfaceFactoryInterfaceArray
-        self.animationBehaviorFactory = animationBehaviorFactory
-    return self
-end
-
-
--- throws Exception
-function CompoundAnimationInterfaceFactory:getInstance(instanceId)
-        local size = (self.basicAnimationInterfaceFactoryInterfaceArrayP.n or #self.basicAnimationInterfaceFactoryInterfaceArrayP)
-        local animationInterfaceArray = self:createArray(size)
-        for index = 0, size - 1 do
-            animationInterfaceArray[index + 1] = self.basicAnimationInterfaceFactoryInterfaceArrayP[index + 1]:getInstance(instanceId)
-        end
-        return self:createAnimation(animationInterfaceArray)
-end
-
-
-function CompoundAnimationInterfaceFactory:createArray(size)
-        return NullAnimationFactory.getFactoryInstance().EMPTY_ARRAY
-end
-
-
-function CompoundAnimationInterfaceFactory:createAnimation(animationInterfaceArray)
-        return NullAnimationFactory.getFactoryInstance():getInstance(0)
-end
-
-
-function CompoundAnimationInterfaceFactory:getBasicAnimationInterfaceFactoryInterfaceArray()
-        return self.basicAnimationInterfaceFactoryInterfaceArrayP
-end
-
-
-function CompoundAnimationInterfaceFactory:setInitialScale(scaleProperties)
-        local size = (self.basicAnimationInterfaceFactoryInterfaceArrayP.n or #self.basicAnimationInterfaceFactoryInterfaceArrayP)
-        for index = 0, size - 1 do
-            self.basicAnimationInterfaceFactoryInterfaceArrayP[index + 1]:setInitialScale(scaleProperties)
-        end
-end
-
-return CompoundAnimationInterfaceFactory
 

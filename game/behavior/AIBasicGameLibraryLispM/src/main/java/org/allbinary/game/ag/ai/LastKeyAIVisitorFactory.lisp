@@ -1,45 +1,41 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.ag.ai
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass LastKeyAIVisitorFactory (JObject)
+  ())
+
+(defvar LastKeyAIVisitorFactory.jcell_instance :jnone)
+(defun LastKeyAIVisitorFactory.jstatic_instance ()
+  (when (eq LastKeyAIVisitorFactory.jcell_instance :jnone) (setf LastKeyAIVisitorFactory.jcell_instance (LastKeyAIVisitor.jnew_0)))
+  LastKeyAIVisitorFactory.jcell_instance)
+(defun (setf LastKeyAIVisitorFactory.jstatic_instance) (value) (setf LastKeyAIVisitorFactory.jcell_instance value))
+
+(defun LastKeyAIVisitorFactory.jnew_0 ()
+  (let ((this (make-instance 'LastKeyAIVisitorFactory)))
+    this))
+
+    
+(defun LastKeyAIVisitorFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (LastKeyAIVisitorFactory.jstatic_instance)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local LastKeyAIVisitorFactory = {}
-LastKeyAIVisitorFactory.__index = LastKeyAIVisitorFactory
-LastKeyAIVisitorFactory.className = "LastKeyAIVisitorFactory"
-
-function LastKeyAIVisitorFactory.new()
-    local self = setmetatable({}, LastKeyAIVisitorFactory)
-    return self
-end
-
-
-function LastKeyAIVisitorFactory.getInstance()
-        return LastKeyAIVisitorFactory.instance
-end
-
-LastKeyAIVisitorFactory.instance = LastKeyAIVisitor.new()
-
-return LastKeyAIVisitorFactory
 

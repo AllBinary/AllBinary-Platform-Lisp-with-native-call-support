@@ -1,148 +1,162 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.pipeline
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.pipeline
 
-local GPoint = require("org.allbinary.graphics.GPoint")
-local PointFactory = require("org.allbinary.graphics.PointFactory")
-local Angle = require("org.allbinary.math.Angle")
-local NoDecimalTrigTable = require("org.allbinary.math.NoDecimalTrigTable")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass BasicGraphicsPipeline (JObject)
+  ((f_pointBasicArrayList :initform nil)
+   (f_noDecimalTrigTable :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun BasicGraphicsPipeline.jnew_1 (_points)
+  (declare (ignorable _points))
+  (let ((this (make-instance 'BasicGraphicsPipeline)))
+    
+    (setf (slot-value this 'f_noDecimalTrigTable) (NoDecimalTrigTable.jm_getInstance_0))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_pointBasicArrayList) _points)))
+    this))
 
-local BasicGraphicsPipeline = {}
-BasicGraphicsPipeline.__index = BasicGraphicsPipeline
-BasicGraphicsPipeline.className = "BasicGraphicsPipeline"
+    
+(unless (fboundp 'jm_setInitMatrix_1) (defgeneric jm_setInitMatrix_1 (this p1)))
+(defmethod jm_setInitMatrix_1 ((this BasicGraphicsPipeline) _points)
+  (declare (ignorable this _points))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_pointBasicArrayList) _points))))
 
-function BasicGraphicsPipeline:_init_fields()
-    self.pointBasicArrayList = nil
-    self.noDecimalTrigTable = NoDecimalTrigTable.getInstance()
-end
+    
+(unless (fboundp 'jm_createMatrix_0) (defgeneric jm_createMatrix_0 (this)))
+(defmethod jm_createMatrix_0 ((this BasicGraphicsPipeline))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_translate_2) (defgeneric jm_translate_2 (this p1 p2)))
+(defmethod jm_translate_2 ((this BasicGraphicsPipeline) _x _y)
+  (declare (ignorable this _x _y))
+  (let (_newBasicArrayList _size _pointFactory _secondPoint _index)
+  (declare (ignorable _newBasicArrayList _size _pointFactory _secondPoint _index))
+    (block jreturn
+        (setf _newBasicArrayList (BasicArrayListD.jnew_0))
+        (setf _size (jm_size_0 (slot-value this 'f_pointBasicArrayList)))
+        (setf _pointFactory (PointFactory.jm_getInstance_0))
+        (setf _secondPoint nil)
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (setf _secondPoint (aref (slot-value (slot-value this 'f_pointBasicArrayList) 'f_objectArray) _index))
+            (if (not (eq (jm_getX_0 _secondPoint) 1000))
+                (progn
+                (jm_add_1 _newBasicArrayList (jm_createXY_2 _pointFactory (JR.i32 (+ (jm_getX_0 _secondPoint) _x)) (JR.i32 (+ (jm_getY_0 _secondPoint) _y)))))
+                (progn
+                (jm_add_1 _newBasicArrayList _secondPoint))))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (setf (slot-value this 'f_pointBasicArrayList) _newBasicArrayList))))
+
+    
+(unless (fboundp 'jm_rotateToAngle_1) (defgeneric jm_rotateToAngle_1 (this p1)))
+(defmethod jm_rotateToAngle_1 ((this BasicGraphicsPipeline) _angle)
+  (declare (ignorable this _angle))
+  (let ()
+    (block jreturn
+        (jm_rotate_1 this (jm_getValue_0 _angle)))))
+
+    
+(unless (fboundp 'jm_rotate_1) (defgeneric jm_rotate_1 (this p1)))
+(defmethod jm_rotate_1 ((this BasicGraphicsPipeline) _angle)
+  (declare (ignorable this _angle))
+  (let (_newBasicArrayList _secondPoint _y _secondX _secondY _point _pointFactory _size _sin _cos _index)
+  (declare (ignorable _newBasicArrayList _secondPoint _y _secondX _secondY _point _pointFactory _size _sin _cos _index))
+    (block jreturn
+        (setf _newBasicArrayList (BasicArrayListD.jnew_0))
+        (setf _secondPoint nil)
+        (setf _y 0)
+        (setf _secondX 0)
+        (setf _secondY 0)
+        (setf _point nil)
+        (setf _pointFactory (PointFactory.jm_getInstance_0))
+        (setf _size (jm_size_0 (slot-value this 'f_pointBasicArrayList)))
+        (setf _sin 0)
+        (setf _cos 0)
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (setf _secondPoint (aref (slot-value (slot-value this 'f_pointBasicArrayList) 'f_objectArray) _index))
+            (if (not (eq (jm_getX_0 _secondPoint) 1000))
+                (progn
+                (setf _sin (jm_sin_1 (slot-value this 'f_noDecimalTrigTable) _angle))
+                (setf _cos (jm_cos_1 (slot-value this 'f_noDecimalTrigTable) _angle))
+                (setf _y (JR.i64 (* (jm_getY_0 _secondPoint) _sin)))
+                (setf _secondX (JR.i64 (- (JR.i64 (* (jm_getX_0 _secondPoint) _cos)) _y)))
+                (setf _secondY (JR.i32 (+ (JR.i64 (* (jm_getX_0 _secondPoint) _sin)) (JR.i64 (* (jm_getY_0 _secondPoint) _cos)))))
+                (setf _point (jm_createXY_2 _pointFactory (JR.idiv (JR.i32 _secondX) 10000) (JR.idiv (JR.i32 _secondY) 10000)))
+                (jm_add_1 _newBasicArrayList _point))
+                (progn
+                (jm_add_1 _newBasicArrayList _secondPoint))))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (setf (slot-value this 'f_pointBasicArrayList) _newBasicArrayList))))
+
+    
+(unless (fboundp 'jm_mirror_1) (defgeneric jm_mirror_1 (this p1)))
+(defmethod jm_mirror_1 ((this BasicGraphicsPipeline) _width)
+  (declare (ignorable this _width))
+  (let (_pointFactory _halfWidth _newBasicArrayList _secondPoint _newX _point _size _index)
+  (declare (ignorable _pointFactory _halfWidth _newBasicArrayList _secondPoint _newX _point _size _index))
+    (block jreturn
+        (setf _pointFactory (PointFactory.jm_getInstance_0))
+        (setf _halfWidth (ash _width (- (logand 1 31))))
+        (setf _newBasicArrayList (BasicArrayListD.jnew_0))
+        (setf _secondPoint nil)
+        (setf _newX 0)
+        (setf _point nil)
+        (setf _size (jm_size_0 (slot-value this 'f_pointBasicArrayList)))
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (setf _secondPoint (aref (slot-value (slot-value this 'f_pointBasicArrayList) 'f_objectArray) _index))
+            (if (not (eq (jm_getX_0 _secondPoint) 1000))
+                (progn
+                (setf _newX 0)
+                (if (> (jm_getX_0 _secondPoint) _halfWidth)
+                    (progn
+                    (setf _newX (JR.i32 (- _halfWidth (JR.i32 (- (jm_getX_0 _secondPoint) _halfWidth))))))
+                    (progn
+                    (setf _newX (JR.i32 (+ _halfWidth (JR.i32 (- _halfWidth (jm_getX_0 _secondPoint))))))))
+                (setf _point (jm_createXY_2 _pointFactory _newX (jm_getY_0 _secondPoint)))
+                (jm_add_1 _newBasicArrayList _point))
+                (progn
+                (jm_add_1 _newBasicArrayList _secondPoint))))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (setf (slot-value this 'f_pointBasicArrayList) _newBasicArrayList))))
+
+    
+(unless (fboundp 'jm_getMatrix_0) (defgeneric jm_getMatrix_0 (this)))
+(defmethod jm_getMatrix_0 ((this BasicGraphicsPipeline))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_pointBasicArrayList)))))
 
 
-function BasicGraphicsPipeline.new(points)
-    local self = setmetatable({}, BasicGraphicsPipeline)
-    self:_init_fields()
-        self.pointBasicArrayList = points
-    return self
-end
-
-
-function BasicGraphicsPipeline:setInitMatrix(points)
-        self.pointBasicArrayList = points
-end
-
-
-function BasicGraphicsPipeline:createMatrix()
-end
-
-
--- throws Exception
-function BasicGraphicsPipeline:translate(x, y)
-        local newBasicArrayList = BasicArrayListD.new()
-        local size = self.pointBasicArrayList:size()
-        local pointFactory = PointFactory.getInstance()
-        local secondPoint = nil
-        for index = 0, size - 1 do
-            secondPoint = self.pointBasicArrayList.objectArray[index + 1]
-            if secondPoint:getX() ~= 1000 then
-                newBasicArrayList:add(pointFactory:createXY(secondPoint:getX() + x, secondPoint:getY() + y))
-            else
-                newBasicArrayList:add(secondPoint)
-            end
-        end
-        self.pointBasicArrayList = newBasicArrayList
-end
-
-
--- throws Exception
-function BasicGraphicsPipeline:rotateToAngle(angle)
-        self:rotate(java_int(angle:getValue()))
-end
-
-
--- throws Exception
-function BasicGraphicsPipeline:rotate(angle)
-        local newBasicArrayList = BasicArrayListD.new()
-        local secondPoint = nil
-        local y = 0
-        local secondX = 0
-        local secondY = 0
-        local point = nil
-        local pointFactory = PointFactory.getInstance()
-        local size = self.pointBasicArrayList:size()
-        local sin = 0
-        local cos = 0
-        for index = 0, size - 1 do
-            secondPoint = self.pointBasicArrayList.objectArray[index + 1]
-            if secondPoint:getX() ~= 1000 then
-                sin = self.noDecimalTrigTable:sin(angle)
-                cos = self.noDecimalTrigTable:cos(angle)
-                y = secondPoint:getY() * sin
-                secondX = (secondPoint:getX() * cos) - y
-                secondY = (secondPoint:getX() * sin) + (secondPoint:getY() * cos)
-                point = pointFactory:createXY(java_idiv(secondX, 10000), java_idiv(secondY, 10000))
-                newBasicArrayList:add(point)
-            else
-                newBasicArrayList:add(secondPoint)
-            end
-        end
-        self.pointBasicArrayList = newBasicArrayList
-end
-
-
--- throws Exception
-function BasicGraphicsPipeline:mirror(width)
-        local pointFactory = PointFactory.getInstance()
-        local halfWidth = (((width) // (1 << (1))))
-        local newBasicArrayList = BasicArrayListD.new()
-        local secondPoint = nil
-        local newX = 0
-        local point = nil
-        local size = self.pointBasicArrayList:size()
-        for index = 0, size - 1 do
-            secondPoint = self.pointBasicArrayList.objectArray[index + 1]
-            if secondPoint:getX() ~= 1000 then
-                newX = 0
-                if secondPoint:getX() > halfWidth then
-                    newX = halfWidth - (secondPoint:getX() - halfWidth)
-                else
-                    newX = halfWidth + (halfWidth - secondPoint:getX())
-                end
-                point = pointFactory:createXY(newX, secondPoint:getY())
-                newBasicArrayList:add(point)
-            else
-                newBasicArrayList:add(secondPoint)
-            end
-        end
-        self.pointBasicArrayList = newBasicArrayList
-end
-
-
-function BasicGraphicsPipeline:getMatrix()
-        return self.pointBasicArrayList
-end
-
-return BasicGraphicsPipeline
 

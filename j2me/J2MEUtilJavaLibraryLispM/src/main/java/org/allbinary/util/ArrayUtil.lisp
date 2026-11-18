@@ -13,6 +13,7 @@
 (defun ArrayUtil.jstatic_instance ()
   (when (eq ArrayUtil.jcell_instance :jnone) (setf ArrayUtil.jcell_instance (ArrayUtil.jnew_0)))
   ArrayUtil.jcell_instance)
+(defun (setf ArrayUtil.jstatic_instance) (value) (setf ArrayUtil.jcell_instance value))
 
 (defun ArrayUtil.jnew_0 ()
   (let ((this (make-instance 'ArrayUtil)))

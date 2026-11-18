@@ -1,47 +1,42 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2025 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.io
 
--- local Closeable = require("java.io.Closeable")
--- local IOException = require("java.io.IOException")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass NullCloseable (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar NullCloseable.jcell_NULL_CLOSEABLE :jnone)
+(defun NullCloseable.jstatic_NULL_CLOSEABLE ()
+  (when (eq NullCloseable.jcell_NULL_CLOSEABLE :jnone) (setf NullCloseable.jcell_NULL_CLOSEABLE (NullCloseable.jnew_0)))
+  NullCloseable.jcell_NULL_CLOSEABLE)
+(defun (setf NullCloseable.jstatic_NULL_CLOSEABLE) (value) (setf NullCloseable.jcell_NULL_CLOSEABLE value))
 
-local NullCloseable = {}
-NullCloseable.__index = NullCloseable
-NullCloseable.className = "NullCloseable"
+(defun NullCloseable.jnew_0 ()
+  (let ((this (make-instance 'NullCloseable)))
+    this))
 
-function NullCloseable.new()
-    local self = setmetatable({}, NullCloseable)
-    return self
-end
+    
+(unless (fboundp 'jm_close_0) (defgeneric jm_close_0 (this)))
+(defmethod jm_close_0 ((this NullCloseable))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
 
 
--- throws IOException
-function NullCloseable:close()
-end
-
-NullCloseable.NULL_CLOSEABLE = NullCloseable.new()
-
-return NullCloseable
 

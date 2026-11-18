@@ -1,67 +1,53 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.ag.ai
 
-local ArtificialIntelligenceInterface = require("org.allbinary.ai.ArtificialIntelligenceInterface")
-local SequenceAI = require("org.allbinary.game.ag.ai.sequence.SequenceAI")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local GroupLayerManagerListener = require("org.allbinary.game.layer.identification.GroupLayerManagerListener")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass NumberOnOwnGroupSequenceAI (SequenceAI)
+  ((f_numberOnSameTeam :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun NumberOnOwnGroupSequenceAI.jnew_4 (_numberOnSameTeam _artificialIntelligenceInterface _ownerLayerInterface _gameInput)
+  (declare (ignorable _numberOnSameTeam _artificialIntelligenceInterface _ownerLayerInterface _gameInput))
+  (let ((this (make-instance 'NumberOnOwnGroupSequenceAI)))
+    
+  (let ()
+    (block jreturn
+        nil
+        (setf (slot-value this 'f_numberOnSameTeam) _numberOnSameTeam)))
+    this))
 
-local NumberOnOwnGroupSequenceAI = {}
-NumberOnOwnGroupSequenceAI.__index = NumberOnOwnGroupSequenceAI
-NumberOnOwnGroupSequenceAI.className = "NumberOnOwnGroupSequenceAI"
-setmetatable(NumberOnOwnGroupSequenceAI, {__index = SequenceAI})
+    
+(unless (fboundp 'jm_processAI_1) (defgeneric jm_processAI_1 (this p1)))
+(defmethod jm_processAI_1 ((this NumberOnOwnGroupSequenceAI) _allBinaryLayerManager)
+  (declare (ignorable this _allBinaryLayerManager))
+  (let (_layerInterface _index _size)
+  (declare (ignorable _layerInterface _index _size))
+    (block jreturn
+        (setf _layerInterface (jm_getOwnerLayerInterface_0 this))
+        (setf _index (jm_getIndex_0 this))
+        (if (> (length (slot-value this 'f_numberOnSameTeam)) _index)
+            (progn
+            (setf _size (jm_getGroupSizeFromInterface_1 (GroupLayerManagerListener.jm_getInstance_0) _layerInterface))
+            (if (> (jm_intValue_0 (aref (slot-value this 'f_numberOnSameTeam) _index)) _size)
+                (progn
+                (jm_next_0 this)))))
+        (call-next-method this _allBinaryLayerManager))))
 
-function NumberOnOwnGroupSequenceAI:_init_fields()
-    self.numberOnSameTeam = nil
-end
 
-
-function NumberOnOwnGroupSequenceAI.new(numberOnSameTeam, artificialIntelligenceInterface, ownerLayerInterface, gameInput)
-    local self = setmetatable(SequenceAI.new(artificialIntelligenceInterface, ownerLayerInterface, gameInput), NumberOnOwnGroupSequenceAI)
-    self:_init_fields()
-        -- super(...) made self above
-        self.numberOnSameTeam = numberOnSameTeam
-    return self
-end
-
-
--- throws Exception
-function NumberOnOwnGroupSequenceAI:processAI(allBinaryLayerManager)
-        local layerInterface = self:getOwnerLayerInterface()
-        local index = self:getIndex()
-        if (self.numberOnSameTeam.n or #self.numberOnSameTeam) > index then
-            local size = GroupLayerManagerListener.getInstance():getGroupSizeFromInterface(layerInterface)
-            if math.tointeger(self.numberOnSameTeam[index + 1] // 1) > size then
-                self:next()
-            end
-        end
-        SequenceAI.processAI(self, allBinaryLayerManager)
-end
-
-return NumberOnOwnGroupSequenceAI
 

@@ -1,18 +1,11 @@
--- Generated Code Do Not Modify
--- package java.lang
+;;;; Generated Code Do Not Modify
+;;;; package java.lang
 
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+;;; Java annotation Override: annotations have no Lisp form
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
---[[ Otherwise - classOrInterfaceDeclaration - type - AnnotationDeclaration ]]
-return Override
 

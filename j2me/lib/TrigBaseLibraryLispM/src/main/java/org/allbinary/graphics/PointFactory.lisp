@@ -25,6 +25,7 @@
 (defun PointFactory.jstatic_instance ()
   (when (eq PointFactory.jcell_instance :jnone) (setf PointFactory.jcell_instance (PointFactory.jnew_0)))
   PointFactory.jcell_instance)
+(defun (setf PointFactory.jstatic_instance) (value) (setf PointFactory.jcell_instance value))
 
     
 (defun PointFactory.jm_getInstance_0 ()

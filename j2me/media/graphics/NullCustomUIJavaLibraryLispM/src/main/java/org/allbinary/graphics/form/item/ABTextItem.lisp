@@ -1,66 +1,76 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form.item
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.form.item
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local CustomCustomItem = require("org.allbinary.graphics.form.item.CustomCustomItem")
-local ABCustomItemInterface = require("org.allbinary.graphics.form.item.ABCustomItemInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ABTextItem (CustomCustomItem)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun ABTextItem.jnew_5 (_label _layout _altText _backgroundBasicColor _foregroundBasicColor)
+  (declare (ignorable _label _layout _altText _backgroundBasicColor _foregroundBasicColor))
+  (let ((this (make-instance 'ABTextItem)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
-local ABTextItem = {}
-ABTextItem.__index = ABTextItem
-ABTextItem.className = "ABTextItem"
-setmetatable(ABTextItem, {__index = CustomCustomItem})
+    
+(unless (fboundp 'jm_keyPressed_1) (defgeneric jm_keyPressed_1 (this p1)))
+(defmethod jm_keyPressed_1 ((this ABTextItem) _keyCode)
+  (declare (ignorable this _keyCode))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_paintUnselected_3) (defgeneric jm_paintUnselected_3 (this p1 p2 p3)))
+(defmethod jm_paintUnselected_3 ((this ABTextItem) _graphics _x _y)
+  (declare (ignorable this _graphics _x _y))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_getLabelStringComponent_0) (defgeneric jm_getLabelStringComponent_0 (this)))
+(defmethod jm_getLabelStringComponent_0 ((this ABTextItem))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (ABStringComponent.jstatic_NULL_STRING_COMPONENT)))))
+
+    
+(unless (fboundp 'jm_getMinimumWidth_0) (defgeneric jm_getMinimumWidth_0 (this)))
+(defmethod jm_getMinimumWidth_0 ((this ABTextItem))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (call-next-method this)))))
+
+    
+(unless (fboundp 'jm_getMinimumHeight_0) (defgeneric jm_getMinimumHeight_0 (this)))
+(defmethod jm_getMinimumHeight_0 ((this ABTextItem))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (call-next-method this)))))
+
+    
+(unless (fboundp 'jm_getLabel_0) (defgeneric jm_getLabel_0 (this)))
+(defmethod jm_getLabel_0 ((this ABTextItem))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (call-next-method this)))))
+
+    
+(unless (fboundp 'jm_paintXY_3) (defgeneric jm_paintXY_3 (this p1 p2 p3)))
+(defmethod jm_paintXY_3 ((this ABTextItem) _graphics _x _y)
+  (declare (ignorable this _graphics _x _y))
+  (let ()
+    (block jreturn
+        (call-next-method this _graphics _x _y))))
 
 
-function ABTextItem.new(label, layout, altText, backgroundBasicColor, foregroundBasicColor)
-    local self = setmetatable(CustomCustomItem.new(label, backgroundBasicColor, foregroundBasicColor), ABTextItem)
-        -- super(...) made self above
-    return self
-end
-
-
-function ABTextItem:keyPressed(keyCode)
-end
-
-
-function ABTextItem:paintUnselected(graphics, x, y)
-end
-
-
-function ABTextItem:getLabelStringComponent()
-        return ABStringComponent.NULL_STRING_COMPONENT
-end
-
-
-function ABTextItem:getMinimumWidth()
-        return CustomCustomItem.getMinimumWidth(self)
-end
-
-
-function ABTextItem:getMinimumHeight()
-        return CustomCustomItem.getMinimumHeight(self)
-end
-
-
-function ABTextItem:getLabel()
-        return CustomCustomItem.getLabel(self)
-end
-
-
-function ABTextItem:paintXY(graphics, x, y)
-        CustomCustomItem.paintXY(self, graphics, x, y)
-end
-
-return ABTextItem
 

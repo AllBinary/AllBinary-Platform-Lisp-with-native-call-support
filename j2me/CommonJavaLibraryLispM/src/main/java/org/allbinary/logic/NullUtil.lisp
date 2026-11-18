@@ -35,6 +35,7 @@
 (defun NullUtil.jstatic_instance ()
   (when (eq NullUtil.jcell_instance :jnone) (setf NullUtil.jcell_instance (NullUtil.jnew_0)))
   NullUtil.jcell_instance)
+(defun (setf NullUtil.jstatic_instance) (value) (setf NullUtil.jcell_instance value))
 
 (defun NullUtil.jnew_0 ()
   (let ((this (make-instance 'NullUtil)))

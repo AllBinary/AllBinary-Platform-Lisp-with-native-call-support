@@ -1,53 +1,43 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.form
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass MultipleScrollSelectionFormRectPaintable (Paintable)
+  ((f_multipleScrollSelectionForm :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun MultipleScrollSelectionFormRectPaintable.jnew_1 (_multipleScrollSelectionForm)
+  (declare (ignorable _multipleScrollSelectionForm))
+  (let ((this (make-instance 'MultipleScrollSelectionFormRectPaintable)))
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_multipleScrollSelectionForm) _multipleScrollSelectionForm)))
+    this))
 
-local MultipleScrollSelectionFormRectPaintable = {}
-MultipleScrollSelectionFormRectPaintable.__index = MultipleScrollSelectionFormRectPaintable
-MultipleScrollSelectionFormRectPaintable.className = "MultipleScrollSelectionFormRectPaintable"
-setmetatable(MultipleScrollSelectionFormRectPaintable, {__index = Paintable})
-
-function MultipleScrollSelectionFormRectPaintable:_init_fields()
-    self.multipleScrollSelectionForm = nil
-end
-
-
-function MultipleScrollSelectionFormRectPaintable.new(multipleScrollSelectionForm)
-    local self = setmetatable(Paintable.new(), MultipleScrollSelectionFormRectPaintable)
-    self:_init_fields()
-        self.multipleScrollSelectionForm = multipleScrollSelectionForm
-    return self
-end
+    
+(unless (fboundp 'jm_paint_1) (defgeneric jm_paint_1 (this p1)))
+(defmethod jm_paint_1 ((this MultipleScrollSelectionFormRectPaintable) _graphics)
+  (declare (ignorable this _graphics))
+  (let ()
+    (block jreturn
+        (jm_fillRect_1 (slot-value this 'f_multipleScrollSelectionForm) _graphics))))
 
 
-function MultipleScrollSelectionFormRectPaintable:paint(graphics)
-        self.multipleScrollSelectionForm:fillRect(graphics)
-end
-
-return MultipleScrollSelectionFormRectPaintable
 

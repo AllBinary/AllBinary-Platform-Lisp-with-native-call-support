@@ -1,60 +1,48 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.layer
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.layer
 
-local BaseCircularPool = require("org.allbinary.logic.util.cache.BaseCircularPool")
-local CircularIndexUtil = require("org.allbinary.util.CircularIndexUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(defclass AllBinaryLayerCircularPool (BaseCircularPool)
+  ())
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(defun AllBinaryLayerCircularPool.jnew_0 ()
+  (let ((this (make-instance 'AllBinaryLayerCircularPool)))
+  (let ()
+    (block jreturn nil))
+    this))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local AllBinaryLayerCircularPool = {}
-AllBinaryLayerCircularPool.__index = AllBinaryLayerCircularPool
-AllBinaryLayerCircularPool.className = "AllBinaryLayerCircularPool"
-setmetatable(AllBinaryLayerCircularPool, {__index = BaseCircularPool})
-
-
-function AllBinaryLayerCircularPool.new()
-    local self = setmetatable(BaseCircularPool.new(), AllBinaryLayerCircularPool)
-    return self
-end
+    
+(unless (fboundp 'jm_initAllBinaryLayerCircularPool_2) (defgeneric jm_initAllBinaryLayerCircularPool_2 (this p1 p2)))
+(defmethod jm_initAllBinaryLayerCircularPool_2 ((this AllBinaryLayerCircularPool) _allbinaryLayerFactoryInterface _total)
+  (declare (ignorable this _allbinaryLayerFactoryInterface _total))
+  (let (_localIndex)
+  (declare (ignorable _localIndex))
+    (block jreturn
+        (setf (slot-value this 'f_circularIndexUtil) (CircularIndexUtil.jm_createInstance_1 _total))
+        (setf (slot-value this 'f_OBJECT_ARRAY) (JR.newArray nil _total))
+        (progn
+            (setf _localIndex 0)
+            (block jbreak (loop while (< _localIndex _total) do
+                (block jcontinue
+            (setf (aref (slot-value this 'f_OBJECT_ARRAY) _localIndex) (jm_getInstance_0 _allbinaryLayerFactoryInterface)))
+                (setf _localIndex (JR.i32 (+ _localIndex 1)))))))))
 
 
--- throws Exception
-function AllBinaryLayerCircularPool:initAllBinaryLayerCircularPool(allbinaryLayerFactoryInterface, total)
-        self.circularIndexUtil = CircularIndexUtil.createInstance(total)
-        self.OBJECT_ARRAY = java_new_array(nil, total)
-        for localIndex = 0, total - 1 do
-            self.OBJECT_ARRAY[localIndex + 1] = allbinaryLayerFactoryInterface:getInstance()
-        end
-end
-
-return AllBinaryLayerCircularPool
 

@@ -41,6 +41,7 @@
 (defun CommonPhoneStrings.jstatic_instance ()
   (when (eq CommonPhoneStrings.jcell_instance :jnone) (setf CommonPhoneStrings.jcell_instance (CommonPhoneStrings.jnew_0)))
   CommonPhoneStrings.jcell_instance)
+(defun (setf CommonPhoneStrings.jstatic_instance) (value) (setf CommonPhoneStrings.jcell_instance value))
 
 (defun CommonPhoneStrings.jnew_0 ()
   (let ((this (make-instance 'CommonPhoneStrings)))

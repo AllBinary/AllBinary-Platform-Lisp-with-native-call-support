@@ -1,53 +1,47 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.layer
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.layer
 
-local BasicLayerProcessorInterface = require("org.allbinary.layer.BasicLayerProcessorInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass LayerProcessorInterface (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun LayerProcessorInterface.jnew_0 ()
+  (let ((this (make-instance 'LayerProcessorInterface)))
+    this))
 
--- Java interface
-local LayerProcessorInterface = {}
-LayerProcessorInterface.__index = LayerProcessorInterface
-LayerProcessorInterface.className = "LayerProcessorInterface"
-setmetatable(LayerProcessorInterface, {__index = BasicLayerProcessorInterface})
+    
+(unless (fboundp 'jm_getLayerManager_0) (defgeneric jm_getLayerManager_0 (this)))
+(defmethod jm_getLayerManager_0 ((this LayerProcessorInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "getLayerManager")))
 
+    
+(unless (fboundp 'jm_processAt_3) (defgeneric jm_processAt_3 (this p1 p2 p3)))
+(defmethod jm_processAt_3 ((this LayerProcessorInterface) _allBinaryLayerManager _layerInterface _index)
+  (declare (ignorable this _allBinaryLayerManager _layerInterface _index))
+  (error (JR.newException "AbstractMethodError" "processAt")))
 
-function LayerProcessorInterface:getLayerManager()
-    error("abstract method getLayerManager")
-end
-
-
--- throws Exception
-function LayerProcessorInterface:processAt(allBinaryLayerManager, layerInterface, index)
-    error("abstract method processAt")
-end
+    
+(unless (fboundp 'jm_isProcessorLayer_1) (defgeneric jm_isProcessorLayer_1 (this p1)))
+(defmethod jm_isProcessorLayer_1 ((this LayerProcessorInterface) _layerInterface)
+  (declare (ignorable this _layerInterface))
+  (error (JR.newException "AbstractMethodError" "isProcessorLayer")))
 
 
--- throws Exception
-function LayerProcessorInterface:isProcessorLayer(layerInterface)
-    error("abstract method isProcessorLayer")
-end
-
-return LayerProcessorInterface
 

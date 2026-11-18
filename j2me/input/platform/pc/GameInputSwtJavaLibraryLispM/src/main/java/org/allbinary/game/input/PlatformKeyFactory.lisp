@@ -1,94 +1,116 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.input
 
-local NullUtil = require("org.allbinary.logic.NullUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass PlatformKeyFactory (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar PlatformKeyFactory.jcell_instance :jnone)
+(defun PlatformKeyFactory.jstatic_instance ()
+  (when (eq PlatformKeyFactory.jcell_instance :jnone) (setf PlatformKeyFactory.jcell_instance (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT)))
+  PlatformKeyFactory.jcell_instance)
+(defun (setf PlatformKeyFactory.jstatic_instance) (value) (setf PlatformKeyFactory.jcell_instance value))
 
-local PlatformKeyFactory = {}
-PlatformKeyFactory.__index = PlatformKeyFactory
-PlatformKeyFactory.className = "PlatformKeyFactory"
+(defun PlatformKeyFactory.jnew_0 ()
+  (let ((this (make-instance 'PlatformKeyFactory)))
+    this))
 
-function PlatformKeyFactory.new()
-    local self = setmetatable({}, PlatformKeyFactory)
-    return self
-end
+    
+(defun PlatformKeyFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (if (eq (PlatformKeyFactory.jstatic_instance) (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT))
+            (progn
+            (setf (PlatformKeyFactory.jstatic_instance) (PlatformKeyFactory.jnew_0))))
+        (return-from jreturn (PlatformKeyFactory.jstatic_instance)))))
+
+    
+(unless (fboundp 'jm_getString_1) (defgeneric jm_getString_1 (this p1)))
+(defmethod jm_getString_1 ((this PlatformKeyFactory) _keyCode)
+  (declare (ignorable this _keyCode))
+  (let ()
+    (block jreturn
+        (return-from jreturn (PCGameKey.jm_getString_1 _keyCode)))))
+
+    
+(unless (fboundp 'jm_isSubmission_1) (defgeneric jm_isSubmission_1 (this p1)))
+(defmethod jm_isSubmission_1 ((this PlatformKeyFactory) _input)
+  (declare (ignorable this _input))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_isSubmission_1 (PCKeyFactory.jm_getInstance_0) _input)))))
+
+    
+(unless (fboundp 'jm_isDelete_1) (defgeneric jm_isDelete_1 (this p1)))
+(defmethod jm_isDelete_1 ((this PlatformKeyFactory) _input)
+  (declare (ignorable this _input))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_isDelete_1 (PCKeyFactory.jm_getInstance_0) _input)))))
+
+    
+(unless (fboundp 'jm_isBackSpace_1) (defgeneric jm_isBackSpace_1 (this p1)))
+(defmethod jm_isBackSpace_1 ((this PlatformKeyFactory) _input)
+  (declare (ignorable this _input))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_isBackSpace_1 (PCKeyFactory.jm_getInstance_0) _input)))))
+
+    
+(unless (fboundp 'jm_isUp_1) (defgeneric jm_isUp_1 (this p1)))
+(defmethod jm_isUp_1 ((this PlatformKeyFactory) _input)
+  (declare (ignorable this _input))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_isUp_1 (PCKeyFactory.jm_getInstance_0) _input)))))
+
+    
+(unless (fboundp 'jm_isDown_1) (defgeneric jm_isDown_1 (this p1)))
+(defmethod jm_isDown_1 ((this PlatformKeyFactory) _input)
+  (declare (ignorable this _input))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_isDown_1 (PCKeyFactory.jm_getInstance_0) _input)))))
+
+    
+(unless (fboundp 'jm_isEnter_1) (defgeneric jm_isEnter_1 (this p1)))
+(defmethod jm_isEnter_1 ((this PlatformKeyFactory) _input)
+  (declare (ignorable this _input))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_isEnter_1 (PCKeyFactory.jm_getInstance_0) _input)))))
+
+    
+(unless (fboundp 'jm_isLeft_1) (defgeneric jm_isLeft_1 (this p1)))
+(defmethod jm_isLeft_1 ((this PlatformKeyFactory) _input)
+  (declare (ignorable this _input))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_isLeft_1 (PCKeyFactory.jm_getInstance_0) _input)))))
+
+    
+(unless (fboundp 'jm_isRight_1) (defgeneric jm_isRight_1 (this p1)))
+(defmethod jm_isRight_1 ((this PlatformKeyFactory) _input)
+  (declare (ignorable this _input))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_isRight_1 (PCKeyFactory.jm_getInstance_0) _input)))))
 
 
-function PlatformKeyFactory.getInstance()
-        if PlatformKeyFactory.instance == NullUtil.getInstance().NULL_OBJECT then
-            PlatformKeyFactory.instance = PlatformKeyFactory.new()
-        end
-        return PlatformKeyFactory.instance
-end
-
-
-function PlatformKeyFactory:getString(keyCode)
-        return PCGameKey.getString(keyCode)
-end
-
-
-function PlatformKeyFactory:isSubmission(input)
-        return PCKeyFactory.getInstance():isSubmission(input)
-end
-
-
-function PlatformKeyFactory:isDelete(input)
-        return PCKeyFactory.getInstance():isDelete(input)
-end
-
-
-function PlatformKeyFactory:isBackSpace(input)
-        return PCKeyFactory.getInstance():isBackSpace(input)
-end
-
-
-function PlatformKeyFactory:isUp(input)
-        return PCKeyFactory.getInstance():isUp(input)
-end
-
-
-function PlatformKeyFactory:isDown(input)
-        return PCKeyFactory.getInstance():isDown(input)
-end
-
-
-function PlatformKeyFactory:isEnter(input)
-        return PCKeyFactory.getInstance():isEnter(input)
-end
-
-
-function PlatformKeyFactory:isLeft(input)
-        return PCKeyFactory.getInstance():isLeft(input)
-end
-
-
-function PlatformKeyFactory:isRight(input)
-        return PCKeyFactory.getInstance():isRight(input)
-end
-
-PlatformKeyFactory.instance = NullUtil.getInstance().NULL_OBJECT
-
-return PlatformKeyFactory
 

@@ -1,46 +1,44 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.thirdparty.store
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.thirdparty.store
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass ThirdPartyStoreFactory (JObject)
+  ())
+
+(defvar ThirdPartyStoreFactory.jcell_instance :jnone)
+(defun ThirdPartyStoreFactory.jstatic_instance ()
+  (when (eq ThirdPartyStoreFactory.jcell_instance :jnone) (setf ThirdPartyStoreFactory.jcell_instance (NoThirdPartyStore.jnew_0)))
+  ThirdPartyStoreFactory.jcell_instance)
+(defun (setf ThirdPartyStoreFactory.jstatic_instance) (value) (setf ThirdPartyStoreFactory.jcell_instance value))
+
+    
+(defun ThirdPartyStoreFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (ThirdPartyStoreFactory.jstatic_instance)))))
+
+    
+(defun ThirdPartyStoreFactory.jnew_0 ()
+  (let ((this (make-instance 'ThirdPartyStoreFactory)))
+  (let ()
+    (block jreturn nil))
+    this))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local ThirdPartyStoreFactory = {}
-ThirdPartyStoreFactory.__index = ThirdPartyStoreFactory
-ThirdPartyStoreFactory.className = "ThirdPartyStoreFactory"
-
-
-function ThirdPartyStoreFactory.getInstance()
-        return ThirdPartyStoreFactory.instance
-end
-
-
-function ThirdPartyStoreFactory.new()
-    local self = setmetatable({}, ThirdPartyStoreFactory)
-    return self
-end
-
-ThirdPartyStoreFactory.instance = NoThirdPartyStore.new()
-
-return ThirdPartyStoreFactory
 

@@ -1,72 +1,63 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation.image
 
--- local Image = require("javax.microedition.lcdui.Image")
-local Animation = require("org.allbinary.animation.Animation")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local AnimationBehaviorFactory = require("org.allbinary.animation.AnimationBehaviorFactory")
-local AnimationInterfaceFactoryInterface = require("org.allbinary.animation.AnimationInterfaceFactoryInterface")
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
-local ScaleProperties = require("org.allbinary.media.ScaleProperties")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ImageArrayAnimationFactory (JObject)
+  ((f_dx :initform 0)
+   (f_dy :initform 0)
+   (f_imageArray :initform nil)
+   (f_animationBehaviorFactory :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun ImageArrayAnimationFactory.jnew_4 (_imageArray _dx _dy _animationBehaviorFactory)
+  (declare (ignorable _imageArray _dx _dy _animationBehaviorFactory))
+  (let ((this (make-instance 'ImageArrayAnimationFactory)))
+    (setf (slot-value this 'f_dx) 0)
+    (setf (slot-value this 'f_dy) 0)
+    
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_imageArray) _imageArray)
+        (setf (slot-value this 'f_animationBehaviorFactory) _animationBehaviorFactory)
+        (setf (slot-value this 'f_dx) _dx)
+        (setf (slot-value this 'f_dy) _dy)))
+    this))
 
-local ImageArrayAnimationFactory = {}
-ImageArrayAnimationFactory.__index = ImageArrayAnimationFactory
-ImageArrayAnimationFactory.className = "ImageArrayAnimationFactory"
+    
+(unless (fboundp 'jm_getInstance_1) (defgeneric jm_getInstance_1 (this p1)))
+(defmethod jm_getInstance_1 ((this ImageArrayAnimationFactory) _instanceId)
+  (declare (ignorable this _instanceId))
+  (let ()
+    (block jreturn
+        (if (or (/= (slot-value this 'f_dx) 0) (/= (slot-value this 'f_dy) 0))
+            (progn
+            (return-from jreturn (AdjustedImageArrayAnimation.jnew_4 (slot-value this 'f_imageArray) (slot-value this 'f_dx) (slot-value this 'f_dy) (jm_getOrCreateInstance_0 (slot-value this 'f_animationBehaviorFactory)))))
+            (progn
+            (return-from jreturn (ImageArrayAnimation.jnew_2 (slot-value this 'f_imageArray) (AnimationBehavior.jm_getInstance_0))))))))
 
-function ImageArrayAnimationFactory:_init_fields()
-    self.dx = 0
-    self.dy = 0
-    self.imageArray = nil
-    self.animationBehaviorFactory = nil
-end
-
-
-function ImageArrayAnimationFactory.new(imageArray, dx, dy, animationBehaviorFactory)
-    local self = setmetatable({}, ImageArrayAnimationFactory)
-    self:_init_fields()
-        self.imageArray = imageArray
-        self.animationBehaviorFactory = animationBehaviorFactory
-        self.dx = dx
-        self.dy = dy
-    return self
-end
-
-
--- throws Exception
-function ImageArrayAnimationFactory:getInstance(instanceId)
-        if self.dx ~= 0 or self.dy ~= 0 then
-            return AdjustedImageArrayAnimation.new(self.imageArray, self.dx, self.dy, self.animationBehaviorFactory:getOrCreateInstance())
-        else
-            return ImageArrayAnimation.new(self.imageArray, AnimationBehavior.getInstance())
-        end
-end
+    
+(unless (fboundp 'jm_setInitialScale_1) (defgeneric jm_setInitialScale_1 (this p1)))
+(defmethod jm_setInitialScale_1 ((this ImageArrayAnimationFactory) _scaleProperties)
+  (declare (ignorable this _scaleProperties))
+  (let ()
+    (block jreturn nil)))
 
 
-function ImageArrayAnimationFactory:setInitialScale(scaleProperties)
-end
-
-return ImageArrayAnimationFactory
 

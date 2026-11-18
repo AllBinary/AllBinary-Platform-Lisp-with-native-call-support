@@ -1,47 +1,41 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.pickup
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.layer.pickup
 
-local LayerInterfaceFactoryInterface = require("org.allbinary.layer.LayerInterfaceFactoryInterface")
-local PickedUpLayerInterfaceFactoryInterface = require("org.allbinary.game.layer.pickup.PickedUpLayerInterfaceFactoryInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass CountedPickedUpLayerInterfaceFactoryInterface (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun CountedPickedUpLayerInterfaceFactoryInterface.jnew_0 ()
+  (let ((this (make-instance 'CountedPickedUpLayerInterfaceFactoryInterface)))
+    this))
 
--- Java interface
-local CountedPickedUpLayerInterfaceFactoryInterface = {}
-CountedPickedUpLayerInterfaceFactoryInterface.__index = CountedPickedUpLayerInterfaceFactoryInterface
-CountedPickedUpLayerInterfaceFactoryInterface.className = "CountedPickedUpLayerInterfaceFactoryInterface"
-setmetatable(CountedPickedUpLayerInterfaceFactoryInterface, {__index = PickedUpLayerInterfaceFactoryInterface})
+    
+(unless (fboundp 'jm_getId_0) (defgeneric jm_getId_0 (this)))
+(defmethod jm_getId_0 ((this CountedPickedUpLayerInterfaceFactoryInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "getId")))
 
-
-function CountedPickedUpLayerInterfaceFactoryInterface:getId()
-    error("abstract method getId")
-end
+    
+(unless (fboundp 'jm_getTotal_0) (defgeneric jm_getTotal_0 (this)))
+(defmethod jm_getTotal_0 ((this CountedPickedUpLayerInterfaceFactoryInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "getTotal")))
 
 
-function CountedPickedUpLayerInterfaceFactoryInterface:getTotal()
-    error("abstract method getTotal")
-end
-
-return CountedPickedUpLayerInterfaceFactoryInterface
 

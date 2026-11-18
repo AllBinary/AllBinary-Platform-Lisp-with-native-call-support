@@ -1,64 +1,50 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.compound
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation.compound
 
-local Animation = require("org.allbinary.animation.Animation")
-local AnimationBehaviorFactory = require("org.allbinary.animation.AnimationBehaviorFactory")
-local AnimationInterfaceFactoryInterface = require("org.allbinary.animation.AnimationInterfaceFactoryInterface")
-local RotationAnimation = require("org.allbinary.animation.RotationAnimation")
-local CompoundAnimationInterfaceFactory = require("org.allbinary.animation.compound.CompoundAnimationInterfaceFactory")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(defclass AutoCompoundRotationAnimationInterfaceFactory (CompoundAnimationInterfaceFactory)
+  ())
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(defun AutoCompoundRotationAnimationInterfaceFactory.jnew_2 (_basicAnimationInterfaceFactoryInterfaceArray _animationBehaviorFactory)
+  (declare (ignorable _basicAnimationInterfaceFactoryInterfaceArray _animationBehaviorFactory))
+  (let ((this (make-instance 'AutoCompoundRotationAnimationInterfaceFactory)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(unless (fboundp 'jm_createArray_1) (defgeneric jm_createArray_1 (this p1)))
+(defmethod jm_createArray_1 ((this AutoCompoundRotationAnimationInterfaceFactory) _size)
+  (declare (ignorable this _size))
+  (let ()
+    (block jreturn
+        (return-from jreturn (JR.newArray nil _size)))))
 
-local AutoCompoundRotationAnimationInterfaceFactory = {}
-AutoCompoundRotationAnimationInterfaceFactory.__index = AutoCompoundRotationAnimationInterfaceFactory
-AutoCompoundRotationAnimationInterfaceFactory.className = "AutoCompoundRotationAnimationInterfaceFactory"
-setmetatable(AutoCompoundRotationAnimationInterfaceFactory, {__index = CompoundAnimationInterfaceFactory})
-
-
-function AutoCompoundRotationAnimationInterfaceFactory.new(basicAnimationInterfaceFactoryInterfaceArray, animationBehaviorFactory)
-    local self = setmetatable(CompoundAnimationInterfaceFactory.new(basicAnimationInterfaceFactoryInterfaceArray, animationBehaviorFactory), AutoCompoundRotationAnimationInterfaceFactory)
-        -- super(...) made self above
-    return self
-end
+    
+(unless (fboundp 'jm_createAnimation_1) (defgeneric jm_createAnimation_1 (this p1)))
+(defmethod jm_createAnimation_1 ((this AutoCompoundRotationAnimationInterfaceFactory) _animationInterfaceArray)
+  (declare (ignorable this _animationInterfaceArray))
+  (let ()
+    (block jreturn
+        (return-from jreturn (AutoCompoundRotationAnimation.jnew_2 _animationInterfaceArray (jm_getOrCreateInstance_0 (slot-value this 'f_animationBehaviorFactory)))))))
 
 
-function AutoCompoundRotationAnimationInterfaceFactory:createArray(size)
-        return java_new_array(nil, size)
-end
-
-
-function AutoCompoundRotationAnimationInterfaceFactory:createAnimation(animationInterfaceArray)
-        return AutoCompoundRotationAnimation.new(animationInterfaceArray, self.animationBehaviorFactory:getOrCreateInstance())
-end
-
-return AutoCompoundRotationAnimationInterfaceFactory
 

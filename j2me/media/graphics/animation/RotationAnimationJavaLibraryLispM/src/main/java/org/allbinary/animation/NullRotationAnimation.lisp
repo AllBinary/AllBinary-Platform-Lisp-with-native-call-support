@@ -1,49 +1,44 @@
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation
 
-local AngleFactory = require("org.allbinary.math.AngleFactory")
-local AngleInfo = require("org.allbinary.math.AngleInfo")
-local CircularIndexUtil = require("org.allbinary.util.CircularIndexUtil")
-local RotationAnimation = require("org.allbinary.animation.RotationAnimation")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass NullRotationAnimation (RotationAnimation)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun NullRotationAnimation.jm_createTotalAngle_3 (_angleInfo _totalAngle _animationBehavior)
+  (declare (ignorable _angleInfo _totalAngle _animationBehavior))
+  (let ()
+    (block jreturn
+        (return-from jreturn (NullRotationAnimation.jnew_3 _angleInfo (CircularIndexUtil.jm_createInstance_1 (JR.idiv _totalAngle (jm_getAngleIncrement_0 (jm_getAngleIncrementInfo_0 _angleInfo)))) _animationBehavior)))))
 
-local NullRotationAnimation = {}
-NullRotationAnimation.__index = NullRotationAnimation
-NullRotationAnimation.className = "NullRotationAnimation"
-setmetatable(NullRotationAnimation, {__index = RotationAnimation})
+    
+(defun NullRotationAnimation.jm_createQuarter_1 (_animationBehavior)
+  (declare (ignorable _animationBehavior))
+  (let ()
+    (block jreturn
+        (return-from jreturn (NullRotationAnimation.jnew_3 (AngleInfo.jm_getInstance_1 (slot-value (AngleFactory.jm_getInstance_0) 'f_QUARTER_TOTAL_ANGLE)) (CircularIndexUtil.jm_createInstance_1 4) _animationBehavior)))))
+
+    
+(defun NullRotationAnimation.jnew_3 (_angleInfo _circularIndexUtil _animationBehavior)
+  (declare (ignorable _angleInfo _circularIndexUtil _animationBehavior))
+  (let ((this (make-instance 'NullRotationAnimation)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
+
+    
+(unless (fboundp 'jm_getAnimationSize_0) (defgeneric jm_getAnimationSize_0 (this)))
+(defmethod jm_getAnimationSize_0 ((this NullRotationAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn 0))))
 
 
-function NullRotationAnimation.createTotalAngle(angleInfo, totalAngle, animationBehavior)
-        return NullRotationAnimation.new(angleInfo, CircularIndexUtil.createInstance(totalAngle / angleInfo:getAngleIncrementInfo():getAngleIncrement()), animationBehavior)
-end
-
-
-function NullRotationAnimation.createQuarter(animationBehavior)
-        return NullRotationAnimation.new(AngleInfo.getInstance(AngleFactory.getInstance().QUARTER_TOTAL_ANGLE), CircularIndexUtil.createInstance(4), animationBehavior)
-end
-
-
-function NullRotationAnimation.new(angleInfo, circularIndexUtil, animationBehavior)
-    local self = setmetatable(RotationAnimation.new(angleInfo, circularIndexUtil, animationBehavior), NullRotationAnimation)
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function NullRotationAnimation:getAnimationSize()
-        return 0
-end
-
-return NullRotationAnimation
 

@@ -25,26 +25,31 @@
 (defun DomData.jstatic_ID ()
   (when (eq DomData.jcell_ID :jnone) (setf DomData.jcell_ID "id"))
   DomData.jcell_ID)
+(defun (setf DomData.jstatic_ID) (value) (setf DomData.jcell_ID value))
 
 (defvar DomData.jcell_CHILD :jnone)
 (defun DomData.jstatic_CHILD ()
   (when (eq DomData.jcell_CHILD :jnone) (setf DomData.jcell_CHILD "child"))
   DomData.jcell_CHILD)
+(defun (setf DomData.jstatic_CHILD) (value) (setf DomData.jcell_CHILD value))
 
 (defvar DomData.jcell_NAME :jnone)
 (defun DomData.jstatic_NAME ()
   (when (eq DomData.jcell_NAME :jnone) (setf DomData.jcell_NAME "name"))
   DomData.jcell_NAME)
+(defun (setf DomData.jstatic_NAME) (value) (setf DomData.jcell_NAME value))
 
 (defvar DomData.jcell_VALUE :jnone)
 (defun DomData.jstatic_VALUE ()
   (when (eq DomData.jcell_VALUE :jnone) (setf DomData.jcell_VALUE "value"))
   DomData.jcell_VALUE)
+(defun (setf DomData.jstatic_VALUE) (value) (setf DomData.jcell_VALUE value))
 
 (defvar DomData.jcell_INDEX :jnone)
 (defun DomData.jstatic_INDEX ()
   (when (eq DomData.jcell_INDEX :jnone) (setf DomData.jcell_INDEX "index"))
   DomData.jcell_INDEX)
+(defun (setf DomData.jstatic_INDEX) (value) (setf DomData.jcell_INDEX value))
 
     
 (defun DomData.jnew_0 ()

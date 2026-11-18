@@ -1,60 +1,55 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.tick
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.tick
 
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local LayerProcessor = require("org.allbinary.layer.LayerProcessor")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass TickableLayerProcessor (LayerProcessor)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun TickableLayerProcessor.jnew_0 ()
+  (let ((this (make-instance 'TickableLayerProcessor)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
-local TickableLayerProcessor = {}
-TickableLayerProcessor.__index = TickableLayerProcessor
-TickableLayerProcessor.className = "TickableLayerProcessor"
-setmetatable(TickableLayerProcessor, {__index = LayerProcessor})
+    
+(unless (fboundp 'jm_processAt_3) (defgeneric jm_processAt_3 (this p1 p2 p3)))
+(defmethod jm_processAt_3 ((this TickableLayerProcessor) _allBinaryLayerManager _layerInterface _index)
+  (declare (ignorable this _allBinaryLayerManager _layerInterface _index))
+  (let (_tickableInterface)
+  (declare (ignorable _tickableInterface))
+    (block jreturn
+        (setf _tickableInterface _layerInterface)
+        (jm_processTick_1 _tickableInterface _allBinaryLayerManager))))
+
+    
+(unless (fboundp 'jm_isProcessorLayer_1) (defgeneric jm_isProcessorLayer_1 (this p1)))
+(defmethod jm_isProcessorLayer_1 ((this TickableLayerProcessor) _layerInterface)
+  (declare (ignorable this _layerInterface))
+  (let ()
+    (block jreturn
+        (if (jm_implmentsTickableInterface_0 _layerInterface)
+            (progn
+            (return-from jreturn t))
+            (progn
+            (return-from jreturn nil))))))
 
 
-function TickableLayerProcessor.new()
-    local self = setmetatable(LayerProcessor.new(TickableLayerManager.new()), TickableLayerProcessor)
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function TickableLayerProcessor:processAt(allBinaryLayerManager, layerInterface, index)
-        local tickableInterface = layerInterface
-        tickableInterface:processTick(allBinaryLayerManager)
-end
-
-
-function TickableLayerProcessor:isProcessorLayer(layerInterface)
-        if layerInterface:implmentsTickableInterface() then
-            return true
-        else
-            return false
-        end
-end
-
-return TickableLayerProcessor
 

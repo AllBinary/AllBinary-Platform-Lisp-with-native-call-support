@@ -1,67 +1,72 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2025 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary
 
--- local HashMap = require("java.util.HashMap")
--- local Map = require("java.util.Map")
--- local Set = require("java.util.Set")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+;J2SEForJ2ME
+(defclass J2SEUtil (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar J2SEUtil.jcell_instance :jnone)
+(defun J2SEUtil.jstatic_instance ()
+  (when (eq J2SEUtil.jcell_instance :jnone) (setf J2SEUtil.jcell_instance (J2SEUtil.jnew_0)))
+  J2SEUtil.jcell_instance)
+(defun (setf J2SEUtil.jstatic_instance) (value) (setf J2SEUtil.jcell_instance value))
 
---J2SEForJ2ME
-local J2SEUtil = {}
-J2SEUtil.__index = J2SEUtil
-J2SEUtil.className = "J2SEUtil"
+(defun J2SEUtil.jnew_0 ()
+  (let ((this (make-instance 'J2SEUtil)))
+    this))
 
-function J2SEUtil.new()
-    local self = setmetatable({}, J2SEUtil)
-    return self
-end
+    
+(defun J2SEUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (J2SEUtil.jstatic_instance)))))
+
+    
+(unless (fboundp 'jm_getHashMapAsArray_1) (defgeneric jm_getHashMapAsArray_1 (this p1)))
+(defmethod jm_getHashMapAsArray_1 ((this J2SEUtil) _hashMap)
+  (declare (ignorable this _hashMap))
+  (let (_objectArray)
+  (declare (ignorable _objectArray))
+    (block jreturn
+        (setf _objectArray (jm_toArray_0 (jm_keySet_0 _hashMap)))
+        (return-from jreturn _objectArray))))
+
+    
+(unless (fboundp 'jm_getMapAsArray_1) (defgeneric jm_getMapAsArray_1 (this p1)))
+(defmethod jm_getMapAsArray_1 ((this J2SEUtil) _map)
+  (declare (ignorable this _map))
+  (let (_objectArray)
+  (declare (ignorable _objectArray))
+    (block jreturn
+        (setf _objectArray (jm_toArray_0 (jm_keySet_0 _map)))
+        (return-from jreturn _objectArray))))
+
+    
+(unless (fboundp 'jm_getSetAsArray_1) (defgeneric jm_getSetAsArray_1 (this p1)))
+(defmethod jm_getSetAsArray_1 ((this J2SEUtil) _set)
+  (declare (ignorable this _set))
+  (let (_objectArray)
+  (declare (ignorable _objectArray))
+    (block jreturn
+        (setf _objectArray (jm_toArray_0 _set))
+        (return-from jreturn _objectArray))))
 
 
-function J2SEUtil.getInstance()
-        return J2SEUtil.instance
-end
-
-
-function J2SEUtil:getHashMapAsArray(hashMap)
-        local objectArray = hashMap:keySet():toArray()
-        return objectArray
-end
-
-
-function J2SEUtil:getMapAsArray(map)
-        local objectArray = map:keySet():toArray()
-        return objectArray
-end
-
-
-function J2SEUtil:getSetAsArray(set)
-        local objectArray = set:toArray()
-        return objectArray
-end
-
-J2SEUtil.instance = J2SEUtil.new()
-
-return J2SEUtil
 

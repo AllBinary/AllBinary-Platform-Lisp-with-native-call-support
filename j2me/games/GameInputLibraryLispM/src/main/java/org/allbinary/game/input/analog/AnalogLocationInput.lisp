@@ -1,81 +1,102 @@
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.analog
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.input.analog
 
-local CustomGPoint = require("org.allbinary.graphics.CustomGPoint")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass AnalogLocationInput (JObject)
+  ((f_playerId :initform 0)
+   (f_customGPoint :initform nil)
+   (f_rz :initform 0)
+   (f_rightTrigger :initform 0)
+   (f_leftTrigger :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar AnalogLocationInput.jcell_NULL_ANALOG_LOCATION_INPUT :jnone)
+(defun AnalogLocationInput.jstatic_NULL_ANALOG_LOCATION_INPUT ()
+  (when (eq AnalogLocationInput.jcell_NULL_ANALOG_LOCATION_INPUT :jnone) (setf AnalogLocationInput.jcell_NULL_ANALOG_LOCATION_INPUT (AnalogLocationInput.jnew_1 (JR.i32 (- 1)))))
+  AnalogLocationInput.jcell_NULL_ANALOG_LOCATION_INPUT)
+(defun (setf AnalogLocationInput.jstatic_NULL_ANALOG_LOCATION_INPUT) (value) (setf AnalogLocationInput.jcell_NULL_ANALOG_LOCATION_INPUT value))
 
-local AnalogLocationInput = {}
-AnalogLocationInput.__index = AnalogLocationInput
-AnalogLocationInput.className = "AnalogLocationInput"
+    
+(defun AnalogLocationInput.jnew_1 (_playerId)
+  (declare (ignorable _playerId))
+  (let ((this (make-instance 'AnalogLocationInput)))
+    
+    
+    
+    
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_playerId) _playerId)
+        (setf (slot-value this 'f_customGPoint) (CustomGPoint.jnew_3 0 0 0))))
+    this))
 
-function AnalogLocationInput:_init_fields()
-    self.playerId = nil
-    self.customGPoint = nil
-    self.rz = 0
-    self.rightTrigger = 0
-    self.leftTrigger = 0
-end
+    
+(unless (fboundp 'jm_getPlayerId_0) (defgeneric jm_getPlayerId_0 (this)))
+(defmethod jm_getPlayerId_0 ((this AnalogLocationInput))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_playerId)))))
+
+    
+(unless (fboundp 'jm_getCustomGPoint_0) (defgeneric jm_getCustomGPoint_0 (this)))
+(defmethod jm_getCustomGPoint_0 ((this AnalogLocationInput))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_customGPoint)))))
+
+    
+(unless (fboundp 'jm_getRz_0) (defgeneric jm_getRz_0 (this)))
+(defmethod jm_getRz_0 ((this AnalogLocationInput))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_rz)))))
+
+    
+(unless (fboundp 'jm_setRz_1) (defgeneric jm_setRz_1 (this p1)))
+(defmethod jm_setRz_1 ((this AnalogLocationInput) _rz)
+  (declare (ignorable this _rz))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_rz) _rz))))
+
+    
+(unless (fboundp 'jm_getRightTrigger_0) (defgeneric jm_getRightTrigger_0 (this)))
+(defmethod jm_getRightTrigger_0 ((this AnalogLocationInput))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_rightTrigger)))))
+
+    
+(unless (fboundp 'jm_setRightTrigger_1) (defgeneric jm_setRightTrigger_1 (this p1)))
+(defmethod jm_setRightTrigger_1 ((this AnalogLocationInput) _rightTrigger)
+  (declare (ignorable this _rightTrigger))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_rightTrigger) _rightTrigger))))
+
+    
+(unless (fboundp 'jm_getLeftTrigger_0) (defgeneric jm_getLeftTrigger_0 (this)))
+(defmethod jm_getLeftTrigger_0 ((this AnalogLocationInput))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_leftTrigger)))))
+
+    
+(unless (fboundp 'jm_setLeftTrigger_1) (defgeneric jm_setLeftTrigger_1 (this p1)))
+(defmethod jm_setLeftTrigger_1 ((this AnalogLocationInput) _leftTrigger)
+  (declare (ignorable this _leftTrigger))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_leftTrigger) _leftTrigger))))
 
 
-function AnalogLocationInput.new(playerId)
-    local self = setmetatable({}, AnalogLocationInput)
-    self:_init_fields()
-        self.playerId = playerId
-        self.customGPoint = CustomGPoint.new(0, 0, 0)
-    return self
-end
-
-
-function AnalogLocationInput:getPlayerId()
-        return self.playerId
-end
-
-
-function AnalogLocationInput:getCustomGPoint()
-        return self.customGPoint
-end
-
-
-function AnalogLocationInput:getRz()
-        return self.rz
-end
-
-
-function AnalogLocationInput:setRz(rz)
-        self.rz = rz
-end
-
-
-function AnalogLocationInput:getRightTrigger()
-        return self.rightTrigger
-end
-
-
-function AnalogLocationInput:setRightTrigger(rightTrigger)
-        self.rightTrigger = rightTrigger
-end
-
-
-function AnalogLocationInput:getLeftTrigger()
-        return self.leftTrigger
-end
-
-
-function AnalogLocationInput:setLeftTrigger(leftTrigger)
-        self.leftTrigger = leftTrigger
-end
-
-AnalogLocationInput.NULL_ANALOG_LOCATION_INPUT = AnalogLocationInput.new(-1)
-
-return AnalogLocationInput
 

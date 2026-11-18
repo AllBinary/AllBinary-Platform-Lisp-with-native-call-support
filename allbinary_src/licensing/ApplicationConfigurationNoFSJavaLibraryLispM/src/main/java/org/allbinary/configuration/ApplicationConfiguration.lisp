@@ -1,136 +1,152 @@
--- Generated Code Do Not Modify
--- package org.allbinary.configuration
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.configuration
 
-local Feature = require("org.allbinary.game.configuration.feature.Feature")
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local MainFeatureFactory = require("org.allbinary.game.configuration.feature.MainFeatureFactory")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ApplicationConfiguration (JObject)
+  ((f_logUtil :initform nil)
+   (f_fullscreen :initform nil)
+   (f_showTitleBar :initform nil)
+   (f_progressBarView :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar ApplicationConfiguration.jcell_instance :jnone)
+(defun ApplicationConfiguration.jstatic_instance ()
+  (when (eq ApplicationConfiguration.jcell_instance :jnone) (setf ApplicationConfiguration.jcell_instance (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT)))
+  ApplicationConfiguration.jcell_instance)
+(defun (setf ApplicationConfiguration.jstatic_instance) (value) (setf ApplicationConfiguration.jcell_instance value))
 
-local ApplicationConfiguration = {}
-ApplicationConfiguration.__index = ApplicationConfiguration
-ApplicationConfiguration.className = "ApplicationConfiguration"
+    
+(defun ApplicationConfiguration.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (if (eq (ApplicationConfiguration.jstatic_instance) (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT))
+            (progn
+            (setf (ApplicationConfiguration.jstatic_instance) (ApplicationConfiguration.jnew_0))))
+        (return-from jreturn (ApplicationConfiguration.jstatic_instance)))))
 
-function ApplicationConfiguration:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.fullscreen = true
-    self.showTitleBar = false
-    self.progressBarView = false
-end
+    
+(defun ApplicationConfiguration.jnew_0 ()
+  (let ((this (make-instance 'ApplicationConfiguration)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_fullscreen) t)
+    (setf (slot-value this 'f_showTitleBar) nil)
+    (setf (slot-value this 'f_progressBarView) nil)
+  (let (_commonStrings)
+  (declare (ignorable _commonStrings))
+    (block jreturn
+        (handler-case (progn
+            (jm_read_0 this))
+            (error (_e) (declare (ignorable _e))
+            (setf _commonStrings (CommonStrings.jm_getInstance_0))
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value _commonStrings 'f_EXCEPTION) this (slot-value _commonStrings 'f_CONSTRUCTOR) _e)))))
+    this))
+
+    
+(unless (fboundp 'jm_read_0) (defgeneric jm_read_0 (this)))
+(defmethod jm_read_0 ((this ApplicationConfiguration))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_setFullscreen_1 this t)
+        (jm_setProgressBarView_1 this nil)
+        (jm_setShowTitleBar_1 this nil)
+        (jm_putF_3 (slot-value this 'f_logUtil) (JR.concat "Read Configuration: " (jm_toString_0 this)) this "read"))))
+
+    
+(unless (fboundp 'jm_write_0) (defgeneric jm_write_0 (this)))
+(defmethod jm_write_0 ((this ApplicationConfiguration))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_update_1) (defgeneric jm_update_1 (this p1)))
+(defmethod jm_update_1 ((this ApplicationConfiguration) _gameFeature)
+  (declare (ignorable this _gameFeature))
+  (let (_features)
+  (declare (ignorable _features))
+    (block jreturn
+        (if (eq _gameFeature (slot-value (MainFeatureFactory.jm_getInstance_0) 'f_FULL_SCREEN))
+            (progn
+            (setf _features (Features.jm_getInstance_0))
+            (if (jm_isFeature_1 _features _gameFeature)
+                (progn
+                (if (not (jm_isFullscreen_0 this))
+                    (progn
+                    (jm_setFullscreen_1 this t)
+                    (jm_write_0 this))))
+                (progn
+                (if (jm_isFullscreen_0 this)
+                    (progn
+                    (jm_setFullscreen_1 this nil)
+                    (jm_write_0 this))))))))))
+
+    
+(unless (fboundp 'jm_setFullscreen_1) (defgeneric jm_setFullscreen_1 (this p1)))
+(defmethod jm_setFullscreen_1 ((this ApplicationConfiguration) _fullscreen)
+  (declare (ignorable this _fullscreen))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_fullscreen) _fullscreen))))
+
+    
+(unless (fboundp 'jm_isFullscreen_0) (defgeneric jm_isFullscreen_0 (this)))
+(defmethod jm_isFullscreen_0 ((this ApplicationConfiguration))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_fullscreen)))))
+
+    
+(unless (fboundp 'jm_setShowTitleBar_1) (defgeneric jm_setShowTitleBar_1 (this p1)))
+(defmethod jm_setShowTitleBar_1 ((this ApplicationConfiguration) _showTitleBar)
+  (declare (ignorable this _showTitleBar))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_showTitleBar) _showTitleBar))))
+
+    
+(unless (fboundp 'jm_isShowTitleBar_0) (defgeneric jm_isShowTitleBar_0 (this)))
+(defmethod jm_isShowTitleBar_0 ((this ApplicationConfiguration))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_showTitleBar)))))
+
+    
+(unless (fboundp 'jm_setProgressBarView_1) (defgeneric jm_setProgressBarView_1 (this p1)))
+(defmethod jm_setProgressBarView_1 ((this ApplicationConfiguration) _progressBarView)
+  (declare (ignorable this _progressBarView))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_progressBarView) _progressBarView))))
+
+    
+(unless (fboundp 'jm_isProgressBarView_0) (defgeneric jm_isProgressBarView_0 (this)))
+(defmethod jm_isProgressBarView_0 ((this ApplicationConfiguration))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_progressBarView)))))
+
+    
+(unless (fboundp 'jm_toString_0) (defgeneric jm_toString_0 (this)))
+(defmethod jm_toString_0 ((this ApplicationConfiguration))
+  (declare (ignorable this))
+  (let (_stringBuffer)
+  (declare (ignorable _stringBuffer))
+    (block jreturn
+        (setf _stringBuffer (StringMaker.jnew_0))
+        (jm_append_1 _stringBuffer "isFullscreen: ")
+        (jm_appendboolean_1 _stringBuffer (jm_isFullscreen_0 this))
+        (jm_append_1 _stringBuffer " isProgressBarView: ")
+        (jm_appendboolean_1 _stringBuffer (jm_isProgressBarView_0 this))
+        (jm_append_1 _stringBuffer " isShowTitleBar: ")
+        (jm_appendboolean_1 _stringBuffer (jm_isShowTitleBar_0 this))
+        (return-from jreturn (jm_toString_0 _stringBuffer)))))
 
 
-function ApplicationConfiguration.getInstance()
-        if ApplicationConfiguration.instance == NullUtil.getInstance().NULL_OBJECT then
-            ApplicationConfiguration.instance = ApplicationConfiguration.new()
-        end
-        return ApplicationConfiguration.instance
-end
-
-
-function ApplicationConfiguration.new()
-    local self = setmetatable({}, ApplicationConfiguration)
-    self:_init_fields()
-        local try_ok, try_error = pcall(function()
-            self:read()
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, commonStrings.CONSTRUCTOR, e)
-        end
-    return self
-end
-
-
--- throws Exception
-function ApplicationConfiguration:read()
-        self:setFullscreen(true)
-        self:setProgressBarView(false)
-        self:setShowTitleBar(false)
-        self.logUtil:putF("Read Configuration: " .. tostring(self), self, "read")
-end
-
-
--- throws Exception
-function ApplicationConfiguration:write()
-end
-
-
--- throws Exception
-function ApplicationConfiguration:update(gameFeature)
-        if gameFeature == MainFeatureFactory.getInstance().FULL_SCREEN then
-            local features = Features.getInstance()
-            if features:isFeature(gameFeature) then
-                if not self:isFullscreen() then
-                    self:setFullscreen(true)
-                    self:write()
-                end
-            else
-                if self:isFullscreen() then
-                    self:setFullscreen(false)
-                    self:write()
-                end
-            end
-        end
-end
-
-
-function ApplicationConfiguration:setFullscreen(fullscreen)
-        self.fullscreen = fullscreen
-end
-
-
-function ApplicationConfiguration:isFullscreen()
-        return self.fullscreen
-end
-
-
-function ApplicationConfiguration:setShowTitleBar(showTitleBar)
-        self.showTitleBar = showTitleBar
-end
-
-
-function ApplicationConfiguration:isShowTitleBar()
-        return self.showTitleBar
-end
-
-
-function ApplicationConfiguration:setProgressBarView(progressBarView)
-        self.progressBarView = progressBarView
-end
-
-
-function ApplicationConfiguration:isProgressBarView()
-        return self.progressBarView
-end
-
-
-function ApplicationConfiguration:toString()
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append("isFullscreen: ")
-        stringBuffer:appendboolean(self:isFullscreen())
-        stringBuffer:append(" isProgressBarView: ")
-        stringBuffer:appendboolean(self:isProgressBarView())
-        stringBuffer:append(" isShowTitleBar: ")
-        stringBuffer:appendboolean(self:isShowTitleBar())
-        return tostring(stringBuffer)
-end
-ApplicationConfiguration.__tostring = function(self) return self:toString() end
-
-ApplicationConfiguration.instance = NullUtil.getInstance().NULL_OBJECT
-
-return ApplicationConfiguration
 

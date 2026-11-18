@@ -26,6 +26,7 @@
 (defun TimeStampUtil.jstatic_instance ()
   (when (eq TimeStampUtil.jcell_instance :jnone) (setf TimeStampUtil.jcell_instance (TimeStampUtil.jnew_0)))
   TimeStampUtil.jcell_instance)
+(defun (setf TimeStampUtil.jstatic_instance) (value) (setf TimeStampUtil.jcell_instance value))
 
     
 (defun TimeStampUtil.jm_getInstance_0 ()

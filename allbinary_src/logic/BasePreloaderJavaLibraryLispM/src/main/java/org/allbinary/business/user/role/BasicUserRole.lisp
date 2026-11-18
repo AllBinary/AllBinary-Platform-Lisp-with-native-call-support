@@ -55,7 +55,7 @@
         (setf (slot-value this 'f_displayValue) _aDisplayValue)
         (setf (slot-value this 'f_sessionTimeout) _aSessionTimeout)
         (setf (slot-value this 'f_sessionInactivityTimeout) _aSessionInactivityTimeout)
-        (JR.className (slot-value (BasicUserRoles.jm_getInstance_0) 'f_roleVector))))
+        (jm_add_1 (slot-value (BasicUserRoles.jm_getInstance_0) 'f_roleVector) this)))
     this))
 
     

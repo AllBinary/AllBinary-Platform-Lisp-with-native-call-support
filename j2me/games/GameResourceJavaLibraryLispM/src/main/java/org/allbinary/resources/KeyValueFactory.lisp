@@ -1,60 +1,53 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.resources
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.resources
 
-local StdUtil = require("org.allbinary.logic.StdUtil")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass KeyValueFactory (JObject)
+  ((f_MAP :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar KeyValueFactory.jcell_instance :jnone)
+(defun KeyValueFactory.jstatic_instance ()
+  (when (eq KeyValueFactory.jcell_instance :jnone) (setf KeyValueFactory.jcell_instance (KeyValueFactory.jnew_0)))
+  KeyValueFactory.jcell_instance)
+(defun (setf KeyValueFactory.jstatic_instance) (value) (setf KeyValueFactory.jcell_instance value))
 
-local KeyValueFactory = {}
-KeyValueFactory.__index = KeyValueFactory
-KeyValueFactory.className = "KeyValueFactory"
+(defun KeyValueFactory.jnew_0 ()
+  (let ((this (make-instance 'KeyValueFactory)))
+    (setf (slot-value this 'f_MAP) (jm_createHashtable_0 (StdUtil.jm_getInstance_0)))
+    this))
 
-function KeyValueFactory:_init_fields()
-    self.MAP = StdUtil.getInstance():createHashtable()
-end
+    
+(defun KeyValueFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (KeyValueFactory.jstatic_instance)))))
 
-function KeyValueFactory.new()
-    local self = setmetatable({}, KeyValueFactory)
-    self:_init_fields()
-    return self
-end
+    
+(unless (fboundp 'jm_get_1) (defgeneric jm_get_1 (this p1)))
+(defmethod jm_get_1 ((this KeyValueFactory) _key)
+  (declare (ignorable this _key))
+  (let ()
+    (block jreturn
+        (if (not (jm_containsKey_1 (slot-value this 'f_MAP) _key))
+            (progn
+            (return-from jreturn _key)))
+        (return-from jreturn (jm_get_1 (slot-value this 'f_MAP) _key)))))
 
 
-function KeyValueFactory.getInstance()
-        return KeyValueFactory.instance
-end
-
-
-function KeyValueFactory:get(key)
-        if not self.MAP:containsKey(key) then
-            return key
-        end
-        return self.MAP:get(key)
-end
-
-KeyValueFactory.instance = KeyValueFactory.new()
-
-return KeyValueFactory
 

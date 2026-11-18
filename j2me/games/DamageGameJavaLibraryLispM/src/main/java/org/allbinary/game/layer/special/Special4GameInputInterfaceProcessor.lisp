@@ -1,50 +1,42 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.special
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.layer.special
 
-local GameKeyEvent = require("org.allbinary.game.input.event.GameKeyEvent")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local SpecialGameInputInterfaceProcessor = require("org.allbinary.game.layer.special.SpecialGameInputInterfaceProcessor")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass Special4GameInputInterfaceProcessor (SpecialGameInputInterfaceProcessor)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun Special4GameInputInterfaceProcessor.jnew_1 (_collidableDestroyableDamageableLayer)
+  (declare (ignorable _collidableDestroyableDamageableLayer))
+  (let ((this (make-instance 'Special4GameInputInterfaceProcessor)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
-local Special4GameInputInterfaceProcessor = {}
-Special4GameInputInterfaceProcessor.__index = Special4GameInputInterfaceProcessor
-Special4GameInputInterfaceProcessor.className = "Special4GameInputInterfaceProcessor"
-setmetatable(Special4GameInputInterfaceProcessor, {__index = SpecialGameInputInterfaceProcessor})
-
-
-function Special4GameInputInterfaceProcessor.new(collidableDestroyableDamageableLayer)
-    local self = setmetatable(SpecialGameInputInterfaceProcessor.new(collidableDestroyableDamageableLayer), Special4GameInputInterfaceProcessor)
-        -- super(...) made self above
-    return self
-end
+    
+(unless (fboundp 'jm_processEvent_2) (defgeneric jm_processEvent_2 (this p1 p2)))
+(defmethod jm_processEvent_2 ((this Special4GameInputInterfaceProcessor) _allbinaryLayerManager _gameKeyEvent)
+  (declare (ignorable this _allbinaryLayerManager _gameKeyEvent))
+  (let ()
+    (block jreturn
+        (jm_special4_2 (slot-value this 'f_specialGameInputInterface) _allbinaryLayerManager _gameKeyEvent))))
 
 
--- throws Exception
-function Special4GameInputInterfaceProcessor:processEvent(allbinaryLayerManager, gameKeyEvent)
-        self.specialGameInputInterface:special4(allbinaryLayerManager, gameKeyEvent)
-end
-
-return Special4GameInputInterfaceProcessor
 

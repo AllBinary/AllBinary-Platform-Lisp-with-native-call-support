@@ -25,6 +25,7 @@
 (defun AndroidInfoFactory.jstatic_instance ()
   (when (eq AndroidInfoFactory.jcell_instance :jnone) (setf AndroidInfoFactory.jcell_instance (AndroidInfoFactory.jnew_0)))
   AndroidInfoFactory.jcell_instance)
+(defun (setf AndroidInfoFactory.jstatic_instance) (value) (setf AndroidInfoFactory.jcell_instance value))
 
 (defun AndroidInfoFactory.jnew_0 ()
   (let ((this (make-instance 'AndroidInfoFactory)))

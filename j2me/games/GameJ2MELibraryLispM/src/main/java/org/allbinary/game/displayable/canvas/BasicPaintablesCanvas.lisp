@@ -1,66 +1,56 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.displayable.canvas
 
--- local CommandListener = require("javax.microedition.lcdui.CommandListener")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local AllBinaryGameLayerManager = require("org.allbinary.game.layer.AllBinaryGameLayerManager")
-local ColorFillBasePaintable = require("org.allbinary.game.paint.ColorFillBasePaintable")
-local ColorFillPaintableFactory = require("org.allbinary.game.paint.ColorFillPaintableFactory")
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
-local GameCommandCanvas = require("org.allbinary.game.displayable.canvas.GameCommandCanvas")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass BasicPaintablesCanvas (GameCommandCanvas)
+  ((f_paintableArray :initform nil)
+   (f_colorFillPaintable :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun BasicPaintablesCanvas.jnew_4 (_cmdListener _name _allBinaryGameLayerManager _paintableArray)
+  (declare (ignorable _cmdListener _name _allBinaryGameLayerManager _paintableArray))
+  (let ((this (make-instance 'BasicPaintablesCanvas)))
+    
+    
+  (let ()
+    (block jreturn
+        nil
+        (setf (slot-value this 'f_paintableArray) _paintableArray)
+        (setf (slot-value this 'f_colorFillPaintable) (jm_getInstance_2 (ColorFillPaintableFactory.jm_getInstance_0) (jm_getBackgroundBasicColor_0 _allBinaryGameLayerManager) nil))))
+    this))
 
-local BasicPaintablesCanvas = {}
-BasicPaintablesCanvas.__index = BasicPaintablesCanvas
-BasicPaintablesCanvas.className = "BasicPaintablesCanvas"
-setmetatable(BasicPaintablesCanvas, {__index = GameCommandCanvas})
-
-function BasicPaintablesCanvas:_init_fields()
-    self.paintableArray = nil
-    self.colorFillPaintable = nil
-end
-
-
-function BasicPaintablesCanvas.new(cmdListener, name, allBinaryGameLayerManager, paintableArray)
-    local self = setmetatable(GameCommandCanvas.new(cmdListener, name, allBinaryGameLayerManager:getBackgroundBasicColor(), allBinaryGameLayerManager:getForegroundBasicColor()), BasicPaintablesCanvas)
-    self:_init_fields()
-        -- super(...) made self above
-        self.paintableArray = paintableArray
-        self.colorFillPaintable = ColorFillPaintableFactory.getInstance():getInstance(allBinaryGameLayerManager:getBackgroundBasicColor(), false)
-    return self
-end
+    
+(unless (fboundp 'jm_paint_1) (defgeneric jm_paint_1 (this p1)))
+(defmethod jm_paint_1 ((this BasicPaintablesCanvas) _graphics)
+  (declare (ignorable this _graphics))
+  (let (_index)
+  (declare (ignorable _index))
+    (block jreturn
+        (jm_paint_1 (slot-value this 'f_colorFillPaintable) _graphics)
+        (jm_setColor_1 _graphics (slot-value this 'f_foregroundColor))
+        (progn
+            (setf _index (JR.i32 (- (length (slot-value this 'f_paintableArray)) 1)))
+            (block jbreak (loop while (>= _index 0) do
+                (block jcontinue
+            (jm_paint_1 (aref (slot-value this 'f_paintableArray) _index) _graphics))
+                (setf _index (JR.i32 (- _index 1))))))
+        (call-next-method this _graphics))))
 
 
-function BasicPaintablesCanvas:paint(graphics)
-        self.colorFillPaintable:paint(graphics)
-        graphics:setColor(self.foregroundColor)
-        for index = (self.paintableArray.n or #self.paintableArray) - 1, 0, -1 do
-            self.paintableArray[index + 1]:paint(graphics)
-        end
-        GameCommandCanvas.paint(self, graphics)
-end
-
-return BasicPaintablesCanvas
 

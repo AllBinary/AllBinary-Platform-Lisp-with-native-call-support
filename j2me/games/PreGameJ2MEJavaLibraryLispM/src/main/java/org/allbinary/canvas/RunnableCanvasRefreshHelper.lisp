@@ -1,53 +1,43 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.canvas
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.canvas
 
-local MyCanvas = require("org.allbinary.graphics.displayable.MyCanvas")
-local Processor = require("org.allbinary.canvas.Processor")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass RunnableCanvasRefreshHelper (Processor)
+  ((f_runnableCanvas :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun RunnableCanvasRefreshHelper.jnew_1 (_runnableCanvas)
+  (declare (ignorable _runnableCanvas))
+  (let ((this (make-instance 'RunnableCanvasRefreshHelper)))
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_runnableCanvas) _runnableCanvas)))
+    this))
 
-local RunnableCanvasRefreshHelper = {}
-RunnableCanvasRefreshHelper.__index = RunnableCanvasRefreshHelper
-RunnableCanvasRefreshHelper.className = "RunnableCanvasRefreshHelper"
-setmetatable(RunnableCanvasRefreshHelper, {__index = Processor})
-
-function RunnableCanvasRefreshHelper:_init_fields()
-    self.runnableCanvas = nil
-end
-
-
-function RunnableCanvasRefreshHelper.new(runnableCanvas)
-    local self = setmetatable(Processor.new(), RunnableCanvasRefreshHelper)
-    self:_init_fields()
-        self.runnableCanvas = runnableCanvas
-    return self
-end
+    
+(unless (fboundp 'jm_process_0) (defgeneric jm_process_0 (this)))
+(defmethod jm_process_0 ((this RunnableCanvasRefreshHelper))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_repaint_0 (slot-value this 'f_runnableCanvas)))))
 
 
-function RunnableCanvasRefreshHelper:process()
-        self.runnableCanvas:repaint()
-end
-
-return RunnableCanvasRefreshHelper
 

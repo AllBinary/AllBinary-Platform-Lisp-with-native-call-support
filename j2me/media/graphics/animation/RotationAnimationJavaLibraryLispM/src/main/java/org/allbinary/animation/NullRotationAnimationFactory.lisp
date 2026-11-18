@@ -1,78 +1,70 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation
 
-local ScaleProperties = require("org.allbinary.media.ScaleProperties")
-local AnimationInterfaceFactoryInterface = require("org.allbinary.animation.AnimationInterfaceFactoryInterface")
-local ProceduralAnimationInterfaceFactoryInterface = require("org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(defclass NullRotationAnimationFactory (JObject)
+  ((f_NULL_ROTATION_ANIMATION_ARRAY :initform nil)
+   (f_NULL_ANIMATION :initform nil)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defvar NullRotationAnimationFactory.jcell_NULL_ROTATION_ANIMATION_FACTORY :jnone)
+(defun NullRotationAnimationFactory.jstatic_NULL_ROTATION_ANIMATION_FACTORY ()
+  (when (eq NullRotationAnimationFactory.jcell_NULL_ROTATION_ANIMATION_FACTORY :jnone) (setf NullRotationAnimationFactory.jcell_NULL_ROTATION_ANIMATION_FACTORY (NullRotationAnimationFactory.jnew_0)))
+  NullRotationAnimationFactory.jcell_NULL_ROTATION_ANIMATION_FACTORY)
+(defun (setf NullRotationAnimationFactory.jstatic_NULL_ROTATION_ANIMATION_FACTORY) (value) (setf NullRotationAnimationFactory.jcell_NULL_ROTATION_ANIMATION_FACTORY value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun NullRotationAnimationFactory.jnew_0 ()
+  (let ((this (make-instance 'NullRotationAnimationFactory)))
+    (setf (slot-value this 'f_NULL_ROTATION_ANIMATION_ARRAY) (JR.newArray nil 0))
+    (setf (slot-value this 'f_NULL_ANIMATION) (NullRotationAnimation2.jnew_0))
+  (let ()
+    (block jreturn nil))
+    this))
 
-local NullRotationAnimationFactory = {}
-NullRotationAnimationFactory.__index = NullRotationAnimationFactory
-NullRotationAnimationFactory.className = "NullRotationAnimationFactory"
+    
+(defun NullRotationAnimationFactory.jm_getFactoryInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (NullRotationAnimationFactory.jstatic_NULL_ROTATION_ANIMATION_FACTORY)))))
 
-function NullRotationAnimationFactory:_init_fields()
-    self.NULL_ROTATION_ANIMATION_ARRAY = java_new_array(nil, 0)
-    self.NULL_ANIMATION = NullRotationAnimation2.new()
-end
+    
+(unless (fboundp 'jm_getInstance_1) (defgeneric jm_getInstance_1 (this p1)))
+(defmethod jm_getInstance_1 ((this NullRotationAnimationFactory) _instanceId)
+  (declare (ignorable this _instanceId))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_NULL_ANIMATION)))))
 
+    
+(unless (fboundp 'jm_getInstanceAnimation_1) (defgeneric jm_getInstanceAnimation_1 (this p1)))
+(defmethod jm_getInstanceAnimation_1 ((this NullRotationAnimationFactory) _animationInterface)
+  (declare (ignorable this _animationInterface))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_NULL_ANIMATION)))))
 
-function NullRotationAnimationFactory.new()
-    local self = setmetatable({}, NullRotationAnimationFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function NullRotationAnimationFactory.getFactoryInstance()
-        return NullRotationAnimationFactory.NULL_ROTATION_ANIMATION_FACTORY
-end
-
-
-function NullRotationAnimationFactory:getInstance(instanceId)
-        return self.NULL_ANIMATION
-end
-
-
--- throws Exception
-function NullRotationAnimationFactory:getInstanceAnimation(animationInterface)
-        return self.NULL_ANIMATION
-end
+    
+(unless (fboundp 'jm_setInitialScale_1) (defgeneric jm_setInitialScale_1 (this p1)))
+(defmethod jm_setInitialScale_1 ((this NullRotationAnimationFactory) _scaleProperties)
+  (declare (ignorable this _scaleProperties))
+  (let ()
+    (block jreturn nil)))
 
 
-function NullRotationAnimationFactory:setInitialScale(scaleProperties)
-end
-
-NullRotationAnimationFactory.NULL_ROTATION_ANIMATION_FACTORY = NullRotationAnimationFactory.new()
-
-return NullRotationAnimationFactory
 

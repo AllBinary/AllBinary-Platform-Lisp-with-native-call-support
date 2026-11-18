@@ -1,139 +1,143 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.event
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.input.event
 
-local PlayerGameInput = require("org.allbinary.game.input.PlayerGameInput")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
-local EventStrings = require("org.allbinary.logic.util.event.EventStrings")
-local BasicEventHandler = require("org.allbinary.logic.util.event.handler.BasicEventHandler")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass UpKeyEventHandlerBase (BasicEventHandler)
+  ((f_list :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar UpKeyEventHandlerBase.jcell_TOTAL_LISTENERS :jnone)
+(defun UpKeyEventHandlerBase.jstatic_TOTAL_LISTENERS ()
+  (when (eq UpKeyEventHandlerBase.jcell_TOTAL_LISTENERS :jnone) (setf UpKeyEventHandlerBase.jcell_TOTAL_LISTENERS " Total PlayerGameInput Listeners: "))
+  UpKeyEventHandlerBase.jcell_TOTAL_LISTENERS)
+(defun (setf UpKeyEventHandlerBase.jstatic_TOTAL_LISTENERS) (value) (setf UpKeyEventHandlerBase.jcell_TOTAL_LISTENERS value))
 
-local UpKeyEventHandlerBase = {}
-UpKeyEventHandlerBase.__index = UpKeyEventHandlerBase
-UpKeyEventHandlerBase.className = "UpKeyEventHandlerBase"
-setmetatable(UpKeyEventHandlerBase, {__index = BasicEventHandler})
+(defvar UpKeyEventHandlerBase.jcell_LISTENER_LABEL :jnone)
+(defun UpKeyEventHandlerBase.jstatic_LISTENER_LABEL ()
+  (when (eq UpKeyEventHandlerBase.jcell_LISTENER_LABEL :jnone) (setf UpKeyEventHandlerBase.jcell_LISTENER_LABEL " PlayerGameInput Listener: "))
+  UpKeyEventHandlerBase.jcell_LISTENER_LABEL)
+(defun (setf UpKeyEventHandlerBase.jstatic_LISTENER_LABEL) (value) (setf UpKeyEventHandlerBase.jcell_LISTENER_LABEL value))
 
-function UpKeyEventHandlerBase:_init_fields()
-    self.list = BasicArrayListD.new()
-end
+    
+(defun UpKeyEventHandlerBase.jnew_0 ()
+  (let ((this (make-instance 'UpKeyEventHandlerBase)))
+    (setf (slot-value this 'f_list) (BasicArrayListD.jnew_0))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(unless (fboundp 'jm_addListener_1) (defgeneric jm_addListener_1 (this p1)))
+(defmethod jm_addListener_1 ((this UpKeyEventHandlerBase) _playerGameInput)
+  (declare (ignorable this _playerGameInput))
+  (let ()
+    (block jreturn
+        (if (not (jm_contains_1 (slot-value this 'f_list) _playerGameInput))
+            (progn
+            (jm_add_1 (slot-value this 'f_list) _playerGameInput))))))
+
+    
+(unless (fboundp 'jm_removeAllListeners_0) (defgeneric jm_removeAllListeners_0 (this)))
+(defmethod jm_removeAllListeners_0 ((this UpKeyEventHandlerBase))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_clear_0 (slot-value this 'f_list))
+        (call-next-method this))))
+
+    
+(unless (fboundp 'jm_removeListenerSingleThreaded_1) (defgeneric jm_removeListenerSingleThreaded_1 (this p1)))
+(defmethod jm_removeListenerSingleThreaded_1 ((this UpKeyEventHandlerBase) _eventListenerInterface)
+  (declare (ignorable this _eventListenerInterface))
+  (let ()
+    (block jreturn
+        (jm_remove_1 (slot-value this 'f_list) _eventListenerInterface)
+        (call-next-method this _eventListenerInterface))))
+
+    
+(unless (fboundp 'jm_removeListener_1) (defgeneric jm_removeListener_1 (this p1)))
+(defmethod jm_removeListener_1 ((this UpKeyEventHandlerBase) _eventListenerInterface)
+  (declare (ignorable this _eventListenerInterface))
+  (let ()
+    (block jreturn
+        (jm_remove_1 (slot-value this 'f_list) _eventListenerInterface)
+        (call-next-method this _eventListenerInterface))))
+
+    
+(unless (fboundp 'jm_fireEventForInteger_1) (defgeneric jm_fireEventForInteger_1 (this p1)))
+(defmethod jm_fireEventForInteger_1 ((this UpKeyEventHandlerBase) _eventObject)
+  (declare (ignorable this _eventObject))
+  (let (_playerGameInput _index _eventListenerInterface)
+  (declare (ignorable _playerGameInput _index _eventListenerInterface))
+    (block jreturn
+        (progn
+            (setf _index (jm_size_0 (slot-value this 'f_list)))
+            (block jbreak (loop while (>= (setf _index (JR.i32 (- _index 1))) 0) do
+                (block jcontinue
+            (handler-case (progn
+                (setf _playerGameInput (aref (slot-value (slot-value this 'f_list) 'f_objectArray) _index))
+                (jm_onUpKeyEvent_1 _playerGameInput _eventObject))
+                (error (_e) (declare (ignorable _e))
+                (jm_put_4 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_EXCEPTION) this (slot-value (EventStrings.jm_getInstance_0) 'f_FIRE_EVENT) _e)))))))
+        (setf _index 0)
+        (setf _eventListenerInterface nil)
+        (block jbreak (loop while (< _index (jm_size_0 (slot-value this 'f_eventListenerInterfaceList))) do
+                (block jcontinue
+            (handler-case (progn
+                (setf _eventListenerInterface (jm_get_1 (slot-value this 'f_eventListenerInterfaceList) _index))
+                (jm_processForInteger_2 this _eventObject _eventListenerInterface))
+                (error (_e) (declare (ignorable _e))
+                (jm_put_4 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_EXCEPTION) this (slot-value (EventStrings.jm_getInstance_0) 'f_FIRE_EVENT) _e)))
+            (setf _index (JR.i32 (+ _index 1)))))))))
+
+    
+(unless (fboundp 'jm_processForInteger_2) (defgeneric jm_processForInteger_2 (this p1 p2)))
+(defmethod jm_processForInteger_2 ((this UpKeyEventHandlerBase) _eventObject _eventListenerInterface)
+  (declare (ignorable this _eventObject _eventListenerInterface))
+  (let (_upKeyEventListenerInterface)
+  (declare (ignorable _upKeyEventListenerInterface))
+    (block jreturn
+        (setf _upKeyEventListenerInterface _eventListenerInterface)
+        (jm_onUpKeyEvent_1 _upKeyEventListenerInterface _eventObject))))
+
+    
+(unless (fboundp 'jm_toString_0) (defgeneric jm_toString_0 (this)))
+(defmethod jm_toString_0 ((this UpKeyEventHandlerBase))
+  (declare (ignorable this))
+  (let (_stringBuffer _eventListenerInterface _index)
+  (declare (ignorable _stringBuffer _eventListenerInterface _index))
+    (block jreturn
+        (setf _stringBuffer (StringMaker.jnew_0))
+        (jm_append_1 _stringBuffer (call-next-method this))
+        (jm_append_1 _stringBuffer (UpKeyEventHandlerBase.jstatic_TOTAL_LISTENERS))
+        (jm_appendint_1 _stringBuffer (jm_size_0 (slot-value this 'f_list)))
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index (jm_size_0 (slot-value this 'f_list))) do
+                (block jcontinue
+            (handler-case (progn
+                (setf _eventListenerInterface (jm_get_1 (slot-value this 'f_list) _index))
+                (jm_append_1 _stringBuffer (UpKeyEventHandlerBase.jstatic_LISTENER_LABEL))
+                (jm_append_1 _stringBuffer (jm_toString_0 _eventListenerInterface)))
+                (error (_e) (declare (ignorable _e))
+                (jm_put_4 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_EXCEPTION) this (slot-value (slot-value this 'f_commonStrings) 'f_TOSTRING) _e))))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (return-from jreturn (jm_toString_0 _stringBuffer)))))
 
 
-function UpKeyEventHandlerBase.new()
-    local self = setmetatable(BasicEventHandler.new(), UpKeyEventHandlerBase)
-    self:_init_fields()
-    return self
-end
-
-
-function UpKeyEventHandlerBase:addListener(playerGameInput)
-        if not self.list:contains(playerGameInput) then
-            self.list:add(playerGameInput)
-        end
-end
-
-
-function UpKeyEventHandlerBase:removeAllListeners()
-        self.list:clear()
-        BasicEventHandler.removeAllListeners(self)
-end
-
-
-function UpKeyEventHandlerBase:removeListenerSingleThreaded(eventListenerInterface)
-        self.list:remove(eventListenerInterface)
-        BasicEventHandler.removeListenerSingleThreaded(self, eventListenerInterface)
-end
-
-
-function UpKeyEventHandlerBase:removeListener(eventListenerInterface)
-        self.list:remove(eventListenerInterface)
-        BasicEventHandler.removeListener(self, eventListenerInterface)
-end
-
-
--- throws Exception
-function UpKeyEventHandlerBase:fireEventForInteger(eventObject)
-        do
-            local index = self.list:size()
-            while (function() index = index - 1 return index end)() >= 0 do
-            local try_ok, try_error = pcall(function()
-                local playerGameInput = self.list.objectArray[index + 1]
-                playerGameInput:onUpKeyEvent(eventObject)
-            end)
-            if not try_ok then
-                local e = try_error
-                self.logUtil:put(self.commonStrings.EXCEPTION, self, EventStrings.getInstance().FIRE_EVENT, e)
-            end
-            end
-        end
-        local index = 0
-        local eventListenerInterface = nil
-        while index < self.eventListenerInterfaceList:size() do
-            local try_ok, try_error = pcall(function()
-                eventListenerInterface = self.eventListenerInterfaceList:get(index)
-                self:processForInteger(eventObject, eventListenerInterface)
-            end)
-            if not try_ok then
-                local e = try_error
-                self.logUtil:put(self.commonStrings.EXCEPTION, self, EventStrings.getInstance().FIRE_EVENT, e)
-            end
-            index = index + 1
-        end
-end
-
-
--- throws Exception
-function UpKeyEventHandlerBase:processForInteger(eventObject, eventListenerInterface)
-        local upKeyEventListenerInterface = eventListenerInterface
-        upKeyEventListenerInterface:onUpKeyEvent(eventObject)
-end
-
-
-function UpKeyEventHandlerBase:toString()
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append(tostring(BasicEventHandler))
-        stringBuffer:append(UpKeyEventHandlerBase.TOTAL_LISTENERS)
-        stringBuffer:appendint(self.list:size())
-        for index = 0, self.list:size() - 1 do
-            local try_ok, try_error = pcall(function()
-                local eventListenerInterface = self.list:get(index)
-                stringBuffer:append(UpKeyEventHandlerBase.LISTENER_LABEL)
-                stringBuffer:append(tostring(eventListenerInterface))
-            end)
-            if not try_ok then
-                local e = try_error
-                self.logUtil:put(self.commonStrings.EXCEPTION, self, self.commonStrings.TOSTRING, e)
-            end
-        end
-        return tostring(stringBuffer)
-end
-UpKeyEventHandlerBase.__tostring = function(self) return self:toString() end
-
-UpKeyEventHandlerBase.TOTAL_LISTENERS = " Total PlayerGameInput Listeners: "
-UpKeyEventHandlerBase.LISTENER_LABEL = " PlayerGameInput Listener: "
-
-return UpKeyEventHandlerBase
 

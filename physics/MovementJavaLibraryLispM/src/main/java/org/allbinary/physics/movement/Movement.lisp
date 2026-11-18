@@ -1,55 +1,53 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.physics.movement
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.physics.movement
 
-local AllBinaryGameLayer = require("org.allbinary.game.layer.AllBinaryGameLayer")
-local BasicDecimal = require("org.allbinary.logic.math.BasicDecimal")
-local MovementInterface = require("org.allbinary.physics.movement.MovementInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass Movement (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun Movement.jnew_0 ()
+  (let ((this (make-instance 'Movement)))
+  (let ()
+    (block jreturn nil))
+    this))
 
-local Movement = {}
-Movement.__index = Movement
-Movement.className = "Movement"
+    
+(unless (fboundp 'jm_init_3) (defgeneric jm_init_3 (this p1 p2 p3)))
+(defmethod jm_init_3 ((this Movement) _speedBasicDecimal _angle _otherAngle)
+  (declare (ignorable this _speedBasicDecimal _angle _otherAngle))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_process_1) (defgeneric jm_process_1 (this p1)))
+(defmethod jm_process_1 ((this Movement) _layer)
+  (declare (ignorable this _layer))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_stop_0) (defgeneric jm_stop_0 (this)))
+(defmethod jm_stop_0 ((this Movement))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
 
 
-function Movement.new()
-    local self = setmetatable({}, Movement)
-    return self
-end
-
-
-function Movement:init(speedBasicDecimal, angle, otherAngle)
-end
-
-
--- throws Exception
-function Movement:process(layer)
-end
-
-
-function Movement:stop()
-end
-
-return Movement
 

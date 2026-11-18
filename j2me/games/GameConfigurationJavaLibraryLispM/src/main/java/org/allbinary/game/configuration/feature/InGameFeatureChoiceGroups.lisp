@@ -1,70 +1,73 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.feature
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.configuration.feature
 
-local StdUtil = require("org.allbinary.logic.StdUtil")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass InGameFeatureChoiceGroups (JObject)
+  ((f_hashtable :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar InGameFeatureChoiceGroups.jcell_gameFeatureChoiceGroupsExclusive :jnone)
+(defun InGameFeatureChoiceGroups.jstatic_gameFeatureChoiceGroupsExclusive ()
+  (when (eq InGameFeatureChoiceGroups.jcell_gameFeatureChoiceGroupsExclusive :jnone) (setf InGameFeatureChoiceGroups.jcell_gameFeatureChoiceGroupsExclusive (InGameFeatureChoiceGroups.jnew_0)))
+  InGameFeatureChoiceGroups.jcell_gameFeatureChoiceGroupsExclusive)
+(defun (setf InGameFeatureChoiceGroups.jstatic_gameFeatureChoiceGroupsExclusive) (value) (setf InGameFeatureChoiceGroups.jcell_gameFeatureChoiceGroupsExclusive value))
 
-local InGameFeatureChoiceGroups = {}
-InGameFeatureChoiceGroups.__index = InGameFeatureChoiceGroups
-InGameFeatureChoiceGroups.className = "InGameFeatureChoiceGroups"
+(defvar InGameFeatureChoiceGroups.jcell_gameFeatureChoiceGroupsMultiple :jnone)
+(defun InGameFeatureChoiceGroups.jstatic_gameFeatureChoiceGroupsMultiple ()
+  (when (eq InGameFeatureChoiceGroups.jcell_gameFeatureChoiceGroupsMultiple :jnone) (setf InGameFeatureChoiceGroups.jcell_gameFeatureChoiceGroupsMultiple (InGameFeatureChoiceGroups.jnew_0)))
+  InGameFeatureChoiceGroups.jcell_gameFeatureChoiceGroupsMultiple)
+(defun (setf InGameFeatureChoiceGroups.jstatic_gameFeatureChoiceGroupsMultiple) (value) (setf InGameFeatureChoiceGroups.jcell_gameFeatureChoiceGroupsMultiple value))
 
-function InGameFeatureChoiceGroups:_init_fields()
-    self.hashtable = StdUtil.getInstance():createHashtable()
-end
+    
+(defun InGameFeatureChoiceGroups.jnew_0 ()
+  (let ((this (make-instance 'InGameFeatureChoiceGroups)))
+    (setf (slot-value this 'f_hashtable) (jm_createHashtable_0 (StdUtil.jm_getInstance_0)))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(defun InGameFeatureChoiceGroups.jm_getExclusiveInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (InGameFeatureChoiceGroups.jstatic_gameFeatureChoiceGroupsExclusive)))))
+
+    
+(defun InGameFeatureChoiceGroups.jm_getMultipleInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (InGameFeatureChoiceGroups.jstatic_gameFeatureChoiceGroupsMultiple)))))
+
+    
+(unless (fboundp 'jm_get_0) (defgeneric jm_get_0 (this)))
+(defmethod jm_get_0 ((this InGameFeatureChoiceGroups))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_hashtable)))))
+
+    
+(unless (fboundp 'jm_add_2) (defgeneric jm_add_2 (this p1 p2)))
+(defmethod jm_add_2 ((this InGameFeatureChoiceGroups) _name _list)
+  (declare (ignorable this _name _list))
+  (let ()
+    (block jreturn
+        (jm_put_2 (slot-value this 'f_hashtable) _name _list))))
 
 
-function InGameFeatureChoiceGroups.new()
-    local self = setmetatable({}, InGameFeatureChoiceGroups)
-    self:_init_fields()
-    return self
-end
-
-
-function InGameFeatureChoiceGroups.getExclusiveInstance()
-        return InGameFeatureChoiceGroups.gameFeatureChoiceGroupsExclusive
-end
-
-
-function InGameFeatureChoiceGroups.getMultipleInstance()
-        return InGameFeatureChoiceGroups.gameFeatureChoiceGroupsMultiple
-end
-
-
-function InGameFeatureChoiceGroups:get()
-        return self.hashtable
-end
-
-
-function InGameFeatureChoiceGroups:add(name, list)
-        self.hashtable:put(name, list)
-end
-
-InGameFeatureChoiceGroups.gameFeatureChoiceGroupsExclusive = InGameFeatureChoiceGroups.new()
-InGameFeatureChoiceGroups.gameFeatureChoiceGroupsMultiple = InGameFeatureChoiceGroups.new()
-
-return InGameFeatureChoiceGroups
 

@@ -1,99 +1,103 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.input
 
-local GameKeyEvent = require("org.allbinary.game.input.event.GameKeyEvent")
-local GameKeyEventListenerInterface = require("org.allbinary.game.input.event.GameKeyEventListenerInterface")
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
-local PreLogUtil = require("org.allbinary.logic.communication.log.PreLogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventStrings = require("org.allbinary.logic.util.event.EventStrings")
-local CommonLabels = require("org.allbinary.string.CommonLabels")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local GameInput = require("org.allbinary.game.input.GameInput")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass PlayerGameInput (GameInput)
+  ((f_gameInputStrings :initform nil)
+   (f_playerInputId :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun PlayerGameInput.jnew_3 (_gameKeyEventList _removalGameKeyEventList _playerInputId)
+  (declare (ignorable _gameKeyEventList _removalGameKeyEventList _playerInputId))
+  (let ((this (make-instance 'PlayerGameInput)))
+    (setf (slot-value this 'f_gameInputStrings) (GameInputStrings.jm_getInstance_0))
+    
+  (let ()
+    (block jreturn
+        nil
+        (setf (slot-value this 'f_playerInputId) _playerInputId)))
+    this))
 
-local PlayerGameInput = {}
-PlayerGameInput.__index = PlayerGameInput
-PlayerGameInput.className = "PlayerGameInput"
-setmetatable(PlayerGameInput, {__index = GameInput})
+    
+(unless (fboundp 'jm_onPressGameKeyEvent_1) (defgeneric jm_onPressGameKeyEvent_1 (this p1)))
+(defmethod jm_onPressGameKeyEvent_1 ((this PlayerGameInput) _gameKeyEvent)
+  (declare (ignorable this _gameKeyEvent))
+  (let ()
+    (block jreturn
+        (jm_add_1 this _gameKeyEvent)
+        (jm_addForRemoval_1 this _gameKeyEvent))))
 
-function PlayerGameInput:_init_fields()
-    self.gameInputStrings = GameInputStrings.getInstance()
-    self.playerInputId = nil
-end
+    
+(unless (fboundp 'jm_onDownGameKeyEvent_1) (defgeneric jm_onDownGameKeyEvent_1 (this p1)))
+(defmethod jm_onDownGameKeyEvent_1 ((this PlayerGameInput) _gameKeyEvent)
+  (declare (ignorable this _gameKeyEvent))
+  (let ()
+    (block jreturn
+        (jm_add_1 this _gameKeyEvent))))
+
+    
+(unless (fboundp 'jm_onDownKeyEvent_1) (defgeneric jm_onDownKeyEvent_1 (this p1)))
+(defmethod jm_onDownKeyEvent_1 ((this PlayerGameInput) _gameKeyEvent)
+  (declare (ignorable this _gameKeyEvent))
+  (let ()
+    (block jreturn
+        (jm_add_1 this _gameKeyEvent)
+        (jm_addForRemoval_1 this _gameKeyEvent))))
+
+    
+(unless (fboundp 'jm_onDownKey_1) (defgeneric jm_onDownKey_1 (this p1)))
+(defmethod jm_onDownKey_1 ((this PlayerGameInput) _gameKeyEvent)
+  (declare (ignorable this _gameKeyEvent))
+  (let ()
+    (block jreturn
+        (PreLogUtil.jm_put_3 (jm_toString_0 (jm_append_1 (jm_append_1 (StringMaker.jnew_0) (slot-value (CommonLabels.jm_getInstance_0) 'f_START_LABEL)) (jm_toString_0 _gameKeyEvent))) this (slot-value (slot-value this 'f_gameInputStrings) 'f_ON_DOWN_GAME_KEY)))))
+
+    
+(unless (fboundp 'jm_onUpGameKeyEvent_1) (defgeneric jm_onUpGameKeyEvent_1 (this p1)))
+(defmethod jm_onUpGameKeyEvent_1 ((this PlayerGameInput) _gameKeyEvent)
+  (declare (ignorable this _gameKeyEvent))
+  (let ()
+    (block jreturn
+        (jm_addForRemoval_1 this _gameKeyEvent))))
+
+    
+(unless (fboundp 'jm_onUpKeyEvent_1) (defgeneric jm_onUpKeyEvent_1 (this p1)))
+(defmethod jm_onUpKeyEvent_1 ((this PlayerGameInput) _gameKeyEvent)
+  (declare (ignorable this _gameKeyEvent))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_onEvent_1) (defgeneric jm_onEvent_1 (this p1)))
+(defmethod jm_onEvent_1 ((this PlayerGameInput) _eventObject)
+  (declare (ignorable this _eventObject))
+  (let ()
+    (block jreturn
+        (ForcedLogUtil.jm_log_2 (slot-value (EventStrings.jm_getInstance_0) 'f_PERFORMANCE_MESSAGE) this))))
+
+    
+(unless (fboundp 'jm_getPlayerInputId_0) (defgeneric jm_getPlayerInputId_0 (this)))
+(defmethod jm_getPlayerInputId_0 ((this PlayerGameInput))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_playerInputId)))))
 
 
-function PlayerGameInput.new(gameKeyEventList, removalGameKeyEventList, playerInputId)
-    local self = setmetatable(GameInput.new(gameKeyEventList, removalGameKeyEventList), PlayerGameInput)
-    self:_init_fields()
-        -- super(...) made self above
-        self.playerInputId = playerInputId
-    return self
-end
-
-
-function PlayerGameInput:onPressGameKeyEvent(gameKeyEvent)
-        self:add(gameKeyEvent)
-        self:addForRemoval(gameKeyEvent)
-end
-
-
-function PlayerGameInput:onDownGameKeyEvent(gameKeyEvent)
-        self:add(gameKeyEvent)
-end
-
-
-function PlayerGameInput:onDownKeyEvent(gameKeyEvent)
-        self:add(gameKeyEvent)
-        self:addForRemoval(gameKeyEvent)
-end
-
-
-function PlayerGameInput:onDownKey(gameKeyEvent)
-        PreLogUtil.put(tostring(StringMaker.new():append(CommonLabels.getInstance().START_LABEL):append(tostring(gameKeyEvent))), self, self.gameInputStrings.ON_DOWN_GAME_KEY)
-end
-
-
-function PlayerGameInput:onUpGameKeyEvent(gameKeyEvent)
-        self:addForRemoval(gameKeyEvent)
-end
-
-
-function PlayerGameInput:onUpKeyEvent(gameKeyEvent)
-end
-
-
-function PlayerGameInput:onEvent(eventObject)
-        ForcedLogUtil.log(EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
-end
-
-
-function PlayerGameInput:getPlayerInputId()
-        return self.playerInputId
-end
-
-return PlayerGameInput
 

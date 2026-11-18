@@ -1,46 +1,41 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation
 
-local IndexedAnimationInterfaceCompositeInterface = require("org.allbinary.animation.IndexedAnimationInterfaceCompositeInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass RotationAnimationInterfaceCompositeInterface (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun RotationAnimationInterfaceCompositeInterface.jnew_0 ()
+  (let ((this (make-instance 'RotationAnimationInterfaceCompositeInterface)))
+    this))
 
--- Java interface
-local RotationAnimationInterfaceCompositeInterface = {}
-RotationAnimationInterfaceCompositeInterface.__index = RotationAnimationInterfaceCompositeInterface
-RotationAnimationInterfaceCompositeInterface.className = "RotationAnimationInterfaceCompositeInterface"
-setmetatable(RotationAnimationInterfaceCompositeInterface, {__index = IndexedAnimationInterfaceCompositeInterface})
+    
+(unless (fboundp 'jm_getRotationAnimationInterface_0) (defgeneric jm_getRotationAnimationInterface_0 (this)))
+(defmethod jm_getRotationAnimationInterface_0 ((this RotationAnimationInterfaceCompositeInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "getRotationAnimationInterface")))
 
-
-function RotationAnimationInterfaceCompositeInterface:getRotationAnimationInterface()
-    error("abstract method getRotationAnimationInterface")
-end
+    
+(unless (fboundp 'jm_setFrame_1) (defgeneric jm_setFrame_1 (this p1)))
+(defmethod jm_setFrame_1 ((this RotationAnimationInterfaceCompositeInterface) _index)
+  (declare (ignorable this _index))
+  (error (JR.newException "AbstractMethodError" "setFrame")))
 
 
-function RotationAnimationInterfaceCompositeInterface:setFrame(index)
-    error("abstract method setFrame")
-end
-
-return RotationAnimationInterfaceCompositeInterface
 

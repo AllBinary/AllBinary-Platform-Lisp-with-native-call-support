@@ -1,58 +1,53 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.midlet
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.midlet
 
--- local MIDlet = require("javax.microedition.midlet.MIDlet")
-local AppletUtil = require("org.allbinary.AppletUtil")
-local J2MEUtil = require("org.allbinary.J2MEUtil")
-local Processor = require("org.allbinary.canvas.Processor")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass MidletExitProcessorFactory (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar MidletExitProcessorFactory.jcell_instance :jnone)
+(defun MidletExitProcessorFactory.jstatic_instance ()
+  (when (eq MidletExitProcessorFactory.jcell_instance :jnone) (setf MidletExitProcessorFactory.jcell_instance (MidletExitProcessorFactory.jnew_0)))
+  MidletExitProcessorFactory.jcell_instance)
+(defun (setf MidletExitProcessorFactory.jstatic_instance) (value) (setf MidletExitProcessorFactory.jcell_instance value))
 
-local MidletExitProcessorFactory = {}
-MidletExitProcessorFactory.__index = MidletExitProcessorFactory
-MidletExitProcessorFactory.className = "MidletExitProcessorFactory"
+(defun MidletExitProcessorFactory.jnew_0 ()
+  (let ((this (make-instance 'MidletExitProcessorFactory)))
+    this))
 
-function MidletExitProcessorFactory.new()
-    local self = setmetatable({}, MidletExitProcessorFactory)
-    return self
-end
+    
+(defun MidletExitProcessorFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (MidletExitProcessorFactory.jstatic_instance)))))
+
+    
+(unless (fboundp 'jm_getExitInstance_1) (defgeneric jm_getExitInstance_1 (this p1)))
+(defmethod jm_getExitInstance_1 ((this MidletExitProcessorFactory) _midlet)
+  (declare (ignorable this _midlet))
+  (let ()
+    (block jreturn
+        (if (or (AppletUtil.jm_isAppletLoader_1 _midlet) (J2MEUtil.jm_isJ2ME_0))
+            (progn
+            (return-from jreturn (Processor.jm_getInstance_0)))
+            (progn
+            (return-from jreturn (MidletExitProcessor.jnew_1 _midlet)))))))
 
 
-function MidletExitProcessorFactory.getInstance()
-        return MidletExitProcessorFactory.instance
-end
-
-
-function MidletExitProcessorFactory:getExitInstance(midlet)
-        if AppletUtil.isAppletLoader(midlet) or J2MEUtil.isJ2ME() then
-            return Processor.getInstance()
-        else
-            return MidletExitProcessor.new(midlet)
-        end
-end
-
-MidletExitProcessorFactory.instance = MidletExitProcessorFactory.new()
-
-return MidletExitProcessorFactory
 

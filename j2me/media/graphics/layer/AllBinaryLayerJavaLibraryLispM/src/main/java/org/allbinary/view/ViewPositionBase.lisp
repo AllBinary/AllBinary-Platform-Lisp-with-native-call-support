@@ -1,63 +1,71 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2011 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.view
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2011 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.view
 
-local GPoint = require("org.allbinary.graphics.GPoint")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ViewPositionBase (GPoint)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar ViewPositionBase.jcell_NULL_VIEW_POSITION :jnone)
+(defun ViewPositionBase.jstatic_NULL_VIEW_POSITION ()
+  (when (eq ViewPositionBase.jcell_NULL_VIEW_POSITION :jnone) (setf ViewPositionBase.jcell_NULL_VIEW_POSITION (ViewPositionBase.jnew_3 0 0 0)))
+  ViewPositionBase.jcell_NULL_VIEW_POSITION)
+(defun (setf ViewPositionBase.jstatic_NULL_VIEW_POSITION) (value) (setf ViewPositionBase.jcell_NULL_VIEW_POSITION value))
 
-local ViewPositionBase = {}
-ViewPositionBase.__index = ViewPositionBase
-ViewPositionBase.className = "ViewPositionBase"
-setmetatable(ViewPositionBase, {__index = GPoint})
+    
+(defun ViewPositionBase.jnew_3 (_x _y _z)
+  (declare (ignorable _x _y _z))
+  (let ((this (make-instance 'ViewPositionBase)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
+
+    
+(unless (fboundp 'jm_getX2_0) (defgeneric jm_getX2_0 (this)))
+(defmethod jm_getX2_0 ((this ViewPositionBase))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getX_0 this)))))
+
+    
+(unless (fboundp 'jm_getY2_0) (defgeneric jm_getY2_0 (this)))
+(defmethod jm_getY2_0 ((this ViewPositionBase))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getY_0 this)))))
+
+    
+(unless (fboundp 'jm_getZ2_0) (defgeneric jm_getZ2_0 (this)))
+(defmethod jm_getZ2_0 ((this ViewPositionBase))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getZ_0 this)))))
+
+    
+(unless (fboundp 'jm_setAllbinaryLayer_1) (defgeneric jm_setAllbinaryLayer_1 (this p1)))
+(defmethod jm_setAllbinaryLayer_1 ((this ViewPositionBase) _allbinaryLayer)
+  (declare (ignorable this _allbinaryLayer))
+  (let ()
+    (block jreturn nil)))
 
 
-function ViewPositionBase.new(x, y, z)
-    local self = setmetatable(GPoint.new(x, y, z), ViewPositionBase)
-        -- super(...) made self above
-    return self
-end
-
-
-function ViewPositionBase:getX2()
-        return self:getX()
-end
-
-
-function ViewPositionBase:getY2()
-        return self:getY()
-end
-
-
-function ViewPositionBase:getZ2()
-        return self:getZ()
-end
-
-
-function ViewPositionBase:setAllbinaryLayer(allbinaryLayer)
-end
-
-ViewPositionBase.NULL_VIEW_POSITION = ViewPositionBase.new(0, 0, 0)
-
-return ViewPositionBase
 

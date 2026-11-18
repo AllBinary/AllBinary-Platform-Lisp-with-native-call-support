@@ -1,69 +1,59 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.configuration
 
--- local CommandListener = require("javax.microedition.lcdui.CommandListener")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local CommandForm = require("org.allbinary.graphics.displayable.screen.CommandForm")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass GameOptionsFormFactory (JObject)
+  ((f_logUtil :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar GameOptionsFormFactory.jcell_instance :jnone)
+(defun GameOptionsFormFactory.jstatic_instance ()
+  (when (eq GameOptionsFormFactory.jcell_instance :jnone) (setf GameOptionsFormFactory.jcell_instance (GameOptionsFormFactory.jnew_0)))
+  GameOptionsFormFactory.jcell_instance)
+(defun (setf GameOptionsFormFactory.jstatic_instance) (value) (setf GameOptionsFormFactory.jcell_instance value))
 
-local GameOptionsFormFactory = {}
-GameOptionsFormFactory.__index = GameOptionsFormFactory
-GameOptionsFormFactory.className = "GameOptionsFormFactory"
+    
+(defun GameOptionsFormFactory.jnew_0 ()
+  (let ((this (make-instance 'GameOptionsFormFactory)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+  (let ()
+    (block jreturn nil))
+    this))
 
-function GameOptionsFormFactory:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-end
+    
+(defun GameOptionsFormFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (GameOptionsFormFactory.jstatic_instance)))))
+
+    
+(unless (fboundp 'jm_init_4) (defgeneric jm_init_4 (this p1 p2 p3 p4)))
+(defmethod jm_init_4 ((this GameOptionsFormFactory) _commandListener _title _backgrounBasicColor _foregroundBasicColor)
+  (declare (ignorable this _commandListener _title _backgrounBasicColor _foregroundBasicColor))
+  (let (_commonStrings)
+  (declare (ignorable _commonStrings))
+    (block jreturn
+        (handler-case (progn
+            (return-from jreturn (GameOptionsForm.jnew_4 _commandListener _title _backgrounBasicColor _foregroundBasicColor)))
+            (error (_e) (declare (ignorable _e))
+            (setf _commonStrings (CommonStrings.jm_getInstance_0))
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value _commonStrings 'f_EXCEPTION) this (slot-value _commonStrings 'f_INIT) _e)
+            (return-from jreturn (CommandForm.jm_getNullCommandForm_0)))))))
 
 
-function GameOptionsFormFactory.new()
-    local self = setmetatable({}, GameOptionsFormFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function GameOptionsFormFactory.getInstance()
-        return GameOptionsFormFactory.instance
-end
-
-
-function GameOptionsFormFactory:init(commandListener, title, backgrounBasicColor, foregroundBasicColor)
-        local try_ok, try_error = pcall(function()
-            return GameOptionsForm.new(commandListener, title, backgrounBasicColor, foregroundBasicColor)
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, commonStrings.INIT, e)
-            return CommandForm.getNullCommandForm()
-        end
-end
-
-GameOptionsFormFactory.instance = GameOptionsFormFactory.new()
-
-return GameOptionsFormFactory
 

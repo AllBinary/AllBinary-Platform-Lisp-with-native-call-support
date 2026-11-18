@@ -1,57 +1,50 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.licensing
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.system.security.licensing
 
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass LockableFeatureFactory (JObject)
+  ((f_list :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar LockableFeatureFactory.jcell_instance :jnone)
+(defun LockableFeatureFactory.jstatic_instance ()
+  (when (eq LockableFeatureFactory.jcell_instance :jnone) (setf LockableFeatureFactory.jcell_instance (LockableFeatureFactory.jnew_0)))
+  LockableFeatureFactory.jcell_instance)
+(defun (setf LockableFeatureFactory.jstatic_instance) (value) (setf LockableFeatureFactory.jcell_instance value))
 
-local LockableFeatureFactory = {}
-LockableFeatureFactory.__index = LockableFeatureFactory
-LockableFeatureFactory.className = "LockableFeatureFactory"
+(defun LockableFeatureFactory.jnew_0 ()
+  (let ((this (make-instance 'LockableFeatureFactory)))
+    (setf (slot-value this 'f_list) (BasicArrayListD.jnew_0))
+    this))
 
-function LockableFeatureFactory:_init_fields()
-    self.list = BasicArrayListD.new()
-end
+    
+(defun LockableFeatureFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (LockableFeatureFactory.jstatic_instance)))))
 
-function LockableFeatureFactory.new()
-    local self = setmetatable({}, LockableFeatureFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function LockableFeatureFactory.getInstance()
-        return LockableFeatureFactory.instance
-end
+    
+(unless (fboundp 'jm_getList_0) (defgeneric jm_getList_0 (this)))
+(defmethod jm_getList_0 ((this LockableFeatureFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_list)))))
 
 
-function LockableFeatureFactory:getList()
-        return self.list
-end
-
-LockableFeatureFactory.instance = LockableFeatureFactory.new()
-
-return LockableFeatureFactory
 

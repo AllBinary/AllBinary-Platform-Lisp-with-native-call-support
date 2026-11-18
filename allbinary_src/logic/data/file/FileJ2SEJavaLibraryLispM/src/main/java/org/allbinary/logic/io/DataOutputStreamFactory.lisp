@@ -1,64 +1,64 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.io
 
-local AbFile = require("org.allbinary.logic.io.file.AbFile")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass DataOutputStreamFactory (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar DataOutputStreamFactory.jcell_instance :jnone)
+(defun DataOutputStreamFactory.jstatic_instance ()
+  (when (eq DataOutputStreamFactory.jcell_instance :jnone) (setf DataOutputStreamFactory.jcell_instance (DataOutputStreamFactory.jnew_0)))
+  DataOutputStreamFactory.jcell_instance)
+(defun (setf DataOutputStreamFactory.jstatic_instance) (value) (setf DataOutputStreamFactory.jcell_instance value))
 
-local DataOutputStreamFactory = {}
-DataOutputStreamFactory.__index = DataOutputStreamFactory
-DataOutputStreamFactory.className = "DataOutputStreamFactory"
+(defun DataOutputStreamFactory.jnew_0 ()
+  (let ((this (make-instance 'DataOutputStreamFactory)))
+    this))
 
-function DataOutputStreamFactory.new()
-    local self = setmetatable({}, DataOutputStreamFactory)
-    return self
-end
+    
+(defun DataOutputStreamFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (DataOutputStreamFactory.jstatic_instance)))))
+
+    
+(unless (fboundp 'jm_getInstanceForAbFile_1) (defgeneric jm_getInstanceForAbFile_1 (this p1)))
+(defmethod jm_getInstanceForAbFile_1 ((this DataOutputStreamFactory) _file)
+  (declare (ignorable this _file))
+  (let (_idFileOutputStream _idOutData)
+  (declare (ignorable _idFileOutputStream _idOutData))
+    (block jreturn
+        (setf _idFileOutputStream (AbFileOutputStream.jm_createFromAbFile_1 _file))
+        (setf _idOutData (AbDataOutputStream.jnew_1 _idFileOutputStream))
+        (return-from jreturn _idOutData))))
+
+    
+(unless (fboundp 'jm_getInstance_2) (defgeneric jm_getInstance_2 (this p1 p2)))
+(defmethod jm_getInstance_2 ((this DataOutputStreamFactory) _filePath _fileName)
+  (declare (ignorable this _filePath _fileName))
+  (let (_fileStreamFactory _fileOutputStream _idOutData)
+  (declare (ignorable _fileStreamFactory _fileOutputStream _idOutData))
+    (block jreturn
+        (setf _fileStreamFactory (FileStreamFactory.jm_getInstance_0))
+        (setf _fileOutputStream (jm_getFileOutputStreamInstance_2 _fileStreamFactory _filePath _fileName))
+        (setf _idOutData (AbDataOutputStream.jnew_1 _fileOutputStream))
+        (return-from jreturn _idOutData))))
 
 
-function DataOutputStreamFactory.getInstance()
-        return DataOutputStreamFactory.instance
-end
-
-
--- throws Exception
-function DataOutputStreamFactory:getInstanceForAbFile(file)
-        local idFileOutputStream = AbFileOutputStream.createFromAbFile(file)
-        local idOutData = AbDataOutputStream.new(idFileOutputStream)
-        return idOutData
-end
-
-
--- throws Exception
--- Java overloaded method: Lua keeps the last definition
-function DataOutputStreamFactory:getInstance(filePath, fileName)
-        local fileStreamFactory = FileStreamFactory.getInstance()
-        local fileOutputStream = fileStreamFactory:getFileOutputStreamInstance(filePath, fileName)
-        local idOutData = AbDataOutputStream.new(fileOutputStream)
-        return idOutData
-end
-
-DataOutputStreamFactory.instance = DataOutputStreamFactory.new()
-
-return DataOutputStreamFactory
 

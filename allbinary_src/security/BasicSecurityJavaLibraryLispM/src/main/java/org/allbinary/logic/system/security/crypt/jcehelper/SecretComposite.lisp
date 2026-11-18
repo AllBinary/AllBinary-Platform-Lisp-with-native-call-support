@@ -1,81 +1,80 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.crypt.jcehelper
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2025 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.system.security.crypt.jcehelper
 
--- local Cipher = require("javax.crypto.Cipher")
--- local SecretKey = require("javax.crypto.SecretKey")
-local ByteUtil = require("org.allbinary.logic.java.byteutil.ByteUtil")
-local BaseSecretComposite = require("org.allbinary.logic.system.security.crypt.jcehelper.BaseSecretComposite")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass SecretComposite (BaseSecretComposite)
+  ((f_byteUtil :initform nil)
+   (f_cipher :initform nil)
+   (f_secretKey :initform nil)
+   (f_key :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun SecretComposite.jnew_3 (_secretKey _cipher _key)
+  (declare (ignorable _secretKey _cipher _key))
+  (let ((this (make-instance 'SecretComposite)))
+    (setf (slot-value this 'f_byteUtil) (ByteUtil.jm_getInstance_0))
+    
+    
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_secretKey) _secretKey)
+        (setf (slot-value this 'f_cipher) _cipher)
+        (setf (slot-value this 'f_key) _key)))
+    this))
 
-local SecretComposite = {}
-SecretComposite.__index = SecretComposite
-SecretComposite.className = "SecretComposite"
-setmetatable(SecretComposite, {__index = BaseSecretComposite})
+    
+(unless (fboundp 'jm_encrypt_1) (defgeneric jm_encrypt_1 (this p1)))
+(defmethod jm_encrypt_1 ((this SecretComposite) _array)
+  (declare (ignorable this _array))
+  (let ()
+    (block jreturn
+        (setf _array (jm_mutilate_1 this _array))
+        (jm_init_2 (slot-value this 'f_cipher) (Cipher.jstatic_ENCRYPT_MODE) (slot-value this 'f_secretKey))
+        (return-from jreturn (jm_doFinal_1 (slot-value this 'f_cipher) _array)))))
 
-function SecretComposite:_init_fields()
-    self.byteUtil = ByteUtil.getInstance()
-    self.cipher = nil
-    self.secretKey = nil
-    self.key = nil
-end
+    
+(unless (fboundp 'jm_decrypt_1) (defgeneric jm_decrypt_1 (this p1)))
+(defmethod jm_decrypt_1 ((this SecretComposite) _array)
+  (declare (ignorable this _array))
+  (let ()
+    (block jreturn
+        (jm_init_2 (slot-value this 'f_cipher) (Cipher.jstatic_DECRYPT_MODE) (slot-value this 'f_secretKey))
+        (return-from jreturn (jm_mutilate_1 this (jm_doFinal_1 (slot-value this 'f_cipher) _array))))))
+
+    
+(unless (fboundp 'jm_mutilate_1) (defgeneric jm_mutilate_1 (this p1)))
+(defmethod jm_mutilate_1 ((this SecretComposite) _array)
+  (declare (ignorable this _array))
+  (let (_value _index)
+  (declare (ignorable _value _index))
+    (block jreturn
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index (length (slot-value this 'f_key))) do
+                (block jcontinue
+            (setf _value (aref (slot-value this 'f_key) _index))
+            (if (and (< _value 8) (> _value 0))
+                (progn
+                (setf _array (jm_xorByte_2 (slot-value this 'f_byteUtil) _array _value)))))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (return-from jreturn _array))))
 
 
-function SecretComposite.new(secretKey, cipher, key)
-    local self = setmetatable(BaseSecretComposite.new(), SecretComposite)
-    self:_init_fields()
-        self.secretKey = secretKey
-        self.cipher = cipher
-        self.key = key
-    return self
-end
-
-
--- throws Exception
-function SecretComposite:encrypt(array)
-        array = self:mutilate(array)
-        self.cipher:init(Cipher.ENCRYPT_MODE, self.secretKey)
-        return self.cipher:doFinal(array)
-end
-
-
--- throws Exception
-function SecretComposite:decrypt(array)
-        self.cipher:init(Cipher.DECRYPT_MODE, self.secretKey)
-        return self:mutilate(self.cipher:doFinal(array))
-end
-
-
-function SecretComposite:mutilate(array)
-        for index = 0, (self.key.n or #self.key) - 1 do
-            local value = self.key[index + 1]
-            if value < 8 and value > 0 then
-                array = self.byteUtil:xorByte(array, value)
-            end
-        end
-        return array
-end
-
-return SecretComposite
 

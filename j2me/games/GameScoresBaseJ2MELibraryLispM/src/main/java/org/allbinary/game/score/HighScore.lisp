@@ -1,127 +1,118 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.score
 
--- local ByteArrayOutputStream = require("java.io.ByteArrayOutputStream")
--- local DataOutputStream = require("java.io.DataOutputStream")
-local GameInfo = require("org.allbinary.game.GameInfo")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
--- Java library java.io.ByteArrayOutputStream
-local function java_byte_array_output_stream()
-    local stream = {buffer = {}}
-    function stream:write(value, offset, length)
-        if type(value) == "table" then
-            local first = (offset or 0) + 1
-            local last = first + (length or #value) - 1
-            for index = first, last do self.buffer[#self.buffer + 1] = string.char(value[index] % 256) end
-        elseif type(value) == "number" then
-            self.buffer[#self.buffer + 1] = string.char(value % 256)
-        else
-            self.buffer[#self.buffer + 1] = tostring(value)
-        end
-    end
-    function stream:toString() return table.concat(self.buffer) end
-    function stream:size() return #table.concat(self.buffer) end
-    function stream:reset() self.buffer = {} end
-    function stream:flush() end
-    function stream:close() end
-    return setmetatable(stream, {__tostring = function(self) return table.concat(self.buffer) end})
-end
+(defclass HighScore (JObject)
+  ((f_id :initform 0)
+   (f_name :initform nil)
+   (f_gameInfo :initform nil)
+   (f_score :initform 0)
+   (f_scoreString :initform nil)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(defun HighScore.jnew_4 (_id _name _gameInfo _score)
+  (declare (ignorable _id _name _gameInfo _score))
+  (let ((this (make-instance 'HighScore)))
+    
+    
+    
+    
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_id) _id)
+        (setf (slot-value this 'f_name) _name)
+        (setf (slot-value this 'f_gameInfo) _gameInfo)
+        (setf (slot-value this 'f_score) _score)
+        (setf (slot-value this 'f_scoreString) (JR.str (slot-value this 'f_score)))))
+    this))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(unless (fboundp 'jm_getId_0) (defgeneric jm_getId_0 (this)))
+(defmethod jm_getId_0 ((this HighScore))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_id)))))
 
-local HighScore = {}
-HighScore.__index = HighScore
-HighScore.className = "HighScore"
+    
+(unless (fboundp 'jm_getName_0) (defgeneric jm_getName_0 (this)))
+(defmethod jm_getName_0 ((this HighScore))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_name)))))
 
-function HighScore:_init_fields()
-    self.id = nil
-    self.name = nil
-    self.gameInfo = nil
-    self.score = nil
-    self.scoreString = nil
-end
+    
+(unless (fboundp 'jm_getScore_0) (defgeneric jm_getScore_0 (this)))
+(defmethod jm_getScore_0 ((this HighScore))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_score)))))
 
+    
+(unless (fboundp 'jm_getAsBytes_0) (defgeneric jm_getAsBytes_0 (this)))
+(defmethod jm_getAsBytes_0 ((this HighScore))
+  (declare (ignorable this))
+  (let (_byteArrayOutputStream _outputStream)
+  (declare (ignorable _byteArrayOutputStream _outputStream))
+    (block jreturn
+        (setf _byteArrayOutputStream (ByteArrayOutputStream.jnew_0))
+        (setf _outputStream (DataOutputStream.jnew_1 _byteArrayOutputStream))
+        (jm_writeUTF_1 _outputStream (jm_getName_0 this))
+        (jm_writeLong_1 _outputStream (jm_getScore_0 this))
+        (return-from jreturn (jm_toByteArray_0 _byteArrayOutputStream)))))
 
-function HighScore.new(id, name, gameInfo, score)
-    local self = setmetatable({}, HighScore)
-    self:_init_fields()
-        self.id = id
-        self.name = name
-        self.gameInfo = gameInfo
-        self.score = score
-        self.scoreString = tostring(self.score)
-    return self
-end
+    
+(unless (fboundp 'jm_getGameInfo_0) (defgeneric jm_getGameInfo_0 (this)))
+(defmethod jm_getGameInfo_0 ((this HighScore))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_gameInfo)))))
 
+    
+(unless (fboundp 'jm_getScoreString_0) (defgeneric jm_getScoreString_0 (this)))
+(defmethod jm_getScoreString_0 ((this HighScore))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_scoreString)))))
 
-function HighScore:getId()
-        return self.id
-end
+    
+(unless (fboundp 'jm_setName_1) (defgeneric jm_setName_1 (this p1)))
+(defmethod jm_setName_1 ((this HighScore) _name)
+  (declare (ignorable this _name))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_name) _name))))
 
-
-function HighScore:getName()
-        return self.name
-end
-
-
-function HighScore:getScore()
-        return self.score
-end
-
-
--- throws Exception
-function HighScore:getAsBytes()
-        local byteArrayOutputStream = java_byte_array_output_stream()
-        local outputStream = DataOutputStream.new(byteArrayOutputStream)
-        outputStream:writeUTF(self:getName())
-        outputStream:writeLong(self:getScore())
-        return byteArrayOutputStream:toByteArray()
-end
-
-
-function HighScore:getGameInfo()
-        return self.gameInfo
-end
-
-
-function HighScore:getScoreString()
-        return self.scoreString
-end
-
-
-function HighScore:setName(name)
-        self.name = name
-end
+    
+(unless (fboundp 'jm_toString_0) (defgeneric jm_toString_0 (this)))
+(defmethod jm_toString_0 ((this HighScore))
+  (declare (ignorable this))
+  (let (_commonSeps)
+  (declare (ignorable _commonSeps))
+    (block jreturn
+        (setf _commonSeps (CommonSeps.jm_getInstance_0))
+        (return-from jreturn (jm_toString_0 (jm_append_1 (jm_append_1 (jm_appendlong_1 (jm_append_1 (jm_append_1 (StringMaker.jnew_0) (slot-value this 'f_name)) (slot-value _commonSeps 'f_COLON)) (slot-value this 'f_score)) (slot-value _commonSeps 'f_FORWARD_SLASH)) (slot-value this 'f_scoreString)))))))
 
 
-function HighScore:toString()
-        local commonSeps = CommonSeps.getInstance()
-        return tostring(StringMaker.new():append(self.name):append(commonSeps.COLON):appendlong(self.score):append(commonSeps.FORWARD_SLASH):append(self.scoreString))
-end
-HighScore.__tostring = function(self) return self:toString() end
-
-return HighScore
 

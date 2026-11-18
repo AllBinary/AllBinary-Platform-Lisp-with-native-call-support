@@ -1,50 +1,43 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.paint
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.paint
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local ColorFillPaintable = require("org.allbinary.game.paint.ColorFillPaintable")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass OverScanColorFillPaintable (ColorFillPaintable)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun OverScanColorFillPaintable.jnew_1 (_basicColor)
+  (declare (ignorable _basicColor))
+  (let ((this (make-instance 'OverScanColorFillPaintable)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
-local OverScanColorFillPaintable = {}
-OverScanColorFillPaintable.__index = OverScanColorFillPaintable
-OverScanColorFillPaintable.className = "OverScanColorFillPaintable"
-setmetatable(OverScanColorFillPaintable, {__index = ColorFillPaintable})
-
-
-function OverScanColorFillPaintable.new(basicColor)
-    local self = setmetatable(ColorFillPaintable.new(basicColor), OverScanColorFillPaintable)
-        -- super(...) made self above
-    return self
-end
+    
+(unless (fboundp 'jm_paint_1) (defgeneric jm_paint_1 (this p1)))
+(defmethod jm_paint_1 ((this OverScanColorFillPaintable) _graphics)
+  (declare (ignorable this _graphics))
+  (let ()
+    (block jreturn
+        (jm_setColor_1 _graphics (slot-value this 'f_colorP))
+        (jm_fillRect_4 _graphics (JR.i32 (- (jm_getClipX_0 _graphics))) (JR.i32 (- (jm_getClipY_0 _graphics))) (JR.i32 (+ (jm_getLastWidth_0 (slot-value this 'f_displayInfoSingleton)) (JR.i32 (* (jm_getClipX_0 _graphics) 2)))) (JR.i32 (+ (jm_getLastHeight_0 (slot-value this 'f_displayInfoSingleton)) (JR.i32 (* (jm_getClipY_0 _graphics) 2))))))))
 
 
-function OverScanColorFillPaintable:paint(graphics)
-        graphics:setColor(self.colorP)
-        graphics:fillRect(-graphics:getClipX(), -graphics:getClipY(), self.displayInfoSingleton:getLastWidth() + (graphics:getClipX() * 2), self.displayInfoSingleton:getLastHeight() + (graphics:getClipY() * 2))
-end
-
-return OverScanColorFillPaintable
 

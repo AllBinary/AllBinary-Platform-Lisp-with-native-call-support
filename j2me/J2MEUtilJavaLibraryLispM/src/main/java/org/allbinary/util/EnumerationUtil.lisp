@@ -26,6 +26,7 @@
 (defun EnumerationUtil.jstatic_instance ()
   (when (eq EnumerationUtil.jcell_instance :jnone) (setf EnumerationUtil.jcell_instance (EnumerationUtil.jnew_0)))
   EnumerationUtil.jcell_instance)
+(defun (setf EnumerationUtil.jstatic_instance) (value) (setf EnumerationUtil.jcell_instance value))
 
 (defun EnumerationUtil.jnew_0 ()
   (let ((this (make-instance 'EnumerationUtil)))

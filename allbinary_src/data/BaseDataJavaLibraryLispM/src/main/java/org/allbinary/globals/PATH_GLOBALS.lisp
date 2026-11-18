@@ -29,6 +29,7 @@
 (defun PATH_GLOBALS.jstatic_instance ()
   (when (eq PATH_GLOBALS.jcell_instance :jnone) (setf PATH_GLOBALS.jcell_instance (PATH_GLOBALS.jnew_0)))
   PATH_GLOBALS.jcell_instance)
+(defun (setf PATH_GLOBALS.jstatic_instance) (value) (setf PATH_GLOBALS.jcell_instance value))
 
     
 (defun PATH_GLOBALS.jm_getInstance_0 ()

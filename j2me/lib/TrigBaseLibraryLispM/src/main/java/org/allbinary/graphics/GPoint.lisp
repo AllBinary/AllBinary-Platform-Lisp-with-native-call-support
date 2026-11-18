@@ -27,6 +27,7 @@
 (defun GPoint.jstatic_POINT_LABEL ()
   (when (eq GPoint.jcell_POINT_LABEL :jnone) (setf GPoint.jcell_POINT_LABEL "Point: "))
   GPoint.jcell_POINT_LABEL)
+(defun (setf GPoint.jstatic_POINT_LABEL) (value) (setf GPoint.jcell_POINT_LABEL value))
 
     
 (defun GPoint.jm_getInstance_1 (_point)

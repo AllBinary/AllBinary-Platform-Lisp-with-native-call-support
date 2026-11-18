@@ -26,6 +26,7 @@
 (defun ScaleFactorFactory.jstatic_instance ()
   (when (eq ScaleFactorFactory.jcell_instance :jnone) (setf ScaleFactorFactory.jcell_instance (ScaleFactorFactory.jnew_0)))
   ScaleFactorFactory.jcell_instance)
+(defun (setf ScaleFactorFactory.jstatic_instance) (value) (setf ScaleFactorFactory.jcell_instance value))
 
 (defun ScaleFactorFactory.jnew_0 ()
   (let ((this (make-instance 'ScaleFactorFactory)))

@@ -1,55 +1,52 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2025 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.media.audio
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass SoundStrings (JObject)
+  ((f_STOP_ALL :initform nil)
+   (f_CLOSE_ALL :initform nil)
+   (f_SOUND :initform nil)
+   (f_INIT_SOUND :initform nil)
+   (f_STOPPING_SOUND :initform nil)
+   (f_CLOSING_SOUND :initform nil)))
+
+(defvar SoundStrings.jcell_instance :jnone)
+(defun SoundStrings.jstatic_instance ()
+  (when (eq SoundStrings.jcell_instance :jnone) (setf SoundStrings.jcell_instance (SoundStrings.jnew_0)))
+  SoundStrings.jcell_instance)
+(defun (setf SoundStrings.jstatic_instance) (value) (setf SoundStrings.jcell_instance value))
+
+(defun SoundStrings.jnew_0 ()
+  (let ((this (make-instance 'SoundStrings)))
+    (setf (slot-value this 'f_STOP_ALL) "stopAll")
+    (setf (slot-value this 'f_CLOSE_ALL) "closeAll")
+    (setf (slot-value this 'f_SOUND) " Sound: ")
+    (setf (slot-value this 'f_INIT_SOUND) "Initializing Sound: ")
+    (setf (slot-value this 'f_STOPPING_SOUND) "Stopping Sound: ")
+    (setf (slot-value this 'f_CLOSING_SOUND) "Closing Sound: ")
+    this))
+
+    
+(defun SoundStrings.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (SoundStrings.jstatic_instance)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local SoundStrings = {}
-SoundStrings.__index = SoundStrings
-SoundStrings.className = "SoundStrings"
-
-function SoundStrings:_init_fields()
-    self.STOP_ALL = "stopAll"
-    self.CLOSE_ALL = "closeAll"
-    self.SOUND = " Sound: "
-    self.INIT_SOUND = "Initializing Sound: "
-    self.STOPPING_SOUND = "Stopping Sound: "
-    self.CLOSING_SOUND = "Closing Sound: "
-end
-
-function SoundStrings.new()
-    local self = setmetatable({}, SoundStrings)
-    self:_init_fields()
-    return self
-end
-
-
-function SoundStrings.getInstance()
-        return SoundStrings.instance
-end
-
-SoundStrings.instance = SoundStrings.new()
-
-return SoundStrings
 

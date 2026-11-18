@@ -1,84 +1,87 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation.image
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
--- local Image = require("javax.microedition.lcdui.Image")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local ImageArrayAnimation = require("org.allbinary.animation.image.ImageArrayAnimation")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass AdjustedImageArrayAnimation (ImageArrayAnimation)
+  ((f_dx :initform 0)
+   (f_dy :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun AdjustedImageArrayAnimation.jnew_4 (_imageArray _dx _dy _animationBehavior)
+  (declare (ignorable _imageArray _dx _dy _animationBehavior))
+  (let ((this (make-instance 'AdjustedImageArrayAnimation)))
+    
+    
+  (let ()
+    (block jreturn
+        nil
+        (jm_init_2 this _dx _dy)))
+    this))
 
-local AdjustedImageArrayAnimation = {}
-AdjustedImageArrayAnimation.__index = AdjustedImageArrayAnimation
-AdjustedImageArrayAnimation.className = "AdjustedImageArrayAnimation"
-setmetatable(AdjustedImageArrayAnimation, {__index = ImageArrayAnimation})
+    
+(unless (fboundp 'jm_init_2) (defgeneric jm_init_2 (this p1 p2)))
+(defmethod jm_init_2 ((this AdjustedImageArrayAnimation) _dx _dy)
+  (declare (ignorable this _dx _dy))
+  (let ()
+    (block jreturn
+        (jm_setDx_1 this _dx)
+        (jm_setDy_1 this _dy))))
 
-function AdjustedImageArrayAnimation:_init_fields()
-    self.dx = 0
-    self.dy = 0
-end
+    
+(unless (fboundp 'jm_paintXY_3) (defgeneric jm_paintXY_3 (this p1 p2 p3)))
+(defmethod jm_paintXY_3 ((this AdjustedImageArrayAnimation) _graphics _x _y)
+  (declare (ignorable this _graphics _x _y))
+  (let ()
+    (block jreturn
+        (call-next-method this _graphics (JR.i32 (+ _x (slot-value this 'f_dx))) (JR.i32 (+ _y (slot-value this 'f_dy)))))))
+
+    
+(unless (fboundp 'jm_setDx_1) (defgeneric jm_setDx_1 (this p1)))
+(defmethod jm_setDx_1 ((this AdjustedImageArrayAnimation) _dx)
+  (declare (ignorable this _dx))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_dx) _dx))))
+
+    
+(unless (fboundp 'jm_getDx_0) (defgeneric jm_getDx_0 (this)))
+(defmethod jm_getDx_0 ((this AdjustedImageArrayAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_dx)))))
+
+    
+(unless (fboundp 'jm_setDy_1) (defgeneric jm_setDy_1 (this p1)))
+(defmethod jm_setDy_1 ((this AdjustedImageArrayAnimation) _dy)
+  (declare (ignorable this _dy))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_dy) _dy))))
+
+    
+(unless (fboundp 'jm_getDy_0) (defgeneric jm_getDy_0 (this)))
+(defmethod jm_getDy_0 ((this AdjustedImageArrayAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_dy)))))
 
 
-function AdjustedImageArrayAnimation.new(imageArray, dx, dy, animationBehavior)
-    local self = setmetatable(ImageArrayAnimation.new(imageArray, animationBehavior), AdjustedImageArrayAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self:init(dx, dy)
-    return self
-end
-
-
--- throws Exception
-function AdjustedImageArrayAnimation:init(dx, dy)
-        self:setDx(dx)
-        self:setDy(dy)
-end
-
-
-function AdjustedImageArrayAnimation:paintXY(graphics, x, y)
-        ImageArrayAnimation.paintXY(self, graphics, x + self.dx, y + self.dy)
-end
-
-
-function AdjustedImageArrayAnimation:setDx(dx)
-        self.dx = dx
-end
-
-
-function AdjustedImageArrayAnimation:getDx()
-        return self.dx
-end
-
-
-function AdjustedImageArrayAnimation:setDy(dy)
-        self.dy = dy
-end
-
-
-function AdjustedImageArrayAnimation:getDy()
-        return self.dy
-end
-
-return AdjustedImageArrayAnimation
 

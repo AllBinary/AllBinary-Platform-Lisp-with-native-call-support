@@ -1,59 +1,51 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.input.motion.button
 
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListUtil = require("org.allbinary.util.BasicArrayListUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass BaseTouchInput (JObject)
+  ((f_commonStrings :initform nil)
+   (f_basicArrayListUtil :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun BaseTouchInput.jnew_0 ()
+  (let ((this (make-instance 'BaseTouchInput)))
+    (setf (slot-value this 'f_commonStrings) (CommonStrings.jm_getInstance_0))
+    (setf (slot-value this 'f_basicArrayListUtil) (BasicArrayListUtil.jm_getInstance_0))
+  (let ()
+    (block jreturn nil))
+    this))
 
-local BaseTouchInput = {}
-BaseTouchInput.__index = BaseTouchInput
-BaseTouchInput.className = "BaseTouchInput"
+    
+(unless (fboundp 'jm_getList_0) (defgeneric jm_getList_0 (this)))
+(defmethod jm_getList_0 ((this BaseTouchInput))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getImmutableInstance_0 (slot-value this 'f_basicArrayListUtil))))))
 
-function BaseTouchInput:_init_fields()
-    self.commonStrings = CommonStrings.getInstance()
-    self.basicArrayListUtil = BasicArrayListUtil.getInstance()
-end
-
-
-function BaseTouchInput.new()
-    local self = setmetatable({}, BaseTouchInput)
-    self:_init_fields()
-    return self
-end
-
-
-function BaseTouchInput:getList()
-        return self.basicArrayListUtil:getImmutableInstance()
-end
+    
+(unless (fboundp 'jm_toString_0) (defgeneric jm_toString_0 (this)))
+(defmethod jm_toString_0 ((this BaseTouchInput))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (JR.className this)))))
 
 
-function BaseTouchInput:toString()
-        return getmetatable(self).className
-end
-BaseTouchInput.__tostring = function(self) return self:toString() end
-
-return BaseTouchInput
 

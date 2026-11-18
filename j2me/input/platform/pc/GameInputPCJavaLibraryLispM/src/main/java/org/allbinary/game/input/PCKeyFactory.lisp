@@ -1,197 +1,290 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.input
 
-local PositionStrings = require("org.allbinary.math.PositionStrings")
-local CommonPhoneStrings = require("org.allbinary.string.CommonPhoneStrings")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass PCKeyFactory (JObject)
+  ((f_keyEventWrapper :initform nil)
+   (f_UNKNOWN :initform nil)
+   (f_ENTER :initform nil)
+   (f__A :initform nil)
+   (f__B :initform nil)
+   (f__C :initform nil)
+   (f__D :initform nil)
+   (f__E :initform nil)
+   (f__F :initform nil)
+   (f__G :initform nil)
+   (f__H :initform nil)
+   (f__I :initform nil)
+   (f__J :initform nil)
+   (f__K :initform nil)
+   (f__L :initform nil)
+   (f__M :initform nil)
+   (f__N :initform nil)
+   (f__O :initform nil)
+   (f__P :initform nil)
+   (f__Q :initform nil)
+   (f__R :initform nil)
+   (f__S :initform nil)
+   (f__T :initform nil)
+   (f__U :initform nil)
+   (f__V :initform nil)
+   (f__W :initform nil)
+   (f__X :initform nil)
+   (f__Y :initform nil)
+   (f__Z :initform nil)
+   (f_a :initform nil)
+   (f_b :initform nil)
+   (f_c :initform nil)
+   (f_d :initform nil)
+   (f_e :initform nil)
+   (f_f :initform nil)
+   (f_g :initform nil)
+   (f_h :initform nil)
+   (f_i :initform nil)
+   (f_j :initform nil)
+   (f_k :initform nil)
+   (f_l :initform nil)
+   (f_m :initform nil)
+   (f_n :initform nil)
+   (f_o :initform nil)
+   (f_p :initform nil)
+   (f_q :initform nil)
+   (f_r :initform nil)
+   (f_s :initform nil)
+   (f_t :initform nil)
+   (f_u :initform nil)
+   (f_v :initform nil)
+   (f_w :initform nil)
+   (f_x :initform nil)
+   (f_y :initform nil)
+   (f_z :initform nil)
+   (f_ZERO :initform nil)
+   (f_ONE :initform nil)
+   (f_TWO :initform nil)
+   (f_THREE :initform nil)
+   (f_FOUR :initform nil)
+   (f_FIVE :initform nil)
+   (f_SIX :initform nil)
+   (f_SEVEN :initform nil)
+   (f_EIGHT :initform nil)
+   (f_NINE :initform nil)
+   (f_DPAD_UP :initform nil)
+   (f_DPAD_DOWN :initform nil)
+   (f_DPAD_LEFT :initform nil)
+   (f_DPAD_RIGHT :initform nil)
+   (f_DPAD_UP2 :initform nil)
+   (f_DPAD_DOWN2 :initform nil)
+   (f_DPAD_LEFT2 :initform nil)
+   (f_DPAD_RIGHT2 :initform nil)
+   (f_COMMA :initform nil)
+   (f_SPACE :initform nil)
+   (f_DEL :initform nil)
+   (f_STAR :initform nil)
+   (f_QUESTION :initform nil)
+   (f_PERIOD :initform nil)
+   (f_ESCAPE :initform nil)
+   (f_BACK_SPACE :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar PCKeyFactory.jcell_SINGLETON :jnone)
+(defun PCKeyFactory.jstatic_SINGLETON ()
+  (when (eq PCKeyFactory.jcell_SINGLETON :jnone) (setf PCKeyFactory.jcell_SINGLETON (PCKeyFactory.jnew_0)))
+  PCKeyFactory.jcell_SINGLETON)
+(defun (setf PCKeyFactory.jstatic_SINGLETON) (value) (setf PCKeyFactory.jcell_SINGLETON value))
 
-local PCKeyFactory = {}
-PCKeyFactory.__index = PCKeyFactory
-PCKeyFactory.className = "PCKeyFactory"
+(defun PCKeyFactory.jnew_0 ()
+  (let ((this (make-instance 'PCKeyFactory)))
+    (setf (slot-value this 'f_keyEventWrapper) (ABKeyEventWrapper.jm_getInstance_0))
+    (setf (slot-value this 'f_UNKNOWN) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_UNDEFINED) "UNKNOWN"))
+    (setf (slot-value this 'f_ENTER) (PCGameKey.jnew_2 5 "Enter"))
+    (setf (slot-value this 'f__A) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_A) "A"))
+    (setf (slot-value this 'f__B) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_B) "B"))
+    (setf (slot-value this 'f__C) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_C) "C"))
+    (setf (slot-value this 'f__D) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_D) "D"))
+    (setf (slot-value this 'f__E) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_E) "E"))
+    (setf (slot-value this 'f__F) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_F) "F"))
+    (setf (slot-value this 'f__G) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_G) "G"))
+    (setf (slot-value this 'f__H) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_H) "H"))
+    (setf (slot-value this 'f__I) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_I) "I"))
+    (setf (slot-value this 'f__J) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_J) "J"))
+    (setf (slot-value this 'f__K) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_K) "K"))
+    (setf (slot-value this 'f__L) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_L) "L"))
+    (setf (slot-value this 'f__M) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_M) "M"))
+    (setf (slot-value this 'f__N) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_N) "N"))
+    (setf (slot-value this 'f__O) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_O) "O"))
+    (setf (slot-value this 'f__P) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_P) "P"))
+    (setf (slot-value this 'f__Q) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_Q) "Q"))
+    (setf (slot-value this 'f__R) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_R) "R"))
+    (setf (slot-value this 'f__S) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_S) "S"))
+    (setf (slot-value this 'f__T) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_T) "T"))
+    (setf (slot-value this 'f__U) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_U) "U"))
+    (setf (slot-value this 'f__V) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_V) "V"))
+    (setf (slot-value this 'f__W) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_W) "W"))
+    (setf (slot-value this 'f__X) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_X) "X"))
+    (setf (slot-value this 'f__Y) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_Y) "Y"))
+    (setf (slot-value this 'f__Z) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_Z) "Z"))
+    (setf (slot-value this 'f_a) (PCGameKey.jnew_2 97 "a"))
+    (setf (slot-value this 'f_b) (PCGameKey.jnew_2 98 "b"))
+    (setf (slot-value this 'f_c) (PCGameKey.jnew_2 99 "c"))
+    (setf (slot-value this 'f_d) (PCGameKey.jnew_2 100 "d"))
+    (setf (slot-value this 'f_e) (PCGameKey.jnew_2 101 "e"))
+    (setf (slot-value this 'f_f) (PCGameKey.jnew_2 102 "f"))
+    (setf (slot-value this 'f_g) (PCGameKey.jnew_2 103 "g"))
+    (setf (slot-value this 'f_h) (PCGameKey.jnew_2 104 "h"))
+    (setf (slot-value this 'f_i) (PCGameKey.jnew_2 105 "i"))
+    (setf (slot-value this 'f_j) (PCGameKey.jnew_2 106 "j"))
+    (setf (slot-value this 'f_k) (PCGameKey.jnew_2 107 "k"))
+    (setf (slot-value this 'f_l) (PCGameKey.jnew_2 108 "l"))
+    (setf (slot-value this 'f_m) (PCGameKey.jnew_2 109 "m"))
+    (setf (slot-value this 'f_n) (PCGameKey.jnew_2 110 "n"))
+    (setf (slot-value this 'f_o) (PCGameKey.jnew_2 111 "o"))
+    (setf (slot-value this 'f_p) (PCGameKey.jnew_2 112 "p"))
+    (setf (slot-value this 'f_q) (PCGameKey.jnew_2 113 "q"))
+    (setf (slot-value this 'f_r) (PCGameKey.jnew_2 114 "r"))
+    (setf (slot-value this 'f_s) (PCGameKey.jnew_2 115 "s"))
+    (setf (slot-value this 'f_t) (PCGameKey.jnew_2 116 "t"))
+    (setf (slot-value this 'f_u) (PCGameKey.jnew_2 117 "u"))
+    (setf (slot-value this 'f_v) (PCGameKey.jnew_2 118 "v"))
+    (setf (slot-value this 'f_w) (PCGameKey.jnew_2 119 "w"))
+    (setf (slot-value this 'f_x) (PCGameKey.jnew_2 120 (slot-value (PositionStrings.jm_getInstance_0) 'f_X)))
+    (setf (slot-value this 'f_y) (PCGameKey.jnew_2 121 (slot-value (PositionStrings.jm_getInstance_0) 'f_Y)))
+    (setf (slot-value this 'f_z) (PCGameKey.jnew_2 122 "z"))
+    (setf (slot-value this 'f_ZERO) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_0) (slot-value (CommonPhoneStrings.jm_getInstance_0) 'f_ZERO)))
+    (setf (slot-value this 'f_ONE) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_1) (slot-value (CommonPhoneStrings.jm_getInstance_0) 'f_ONE)))
+    (setf (slot-value this 'f_TWO) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_2) (slot-value (CommonPhoneStrings.jm_getInstance_0) 'f_TWO)))
+    (setf (slot-value this 'f_THREE) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_3) (slot-value (CommonPhoneStrings.jm_getInstance_0) 'f_THREE)))
+    (setf (slot-value this 'f_FOUR) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_4) (slot-value (CommonPhoneStrings.jm_getInstance_0) 'f_FOUR)))
+    (setf (slot-value this 'f_FIVE) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_5) (slot-value (CommonPhoneStrings.jm_getInstance_0) 'f_FIVE)))
+    (setf (slot-value this 'f_SIX) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_6) (slot-value (CommonPhoneStrings.jm_getInstance_0) 'f_SIX)))
+    (setf (slot-value this 'f_SEVEN) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_7) (slot-value (CommonPhoneStrings.jm_getInstance_0) 'f_SEVEN)))
+    (setf (slot-value this 'f_EIGHT) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_8) (slot-value (CommonPhoneStrings.jm_getInstance_0) 'f_EIGHT)))
+    (setf (slot-value this 'f_NINE) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_9) (slot-value (CommonPhoneStrings.jm_getInstance_0) 'f_NINE)))
+    (setf (slot-value this 'f_DPAD_UP) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_UP) (slot-value (CommonPhoneStrings.jm_getInstance_0) 'f_UP)))
+    (setf (slot-value this 'f_DPAD_DOWN) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_DOWN) (slot-value (CommonPhoneStrings.jm_getInstance_0) 'f_DOWN)))
+    (setf (slot-value this 'f_DPAD_LEFT) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_LEFT) (slot-value (CommonPhoneStrings.jm_getInstance_0) 'f_LEFT)))
+    (setf (slot-value this 'f_DPAD_RIGHT) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_RIGHT) (slot-value (CommonPhoneStrings.jm_getInstance_0) 'f_RIGHT)))
+    (setf (slot-value this 'f_DPAD_UP2) (slot-value this 'f_DPAD_UP))
+    (setf (slot-value this 'f_DPAD_DOWN2) (slot-value this 'f_DPAD_DOWN))
+    (setf (slot-value this 'f_DPAD_LEFT2) (slot-value this 'f_DPAD_LEFT))
+    (setf (slot-value this 'f_DPAD_RIGHT2) (slot-value this 'f_DPAD_RIGHT))
+    (setf (slot-value this 'f_COMMA) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_COMMA) "COMMA"))
+    (setf (slot-value this 'f_SPACE) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_SPACE) "SPACE"))
+    (setf (slot-value this 'f_DEL) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_DELETE) "DEL"))
+    (setf (slot-value this 'f_STAR) (PCGameKey.jnew_2 42 (slot-value (CommonPhoneStrings.jm_getInstance_0) 'f_STAR)))
+    (setf (slot-value this 'f_QUESTION) (PCGameKey.jnew_2 47 "?"))
+    (setf (slot-value this 'f_PERIOD) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_PERIOD) (slot-value (CommonSeps.jm_getInstance_0) 'f_PERIOD)))
+    (setf (slot-value this 'f_ESCAPE) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_ESCAPE) "Esc"))
+    (setf (slot-value this 'f_BACK_SPACE) (PCGameKey.jnew_2 (slot-value (slot-value this 'f_keyEventWrapper) 'f_VK_BACK_SPACE) "Backspace"))
+    this))
 
-function PCKeyFactory:_init_fields()
-    self.keyEventWrapper = ABKeyEventWrapper.getInstance()
-    self.UNKNOWN = PCGameKey.new(self.keyEventWrapper.VK_UNDEFINED, "UNKNOWN")
-    self.ENTER = PCGameKey.new(5, "Enter")
-    self._A = PCGameKey.new(self.keyEventWrapper.VK_A, "A")
-    self._B = PCGameKey.new(self.keyEventWrapper.VK_B, "B")
-    self._C = PCGameKey.new(self.keyEventWrapper.VK_C, "C")
-    self._D = PCGameKey.new(self.keyEventWrapper.VK_D, "D")
-    self._E = PCGameKey.new(self.keyEventWrapper.VK_E, "E")
-    self._F = PCGameKey.new(self.keyEventWrapper.VK_F, "F")
-    self._G = PCGameKey.new(self.keyEventWrapper.VK_G, "G")
-    self._H = PCGameKey.new(self.keyEventWrapper.VK_H, "H")
-    self._I = PCGameKey.new(self.keyEventWrapper.VK_I, "I")
-    self._J = PCGameKey.new(self.keyEventWrapper.VK_J, "J")
-    self._K = PCGameKey.new(self.keyEventWrapper.VK_K, "K")
-    self._L = PCGameKey.new(self.keyEventWrapper.VK_L, "L")
-    self._M = PCGameKey.new(self.keyEventWrapper.VK_M, "M")
-    self._N = PCGameKey.new(self.keyEventWrapper.VK_N, "N")
-    self._O = PCGameKey.new(self.keyEventWrapper.VK_O, "O")
-    self._P = PCGameKey.new(self.keyEventWrapper.VK_P, "P")
-    self._Q = PCGameKey.new(self.keyEventWrapper.VK_Q, "Q")
-    self._R = PCGameKey.new(self.keyEventWrapper.VK_R, "R")
-    self._S = PCGameKey.new(self.keyEventWrapper.VK_S, "S")
-    self._T = PCGameKey.new(self.keyEventWrapper.VK_T, "T")
-    self._U = PCGameKey.new(self.keyEventWrapper.VK_U, "U")
-    self._V = PCGameKey.new(self.keyEventWrapper.VK_V, "V")
-    self._W = PCGameKey.new(self.keyEventWrapper.VK_W, "W")
-    self._X = PCGameKey.new(self.keyEventWrapper.VK_X, "X")
-    self._Y = PCGameKey.new(self.keyEventWrapper.VK_Y, "Y")
-    self._Z = PCGameKey.new(self.keyEventWrapper.VK_Z, "Z")
-    self.a = PCGameKey.new(97, "a")
-    self.b = PCGameKey.new(98, "b")
-    self.c = PCGameKey.new(99, "c")
-    self.d = PCGameKey.new(100, "d")
-    self.e = PCGameKey.new(101, "e")
-    self.f = PCGameKey.new(102, "f")
-    self.g = PCGameKey.new(103, "g")
-    self.h = PCGameKey.new(104, "h")
-    self.i = PCGameKey.new(105, "i")
-    self.j = PCGameKey.new(106, "j")
-    self.k = PCGameKey.new(107, "k")
-    self.l = PCGameKey.new(108, "l")
-    self.m = PCGameKey.new(109, "m")
-    self.n = PCGameKey.new(110, "n")
-    self.o = PCGameKey.new(111, "o")
-    self.p = PCGameKey.new(112, "p")
-    self.q = PCGameKey.new(113, "q")
-    self.r = PCGameKey.new(114, "r")
-    self.s = PCGameKey.new(115, "s")
-    self.t = PCGameKey.new(116, "t")
-    self.u = PCGameKey.new(117, "u")
-    self.v = PCGameKey.new(118, "v")
-    self.w = PCGameKey.new(119, "w")
-    self.x = PCGameKey.new(120, PositionStrings.getInstance().X)
-    self.y = PCGameKey.new(121, PositionStrings.getInstance().Y)
-    self.z = PCGameKey.new(122, "z")
-    self.ZERO = PCGameKey.new(self.keyEventWrapper.VK_0, CommonPhoneStrings.getInstance().ZERO)
-    self.ONE = PCGameKey.new(self.keyEventWrapper.VK_1, CommonPhoneStrings.getInstance().ONE)
-    self.TWO = PCGameKey.new(self.keyEventWrapper.VK_2, CommonPhoneStrings.getInstance().TWO)
-    self.THREE = PCGameKey.new(self.keyEventWrapper.VK_3, CommonPhoneStrings.getInstance().THREE)
-    self.FOUR = PCGameKey.new(self.keyEventWrapper.VK_4, CommonPhoneStrings.getInstance().FOUR)
-    self.FIVE = PCGameKey.new(self.keyEventWrapper.VK_5, CommonPhoneStrings.getInstance().FIVE)
-    self.SIX = PCGameKey.new(self.keyEventWrapper.VK_6, CommonPhoneStrings.getInstance().SIX)
-    self.SEVEN = PCGameKey.new(self.keyEventWrapper.VK_7, CommonPhoneStrings.getInstance().SEVEN)
-    self.EIGHT = PCGameKey.new(self.keyEventWrapper.VK_8, CommonPhoneStrings.getInstance().EIGHT)
-    self.NINE = PCGameKey.new(self.keyEventWrapper.VK_9, CommonPhoneStrings.getInstance().NINE)
-    self.DPAD_UP = PCGameKey.new(self.keyEventWrapper.VK_UP, CommonPhoneStrings.getInstance().UP)
-    self.DPAD_DOWN = PCGameKey.new(self.keyEventWrapper.VK_DOWN, CommonPhoneStrings.getInstance().DOWN)
-    self.DPAD_LEFT = PCGameKey.new(self.keyEventWrapper.VK_LEFT, CommonPhoneStrings.getInstance().LEFT)
-    self.DPAD_RIGHT = PCGameKey.new(self.keyEventWrapper.VK_RIGHT, CommonPhoneStrings.getInstance().RIGHT)
-    self.DPAD_UP2 = self.DPAD_UP
-    self.DPAD_DOWN2 = self.DPAD_DOWN
-    self.DPAD_LEFT2 = self.DPAD_LEFT
-    self.DPAD_RIGHT2 = self.DPAD_RIGHT
-    self.COMMA = PCGameKey.new(self.keyEventWrapper.VK_COMMA, "COMMA")
-    self.SPACE = PCGameKey.new(self.keyEventWrapper.VK_SPACE, "SPACE")
-    self.DEL = PCGameKey.new(self.keyEventWrapper.VK_DELETE, "DEL")
-    self.STAR = PCGameKey.new(42, CommonPhoneStrings.getInstance().STAR)
-    self.QUESTION = PCGameKey.new(47, "?")
-    self.PERIOD = PCGameKey.new(self.keyEventWrapper.VK_PERIOD, CommonSeps.getInstance().PERIOD)
-    self.ESCAPE = PCGameKey.new(self.keyEventWrapper.VK_ESCAPE, "Esc")
-    self.BACK_SPACE = PCGameKey.new(self.keyEventWrapper.VK_BACK_SPACE, "Backspace")
-end
+    
+(defun PCKeyFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (PCKeyFactory.jstatic_SINGLETON)))))
 
-function PCKeyFactory.new()
-    local self = setmetatable({}, PCKeyFactory)
-    self:_init_fields()
-    return self
-end
+    
+(unless (fboundp 'jm_isSubmission_1) (defgeneric jm_isSubmission_1 (this p1)))
+(defmethod jm_isSubmission_1 ((this PCKeyFactory) _input)
+  (declare (ignorable this _input))
+  (let ()
+    (block jreturn
+        (if (eq _input (slot-value this 'f_ENTER))
+            (progn
+            (return-from jreturn t)))
+        (return-from jreturn nil))))
 
+    
+(unless (fboundp 'jm_isDelete_1) (defgeneric jm_isDelete_1 (this p1)))
+(defmethod jm_isDelete_1 ((this PCKeyFactory) _input)
+  (declare (ignorable this _input))
+  (let ()
+    (block jreturn
+        (if (eq _input (slot-value this 'f_DEL))
+            (progn
+            (return-from jreturn t)))
+        (return-from jreturn nil))))
 
-function PCKeyFactory.getInstance()
-        return PCKeyFactory.SINGLETON
-end
+    
+(unless (fboundp 'jm_isBackSpace_1) (defgeneric jm_isBackSpace_1 (this p1)))
+(defmethod jm_isBackSpace_1 ((this PCKeyFactory) _input)
+  (declare (ignorable this _input))
+  (let ()
+    (block jreturn
+        (if (eq _input (slot-value this 'f_BACK_SPACE))
+            (progn
+            (return-from jreturn t)))
+        (return-from jreturn nil))))
 
+    
+(unless (fboundp 'jm_isUp_1) (defgeneric jm_isUp_1 (this p1)))
+(defmethod jm_isUp_1 ((this PCKeyFactory) _input)
+  (declare (ignorable this _input))
+  (let ()
+    (block jreturn
+        (if (or (eq _input (slot-value this 'f_DPAD_UP)) (eq _input (slot-value this 'f_DPAD_UP2)))
+            (progn
+            (return-from jreturn t)))
+        (return-from jreturn nil))))
 
-function PCKeyFactory:isSubmission(input)
-        if input == self.ENTER then
-            return true
-        end
-        return false
-end
+    
+(unless (fboundp 'jm_isDown_1) (defgeneric jm_isDown_1 (this p1)))
+(defmethod jm_isDown_1 ((this PCKeyFactory) _input)
+  (declare (ignorable this _input))
+  (let ()
+    (block jreturn
+        (if (or (eq _input (slot-value this 'f_DPAD_DOWN)) (eq _input (slot-value this 'f_DPAD_DOWN2)))
+            (progn
+            (return-from jreturn t)))
+        (return-from jreturn nil))))
+
+    
+(unless (fboundp 'jm_isLeft_1) (defgeneric jm_isLeft_1 (this p1)))
+(defmethod jm_isLeft_1 ((this PCKeyFactory) _input)
+  (declare (ignorable this _input))
+  (let ()
+    (block jreturn
+        (if (or (eq _input (slot-value this 'f_DPAD_LEFT)) (eq _input (slot-value this 'f_DPAD_LEFT2)))
+            (progn
+            (return-from jreturn t)))
+        (return-from jreturn nil))))
+
+    
+(unless (fboundp 'jm_isRight_1) (defgeneric jm_isRight_1 (this p1)))
+(defmethod jm_isRight_1 ((this PCKeyFactory) _input)
+  (declare (ignorable this _input))
+  (let ()
+    (block jreturn
+        (if (or (eq _input (slot-value this 'f_DPAD_RIGHT)) (eq _input (slot-value this 'f_DPAD_RIGHT2)))
+            (progn
+            (return-from jreturn t)))
+        (return-from jreturn nil))))
+
+    
+(unless (fboundp 'jm_isEnter_1) (defgeneric jm_isEnter_1 (this p1)))
+(defmethod jm_isEnter_1 ((this PCKeyFactory) _input)
+  (declare (ignorable this _input))
+  (let ()
+    (block jreturn
+        (if (eq _input (slot-value this 'f_ENTER))
+            (progn
+            (return-from jreturn t)))
+        (return-from jreturn nil))))
 
 
-function PCKeyFactory:isDelete(input)
-        if input == self.DEL then
-            return true
-        end
-        return false
-end
-
-
-function PCKeyFactory:isBackSpace(input)
-        if input == self.BACK_SPACE then
-            return true
-        end
-        return false
-end
-
-
-function PCKeyFactory:isUp(input)
-        if input == self.DPAD_UP or input == self.DPAD_UP2 then
-            return true
-        end
-        return false
-end
-
-
-function PCKeyFactory:isDown(input)
-        if input == self.DPAD_DOWN or input == self.DPAD_DOWN2 then
-            return true
-        end
-        return false
-end
-
-
-function PCKeyFactory:isLeft(input)
-        if input == self.DPAD_LEFT or input == self.DPAD_LEFT2 then
-            return true
-        end
-        return false
-end
-
-
-function PCKeyFactory:isRight(input)
-        if input == self.DPAD_RIGHT or input == self.DPAD_RIGHT2 then
-            return true
-        end
-        return false
-end
-
-
-function PCKeyFactory:isEnter(input)
-        if input == self.ENTER then
-            return true
-        end
-        return false
-end
-
-PCKeyFactory.SINGLETON = PCKeyFactory.new()
-
-return PCKeyFactory
 

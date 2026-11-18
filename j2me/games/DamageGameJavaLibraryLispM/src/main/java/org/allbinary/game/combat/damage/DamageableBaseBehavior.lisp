@@ -1,62 +1,64 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.combat.damage
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.combat.damage
 
-local DamageableInterface = require("org.allbinary.game.combat.damage.DamageableInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass DamageableBaseBehavior (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar DamageableBaseBehavior.jcell_instance :jnone)
+(defun DamageableBaseBehavior.jstatic_instance ()
+  (when (eq DamageableBaseBehavior.jcell_instance :jnone) (setf DamageableBaseBehavior.jcell_instance (DamageableBaseBehavior.jnew_0)))
+  DamageableBaseBehavior.jcell_instance)
+(defun (setf DamageableBaseBehavior.jstatic_instance) (value) (setf DamageableBaseBehavior.jcell_instance value))
 
-local DamageableBaseBehavior = {}
-DamageableBaseBehavior.__index = DamageableBaseBehavior
-DamageableBaseBehavior.className = "DamageableBaseBehavior"
+(defun DamageableBaseBehavior.jnew_0 ()
+  (let ((this (make-instance 'DamageableBaseBehavior)))
+    this))
 
-function DamageableBaseBehavior.new()
-    local self = setmetatable({}, DamageableBaseBehavior)
-    return self
-end
+    
+(defun DamageableBaseBehavior.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (DamageableBaseBehavior.jstatic_instance)))))
+
+    
+(unless (fboundp 'jm_getName_0) (defgeneric jm_getName_0 (this)))
+(defmethod jm_getName_0 ((this DamageableBaseBehavior))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (JR.className this)))))
+
+    
+(unless (fboundp 'jm_damage_2) (defgeneric jm_damage_2 (this p1 p2)))
+(defmethod jm_damage_2 ((this DamageableBaseBehavior) _damage _damageType)
+  (declare (ignorable this _damage _damageType))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_getDamage_1) (defgeneric jm_getDamage_1 (this p1)))
+(defmethod jm_getDamage_1 ((this DamageableBaseBehavior) _damageType)
+  (declare (ignorable this _damageType))
+  (let ()
+    (block jreturn
+        (return-from jreturn 6000))))
 
 
-function DamageableBaseBehavior.getInstance()
-        return DamageableBaseBehavior.instance
-end
-
-
-function DamageableBaseBehavior:getName()
-        return getmetatable(self).className
-end
-
-
--- throws Exception
-function DamageableBaseBehavior:damage(damage, damageType)
-end
-
-
--- throws Exception
-function DamageableBaseBehavior:getDamage(damageType)
-        return 6000
-end
-
-DamageableBaseBehavior.instance = DamageableBaseBehavior.new()
-
-return DamageableBaseBehavior
 

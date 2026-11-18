@@ -1,42 +1,35 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.transition.shake
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation.transition.shake
 
-local ShakeAnimationListener = require("org.allbinary.animation.transition.shake.ShakeAnimationListener")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass NoShakeAnimationListener (ShakeAnimationListener)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar NoShakeAnimationListener.jcell_NO_SHAKE_ANIMATION_LISTENER :jnone)
+(defun NoShakeAnimationListener.jstatic_NO_SHAKE_ANIMATION_LISTENER ()
+  (when (eq NoShakeAnimationListener.jcell_NO_SHAKE_ANIMATION_LISTENER :jnone) (setf NoShakeAnimationListener.jcell_NO_SHAKE_ANIMATION_LISTENER (NoShakeAnimationListener.jnew_0)))
+  NoShakeAnimationListener.jcell_NO_SHAKE_ANIMATION_LISTENER)
+(defun (setf NoShakeAnimationListener.jstatic_NO_SHAKE_ANIMATION_LISTENER) (value) (setf NoShakeAnimationListener.jcell_NO_SHAKE_ANIMATION_LISTENER value))
 
-local NoShakeAnimationListener = {}
-NoShakeAnimationListener.__index = NoShakeAnimationListener
-NoShakeAnimationListener.className = "NoShakeAnimationListener"
-setmetatable(NoShakeAnimationListener, {__index = ShakeAnimationListener})
+(defun NoShakeAnimationListener.jnew_0 ()
+  (let ((this (make-instance 'NoShakeAnimationListener)))
+    this))
 
-function NoShakeAnimationListener.new()
-    local self = setmetatable(ShakeAnimationListener.new(), NoShakeAnimationListener)
-    return self
-end
 
-NoShakeAnimationListener.NO_SHAKE_ANIMATION_LISTENER = NoShakeAnimationListener.new()
-
-return NoShakeAnimationListener
 

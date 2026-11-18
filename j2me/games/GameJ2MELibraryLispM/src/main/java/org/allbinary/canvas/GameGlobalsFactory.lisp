@@ -1,54 +1,46 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.canvas
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2022 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.canvas
 
-local GPoint = require("org.allbinary.graphics.GPoint")
-local PointFactory = require("org.allbinary.graphics.PointFactory")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass GameGlobalsFactory (JObject)
+  ((f_newCanvas :initform nil)
+   (f_newDisplaybleTime :initform 0)
+   (f_point :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar GameGlobalsFactory.jcell_instance :jnone)
+(defun GameGlobalsFactory.jstatic_instance ()
+  (when (eq GameGlobalsFactory.jcell_instance :jnone) (setf GameGlobalsFactory.jcell_instance (GameGlobalsFactory.jnew_0)))
+  GameGlobalsFactory.jcell_instance)
+(defun (setf GameGlobalsFactory.jstatic_instance) (value) (setf GameGlobalsFactory.jcell_instance value))
 
-local GameGlobalsFactory = {}
-GameGlobalsFactory.__index = GameGlobalsFactory
-GameGlobalsFactory.className = "GameGlobalsFactory"
+(defun GameGlobalsFactory.jnew_0 ()
+  (let ((this (make-instance 'GameGlobalsFactory)))
+    (setf (slot-value this 'f_newCanvas) t)
+    (setf (slot-value this 'f_newDisplaybleTime) (Integer.jstatic_MIN_VALUE))
+    (setf (slot-value this 'f_point) (slot-value (PointFactory.jm_getInstance_0) 'f_ZERO_ZERO))
+    this))
 
-function GameGlobalsFactory:_init_fields()
-    self.newCanvas = true
-    self.newDisplaybleTime = java_int(Integer.MIN_VALUE)
-    self.point = PointFactory.getInstance().ZERO_ZERO
-end
-
-function GameGlobalsFactory.new()
-    local self = setmetatable({}, GameGlobalsFactory)
-    self:_init_fields()
-    return self
-end
+    
+(defun GameGlobalsFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (GameGlobalsFactory.jstatic_instance)))))
 
 
-function GameGlobalsFactory.getInstance()
-        return GameGlobalsFactory.instance
-end
-
-GameGlobalsFactory.instance = GameGlobalsFactory.new()
-
-return GameGlobalsFactory
 

@@ -1,52 +1,51 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.loader
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.system.loader
 
-local NullUtil = require("org.allbinary.logic.NullUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass WebappClassLoaderInfo (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar WebappClassLoaderInfo.jcell_classLoader :jnone)
+(defun WebappClassLoaderInfo.jstatic_classLoader ()
+  (when (eq WebappClassLoaderInfo.jcell_classLoader :jnone) (setf WebappClassLoaderInfo.jcell_classLoader (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT)))
+  WebappClassLoaderInfo.jcell_classLoader)
+(defun (setf WebappClassLoaderInfo.jstatic_classLoader) (value) (setf WebappClassLoaderInfo.jcell_classLoader value))
 
-local WebappClassLoaderInfo = {}
-WebappClassLoaderInfo.__index = WebappClassLoaderInfo
-WebappClassLoaderInfo.className = "WebappClassLoaderInfo"
+    
+(defun WebappClassLoaderInfo.jnew_0 ()
+  (let ((this (make-instance 'WebappClassLoaderInfo)))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(defun WebappClassLoaderInfo.jm_setLoader_1 (_classLoader)
+  (declare (ignorable _classLoader))
+  (let ()
+    (block jreturn
+        (setf (WebappClassLoaderInfo.jstatic_classLoader) _classLoader))))
+
+    
+(defun WebappClassLoaderInfo.jm_getLoader_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (WebappClassLoaderInfo.jstatic_classLoader)))))
 
 
-function WebappClassLoaderInfo.new()
-    local self = setmetatable({}, WebappClassLoaderInfo)
-    return self
-end
-
-
-function WebappClassLoaderInfo.setLoader(classLoader)
-        WebappClassLoaderInfo.classLoader = classLoader
-end
-
-
-function WebappClassLoaderInfo.getLoader()
-        return WebappClassLoaderInfo.classLoader
-end
-
-WebappClassLoaderInfo.classLoader = NullUtil.getInstance().NULL_OBJECT
-
-return WebappClassLoaderInfo
 

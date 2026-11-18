@@ -1,87 +1,85 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.input.motion.button
 
-local BaseResourceAnimationInterfaceFactoryInterfaceFactory = require("org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory")
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local ResourceLoadingLevelFactory = require("org.allbinary.game.resource.ResourceLoadingLevelFactory")
-local OpenGLFeatureFactory = require("org.allbinary.graphics.opengles.OpenGLFeatureFactory")
-local ImageCache = require("org.allbinary.image.ImageCache")
-local ImageCacheFactory = require("org.allbinary.image.ImageCacheFactory")
-local StdUtil = require("org.allbinary.logic.StdUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory (BaseResourceAnimationInterfaceFactoryInterfaceFactory)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory.jm_createFactory_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory.jnew_1 "TouchButton Animations")))))
 
-local TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory = {}
-TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory.__index = TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory
-TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory.className = "TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory"
-setmetatable(TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory, {__index = BaseResourceAnimationInterfaceFactoryInterfaceFactory})
+    
+(defun TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory.jnew_1 (_name)
+  (declare (ignorable _name))
+  (let ((this (make-instance 'TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
+
+    
+(unless (fboundp 'jm_init_1) (defgeneric jm_init_1 (this p1)))
+(defmethod jm_init_1 ((this TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory) _level)
+  (declare (ignorable this _level))
+  (let ()
+    (block jreturn
+        (jm_initImageCache_2 this (ImageCacheFactory.jm_getInstance_0) _level))))
+
+    
+(unless (fboundp 'jm_initImageCache_2) (defgeneric jm_initImageCache_2 (this p1 p2)))
+(defmethod jm_initImageCache_2 ((this TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory) _imageCache _level)
+  (declare (ignorable this _imageCache _level))
+  (let ()
+    (block jreturn
+        (if (jm_isInitialized_0 this)
+            (progn
+            (return-from jreturn)))
+        (jm_init_1 this _level))))
+
+    
+(unless (fboundp 'jm_isLoadingLevel_1) (defgeneric jm_isLoadingLevel_1 (this p1)))
+(defmethod jm_isLoadingLevel_1 ((this TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory) _level)
+  (declare (ignorable this _level))
+  (let (_resourceLoadingLevelFactory)
+  (declare (ignorable _resourceLoadingLevelFactory))
+    (block jreturn
+        (setf _resourceLoadingLevelFactory (ResourceLoadingLevelFactory.jm_getInstance_0))
+        (if (= _level (jm_getLevel_0 (slot-value _resourceLoadingLevelFactory 'f_LOAD_TOUCH)))
+            (progn
+            (return-from jreturn t))
+            (progn
+            (return-from jreturn (call-next-method this _level)))))))
+
+    
+(unless (fboundp 'jm_isFeature_0) (defgeneric jm_isFeature_0 (this)))
+(defmethod jm_isFeature_0 ((this TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (if (not (jm_isDefault_1 (Features.jm_getInstance_0) (slot-value (OpenGLFeatureFactory.jm_getInstance_0) 'f_OPENGL)))
+            (progn
+            (return-from jreturn t))
+            (progn
+            (return-from jreturn nil))))))
 
 
-function TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory.createFactory()
-        return TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory.new("TouchButton Animations")
-end
-
-
-function TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory.new(name)
-    local self = setmetatable(BaseResourceAnimationInterfaceFactoryInterfaceFactory.new(name, StdUtil.getInstance():createHashtable(), StdUtil.getInstance():createHashtable(), StdUtil.getInstance():createHashtable()), TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory)
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory:init(level)
-        self:initImageCache(ImageCacheFactory.getInstance(), level)
-end
-
-
--- throws Exception
-function TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory:initImageCache(imageCache, level)
-        if self:isInitialized() then
-            return
-        end
-        BaseResourceAnimationInterfaceFactoryInterfaceFactory.init(self, level)
-end
-
-
-function TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory:isLoadingLevel(level)
-        local resourceLoadingLevelFactory = ResourceLoadingLevelFactory.getInstance()
-        if level == resourceLoadingLevelFactory.LOAD_TOUCH:getLevel() then
-            return true
-        else
-            return BaseResourceAnimationInterfaceFactoryInterfaceFactory.isLoadingLevel(self, level)
-        end
-end
-
-
-function TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory:isFeature()
-        if not Features.getInstance():isDefault(OpenGLFeatureFactory.getInstance().OPENGL) then
-            return true
-        else
-            return false
-        end
-end
-
-return TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory
 

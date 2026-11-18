@@ -1,77 +1,68 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.input.motion.button
 
-local InputFactory = require("org.allbinary.game.input.InputFactory")
-local NullUtil = require("org.allbinary.logic.NullUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(defclass CancelTouchButtonInputFactory (JObject)
+  ((f_cancelInputArray :initform nil)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defvar CancelTouchButtonInputFactory.jcell_instance :jnone)
+(defun CancelTouchButtonInputFactory.jstatic_instance ()
+  (when (eq CancelTouchButtonInputFactory.jcell_instance :jnone) (setf CancelTouchButtonInputFactory.jcell_instance (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT)))
+  CancelTouchButtonInputFactory.jcell_instance)
+(defun (setf CancelTouchButtonInputFactory.jstatic_instance) (value) (setf CancelTouchButtonInputFactory.jcell_instance value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun CancelTouchButtonInputFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (if (eq (CancelTouchButtonInputFactory.jstatic_instance) (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT))
+            (progn
+            (setf (CancelTouchButtonInputFactory.jstatic_instance) (CancelTouchButtonInputFactory.jnew_0))))
+        (return-from jreturn (CancelTouchButtonInputFactory.jstatic_instance)))))
 
-local CancelTouchButtonInputFactory = {}
-CancelTouchButtonInputFactory.__index = CancelTouchButtonInputFactory
-CancelTouchButtonInputFactory.className = "CancelTouchButtonInputFactory"
+    
+(defun CancelTouchButtonInputFactory.jnew_0 ()
+  (let ((this (make-instance 'CancelTouchButtonInputFactory)))
+    (setf (slot-value this 'f_cancelInputArray) (JR.newArray nil (slot-value (InputFactory.jm_getInstance_0) 'f_MAX)))
+  (let (_basicTouchInputFactory _index)
+  (declare (ignorable _basicTouchInputFactory _index))
+    (block jreturn
+        (setf _basicTouchInputFactory (BasicTouchInputFactory.jm_getInstance_0))
+        (progn
+            (setf _index (JR.i32 (- (length (slot-value this 'f_cancelInputArray)) 1)))
+            (block jbreak (loop while (>= _index 0) do
+                (block jcontinue
+            (setf (aref (slot-value this 'f_cancelInputArray) _index) (slot-value _basicTouchInputFactory 'f_NONE)))
+                (setf _index (JR.i32 (- _index 1))))))
+        (setf (aref (slot-value this 'f_cancelInputArray) (jm_getId_0 (slot-value _basicTouchInputFactory 'f_UP))) (slot-value _basicTouchInputFactory 'f_DOWN))
+        (setf (aref (slot-value this 'f_cancelInputArray) (jm_getId_0 (slot-value _basicTouchInputFactory 'f_DOWN))) (slot-value _basicTouchInputFactory 'f_UP))
+        (setf (aref (slot-value this 'f_cancelInputArray) (jm_getId_0 (slot-value _basicTouchInputFactory 'f_LEFT))) (slot-value _basicTouchInputFactory 'f_RIGHT))
+        (setf (aref (slot-value this 'f_cancelInputArray) (jm_getId_0 (slot-value _basicTouchInputFactory 'f_RIGHT))) (slot-value _basicTouchInputFactory 'f_LEFT))))
+    this))
 
-function CancelTouchButtonInputFactory:_init_fields()
-    self.cancelInputArray = java_new_array(nil, InputFactory.getInstance().MAX)
-end
-
-
-function CancelTouchButtonInputFactory.getInstance()
-        if CancelTouchButtonInputFactory.instance == NullUtil.getInstance().NULL_OBJECT then
-            CancelTouchButtonInputFactory.instance = CancelTouchButtonInputFactory.new()
-        end
-        return CancelTouchButtonInputFactory.instance
-end
-
-
-function CancelTouchButtonInputFactory.new()
-    local self = setmetatable({}, CancelTouchButtonInputFactory)
-    self:_init_fields()
-        local basicTouchInputFactory = BasicTouchInputFactory.getInstance()
-        for index = (self.cancelInputArray.n or #self.cancelInputArray) - 1, 0, -1 do
-            self.cancelInputArray[index + 1] = basicTouchInputFactory.NONE
-        end
-        self.cancelInputArray[basicTouchInputFactory.UP:getId() + 1] = basicTouchInputFactory.DOWN
-        self.cancelInputArray[basicTouchInputFactory.DOWN:getId() + 1] = basicTouchInputFactory.UP
-        self.cancelInputArray[basicTouchInputFactory.LEFT:getId() + 1] = basicTouchInputFactory.RIGHT
-        self.cancelInputArray[basicTouchInputFactory.RIGHT:getId() + 1] = basicTouchInputFactory.LEFT
-    return self
-end
+    
+(unless (fboundp 'jm_getCancel_1) (defgeneric jm_getCancel_1 (this p1)))
+(defmethod jm_getCancel_1 ((this CancelTouchButtonInputFactory) _touchButtonInput)
+  (declare (ignorable this _touchButtonInput))
+  (let ()
+    (block jreturn
+        (return-from jreturn (aref (slot-value this 'f_cancelInputArray) (jm_getId_0 _touchButtonInput))))))
 
 
-function CancelTouchButtonInputFactory:getCancel(touchButtonInput)
-        return self.cancelInputArray[touchButtonInput:getId() + 1]
-end
-
-CancelTouchButtonInputFactory.instance = NullUtil.getInstance().NULL_OBJECT
-
-return CancelTouchButtonInputFactory
 

@@ -1,109 +1,109 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai.tactical
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.ag.ai.tactical
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
-local BasicAI = require("org.allbinary.game.ai.BasicAI")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local DisplayInfoSingleton = require("org.allbinary.graphics.displayable.DisplayInfoSingleton")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass HorizontalManeuverAI (BasicAI)
+  ((f_currentRelativeAngle :initform 0)
+   (f_currentSpeed :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun HorizontalManeuverAI.jnew_2 (_ownerLayerInterface _gameInput)
+  (declare (ignorable _ownerLayerInterface _gameInput))
+  (let ((this (make-instance 'HorizontalManeuverAI)))
+    (setf (slot-value this 'f_currentRelativeAngle) 0)
+    
+  (let ()
+    (block jreturn
+        nil
+        (setf (slot-value this 'f_currentSpeed) 5)))
+    this))
 
-local HorizontalManeuverAI = {}
-HorizontalManeuverAI.__index = HorizontalManeuverAI
-HorizontalManeuverAI.className = "HorizontalManeuverAI"
-setmetatable(HorizontalManeuverAI, {__index = BasicAI})
+    
+(unless (fboundp 'jm_processAI_1) (defgeneric jm_processAI_1 (this p1)))
+(defmethod jm_processAI_1 ((this HorizontalManeuverAI) _allBinaryLayerManager)
+  (declare (ignorable this _allBinaryLayerManager))
+  (let (_ownerLayerInterface _x)
+  (declare (ignorable _ownerLayerInterface _x))
+    (block jreturn
+        (setf _ownerLayerInterface (jm_getOwnerLayerInterface_0 this))
+        (setf _x (jm_getXP_0 _ownerLayerInterface))
+        (if (<= (JR.i32 (- (jm_getXP_0 _ownerLayerInterface) (slot-value this 'f_currentSpeed))) 0)
+            (progn
+            (jm_reverse_0 this)
+            (jm_drop_0 this)))
+        (if (> (JR.i32 (+ (jm_getX2_0 _ownerLayerInterface) (slot-value this 'f_currentSpeed))) (jm_getLastWidth_0 (DisplayInfoSingleton.jm_getInstance_0)))
+            (progn
+            (jm_reverse_0 this)
+            (jm_accelerate_0 this)
+            (jm_drop_0 this)))
+        (if (= (slot-value this 'f_currentRelativeAngle) 0)
+            (progn
+            (setf _x (JR.i32 (+ _x (slot-value this 'f_currentSpeed)))))
+            (if (= (slot-value this 'f_currentRelativeAngle) 180)
+            (progn
+            (setf _x (JR.i32 (- _x (slot-value this 'f_currentSpeed)))))))
+        (jm_setPosition_3 _ownerLayerInterface _x (jm_getYP_0 _ownerLayerInterface) (jm_getZP_0 _ownerLayerInterface))
+        (if (= (slot-value this 'f_currentRelativeAngle) 0)
+            (progn
+            (jm_processKeyAI_1 this (Canvas.jstatic_KEY_NUM0)))
+            (if (= (slot-value this 'f_currentRelativeAngle) 180)
+            (progn
+            (jm_processKeyAI_1 this (Canvas.jstatic_KEY_POUND))))))))
 
-function HorizontalManeuverAI:_init_fields()
-    self.currentRelativeAngle = 0
-    self.currentSpeed = nil
-end
+    
+(unless (fboundp 'jm_reverse_0) (defgeneric jm_reverse_0 (this)))
+(defmethod jm_reverse_0 ((this HorizontalManeuverAI))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (if (= (slot-value this 'f_currentRelativeAngle) 180)
+            (progn
+            (setf (slot-value this 'f_currentRelativeAngle) 0))
+            (if (= (slot-value this 'f_currentRelativeAngle) 0)
+            (progn
+            (setf (slot-value this 'f_currentRelativeAngle) 180)))))))
+
+    
+(unless (fboundp 'jm_accelerate_0) (defgeneric jm_accelerate_0 (this)))
+(defmethod jm_accelerate_0 ((this HorizontalManeuverAI))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (if (< (slot-value this 'f_currentSpeed) 20)
+            (progn
+            (setf (slot-value this 'f_currentSpeed) (JR.i32 (+ (slot-value this 'f_currentSpeed) 1))))))))
+
+    
+(unless (fboundp 'jm_drop_0) (defgeneric jm_drop_0 (this)))
+(defmethod jm_drop_0 ((this HorizontalManeuverAI))
+  (declare (ignorable this))
+  (let (_ownerLayerInterface _y)
+  (declare (ignorable _ownerLayerInterface _y))
+    (block jreturn
+        (setf _ownerLayerInterface (jm_getOwnerLayerInterface_0 this))
+        (setf _y (jm_getYP_0 _ownerLayerInterface))
+        (if (> (JR.i32 (+ (jm_getY2_0 _ownerLayerInterface) (jm_getHeight_0 _ownerLayerInterface))) (jm_getLastHeight_0 (DisplayInfoSingleton.jm_getInstance_0)))
+            (progn
+            (setf _y 0))
+            (progn
+            (setf _y (JR.i32 (+ _y (JR.i32 (+ (jm_getHeight_0 _ownerLayerInterface) 1)))))))
+        (jm_setPosition_3 _ownerLayerInterface (jm_getXP_0 _ownerLayerInterface) _y (jm_getZP_0 _ownerLayerInterface)))))
 
 
-function HorizontalManeuverAI.new(ownerLayerInterface, gameInput)
-    local self = setmetatable(BasicAI.new(ownerLayerInterface, gameInput), HorizontalManeuverAI)
-    self:_init_fields()
-        -- super(...) made self above
-        self.currentSpeed = 5
-    return self
-end
-
-
--- throws Exception
-function HorizontalManeuverAI:processAI(allBinaryLayerManager)
-        local ownerLayerInterface = self:getOwnerLayerInterface()
-        local x = ownerLayerInterface:getXP()
-        if ownerLayerInterface:getXP() - self.currentSpeed <= 0 then
-            self:reverse()
-            self:drop()
-        end
-        if ownerLayerInterface:getX2() + self.currentSpeed > DisplayInfoSingleton.getInstance():getLastWidth() then
-            self:reverse()
-            self:accelerate()
-            self:drop()
-        end
-        if self.currentRelativeAngle == 0 then
-            x = x + (self.currentSpeed)
-        elseif self.currentRelativeAngle == 180 then
-            x = x - (self.currentSpeed)
-        end
-        ownerLayerInterface:setPosition(x, ownerLayerInterface:getYP(), ownerLayerInterface:getZP())
-        if self.currentRelativeAngle == 0 then
-            BasicAI.processKeyAI(self, Canvas.KEY_NUM0)
-        elseif self.currentRelativeAngle == 180 then
-            BasicAI.processKeyAI(self, Canvas.KEY_POUND)
-        end
-end
-
-
-function HorizontalManeuverAI:reverse()
-        if self.currentRelativeAngle == 180 then
-            self.currentRelativeAngle = 0
-        elseif self.currentRelativeAngle == 0 then
-            self.currentRelativeAngle = 180
-        end
-end
-
-
-function HorizontalManeuverAI:accelerate()
-        if self.currentSpeed < 20 then
-            self.currentSpeed = self.currentSpeed + 1
-        end
-end
-
-
-function HorizontalManeuverAI:drop()
-        local ownerLayerInterface = self:getOwnerLayerInterface()
-        local y = ownerLayerInterface:getYP()
-        if ownerLayerInterface:getY2() + ownerLayerInterface:getHeight() > DisplayInfoSingleton.getInstance():getLastHeight() then
-            y = 0
-        else
-            y = y + (ownerLayerInterface:getHeight() + 1)
-        end
-        ownerLayerInterface:setPosition(ownerLayerInterface:getXP(), y, ownerLayerInterface:getZP())
-end
-
-return HorizontalManeuverAI
 

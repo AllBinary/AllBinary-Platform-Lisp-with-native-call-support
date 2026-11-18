@@ -32,6 +32,7 @@
 (defun PositionStrings.jstatic_instance ()
   (when (eq PositionStrings.jcell_instance :jnone) (setf PositionStrings.jcell_instance (PositionStrings.jnew_0)))
   PositionStrings.jcell_instance)
+(defun (setf PositionStrings.jstatic_instance) (value) (setf PositionStrings.jcell_instance value))
 
 (defun PositionStrings.jnew_0 ()
   (let ((this (make-instance 'PositionStrings)))

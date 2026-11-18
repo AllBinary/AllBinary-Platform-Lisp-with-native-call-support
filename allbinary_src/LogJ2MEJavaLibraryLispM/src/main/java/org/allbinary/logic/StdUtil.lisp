@@ -27,6 +27,7 @@
 (defun StdUtil.jstatic_instance ()
   (when (eq StdUtil.jcell_instance :jnone) (setf StdUtil.jcell_instance (StdUtil.jnew_0)))
   StdUtil.jcell_instance)
+(defun (setf StdUtil.jstatic_instance) (value) (setf StdUtil.jcell_instance value))
 
 (defun StdUtil.jnew_0 ()
   (let ((this (make-instance 'StdUtil)))

@@ -1,76 +1,65 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.input.motion.button
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorSetUtil = require("org.allbinary.graphics.color.BasicColorSetUtil")
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass TouchButtonsPaintable (Paintable)
+  ((f_foregroundBasicColor :initform nil)
+   (f_foregroundColor :initform 0)
+   (f_basicSetColorUtil :initform nil)
+   (f_touchButtonFactory :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun TouchButtonsPaintable.jnew_1 (_basicColor)
+  (declare (ignorable _basicColor))
+  (let ((this (make-instance 'TouchButtonsPaintable)))
+    
+    
+    (setf (slot-value this 'f_basicSetColorUtil) (BasicColorSetUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_touchButtonFactory) (TouchButtonFactory.jm_getInstance_0))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_foregroundBasicColor) _basicColor)
+        (setf (slot-value this 'f_foregroundColor) (jm_intValue_0 _basicColor))))
+    this))
 
-local TouchButtonsPaintable = {}
-TouchButtonsPaintable.__index = TouchButtonsPaintable
-TouchButtonsPaintable.className = "TouchButtonsPaintable"
-setmetatable(TouchButtonsPaintable, {__index = Paintable})
+    
+(unless (fboundp 'jm_paint_1) (defgeneric jm_paint_1 (this p1)))
+(defmethod jm_paint_1 ((this TouchButtonsPaintable) _graphics)
+  (declare (ignorable this _graphics))
+  (let (_list _touchButton _index)
+  (declare (ignorable _list _touchButton _index))
+    (block jreturn
+        (setf _list (jm_getList_0 (slot-value this 'f_touchButtonFactory)))
+        (jm_setBasicColorP3_3 (slot-value this 'f_basicSetColorUtil) _graphics (slot-value this 'f_foregroundBasicColor) (slot-value this 'f_foregroundColor))
+        (setf _touchButton nil)
+        (progn
+            (setf _index (jm_size_0 _list))
+            (block jbreak (loop while (>= (setf _index (JR.i32 (- _index 1))) 0) do
+                (block jcontinue
+            (setf _touchButton (aref (slot-value _list 'f_objectArray) _index))
+            (jm_paint_1 _touchButton _graphics)))))
+        (progn
+            (setf _index (jm_size_0 _list))
+            (block jbreak (loop while (>= (setf _index (JR.i32 (- _index 1))) 0) do
+                (block jcontinue
+            (setf _touchButton (aref (slot-value _list 'f_objectArray) _index))
+            (jm_paintHint_1 _touchButton _graphics))))))))
 
-function TouchButtonsPaintable:_init_fields()
-    self.foregroundBasicColor = nil
-    self.foregroundColor = nil
-    self.basicSetColorUtil = BasicColorSetUtil.getInstance()
-    self.touchButtonFactory = TouchButtonFactory.getInstance()
-end
 
-
-function TouchButtonsPaintable.new(basicColor)
-    local self = setmetatable(Paintable.new(), TouchButtonsPaintable)
-    self:_init_fields()
-        self.foregroundBasicColor = basicColor
-        self.foregroundColor = math.tointeger(basicColor // 1)
-    return self
-end
-
-
-function TouchButtonsPaintable:paint(graphics)
-        local list = self.touchButtonFactory:getList()
-        self.basicSetColorUtil:setBasicColorP3(graphics, self.foregroundBasicColor, self.foregroundColor)
-        local touchButton = nil
-        do
-            local index = list:size()
-            while (function() index = index - 1 return index end)() >= 0 do
-            touchButton = list.objectArray[index + 1]
-            touchButton:paint(graphics)
-            end
-        end
-        do
-            local index = list:size()
-            while (function() index = index - 1 return index end)() >= 0 do
-            touchButton = list.objectArray[index + 1]
-            touchButton:paintHint(graphics)
-            end
-        end
-end
-
-return TouchButtonsPaintable
 

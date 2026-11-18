@@ -1,73 +1,75 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2022 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.media.audio
 
--- local Player = require("javax.microedition.media.Player")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass PlayerStateUtil (JObject)
+  ((f_commonStrings :initform nil)
+   (f_UNREALIZED :initform nil)
+   (f_REALIZED :initform nil)
+   (f_PREFETCHED :initform nil)
+   (f_STARTED :initform nil)
+   (f_CLOSED :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar PlayerStateUtil.jcell_instance :jnone)
+(defun PlayerStateUtil.jstatic_instance ()
+  (when (eq PlayerStateUtil.jcell_instance :jnone) (setf PlayerStateUtil.jcell_instance (PlayerStateUtil.jnew_0)))
+  PlayerStateUtil.jcell_instance)
+(defun (setf PlayerStateUtil.jstatic_instance) (value) (setf PlayerStateUtil.jcell_instance value))
 
-local PlayerStateUtil = {}
-PlayerStateUtil.__index = PlayerStateUtil
-PlayerStateUtil.className = "PlayerStateUtil"
+(defun PlayerStateUtil.jnew_0 ()
+  (let ((this (make-instance 'PlayerStateUtil)))
+    (setf (slot-value this 'f_commonStrings) (CommonStrings.jm_getInstance_0))
+    (setf (slot-value this 'f_UNREALIZED) "UNREALIZED")
+    (setf (slot-value this 'f_REALIZED) "REALIZED")
+    (setf (slot-value this 'f_PREFETCHED) "PREFETCHED")
+    (setf (slot-value this 'f_STARTED) "STARTED")
+    (setf (slot-value this 'f_CLOSED) "CLOSED")
+    this))
 
-function PlayerStateUtil:_init_fields()
-    self.commonStrings = CommonStrings.getInstance()
-    self.UNREALIZED = "UNREALIZED"
-    self.REALIZED = "REALIZED"
-    self.PREFETCHED = "PREFETCHED"
-    self.STARTED = "STARTED"
-    self.CLOSED = "CLOSED"
-end
+    
+(defun PlayerStateUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (PlayerStateUtil.jstatic_instance)))))
 
-function PlayerStateUtil.new()
-    local self = setmetatable({}, PlayerStateUtil)
-    self:_init_fields()
-    return self
-end
+    
+(unless (fboundp 'jm_convert_1) (defgeneric jm_convert_1 (this p1)))
+(defmethod jm_convert_1 ((this PlayerStateUtil) _state)
+  (declare (ignorable this _state))
+  (let ()
+    (block jreturn
+        (if (= _state (Player.jstatic_UNREALIZED))
+            (progn
+            (return-from jreturn (slot-value this 'f_UNREALIZED)))
+            (if (= _state (Player.jstatic_REALIZED))
+            (progn
+            (return-from jreturn (slot-value this 'f_REALIZED)))
+            (if (= _state (Player.jstatic_PREFETCHED))
+            (progn
+            (return-from jreturn (slot-value this 'f_PREFETCHED)))
+            (if (= _state (Player.jstatic_STARTED))
+            (progn
+            (return-from jreturn (slot-value this 'f_STARTED)))
+            (if (= _state (Player.jstatic_CLOSED))
+            (progn
+            (return-from jreturn (slot-value this 'f_CLOSED))))))))
+        (return-from jreturn (slot-value (slot-value this 'f_commonStrings) 'f_UNKNOWN)))))
 
 
-function PlayerStateUtil.getInstance()
-        return PlayerStateUtil.instance
-end
-
-
-function PlayerStateUtil:convert(state)
-        if state == Player.UNREALIZED then
-            return self.UNREALIZED
-        elseif state == Player.REALIZED then
-            return self.REALIZED
-        elseif state == Player.PREFETCHED then
-            return self.PREFETCHED
-        elseif state == Player.STARTED then
-            return self.STARTED
-        elseif state == Player.CLOSED then
-            return self.CLOSED
-        end
-        return self.commonStrings.UNKNOWN
-end
-
-PlayerStateUtil.instance = PlayerStateUtil.new()
-
-return PlayerStateUtil
 

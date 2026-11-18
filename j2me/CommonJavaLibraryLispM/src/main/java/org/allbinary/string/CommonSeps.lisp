@@ -50,6 +50,7 @@
 (defun CommonSeps.jstatic_instance ()
   (when (eq CommonSeps.jcell_instance :jnone) (setf CommonSeps.jcell_instance (CommonSeps.jnew_0)))
   CommonSeps.jcell_instance)
+(defun (setf CommonSeps.jstatic_instance) (value) (setf CommonSeps.jcell_instance value))
 
 (defun CommonSeps.jnew_0 ()
   (let ((this (make-instance 'CommonSeps)))

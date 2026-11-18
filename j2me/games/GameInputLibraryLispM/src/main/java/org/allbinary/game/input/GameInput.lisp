@@ -1,128 +1,143 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.input
 
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local InputFeatureFactory = require("org.allbinary.game.configuration.feature.InputFeatureFactory")
-local GameKeyEvent = require("org.allbinary.game.input.event.GameKeyEvent")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass GameInput (JObject)
+  ((f_logUtil :initform nil)
+   (f_commonStrings :initform nil)
+   (f_gameKeyEventList :initform nil)
+   (f_removalGameKeyEventList :initform nil)
+   (f_isRemoveDuplicateKeyPresses :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun GameInput.jnew_2 (_gameKeyEventList _removalGameKeyEventList)
+  (declare (ignorable _gameKeyEventList _removalGameKeyEventList))
+  (let ((this (make-instance 'GameInput)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_commonStrings) (CommonStrings.jm_getInstance_0))
+    
+    
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_gameKeyEventList) _gameKeyEventList)
+        (setf (slot-value this 'f_removalGameKeyEventList) _removalGameKeyEventList)
+        (setf (slot-value this 'f_isRemoveDuplicateKeyPresses) (jm_isFeature_1 (Features.jm_getInstance_0) (slot-value (InputFeatureFactory.jm_getInstance_0) 'f_REMOVE_DUPLICATE_KEY_PRESSES)))))
+    this))
 
-local GameInput = {}
-GameInput.__index = GameInput
-GameInput.className = "GameInput"
+    
+(unless (fboundp 'jm_add_1) (defgeneric jm_add_1 (this p1)))
+(defmethod jm_add_1 ((this GameInput) _gameKeyEvent)
+  (declare (ignorable this _gameKeyEvent))
+  (let ()
+    (block jreturn
+        (if (and (slot-value this 'f_isRemoveDuplicateKeyPresses) (jm_contains_1 (slot-value this 'f_gameKeyEventList) _gameKeyEvent))
+            (progn
+            (return-from jreturn)))
+        (if (not (null _gameKeyEvent))
+            (progn
+            (jm_add_1 (slot-value this 'f_gameKeyEventList) _gameKeyEvent))
+            (progn
+            (jm_putF_3 (slot-value this 'f_logUtil) "Danger Passed Null GameKeyEvent" this (slot-value (slot-value this 'f_commonStrings) 'f_ADD)))))))
 
-function GameInput:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.gameKeyEventList = nil
-    self.removalGameKeyEventList = nil
-    self.isRemoveDuplicateKeyPresses = nil
-end
+    
+(unless (fboundp 'jm_addForRemoval_1) (defgeneric jm_addForRemoval_1 (this p1)))
+(defmethod jm_addForRemoval_1 ((this GameInput) _gameKeyEvent)
+  (declare (ignorable this _gameKeyEvent))
+  (let ()
+    (block jreturn
+        (jm_add_1 (slot-value this 'f_removalGameKeyEventList) _gameKeyEvent))))
+
+    
+(unless (fboundp 'jm_isForRemoval_1) (defgeneric jm_isForRemoval_1 (this p1)))
+(defmethod jm_isForRemoval_1 ((this GameInput) _gameKeyEvent)
+  (declare (ignorable this _gameKeyEvent))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_contains_1 (slot-value this 'f_removalGameKeyEventList) _gameKeyEvent)))))
+
+    
+(unless (fboundp 'jm_clear_0) (defgeneric jm_clear_0 (this)))
+(defmethod jm_clear_0 ((this GameInput))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_clear_0 (slot-value this 'f_gameKeyEventList)))))
+
+    
+(unless (fboundp 'jm_removeNonAIInputGameKeyEvents_0) (defgeneric jm_removeNonAIInputGameKeyEvents_0 (this)))
+(defmethod jm_removeNonAIInputGameKeyEvents_0 ((this GameInput))
+  (declare (ignorable this))
+  (let (_list _gameKeyEvent _index)
+  (declare (ignorable _list _gameKeyEvent _index))
+    (block jreturn
+        (setf _list (slot-value this 'f_gameKeyEventList))
+        (setf _gameKeyEvent nil)
+        (progn
+            (setf _index (jm_size_0 _list))
+            (block jbreak (loop while (>= (setf _index (JR.i32 (- _index 1))) 0) do
+                (block jcontinue
+            (setf _gameKeyEvent (aref (slot-value _list 'f_objectArray) _index))
+            (if (not (eq (jm_getSourceId_0 _gameKeyEvent) 1))
+                (progn
+                (jm_removeAt_1 _list _index))))))))))
+
+    
+(unless (fboundp 'jm_update_0) (defgeneric jm_update_0 (this)))
+(defmethod jm_update_0 ((this GameInput))
+  (declare (ignorable this))
+  (let (_removeList _list _size _anyType _index2 _index)
+  (declare (ignorable _removeList _list _size _anyType _index2 _index))
+    (block jreturn
+        (setf _removeList (slot-value this 'f_removalGameKeyEventList))
+        (setf _list (slot-value this 'f_gameKeyEventList))
+        (setf _size (jm_size_0 _removeList))
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (setf _anyType (aref (slot-value _removeList 'f_objectArray) _index))
+            (progn
+                (setf _index2 (jm_size_0 _list))
+                (block jbreak (loop while (>= (setf _index2 (JR.i32 (- _index2 1))) 0) do
+                    (block jcontinue
+                (if (eq (aref (slot-value _list 'f_objectArray) _index2) _anyType)
+                    (progn
+                    (jm_removeAt_1 _list _index2))))))))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (jm_clear_0 _removeList))))
+
+    
+(unless (fboundp 'jm_getRemovalGameKeyEventList_0) (defgeneric jm_getRemovalGameKeyEventList_0 (this)))
+(defmethod jm_getRemovalGameKeyEventList_0 ((this GameInput))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_removalGameKeyEventList)))))
+
+    
+(unless (fboundp 'jm_getGameKeyEventList_0) (defgeneric jm_getGameKeyEventList_0 (this)))
+(defmethod jm_getGameKeyEventList_0 ((this GameInput))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_gameKeyEventList)))))
 
 
-function GameInput.new(gameKeyEventList, removalGameKeyEventList)
-    local self = setmetatable({}, GameInput)
-    self:_init_fields()
-        self.gameKeyEventList = gameKeyEventList
-        self.removalGameKeyEventList = removalGameKeyEventList
-        self.isRemoveDuplicateKeyPresses = Features.getInstance():isFeature(InputFeatureFactory.getInstance().REMOVE_DUPLICATE_KEY_PRESSES)
-    return self
-end
-
-
-function GameInput:add(gameKeyEvent)
-        if self.isRemoveDuplicateKeyPresses and self.gameKeyEventList:contains(gameKeyEvent) then
-            return
-        end
-        if gameKeyEvent ~= nil then
-            self.gameKeyEventList:add(gameKeyEvent)
-        else
-            self.logUtil:putF("Danger Passed Null GameKeyEvent", self, self.commonStrings.ADD)
-        end
-end
-
-
-function GameInput:addForRemoval(gameKeyEvent)
-        self.removalGameKeyEventList:add(gameKeyEvent)
-end
-
-
-function GameInput:isForRemoval(gameKeyEvent)
-        return self.removalGameKeyEventList:contains(gameKeyEvent)
-end
-
-
-function GameInput:clear()
-        self.gameKeyEventList:clear()
-end
-
-
-function GameInput:removeNonAIInputGameKeyEvents()
-        local list = self.gameKeyEventList
-        local gameKeyEvent = nil
-        do
-            local index = list:size()
-            while (function() index = index - 1 return index end)() >= 0 do
-            gameKeyEvent = list.objectArray[index + 1]
-            if gameKeyEvent:getSourceId() ~= 1 then
-                list:removeAt(index)
-            end
-            end
-        end
-end
-
-
-function GameInput:update()
-        local removeList = self.removalGameKeyEventList
-        local list = self.gameKeyEventList
-        local size = removeList:size()
-        for index = 0, size - 1 do
-            local anyType = removeList.objectArray[index + 1]
-            do
-                local index2 = list:size()
-                while (function() index2 = index2 - 1 return index2 end)() >= 0 do
-                if list.objectArray[index2 + 1] == anyType then
-                    list:removeAt(index2)
-                end
-                end
-            end
-        end
-        removeList:clear()
-end
-
-
-function GameInput:getRemovalGameKeyEventList()
-        return self.removalGameKeyEventList
-end
-
-
-function GameInput:getGameKeyEventList()
-        return self.gameKeyEventList
-end
-
-return GameInput
 

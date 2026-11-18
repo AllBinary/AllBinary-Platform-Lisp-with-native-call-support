@@ -1,132 +1,150 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.input.motion.button
 
-local InputFactory = require("org.allbinary.game.input.InputFactory")
-local InputToGameKeyMapping = require("org.allbinary.game.input.mapping.InputToGameKeyMapping")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonLabels = require("org.allbinary.string.CommonLabels")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass BasicTouchInputFactory (JObject)
+  ((f_logUtil :initform nil)
+   (f_SPECIAL_BUTTON_SEVEN_TESTING_ONLY :initform nil)
+   (f_SPECIAL_BUTTON_EIGHT_TESTING_ONLY :initform nil)
+   (f_SPECIAL_BUTTON_SIX :initform nil)
+   (f_SPECIAL_BUTTON_FIVE :initform nil)
+   (f_SPECIAL_BUTTON_FOUR :initform nil)
+   (f_SPECIAL_BUTTON_THREE :initform nil)
+   (f_SPECIAL_BUTTON_TWO :initform nil)
+   (f_SPECIAL_BUTTON_ONE :initform nil)
+   (f_UP :initform nil)
+   (f_LEFT :initform nil)
+   (f_RIGHT :initform nil)
+   (f_DOWN :initform nil)
+   (f_NONE :initform nil)
+   (f_initialized :initform nil)
+   (f_list :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar BasicTouchInputFactory.jcell_instance :jnone)
+(defun BasicTouchInputFactory.jstatic_instance ()
+  (when (eq BasicTouchInputFactory.jcell_instance :jnone) (setf BasicTouchInputFactory.jcell_instance (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT)))
+  BasicTouchInputFactory.jcell_instance)
+(defun (setf BasicTouchInputFactory.jstatic_instance) (value) (setf BasicTouchInputFactory.jcell_instance value))
 
-local BasicTouchInputFactory = {}
-BasicTouchInputFactory.__index = BasicTouchInputFactory
-BasicTouchInputFactory.className = "BasicTouchInputFactory"
+    
+(defun BasicTouchInputFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (if (eq (BasicTouchInputFactory.jstatic_instance) (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT))
+            (progn
+            (setf (BasicTouchInputFactory.jstatic_instance) (BasicTouchInputFactory.jnew_0))))
+        (return-from jreturn (BasicTouchInputFactory.jstatic_instance)))))
 
-function BasicTouchInputFactory:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.SPECIAL_BUTTON_SEVEN_TESTING_ONLY = nil
-    self.SPECIAL_BUTTON_EIGHT_TESTING_ONLY = nil
-    self.SPECIAL_BUTTON_SIX = nil
-    self.SPECIAL_BUTTON_FIVE = nil
-    self.SPECIAL_BUTTON_FOUR = nil
-    self.SPECIAL_BUTTON_THREE = nil
-    self.SPECIAL_BUTTON_TWO = nil
-    self.SPECIAL_BUTTON_ONE = nil
-    self.UP = nil
-    self.LEFT = nil
-    self.RIGHT = nil
-    self.DOWN = nil
-    self.NONE = nil
-    self.initialized = false
-    self.list = BasicArrayListD.new()
-end
+    
+(defun BasicTouchInputFactory.jnew_0 ()
+  (let ((this (make-instance 'BasicTouchInputFactory)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    (setf (slot-value this 'f_initialized) nil)
+    (setf (slot-value this 'f_list) (BasicArrayListD.jnew_0))
+  (let (_MAX)
+  (declare (ignorable _MAX))
+    (block jreturn
+        (setf _MAX (slot-value (InputFactory.jm_getInstance_0) 'f_MAX))
+        (setf (slot-value this 'f_SPECIAL_BUTTON_SEVEN_TESTING_ONLY) (TouchButtonInput.jnew_2 (JR.i32 (- _MAX 41)) "Button 7 - Testing Only May Cross Over Key Values"))
+        (setf (slot-value this 'f_SPECIAL_BUTTON_EIGHT_TESTING_ONLY) (TouchButtonInput.jnew_2 (JR.i32 (- _MAX 42)) "Button 8 - Testing Only May Cross Over Key Values"))
+        (setf (slot-value this 'f_SPECIAL_BUTTON_SIX) (TouchButtonInput.jnew_2 (JR.i32 (- _MAX 30)) "Button 6"))
+        (setf (slot-value this 'f_SPECIAL_BUTTON_FIVE) (TouchButtonInput.jnew_2 (JR.i32 (- _MAX 31)) "Button 5"))
+        (setf (slot-value this 'f_SPECIAL_BUTTON_FOUR) (TouchButtonInput.jnew_2 (JR.i32 (- _MAX 32)) "Button 4"))
+        (setf (slot-value this 'f_SPECIAL_BUTTON_THREE) (TouchButtonInput.jnew_2 (JR.i32 (- _MAX 33)) "Button 3"))
+        (setf (slot-value this 'f_SPECIAL_BUTTON_TWO) (TouchButtonInput.jnew_2 (JR.i32 (- _MAX 34)) "Button 2"))
+        (setf (slot-value this 'f_SPECIAL_BUTTON_ONE) (TouchButtonInput.jnew_2 (JR.i32 (- _MAX 35)) "Button 1"))
+        (setf (slot-value this 'f_UP) (TouchButtonInput.jnew_2 (JR.i32 (- _MAX 36)) "Up Button"))
+        (setf (slot-value this 'f_LEFT) (TouchButtonInput.jnew_2 (JR.i32 (- _MAX 37)) "Left Button"))
+        (setf (slot-value this 'f_RIGHT) (TouchButtonInput.jnew_2 (JR.i32 (- _MAX 38)) "Right Button"))
+        (setf (slot-value this 'f_DOWN) (TouchButtonInput.jnew_2 (JR.i32 (- _MAX 39)) "Down Button"))
+        (setf (slot-value this 'f_NONE) (TouchButtonInput.jnew_2 (JR.i32 (- _MAX 40)) "No Button"))))
+    this))
+
+    
+(unless (fboundp 'jm_init_1) (defgeneric jm_init_1 (this p1)))
+(defmethod jm_init_1 ((this BasicTouchInputFactory) _inputToGameKeyMapping)
+  (declare (ignorable this _inputToGameKeyMapping))
+  (let ()
+    (block jreturn
+        (if (not (slot-value this 'f_initialized))
+            (progn
+            (setf (slot-value this 'f_initialized) t)
+            (jm_add_1 (slot-value this 'f_list) (slot-value this 'f_UP))
+            (jm_add_1 (slot-value this 'f_list) (slot-value this 'f_LEFT))
+            (jm_add_1 (slot-value this 'f_list) (slot-value this 'f_RIGHT))
+            (jm_add_1 (slot-value this 'f_list) (slot-value this 'f_DOWN))
+            (jm_add_1 (slot-value this 'f_list) (slot-value this 'f_SPECIAL_BUTTON_TWO))
+            (jm_add_1 (slot-value this 'f_list) (slot-value this 'f_SPECIAL_BUTTON_FOUR))
+            (jm_add_1 (slot-value this 'f_list) (slot-value this 'f_SPECIAL_BUTTON_THREE))
+            (jm_add_1 (slot-value this 'f_list) (slot-value this 'f_SPECIAL_BUTTON_ONE))
+            (jm_add_1 (slot-value this 'f_list) (slot-value this 'f_SPECIAL_BUTTON_FIVE))
+            (jm_add_1 (slot-value this 'f_list) (slot-value this 'f_SPECIAL_BUTTON_SIX))
+            (jm_add_1 (slot-value this 'f_list) (slot-value this 'f_SPECIAL_BUTTON_SIX))
+            (jm_add_1 (slot-value this 'f_list) (slot-value this 'f_SPECIAL_BUTTON_SEVEN_TESTING_ONLY))
+            (jm_add_1 (slot-value this 'f_list) (slot-value this 'f_SPECIAL_BUTTON_EIGHT_TESTING_ONLY))
+            (jm_updateAllFromList_2 this (slot-value this 'f_list) _inputToGameKeyMapping))))))
+
+    
+(unless (fboundp 'jm_updateAll_1) (defgeneric jm_updateAll_1 (this p1)))
+(defmethod jm_updateAll_1 ((this BasicTouchInputFactory) _inputToGameKeyMapping)
+  (declare (ignorable this _inputToGameKeyMapping))
+  (let ()
+    (block jreturn
+        (jm_updateAllFromList_2 this (slot-value this 'f_list) _inputToGameKeyMapping))))
+
+    
+(unless (fboundp 'jm_updateAllFromList_2) (defgeneric jm_updateAllFromList_2 (this p1 p2)))
+(defmethod jm_updateAllFromList_2 ((this BasicTouchInputFactory) _list _inputToGameKeyMapping)
+  (declare (ignorable this _list _inputToGameKeyMapping))
+  (let (_touchButtonInput _index)
+  (declare (ignorable _touchButtonInput _index))
+    (block jreturn
+        (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 (jm_appendint_1 (jm_append_1 (StringMaker.jnew_0) (slot-value (CommonLabels.jm_getInstance_0) 'f_START_LABEL)) (jm_size_0 _list))) this "updateAll")
+        (setf _touchButtonInput nil)
+        (progn
+            (setf _index (JR.i32 (- (jm_size_0 _list) 1)))
+            (block jbreak (loop while (>= _index 0) do
+                (block jcontinue
+            (setf _touchButtonInput (aref (slot-value _list 'f_objectArray) _index))
+            (jm_update_1 _touchButtonInput _inputToGameKeyMapping))
+                (setf _index (JR.i32 (- _index 1)))))))))
+
+    
+(unless (fboundp 'jm_getList_0) (defgeneric jm_getList_0 (this)))
+(defmethod jm_getList_0 ((this BasicTouchInputFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_list)))))
 
 
-function BasicTouchInputFactory.getInstance()
-        if BasicTouchInputFactory.instance == NullUtil.getInstance().NULL_OBJECT then
-            BasicTouchInputFactory.instance = BasicTouchInputFactory.new()
-        end
-        return BasicTouchInputFactory.instance
-end
-
-
-function BasicTouchInputFactory.new()
-    local self = setmetatable({}, BasicTouchInputFactory)
-    self:_init_fields()
-        local MAX = InputFactory.getInstance().MAX
-        self.SPECIAL_BUTTON_SEVEN_TESTING_ONLY = TouchButtonInput.new(MAX - 41, "Button 7 - Testing Only May Cross Over Key Values")
-        self.SPECIAL_BUTTON_EIGHT_TESTING_ONLY = TouchButtonInput.new(MAX - 42, "Button 8 - Testing Only May Cross Over Key Values")
-        self.SPECIAL_BUTTON_SIX = TouchButtonInput.new(MAX - 30, "Button 6")
-        self.SPECIAL_BUTTON_FIVE = TouchButtonInput.new(MAX - 31, "Button 5")
-        self.SPECIAL_BUTTON_FOUR = TouchButtonInput.new(MAX - 32, "Button 4")
-        self.SPECIAL_BUTTON_THREE = TouchButtonInput.new(MAX - 33, "Button 3")
-        self.SPECIAL_BUTTON_TWO = TouchButtonInput.new(MAX - 34, "Button 2")
-        self.SPECIAL_BUTTON_ONE = TouchButtonInput.new(MAX - 35, "Button 1")
-        self.UP = TouchButtonInput.new(MAX - 36, "Up Button")
-        self.LEFT = TouchButtonInput.new(MAX - 37, "Left Button")
-        self.RIGHT = TouchButtonInput.new(MAX - 38, "Right Button")
-        self.DOWN = TouchButtonInput.new(MAX - 39, "Down Button")
-        self.NONE = TouchButtonInput.new(MAX - 40, "No Button")
-    return self
-end
-
-
-function BasicTouchInputFactory:init(inputToGameKeyMapping)
-        if not self.initialized then
-            self.initialized = true
-            self.list:add(self.UP)
-            self.list:add(self.LEFT)
-            self.list:add(self.RIGHT)
-            self.list:add(self.DOWN)
-            self.list:add(self.SPECIAL_BUTTON_TWO)
-            self.list:add(self.SPECIAL_BUTTON_FOUR)
-            self.list:add(self.SPECIAL_BUTTON_THREE)
-            self.list:add(self.SPECIAL_BUTTON_ONE)
-            self.list:add(self.SPECIAL_BUTTON_FIVE)
-            self.list:add(self.SPECIAL_BUTTON_SIX)
-            self.list:add(self.SPECIAL_BUTTON_SIX)
-            self.list:add(self.SPECIAL_BUTTON_SEVEN_TESTING_ONLY)
-            self.list:add(self.SPECIAL_BUTTON_EIGHT_TESTING_ONLY)
-            self:updateAllFromList(self.list, inputToGameKeyMapping)
-        end
-end
-
-
-function BasicTouchInputFactory:updateAll(inputToGameKeyMapping)
-        self:updateAllFromList(self.list, inputToGameKeyMapping)
-end
-
-
-function BasicTouchInputFactory:updateAllFromList(list, inputToGameKeyMapping)
-        self.logUtil:putF(tostring(StringMaker.new():append(CommonLabels.getInstance().START_LABEL):appendint(list:size())), self, "updateAll")
-        local touchButtonInput = nil
-        for index = list:size() - 1, 0, -1 do
-            touchButtonInput = list.objectArray[index + 1]
-            touchButtonInput:update(inputToGameKeyMapping)
-        end
-end
-
-
-function BasicTouchInputFactory:getList()
-        return self.list
-end
-
-BasicTouchInputFactory.instance = NullUtil.getInstance().NULL_OBJECT
-
-return BasicTouchInputFactory
 

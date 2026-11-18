@@ -1,76 +1,77 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.physics.velocity
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.physics.velocity
 
-local BasicVelocityInterface = require("org.allbinary.game.physics.velocity.BasicVelocityInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass VelocityInterface (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun VelocityInterface.jnew_0 ()
+  (let ((this (make-instance 'VelocityInterface)))
+    this))
 
--- Java interface
-local VelocityInterface = {}
-VelocityInterface.__index = VelocityInterface
-VelocityInterface.className = "VelocityInterface"
-setmetatable(VelocityInterface, {__index = BasicVelocityInterface})
+    
+(unless (fboundp 'jm_getMaxForwardVelocity_0) (defgeneric jm_getMaxForwardVelocity_0 (this)))
+(defmethod jm_getMaxForwardVelocity_0 ((this VelocityInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "getMaxForwardVelocity")))
+
+    
+(unless (fboundp 'jm_getMaxReverseVelocity_0) (defgeneric jm_getMaxReverseVelocity_0 (this)))
+(defmethod jm_getMaxReverseVelocity_0 ((this VelocityInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "getMaxReverseVelocity")))
+
+    
+(unless (fboundp 'jm_limitMaxXYForwardVelocity_0) (defgeneric jm_limitMaxXYForwardVelocity_0 (this)))
+(defmethod jm_limitMaxXYForwardVelocity_0 ((this VelocityInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "limitMaxXYForwardVelocity")))
+
+    
+(unless (fboundp 'jm_limitMaxXYReverseVelocity_0) (defgeneric jm_limitMaxXYReverseVelocity_0 (this)))
+(defmethod jm_limitMaxXYReverseVelocity_0 ((this VelocityInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "limitMaxXYReverseVelocity")))
+
+    
+(unless (fboundp 'jm_limitXYToForwardAndReverseMaxVelocity_0) (defgeneric jm_limitXYToForwardAndReverseMaxVelocity_0 (this)))
+(defmethod jm_limitXYToForwardAndReverseMaxVelocity_0 ((this VelocityInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "limitXYToForwardAndReverseMaxVelocity")))
+
+    
+(unless (fboundp 'jm_limitMaxXYVelocity_1) (defgeneric jm_limitMaxXYVelocity_1 (this p1)))
+(defmethod jm_limitMaxXYVelocity_1 ((this VelocityInterface) _maxVelocity)
+  (declare (ignorable this _maxVelocity))
+  (error (JR.newException "AbstractMethodError" "limitMaxXYVelocity")))
+
+    
+(unless (fboundp 'jm_setMaxForwardVelocity_1) (defgeneric jm_setMaxForwardVelocity_1 (this p1)))
+(defmethod jm_setMaxForwardVelocity_1 ((this VelocityInterface) _maxForwardVelocity)
+  (declare (ignorable this _maxForwardVelocity))
+  (error (JR.newException "AbstractMethodError" "setMaxForwardVelocity")))
+
+    
+(unless (fboundp 'jm_setMaxReverseVelocity_1) (defgeneric jm_setMaxReverseVelocity_1 (this p1)))
+(defmethod jm_setMaxReverseVelocity_1 ((this VelocityInterface) _maxReverseVelocity)
+  (declare (ignorable this _maxReverseVelocity))
+  (error (JR.newException "AbstractMethodError" "setMaxReverseVelocity")))
 
 
-function VelocityInterface:getMaxForwardVelocity()
-    error("abstract method getMaxForwardVelocity")
-end
-
-
-function VelocityInterface:getMaxReverseVelocity()
-    error("abstract method getMaxReverseVelocity")
-end
-
-
-function VelocityInterface:limitMaxXYForwardVelocity()
-    error("abstract method limitMaxXYForwardVelocity")
-end
-
-
-function VelocityInterface:limitMaxXYReverseVelocity()
-    error("abstract method limitMaxXYReverseVelocity")
-end
-
-
-function VelocityInterface:limitXYToForwardAndReverseMaxVelocity()
-    error("abstract method limitXYToForwardAndReverseMaxVelocity")
-end
-
-
-function VelocityInterface:limitMaxXYVelocity(maxVelocity)
-    error("abstract method limitMaxXYVelocity")
-end
-
-
-function VelocityInterface:setMaxForwardVelocity(maxForwardVelocity)
-    error("abstract method setMaxForwardVelocity")
-end
-
-
-function VelocityInterface:setMaxReverseVelocity(maxReverseVelocity)
-    error("abstract method setMaxReverseVelocity")
-end
-
-return VelocityInterface
 

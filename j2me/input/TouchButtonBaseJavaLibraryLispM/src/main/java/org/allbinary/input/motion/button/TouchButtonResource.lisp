@@ -1,39 +1,30 @@
--- 
--- To change this license header, choose License Headers in Project Properties. 
--- To change this template file, choose Tools | Templates 
--- and open the template in the editor.  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
+;;;; 
+;;;; To change this license header, choose License Headers in Project Properties. 
+;;;; To change this template file, choose Tools | Templates 
+;;;; and open the template in the editor.  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.input.motion.button
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass TouchButtonResource (JObject)
+  ((f_RESOURCE :initform nil)
+   (f_HINT :initform nil)))
+
+    
+(defun TouchButtonResource.jnew_2 (_resource _hint)
+  (declare (ignorable _resource _hint))
+  (let ((this (make-instance 'TouchButtonResource)))
+    
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_RESOURCE) _resource)
+        (setf (slot-value this 'f_HINT) _hint)))
+    this))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local TouchButtonResource = {}
-TouchButtonResource.__index = TouchButtonResource
-TouchButtonResource.className = "TouchButtonResource"
-
-function TouchButtonResource:_init_fields()
-    self.RESOURCE = nil
-    self.HINT = nil
-end
-
-
-function TouchButtonResource.new(resource, hint)
-    local self = setmetatable({}, TouchButtonResource)
-    self:_init_fields()
-        self.RESOURCE = resource
-        self.HINT = hint
-    return self
-end
-
-return TouchButtonResource
 

@@ -1,131 +1,140 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.hud.basic.level
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.ag.layer.hud.basic.level
 
--- local Font = require("javax.microedition.lcdui.Font")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local BasicHud = require("org.allbinary.game.graphics.hud.BasicHud")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local PaintableInterface = require("org.allbinary.graphics.paint.PaintableInterface")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local PrimitiveLongUtil = require("org.allbinary.logic.math.PrimitiveLongUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass LevelHudWidget (BasicHud)
+  ((f_level :initform 0)
+   (f_maxlevel :initform 0)
+   (f_levelString :initform nil)
+   (f_levelNumberCharArray :initform nil)
+   (f_levelNumberTotalDigits :initform 0)
+   (f_offset :initform 0)
+   (f_primitiveLongUtil :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun LevelHudWidget.jm_createHud_3 (_maxlevel _location _direction)
+  (declare (ignorable _maxlevel _location _direction))
+  (let ()
+    (block jreturn
+        (return-from jreturn (LevelHudWidget.jnew_3 _maxlevel _location _direction)))))
 
-local function java_chars(text)
-    local chars = {}
-    for index = 1, #text do chars[index] = string.sub(text, index, index) end
-    return chars
-end
+    
+(defun LevelHudWidget.jnew_3 (_maxlevel _location _direction)
+  (declare (ignorable _maxlevel _location _direction))
+  (let ((this (make-instance 'LevelHudWidget)))
+    
+    
+    
+    (setf (slot-value this 'f_levelNumberCharArray) (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_CHAR_ARRAY))
+    
+    
+    
+  (let (_LEVEL)
+  (declare (ignorable _LEVEL))
+    (block jreturn
+        nil
+        (setf (slot-value this 'f_primitiveLongUtil) (PrimitiveLongUtil.jm_createPowerOfTen_1 1000))
+        (setf _LEVEL "Lv ")
+        (setf (slot-value this 'f_levelString) (JR.toCharArray _LEVEL))
+        (setf (slot-value this 'f_maxlevel) _maxlevel)
+        (setf (slot-value this 'f_level) _maxlevel)
+        (jm_update_0 this)
+        (setf (slot-value this 'f_updateMaxHeight) 14)))
+    this))
 
-local LevelHudWidget = {}
-LevelHudWidget.__index = LevelHudWidget
-LevelHudWidget.className = "LevelHudWidget"
-setmetatable(LevelHudWidget, {__index = BasicHud})
+    
+(unless (fboundp 'jm_updateMeasurement_1) (defgeneric jm_updateMeasurement_1 (this p1)))
+(defmethod jm_updateMeasurement_1 ((this LevelHudWidget) _graphics)
+  (declare (ignorable this _graphics))
+  (let (_font)
+  (declare (ignorable _font))
+    (block jreturn
+        (setf _font (jm_getFont_0 _graphics))
+        (setf (slot-value this 'f_updateMaxWidth) (JR.i32 (* (jm_getSize_0 _font) 4)))
+        (setf (slot-value this 'f_offset) (JR.i32 (+ (jm_charsWidth_3 _font (slot-value this 'f_levelString) 0 (length (slot-value this 'f_levelString))) (jm_getSize_0 _font))))
+        (call-next-method this _graphics))))
 
-function LevelHudWidget:_init_fields()
-    self.level = nil
-    self.maxlevel = nil
-    self.levelString = nil
-    self.levelNumberCharArray = NullUtil.getInstance().NULL_CHAR_ARRAY
-    self.levelNumberTotalDigits = 0
-    self.offset = 0
-    self.primitiveLongUtil = nil
-end
+    
+(unless (fboundp 'jm_update_0) (defgeneric jm_update_0 (this)))
+(defmethod jm_update_0 ((this LevelHudWidget))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_levelNumberCharArray) (jm_getCharArray_1 (slot-value this 'f_primitiveLongUtil) (slot-value this 'f_level)))
+        (setf (slot-value this 'f_levelNumberTotalDigits) (jm_getCurrentTotalDigits_0 (slot-value this 'f_primitiveLongUtil))))))
 
+    
+(unless (fboundp 'jm_setLevel_1) (defgeneric jm_setLevel_1 (this p1)))
+(defmethod jm_setLevel_1 ((this LevelHudWidget) _level)
+  (declare (ignorable this _level))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_level) _level)
+        (jm_update_0 this))))
 
--- throws Exception
-function LevelHudWidget.createHud(maxlevel, location, direction)
-        return LevelHudWidget.new(maxlevel, location, direction)
-end
+    
+(unless (fboundp 'jm_nextLevel_0) (defgeneric jm_nextLevel_0 (this)))
+(defmethod jm_nextLevel_0 ((this LevelHudWidget))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_level) (JR.i32 (+ (slot-value this 'f_level) 1)))
+        (jm_update_0 this))))
 
+    
+(unless (fboundp 'jm_previousLevel_0) (defgeneric jm_previousLevel_0 (this)))
+(defmethod jm_previousLevel_0 ((this LevelHudWidget))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_level) (JR.i32 (- (slot-value this 'f_level) 1)))
+        (if (< (slot-value this 'f_level) 0)
+            (progn
+            (setf (slot-value this 'f_level) 0)))
+        (jm_update_0 this))))
 
-function LevelHudWidget.new(maxlevel, location, direction)
-    local self = setmetatable(BasicHud.new(location, direction, 2, BasicColorFactory.getInstance().GREY), LevelHudWidget)
-    self:_init_fields()
-        -- super(...) made self above
-        self.primitiveLongUtil = PrimitiveLongUtil.createPowerOfTen(1000)
-        local LEVEL = "Lv "
-        self.levelString = java_chars(LEVEL)
-        self.maxlevel = maxlevel
-        self.level = maxlevel
-        self:update()
-        self.updateMaxHeight = 14
-    return self
-end
+    
+(unless (fboundp 'jm_isComplete_0) (defgeneric jm_isComplete_0 (this)))
+(defmethod jm_isComplete_0 ((this LevelHudWidget))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (if (<= (slot-value this 'f_level) (slot-value this 'f_maxlevel))
+            (progn
+            (return-from jreturn nil))
+            (progn
+            (return-from jreturn t))))))
 
+    
+(unless (fboundp 'jm_paint_1) (defgeneric jm_paint_1 (this p1)))
+(defmethod jm_paint_1 ((this LevelHudWidget) _graphics)
+  (declare (ignorable this _graphics))
+  (let ()
+    (block jreturn
+        (jm_paintDX_8 this _graphics (slot-value this 'f_levelString) 0 (length (slot-value this 'f_levelString)) (slot-value this 'f_levelNumberCharArray) 0 (slot-value this 'f_levelNumberTotalDigits) (slot-value this 'f_offset)))))
 
-function LevelHudWidget:updateMeasurement(graphics)
-        local font = graphics:getFont()
-        self.updateMaxWidth = font:getSize() * 4
-        self.offset = font:charsWidth(self.levelString, 0, (self.levelString.n or #self.levelString)) + font:getSize()
-        BasicHud.updateMeasurement(self, graphics)
-end
-
-
-function LevelHudWidget:update()
-        self.levelNumberCharArray = self.primitiveLongUtil:getCharArray(self.level)
-        self.levelNumberTotalDigits = self.primitiveLongUtil:getCurrentTotalDigits()
-end
-
-
-function LevelHudWidget:setLevel(level)
-        self.level = level
-        self:update()
-end
-
-
-function LevelHudWidget:nextLevel()
-        self.level = self.level + 1
-        self:update()
-end
-
-
-function LevelHudWidget:previousLevel()
-        self.level = self.level - 1
-        if self.level < 0 then
-            self.level = 0
-        end
-        self:update()
-end
-
-
-function LevelHudWidget:isComplete()
-        if self.level <= self.maxlevel then
-            return false
-        else
-            return true
-        end
-end
+    
+(unless (fboundp 'jm_paintThreed_1) (defgeneric jm_paintThreed_1 (this p1)))
+(defmethod jm_paintThreed_1 ((this LevelHudWidget) _graphics)
+  (declare (ignorable this _graphics))
+  (let ()
+    (block jreturn nil)))
 
 
-function LevelHudWidget:paint(graphics)
-        BasicHud.paintDX(self, graphics, self.levelString, 0, (self.levelString.n or #self.levelString), self.levelNumberCharArray, 0, self.levelNumberTotalDigits, self.offset)
-end
-
-
-function LevelHudWidget:paintThreed(graphics)
-end
-
-return LevelHudWidget
 

@@ -1,123 +1,126 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.media.audio
 
--- local Player = require("javax.microedition.media.Player")
-local ProgressCanvas = require("org.allbinary.graphics.canvas.transition.progress.ProgressCanvas")
-local ProgressCanvasFactory = require("org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local SmallIntegerSingletonFactory = require("org.allbinary.logic.math.SmallIntegerSingletonFactory")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonLabels = require("org.allbinary.string.CommonLabels")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass Sounds (JObject)
+  ((f_logUtil :initform nil)
+   (f_commonStrings :initform nil)
+   (f_soundStrings :initform nil)
+   (f_soundsFactoryInterface :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun Sounds.jnew_1 (_soundsFactoryInterface)
+  (declare (ignorable _soundsFactoryInterface))
+  (let ((this (make-instance 'Sounds)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_commonStrings) (CommonStrings.jm_getInstance_0))
+    (setf (slot-value this 'f_soundStrings) (SoundStrings.jm_getInstance_0))
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_soundsFactoryInterface) _soundsFactoryInterface)))
+    this))
 
-local Sounds = {}
-Sounds.__index = Sounds
-Sounds.className = "Sounds"
+    
+(unless (fboundp 'jm_init_0) (defgeneric jm_init_0 (this)))
+(defmethod jm_init_0 ((this Sounds))
+  (declare (ignorable this))
+  (let (_commonLabels _progressCanvas _soundInterfaceArray _smallIntegerSingletonFactory _indexInteger _indexString _stringBuffer _soundInterface _i)
+  (declare (ignorable _commonLabels _progressCanvas _soundInterfaceArray _smallIntegerSingletonFactory _indexInteger _indexString _stringBuffer _soundInterface _i))
+    (block jreturn
+        (jm_putF_3 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_START) this (slot-value (slot-value this 'f_commonStrings) 'f_INIT))
+        (setf _commonLabels (CommonLabels.jm_getInstance_0))
+        (setf _progressCanvas (ProgressCanvasFactory.jm_getInstance_0))
+        (jm_init_0 (slot-value this 'f_soundsFactoryInterface))
+        (setf _soundInterfaceArray (jm_getSoundInterfaceArray_0 (slot-value this 'f_soundsFactoryInterface)))
+        (setf _smallIntegerSingletonFactory (SmallIntegerSingletonFactory.jm_getInstance_0))
+        (setf _indexInteger nil)
+        (setf _indexString nil)
+        (setf _stringBuffer (StringMaker.jnew_0))
+        (progn
+            (setf _i 0)
+            (block jbreak (loop while (< _i (length _soundInterfaceArray)) do
+                (block jcontinue
+            (setf _soundInterface (aref _soundInterfaceArray _i))
+            (if (not (null _soundInterface))
+                (progn
+                (setf _indexInteger (jm_getAt_1 _smallIntegerSingletonFactory _i))
+                (setf _indexString (jm_toString_0 _indexInteger))
+                (jm_delete_2 _stringBuffer 0 (jm_length_0 _stringBuffer))
+                (jm_append_1 _stringBuffer (slot-value _commonLabels 'f_INDEX_LABEL))
+                (jm_append_1 _stringBuffer _indexString)
+                (jm_append_1 _stringBuffer (slot-value (slot-value this 'f_soundStrings) 'f_SOUND))
+                (jm_append_1 _stringBuffer (JR.className _soundInterface))
+                (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 _stringBuffer) this (slot-value (slot-value this 'f_commonStrings) 'f_INIT))
+                (jm_init_0 _soundInterface)
+                (jm_addNormalPortion_2 _progressCanvas 100 (jm_toString_0 (jm_append_1 (jm_append_1 (StringMaker.jnew_0) (slot-value (slot-value this 'f_soundStrings) 'f_INIT_SOUND)) _indexString))))))
+                (setf _i (JR.i32 (+ _i 1))))))
+        (jm_setInitialized_1 (slot-value this 'f_soundsFactoryInterface) t)
+        (jm_putF_3 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_END) this (slot-value (slot-value this 'f_commonStrings) 'f_INIT)))))
 
-function Sounds:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.soundStrings = SoundStrings.getInstance()
-    self.soundsFactoryInterface = nil
-end
+    
+(unless (fboundp 'jm_stopAll_0) (defgeneric jm_stopAll_0 (this)))
+(defmethod jm_stopAll_0 ((this Sounds))
+  (declare (ignorable this))
+  (let (_soundInterfaceArray _progressCanvas _player _index)
+  (declare (ignorable _soundInterfaceArray _progressCanvas _player _index))
+    (block jreturn
+        (jm_putF_3 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_START) this (slot-value (slot-value this 'f_soundStrings) 'f_STOP_ALL))
+        (setf _soundInterfaceArray (jm_getSoundInterfaceArray_0 (slot-value this 'f_soundsFactoryInterface)))
+        (setf _progressCanvas (ProgressCanvasFactory.jm_getInstance_0))
+        (setf _player nil)
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index (length _soundInterfaceArray)) do
+                (block jcontinue
+            (if (not (null (aref _soundInterfaceArray _index)))
+                (progn
+                (setf _player (jm_getPlayerP_0 (aref _soundInterfaceArray _index)))
+                (if (not (null _player))
+                    (progn
+                    (jm_stop_0 _player)
+                    (jm_addPortion_3 _progressCanvas 100 (slot-value (slot-value this 'f_soundStrings) 'f_STOPPING_SOUND) _index))))))
+                (setf _index (JR.i32 (+ _index 1)))))))))
+
+    
+(unless (fboundp 'jm_closeAll_0) (defgeneric jm_closeAll_0 (this)))
+(defmethod jm_closeAll_0 ((this Sounds))
+  (declare (ignorable this))
+  (let (_soundInterfaceArray _progressCanvas _player _index)
+  (declare (ignorable _soundInterfaceArray _progressCanvas _player _index))
+    (block jreturn
+        (jm_putF_3 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_START) this (slot-value (slot-value this 'f_soundStrings) 'f_CLOSE_ALL))
+        (setf _soundInterfaceArray (jm_getSoundInterfaceArray_0 (slot-value this 'f_soundsFactoryInterface)))
+        (setf _progressCanvas (ProgressCanvasFactory.jm_getInstance_0))
+        (setf _player nil)
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index (length _soundInterfaceArray)) do
+                (block jcontinue
+            (if (not (null (aref _soundInterfaceArray _index)))
+                (progn
+                (setf _player (jm_getPlayerP_0 (aref _soundInterfaceArray _index)))
+                (if (not (null _player))
+                    (progn
+                    (jm_close_0 _player)
+                    (jm_addPortion_3 _progressCanvas 100 (slot-value (slot-value this 'f_soundStrings) 'f_CLOSING_SOUND) _index))))))
+                (setf _index (JR.i32 (+ _index 1)))))))))
 
 
-function Sounds.new(soundsFactoryInterface)
-    local self = setmetatable({}, Sounds)
-    self:_init_fields()
-        self.soundsFactoryInterface = soundsFactoryInterface
-    return self
-end
-
-
--- throws Exception
-function Sounds:init()
-        self.logUtil:putF(self.commonStrings.START, self, self.commonStrings.INIT)
-        local commonLabels = CommonLabels.getInstance()
-        local progressCanvas = ProgressCanvasFactory.getInstance()
-        self.soundsFactoryInterface:init()
-        local soundInterfaceArray = self.soundsFactoryInterface:getSoundInterfaceArray()
-        local smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance()
-        local indexInteger = nil
-        local indexString = nil
-        local stringBuffer = StringMaker.new()
-        for i = 0, (soundInterfaceArray.n or #soundInterfaceArray) - 1 do
-            local soundInterface = soundInterfaceArray[i + 1]
-            if soundInterface ~= nil then
-                indexInteger = smallIntegerSingletonFactory:getAt(i)
-                indexString = tostring(indexInteger)
-                stringBuffer:delete(0, stringBuffer:length())
-                stringBuffer:append(commonLabels.INDEX_LABEL)
-                stringBuffer:append(indexString)
-                stringBuffer:append(self.soundStrings.SOUND)
-                stringBuffer:append(getmetatable(soundInterface).className)
-                self.logUtil:putF(tostring(stringBuffer), self, self.commonStrings.INIT)
-                soundInterface:init()
-                progressCanvas:addNormalPortion(100, tostring(StringMaker.new():append(self.soundStrings.INIT_SOUND):append(indexString)))
-            end
-        end
-        self.soundsFactoryInterface:setInitialized(true)
-        self.logUtil:putF(self.commonStrings.END, self, self.commonStrings.INIT)
-end
-
-
--- throws Exception
-function Sounds:stopAll()
-        self.logUtil:putF(self.commonStrings.START, self, self.soundStrings.STOP_ALL)
-        local soundInterfaceArray = self.soundsFactoryInterface:getSoundInterfaceArray()
-        local progressCanvas = ProgressCanvasFactory.getInstance()
-        local player = nil
-        for index = 0, (soundInterfaceArray.n or #soundInterfaceArray) - 1 do
-            if soundInterfaceArray[index + 1] ~= nil then
-                player = soundInterfaceArray[index + 1]:getPlayerP()
-                if player ~= nil then
-                    player:stop()
-                    progressCanvas:addPortion(100, self.soundStrings.STOPPING_SOUND, index)
-                end
-            end
-        end
-end
-
-
--- throws Exception
-function Sounds:closeAll()
-        self.logUtil:putF(self.commonStrings.START, self, self.soundStrings.CLOSE_ALL)
-        local soundInterfaceArray = self.soundsFactoryInterface:getSoundInterfaceArray()
-        local progressCanvas = ProgressCanvasFactory.getInstance()
-        local player = nil
-        for index = 0, (soundInterfaceArray.n or #soundInterfaceArray) - 1 do
-            if soundInterfaceArray[index + 1] ~= nil then
-                player = soundInterfaceArray[index + 1]:getPlayerP()
-                if player ~= nil then
-                    player:close()
-                    progressCanvas:addPortion(100, self.soundStrings.CLOSING_SOUND, index)
-                end
-            end
-        end
-end
-
-return Sounds
 

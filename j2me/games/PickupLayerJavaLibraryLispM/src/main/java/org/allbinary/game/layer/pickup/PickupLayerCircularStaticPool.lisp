@@ -1,57 +1,56 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.pickup
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.layer.pickup
 
-local AllBinaryLayerCircularPool = require("org.allbinary.layer.AllBinaryLayerCircularPool")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass PickupLayerCircularStaticPool (AllBinaryLayerCircularPool)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar PickupLayerCircularStaticPool.jcell_SINGLETON :jnone)
+(defun PickupLayerCircularStaticPool.jstatic_SINGLETON ()
+  (when (eq PickupLayerCircularStaticPool.jcell_SINGLETON :jnone) (setf PickupLayerCircularStaticPool.jcell_SINGLETON (PickupLayerCircularStaticPool.jnew_0)))
+  PickupLayerCircularStaticPool.jcell_SINGLETON)
+(defun (setf PickupLayerCircularStaticPool.jstatic_SINGLETON) (value) (setf PickupLayerCircularStaticPool.jcell_SINGLETON value))
 
-local PickupLayerCircularStaticPool = {}
-PickupLayerCircularStaticPool.__index = PickupLayerCircularStaticPool
-PickupLayerCircularStaticPool.className = "PickupLayerCircularStaticPool"
-setmetatable(PickupLayerCircularStaticPool, {__index = AllBinaryLayerCircularPool})
+    
+(defun PickupLayerCircularStaticPool.jnew_0 ()
+  (let ((this (make-instance 'PickupLayerCircularStaticPool)))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(defun PickupLayerCircularStaticPool.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (PickupLayerCircularStaticPool.jstatic_SINGLETON)))))
+
+    
+(unless (fboundp 'jm_getInstanceXYZ_4) (defgeneric jm_getInstanceXYZ_4 (this p1 p2 p3 p4)))
+(defmethod jm_getInstanceXYZ_4 ((this PickupLayerCircularStaticPool) _pickedUpLayerInterfaceFactoryInterface _x _y _z)
+  (declare (ignorable this _pickedUpLayerInterfaceFactoryInterface _x _y _z))
+  (let (_pickupLayer)
+  (declare (ignorable _pickupLayer))
+    (block jreturn
+        (setf _pickupLayer (jm_getNextInstance_0 this))
+        (jm_initXYZ_3 _pickupLayer _x _y _z)
+        (jm_init_2 _pickupLayer _pickedUpLayerInterfaceFactoryInterface (jm_getAnimationInterface_0 _pickedUpLayerInterfaceFactoryInterface))
+        (return-from jreturn _pickupLayer))))
 
 
-function PickupLayerCircularStaticPool.new()
-    local self = setmetatable(AllBinaryLayerCircularPool.new(), PickupLayerCircularStaticPool)
-    return self
-end
-
-
-function PickupLayerCircularStaticPool.getInstance()
-        return PickupLayerCircularStaticPool.SINGLETON
-end
-
-
--- throws Exception
-function PickupLayerCircularStaticPool:getInstanceXYZ(pickedUpLayerInterfaceFactoryInterface, x, y, z)
-        local pickupLayer = self:getNextInstance()
-        pickupLayer:initXYZ(x, y, z)
-        pickupLayer:init(pickedUpLayerInterfaceFactoryInterface, pickedUpLayerInterfaceFactoryInterface:getAnimationInterface())
-        return pickupLayer
-end
-
-PickupLayerCircularStaticPool.SINGLETON = PickupLayerCircularStaticPool.new()
-
-return PickupLayerCircularStaticPool
 

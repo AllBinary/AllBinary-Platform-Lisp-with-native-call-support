@@ -25,6 +25,7 @@
 (defun SolarisOperatingSystemFactory.jstatic_instance ()
   (when (eq SolarisOperatingSystemFactory.jcell_instance :jnone) (setf SolarisOperatingSystemFactory.jcell_instance (SolarisOperatingSystemFactory.jnew_0)))
   SolarisOperatingSystemFactory.jcell_instance)
+(defun (setf SolarisOperatingSystemFactory.jstatic_instance) (value) (setf SolarisOperatingSystemFactory.jcell_instance value))
 
     
 (defun SolarisOperatingSystemFactory.jm_getInstance_0 ()
@@ -62,7 +63,7 @@
                     (error (JR.newException "Exception" (JR.concat "Specific Solaris OS Not Supported: " _osName)))))))
             (return-from jreturn _operatingSystemInterface))
             (error (_e) (declare (ignorable _e))
-            (if (JR.className (LogConfigTypes.jstatic_LOGGING))
+            (if (jm_contains_1 (LogConfigTypes.jstatic_LOGGING) (slot-value (LogConfigTypeFactory.jm_getInstance_0) 'f_FACTORYERROR))
                 (progn
                 (setf _commonStrings (CommonStrings.jm_getInstance_0))
                 (jm_put_4 (slot-value this 'f_logUtil) (slot-value _commonStrings 'f_EXCEPTION) this (slot-value _commonStrings 'f_GET_INSTANCE) _e)))

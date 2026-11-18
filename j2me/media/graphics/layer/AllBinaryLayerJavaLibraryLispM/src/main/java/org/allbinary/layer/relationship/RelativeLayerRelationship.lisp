@@ -1,66 +1,60 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.layer.relationship
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.layer.relationship
 
-local GPoint = require("org.allbinary.graphics.GPoint")
-local RelativeRelationship = require("org.allbinary.graphics.RelativeRelationship")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass RelativeLayerRelationship (RelativeRelationship)
+  ((f_layer :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun RelativeLayerRelationship.jnew_3 (_layer _point _typesAllowedList)
+  (declare (ignorable _layer _point _typesAllowedList))
+  (let ((this (make-instance 'RelativeLayerRelationship)))
+    (setf (slot-value this 'f_layer) (AllBinaryLayer.jstatic_NULL_ALLBINARY_LAYER))
+  (let ()
+    (block jreturn
+        nil
+        (setf (slot-value this 'f_layer) _layer)))
+    this))
 
-local RelativeLayerRelationship = {}
-RelativeLayerRelationship.__index = RelativeLayerRelationship
-RelativeLayerRelationship.className = "RelativeLayerRelationship"
-setmetatable(RelativeLayerRelationship, {__index = RelativeRelationship})
+    
+(unless (fboundp 'jm_getX_0) (defgeneric jm_getX_0 (this)))
+(defmethod jm_getX_0 ((this RelativeLayerRelationship))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (JR.i32 (+ (jm_getXP_0 (slot-value this 'f_layer)) (call-next-method this)))))))
 
-function RelativeLayerRelationship:_init_fields()
-    self.layer = AllBinaryLayer.NULL_ALLBINARY_LAYER
-end
+    
+(unless (fboundp 'jm_getY_0) (defgeneric jm_getY_0 (this)))
+(defmethod jm_getY_0 ((this RelativeLayerRelationship))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (JR.i32 (+ (jm_getYP_0 (slot-value this 'f_layer)) (call-next-method this)))))))
 
-
-function RelativeLayerRelationship.new(layer, point, typesAllowedList)
-    local self = setmetatable(RelativeRelationship.new(point, typesAllowedList), RelativeLayerRelationship)
-    self:_init_fields()
-        -- super(...) made self above
-        self.layer = layer
-    return self
-end
-
-
-function RelativeLayerRelationship:getX()
-        return self.layer:getXP() + RelativeRelationship.getX(self)
-end
-
-
-function RelativeLayerRelationship:getY()
-        return self.layer:getYP() + RelativeRelationship.getY(self)
-end
+    
+(unless (fboundp 'jm_getZ_0) (defgeneric jm_getZ_0 (this)))
+(defmethod jm_getZ_0 ((this RelativeLayerRelationship))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (JR.i32 (+ (jm_getZP_0 (slot-value this 'f_layer)) (call-next-method this)))))))
 
 
-function RelativeLayerRelationship:getZ()
-        return self.layer:getZP() + RelativeRelationship.getZ(self)
-end
-
-return RelativeLayerRelationship
 

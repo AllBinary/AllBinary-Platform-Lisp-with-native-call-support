@@ -25,6 +25,7 @@
 (defun FrameUtil.jstatic_instance ()
   (when (eq FrameUtil.jcell_instance :jnone) (setf FrameUtil.jcell_instance (FrameUtil.jnew_0)))
   FrameUtil.jcell_instance)
+(defun (setf FrameUtil.jstatic_instance) (value) (setf FrameUtil.jcell_instance value))
 
     
 (defun FrameUtil.jm_getInstance_0 ()

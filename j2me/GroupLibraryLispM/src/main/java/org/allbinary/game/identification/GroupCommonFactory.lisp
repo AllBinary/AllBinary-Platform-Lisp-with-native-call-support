@@ -1,59 +1,53 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.identification
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2025 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.identification
 
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local SmallIntegerSingletonFactory = require("org.allbinary.logic.math.SmallIntegerSingletonFactory")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass GroupCommonFactory (JObject)
+  ((f_ID :initform nil)
+   (f_GROUP_NAME_LABEL :initform nil)
+   (f_ID_LABEL :initform nil)
+   (f_ADDING_LABEL :initform nil)
+   (f_TO_LABEL :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar GroupCommonFactory.jcell_instance :jnone)
+(defun GroupCommonFactory.jstatic_instance ()
+  (when (eq GroupCommonFactory.jcell_instance :jnone) (setf GroupCommonFactory.jcell_instance (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT)))
+  GroupCommonFactory.jcell_instance)
+(defun (setf GroupCommonFactory.jstatic_instance) (value) (setf GroupCommonFactory.jcell_instance value))
 
-local GroupCommonFactory = {}
-GroupCommonFactory.__index = GroupCommonFactory
-GroupCommonFactory.className = "GroupCommonFactory"
+(defun GroupCommonFactory.jnew_0 ()
+  (let ((this (make-instance 'GroupCommonFactory)))
+    (setf (slot-value this 'f_ID) (jm_getAt_1 (SmallIntegerSingletonFactory.jm_getInstance_0) 10))
+    (setf (slot-value this 'f_GROUP_NAME_LABEL) "Group Name: ")
+    (setf (slot-value this 'f_ID_LABEL) " Id: ")
+    (setf (slot-value this 'f_ADDING_LABEL) "Adding: ")
+    (setf (slot-value this 'f_TO_LABEL) " to: ")
+    this))
 
-function GroupCommonFactory:_init_fields()
-    self.ID = SmallIntegerSingletonFactory.getInstance():getAt(10)
-    self.GROUP_NAME_LABEL = "Group Name: "
-    self.ID_LABEL = " Id: "
-    self.ADDING_LABEL = "Adding: "
-    self.TO_LABEL = " to: "
-end
-
-function GroupCommonFactory.new()
-    local self = setmetatable({}, GroupCommonFactory)
-    self:_init_fields()
-    return self
-end
+    
+(defun GroupCommonFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (if (eq (GroupCommonFactory.jstatic_instance) (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT))
+            (progn
+            (setf (GroupCommonFactory.jstatic_instance) (GroupCommonFactory.jnew_0))))
+        (return-from jreturn (GroupCommonFactory.jstatic_instance)))))
 
 
-function GroupCommonFactory.getInstance()
-        if GroupCommonFactory.instance == NullUtil.getInstance().NULL_OBJECT then
-            GroupCommonFactory.instance = GroupCommonFactory.new()
-        end
-        return GroupCommonFactory.instance
-end
-
-GroupCommonFactory.instance = NullUtil.getInstance().NULL_OBJECT
-
-return GroupCommonFactory
 

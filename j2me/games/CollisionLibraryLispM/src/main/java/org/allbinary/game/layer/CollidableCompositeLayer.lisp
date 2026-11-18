@@ -1,111 +1,109 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.layer
 
-local ArtificialIntelligence = require("org.allbinary.ai.ArtificialIntelligence")
-local ArtificialIntelligenceInterface = require("org.allbinary.ai.ArtificialIntelligenceInterface")
-local CollidableBaseBehavior = require("org.allbinary.game.collision.CollidableBaseBehavior")
-local CollidableBaseBehaviorFactory = require("org.allbinary.game.collision.CollidableBaseBehaviorFactory")
-local CollidableInterfaceCompositeInterface = require("org.allbinary.game.collision.CollidableInterfaceCompositeInterface")
-local CollidableNeverCollideBehaviorFactory = require("org.allbinary.game.collision.CollidableNeverCollideBehaviorFactory")
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local RectangleFactory = require("org.allbinary.graphics.RectangleFactory")
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
-local ViewPositionBase = require("org.allbinary.view.ViewPositionBase")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local AllBinaryGameLayer = require("org.allbinary.game.layer.AllBinaryGameLayer")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass CollidableCompositeLayer (AllBinaryGameLayer)
+  ((f_collidableInferface :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar CollidableCompositeLayer.jcell_NULL_COLLIDABLE_COMPOSITE_LAYER :jnone)
+(defun CollidableCompositeLayer.jstatic_NULL_COLLIDABLE_COMPOSITE_LAYER ()
+  (when (eq CollidableCompositeLayer.jcell_NULL_COLLIDABLE_COMPOSITE_LAYER :jnone) (setf CollidableCompositeLayer.jcell_NULL_COLLIDABLE_COMPOSITE_LAYER (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT)))
+  CollidableCompositeLayer.jcell_NULL_COLLIDABLE_COMPOSITE_LAYER)
+(defun (setf CollidableCompositeLayer.jstatic_NULL_COLLIDABLE_COMPOSITE_LAYER) (value) (setf CollidableCompositeLayer.jcell_NULL_COLLIDABLE_COMPOSITE_LAYER value))
 
-local CollidableCompositeLayer = {}
-CollidableCompositeLayer.__index = CollidableCompositeLayer
-CollidableCompositeLayer.className = "CollidableCompositeLayer"
-setmetatable(CollidableCompositeLayer, {__index = AllBinaryGameLayer})
+    
+(defun CollidableCompositeLayer.jm_getNullInstance_0 ()
+  (let ()
+    (block jreturn
+        (if (eq (CollidableCompositeLayer.jstatic_NULL_COLLIDABLE_COMPOSITE_LAYER) (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT))
+            (progn
+            (setf (CollidableCompositeLayer.jstatic_NULL_COLLIDABLE_COMPOSITE_LAYER) (CollidableCompositeLayer.jnew_4 (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (RectangleFactory.jstatic_SINGLETON) (ViewPositionBase.jstatic_NULL_VIEW_POSITION) (CollidableNeverCollideBehaviorFactory.jm_getInstance_0)))))
+        (return-from jreturn (CollidableCompositeLayer.jstatic_NULL_COLLIDABLE_COMPOSITE_LAYER)))))
 
-function CollidableCompositeLayer:_init_fields()
-    self.collidableInferface = CollidableNeverCollideBehaviorFactory.getInstance():createBehavior()
-end
+    
+(defun CollidableCompositeLayer.jnew_4 (_name _layerInfo _viewPosition _collidableBaseBehaviorFactory)
+  (declare (ignorable _name _layerInfo _viewPosition _collidableBaseBehaviorFactory))
+  (let ((this (make-instance 'CollidableCompositeLayer)))
+    (setf (slot-value this 'f_collidableInferface) (jm_createBehavior_0 (CollidableNeverCollideBehaviorFactory.jm_getInstance_0)))
+  (let ()
+    (block jreturn
+        nil
+        (if (not (eq _collidableBaseBehaviorFactory (CollidableNeverCollideBehaviorFactory.jm_getInstance_0)))
+            (progn
+            (jm_setCollidableInferface_1 this (jm_createBehavior_0 _collidableBaseBehaviorFactory))))))
+    this))
+
+    
+(unless (fboundp 'jm_getArtificialIntelligenceInterface_0) (defgeneric jm_getArtificialIntelligenceInterface_0 (this)))
+(defmethod jm_getArtificialIntelligenceInterface_0 ((this CollidableCompositeLayer))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (ForcedLogUtil.jm_log_2 (slot-value (slot-value this 'f_commonStrings) 'f_NOT_IMPLEMENTED) this)
+        (return-from jreturn (ArtificialIntelligence.jm_getInstance_0)))))
+
+    
+(unless (fboundp 'jm_getCollidableInferface_0) (defgeneric jm_getCollidableInferface_0 (this)))
+(defmethod jm_getCollidableInferface_0 ((this CollidableCompositeLayer))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_collidableInferface)))))
+
+    
+(unless (fboundp 'jm_setCollidableInferface_1) (defgeneric jm_setCollidableInferface_1 (this p1)))
+(defmethod jm_setCollidableInferface_1 ((this CollidableCompositeLayer) _collidableInferface)
+  (declare (ignorable this _collidableInferface))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_collidableInferface) _collidableInferface))))
+
+    
+(unless (fboundp 'jm_implmentsCollidableInterface_0) (defgeneric jm_implmentsCollidableInterface_0 (this)))
+(defmethod jm_implmentsCollidableInterface_0 ((this CollidableCompositeLayer))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn t))))
+
+    
+(unless (fboundp 'jm_toStringAppend_1) (defgeneric jm_toStringAppend_1 (this p1)))
+(defmethod jm_toStringAppend_1 ((this CollidableCompositeLayer) _stringBuffer)
+  (declare (ignorable this _stringBuffer))
+  (let (_commonSeps)
+  (declare (ignorable _commonSeps))
+    (block jreturn
+        (setf _commonSeps (CommonSeps.jm_getInstance_0))
+        (call-next-method this _stringBuffer)
+        (jm_append_1 _stringBuffer (slot-value _commonSeps 'f_NEW_LINE))
+        (jm_append_1 _stringBuffer (jm_toString_0 (jm_getCollidableInferface_0 this))))))
+
+    
+(unless (fboundp 'jm_toString_0) (defgeneric jm_toString_0 (this)))
+(defmethod jm_toString_0 ((this CollidableCompositeLayer))
+  (declare (ignorable this))
+  (let (_stringBuffer)
+  (declare (ignorable _stringBuffer))
+    (block jreturn
+        (setf _stringBuffer (StringMaker.jnew_0))
+        (jm_toStringAppend_1 this _stringBuffer)
+        (return-from jreturn (jm_toString_0 _stringBuffer)))))
 
 
-function CollidableCompositeLayer.getNullInstance()
-        if CollidableCompositeLayer.NULL_COLLIDABLE_COMPOSITE_LAYER == NullUtil.getInstance().NULL_OBJECT then
-            CollidableCompositeLayer.NULL_COLLIDABLE_COMPOSITE_LAYER = CollidableCompositeLayer.new(StringUtil.getInstance().EMPTY_STRING, RectangleFactory.SINGLETON, ViewPositionBase.NULL_VIEW_POSITION, CollidableNeverCollideBehaviorFactory.getInstance())
-        end
-        return CollidableCompositeLayer.NULL_COLLIDABLE_COMPOSITE_LAYER
-end
-
-
-function CollidableCompositeLayer.new(name, layerInfo, viewPosition, collidableBaseBehaviorFactory)
-    local self = setmetatable(AllBinaryGameLayer.new(name, layerInfo, viewPosition), CollidableCompositeLayer)
-    self:_init_fields()
-        -- super(...) made self above
-        if collidableBaseBehaviorFactory ~= CollidableNeverCollideBehaviorFactory.getInstance() then
-            self:setCollidableInferface(collidableBaseBehaviorFactory:createBehavior())
-        end
-    return self
-end
-
-
-function CollidableCompositeLayer:getArtificialIntelligenceInterface()
-        ForcedLogUtil.log(self.commonStrings.NOT_IMPLEMENTED, self)
-        return ArtificialIntelligence.getInstance()
-end
-
-
-function CollidableCompositeLayer:getCollidableInferface()
-        return self.collidableInferface
-end
-
-
-function CollidableCompositeLayer:setCollidableInferface(collidableInferface)
-        self.collidableInferface = collidableInferface
-end
-
-
-function CollidableCompositeLayer:implmentsCollidableInterface()
-        return true
-end
-
-
-function CollidableCompositeLayer:toStringAppend(stringBuffer)
-        local commonSeps = CommonSeps.getInstance()
-        AllBinaryGameLayer.toStringAppend(self, stringBuffer)
-        stringBuffer:append(commonSeps.NEW_LINE)
-        stringBuffer:append(tostring(self:getCollidableInferface()))
-end
-
-
-function CollidableCompositeLayer:toString()
-        local stringBuffer = StringMaker.new()
-        self:toStringAppend(stringBuffer)
-        return tostring(stringBuffer)
-end
-CollidableCompositeLayer.__tostring = function(self) return self:toString() end
-
-CollidableCompositeLayer.NULL_COLLIDABLE_COMPOSITE_LAYER = NullUtil.getInstance().NULL_OBJECT
-
-return CollidableCompositeLayer
 

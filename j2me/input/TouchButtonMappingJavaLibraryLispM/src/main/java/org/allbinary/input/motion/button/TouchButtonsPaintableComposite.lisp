@@ -1,116 +1,103 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.input.motion.button
 
-local CompleteMotionGestureInputEvent = require("org.allbinary.game.input.CompleteMotionGestureInputEvent")
-local CompleteMotionGestureInputEventHandler = require("org.allbinary.game.input.CompleteMotionGestureInputEventHandler")
-local CompleteMotionGestureInputEventListenerInterface = require("org.allbinary.game.input.CompleteMotionGestureInputEventListenerInterface")
-local GameKey = require("org.allbinary.game.input.GameKey")
-local InputMappingInterface = require("org.allbinary.game.input.mapping.InputMappingInterface")
-local GameKeyCompleteMotionGestureInputEvent = require("org.allbinary.game.input.motion.action.GameKeyCompleteMotionGestureInputEvent")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local ProcessPaintable = require("org.allbinary.graphics.paint.ProcessPaintable")
-local MotionGestureInput = require("org.allbinary.input.motion.gesture.MotionGestureInput")
-local TouchMotionGestureFactory = require("org.allbinary.input.motion.gesture.TouchMotionGestureFactory")
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventStrings = require("org.allbinary.logic.util.event.EventStrings")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local TimeDelayHelper = require("org.allbinary.time.TimeDelayHelper")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass TouchButtonsPaintableComposite (ProcessPaintable)
+  ((f_logUtil :initform nil)
+   (f_commonStrings :initform nil)
+   (f_inputMappingInterface :initform nil)
+   (f_touchButtonsPaintable :initform nil)
+   (f_timeHelper :initform nil)
+   (f_released :initform nil)
+   (f_METHOD_NAME :initform nil)
+   (f_RELEASE :initform nil)
+   (f_FAST_REPEAT :initform nil)
+   (f_IGNORE :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun TouchButtonsPaintableComposite.jnew_2 (_inputMappingInterface _basicColor)
+  (declare (ignorable _inputMappingInterface _basicColor))
+  (let ((this (make-instance 'TouchButtonsPaintableComposite)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_commonStrings) (CommonStrings.jm_getInstance_0))
+    
+    
+    (setf (slot-value this 'f_timeHelper) (TimeDelayHelper.jnew_1 250))
+    (setf (slot-value this 'f_released) t)
+    (setf (slot-value this 'f_METHOD_NAME) "onCompleteMotionGestureInputEvent")
+    (setf (slot-value this 'f_RELEASE) "Ignoring: MotionGestureInput Release")
+    (setf (slot-value this 'f_FAST_REPEAT) "Ignoring: MotionGestureInput Repeated To Quickly")
+    (setf (slot-value this 'f_IGNORE) "Ignoring: Until Released")
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_inputMappingInterface) _inputMappingInterface)
+        (jm_addListenerInterface_1 (CompleteMotionGestureInputEventHandler.jm_getInstance_0) this)
+        (setf (slot-value this 'f_touchButtonsPaintable) (TouchButtonsMappingPaintable.jnew_1 _basicColor))))
+    this))
 
-local TouchButtonsPaintableComposite = {}
-TouchButtonsPaintableComposite.__index = TouchButtonsPaintableComposite
-TouchButtonsPaintableComposite.className = "TouchButtonsPaintableComposite"
-setmetatable(TouchButtonsPaintableComposite, {__index = ProcessPaintable})
+    
+(unless (fboundp 'jm_onEvent_1) (defgeneric jm_onEvent_1 (this p1)))
+(defmethod jm_onEvent_1 ((this TouchButtonsPaintableComposite) _eventObject)
+  (declare (ignorable this _eventObject))
+  (let ()
+    (block jreturn
+        (ForcedLogUtil.jm_log_2 (slot-value (EventStrings.jm_getInstance_0) 'f_PERFORMANCE_MESSAGE) this))))
 
-function TouchButtonsPaintableComposite:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.inputMappingInterface = nil
-    self.touchButtonsPaintable = nil
-    self.timeHelper = TimeDelayHelper.new(250)
-    self.released = true
-    self.METHOD_NAME = "onCompleteMotionGestureInputEvent"
-    self.RELEASE = "Ignoring: MotionGestureInput Release"
-    self.FAST_REPEAT = "Ignoring: MotionGestureInput Repeated To Quickly"
-    self.IGNORE = "Ignoring: Until Released"
-end
+    
+(unless (fboundp 'jm_onCompleteMotionGestureInputEvent_1) (defgeneric jm_onCompleteMotionGestureInputEvent_1 (this p1)))
+(defmethod jm_onCompleteMotionGestureInputEvent_1 ((this TouchButtonsPaintableComposite) _completeMotionGestureInputEvent)
+  (declare (ignorable this _completeMotionGestureInputEvent))
+  (let (_touchMotionGestureFactory _gameKeyCompleteMotionGestureInputEvent _gameKey _motionGestureInput)
+  (declare (ignorable _touchMotionGestureFactory _gameKeyCompleteMotionGestureInputEvent _gameKey _motionGestureInput))
+    (block jreturn
+        (handler-case (progn
+            (jm_putF_3 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_START) this "onCompleteMotionGestureInputEvent")
+            (setf _touchMotionGestureFactory (TouchMotionGestureFactory.jm_getInstance_0))
+            (setf _gameKeyCompleteMotionGestureInputEvent _completeMotionGestureInputEvent)
+            (setf _gameKey (jm_getGameKey_0 _gameKeyCompleteMotionGestureInputEvent))
+            (setf _motionGestureInput (jm_getMotionGestureInput_0 _completeMotionGestureInputEvent))
+            (if (eq _motionGestureInput (slot-value _touchMotionGestureFactory 'f_RELEASED))
+                (progn
+                (jm_putF_3 (slot-value this 'f_logUtil) (slot-value this 'f_RELEASE) this (slot-value this 'f_METHOD_NAME))
+                (setf (slot-value this 'f_released) t)
+                (return-from jreturn)))
+            (if (and (eq _motionGestureInput (slot-value (TouchMotionGestureFactory.jm_getInstance_0) 'f_NO_MOTION)) (not (jm_isTimeTNT_0 (slot-value this 'f_timeHelper))))
+                (progn
+                (jm_putF_3 (slot-value this 'f_logUtil) (slot-value this 'f_FAST_REPEAT) this (slot-value this 'f_METHOD_NAME))
+                (return-from jreturn)))
+            (if (not (slot-value this 'f_released))
+                (progn
+                (jm_putF_3 (slot-value this 'f_logUtil) (slot-value this 'f_IGNORE) this (slot-value this 'f_METHOD_NAME))
+                (return-from jreturn)))
+            (setf (slot-value this 'f_released) nil)
+            (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 (jm_append_1 (jm_append_1 (jm_append_1 (jm_append_1 (StringMaker.jnew_0) "GameKey: ") (jm_toString_1 (StringUtil.jm_getInstance_0) _gameKey)) " MotionGestureInput: ") (jm_toString_1 (StringUtil.jm_getInstance_0) _motionGestureInput))) this (slot-value this 'f_METHOD_NAME))
+            (jm_processInputMapping_2 (slot-value this 'f_inputMappingInterface) _gameKey _motionGestureInput))
+            (error (_e) (declare (ignorable _e))
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_EXCEPTION) this (slot-value this 'f_METHOD_NAME) _e))))))
 
-
-function TouchButtonsPaintableComposite.new(inputMappingInterface, basicColor)
-    local self = setmetatable(ProcessPaintable.new(), TouchButtonsPaintableComposite)
-    self:_init_fields()
-        self.inputMappingInterface = inputMappingInterface
-        CompleteMotionGestureInputEventHandler.getInstance():addListenerInterface(self)
-        self.touchButtonsPaintable = TouchButtonsMappingPaintable.new(basicColor)
-    return self
-end
-
-
-function TouchButtonsPaintableComposite:onEvent(eventObject)
-        ForcedLogUtil.log(EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
-end
-
-
-function TouchButtonsPaintableComposite:onCompleteMotionGestureInputEvent(completeMotionGestureInputEvent)
-        local try_ok, try_error = pcall(function()
-            self.logUtil:putF(self.commonStrings.START, self, "onCompleteMotionGestureInputEvent")
-            local touchMotionGestureFactory = TouchMotionGestureFactory.getInstance()
-            local gameKeyCompleteMotionGestureInputEvent = completeMotionGestureInputEvent
-            local gameKey = gameKeyCompleteMotionGestureInputEvent:getGameKey()
-            local motionGestureInput = completeMotionGestureInputEvent:getMotionGestureInput()
-            if motionGestureInput == touchMotionGestureFactory.RELEASED then
-                self.logUtil:putF(self.RELEASE, self, self.METHOD_NAME)
-                self.released = true
-                return
-            end
-            if motionGestureInput == TouchMotionGestureFactory.getInstance().NO_MOTION and not self.timeHelper:isTimeTNT() then
-                self.logUtil:putF(self.FAST_REPEAT, self, self.METHOD_NAME)
-                return
-            end
-            if not self.released then
-                self.logUtil:putF(self.IGNORE, self, self.METHOD_NAME)
-                return
-            end
-            self.released = false
-            self.logUtil:putF(tostring(StringMaker.new():append("GameKey: "):append(StringUtil.getInstance():toString(gameKey)):append(" MotionGestureInput: "):append(StringUtil.getInstance():toString(motionGestureInput))), self, self.METHOD_NAME)
-            self.inputMappingInterface:processInputMapping(gameKey, motionGestureInput)
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.METHOD_NAME, e)
-        end
-end
+    
+(unless (fboundp 'jm_process_0) (defgeneric jm_process_0 (this)))
+(defmethod jm_process_0 ((this TouchButtonsPaintableComposite))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_removeListener_1 (CompleteMotionGestureInputEventHandler.jm_getInstance_0) this))))
 
 
-function TouchButtonsPaintableComposite:process()
-        CompleteMotionGestureInputEventHandler.getInstance():removeListener(self)
-end
-
-return TouchButtonsPaintableComposite
 

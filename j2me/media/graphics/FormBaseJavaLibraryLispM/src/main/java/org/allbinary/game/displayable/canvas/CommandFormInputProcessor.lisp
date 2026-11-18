@@ -1,199 +1,194 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.displayable.canvas
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
--- local Command = require("javax.microedition.lcdui.Command")
-local GameCommandsFactory = require("org.allbinary.game.commands.GameCommandsFactory")
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local InputFeatureFactory = require("org.allbinary.game.configuration.feature.InputFeatureFactory")
-local GameKeyEvent = require("org.allbinary.game.input.event.GameKeyEvent")
-local GameKeyEventFactory = require("org.allbinary.game.input.event.GameKeyEventFactory")
-local SWTUtil = require("org.allbinary.game.layer.SWTUtil")
-local GPoint = require("org.allbinary.graphics.GPoint")
-local MyCanvas = require("org.allbinary.graphics.displayable.MyCanvas")
-local CommandCurrentSelectionForm = require("org.allbinary.graphics.form.CommandCurrentSelectionForm")
-local ScrollSelectionForm = require("org.allbinary.graphics.form.ScrollSelectionForm")
-local OpenGLFeatureFactory = require("org.allbinary.graphics.opengles.OpenGLFeatureFactory")
-local MotionGestureInput = require("org.allbinary.input.motion.gesture.MotionGestureInput")
-local TouchMotionGestureFactory = require("org.allbinary.input.motion.gesture.TouchMotionGestureFactory")
-local MotionGestureEvent = require("org.allbinary.input.motion.gesture.observer.MotionGestureEvent")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local PrimaryPlayerQueueFactory = require("org.allbinary.media.audio.PrimaryPlayerQueueFactory")
-local SelectSound = require("org.allbinary.media.audio.SelectSound")
-local PrimaryThreadPool = require("org.allbinary.thread.PrimaryThreadPool")
-local TimeDelayHelper = require("org.allbinary.time.TimeDelayHelper")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicMenuInputProcessor = require("org.allbinary.game.displayable.canvas.BasicMenuInputProcessor")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+;In general allow scrolling of the menu and selection the center item
+(defclass CommandFormInputProcessor (BasicMenuInputProcessor)
+  ((f_MOTION_GESTURE_SOURCE_ID :initform 0)
+   (f_CLICK_DELAY :initform 0)
+   (f_clickTimeHelper :initform nil)
+   (f_DOUBLE_CLICK_DELAY :initform 0)
+   (f_doubleClickTimeHelper :initform nil)
+   (f_isSingleKeyProcessing :initform nil)
+   (f_form :initform nil)
+   (f_hasPressed :initform nil)
+   (f_PROCESS_COMMAND :initform nil)
+   (f_NAME_LABEL :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun CommandFormInputProcessor.jnew_4 (_gameKeyEventList _playerInputId _gameCanvas _form)
+  (declare (ignorable _gameKeyEventList _playerInputId _gameCanvas _form))
+  (let ((this (make-instance 'CommandFormInputProcessor)))
+    (setf (slot-value this 'f_MOTION_GESTURE_SOURCE_ID) (slot-value (GameKeyEventFactory.jm_getInstance_0) 'f_MOTION_GESTURE_SOURCE_ID))
+    (setf (slot-value this 'f_CLICK_DELAY) 150)
+    (setf (slot-value this 'f_clickTimeHelper) (TimeDelayHelper.jnew_1 (slot-value this 'f_CLICK_DELAY)))
+    (setf (slot-value this 'f_DOUBLE_CLICK_DELAY) 1200)
+    (setf (slot-value this 'f_doubleClickTimeHelper) (TimeDelayHelper.jnew_1 (slot-value this 'f_DOUBLE_CLICK_DELAY)))
+    (setf (slot-value this 'f_isSingleKeyProcessing) (jm_isSingleKeyProcessing_0 (InputFeatureFactory.jm_getInstance_0)))
+    
+    (setf (slot-value this 'f_hasPressed) nil)
+    (setf (slot-value this 'f_PROCESS_COMMAND) "processCommand")
+    (setf (slot-value this 'f_NAME_LABEL) " ScrollSelectionForm: ")
+  (let ()
+    (block jreturn
+        nil
+        (setf (slot-value this 'f_form) _form)))
+    this))
 
---In general allow scrolling of the menu and selection the center item
-local CommandFormInputProcessor = {}
-CommandFormInputProcessor.__index = CommandFormInputProcessor
-CommandFormInputProcessor.className = "CommandFormInputProcessor"
-setmetatable(CommandFormInputProcessor, {__index = BasicMenuInputProcessor})
+    
+(unless (fboundp 'jm_processInput_1) (defgeneric jm_processInput_1 (this p1)))
+(defmethod jm_processInput_1 ((this CommandFormInputProcessor) _key)
+  (declare (ignorable this _key))
+  (let ()
+    (block jreturn
+        (if (or (or (or (= _key (Canvas.jstatic_LEFT)) (= _key (Canvas.jstatic_RIGHT))) (= _key (Canvas.jstatic_UP))) (= _key (Canvas.jstatic_DOWN)))
+            (progn
+            (jm_add_1 (PrimaryPlayerQueueFactory.jm_getInstance_0) (SelectSound.jm_getInstance_0))
+            (jm_processInputKey_1 (slot-value this 'f_form) _key)
+            (return-from jreturn 1))
+            (if (= _key (Canvas.jstatic_FIRE))
+            (progn
+            (jm_add_1 (PrimaryPlayerQueueFactory.jm_getInstance_0) (SelectSound.jm_getInstance_0))
+            (return-from jreturn (jm_processCommand_0 this)))))
+        (return-from jreturn 0))))
 
-function CommandFormInputProcessor:_init_fields()
-    self.MOTION_GESTURE_SOURCE_ID = GameKeyEventFactory.getInstance().MOTION_GESTURE_SOURCE_ID
-    self.CLICK_DELAY = 150
-    self.clickTimeHelper = TimeDelayHelper.new(self.CLICK_DELAY)
-    self.DOUBLE_CLICK_DELAY = 1200
-    self.doubleClickTimeHelper = TimeDelayHelper.new(self.DOUBLE_CLICK_DELAY)
-    self.isSingleKeyProcessing = InputFeatureFactory.getInstance():isSingleKeyProcessing()
-    self.form = nil
-    self.hasPressed = false
-    self.PROCESS_COMMAND = "processCommand"
-    self.NAME_LABEL = " ScrollSelectionForm: "
-end
+    
+(unless (fboundp 'jm_processCommand_0) (defgeneric jm_processCommand_0 (this)))
+(defmethod jm_processCommand_0 ((this CommandFormInputProcessor))
+  (declare (ignorable this))
+  (let (_commandCurrentSelectionForm _command _features _openGLFeatureFactory)
+  (declare (ignorable _commandCurrentSelectionForm _command _features _openGLFeatureFactory))
+    (block jreturn
+        (setf _commandCurrentSelectionForm (slot-value this 'f_form))
+        (setf _command (jm_getSelectedCommand_0 _commandCurrentSelectionForm))
+        (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 _command) this (slot-value this 'f_PROCESS_COMMAND))
+        (setf _features (Features.jm_getInstance_0))
+        (setf _openGLFeatureFactory (OpenGLFeatureFactory.jm_getInstance_0))
+        (if (and (and (SWTUtil.jstatic_isSWT) (jm_isFeature_1 _features (slot-value _openGLFeatureFactory 'f_OPENGL))) (not (eq _command (slot-value (GameCommandsFactory.jm_getInstance_0) 'f_EXIT_COMMAND))))
+            (progn
+            (jm_run_0 (CommandRunnable.jnew_2 this _command)))
+            (progn
+            (jm_runTask_1 (PrimaryThreadPool.jm_getInstance_0) (CommandRunnable.jnew_2 this _command))))
+        (if (eq _command (slot-value (GameCommandsFactory.jm_getInstance_0) 'f_QUIT_COMMAND))
+            (progn
+            (return-from jreturn (JR.i32 (- 1))))
+            (progn
+            (return-from jreturn 1))))))
 
+    
+(unless (fboundp 'jm_processInputList_0) (defgeneric jm_processInputList_0 (this)))
+(defmethod jm_processInputList_0 ((this CommandFormInputProcessor))
+  (declare (ignorable this))
+  (let (_motionInputsIndex _list _size _key _gameKeyEvent _index)
+  (declare (ignorable _motionInputsIndex _list _size _key _gameKeyEvent _index))
+    (block jreturn
+        (handler-case (progn
+            (setf _motionInputsIndex (jm_processMotionInputs_0 this))
+            (setf _list (jm_getGameKeyEventList_0 this))
+            (setf _size (jm_size_0 _list))
+            (setf _key 0)
+            (setf _gameKeyEvent nil)
+            (progn
+                (setf _index 0)
+                (block jbreak (loop while (< _index _size) do
+                    (block jcontinue
+                (setf _gameKeyEvent (aref (slot-value _list 'f_objectArray) _index))
+                (setf _key (jm_getKey_0 _gameKeyEvent))
+                (if (not (eq (jm_getSourceId_0 _gameKeyEvent) (slot-value this 'f_MOTION_GESTURE_SOURCE_ID)))
+                    (progn
+                    (if (= (jm_processInput_1 this _key) 1)
+                        (progn
+                        (return-from jbreak))))))
+                    (setf _index (JR.i32 (+ _index 1))))))
+            (jm_clear_0 this)
+            (if (or (> _size 0) (>= _motionInputsIndex 0))
+                (progn
+                (return-from jreturn 1))
+                (progn
+                (return-from jreturn (JR.i32 (- 1))))))
+            (error (_e) (declare (ignorable _e))
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_EXCEPTION) this (slot-value (slot-value this 'f_gameInputStrings) 'f_PROCESS_INPUT) _e)
+            (return-from jreturn (JR.i32 (- 1))))))))
 
-function CommandFormInputProcessor.new(gameKeyEventList, playerInputId, gameCanvas, form)
-    local self = setmetatable(BasicMenuInputProcessor.new(gameKeyEventList, playerInputId, gameCanvas), CommandFormInputProcessor)
-    self:_init_fields()
-        -- super(...) made self above
-        self.form = form
-    return self
-end
+    
+(unless (fboundp 'jm_processMotionInputs_0) (defgeneric jm_processMotionInputs_0 (this)))
+(defmethod jm_processMotionInputs_0 ((this CommandFormInputProcessor))
+  (declare (ignorable this))
+  (let (_lastIndex _motionGestureEvent)
+  (declare (ignorable _lastIndex _motionGestureEvent))
+    (block jreturn
+        (setf _lastIndex (JR.i32 (- (jm_size_0 (slot-value this 'f_motionGestureEventList)) 1)))
+        (if (>= _lastIndex 0)
+            (progn
+            (setf _motionGestureEvent (aref (slot-value (slot-value this 'f_motionGestureEventList) 'f_objectArray) _lastIndex))
+            (jm_processMotionInput_1 this _motionGestureEvent)))
+        (jm_clear_0 (slot-value this 'f_motionGestureEventList))
+        (return-from jreturn _lastIndex))))
 
+    
+(unless (fboundp 'jm_processMotionInput_1) (defgeneric jm_processMotionInput_1 (this p1)))
+(defmethod jm_processMotionInput_1 ((this CommandFormInputProcessor) _motionGestureEvent)
+  (declare (ignorable this _motionGestureEvent))
+  (let (_touchMotionGestureFactory _motionGestureInput _point _index)
+  (declare (ignorable _touchMotionGestureFactory _motionGestureInput _point _index))
+    (block jreturn
+        (setf _touchMotionGestureFactory (TouchMotionGestureFactory.jm_getInstance_0))
+        (setf _motionGestureInput (jm_getMotionGesture_0 _motionGestureEvent))
+        (if (eq _motionGestureInput (slot-value _touchMotionGestureFactory 'f_RELEASED))
+            (progn
+            (setf _point (jm_getCurrentPoint_0 _motionGestureEvent))
+            (if (jm_isInForm_1 (slot-value this 'f_form) _point)
+                (progn
+                (setf _index (jm_getSelectedIndexForPoint_1 (slot-value this 'f_form) _point))
+                (if (/= _index (JR.i32 (- 1)))
+                    (progn
+                    (jm_add_1 (PrimaryPlayerQueueFactory.jm_getInstance_0) (SelectSound.jm_getInstance_0))
+                    (if (= _index (jm_getSelectedIndex_0 (slot-value this 'f_form)))
+                        (progn
+                        (if (jm_isTimeTNT_0 (slot-value this 'f_clickTimeHelper))
+                            (progn
+                            (jm_processCommand_0 this))))
+                        (progn
+                        (jm_setSelectedIndex_1 (slot-value this 'f_form) _index))))
+                    (progn
+                    nil))))
+            (if (slot-value this 'f_hasPressed)
+                (progn
+                (if (not (jm_isTimeTNT_0 (slot-value this 'f_doubleClickTimeHelper)))
+                    (progn
+                    (jm_putF_3 (slot-value this 'f_logUtil) "Double Press" this (slot-value (slot-value this 'f_gameInputStrings) 'f_PROCESS_MOTION_INPUT))
+                    (jm_processCommand_0 this)))
+                (setf (slot-value (slot-value this 'f_doubleClickTimeHelper) 'f_delay) (slot-value this 'f_DOUBLE_CLICK_DELAY))
+                (jm_setStartTimeTNT_0 (slot-value this 'f_doubleClickTimeHelper))))
+            (setf (slot-value this 'f_hasPressed) nil))
+            (if (eq _motionGestureInput (slot-value _touchMotionGestureFactory 'f_PRESSED))
+            (progn
+            (setf (slot-value (slot-value this 'f_doubleClickTimeHelper) 'f_delay) 0)
+            (setf (slot-value this 'f_hasPressed) t)))))))
 
--- throws Exception
-function CommandFormInputProcessor:processInput(key)
-        if key == Canvas.LEFT or key == Canvas.RIGHT or key == Canvas.UP or key == Canvas.DOWN then
-            PrimaryPlayerQueueFactory.getInstance():add(SelectSound.getInstance())
-            self.form:processInputKey(key)
-            return 1
-        elseif key == Canvas.FIRE then
-            PrimaryPlayerQueueFactory.getInstance():add(SelectSound.getInstance())
-            return self:processCommand()
-        end
-        return 0
-end
-
-
-function CommandFormInputProcessor:processCommand()
-        local commandCurrentSelectionForm = self.form
-        local command = commandCurrentSelectionForm:getSelectedCommand()
-        self.logUtil:putF(tostring(command), self, self.PROCESS_COMMAND)
-        local features = Features.getInstance()
-        local openGLFeatureFactory = OpenGLFeatureFactory.getInstance()
-        if SWTUtil.isSWT and features:isFeature(openGLFeatureFactory.OPENGL) and command ~= GameCommandsFactory.getInstance().EXIT_COMMAND then
-            CommandRunnable.new(self, command):run()
-        else
-            PrimaryThreadPool.getInstance():runTask(CommandRunnable.new(self, command))
-        end
-        if command == GameCommandsFactory.getInstance().QUIT_COMMAND then
-            return -1
-        else
-            return 1
-        end
-end
-
-
--- throws Exception
-function CommandFormInputProcessor:processInputList()
-        local try_ok, try_error = pcall(function()
-            local motionInputsIndex = self:processMotionInputs()
-            local list = self:getGameKeyEventList()
-            local size = list:size()
-            local key = 0
-            local gameKeyEvent = nil
-            for index = 0, size - 1 do
-                gameKeyEvent = list.objectArray[index + 1]
-                key = gameKeyEvent:getKey()
-                if gameKeyEvent:getSourceId() ~= self.MOTION_GESTURE_SOURCE_ID then
-                    if self:processInput(key) == 1 then
-                        break
-                    end
-                end
-            end
-            self:clear()
-            if size > 0 or motionInputsIndex >= 0 then
-                return 1
-            else
-                return -1
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.gameInputStrings.PROCESS_INPUT, e)
-            return -1
-        end
-end
-
-
--- throws Exception
-function CommandFormInputProcessor:processMotionInputs()
-        local lastIndex = self.motionGestureEventList:size() - 1
-        if lastIndex >= 0 then
-            local motionGestureEvent = self.motionGestureEventList.objectArray[lastIndex + 1]
-            self:processMotionInput(motionGestureEvent)
-        end
-        self.motionGestureEventList:clear()
-        return lastIndex
-end
-
-
--- throws Exception
-function CommandFormInputProcessor:processMotionInput(motionGestureEvent)
-        local touchMotionGestureFactory = TouchMotionGestureFactory.getInstance()
-        local motionGestureInput = motionGestureEvent:getMotionGesture()
-        if motionGestureInput == touchMotionGestureFactory.RELEASED then
-            local point = motionGestureEvent:getCurrentPoint()
-            if self.form:isInForm(point) then
-                local index = self.form:getSelectedIndexForPoint(point)
-                if index ~= -1 then
-                    PrimaryPlayerQueueFactory.getInstance():add(SelectSound.getInstance())
-                    if index == self.form:getSelectedIndex() then
-                        if self.clickTimeHelper:isTimeTNT() then
-                            self:processCommand()
-                        end
-                    else
-                        self.form:setSelectedIndex(index)
-                    end
-                else
-                end
-            end
-            if self.hasPressed then
-                if not self.doubleClickTimeHelper:isTimeTNT() then
-                    self.logUtil:putF("Double Press", self, self.gameInputStrings.PROCESS_MOTION_INPUT)
-                    self:processCommand()
-                end
-                self.doubleClickTimeHelper.delay = self.DOUBLE_CLICK_DELAY
-                self.doubleClickTimeHelper:setStartTimeTNT()
-            end
-            self.hasPressed = false
-        elseif motionGestureInput == touchMotionGestureFactory.PRESSED then
-            self.doubleClickTimeHelper.delay = 0
-            self.hasPressed = true
-        end
-end
+    
+(unless (fboundp 'jm_toString_0) (defgeneric jm_toString_0 (this)))
+(defmethod jm_toString_0 ((this CommandFormInputProcessor))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_toString_0 (jm_append_1 (jm_append_1 (jm_append_1 (StringMaker.jnew_0) (call-next-method this)) (slot-value this 'f_NAME_LABEL)) (jm_toString_0 (slot-value this 'f_form))))))))
 
 
-function CommandFormInputProcessor:toString()
-        return tostring(StringMaker.new():append(tostring(BasicMenuInputProcessor)):append(self.NAME_LABEL):append(tostring(self.form)))
-end
-CommandFormInputProcessor.__tostring = function(self) return self:toString() end
-
-return CommandFormInputProcessor
 

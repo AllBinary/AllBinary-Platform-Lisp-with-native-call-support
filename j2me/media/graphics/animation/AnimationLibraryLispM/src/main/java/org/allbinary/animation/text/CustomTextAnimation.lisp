@@ -1,124 +1,120 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation.text
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation.text
 
--- local Font = require("javax.microedition.lcdui.Font")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local FontDebugFactory = require("org.allbinary.graphics.font.FontDebugFactory")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local TextAnimation = require("org.allbinary.animation.text.TextAnimation")
-local TextInterface = require("org.allbinary.animation.text.TextInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(defclass CustomTextAnimation (TextAnimation)
+  ((f_fontDebugFactory :initform nil)
+   (f_fontSize :initform 0)
+   (f_font :initform nil)
+   (f_lastText :initform nil)
+   (f_hasChanged :initform nil)
+   (f_textWidth :initform 0)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(defun CustomTextAnimation.jnew_3 (_text _fontSize _animationBehavior)
+  (declare (ignorable _text _fontSize _animationBehavior))
+  (let ((this (make-instance 'CustomTextAnimation)))
+    (setf (slot-value this 'f_fontDebugFactory) (FontDebugFactory.jm_getInstance_0))
+    
+    
+    (setf (slot-value this 'f_lastText) (slot-value (StringUtil.jm_getInstance_0) 'f_INIT_STRING))
+    (setf (slot-value this 'f_hasChanged) t)
+    
+  (let ()
+    (block jreturn
+        nil
+        (setf (slot-value this 'f_fontSize) _fontSize)
+        (setf (slot-value this 'f_font) (Font.jm_getFont_3 (Font.jstatic_FACE_SYSTEM) (Font.jstatic_STYLE_PLAIN) _fontSize))))
+    this))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(unless (fboundp 'jm_paintXY_3) (defgeneric jm_paintXY_3 (this p1 p2 p3)))
+(defmethod jm_paintXY_3 ((this CustomTextAnimation) _graphics _x _y)
+  (declare (ignorable this _graphics _x _y))
+  (let (_existingFont)
+  (declare (ignorable _existingFont))
+    (block jreturn
+        (jm_process_1 (slot-value this 'f_myFontProcessor) _graphics)
+        (setf _existingFont (jm_getFont_0 _graphics))
+        (jm_setFont_2 (slot-value this 'f_fontDebugFactory) (slot-value this 'f_font) _graphics)
+        (jm_paintXYNoUpdate_3 this _graphics _x _y)
+        (jm_setFont_2 (slot-value this 'f_fontDebugFactory) _existingFont _graphics))))
 
-local CustomTextAnimation = {}
-CustomTextAnimation.__index = CustomTextAnimation
-CustomTextAnimation.className = "CustomTextAnimation"
-setmetatable(CustomTextAnimation, {__index = TextAnimation})
+    
+(unless (fboundp 'jm_setScale_2) (defgeneric jm_setScale_2 (this p1 p2)))
+(defmethod jm_setScale_2 ((this CustomTextAnimation) _scaleX _scaleY)
+  (declare (ignorable this _scaleX _scaleY))
+  (let ()
+    (block jreturn
+        (if (/= _scaleX _scaleY)
+            (progn
+            (error (JR.newException "RuntimeException"))))
+        (setf (slot-value this 'f_hasChanged) t)
+        (setf (slot-value this 'f_font) (Font.jm_getFont_3 (Font.jstatic_FACE_SYSTEM) (Font.jstatic_STYLE_PLAIN) (JR.d2i (* (coerce (slot-value this 'f_fontSize) 'single-float) _scaleX)))))))
 
-function CustomTextAnimation:_init_fields()
-    self.fontDebugFactory = FontDebugFactory.getInstance()
-    self.fontSize = nil
-    self.font = nil
-    self.lastText = StringUtil.getInstance().INIT_STRING
-    self.hasChanged = true
-    self.textWidth = 0
-end
+    
+(unless (fboundp 'jm_setTextWithOnMeasure_2) (defgeneric jm_setTextWithOnMeasure_2 (this p1 p2)))
+(defmethod jm_setTextWithOnMeasure_2 ((this CustomTextAnimation) _text _textChangeListener)
+  (declare (ignorable this _text _textChangeListener))
+  (let ()
+    (block jreturn
+        (call-next-method this _text _textChangeListener))))
 
+    
+(unless (fboundp 'jm_setText_1) (defgeneric jm_setText_1 (this p1)))
+(defmethod jm_setText_1 ((this CustomTextAnimation) _text)
+  (declare (ignorable this _text))
+  (let ()
+    (block jreturn
+        (if (not (eq (slot-value this 'f_lastText) _text))
+            (progn
+            (setf (slot-value this 'f_hasChanged) t)
+            (setf (slot-value this 'f_lastText) _text)
+            (call-next-method this _text))))))
 
-function CustomTextAnimation.new(text, fontSize, animationBehavior)
-    local self = setmetatable(TextAnimation.new(text, animationBehavior), CustomTextAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self.fontSize = fontSize
-        self.font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, fontSize)
-    return self
-end
+    
+(unless (fboundp 'jm_getText_0) (defgeneric jm_getText_0 (this)))
+(defmethod jm_getText_0 ((this CustomTextAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_lastText)))))
 
+    
+(unless (fboundp 'jm_getWidth_0) (defgeneric jm_getWidth_0 (this)))
+(defmethod jm_getWidth_0 ((this CustomTextAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (if (slot-value this 'f_hasChanged)
+            (progn
+            (setf (slot-value this 'f_textWidth) (jm_stringWidth_1 (slot-value this 'f_font) (aref (slot-value this 'f_textArrayP) 0)))
+            (setf (slot-value this 'f_hasChanged) nil)))
+        (return-from jreturn (slot-value this 'f_textWidth)))))
 
-function CustomTextAnimation:paintXY(graphics, x, y)
-        self.myFontProcessor:process(graphics)
-        local existingFont = graphics:getFont()
-        self.fontDebugFactory:setFont(self.font, graphics)
-        TextAnimation.paintXYNoUpdate(self, graphics, x, y)
-        self.fontDebugFactory:setFont(existingFont, graphics)
-end
-
-
-function CustomTextAnimation:setScale(scaleX, scaleY)
-        if scaleX ~= scaleY then
-            error(java_exception("RuntimeException"), 0)
-        end
-        self.hasChanged = true
-        self.font = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, java_int(((self.fontSize + 0.0) * scaleX)))
-end
-
-
-function CustomTextAnimation:setTextWithOnMeasure(text, textChangeListener)
-        TextAnimation.setTextWithOnMeasure(self, text, textChangeListener)
-end
-
-
-function CustomTextAnimation:setText(text)
-        if self.lastText ~= text then
-            self.hasChanged = true
-            self.lastText = text
-            TextAnimation.setText(self, text)
-        end
-end
-
-
-function CustomTextAnimation:getText()
-        return self.lastText
-end
-
-
-function CustomTextAnimation:getWidth()
-        if self.hasChanged then
-            self.textWidth = self.font:stringWidth(self.textArrayP[1])
-            self.hasChanged = false
-        end
-        return self.textWidth
-end
+    
+(unless (fboundp 'jm_getFontHeight_0) (defgeneric jm_getFontHeight_0 (this)))
+(defmethod jm_getFontHeight_0 ((this CustomTextAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getHeight_0 (slot-value this 'f_font))))))
 
 
-function CustomTextAnimation:getFontHeight()
-        return self.font:getHeight()
-end
-
-return CustomTextAnimation
 

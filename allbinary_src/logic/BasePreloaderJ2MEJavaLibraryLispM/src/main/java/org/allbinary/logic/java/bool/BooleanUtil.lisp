@@ -25,6 +25,7 @@
 (defun BooleanUtil.jstatic_instance ()
   (when (eq BooleanUtil.jcell_instance :jnone) (setf BooleanUtil.jcell_instance (BooleanUtil.jnew_0)))
   BooleanUtil.jcell_instance)
+(defun (setf BooleanUtil.jstatic_instance) (value) (setf BooleanUtil.jcell_instance value))
 
     
 (defun BooleanUtil.jm_getInstance_0 ()

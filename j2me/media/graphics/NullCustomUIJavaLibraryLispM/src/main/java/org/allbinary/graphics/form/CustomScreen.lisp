@@ -1,28 +1,17 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.form
 
-local CustomDisplayable = require("org.allbinary.graphics.form.CustomDisplayable")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass CustomScreen (CustomDisplayable)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun CustomScreen.jnew_0 ()
+  (let ((this (make-instance 'CustomScreen)))
+    this))
 
-local CustomScreen = {}
-CustomScreen.__index = CustomScreen
-CustomScreen.className = "CustomScreen"
-setmetatable(CustomScreen, {__index = CustomDisplayable})
 
-function CustomScreen.new()
-    local self = setmetatable(CustomDisplayable.new(), CustomScreen)
-    return self
-end
-
-return CustomScreen
 

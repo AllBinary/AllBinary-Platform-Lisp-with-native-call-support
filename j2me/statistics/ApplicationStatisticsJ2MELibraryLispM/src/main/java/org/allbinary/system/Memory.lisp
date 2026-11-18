@@ -33,9 +33,9 @@
     (block jreturn
         (setf _stringBuffer (StringMaker.jnew_0))
         (jm_append_1 _stringBuffer "Memory: Free: ")
-        (jm_appendlong_1 _stringBuffer (JR.className (Runtime.jm_getRuntime_0)))
+        (jm_appendlong_1 _stringBuffer (jm_freeMemory_0 (Runtime.jm_getRuntime_0)))
         (jm_append_1 _stringBuffer " Total: ")
-        (jm_appendlong_1 _stringBuffer (JR.className (Runtime.jm_getRuntime_0)))
+        (jm_appendlong_1 _stringBuffer (jm_totalMemory_0 (Runtime.jm_getRuntime_0)))
         (return-from jreturn (jm_toString_0 _stringBuffer)))))
 
 

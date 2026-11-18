@@ -1,47 +1,41 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2022 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.displayable.canvas
 
-local GameRunnable = require("org.allbinary.game.displayable.canvas.GameRunnable")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass NullWaitGameRunnable (GameRunnable)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar NullWaitGameRunnable.jcell_instance :jnone)
+(defun NullWaitGameRunnable.jstatic_instance ()
+  (when (eq NullWaitGameRunnable.jcell_instance :jnone) (setf NullWaitGameRunnable.jcell_instance (NullWaitGameRunnable.jnew_0)))
+  NullWaitGameRunnable.jcell_instance)
+(defun (setf NullWaitGameRunnable.jstatic_instance) (value) (setf NullWaitGameRunnable.jcell_instance value))
 
-local NullWaitGameRunnable = {}
-NullWaitGameRunnable.__index = NullWaitGameRunnable
-NullWaitGameRunnable.className = "NullWaitGameRunnable"
-setmetatable(NullWaitGameRunnable, {__index = GameRunnable})
+(defun NullWaitGameRunnable.jnew_0 ()
+  (let ((this (make-instance 'NullWaitGameRunnable)))
+    this))
 
-function NullWaitGameRunnable.new()
-    local self = setmetatable(GameRunnable.new(), NullWaitGameRunnable)
-    return self
-end
+    
+(defun NullWaitGameRunnable.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (NullWaitGameRunnable.jstatic_instance)))))
 
 
-function NullWaitGameRunnable.getInstance()
-        return NullWaitGameRunnable.instance
-end
-
-NullWaitGameRunnable.instance = NullWaitGameRunnable.new()
-
-return NullWaitGameRunnable
 

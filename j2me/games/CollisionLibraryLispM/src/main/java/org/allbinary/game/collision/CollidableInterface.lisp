@@ -1,61 +1,53 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.collision
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.collision
 
-local CollidableCompositeLayer = require("org.allbinary.game.layer.CollidableCompositeLayer")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local NamedInterface = require("org.allbinary.layer.NamedInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass CollidableInterface (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun CollidableInterface.jnew_0 ()
+  (let ((this (make-instance 'CollidableInterface)))
+    this))
 
--- Java interface
-local CollidableInterface = {}
-CollidableInterface.__index = CollidableInterface
-CollidableInterface.className = "CollidableInterface"
-setmetatable(CollidableInterface, {__index = NamedInterface})
+    
+(unless (fboundp 'jm_isCollidable_1) (defgeneric jm_isCollidable_1 (this p1)))
+(defmethod jm_isCollidable_1 ((this CollidableInterface) _ownerLayer)
+  (declare (ignorable this _ownerLayer))
+  (error (JR.newException "AbstractMethodError" "isCollidable")))
 
+    
+(unless (fboundp 'jm_isCollision_2) (defgeneric jm_isCollision_2 (this p1 p2)))
+(defmethod jm_isCollision_2 ((this CollidableInterface) _ownerLayer _collidableInterfaceCompositeInterface)
+  (declare (ignorable this _ownerLayer _collidableInterfaceCompositeInterface))
+  (error (JR.newException "AbstractMethodError" "isCollision")))
 
--- throws Exception
-function CollidableInterface:isCollidable(ownerLayer)
-    error("abstract method isCollidable")
-end
+    
+(unless (fboundp 'jm_collide_2) (defgeneric jm_collide_2 (this p1 p2)))
+(defmethod jm_collide_2 ((this CollidableInterface) _ownerLayer _collidableInterfaceCompositeInterface)
+  (declare (ignorable this _ownerLayer _collidableInterfaceCompositeInterface))
+  (error (JR.newException "AbstractMethodError" "collide")))
 
-
--- throws Exception
-function CollidableInterface:isCollision(ownerLayer, collidableInterfaceCompositeInterface)
-    error("abstract method isCollision")
-end
-
-
--- throws Exception
-function CollidableInterface:collide(ownerLayer, collidableInterfaceCompositeInterface)
-    error("abstract method collide")
-end
+    
+(unless (fboundp 'jm_getCollisionTypeWith_1) (defgeneric jm_getCollisionTypeWith_1 (this p1)))
+(defmethod jm_getCollisionTypeWith_1 ((this CollidableInterface) _layerInterface)
+  (declare (ignorable this _layerInterface))
+  (error (JR.newException "AbstractMethodError" "getCollisionTypeWith")))
 
 
-function CollidableInterface:getCollisionTypeWith(layerInterface)
-    error("abstract method getCollisionTypeWith")
-end
-
-return CollidableInterface
 

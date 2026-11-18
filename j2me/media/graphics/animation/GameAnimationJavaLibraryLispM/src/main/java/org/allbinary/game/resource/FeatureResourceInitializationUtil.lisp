@@ -1,63 +1,55 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.resource
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.resource
 
-local FeaturedAnimationInterfaceFactoryInterfaceFactory = require("org.allbinary.animation.FeaturedAnimationInterfaceFactoryInterfaceFactory")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass FeatureResourceInitializationUtil (JObject)
+  ((f_logUtil :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar FeatureResourceInitializationUtil.jcell_instance :jnone)
+(defun FeatureResourceInitializationUtil.jstatic_instance ()
+  (when (eq FeatureResourceInitializationUtil.jcell_instance :jnone) (setf FeatureResourceInitializationUtil.jcell_instance (FeatureResourceInitializationUtil.jnew_0)))
+  FeatureResourceInitializationUtil.jcell_instance)
+(defun (setf FeatureResourceInitializationUtil.jstatic_instance) (value) (setf FeatureResourceInitializationUtil.jcell_instance value))
 
-local FeatureResourceInitializationUtil = {}
-FeatureResourceInitializationUtil.__index = FeatureResourceInitializationUtil
-FeatureResourceInitializationUtil.className = "FeatureResourceInitializationUtil"
+(defun FeatureResourceInitializationUtil.jnew_0 ()
+  (let ((this (make-instance 'FeatureResourceInitializationUtil)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    this))
 
-function FeatureResourceInitializationUtil:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-end
+    
+(defun FeatureResourceInitializationUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (FeatureResourceInitializationUtil.jstatic_instance)))))
 
-function FeatureResourceInitializationUtil.new()
-    local self = setmetatable({}, FeatureResourceInitializationUtil)
-    self:_init_fields()
-    return self
-end
+    
+(unless (fboundp 'jm_init_1) (defgeneric jm_init_1 (this p1)))
+(defmethod jm_init_1 ((this FeatureResourceInitializationUtil) _level)
+  (declare (ignorable this _level))
+  (let (_commonStrings _featuredResourceFactory)
+  (declare (ignorable _commonStrings _featuredResourceFactory))
+    (block jreturn
+        (setf _commonStrings (CommonStrings.jm_getInstance_0))
+        (jm_putF_3 (slot-value this 'f_logUtil) (slot-value _commonStrings 'f_START) this (slot-value _commonStrings 'f_INIT))
+        (setf _featuredResourceFactory (FeaturedAnimationInterfaceFactoryInterfaceFactory.jm_getInstance_0))
+        (jm_init_1 _featuredResourceFactory _level)
+        (jm_init_1 (FeaturedResourceRelativeRelationshipFactory.jm_getInstance_0) _level))))
 
 
-function FeatureResourceInitializationUtil.getInstance()
-        return FeatureResourceInitializationUtil.instance
-end
-
-
--- throws Exception
-function FeatureResourceInitializationUtil:init(level)
-        local commonStrings = CommonStrings.getInstance()
-        self.logUtil:putF(commonStrings.START, self, commonStrings.INIT)
-        local featuredResourceFactory = FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance()
-        featuredResourceFactory:init(level)
-        FeaturedResourceRelativeRelationshipFactory.getInstance():init(level)
-end
-
-FeatureResourceInitializationUtil.instance = FeatureResourceInitializationUtil.new()
-
-return FeatureResourceInitializationUtil
 

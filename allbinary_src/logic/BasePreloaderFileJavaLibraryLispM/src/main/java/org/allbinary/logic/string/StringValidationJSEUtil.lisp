@@ -1,51 +1,50 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.string
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.string
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass StringValidationJSEUtil (JObject)
+  ())
+
+    
+(defun StringValidationJSEUtil.jnew_0 ()
+  (let ((this (make-instance 'StringValidationJSEUtil)))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(defun StringValidationJSEUtil.jm_isBlank_1 (_string)
+  (declare (ignorable _string))
+  (let (_len _c _i)
+  (declare (ignorable _len _c _i))
+    (block jreturn
+        (setf _len (length _string))
+        (progn
+            (setf _i 0)
+            (block jbreak (loop while (< _i _len) do
+                (block jcontinue
+            (setf _c (JR.charAt _string _i))
+            (if (eq (Character.jm_isWhitespace_1 _c) nil)
+                (progn
+                (return-from jreturn nil))))
+                (setf _i (JR.i32 (+ _i 1))))))
+        (return-from jreturn t))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local StringValidationJSEUtil = {}
-StringValidationJSEUtil.__index = StringValidationJSEUtil
-StringValidationJSEUtil.className = "StringValidationJSEUtil"
-
-
-function StringValidationJSEUtil.new()
-    local self = setmetatable({}, StringValidationJSEUtil)
-    return self
-end
-
-
-function StringValidationJSEUtil.isBlank(string)
-        local len = #string
-        for i = 0, len - 1 do
-            local c = string.sub(string, (i) + 1, (i) + 1)
-            if (string.match(c, "^%s$") ~= nil) == false then
-                return false
-            end
-        end
-        return true
-end
-
-return StringValidationJSEUtil
 

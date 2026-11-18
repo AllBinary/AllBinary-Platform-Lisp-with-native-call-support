@@ -1,53 +1,44 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation.image
 
--- local Image = require("javax.microedition.lcdui.Image")
-local Animation = require("org.allbinary.animation.Animation")
-local AnimationBehaviorFactory = require("org.allbinary.animation.AnimationBehaviorFactory")
-local PrimitiveIntUtil = require("org.allbinary.logic.math.PrimitiveIntUtil")
-local BaseImageAnimationFactory = require("org.allbinary.animation.image.BaseImageAnimationFactory")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass BottomToTopImageAnimationFactory (BaseImageAnimationFactory)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun BottomToTopImageAnimationFactory.jnew_2 (_image _animationBehaviorFactory)
+  (declare (ignorable _image _animationBehaviorFactory))
+  (let ((this (make-instance 'BottomToTopImageAnimationFactory)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
-local BottomToTopImageAnimationFactory = {}
-BottomToTopImageAnimationFactory.__index = BottomToTopImageAnimationFactory
-BottomToTopImageAnimationFactory.className = "BottomToTopImageAnimationFactory"
-setmetatable(BottomToTopImageAnimationFactory, {__index = BaseImageAnimationFactory})
-
-
-function BottomToTopImageAnimationFactory.new(image, animationBehaviorFactory)
-    local self = setmetatable(BaseImageAnimationFactory.new(image, PrimitiveIntUtil.getArrayInstance(), image:getWidth(), image:getHeight(), 0, 0, animationBehaviorFactory), BottomToTopImageAnimationFactory)
-        -- super(...) made self above
-    return self
-end
+    
+(unless (fboundp 'jm_getInstance_1) (defgeneric jm_getInstance_1 (this p1)))
+(defmethod jm_getInstance_1 ((this BottomToTopImageAnimationFactory) _instanceId)
+  (declare (ignorable this _instanceId))
+  (let (_scaledImage)
+  (declare (ignorable _scaledImage))
+    (block jreturn
+        (setf _scaledImage (jm_createImage_5 (slot-value this 'f_animationFactoryImageScaleUtil) (jm_getImage_0 this) (slot-value (slot-value this 'f_animationFactoryInitializationVisitor) 'f_width) (slot-value (slot-value this 'f_animationFactoryInitializationVisitor) 'f_height) (slot-value (slot-value this 'f_scaleProperties) 'f_scaleWidth) (slot-value (slot-value this 'f_scaleProperties) 'f_scaleHeight)))
+        (return-from jreturn (BottomToTopImageAnimation.jnew_2 _scaledImage (jm_getOrCreateInstance_0 (slot-value this 'f_animationBehaviorFactory)))))))
 
 
--- throws Exception
-function BottomToTopImageAnimationFactory:getInstance(instanceId)
-        local scaledImage = self.animationFactoryImageScaleUtil:createImage(self:getImage(), self.animationFactoryInitializationVisitor.width, self.animationFactoryInitializationVisitor.height, self.scaleProperties.scaleWidth, self.scaleProperties.scaleHeight)
-        return BottomToTopImageAnimation.new(scaledImage, self.animationBehaviorFactory:getOrCreateInstance())
-end
-
-return BottomToTopImageAnimationFactory
 

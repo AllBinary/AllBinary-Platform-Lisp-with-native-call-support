@@ -1,55 +1,48 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.trackball.action
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.input.motion.trackball.action
 
-local PlatformInputMappingFactory = require("org.allbinary.game.input.PlatformInputMappingFactory")
-local GameKeyCompleteMotionGestureInputEvent = require("org.allbinary.game.input.motion.action.GameKeyCompleteMotionGestureInputEvent")
-local TrackballMotionGestureFactory = require("org.allbinary.input.motion.gesture.TrackballMotionGestureFactory")
-local NullUtil = require("org.allbinary.logic.NullUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass DownTrackballInputToGameKeyEventAction (GameKeyCompleteMotionGestureInputEvent)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar DownTrackballInputToGameKeyEventAction.jcell_instance :jnone)
+(defun DownTrackballInputToGameKeyEventAction.jstatic_instance ()
+  (when (eq DownTrackballInputToGameKeyEventAction.jcell_instance :jnone) (setf DownTrackballInputToGameKeyEventAction.jcell_instance (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT)))
+  DownTrackballInputToGameKeyEventAction.jcell_instance)
+(defun (setf DownTrackballInputToGameKeyEventAction.jstatic_instance) (value) (setf DownTrackballInputToGameKeyEventAction.jcell_instance value))
 
-local DownTrackballInputToGameKeyEventAction = {}
-DownTrackballInputToGameKeyEventAction.__index = DownTrackballInputToGameKeyEventAction
-DownTrackballInputToGameKeyEventAction.className = "DownTrackballInputToGameKeyEventAction"
-setmetatable(DownTrackballInputToGameKeyEventAction, {__index = GameKeyCompleteMotionGestureInputEvent})
+    
+(defun DownTrackballInputToGameKeyEventAction.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (if (eq (DownTrackballInputToGameKeyEventAction.jstatic_instance) (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT))
+            (progn
+            (setf (DownTrackballInputToGameKeyEventAction.jstatic_instance) (DownTrackballInputToGameKeyEventAction.jnew_0))))
+        (return-from jreturn (DownTrackballInputToGameKeyEventAction.jstatic_instance)))))
+
+    
+(defun DownTrackballInputToGameKeyEventAction.jnew_0 ()
+  (let ((this (make-instance 'DownTrackballInputToGameKeyEventAction)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
 
-function DownTrackballInputToGameKeyEventAction.getInstance()
-        if DownTrackballInputToGameKeyEventAction.instance == NullUtil.getInstance().NULL_OBJECT then
-            DownTrackballInputToGameKeyEventAction.instance = DownTrackballInputToGameKeyEventAction.new()
-        end
-        return DownTrackballInputToGameKeyEventAction.instance
-end
-
-
-function DownTrackballInputToGameKeyEventAction.new()
-    local self = setmetatable(GameKeyCompleteMotionGestureInputEvent.new("Down Action", TrackballMotionGestureFactory.getInstance().DOWN, PlatformInputMappingFactory.getInstance():getPersistentInputMappingInstance():getInputMapping()), DownTrackballInputToGameKeyEventAction)
-        -- super(...) made self above
-    return self
-end
-
-DownTrackballInputToGameKeyEventAction.instance = NullUtil.getInstance().NULL_OBJECT
-
-return DownTrackballInputToGameKeyEventAction
 

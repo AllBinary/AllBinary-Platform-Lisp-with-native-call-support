@@ -1,42 +1,32 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles.shader
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.opengles.shader
 
--- local GL10 = require("javax.microedition.khronos.opengles.GL10")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass OpenGLObject3dProcessor (JObject)
+  ((f_commonStrings :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun OpenGLObject3dProcessor.jnew_0 ()
+  (let ((this (make-instance 'OpenGLObject3dProcessor)))
+    (setf (slot-value this 'f_commonStrings) (CommonStrings.jm_getInstance_0))
+    this))
 
-local OpenGLObject3dProcessor = {}
-OpenGLObject3dProcessor.__index = OpenGLObject3dProcessor
-OpenGLObject3dProcessor.className = "OpenGLObject3dProcessor"
+    
+(unless (fboundp 'jm_process_2) (defgeneric jm_process_2 (this p1 p2)))
+(defmethod jm_process_2 ((this OpenGLObject3dProcessor) _gl _object3d)
+  (declare (ignorable this _gl _object3d))
+  (let ()
+    (block jreturn nil)))
 
-function OpenGLObject3dProcessor:_init_fields()
-    self.commonStrings = CommonStrings.getInstance()
-end
-
-function OpenGLObject3dProcessor.new()
-    local self = setmetatable({}, OpenGLObject3dProcessor)
-    self:_init_fields()
-    return self
-end
-
-
-function OpenGLObject3dProcessor:process(gl, object3d)
-end
+    
+(unless (fboundp 'jm_process_3) (defgeneric jm_process_3 (this p1 p2 p3)))
+(defmethod jm_process_3 ((this OpenGLObject3dProcessor) _gl _object3d _index)
+  (declare (ignorable this _gl _object3d _index))
+  (let ()
+    (block jreturn nil)))
 
 
--- Java overloaded method: Lua keeps the last definition
-function OpenGLObject3dProcessor:process(gl, object3d, index)
-end
-
-return OpenGLObject3dProcessor
 

@@ -1,167 +1,195 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io.path
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.io.path
 
-local FilePathData = require("org.allbinary.logic.io.file.FilePathData")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local StringValidationUtil = require("org.allbinary.logic.string.StringValidationUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+;Used to correct user input for paths
+(defclass PathUtil (JObject)
+  ((f_abPathData :initform nil)
+   (f_filePathData :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar PathUtil.jcell_instance :jnone)
+(defun PathUtil.jstatic_instance ()
+  (when (eq PathUtil.jcell_instance :jnone) (setf PathUtil.jcell_instance (PathUtil.jnew_0)))
+  PathUtil.jcell_instance)
+(defun (setf PathUtil.jstatic_instance) (value) (setf PathUtil.jcell_instance value))
 
---Used to correct user input for paths
-local PathUtil = {}
-PathUtil.__index = PathUtil
-PathUtil.className = "PathUtil"
+    
+(defun PathUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (PathUtil.jstatic_instance)))))
 
-function PathUtil:_init_fields()
-    self.abPathData = AbPathData.getInstance()
-    self.filePathData = FilePathData.getInstance()
-end
+    
+(defun PathUtil.jnew_0 ()
+  (let ((this (make-instance 'PathUtil)))
+    (setf (slot-value this 'f_abPathData) (AbPathData.jm_getInstance_0))
+    (setf (slot-value this 'f_filePathData) (FilePathData.jm_getInstance_0))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(unless (fboundp 'jm_getExtensionWithAbFilePath_1) (defgeneric jm_getExtensionWithAbFilePath_1 (this p1)))
+(defmethod jm_getExtensionWithAbFilePath_1 ((this PathUtil) _abFilePath)
+  (declare (ignorable this _abFilePath))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getExtension_1 (slot-value this 'f_abPathData) (jm_toString_0 _abFilePath))))))
+
+    
+(unless (fboundp 'jm_getExtensionWithAbPath_1) (defgeneric jm_getExtensionWithAbPath_1 (this p1)))
+(defmethod jm_getExtensionWithAbPath_1 ((this PathUtil) _abPath)
+  (declare (ignorable this _abPath))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getExtension_1 (slot-value this 'f_abPathData) (jm_toString_0 _abPath))))))
+
+    
+(unless (fboundp 'jm_getWithoutExtensionWithAbFilePath_1) (defgeneric jm_getWithoutExtensionWithAbFilePath_1 (this p1)))
+(defmethod jm_getWithoutExtensionWithAbFilePath_1 ((this PathUtil) _abFilePath)
+  (declare (ignorable this _abFilePath))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getWithoutExtension_1 this (jm_toString_0 _abFilePath))))))
+
+    
+(unless (fboundp 'jm_getWithoutExtensionWithAbPath_1) (defgeneric jm_getWithoutExtensionWithAbPath_1 (this p1)))
+(defmethod jm_getWithoutExtensionWithAbPath_1 ((this PathUtil) _abPath)
+  (declare (ignorable this _abPath))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getWithoutExtension_1 this (jm_toString_0 _abPath))))))
+
+    
+(unless (fboundp 'jm_getWithoutExtension_1) (defgeneric jm_getWithoutExtension_1 (this p1)))
+(defmethod jm_getWithoutExtension_1 ((this PathUtil) _filePath)
+  (declare (ignorable this _filePath))
+  (let (_indexOfFileExtensionDelmiter _pathWithoutExtension)
+  (declare (ignorable _indexOfFileExtensionDelmiter _pathWithoutExtension))
+    (block jreturn
+        (setf _indexOfFileExtensionDelmiter (jm_getExtensionIndex_1 (slot-value this 'f_abPathData) _filePath))
+        (setf _pathWithoutExtension _filePath)
+        (if (>= _indexOfFileExtensionDelmiter 0)
+            (progn
+            (setf _pathWithoutExtension (JR.substring _filePath 0 _indexOfFileExtensionDelmiter))))
+        (return-from jreturn _pathWithoutExtension))))
+
+    
+(unless (fboundp 'jm_isValid_1) (defgeneric jm_isValid_1 (this p1)))
+(defmethod jm_isValid_1 ((this PathUtil) _path)
+  (declare (ignorable this _path))
+  (let ()
+    (block jreturn
+        (if (jm_isValidStart_1 this _path)
+            (progn
+            (if (jm_isValidEnd_1 this _path)
+                (progn
+                (return-from jreturn t)))))
+        (return-from jreturn nil))))
+
+    
+(unless (fboundp 'jm_isValidStart_1) (defgeneric jm_isValidStart_1 (this p1)))
+(defmethod jm_isValidStart_1 ((this PathUtil) _path)
+  (declare (ignorable this _path))
+  (let ()
+    (block jreturn
+        (if (or (eq (JR.charAt _path 0) (slot-value (slot-value this 'f_abPathData) 'f_SEPARATORCHAR)) (eq (JR.charAt _path 0) (char-code #\.)))
+            (progn
+            (return-from jreturn t))
+            (progn
+            (return-from jreturn nil))))))
+
+    
+(unless (fboundp 'jm_isValidEnd_1) (defgeneric jm_isValidEnd_1 (this p1)))
+(defmethod jm_isValidEnd_1 ((this PathUtil) _path)
+  (declare (ignorable this _path))
+  (let (_stringValidationUtil)
+  (declare (ignorable _stringValidationUtil))
+    (block jreturn
+        (setf _stringValidationUtil (StringValidationUtil.jm_getInstance_0))
+        (if (jm_isEmpty_1 _stringValidationUtil _path)
+            (progn
+            (return-from jreturn nil)))
+        (if (eq (JR.charAt _path (JR.i32 (- (length _path) 1))) (slot-value (slot-value this 'f_abPathData) 'f_SEPARATORCHAR))
+            (progn
+            (return-from jreturn t))
+            (progn
+            (return-from jreturn nil))))))
+
+    
+(unless (fboundp 'jm_adjustStart_1) (defgeneric jm_adjustStart_1 (this p1)))
+(defmethod jm_adjustStart_1 ((this PathUtil) _path)
+  (declare (ignorable this _path))
+  (let ()
+    (block jreturn
+        (if (not (jm_isValidStart_1 this _path))
+            (progn
+            (setf _path (JR.concat (JR.str (slot-value (slot-value this 'f_abPathData) 'f_SEPARATOR)) _path))))
+        (return-from jreturn _path))))
+
+    
+(unless (fboundp 'jm_adjustEnd_1) (defgeneric jm_adjustEnd_1 (this p1)))
+(defmethod jm_adjustEnd_1 ((this PathUtil) _path)
+  (declare (ignorable this _path))
+  (let ()
+    (block jreturn
+        (if (not (jm_isValidEnd_1 this _path))
+            (progn
+            (setf _path (JR.concat _path (JR.str (slot-value (slot-value this 'f_abPathData) 'f_SEPARATOR))))))
+        (return-from jreturn _path))))
+
+    
+(unless (fboundp 'jm_adjust_1) (defgeneric jm_adjust_1 (this p1)))
+(defmethod jm_adjust_1 ((this PathUtil) _path)
+  (declare (ignorable this _path))
+  (let (_stringValidationUtil)
+  (declare (ignorable _stringValidationUtil))
+    (block jreturn
+        (setf _stringValidationUtil (StringValidationUtil.jm_getInstance_0))
+        (if (jm_isEmpty_1 _stringValidationUtil _path)
+            (progn
+            (return-from jreturn (slot-value (slot-value this 'f_abPathData) 'f_SEPARATOR))))
+        (if (>= (JR.indexOf _path (JR.unescape "\\\\")) 0)
+            (progn
+            (setf _path (JR.replace _path 92 (slot-value (slot-value this 'f_abPathData) 'f_SEPARATORCHAR)))))
+        (return-from jreturn _path))))
+
+    
+(unless (fboundp 'jm_removeNameFromPath_1) (defgeneric jm_removeNameFromPath_1 (this p1)))
+(defmethod jm_removeNameFromPath_1 ((this PathUtil) _path)
+  (declare (ignorable this _path))
+  (let (_endIndex _pathWithoutName)
+  (declare (ignorable _endIndex _pathWithoutName))
+    (block jreturn
+        (setf _endIndex (JR.lastIndexOf _path (slot-value (slot-value this 'f_abPathData) 'f_SEPARATOR)))
+        (if (< _endIndex 0)
+            (progn
+            (setf _endIndex (JR.lastIndexOf _path (slot-value (slot-value this 'f_filePathData) 'f_SEPARATORCHAR)))))
+        (if (< _endIndex 0)
+            (progn
+            (return-from jreturn (AbPath.jm_createAbPath_0))))
+        (if (= (length _path) (JR.i32 (+ _endIndex 1)))
+            (progn
+            (return-from jreturn (jm_removeNameFromPath_1 this (JR.substring _path 0 (JR.i32 (- _endIndex 1))))))
+            (progn
+            (setf _pathWithoutName (JR.substring _path 0 _endIndex))
+            (return-from jreturn (AbPath.jnew_2 _pathWithoutName (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING))))))))
 
 
-function PathUtil.getInstance()
-        return PathUtil.instance
-end
-
-
-function PathUtil.new()
-    local self = setmetatable({}, PathUtil)
-    self:_init_fields()
-    return self
-end
-
-
-function PathUtil:getExtensionWithAbFilePath(abFilePath)
-        return self.abPathData:getExtension(tostring(abFilePath))
-end
-
-
-function PathUtil:getExtensionWithAbPath(abPath)
-        return self.abPathData:getExtension(tostring(abPath))
-end
-
-
--- throws Exception
-function PathUtil:getWithoutExtensionWithAbFilePath(abFilePath)
-        return self:getWithoutExtension(tostring(abFilePath))
-end
-
-
--- throws Exception
-function PathUtil:getWithoutExtensionWithAbPath(abPath)
-        return self:getWithoutExtension(tostring(abPath))
-end
-
-
--- throws Exception
-function PathUtil:getWithoutExtension(filePath)
-        local indexOfFileExtensionDelmiter = self.abPathData:getExtensionIndex(filePath)
-        local pathWithoutExtension = filePath
-        if indexOfFileExtensionDelmiter >= 0 then
-            pathWithoutExtension = string.sub(filePath, (0) + 1, indexOfFileExtensionDelmiter)
-        end
-        return pathWithoutExtension
-end
-
-
-function PathUtil:isValid(path)
-        if self:isValidStart(path) then
-            if self:isValidEnd(path) then
-                return true
-            end
-        end
-        return false
-end
-
-
-function PathUtil:isValidStart(path)
-        if string.sub(path, (0) + 1, (0) + 1) == self.abPathData.SEPARATORCHAR or string.sub(path, (0) + 1, (0) + 1) == "." then
-            return true
-        else
-            return false
-        end
-end
-
-
-function PathUtil:isValidEnd(path)
-        local stringValidationUtil = StringValidationUtil.getInstance()
-        if stringValidationUtil:isEmpty(path) then
-            return false
-        end
-        if string.sub(path, (#path - 1) + 1, (#path - 1) + 1) == self.abPathData.SEPARATORCHAR then
-            return true
-        else
-            return false
-        end
-end
-
-
-function PathUtil:adjustStart(path)
-        if not self:isValidStart(path) then
-            path = tostring(self.abPathData.SEPARATOR) .. path
-        end
-        return path
-end
-
-
-function PathUtil:adjustEnd(path)
-        if not self:isValidEnd(path) then
-            path = path .. tostring(self.abPathData.SEPARATOR)
-        end
-        return path
-end
-
-
-function PathUtil:adjust(path)
-        local stringValidationUtil = StringValidationUtil.getInstance()
-        if stringValidationUtil:isEmpty(path) then
-            return self.abPathData.SEPARATOR
-        end
-        if ((string.find(path, "\\", 1, true) or 0) - 1) >= 0 then
-            path = path:replace("\\", self.abPathData.SEPARATORCHAR)
-        end
-        return path
-end
-
-
--- throws Exception
-function PathUtil:removeNameFromPath(path)
-        local endIndex = path:lastIndexOf(self.abPathData.SEPARATOR)
-        if endIndex < 0 then
-            endIndex = path:lastIndexOf(self.filePathData.SEPARATORCHAR)
-        end
-        if endIndex < 0 then
-            return AbPath.createAbPath()
-        end
-        if #path == endIndex + 1 then
-            return self:removeNameFromPath(string.sub(path, (0) + 1, endIndex - 1))
-        else
-            local pathWithoutName = string.sub(path, (0) + 1, endIndex)
-            return AbPath.new(pathWithoutName, StringUtil.getInstance().EMPTY_STRING)
-        end
-end
-
-PathUtil.instance = PathUtil.new()
-
-return PathUtil
 

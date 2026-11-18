@@ -1,64 +1,65 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.bounds
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.bounds
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass BoundsVisitorInterface (JObject)
+  ())
+
+(defun BoundsVisitorInterface.jnew_0 ()
+  (let ((this (make-instance 'BoundsVisitorInterface)))
+    this))
+
+    
+(unless (fboundp 'jm_getX_0) (defgeneric jm_getX_0 (this)))
+(defmethod jm_getX_0 ((this BoundsVisitorInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "getX")))
+
+    
+(unless (fboundp 'jm_getY_0) (defgeneric jm_getY_0 (this)))
+(defmethod jm_getY_0 ((this BoundsVisitorInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "getY")))
+
+    
+(unless (fboundp 'jm_maxX_0) (defgeneric jm_maxX_0 (this)))
+(defmethod jm_maxX_0 ((this BoundsVisitorInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "maxX")))
+
+    
+(unless (fboundp 'jm_maxY_0) (defgeneric jm_maxY_0 (this)))
+(defmethod jm_maxY_0 ((this BoundsVisitorInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "maxY")))
+
+    
+(unless (fboundp 'jm_minX_0) (defgeneric jm_minX_0 (this)))
+(defmethod jm_minX_0 ((this BoundsVisitorInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "minX")))
+
+    
+(unless (fboundp 'jm_minY_0) (defgeneric jm_minY_0 (this)))
+(defmethod jm_minY_0 ((this BoundsVisitorInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "minY")))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local BoundsVisitorInterface = {}
-BoundsVisitorInterface.__index = BoundsVisitorInterface
-BoundsVisitorInterface.className = "BoundsVisitorInterface"
-
-
-function BoundsVisitorInterface:getX()
-    error("abstract method getX")
-end
-
-
-function BoundsVisitorInterface:getY()
-    error("abstract method getY")
-end
-
-
-function BoundsVisitorInterface:maxX()
-    error("abstract method maxX")
-end
-
-
-function BoundsVisitorInterface:maxY()
-    error("abstract method maxY")
-end
-
-
-function BoundsVisitorInterface:minX()
-    error("abstract method minX")
-end
-
-
-function BoundsVisitorInterface:minY()
-    error("abstract method minY")
-end
-
-return BoundsVisitorInterface
 

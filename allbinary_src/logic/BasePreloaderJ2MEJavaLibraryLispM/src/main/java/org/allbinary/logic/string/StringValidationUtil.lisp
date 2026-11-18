@@ -26,6 +26,7 @@
 (defun StringValidationUtil.jstatic_instance ()
   (when (eq StringValidationUtil.jcell_instance :jnone) (setf StringValidationUtil.jcell_instance (StringValidationUtil.jnew_0)))
   StringValidationUtil.jcell_instance)
+(defun (setf StringValidationUtil.jstatic_instance) (value) (setf StringValidationUtil.jcell_instance value))
 
     
 (defun StringValidationUtil.jm_getInstance_0 ()

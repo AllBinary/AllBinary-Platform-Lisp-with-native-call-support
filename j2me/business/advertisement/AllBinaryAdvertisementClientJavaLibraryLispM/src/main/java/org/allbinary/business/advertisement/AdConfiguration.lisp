@@ -1,85 +1,85 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.advertisement
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.business.advertisement
 
-local Direction = require("org.allbinary.direction.Direction")
-local GameState = require("org.allbinary.game.state.GameState")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(defclass AdConfiguration (JObject)
+  ((f_INNERACTIVE :initform nil)
+   (f_LEADBOLT :initform nil)
+   (f_ADMOB :initform nil)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(defun AdConfiguration.jnew_1 (_advertIdArray)
+  (declare (ignorable _advertIdArray))
+  (let ((this (make-instance 'AdConfiguration)))
+    
+    
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_INNERACTIVE) (aref _advertIdArray 0))
+        (setf (slot-value this 'f_ADMOB) (aref _advertIdArray 1))
+        (setf (slot-value this 'f_LEADBOLT) (aref _advertIdArray 2))))
+    this))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(unless (fboundp 'jm_getValidAdSpots_0) (defgeneric jm_getValidAdSpots_0 (this)))
+(defmethod jm_getValidAdSpots_0 ((this AdConfiguration))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (JR.newArray nil 0)))))
 
-local AdConfiguration = {}
-AdConfiguration.__index = AdConfiguration
-AdConfiguration.className = "AdConfiguration"
+    
+(unless (fboundp 'jm_process_1) (defgeneric jm_process_1 (this p1)))
+(defmethod jm_process_1 ((this AdConfiguration) _gameState)
+  (declare (ignorable this _gameState))
+  (let ()
+    (block jreturn nil)))
 
-function AdConfiguration:_init_fields()
-    self.INNERACTIVE = nil
-    self.LEADBOLT = nil
-    self.ADMOB = nil
-end
+    
+(unless (fboundp 'jm_processDemo_1) (defgeneric jm_processDemo_1 (this p1)))
+(defmethod jm_processDemo_1 ((this AdConfiguration) _state)
+  (declare (ignorable this _state))
+  (let ()
+    (block jreturn nil)))
 
+    
+(unless (fboundp 'jm_setShowAds_0) (defgeneric jm_setShowAds_0 (this)))
+(defmethod jm_setShowAds_0 ((this AdConfiguration))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
 
-function AdConfiguration.new(advertIdArray)
-    local self = setmetatable({}, AdConfiguration)
-    self:_init_fields()
-        self.INNERACTIVE = advertIdArray[1]
-        self.ADMOB = advertIdArray[2]
-        self.LEADBOLT = advertIdArray[3]
-    return self
-end
+    
+(unless (fboundp 'jm_setToggleAds_1) (defgeneric jm_setToggleAds_1 (this p1)))
+(defmethod jm_setToggleAds_1 ((this AdConfiguration) _showAds)
+  (declare (ignorable this _showAds))
+  (let ()
+    (block jreturn nil)))
 
-
-function AdConfiguration:getValidAdSpots()
-        return java_new_array(nil, 0)
-end
-
-
-function AdConfiguration:process(gameState)
-end
-
-
-function AdConfiguration:processDemo(state)
-end
-
-
-function AdConfiguration:setShowAds()
-end
-
-
-function AdConfiguration:setToggleAds(showAds)
-end
+    
+(unless (fboundp 'jm_isShowAds_0) (defgeneric jm_isShowAds_0 (this)))
+(defmethod jm_isShowAds_0 ((this AdConfiguration))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn t))))
 
 
-function AdConfiguration:isShowAds()
-        return true
-end
-
-return AdConfiguration
 

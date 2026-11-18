@@ -1,61 +1,52 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.gesture.observer
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.input.motion.gesture.observer
 
-local InputFactory = require("org.allbinary.game.input.InputFactory")
-local MotionGestureInput = require("org.allbinary.input.motion.gesture.MotionGestureInput")
-local TouchMotionGestureFactory = require("org.allbinary.input.motion.gesture.TouchMotionGestureFactory")
-local AllBinaryEventCircularPool = require("org.allbinary.logic.util.event.AllBinaryEventCircularPool")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass MotionEventCircularPool (JObject)
+  ((f_MIN :initform 0)
+   (f_eventPool :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun MotionEventCircularPool.jm_createPool_1 (_id)
+  (declare (ignorable _id))
+  (let ()
+    (block jreturn
+        (return-from jreturn (MotionEventCircularPool.jnew_1 _id)))))
 
-local MotionEventCircularPool = {}
-MotionEventCircularPool.__index = MotionEventCircularPool
-MotionEventCircularPool.className = "MotionEventCircularPool"
+    
+(defun MotionEventCircularPool.jnew_1 (_id)
+  (declare (ignorable _id))
+  (let ((this (make-instance 'MotionEventCircularPool)))
+    (setf (slot-value this 'f_MIN) (jm_getId_0 (slot-value (TouchMotionGestureFactory.jm_getInstance_0) 'f_LAST_MOTION)))
+    (setf (slot-value this 'f_eventPool) (AllBinaryEventCircularPool.jnew_1 (JR.i32 (- (JR.i32 (- (slot-value (InputFactory.jm_getInstance_0) 'f_MAX) 1)) (slot-value this 'f_MIN)))))
+  (let ()
+    (block jreturn
+        (jm_initAllBinaryEventCircularPool_1 (slot-value this 'f_eventPool) (MotionEventFactory.jnew_2 (slot-value this 'f_eventPool) _id))))
+    this))
 
-function MotionEventCircularPool:_init_fields()
-    self.MIN = TouchMotionGestureFactory.getInstance().LAST_MOTION:getId()
-    self.eventPool = AllBinaryEventCircularPool.new((InputFactory.getInstance().MAX - 1) - self.MIN)
-end
-
-
-function MotionEventCircularPool.createPool(id)
-        return MotionEventCircularPool.new(id)
-end
-
-
-function MotionEventCircularPool.new(id)
-    local self = setmetatable({}, MotionEventCircularPool)
-    self:_init_fields()
-        self.eventPool:initAllBinaryEventCircularPool(MotionEventFactory.new(self.eventPool, id))
-    return self
-end
+    
+(unless (fboundp 'jm_getInstance_1) (defgeneric jm_getInstance_1 (this p1)))
+(defmethod jm_getInstance_1 ((this MotionEventCircularPool) _motionGestureInput)
+  (declare (ignorable this _motionGestureInput))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getInstance_1 (slot-value this 'f_eventPool) (JR.i32 (- (jm_getId_0 _motionGestureInput) (slot-value this 'f_MIN))))))))
 
 
--- throws Exception
-function MotionEventCircularPool:getInstance(motionGestureInput)
-        return self.eventPool:getInstance(motionGestureInput:getId() - self.MIN)
-end
-
-return MotionEventCircularPool
 

@@ -1,62 +1,64 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.image
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.media.image
 
--- local Image = require("javax.microedition.lcdui.Image")
-local GameFeatureImageCacheFactory = require("org.allbinary.image.GameFeatureImageCacheFactory")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ImageCreationUtil (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar ImageCreationUtil.jcell_instance :jnone)
+(defun ImageCreationUtil.jstatic_instance ()
+  (when (eq ImageCreationUtil.jcell_instance :jnone) (setf ImageCreationUtil.jcell_instance (ImageCreationUtil.jnew_0)))
+  ImageCreationUtil.jcell_instance)
+(defun (setf ImageCreationUtil.jstatic_instance) (value) (setf ImageCreationUtil.jcell_instance value))
 
-local ImageCreationUtil = {}
-ImageCreationUtil.__index = ImageCreationUtil
-ImageCreationUtil.className = "ImageCreationUtil"
+    
+(defun ImageCreationUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (ImageCreationUtil.jstatic_instance)))))
+
+    
+(defun ImageCreationUtil.jnew_0 ()
+  (let ((this (make-instance 'ImageCreationUtil)))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(unless (fboundp 'jm_createImageWH_2) (defgeneric jm_createImageWH_2 (this p1 p2)))
+(defmethod jm_createImageWH_2 ((this ImageCreationUtil) _width _height)
+  (declare (ignorable this _width _height))
+  (let (_image)
+  (declare (ignorable _image))
+    (block jreturn
+        (setf _image (jm_get_3 (GameFeatureImageCacheFactory.jm_getInstance_0) (JR.className this) _width _height))
+        (return-from jreturn _image))))
+
+    
+(unless (fboundp 'jm_createImage_4) (defgeneric jm_createImage_4 (this p1 p2 p3 p4)))
+(defmethod jm_createImage_4 ((this ImageCreationUtil) _width _height _maxScaleX _maxScaleY)
+  (declare (ignorable this _width _height _maxScaleX _maxScaleY))
+  (let (_image)
+  (declare (ignorable _image))
+    (block jreturn
+        (setf _image (jm_get_3 (GameFeatureImageCacheFactory.jm_getInstance_0) (JR.className this) (JR.i32 (+ (JR.d2i (* (coerce _width 'single-float) _maxScaleX)) 1)) (JR.i32 (+ (JR.d2i (* (coerce _height 'single-float) _maxScaleY)) 1))))
+        (return-from jreturn _image))))
 
 
-function ImageCreationUtil.getInstance()
-        return ImageCreationUtil.instance
-end
-
-
-function ImageCreationUtil.new()
-    local self = setmetatable({}, ImageCreationUtil)
-    return self
-end
-
-
--- throws Exception
-function ImageCreationUtil:createImageWH(width, height)
-        local image = GameFeatureImageCacheFactory.getInstance():get(getmetatable(self).className, width, height)
-        return image
-end
-
-
--- throws Exception
-function ImageCreationUtil:createImage(width, height, maxScaleX, maxScaleY)
-        local image = GameFeatureImageCacheFactory.getInstance():get(getmetatable(self).className, java_int(((width + 0.0) * maxScaleX)) + 1, java_int(((height + 0.0) * maxScaleY)) + 1)
-        return image
-end
-
-ImageCreationUtil.instance = ImageCreationUtil.new()
-
-return ImageCreationUtil
 

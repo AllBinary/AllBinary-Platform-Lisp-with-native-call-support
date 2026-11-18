@@ -1,64 +1,67 @@
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.drop
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.layer.drop
 
-local AllBinaryLayerFactoryInterface = require("org.allbinary.layer.AllBinaryLayerFactoryInterface")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
-local BasicArrayListUtil = require("org.allbinary.util.BasicArrayListUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass PlacedLayerFactory (JObject)
+  ((f_list :initform nil)
+   (f_basicArrayListUtil :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar PlacedLayerFactory.jcell_instance :jnone)
+(defun PlacedLayerFactory.jstatic_instance ()
+  (when (eq PlacedLayerFactory.jcell_instance :jnone) (setf PlacedLayerFactory.jcell_instance (PlacedLayerFactory.jnew_0)))
+  PlacedLayerFactory.jcell_instance)
+(defun (setf PlacedLayerFactory.jstatic_instance) (value) (setf PlacedLayerFactory.jcell_instance value))
 
-local PlacedLayerFactory = {}
-PlacedLayerFactory.__index = PlacedLayerFactory
-PlacedLayerFactory.className = "PlacedLayerFactory"
+    
+(defun PlacedLayerFactory.jnew_0 ()
+  (let ((this (make-instance 'PlacedLayerFactory)))
+    (setf (slot-value this 'f_list) (BasicArrayListD.jnew_0))
+    (setf (slot-value this 'f_basicArrayListUtil) (BasicArrayListUtil.jm_getInstance_0))
+  (let ()
+    (block jreturn nil))
+    this))
 
-function PlacedLayerFactory:_init_fields()
-    self.list = BasicArrayListD.new()
-    self.basicArrayListUtil = BasicArrayListUtil.getInstance()
-end
+    
+(unless (fboundp 'jm_clear_0) (defgeneric jm_clear_0 (this)))
+(defmethod jm_clear_0 ((this PlacedLayerFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_clear_0 (slot-value this 'f_list)))))
+
+    
+(defun PlacedLayerFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (PlacedLayerFactory.jstatic_instance)))))
+
+    
+(unless (fboundp 'jm_getSize_0) (defgeneric jm_getSize_0 (this)))
+(defmethod jm_getSize_0 ((this PlacedLayerFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_size_0 (slot-value this 'f_list))))))
+
+    
+(unless (fboundp 'jm_getRandomInstance_0) (defgeneric jm_getRandomInstance_0 (this)))
+(defmethod jm_getRandomInstance_0 ((this PlacedLayerFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getRandom_1 (slot-value this 'f_basicArrayListUtil) (slot-value this 'f_list))))))
+
+    
+(unless (fboundp 'jm_add_1) (defgeneric jm_add_1 (this p1)))
+(defmethod jm_add_1 ((this PlacedLayerFactory) _layerInterfaceFactoryInterface)
+  (declare (ignorable this _layerInterfaceFactoryInterface))
+  (let ()
+    (block jreturn
+        (jm_add_1 (slot-value this 'f_list) _layerInterfaceFactoryInterface))))
 
 
-function PlacedLayerFactory.new()
-    local self = setmetatable({}, PlacedLayerFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function PlacedLayerFactory:clear()
-        self.list:clear()
-end
-
-
-function PlacedLayerFactory.getInstance()
-        return PlacedLayerFactory.instance
-end
-
-
-function PlacedLayerFactory:getSize()
-        return self.list:size()
-end
-
-
-function PlacedLayerFactory:getRandomInstance()
-        return self.basicArrayListUtil:getRandom(self.list)
-end
-
-
-function PlacedLayerFactory:add(layerInterfaceFactoryInterface)
-        self.list:add(layerInterfaceFactoryInterface)
-end
-
-PlacedLayerFactory.instance = PlacedLayerFactory.new()
-
-return PlacedLayerFactory
 

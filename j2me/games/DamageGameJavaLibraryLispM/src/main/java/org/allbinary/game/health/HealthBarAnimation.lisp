@@ -1,109 +1,98 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.health
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.health
 
-local Animation = require("org.allbinary.animation.Animation")
-local BasicHudFactory = require("org.allbinary.game.graphics.hud.BasicHudFactory")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(defclass HealthBarAnimation (Animation)
+  ((f_basicColorFactory :initform nil)
+   (f_x2 :initform 0)
+   (f_thickness :initform 0)
+   (f_location :initform 0)
+   (f_allbinaryLayer :initform nil)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(defun HealthBarAnimation.jnew_2 (_layerInterface _location)
+  (declare (ignorable _layerInterface _location))
+  (let ((this (make-instance 'HealthBarAnimation)))
+    (setf (slot-value this 'f_basicColorFactory) (BasicColorFactory.jm_getInstance_0))
+    
+    
+    
+    
+  (let (_basicHudFactory)
+  (declare (ignorable _basicHudFactory))
+    (block jreturn
+        (setf (slot-value this 'f_allbinaryLayer) _layerInterface)
+        (setf (slot-value this 'f_location) _location)
+        (setf _basicHudFactory (BasicHudFactory.jm_getInstance_0))
+        (if (and (/= (slot-value this 'f_location) (slot-value _basicHudFactory 'f_TOPLEFT)) (/= (slot-value this 'f_location) (slot-value _basicHudFactory 'f_BOTTOMLEFT)))
+            (progn
+            (error (JR.newException "Exception" "Location Not Valid"))))
+        (if (> (jm_getWidth_0 _layerInterface) 40)
+            (progn
+            (setf (slot-value this 'f_thickness) 3))
+            (if (> (jm_getWidth_0 _layerInterface) 20)
+            (progn
+            (setf (slot-value this 'f_thickness) 2))
+            (progn
+            (setf (slot-value this 'f_thickness) 1))))))
+    this))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(unless (fboundp 'jm_onHealthChange_1) (defgeneric jm_onHealthChange_1 (this p1)))
+(defmethod jm_onHealthChange_1 ((this HealthBarAnimation) _newX2)
+  (declare (ignorable this _newX2))
+  (let (_quarter)
+  (declare (ignorable _quarter))
+    (block jreturn
+        (setf (slot-value this 'f_x2) _newX2)
+        (setf _quarter (ash (jm_getWidth_0 (slot-value this 'f_allbinaryLayer)) (- (logand 2 31))))
+        (if (> (slot-value this 'f_x2) (JR.i32 (* _quarter 3)))
+            (progn
+            (setf (slot-value this 'f_basicColor) (slot-value (slot-value this 'f_basicColorFactory) 'f_GREEN))
+            (setf (slot-value this 'f_colorP) (jm_intValue_0 (slot-value this 'f_basicColor))))
+            (if (> (slot-value this 'f_x2) (JR.i32 (* _quarter 2)))
+            (progn
+            (setf (slot-value this 'f_basicColor) (slot-value (slot-value this 'f_basicColorFactory) 'f_YELLOW))
+            (setf (slot-value this 'f_colorP) (jm_intValue_0 (slot-value this 'f_basicColor))))
+            (if (> (slot-value this 'f_x2) _quarter)
+            (progn
+            (setf (slot-value this 'f_basicColor) (slot-value (slot-value this 'f_basicColorFactory) 'f_ORANGE))
+            (setf (slot-value this 'f_colorP) (jm_intValue_0 (slot-value this 'f_basicColor))))
+            (progn
+            (setf (slot-value this 'f_basicColor) (slot-value (slot-value this 'f_basicColorFactory) 'f_RED))
+            (setf (slot-value this 'f_colorP) (jm_intValue_0 (slot-value this 'f_basicColor))))))))))
 
-local HealthBarAnimation = {}
-HealthBarAnimation.__index = HealthBarAnimation
-HealthBarAnimation.className = "HealthBarAnimation"
-setmetatable(HealthBarAnimation, {__index = Animation})
-
-function HealthBarAnimation:_init_fields()
-    self.basicColorFactory = BasicColorFactory.getInstance()
-    self.x2 = 0
-    self.thickness = 0
-    self.location = nil
-    self.allbinaryLayer = nil
-end
-
-
-function HealthBarAnimation.new(layerInterface, location)
-    local self = setmetatable(Animation.new(), HealthBarAnimation)
-    self:_init_fields()
-        self.allbinaryLayer = layerInterface
-        self.location = location
-        local basicHudFactory = BasicHudFactory.getInstance()
-        if self.location ~= basicHudFactory.TOPLEFT and self.location ~= basicHudFactory.BOTTOMLEFT then
-            error(java_exception("Exception", "Location Not Valid"), 0)
-        end
-        if layerInterface:getWidth() > 40 then
-            self.thickness = 3
-        elseif layerInterface:getWidth() > 20 then
-            self.thickness = 2
-        else
-            self.thickness = 1
-        end
-    return self
-end
-
-
-function HealthBarAnimation:onHealthChange(newX2)
-        self.x2 = newX2
-        local quarter = (((self.allbinaryLayer:getWidth()) // (1 << (2))))
-        if self.x2 > quarter * 3 then
-            self.basicColor = self.basicColorFactory.GREEN
-            self.colorP = math.tointeger(self.basicColor // 1)
-        elseif self.x2 > quarter * 2 then
-            self.basicColor = self.basicColorFactory.YELLOW
-            self.colorP = math.tointeger(self.basicColor // 1)
-        elseif self.x2 > quarter then
-            self.basicColor = self.basicColorFactory.ORANGE
-            self.colorP = math.tointeger(self.basicColor // 1)
-        else
-            self.basicColor = self.basicColorFactory.RED
-            self.colorP = math.tointeger(self.basicColor // 1)
-        end
-end
+    
+(unless (fboundp 'jm_getY_0) (defgeneric jm_getY_0 (this)))
+(defmethod jm_getY_0 ((this HealthBarAnimation))
+  (declare (ignorable this))
+  (let (_basicHudFactory)
+  (declare (ignorable _basicHudFactory))
+    (block jreturn
+        (setf _basicHudFactory (BasicHudFactory.jm_getInstance_0))
+        (if (= (slot-value this 'f_location) (slot-value _basicHudFactory 'f_TOPLEFT))
+            (progn
+            (return-from jreturn (JR.i32 (- (jm_getY_0 (jm_getViewPosition_0 (slot-value this 'f_allbinaryLayer))) 4))))
+            (if (= (slot-value this 'f_location) (slot-value _basicHudFactory 'f_BOTTOMLEFT))
+            (progn
+            (return-from jreturn (JR.i32 (+ (jm_getY2_0 (jm_getViewPosition_0 (slot-value this 'f_allbinaryLayer))) 4))))))
+        (return-from jreturn (JR.i32 (- 1))))))
 
 
-function HealthBarAnimation:getY()
-        local basicHudFactory = BasicHudFactory.getInstance()
-        if self.location == basicHudFactory.TOPLEFT then
-            return self.allbinaryLayer:getViewPosition():getY() - 4
-        elseif self.location == basicHudFactory.BOTTOMLEFT then
-            return self.allbinaryLayer:getViewPosition():getY2() + 4
-        end
-        return -1
-end
-
-return HealthBarAnimation
 

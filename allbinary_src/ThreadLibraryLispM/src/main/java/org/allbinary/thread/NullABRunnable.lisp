@@ -25,6 +25,7 @@
 (defun NullABRunnable.jstatic_instance ()
   (when (eq NullABRunnable.jcell_instance :jnone) (setf NullABRunnable.jcell_instance (NullABRunnable.jnew_0)))
   NullABRunnable.jcell_instance)
+(defun (setf NullABRunnable.jstatic_instance) (value) (setf NullABRunnable.jcell_instance value))
 
 (defun NullABRunnable.jnew_0 ()
   (let ((this (make-instance 'NullABRunnable)))

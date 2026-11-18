@@ -1,81 +1,82 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2026 AllBinary
---
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
---
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
---
--- Created By: Travis Berthelot
--- 
--- Generated Code Do Not Modify
--- package org.allbinary
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2026 AllBinary
+;;;;
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;;
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;;
+;;;; Created By: Travis Berthelot
+;;;; 
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary
 
--- local IOException = require("java.io.IOException")
--- local InputStream = require("java.io.InputStream")
--- local Form = require("javax.microedition.lcdui.Form")
--- local Image = require("javax.microedition.lcdui.Image")
--- local Item = require("javax.microedition.lcdui.Item")
--- local Manager = require("javax.microedition.media.Manager")
--- local MediaException = require("javax.microedition.media.MediaException")
--- local Player = require("javax.microedition.media.Player")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+;like microemu-playn, so the languages without overloading can be generated. J2ME uses the MIDP overloads.
+(defclass MIDPUtil (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar MIDPUtil.jcell_instance :jnone)
+(defun MIDPUtil.jstatic_instance ()
+  (when (eq MIDPUtil.jcell_instance :jnone) (setf MIDPUtil.jcell_instance (MIDPUtil.jnew_0)))
+  MIDPUtil.jcell_instance)
+(defun (setf MIDPUtil.jstatic_instance) (value) (setf MIDPUtil.jcell_instance value))
 
---like microemu-playn, so the languages without overloading can be generated. J2ME uses the MIDP overloads.
-local MIDPUtil = {}
-MIDPUtil.__index = MIDPUtil
-MIDPUtil.className = "MIDPUtil"
+(defun MIDPUtil.jnew_0 ()
+  (let ((this (make-instance 'MIDPUtil)))
+    this))
 
-function MIDPUtil.new()
-    local self = setmetatable({}, MIDPUtil)
-    return self
-end
+    
+(defun MIDPUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (MIDPUtil.jstatic_instance)))))
+
+    
+(unless (fboundp 'jm_createImageWH_2) (defgeneric jm_createImageWH_2 (this p1 p2)))
+(defmethod jm_createImageWH_2 ((this MIDPUtil) _width _height)
+  (declare (ignorable this _width _height))
+  (let ()
+    (block jreturn
+        (return-from jreturn (Image.jm_createImageWH_2 _width _height)))))
+
+    
+(unless (fboundp 'jm_createImageFromByteArray_3) (defgeneric jm_createImageFromByteArray_3 (this p1 p2 p3)))
+(defmethod jm_createImageFromByteArray_3 ((this MIDPUtil) _imageData _imageOffset _imageLength)
+  (declare (ignorable this _imageData _imageOffset _imageLength))
+  (let ()
+    (block jreturn
+        (return-from jreturn (Image.jm_createImageFromByteArray_3 _imageData _imageOffset _imageLength)))))
+
+    
+(unless (fboundp 'jm_createImageFromInputStream_1) (defgeneric jm_createImageFromInputStream_1 (this p1)))
+(defmethod jm_createImageFromInputStream_1 ((this MIDPUtil) _inputStream)
+  (declare (ignorable this _inputStream))
+  (let ()
+    (block jreturn
+        (return-from jreturn (Image.jm_createImageFromInputStream_1 _inputStream)))))
+
+    
+(unless (fboundp 'jm_createPlayerFromInputStream_2) (defgeneric jm_createPlayerFromInputStream_2 (this p1 p2)))
+(defmethod jm_createPlayerFromInputStream_2 ((this MIDPUtil) _inputStream _type)
+  (declare (ignorable this _inputStream _type))
+  (let ()
+    (block jreturn
+        (return-from jreturn (Manager.jm_createPlayerFromInputStream_2 _inputStream _type)))))
+
+    
+(unless (fboundp 'jm_appendItem_2) (defgeneric jm_appendItem_2 (this p1 p2)))
+(defmethod jm_appendItem_2 ((this MIDPUtil) _form _item)
+  (declare (ignorable this _form _item))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_append_1 _form _item)))))
 
 
-function MIDPUtil.getInstance()
-        return MIDPUtil.instance
-end
-
-
-function MIDPUtil:createImageWH(width, height)
-        return Image.createImage(width, height)
-end
-
-
-function MIDPUtil:createImageFromByteArray(imageData, imageOffset, imageLength)
-        return Image.createImage(imageData, imageOffset, imageLength)
-end
-
-
--- throws IOException
-function MIDPUtil:createImageFromInputStream(inputStream)
-        return Image.createImage(inputStream)
-end
-
-
--- throws IOException, MediaException
-function MIDPUtil:createPlayerFromInputStream(inputStream, type)
-        return Manager.createPlayer(inputStream, type)
-end
-
-
-function MIDPUtil:appendItem(form, item)
-        return form:append(item)
-end
-
-MIDPUtil.instance = MIDPUtil.new()
-
-return MIDPUtil
 

@@ -1,86 +1,98 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.input
 
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local AllBinarySensorListener = require("org.allbinary.input.AllBinarySensorListener")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass AllBinarySensor (JObject)
+  ((f_logUtil :initform nil)
+   (f_commonStrings :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar AllBinarySensor.jcell_NULL_ALLBINARY_SENSOR :jnone)
+(defun AllBinarySensor.jstatic_NULL_ALLBINARY_SENSOR ()
+  (when (eq AllBinarySensor.jcell_NULL_ALLBINARY_SENSOR :jnone) (setf AllBinarySensor.jcell_NULL_ALLBINARY_SENSOR (AllBinarySensor.jnew_0)))
+  AllBinarySensor.jcell_NULL_ALLBINARY_SENSOR)
+(defun (setf AllBinarySensor.jstatic_NULL_ALLBINARY_SENSOR) (value) (setf AllBinarySensor.jcell_NULL_ALLBINARY_SENSOR value))
 
-local AllBinarySensor = {}
-AllBinarySensor.__index = AllBinarySensor
-AllBinarySensor.className = "AllBinarySensor"
+(defvar AllBinarySensor.jcell_max :jnone)
+(defun AllBinarySensor.jstatic_max ()
+  (when (eq AllBinarySensor.jcell_max :jnone) (setf AllBinarySensor.jcell_max 100))
+  AllBinarySensor.jcell_max)
+(defun (setf AllBinarySensor.jstatic_max) (value) (setf AllBinarySensor.jcell_max value))
 
-function AllBinarySensor:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-end
+    
+(defun AllBinarySensor.jnew_0 ()
+  (let ((this (make-instance 'AllBinarySensor)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_commonStrings) (CommonStrings.jm_getInstance_0))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(unless (fboundp 'jm_init_0) (defgeneric jm_init_0 (this)))
+(defmethod jm_init_0 ((this AllBinarySensor))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_update_0) (defgeneric jm_update_0 (this)))
+(defmethod jm_update_0 ((this AllBinarySensor))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(defun AllBinarySensor.jm_setMax_1 (_max)
+  (declare (ignorable _max))
+  (let ()
+    (block jreturn
+        (setf (AllBinarySensor.jstatic_max) _max))))
+
+    
+(defun AllBinarySensor.jm_getMax_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (AllBinarySensor.jstatic_max)))))
+
+    
+(unless (fboundp 'jm_getId_0) (defgeneric jm_getId_0 (this)))
+(defmethod jm_getId_0 ((this AllBinarySensor))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (AllBinarySensor.jm_getMax_0)))))
+
+    
+(unless (fboundp 'jm_shutdown_0) (defgeneric jm_shutdown_0 (this)))
+(defmethod jm_shutdown_0 ((this AllBinarySensor))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_putF_3 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_START) this "shutdown"))))
+
+    
+(unless (fboundp 'jm_onSensorChange_0) (defgeneric jm_onSensorChange_0 (this)))
+(defmethod jm_onSensorChange_0 ((this AllBinarySensor))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (ForcedLogUtil.jm_log_2 (slot-value (slot-value this 'f_commonStrings) 'f_NOT_IMPLEMENTED) this))))
 
 
-function AllBinarySensor.new()
-    local self = setmetatable({}, AllBinarySensor)
-    self:_init_fields()
-    return self
-end
-
-
-function AllBinarySensor:init()
-end
-
-
--- throws Exception
-function AllBinarySensor:update()
-end
-
-
-function AllBinarySensor.setMax(max)
-        AllBinarySensor.max = max
-end
-
-
-function AllBinarySensor.getMax()
-        return AllBinarySensor.max
-end
-
-
-function AllBinarySensor:getId()
-        return AllBinarySensor.getMax()
-end
-
-
-function AllBinarySensor:shutdown()
-        self.logUtil:putF(self.commonStrings.START, self, "shutdown")
-end
-
-
-function AllBinarySensor:onSensorChange()
-        ForcedLogUtil.log(self.commonStrings.NOT_IMPLEMENTED, self)
-end
-
-AllBinarySensor.NULL_ALLBINARY_SENSOR = AllBinarySensor.new()
-AllBinarySensor.max = 100
-
-return AllBinarySensor
 

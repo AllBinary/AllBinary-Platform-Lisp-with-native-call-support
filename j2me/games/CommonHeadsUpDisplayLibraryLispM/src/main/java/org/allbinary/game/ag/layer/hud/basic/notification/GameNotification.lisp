@@ -1,76 +1,70 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.hud.basic.notification
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.ag.layer.hud.basic.notification
 
-local GameNotificationEvent = require("org.allbinary.game.layer.hud.event.GameNotificationEvent")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local BooleanFactory = require("org.allbinary.logic.java.bool.BooleanFactory")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass GameNotification (JObject)
+  ((f_stringList :initform nil)
+   (f_timeList :initform nil)
+   (f_colorList :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar GameNotification.jcell_NULL_GAME_NOTIFICATION_EVENT :jnone)
+(defun GameNotification.jstatic_NULL_GAME_NOTIFICATION_EVENT ()
+  (when (eq GameNotification.jcell_NULL_GAME_NOTIFICATION_EVENT :jnone) (setf GameNotification.jcell_NULL_GAME_NOTIFICATION_EVENT (GameNotificationEvent.jnew_5 (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT) (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) 0 (slot-value (BasicColorFactory.jm_getInstance_0) 'f_RED) (slot-value (BooleanFactory.jm_getInstance_0) 'f_FALSE))))
+  GameNotification.jcell_NULL_GAME_NOTIFICATION_EVENT)
+(defun (setf GameNotification.jstatic_NULL_GAME_NOTIFICATION_EVENT) (value) (setf GameNotification.jcell_NULL_GAME_NOTIFICATION_EVENT value))
 
-local GameNotification = {}
-GameNotification.__index = GameNotification
-GameNotification.className = "GameNotification"
+(defun GameNotification.jnew_0 ()
+  (let ((this (make-instance 'GameNotification)))
+    (setf (slot-value this 'f_stringList) (BasicArrayListD.jnew_0))
+    (setf (slot-value this 'f_timeList) (BasicArrayListD.jnew_0))
+    (setf (slot-value this 'f_colorList) (BasicArrayListD.jnew_0))
+    this))
 
-function GameNotification:_init_fields()
-    self.stringList = BasicArrayListD.new()
-    self.timeList = BasicArrayListD.new()
-    self.colorList = BasicArrayListD.new()
-end
+    
+(unless (fboundp 'jm_add_3) (defgeneric jm_add_3 (this p1 p2 p3)))
+(defmethod jm_add_3 ((this GameNotification) _string _seconds _basicColor)
+  (declare (ignorable this _string _seconds _basicColor))
+  (let ()
+    (block jreturn
+        (if (not (jm_contains_1 (slot-value this 'f_stringList) _string))
+            (progn
+            (jm_add_1 (slot-value this 'f_stringList) _string)
+            (jm_add_1 (slot-value this 'f_timeList) _seconds)
+            (jm_add_1 (slot-value this 'f_colorList) _basicColor))))))
 
-function GameNotification.new()
-    local self = setmetatable({}, GameNotification)
-    self:_init_fields()
-    return self
-end
+    
+(unless (fboundp 'jm_clear_0) (defgeneric jm_clear_0 (this)))
+(defmethod jm_clear_0 ((this GameNotification))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_clear_0 (slot-value this 'f_stringList))
+        (jm_clear_0 (slot-value this 'f_timeList))
+        (jm_clear_0 (slot-value this 'f_colorList)))))
+
+    
+(unless (fboundp 'jm_getSize_0) (defgeneric jm_getSize_0 (this)))
+(defmethod jm_getSize_0 ((this GameNotification))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_size_0 (slot-value this 'f_stringList))))))
 
 
-function GameNotification:add(string, seconds, basicColor)
-        if not self.stringList:contains(string) then
-            self.stringList:add(string)
-            self.timeList:add(seconds)
-            self.colorList:add(basicColor)
-        end
-end
-
-
-function GameNotification:clear()
-        self.stringList:clear()
-        self.timeList:clear()
-        self.colorList:clear()
-end
-
-
-function GameNotification:getSize()
-        return self.stringList:size()
-end
-
-GameNotification.NULL_GAME_NOTIFICATION_EVENT = GameNotificationEvent.new(NullUtil.getInstance().NULL_OBJECT, StringUtil.getInstance().EMPTY_STRING, 0, BasicColorFactory.getInstance().RED, BooleanFactory.getInstance().FALSE)
-
-return GameNotification
 

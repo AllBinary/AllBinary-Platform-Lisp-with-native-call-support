@@ -1,50 +1,45 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.ag.weapon.media.audio
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.ag.weapon.media.audio
 
-local CompositeSound = require("org.allbinary.media.audio.CompositeSound")
-local Sound = require("org.allbinary.media.audio.Sound")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass DropWeaponSound (CompositeSound)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar DropWeaponSound.jcell_soundInterface :jnone)
+(defun DropWeaponSound.jstatic_soundInterface ()
+  (when (eq DropWeaponSound.jcell_soundInterface :jnone) (setf DropWeaponSound.jcell_soundInterface (DropWeaponSound.jnew_0)))
+  DropWeaponSound.jcell_soundInterface)
+(defun (setf DropWeaponSound.jstatic_soundInterface) (value) (setf DropWeaponSound.jcell_soundInterface value))
 
-local DropWeaponSound = {}
-DropWeaponSound.__index = DropWeaponSound
-DropWeaponSound.className = "DropWeaponSound"
-setmetatable(DropWeaponSound, {__index = CompositeSound})
+    
+(defun DropWeaponSound.jnew_0 ()
+  (let ((this (make-instance 'DropWeaponSound)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
+
+    
+(defun DropWeaponSound.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (DropWeaponSound.jstatic_soundInterface)))))
 
 
-function DropWeaponSound.new()
-    local self = setmetatable(CompositeSound.new("resource:/wav/mine.wav"), DropWeaponSound)
-        -- super(...) made self above
-    return self
-end
-
-
-function DropWeaponSound.getInstance()
-        return DropWeaponSound.soundInterface
-end
-
-DropWeaponSound.soundInterface = DropWeaponSound.new()
-
-return DropWeaponSound
 

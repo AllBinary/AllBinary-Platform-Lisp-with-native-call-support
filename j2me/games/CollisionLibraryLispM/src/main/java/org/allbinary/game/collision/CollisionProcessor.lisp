@@ -1,32 +1,25 @@
--- Generated Code Do Not Modify
--- package org.allbinary.game.collision
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.collision
 
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass CollisionProcessor (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun CollisionProcessor.jnew_0 ()
+  (let ((this (make-instance 'CollisionProcessor)))
+    this))
 
-local CollisionProcessor = {}
-CollisionProcessor.__index = CollisionProcessor
-CollisionProcessor.className = "CollisionProcessor"
-
-function CollisionProcessor.new()
-    local self = setmetatable({}, CollisionProcessor)
-    return self
-end
+    
+(unless (fboundp 'jm_isCollision_2) (defgeneric jm_isCollision_2 (this p1 p2)))
+(defmethod jm_isCollision_2 ((this CollisionProcessor) _myLayer _myLayer2)
+  (declare (ignorable this _myLayer _myLayer2))
+  (let ()
+    (block jreturn
+        (return-from jreturn nil))))
 
 
-function CollisionProcessor:isCollision(myLayer, myLayer2)
-        return false
-end
-
-return CollisionProcessor
 

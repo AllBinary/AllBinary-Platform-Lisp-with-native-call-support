@@ -1,107 +1,103 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.media.audio
 
-local PreLogUtil = require("org.allbinary.logic.communication.log.PreLogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass PlayerQueue (JObject)
+  ((f_commonStrings :initform nil)
+   (f_list :initform nil)
+   (f_max :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar PlayerQueue.jcell_TOTAL :jnone)
+(defun PlayerQueue.jstatic_TOTAL ()
+  (when (eq PlayerQueue.jcell_TOTAL :jnone) (setf PlayerQueue.jcell_TOTAL "Sounds In Queue: "))
+  PlayerQueue.jcell_TOTAL)
+(defun (setf PlayerQueue.jstatic_TOTAL) (value) (setf PlayerQueue.jcell_TOTAL value))
 
-local PlayerQueue = {}
-PlayerQueue.__index = PlayerQueue
-PlayerQueue.className = "PlayerQueue"
+    
+(defun PlayerQueue.jnew_1 (_max)
+  (declare (ignorable _max))
+  (let ((this (make-instance 'PlayerQueue)))
+    (setf (slot-value this 'f_commonStrings) (CommonStrings.jm_getInstance_0))
+    (setf (slot-value this 'f_list) (BasicArrayListD.jnew_0))
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_max) _max)))
+    this))
 
-function PlayerQueue:_init_fields()
-    self.commonStrings = CommonStrings.getInstance()
-    self.list = BasicArrayListD.new()
-    self.max = nil
-end
+    
+(unless (fboundp 'jm_add_1) (defgeneric jm_add_1 (this p1)))
+(defmethod jm_add_1 ((this PlayerQueue) _sound)
+  (declare (ignorable this _sound))
+  (let ()
+    (block jreturn
+        (handler-case (progn
+            (if (not (jm_contains_1 (slot-value this 'f_list) _sound))
+                (progn
+                (jm_add_1 (slot-value this 'f_list) _sound))))
+            (error (_e) (declare (ignorable _e))
+            (PreLogUtil.jm_put_3 (slot-value (slot-value this 'f_commonStrings) 'f_EXCEPTION) this (slot-value (slot-value this 'f_commonStrings) 'f_ADD)))))))
+
+    
+(unless (fboundp 'jm_process_0) (defgeneric jm_process_0 (this)))
+(defmethod jm_process_0 ((this PlayerQueue))
+  (declare (ignorable this))
+  (let (_sound _played _resource)
+  (declare (ignorable _sound _played _resource))
+    (block jreturn
+        (setf _sound (NoSound.jm_getInstance_0))
+        (handler-case (progn
+            (setf _played nil)
+            (if (> (jm_size_0 (slot-value this 'f_list)) 0)
+                (progn
+                (setf _sound (jm_removeAt_1 (slot-value this 'f_list) 0))
+                (if (not (null _sound))
+                    (progn
+                    (jm_start_0 (jm_getPlayerP_0 _sound))))
+                (block jbreak (loop while (> (jm_size_0 (slot-value this 'f_list)) (slot-value this 'f_max)) do
+                        (block jcontinue
+                    (jm_removeAt_1 (slot-value this 'f_list) 0))))
+                (setf _played t)))
+            (return-from jreturn _played))
+            (error (_e) (declare (ignorable _e))
+            (setf _resource (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING))
+            (if (not (null _sound))
+                (progn
+                (setf _resource (jm_getResource_0 _sound))))
+            (PreLogUtil.jm_put_3 (jm_toString_0 (jm_append_1 (jm_append_1 (StringMaker.jnew_0) (slot-value (slot-value this 'f_commonStrings) 'f_EXCEPTION_LABEL)) _resource)) this (slot-value (slot-value this 'f_commonStrings) 'f_PROCESS))
+            (return-from jreturn nil))))))
+
+    
+(unless (fboundp 'jm_clear_0) (defgeneric jm_clear_0 (this)))
+(defmethod jm_clear_0 ((this PlayerQueue))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_clear_0 (slot-value this 'f_list)))))
+
+    
+(unless (fboundp 'jm_toString_0) (defgeneric jm_toString_0 (this)))
+(defmethod jm_toString_0 ((this PlayerQueue))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_toString_0 (jm_appendint_1 (jm_append_1 (StringMaker.jnew_0) (PlayerQueue.jstatic_TOTAL)) (jm_size_0 (slot-value this 'f_list))))))))
 
 
-function PlayerQueue.new(max)
-    local self = setmetatable({}, PlayerQueue)
-    self:_init_fields()
-        self.max = max
-    return self
-end
-
-
-function PlayerQueue:add(sound)
-        local try_ok, try_error = pcall(function()
-            if not self.list:contains(sound) then
-                self.list:add(sound)
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            PreLogUtil.put(self.commonStrings.EXCEPTION, self, self.commonStrings.ADD)
-        end
-end
-
-
-function PlayerQueue:process()
-        local sound = NoSound.getInstance()
-        local try_ok, try_error = pcall(function()
-            local played = false
-            if self.list:size() > 0 then
-                sound = self.list:removeAt(0)
-                if sound ~= nil then
-                    sound:getPlayerP():start()
-                end
-                while self.list:size() > self.max do
-                    self.list:removeAt(0)
-                end
-                played = true
-            end
-            return played
-        end)
-        if not try_ok then
-            local e = try_error
-            local resource = StringUtil.getInstance().EMPTY_STRING
-            if sound ~= nil then
-                resource = sound:getResource()
-            end
-            PreLogUtil.put(tostring(StringMaker.new():append(self.commonStrings.EXCEPTION_LABEL):append(resource)), self, self.commonStrings.PROCESS)
-            return false
-        end
-end
-
-
-function PlayerQueue:clear()
-        self.list:clear()
-end
-
-
-function PlayerQueue:toString()
-        return tostring(StringMaker.new():append(PlayerQueue.TOTAL):appendint(self.list:size()))
-end
-PlayerQueue.__tostring = function(self) return self:toString() end
-
-PlayerQueue.TOTAL = "Sounds In Queue: "
-
-return PlayerQueue
 

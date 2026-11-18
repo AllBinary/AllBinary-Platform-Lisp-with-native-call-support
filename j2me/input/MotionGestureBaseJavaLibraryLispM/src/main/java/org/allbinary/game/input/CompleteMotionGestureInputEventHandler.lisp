@@ -1,103 +1,101 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.input
 
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
-local EventStrings = require("org.allbinary.logic.util.event.EventStrings")
-local BasicEventHandler = require("org.allbinary.logic.util.event.handler.BasicEventHandler")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass CompleteMotionGestureInputEventHandler (BasicEventHandler)
+  ((f_list :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar CompleteMotionGestureInputEventHandler.jcell_SINGLETON :jnone)
+(defun CompleteMotionGestureInputEventHandler.jstatic_SINGLETON ()
+  (when (eq CompleteMotionGestureInputEventHandler.jcell_SINGLETON :jnone) (setf CompleteMotionGestureInputEventHandler.jcell_SINGLETON (CompleteMotionGestureInputEventHandler.jnew_0)))
+  CompleteMotionGestureInputEventHandler.jcell_SINGLETON)
+(defun (setf CompleteMotionGestureInputEventHandler.jstatic_SINGLETON) (value) (setf CompleteMotionGestureInputEventHandler.jcell_SINGLETON value))
 
-local CompleteMotionGestureInputEventHandler = {}
-CompleteMotionGestureInputEventHandler.__index = CompleteMotionGestureInputEventHandler
-CompleteMotionGestureInputEventHandler.className = "CompleteMotionGestureInputEventHandler"
-setmetatable(CompleteMotionGestureInputEventHandler, {__index = BasicEventHandler})
+    
+(defun CompleteMotionGestureInputEventHandler.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (CompleteMotionGestureInputEventHandler.jstatic_SINGLETON)))))
 
-function CompleteMotionGestureInputEventHandler:_init_fields()
-    self.list = BasicArrayListD.new()
-end
+    
+(defun CompleteMotionGestureInputEventHandler.jnew_0 ()
+  (let ((this (make-instance 'CompleteMotionGestureInputEventHandler)))
+    (setf (slot-value this 'f_list) (BasicArrayListD.jnew_0))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(unless (fboundp 'jm_addListener_1) (defgeneric jm_addListener_1 (this p1)))
+(defmethod jm_addListener_1 ((this CompleteMotionGestureInputEventHandler) _completeMotionGestureInputEventListener)
+  (declare (ignorable this _completeMotionGestureInputEventListener))
+  (let ()
+    (block jreturn
+        (if (not (jm_contains_1 (slot-value this 'f_list) _completeMotionGestureInputEventListener))
+            (progn
+            (jm_add_1 (slot-value this 'f_list) _completeMotionGestureInputEventListener))))))
+
+    
+(unless (fboundp 'jm_removeAllListeners_0) (defgeneric jm_removeAllListeners_0 (this)))
+(defmethod jm_removeAllListeners_0 ((this CompleteMotionGestureInputEventHandler))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_clear_0 (slot-value this 'f_list))
+        (call-next-method this))))
+
+    
+(unless (fboundp 'jm_removeListener_1) (defgeneric jm_removeListener_1 (this p1)))
+(defmethod jm_removeListener_1 ((this CompleteMotionGestureInputEventHandler) _eventListenerInterface)
+  (declare (ignorable this _eventListenerInterface))
+  (let ()
+    (block jreturn
+        (jm_remove_1 (slot-value this 'f_list) _eventListenerInterface)
+        (call-next-method this _eventListenerInterface))))
+
+    
+(unless (fboundp 'jm_fireEvent_1) (defgeneric jm_fireEvent_1 (this p1)))
+(defmethod jm_fireEvent_1 ((this CompleteMotionGestureInputEventHandler) _eventObject)
+  (declare (ignorable this _eventObject))
+  (let (_completeMotionGestureInputEventListener _index)
+  (declare (ignorable _completeMotionGestureInputEventListener _index))
+    (block jreturn
+        (progn
+            (setf _index (jm_size_0 (slot-value this 'f_list)))
+            (block jbreak (loop while (>= (setf _index (JR.i32 (- _index 1))) 0) do
+                (block jcontinue
+            (handler-case (progn
+                (setf _completeMotionGestureInputEventListener (aref (slot-value (slot-value this 'f_list) 'f_objectArray) _index))
+                (jm_onCompleteMotionGestureInputEvent_1 _completeMotionGestureInputEventListener _eventObject))
+                (error (_e) (declare (ignorable _e))
+                (jm_put_4 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_EXCEPTION) this (slot-value (EventStrings.jm_getInstance_0) 'f_FIRE_EVENT) _e)))))))
+        (call-next-method this _eventObject))))
+
+    
+(unless (fboundp 'jm_process_2) (defgeneric jm_process_2 (this p1 p2)))
+(defmethod jm_process_2 ((this CompleteMotionGestureInputEventHandler) _eventObject _eventListenerInterface)
+  (declare (ignorable this _eventObject _eventListenerInterface))
+  (let (_completeMotionGestureInputEventListenerInterface)
+  (declare (ignorable _completeMotionGestureInputEventListenerInterface))
+    (block jreturn
+        (setf _completeMotionGestureInputEventListenerInterface _eventListenerInterface)
+        (jm_onCompleteMotionGestureInputEvent_1 _completeMotionGestureInputEventListenerInterface _eventObject))))
 
 
-function CompleteMotionGestureInputEventHandler.getInstance()
-        return CompleteMotionGestureInputEventHandler.SINGLETON
-end
-
-
-function CompleteMotionGestureInputEventHandler.new()
-    local self = setmetatable(BasicEventHandler.new(), CompleteMotionGestureInputEventHandler)
-    self:_init_fields()
-    return self
-end
-
-
-function CompleteMotionGestureInputEventHandler:addListener(completeMotionGestureInputEventListener)
-        if not self.list:contains(completeMotionGestureInputEventListener) then
-            self.list:add(completeMotionGestureInputEventListener)
-        end
-end
-
-
-function CompleteMotionGestureInputEventHandler:removeAllListeners()
-        self.list:clear()
-        BasicEventHandler.removeAllListeners(self)
-end
-
-
-function CompleteMotionGestureInputEventHandler:removeListener(eventListenerInterface)
-        self.list:remove(eventListenerInterface)
-        BasicEventHandler.removeListener(self, eventListenerInterface)
-end
-
-
--- throws Exception
-function CompleteMotionGestureInputEventHandler:fireEvent(eventObject)
-        do
-            local index = self.list:size()
-            while (function() index = index - 1 return index end)() >= 0 do
-            local try_ok, try_error = pcall(function()
-                local completeMotionGestureInputEventListener = self.list.objectArray[index + 1]
-                completeMotionGestureInputEventListener:onCompleteMotionGestureInputEvent(eventObject)
-            end)
-            if not try_ok then
-                local e = try_error
-                self.logUtil:put(self.commonStrings.EXCEPTION, self, EventStrings.getInstance().FIRE_EVENT, e)
-            end
-            end
-        end
-        BasicEventHandler.fireEvent(self, eventObject)
-end
-
-
--- throws Exception
-function CompleteMotionGestureInputEventHandler:process(eventObject, eventListenerInterface)
-        local completeMotionGestureInputEventListenerInterface = eventListenerInterface
-        completeMotionGestureInputEventListenerInterface:onCompleteMotionGestureInputEvent(eventObject)
-end
-
-CompleteMotionGestureInputEventHandler.SINGLETON = CompleteMotionGestureInputEventHandler.new()
-
-return CompleteMotionGestureInputEventHandler
 

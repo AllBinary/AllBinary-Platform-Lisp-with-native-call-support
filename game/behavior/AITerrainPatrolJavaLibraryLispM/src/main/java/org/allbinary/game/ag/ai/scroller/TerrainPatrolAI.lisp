@@ -1,86 +1,75 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai.scroller
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.ag.ai.scroller
 
-local GameInput = require("org.allbinary.game.input.GameInput")
-local BasicTerrainInfo = require("org.allbinary.game.terrain.BasicTerrainInfo")
-local TerrainEvent = require("org.allbinary.game.terrain.TerrainEvent")
-local TerrainEventCircularStaticPool = require("org.allbinary.game.terrain.TerrainEventCircularStaticPool")
-local TerrainEventHandler = require("org.allbinary.game.terrain.TerrainEventHandler")
-local TerrainEventListener = require("org.allbinary.game.terrain.TerrainEventListener")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local Angle = require("org.allbinary.math.Angle")
-local AngleFactory = require("org.allbinary.math.AngleFactory")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local PacePatrolAI = require("org.allbinary.game.ag.ai.scroller.PacePatrolAI")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass TerrainPatrolAI (PacePatrolAI)
+  ((f_terrainEventListener :initform nil)
+   (f_DOWN :initform nil)
+   (f_CLIFF :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun TerrainPatrolAI.jnew_3 (_hashtable _ownerLayerInterface _gameInput)
+  (declare (ignorable _hashtable _ownerLayerInterface _gameInput))
+  (let ((this (make-instance 'TerrainPatrolAI)))
+    (setf (slot-value this 'f_terrainEventListener) (TerrainEventListener.jnew_0))
+    (setf (slot-value this 'f_DOWN) (slot-value (AngleFactory.jm_getInstance_0) 'f_DOWN))
+    (setf (slot-value this 'f_CLIFF) (BasicTerrainInfo.jnew_1 (slot-value this 'f_DOWN)))
+  (let ()
+    (block jreturn
+        nil
+        (jm_addListener_1 (TerrainEventHandler.jm_getInstance_1 _ownerLayerInterface) (slot-value this 'f_terrainEventListener))
+        (jm_onTerrainEvent_1 (slot-value this 'f_terrainEventListener) (jm_getNext_1 (TerrainEventCircularStaticPool.jm_getInstance_0) (slot-value this 'f_CLIFF)))))
+    this))
 
-local TerrainPatrolAI = {}
-TerrainPatrolAI.__index = TerrainPatrolAI
-TerrainPatrolAI.className = "TerrainPatrolAI"
-setmetatable(TerrainPatrolAI, {__index = PacePatrolAI})
+    
+(unless (fboundp 'jm_update_0) (defgeneric jm_update_0 (this)))
+(defmethod jm_update_0 ((this TerrainPatrolAI))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (call-next-method this)
+        (jm_changeDirectionIfCliffReached_0 this))))
 
-function TerrainPatrolAI:_init_fields()
-    self.terrainEventListener = TerrainEventListener.new()
-    self.DOWN = AngleFactory.getInstance().DOWN
-    self.CLIFF = BasicTerrainInfo.new(self.DOWN)
-end
+    
+(unless (fboundp 'jm_changeDirectionIfCliffReached_0) (defgeneric jm_changeDirectionIfCliffReached_0 (this)))
+(defmethod jm_changeDirectionIfCliffReached_0 ((this TerrainPatrolAI))
+  (declare (ignorable this))
+  (let (_list _size _terrainEvent _basicTerrainInfo _angle _index)
+  (declare (ignorable _list _size _terrainEvent _basicTerrainInfo _angle _index))
+    (block jreturn
+        (setf _list (jm_getList_0 (slot-value this 'f_terrainEventListener)))
+        (setf _size (jm_size_0 _list))
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (setf _terrainEvent (jm_removeAt_1 _list _index))
+            (setf _basicTerrainInfo (jm_getBasicTerrainInfo_0 _terrainEvent))
+            (setf _angle (jm_getAngle_0 _basicTerrainInfo))
+            (if (eq _angle (slot-value this 'f_DOWN))
+                (progn
+                (jm_nextDirection_0 this)
+                (if (not (slot-value this 'f_isFollowLimitedByTerrain))
+                    (progn
+                    (jm_putF_3 (slot-value this 'f_logUtil) "Following Limited" this "onTerrainEvent")
+                    (setf (slot-value this 'f_isFollowLimitedByTerrain) t))))))
+                (setf _index (JR.i32 (+ _index 1)))))))))
 
 
-function TerrainPatrolAI.new(hashtable, ownerLayerInterface, gameInput)
-    local self = setmetatable(PacePatrolAI.new(hashtable, ownerLayerInterface, gameInput), TerrainPatrolAI)
-    self:_init_fields()
-        -- super(...) made self above
-        TerrainEventHandler.getInstance(ownerLayerInterface):addListener(self.terrainEventListener)
-        self.terrainEventListener:onTerrainEvent(TerrainEventCircularStaticPool.getInstance():getNext(self.CLIFF))
-    return self
-end
-
-
-function TerrainPatrolAI:update()
-        PacePatrolAI.update(self)
-        self:changeDirectionIfCliffReached()
-end
-
-
-function TerrainPatrolAI:changeDirectionIfCliffReached()
-        local list = self.terrainEventListener:getList()
-        local size = list:size()
-        for index = 0, size - 1 do
-            local terrainEvent = list:removeAt(index)
-            local basicTerrainInfo = terrainEvent:getBasicTerrainInfo()
-            local angle = basicTerrainInfo:getAngle()
-            if angle == self.DOWN then
-                self:nextDirection()
-                if not self.isFollowLimitedByTerrain then
-                    self.logUtil:putF("Following Limited", self, "onTerrainEvent")
-                    self.isFollowLimitedByTerrain = true
-                end
-            end
-        end
-end
-
-return TerrainPatrolAI
 

@@ -1,46 +1,44 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.physics.friction
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.physics.friction
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass FrictionData (JObject)
+  ())
+
+(defvar FrictionData.jcell_FRICTION_DENOMINATOR :jnone)
+(defun FrictionData.jstatic_FRICTION_DENOMINATOR ()
+  (when (eq FrictionData.jcell_FRICTION_DENOMINATOR :jnone) (setf FrictionData.jcell_FRICTION_DENOMINATOR 100))
+  FrictionData.jcell_FRICTION_DENOMINATOR)
+(defun (setf FrictionData.jstatic_FRICTION_DENOMINATOR) (value) (setf FrictionData.jcell_FRICTION_DENOMINATOR value))
+
+    
+(defun FrictionData.jnew_0 ()
+  (let ((this (make-instance 'FrictionData)))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(defun FrictionData.jm_getFrictionDenominator_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (FrictionData.jstatic_FRICTION_DENOMINATOR)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local FrictionData = {}
-FrictionData.__index = FrictionData
-FrictionData.className = "FrictionData"
-
-
-function FrictionData.new()
-    local self = setmetatable({}, FrictionData)
-    return self
-end
-
-
-function FrictionData.getFrictionDenominator()
-        return FrictionData.FRICTION_DENOMINATOR
-end
-
-FrictionData.FRICTION_DENOMINATOR = 100
-
-return FrictionData
 

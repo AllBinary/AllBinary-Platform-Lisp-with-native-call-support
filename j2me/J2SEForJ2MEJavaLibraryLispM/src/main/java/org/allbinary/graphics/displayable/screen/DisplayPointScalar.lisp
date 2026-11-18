@@ -1,62 +1,68 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.displayable.screen
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2022 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.displayable.screen
 
-local GPoint = require("org.allbinary.graphics.GPoint")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass DisplayPointScalar (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar DisplayPointScalar.jcell_instance :jnone)
+(defun DisplayPointScalar.jstatic_instance ()
+  (when (eq DisplayPointScalar.jcell_instance :jnone) (setf DisplayPointScalar.jcell_instance (DisplayPointScalar.jnew_0)))
+  DisplayPointScalar.jcell_instance)
+(defun (setf DisplayPointScalar.jstatic_instance) (value) (setf DisplayPointScalar.jcell_instance value))
 
-local DisplayPointScalar = {}
-DisplayPointScalar.__index = DisplayPointScalar
-DisplayPointScalar.className = "DisplayPointScalar"
+    
+(defun DisplayPointScalar.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (DisplayPointScalar.jstatic_instance)))))
+
+    
+(defun DisplayPointScalar.jnew_0 ()
+  (let ((this (make-instance 'DisplayPointScalar)))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(unless (fboundp 'jm_processX_1) (defgeneric jm_processX_1 (this p1)))
+(defmethod jm_processX_1 ((this DisplayPointScalar) _value)
+  (declare (ignorable this _value))
+  (let ()
+    (block jreturn
+        (return-from jreturn _value))))
+
+    
+(unless (fboundp 'jm_processY_1) (defgeneric jm_processY_1 (this p1)))
+(defmethod jm_processY_1 ((this DisplayPointScalar) _value)
+  (declare (ignorable this _value))
+  (let ()
+    (block jreturn
+        (return-from jreturn _value))))
+
+    
+(unless (fboundp 'jm_process_1) (defgeneric jm_process_1 (this p1)))
+(defmethod jm_process_1 ((this DisplayPointScalar) _point)
+  (declare (ignorable this _point))
+  (let ()
+    (block jreturn
+        (return-from jreturn _point))))
 
 
-function DisplayPointScalar.getInstance()
-        return DisplayPointScalar.instance
-end
-
-
-function DisplayPointScalar.new()
-    local self = setmetatable({}, DisplayPointScalar)
-    return self
-end
-
-
-function DisplayPointScalar:processX(value)
-        return value
-end
-
-
-function DisplayPointScalar:processY(value)
-        return value
-end
-
-
-function DisplayPointScalar:process(point)
-        return point
-end
-
-DisplayPointScalar.instance = DisplayPointScalar.new()
-
-return DisplayPointScalar
 

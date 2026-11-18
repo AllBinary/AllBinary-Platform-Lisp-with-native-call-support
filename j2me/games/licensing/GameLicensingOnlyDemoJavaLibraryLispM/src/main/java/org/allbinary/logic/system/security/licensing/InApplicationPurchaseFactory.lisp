@@ -1,90 +1,123 @@
--- 
--- To change this license header, choose License Headers in Project Properties. 
--- To change this template file, choose Tools | Templates 
--- and open the template in the editor.  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.licensing
+;;;; 
+;;;; To change this license header, choose License Headers in Project Properties. 
+;;;; To change this template file, choose Tools | Templates 
+;;;; and open the template in the editor.  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.system.security.licensing
 
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass InApplicationPurchaseFactory (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar InApplicationPurchaseFactory.jcell_instance :jnone)
+(defun InApplicationPurchaseFactory.jstatic_instance ()
+  (when (eq InApplicationPurchaseFactory.jcell_instance :jnone) (setf InApplicationPurchaseFactory.jcell_instance (InApplicationPurchaseFactory.jnew_0)))
+  InApplicationPurchaseFactory.jcell_instance)
+(defun (setf InApplicationPurchaseFactory.jstatic_instance) (value) (setf InApplicationPurchaseFactory.jcell_instance value))
 
-local InApplicationPurchaseFactory = {}
-InApplicationPurchaseFactory.__index = InApplicationPurchaseFactory
-InApplicationPurchaseFactory.className = "InApplicationPurchaseFactory"
+    
+(defun InApplicationPurchaseFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (InApplicationPurchaseFactory.jstatic_instance)))))
+
+    
+(defun InApplicationPurchaseFactory.jnew_0 ()
+  (let ((this (make-instance 'InApplicationPurchaseFactory)))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(unless (fboundp 'jm_init_2) (defgeneric jm_init_2 (this p1 p2)))
+(defmethod jm_init_2 ((this InApplicationPurchaseFactory) _anyType _stateObject)
+  (declare (ignorable this _anyType _stateObject))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_onCreate_2) (defgeneric jm_onCreate_2 (this p1 p2)))
+(defmethod jm_onCreate_2 ((this InApplicationPurchaseFactory) _anyType _stateObject)
+  (declare (ignorable this _anyType _stateObject))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_onStart_0) (defgeneric jm_onStart_0 (this)))
+(defmethod jm_onStart_0 ((this InApplicationPurchaseFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_onResult_3) (defgeneric jm_onResult_3 (this p1 p2 p3)))
+(defmethod jm_onResult_3 ((this InApplicationPurchaseFactory) _requestCode _resultCode _data)
+  (declare (ignorable this _requestCode _resultCode _data))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_onSaveState_1) (defgeneric jm_onSaveState_1 (this p1)))
+(defmethod jm_onSaveState_1 ((this InApplicationPurchaseFactory) _anyType)
+  (declare (ignorable this _anyType))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_onStop_0) (defgeneric jm_onStop_0 (this)))
+(defmethod jm_onStop_0 ((this InApplicationPurchaseFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_onDestroy_0) (defgeneric jm_onDestroy_0 (this)))
+(defmethod jm_onDestroy_0 ((this InApplicationPurchaseFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_purchase_1) (defgeneric jm_purchase_1 (this p1)))
+(defmethod jm_purchase_1 ((this InApplicationPurchaseFactory) _lockableFeature)
+  (declare (ignorable this _lockableFeature))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_isPurchased_1) (defgeneric jm_isPurchased_1 (this p1)))
+(defmethod jm_isPurchased_1 ((this InApplicationPurchaseFactory) _lockableFeature)
+  (declare (ignorable this _lockableFeature))
+  (let ()
+    (block jreturn
+        (return-from jreturn nil))))
+
+    
+(unless (fboundp 'jm_add_1) (defgeneric jm_add_1 (this p1)))
+(defmethod jm_add_1 ((this InApplicationPurchaseFactory) _lockableFeature)
+  (declare (ignorable this _lockableFeature))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_getUserName_0) (defgeneric jm_getUserName_0 (this)))
+(defmethod jm_getUserName_0 ((this InApplicationPurchaseFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING)))))
+
+    
+(unless (fboundp 'jm_isEnabled_0) (defgeneric jm_isEnabled_0 (this)))
+(defmethod jm_isEnabled_0 ((this InApplicationPurchaseFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn nil))))
 
 
-function InApplicationPurchaseFactory.getInstance()
-        return InApplicationPurchaseFactory.instance
-end
-
-
-function InApplicationPurchaseFactory.new()
-    local self = setmetatable({}, InApplicationPurchaseFactory)
-    return self
-end
-
-
-function InApplicationPurchaseFactory:init(anyType, stateObject)
-end
-
-
-function InApplicationPurchaseFactory:onCreate(anyType, stateObject)
-end
-
-
-function InApplicationPurchaseFactory:onStart()
-end
-
-
-function InApplicationPurchaseFactory:onResult(requestCode, resultCode, data)
-end
-
-
-function InApplicationPurchaseFactory:onSaveState(anyType)
-end
-
-
-function InApplicationPurchaseFactory:onStop()
-end
-
-
-function InApplicationPurchaseFactory:onDestroy()
-end
-
-
-function InApplicationPurchaseFactory:purchase(lockableFeature)
-end
-
-
-function InApplicationPurchaseFactory:isPurchased(lockableFeature)
-        return false
-end
-
-
-function InApplicationPurchaseFactory:add(lockableFeature)
-end
-
-
-function InApplicationPurchaseFactory:getUserName()
-        return StringUtil.getInstance().EMPTY_STRING
-end
-
-
-function InApplicationPurchaseFactory:isEnabled()
-        return false
-end
-
-InApplicationPurchaseFactory.instance = InApplicationPurchaseFactory.new()
-
-return InApplicationPurchaseFactory
 

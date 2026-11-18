@@ -1,58 +1,56 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.transition
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation.transition
 
-local AnimationListenerInterface = require("org.allbinary.animation.transition.AnimationListenerInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass RunAtEndAnimationListener (JObject)
+  ((f_runnable :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun RunAtEndAnimationListener.jnew_1 (_runnable)
+  (declare (ignorable _runnable))
+  (let ((this (make-instance 'RunAtEndAnimationListener)))
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_runnable) _runnable)))
+    this))
 
-local RunAtEndAnimationListener = {}
-RunAtEndAnimationListener.__index = RunAtEndAnimationListener
-RunAtEndAnimationListener.className = "RunAtEndAnimationListener"
+    
+(unless (fboundp 'jm_onPlatformAnimationStart_0) (defgeneric jm_onPlatformAnimationStart_0 (this)))
+(defmethod jm_onPlatformAnimationStart_0 ((this RunAtEndAnimationListener))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
 
-function RunAtEndAnimationListener:_init_fields()
-    self.runnable = nil
-end
+    
+(unless (fboundp 'jm_onPlatformAnimationEnd_0) (defgeneric jm_onPlatformAnimationEnd_0 (this)))
+(defmethod jm_onPlatformAnimationEnd_0 ((this RunAtEndAnimationListener))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
 
-
-function RunAtEndAnimationListener.new(runnable)
-    local self = setmetatable({}, RunAtEndAnimationListener)
-    self:_init_fields()
-        self.runnable = runnable
-    return self
-end
-
-
-function RunAtEndAnimationListener:onPlatformAnimationStart()
-end
-
-
-function RunAtEndAnimationListener:onPlatformAnimationEnd()
-end
+    
+(unless (fboundp 'jm_onPlatformAnimationRepeat_0) (defgeneric jm_onPlatformAnimationRepeat_0 (this)))
+(defmethod jm_onPlatformAnimationRepeat_0 ((this RunAtEndAnimationListener))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
 
 
-function RunAtEndAnimationListener:onPlatformAnimationRepeat()
-end
-
-return RunAtEndAnimationListener
 

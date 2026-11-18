@@ -28,6 +28,7 @@
 (defun BasicDecimal.jstatic_ZERO_BIGDECIMAL ()
   (when (eq BasicDecimal.jcell_ZERO_BIGDECIMAL :jnone) (setf BasicDecimal.jcell_ZERO_BIGDECIMAL (BasicDecimal.jnew_1 0)))
   BasicDecimal.jcell_ZERO_BIGDECIMAL)
+(defun (setf BasicDecimal.jstatic_ZERO_BIGDECIMAL) (value) (setf BasicDecimal.jcell_ZERO_BIGDECIMAL value))
 
     
 (defun BasicDecimal.jm_createBigDecimal_1 (_bigDecimal)

@@ -37,6 +37,7 @@
 (defun ComponentFactory.jstatic_instance ()
   (when (eq ComponentFactory.jcell_instance :jnone) (setf ComponentFactory.jcell_instance (ComponentFactory.jnew_0)))
   ComponentFactory.jcell_instance)
+(defun (setf ComponentFactory.jstatic_instance) (value) (setf ComponentFactory.jcell_instance value))
 
 (defun ComponentFactory.jnew_0 ()
   (let ((this (make-instance 'ComponentFactory)))

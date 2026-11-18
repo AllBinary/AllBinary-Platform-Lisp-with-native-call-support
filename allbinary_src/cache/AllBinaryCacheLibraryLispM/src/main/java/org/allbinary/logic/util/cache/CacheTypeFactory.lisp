@@ -1,42 +1,36 @@
--- Generated Code Do Not Modify
--- package org.allbinary.logic.util.cache
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.util.cache
 
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass CacheTypeFactory (JObject)
+  ((f_NO_CACHE :initform nil)
+   (f_CACHE :initform nil)
+   (f_SET :initform nil)
+   (f_CACHE_VECTOR :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar CacheTypeFactory.jcell_instance :jnone)
+(defun CacheTypeFactory.jstatic_instance ()
+  (when (eq CacheTypeFactory.jcell_instance :jnone) (setf CacheTypeFactory.jcell_instance (CacheTypeFactory.jnew_0)))
+  CacheTypeFactory.jcell_instance)
+(defun (setf CacheTypeFactory.jstatic_instance) (value) (setf CacheTypeFactory.jcell_instance value))
 
-local CacheTypeFactory = {}
-CacheTypeFactory.__index = CacheTypeFactory
-CacheTypeFactory.className = "CacheTypeFactory"
+(defun CacheTypeFactory.jnew_0 ()
+  (let ((this (make-instance 'CacheTypeFactory)))
+    (setf (slot-value this 'f_NO_CACHE) (CacheType.jnew_2 (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING)))
+    (setf (slot-value this 'f_CACHE) (CacheType.jnew_2 (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING)))
+    (setf (slot-value this 'f_SET) (CacheType.jnew_2 (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) "Set"))
+    (setf (slot-value this 'f_CACHE_VECTOR) (CacheType.jnew_2 (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING)))
+    this))
 
-function CacheTypeFactory:_init_fields()
-    self.NO_CACHE = CacheType.new(StringUtil.getInstance().EMPTY_STRING, StringUtil.getInstance().EMPTY_STRING)
-    self.CACHE = CacheType.new(StringUtil.getInstance().EMPTY_STRING, StringUtil.getInstance().EMPTY_STRING)
-    self.SET = CacheType.new(StringUtil.getInstance().EMPTY_STRING, "Set")
-    self.CACHE_VECTOR = CacheType.new(StringUtil.getInstance().EMPTY_STRING, StringUtil.getInstance().EMPTY_STRING)
-end
-
-function CacheTypeFactory.new()
-    local self = setmetatable({}, CacheTypeFactory)
-    self:_init_fields()
-    return self
-end
+    
+(defun CacheTypeFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (CacheTypeFactory.jstatic_instance)))))
 
 
-function CacheTypeFactory.getInstance()
-        return CacheTypeFactory.instance
-end
-
-CacheTypeFactory.instance = CacheTypeFactory.new()
-
-return CacheTypeFactory
 

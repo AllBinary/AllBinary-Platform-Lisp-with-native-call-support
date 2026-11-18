@@ -1,82 +1,83 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.tracking
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.tracking
 
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass TrackingEvent (AllBinaryEventObject)
+  ((f_layerInterface :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun TrackingEvent.jnew_1 (_allBinaryLayerInterface)
+  (declare (ignorable _allBinaryLayerInterface))
+  (let ((this (make-instance 'TrackingEvent)))
+    (setf (slot-value this 'f_layerInterface) (AllBinaryLayer.jstatic_NULL_ALLBINARY_LAYER))
+  (let ()
+    (block jreturn
+        nil
+        (if (not (eq _allBinaryLayerInterface (TrackingEventHandler.jm_getInstance_0)))
+            (progn
+            (jm_setLayerInterface_1 this _allBinaryLayerInterface)))))
+    this))
 
-local TrackingEvent = {}
-TrackingEvent.__index = TrackingEvent
-TrackingEvent.className = "TrackingEvent"
-setmetatable(TrackingEvent, {__index = AllBinaryEventObject})
+    
+(unless (fboundp 'jm_init_1) (defgeneric jm_init_1 (this p1)))
+(defmethod jm_init_1 ((this TrackingEvent) _anyType)
+  (declare (ignorable this _anyType))
+  (let ()
+    (block jreturn
+        (jm_setSource_1 this _anyType))))
 
-function TrackingEvent:_init_fields()
-    self.layerInterface = AllBinaryLayer.NULL_ALLBINARY_LAYER
-end
+    
+(unless (fboundp 'jm_getLayerInterface_0) (defgeneric jm_getLayerInterface_0 (this)))
+(defmethod jm_getLayerInterface_0 ((this TrackingEvent))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_layerInterface)))))
+
+    
+(unless (fboundp 'jm_setLayerInterface_1) (defgeneric jm_setLayerInterface_1 (this p1)))
+(defmethod jm_setLayerInterface_1 ((this TrackingEvent) _layerInterface)
+  (declare (ignorable this _layerInterface))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_layerInterface) _layerInterface))))
+
+    
+(unless (fboundp 'jm_setLayerInterfaceForCircularStaticPool_1) (defgeneric jm_setLayerInterfaceForCircularStaticPool_1 (this p1)))
+(defmethod jm_setLayerInterfaceForCircularStaticPool_1 ((this TrackingEvent) _layerInterface)
+  (declare (ignorable this _layerInterface))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_layerInterface) _layerInterface))))
+
+    
+(unless (fboundp 'jm_toString_0) (defgeneric jm_toString_0 (this)))
+(defmethod jm_toString_0 ((this TrackingEvent))
+  (declare (ignorable this))
+  (let (_stringBuffer)
+  (declare (ignorable _stringBuffer))
+    (block jreturn
+        (setf _stringBuffer (StringMaker.jnew_0))
+        (jm_append_1 _stringBuffer (JR.unescape "TrackingEvent: \\n"))
+        (jm_append_1 _stringBuffer "LayerInterface: ")
+        (jm_append_1 _stringBuffer (jm_toString_0 (slot-value this 'f_layerInterface)))
+        (return-from jreturn (jm_toString_0 _stringBuffer)))))
 
 
-function TrackingEvent.new(allBinaryLayerInterface)
-    local self = setmetatable(AllBinaryEventObject.new(allBinaryLayerInterface), TrackingEvent)
-    self:_init_fields()
-        -- super(...) made self above
-        if allBinaryLayerInterface ~= TrackingEventHandler.getInstance() then
-            self:setLayerInterface(allBinaryLayerInterface)
-        end
-    return self
-end
-
-
-function TrackingEvent:init(anyType)
-        self:setSource(anyType)
-end
-
-
-function TrackingEvent:getLayerInterface()
-        return self.layerInterface
-end
-
-
-function TrackingEvent:setLayerInterface(layerInterface)
-        self.layerInterface = layerInterface
-end
-
-
-function TrackingEvent:setLayerInterfaceForCircularStaticPool(layerInterface)
-        self.layerInterface = layerInterface
-end
-
-
-function TrackingEvent:toString()
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append("TrackingEvent: \n")
-        stringBuffer:append("LayerInterface: ")
-        stringBuffer:append(tostring(self.layerInterface))
-        return tostring(stringBuffer)
-end
-TrackingEvent.__tostring = function(self) return self:toString() end
-
-return TrackingEvent
 

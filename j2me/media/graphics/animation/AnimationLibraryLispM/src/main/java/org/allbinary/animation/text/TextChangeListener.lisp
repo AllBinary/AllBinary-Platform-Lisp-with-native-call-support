@@ -1,49 +1,48 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation.text
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2025 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation.text
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass TextChangeListener (JObject)
+  ())
+
+(defvar TextChangeListener.jcell_instance :jnone)
+(defun TextChangeListener.jstatic_instance ()
+  (when (eq TextChangeListener.jcell_instance :jnone) (setf TextChangeListener.jcell_instance (TextChangeListener.jnew_0)))
+  TextChangeListener.jcell_instance)
+(defun (setf TextChangeListener.jstatic_instance) (value) (setf TextChangeListener.jcell_instance value))
+
+(defun TextChangeListener.jnew_0 ()
+  (let ((this (make-instance 'TextChangeListener)))
+    this))
+
+    
+(defun TextChangeListener.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (TextChangeListener.jstatic_instance)))))
+
+    
+(unless (fboundp 'jm_onMeasure_0) (defgeneric jm_onMeasure_0 (this)))
+(defmethod jm_onMeasure_0 ((this TextChangeListener))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local TextChangeListener = {}
-TextChangeListener.__index = TextChangeListener
-TextChangeListener.className = "TextChangeListener"
-
-function TextChangeListener.new()
-    local self = setmetatable({}, TextChangeListener)
-    return self
-end
-
-
-function TextChangeListener.getInstance()
-        return TextChangeListener.instance
-end
-
-
-function TextChangeListener:onMeasure()
-end
-
-TextChangeListener.instance = TextChangeListener.new()
-
-return TextChangeListener
 

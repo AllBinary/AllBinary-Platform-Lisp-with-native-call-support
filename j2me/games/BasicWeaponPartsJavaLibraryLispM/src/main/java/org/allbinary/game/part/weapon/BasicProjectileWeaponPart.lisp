@@ -1,69 +1,53 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.part.weapon
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.part.weapon
 
-local Animation = require("org.allbinary.animation.Animation")
-local WeaponProperties = require("org.allbinary.game.combat.weapon.WeaponProperties")
-local WeaponLayer = require("org.allbinary.game.layer.weapon.WeaponLayer")
-local WeaponLayerCircularPool = require("org.allbinary.game.layer.weapon.WeaponLayerCircularPool")
-local NoScoreable = require("org.allbinary.game.score.NoScoreable")
-local ScoreableInterface = require("org.allbinary.game.score.ScoreableInterface")
-local RelativeRelationship = require("org.allbinary.graphics.RelativeRelationship")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local BasicWeaponPart = require("org.allbinary.game.part.weapon.BasicWeaponPart")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass BasicProjectileWeaponPart (BasicWeaponPart)
+  ((f_weaponLayerCircularStaticPool :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun BasicProjectileWeaponPart.jm_createBasicProjectileWeaponPart_2 (_animationInterface _weaponLayerCircularStaticPool)
+  (declare (ignorable _animationInterface _weaponLayerCircularStaticPool))
+  (let ()
+    (block jreturn
+        (return-from jreturn (BasicProjectileWeaponPart.jnew_6 _animationInterface (AllBinaryLayer.jstatic_NULL_ALLBINARY_LAYER) _weaponLayerCircularStaticPool (WeaponProperties.jstatic_NULL_WEAPON_PROPERTIES) (NoScoreable.jm_getInstance_0) (RelativeRelationship.jstatic_NULL_RELATIVE_RELATIONSHIP))))))
 
-local BasicProjectileWeaponPart = {}
-BasicProjectileWeaponPart.__index = BasicProjectileWeaponPart
-BasicProjectileWeaponPart.className = "BasicProjectileWeaponPart"
-setmetatable(BasicProjectileWeaponPart, {__index = BasicWeaponPart})
+    
+(defun BasicProjectileWeaponPart.jnew_6 (_animationInterface _sourceLayerInterface _weaponLayerCircularStaticPool _weaponProperties _scoreableInterface _relativeRelationship)
+  (declare (ignorable _animationInterface _sourceLayerInterface _weaponLayerCircularStaticPool _weaponProperties _scoreableInterface _relativeRelationship))
+  (let ((this (make-instance 'BasicProjectileWeaponPart)))
+    
+  (let ()
+    (block jreturn
+        nil
+        (setf (slot-value this 'f_weaponLayerCircularStaticPool) _weaponLayerCircularStaticPool)))
+    this))
 
-function BasicProjectileWeaponPart:_init_fields()
-    self.weaponLayerCircularStaticPool = nil
-end
-
-
-function BasicProjectileWeaponPart.createBasicProjectileWeaponPart(animationInterface, weaponLayerCircularStaticPool)
-        return BasicProjectileWeaponPart.new(animationInterface, AllBinaryLayer.NULL_ALLBINARY_LAYER, weaponLayerCircularStaticPool, WeaponProperties.NULL_WEAPON_PROPERTIES, NoScoreable.getInstance(), RelativeRelationship.NULL_RELATIVE_RELATIONSHIP)
-end
-
-
-function BasicProjectileWeaponPart.new(animationInterface, sourceLayerInterface, weaponLayerCircularStaticPool, weaponProperties, scoreableInterface, relativeRelationship)
-    local self = setmetatable(BasicWeaponPart.new(animationInterface, sourceLayerInterface, weaponProperties, scoreableInterface, relativeRelationship), BasicProjectileWeaponPart)
-    self:_init_fields()
-        -- super(...) made self above
-        self.weaponLayerCircularStaticPool = weaponLayerCircularStaticPool
-    return self
-end
+    
+(unless (fboundp 'jm_processScore_5) (defgeneric jm_processScore_5 (this p1 p2 p3 p4 p5)))
+(defmethod jm_processScore_5 ((this BasicProjectileWeaponPart) _allbinaryLayerManager _angle _otherAngle _weaponProperties _scoreableInterface)
+  (declare (ignorable this _allbinaryLayerManager _angle _otherAngle _weaponProperties _scoreableInterface))
+  (let (_weaponLayer)
+  (declare (ignorable _weaponLayer))
+    (block jreturn
+        (setf _weaponLayer (jm_getInstanceWeaponLayer_8 (slot-value this 'f_weaponLayerCircularStaticPool) (jm_getOwnerLayerInterface_0 this) (jm_getX_0 (slot-value this 'f_relativeRelationship)) (jm_getY_0 (slot-value this 'f_relativeRelationship)) (jm_getZ_0 (slot-value this 'f_relativeRelationship)) _angle _otherAngle _weaponProperties _scoreableInterface))
+        (jm_append_1 _allbinaryLayerManager _weaponLayer))))
 
 
--- throws Exception
-function BasicProjectileWeaponPart:processScore(allbinaryLayerManager, angle, otherAngle, weaponProperties, scoreableInterface)
-        local weaponLayer = self.weaponLayerCircularStaticPool:getInstanceWeaponLayer(self:getOwnerLayerInterface(), self.relativeRelationship:getX(), self.relativeRelationship:getY(), self.relativeRelationship:getZ(), angle, otherAngle, weaponProperties, scoreableInterface)
-        allbinaryLayerManager:append(weaponLayer)
-end
-
-return BasicProjectileWeaponPart
 

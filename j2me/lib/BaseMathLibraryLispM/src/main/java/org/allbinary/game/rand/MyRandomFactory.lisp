@@ -27,6 +27,7 @@
 (defun MyRandomFactory.jstatic_instance ()
   (when (eq MyRandomFactory.jcell_instance :jnone) (setf MyRandomFactory.jcell_instance (MyRandomFactory.jnew_0)))
   MyRandomFactory.jcell_instance)
+(defun (setf MyRandomFactory.jstatic_instance) (value) (setf MyRandomFactory.jcell_instance value))
 
     
 (defun MyRandomFactory.jm_getInstance_0 ()

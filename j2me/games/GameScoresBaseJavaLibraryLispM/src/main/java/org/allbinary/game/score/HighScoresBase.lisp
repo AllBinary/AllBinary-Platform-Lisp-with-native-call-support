@@ -1,75 +1,57 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.score
 
-local GameInfo = require("org.allbinary.game.GameInfo")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local HighScoresFactoryInterface = require("org.allbinary.game.score.HighScoresFactoryInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(defclass HighScoresBase (JObject)
+  ((f_commonStrings :initform nil)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(defun HighScoresBase.jnew_0 ()
+  (let ((this (make-instance 'HighScoresBase)))
+    (setf (slot-value this 'f_commonStrings) (CommonStrings.jm_getInstance_0))
+  (let ()
+    (block jreturn nil))
+    this))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(unless (fboundp 'jm_fetchHighScores_2) (defgeneric jm_fetchHighScores_2 (this p1 p2)))
+(defmethod jm_fetchHighScores_2 ((this HighScoresBase) _gameInfo _highScoresResultsListener)
+  (declare (ignorable this _gameInfo _highScoresResultsListener))
+  (let ()
+    (block jreturn
+        (error (JR.newException "RuntimeException")))))
 
-local HighScoresBase = {}
-HighScoresBase.__index = HighScoresBase
-HighScoresBase.className = "HighScoresBase"
+    
+(unless (fboundp 'jm_fetchHighScoresPreload_3) (defgeneric jm_fetchHighScoresPreload_3 (this p1 p2 p3)))
+(defmethod jm_fetchHighScoresPreload_3 ((this HighScoresBase) _gameInfo _highScoresResultsListener _preload)
+  (declare (ignorable this _gameInfo _highScoresResultsListener _preload))
+  (let ()
+    (block jreturn
+        (error (JR.newException "RuntimeException")))))
 
-function HighScoresBase:_init_fields()
-    self.commonStrings = CommonStrings.getInstance()
-end
-
-
-function HighScoresBase.new()
-    local self = setmetatable({}, HighScoresBase)
-    self:_init_fields()
-    return self
-end
+    
+(unless (fboundp 'jm_createHighScoresHelper_0) (defgeneric jm_createHighScoresHelper_0 (this)))
+(defmethod jm_createHighScoresHelper_0 ((this HighScoresBase))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (error (JR.newException "RuntimeException")))))
 
 
-function HighScoresBase:fetchHighScores(gameInfo, highScoresResultsListener)
-        error(java_exception("RuntimeException"), 0)
-end
-
-
-function HighScoresBase:fetchHighScoresPreload(gameInfo, highScoresResultsListener, preload)
-        error(java_exception("RuntimeException"), 0)
-end
-
-
-function HighScoresBase:createHighScoresHelper()
-        error(java_exception("RuntimeException"), 0)
-end
-
-return HighScoresBase
 

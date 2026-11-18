@@ -1,68 +1,66 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.form
 
-local DisplayInfoSingleton = require("org.allbinary.graphics.displayable.DisplayInfoSingleton")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass FormTypeFactory (JObject)
+  ((f_UNK :initform nil)
+   (f_NULL_FORM_TYPE :initform nil)
+   (f_TEMP_HORIZONTAL_FORM :initform nil)
+   (f_HORIZONTAL_FORM :initform nil)
+   (f_VERTICAL_CENTER_FORM :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar FormTypeFactory.jcell_instance :jnone)
+(defun FormTypeFactory.jstatic_instance ()
+  (when (eq FormTypeFactory.jcell_instance :jnone) (setf FormTypeFactory.jcell_instance (FormTypeFactory.jnew_0)))
+  FormTypeFactory.jcell_instance)
+(defun (setf FormTypeFactory.jstatic_instance) (value) (setf FormTypeFactory.jcell_instance value))
 
-local FormTypeFactory = {}
-FormTypeFactory.__index = FormTypeFactory
-FormTypeFactory.className = "FormTypeFactory"
+(defun FormTypeFactory.jnew_0 ()
+  (let ((this (make-instance 'FormTypeFactory)))
+    (setf (slot-value this 'f_UNK) "Unknown FormType")
+    (setf (slot-value this 'f_NULL_FORM_TYPE) (FormType.jnew_1 (slot-value (StringUtil.jm_getInstance_0) 'f_NULL_STRING)))
+    (setf (slot-value this 'f_TEMP_HORIZONTAL_FORM) (FormType.jnew_1 "TempHorizontal"))
+    (setf (slot-value this 'f_HORIZONTAL_FORM) (FormType.jnew_1 "Horizontal"))
+    (setf (slot-value this 'f_VERTICAL_CENTER_FORM) (FormType.jnew_1 "Vertical"))
+    this))
 
-function FormTypeFactory:_init_fields()
-    self.UNK = "Unknown FormType"
-    self.NULL_FORM_TYPE = FormType.new(StringUtil.getInstance().NULL_STRING)
-    self.TEMP_HORIZONTAL_FORM = FormType.new("TempHorizontal")
-    self.HORIZONTAL_FORM = FormType.new("Horizontal")
-    self.VERTICAL_CENTER_FORM = FormType.new("Vertical")
-end
+    
+(defun FormTypeFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (FormTypeFactory.jstatic_instance)))))
 
-function FormTypeFactory.new()
-    local self = setmetatable({}, FormTypeFactory)
-    self:_init_fields()
-    return self
-end
+    
+(unless (fboundp 'jm_getFormType_0) (defgeneric jm_getFormType_0 (this)))
+(defmethod jm_getFormType_0 ((this FormTypeFactory))
+  (declare (ignorable this))
+  (let (_displayInfo _formType)
+  (declare (ignorable _displayInfo _formType))
+    (block jreturn
+        (setf _displayInfo (DisplayInfoSingleton.jm_getInstance_0))
+        (setf _formType nil)
+        (if (jm_isPortrait_0 _displayInfo)
+            (progn
+            (setf _formType (slot-value this 'f_VERTICAL_CENTER_FORM)))
+            (progn
+            (setf _formType (slot-value this 'f_HORIZONTAL_FORM))))
+        (return-from jreturn _formType))))
 
 
-function FormTypeFactory.getInstance()
-        return FormTypeFactory.instance
-end
-
-
-function FormTypeFactory:getFormType()
-        local displayInfo = DisplayInfoSingleton.getInstance()
-        local formType = nil
-        if displayInfo:isPortrait() then
-            formType = self.VERTICAL_CENTER_FORM
-        else
-            formType = self.HORIZONTAL_FORM
-        end
-        return formType
-end
-
-FormTypeFactory.instance = FormTypeFactory.new()
-
-return FormTypeFactory
 

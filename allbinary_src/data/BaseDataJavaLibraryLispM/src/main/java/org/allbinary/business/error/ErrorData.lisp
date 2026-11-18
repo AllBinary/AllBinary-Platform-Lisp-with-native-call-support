@@ -26,6 +26,7 @@
 (defun ErrorData.jstatic_instance ()
   (when (eq ErrorData.jcell_instance :jnone) (setf ErrorData.jcell_instance (ErrorData.jnew_0)))
   ErrorData.jcell_instance)
+(defun (setf ErrorData.jstatic_instance) (value) (setf ErrorData.jcell_instance value))
 
     
 (defun ErrorData.jm_getInstance_0 ()

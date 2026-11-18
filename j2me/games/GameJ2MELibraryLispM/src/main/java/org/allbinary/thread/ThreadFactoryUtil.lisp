@@ -1,96 +1,90 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.thread
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.thread
 
-local J2MEUtil = require("org.allbinary.J2MEUtil")
-local RunnableCanvas = require("org.allbinary.canvas.RunnableCanvas")
-local AllBinaryGameCanvas = require("org.allbinary.game.displayable.canvas.AllBinaryGameCanvas")
-local DemoCanvas = require("org.allbinary.game.displayable.canvas.DemoCanvas")
-local GameCanvasRunnableInterface = require("org.allbinary.game.displayable.canvas.GameCanvasRunnableInterface")
-local RunnableCanvasSingleThreadStartRunnable = require("org.allbinary.game.displayable.canvas.RunnableCanvasSingleThreadStartRunnable")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local PreLogUtil = require("org.allbinary.logic.communication.log.PreLogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ThreadFactoryUtil (JObject)
+  ((f_logUtil :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar ThreadFactoryUtil.jcell_instance :jnone)
+(defun ThreadFactoryUtil.jstatic_instance ()
+  (when (eq ThreadFactoryUtil.jcell_instance :jnone) (setf ThreadFactoryUtil.jcell_instance (ThreadFactoryUtil.jnew_0)))
+  ThreadFactoryUtil.jcell_instance)
+(defun (setf ThreadFactoryUtil.jstatic_instance) (value) (setf ThreadFactoryUtil.jcell_instance value))
 
-local ThreadFactoryUtil = {}
-ThreadFactoryUtil.__index = ThreadFactoryUtil
-ThreadFactoryUtil.className = "ThreadFactoryUtil"
+(defun ThreadFactoryUtil.jnew_0 ()
+  (let ((this (make-instance 'ThreadFactoryUtil)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    this))
 
-function ThreadFactoryUtil:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-end
+    
+(defun ThreadFactoryUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (ThreadFactoryUtil.jstatic_instance)))))
 
-function ThreadFactoryUtil.new()
-    local self = setmetatable({}, ThreadFactoryUtil)
-    self:_init_fields()
-    return self
-end
+    
+(unless (fboundp 'jm_getInstanceGameCanvasRunnable_1) (defgeneric jm_getInstanceGameCanvasRunnable_1 (this p1)))
+(defmethod jm_getInstanceGameCanvasRunnable_1 ((this ThreadFactoryUtil) _runnable)
+  (declare (ignorable this _runnable))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getInstanceType_2 this _runnable (jm_getType_0 _runnable))))))
+
+    
+(unless (fboundp 'jm_getInstanceForRunnable_1) (defgeneric jm_getInstanceForRunnable_1 (this p1)))
+(defmethod jm_getInstanceForRunnable_1 ((this ThreadFactoryUtil) _runnable)
+  (declare (ignorable this _runnable))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getInstanceType_2 this _runnable (jm_getType_0 _runnable))))))
+
+    
+(unless (fboundp 'jm_getInstanceType_2) (defgeneric jm_getInstanceType_2 (this p1 p2)))
+(defmethod jm_getInstanceType_2 ((this ThreadFactoryUtil) _runnable _type)
+  (declare (ignorable this _runnable _type))
+  (let (_commonStrings _primaryThreadPool _demoGameSingleThreadStartRunnable _thread)
+  (declare (ignorable _commonStrings _primaryThreadPool _demoGameSingleThreadStartRunnable _thread))
+    (block jreturn
+        (setf _commonStrings (CommonStrings.jm_getInstance_0))
+        (if (J2MEUtil.jm_isHTML_0)
+            (progn
+            (if (or (= _type (DemoCanvas.jstatic_TYPE)) (= _type (AllBinaryGameCanvas.jstatic_TYPE)))
+                (progn
+                (setf _demoGameSingleThreadStartRunnable (RunnableCanvasSingleThreadStartRunnable.jnew_1 _runnable))
+                (PreLogUtil.jm_put_3 (jm_toString_0 (jm_append_1 (jm_append_1 (StringMaker.jnew_0) "Using Pseudo Thread for DemoCanvas/AllBinaryGameCanvas under PlayN/HTML5: ") (jm_toString_1 (StringUtil.jm_getInstance_0) _runnable))) this (slot-value _commonStrings 'f_CONSTRUCTOR))
+                (setf _primaryThreadPool (PrimaryThreadPool.jm_getInstance_0))
+                (jm_runTask_1 _primaryThreadPool _demoGameSingleThreadStartRunnable))
+                (progn
+                (PreLogUtil.jm_put_3 (jm_toString_0 (jm_append_1 (jm_append_1 (StringMaker.jnew_0) "Using Pseudo Thread for Runnable under PlayN/HTML5: ") (jm_toString_1 (StringUtil.jm_getInstance_0) _runnable))) this (slot-value _commonStrings 'f_CONSTRUCTOR))
+                (setf _primaryThreadPool (PrimaryThreadPool.jm_getInstance_0))
+                (jm_runTask_1 _primaryThreadPool _runnable)))))
+        (setf _thread (Thread.jnew_2 _runnable (jm_toString_0 _runnable)))
+        (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 _thread) this (slot-value _commonStrings 'f_CONSTRUCTOR))
+        (return-from jreturn _thread))))
+
+    
+(unless (fboundp 'jm_start_1) (defgeneric jm_start_1 (this p1)))
+(defmethod jm_start_1 ((this ThreadFactoryUtil) _thread)
+  (declare (ignorable this _thread))
+  (let ()
+    (block jreturn
+        (jm_start_0 _thread))))
 
 
-function ThreadFactoryUtil.getInstance()
-        return ThreadFactoryUtil.instance
-end
-
-
-function ThreadFactoryUtil:getInstanceGameCanvasRunnable(runnable)
-        return self:getInstanceType(runnable, runnable:getType())
-end
-
-
-function ThreadFactoryUtil:getInstanceForRunnable(runnable)
-        return self:getInstanceType(runnable, runnable:getType())
-end
-
-
-function ThreadFactoryUtil:getInstanceType(runnable, type)
-        local commonStrings = CommonStrings.getInstance()
-        if J2MEUtil.isHTML() then
-            if type == DemoCanvas.TYPE or type == AllBinaryGameCanvas.TYPE then
-                local demoGameSingleThreadStartRunnable = RunnableCanvasSingleThreadStartRunnable.new(runnable)
-                PreLogUtil.put(tostring(StringMaker.new():append("Using Pseudo Thread for DemoCanvas/AllBinaryGameCanvas under PlayN/HTML5: "):append(StringUtil.getInstance():toString(runnable))), self, commonStrings.CONSTRUCTOR)
-                local primaryThreadPool = PrimaryThreadPool.getInstance()
-                primaryThreadPool:runTask(demoGameSingleThreadStartRunnable)
-            else
-                PreLogUtil.put(tostring(StringMaker.new():append("Using Pseudo Thread for Runnable under PlayN/HTML5: "):append(StringUtil.getInstance():toString(runnable))), self, commonStrings.CONSTRUCTOR)
-                local primaryThreadPool = PrimaryThreadPool.getInstance()
-                primaryThreadPool:runTask(runnable)
-            end
-        end
-        local thread = Thread.new(runnable, tostring(runnable))
-        self.logUtil:putF(tostring(thread), self, commonStrings.CONSTRUCTOR)
-        return thread
-end
-
-
-function ThreadFactoryUtil:start(thread)
-        thread:start()
-end
-
-ThreadFactoryUtil.instance = ThreadFactoryUtil.new()
-
-return ThreadFactoryUtil
 

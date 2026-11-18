@@ -1,36 +1,31 @@
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.input
 
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local CompleteMotionGestureInputEventListenerInterface = require("org.allbinary.game.input.CompleteMotionGestureInputEventListenerInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass CompleteMotionGestureInputEventListener (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun CompleteMotionGestureInputEventListener.jnew_0 ()
+  (let ((this (make-instance 'CompleteMotionGestureInputEventListener)))
+    this))
 
-local CompleteMotionGestureInputEventListener = {}
-CompleteMotionGestureInputEventListener.__index = CompleteMotionGestureInputEventListener
-CompleteMotionGestureInputEventListener.className = "CompleteMotionGestureInputEventListener"
+    
+(unless (fboundp 'jm_onEvent_1) (defgeneric jm_onEvent_1 (this p1)))
+(defmethod jm_onEvent_1 ((this CompleteMotionGestureInputEventListener) _eventObject)
+  (declare (ignorable this _eventObject))
+  (let ()
+    (block jreturn nil)))
 
-function CompleteMotionGestureInputEventListener.new()
-    local self = setmetatable({}, CompleteMotionGestureInputEventListener)
-    return self
-end
-
-
-function CompleteMotionGestureInputEventListener:onEvent(eventObject)
-end
+    
+(unless (fboundp 'jm_onCompleteMotionGestureInputEvent_1) (defgeneric jm_onCompleteMotionGestureInputEvent_1 (this p1)))
+(defmethod jm_onCompleteMotionGestureInputEvent_1 ((this CompleteMotionGestureInputEventListener) _completeMotionGestureInputEvent)
+  (declare (ignorable this _completeMotionGestureInputEvent))
+  (let ()
+    (block jreturn nil)))
 
 
-function CompleteMotionGestureInputEventListener:onCompleteMotionGestureInputEvent(completeMotionGestureInputEvent)
-end
-
-return CompleteMotionGestureInputEventListener
 

@@ -28,6 +28,7 @@
 (defun BasicColorUtil.jstatic_instance ()
   (when (eq BasicColorUtil.jcell_instance :jnone) (setf BasicColorUtil.jcell_instance (BasicColorUtil.jnew_0)))
   BasicColorUtil.jcell_instance)
+(defun (setf BasicColorUtil.jstatic_instance) (value) (setf BasicColorUtil.jcell_instance value))
 
 (defun BasicColorUtil.jnew_0 ()
   (let ((this (make-instance 'BasicColorUtil)))

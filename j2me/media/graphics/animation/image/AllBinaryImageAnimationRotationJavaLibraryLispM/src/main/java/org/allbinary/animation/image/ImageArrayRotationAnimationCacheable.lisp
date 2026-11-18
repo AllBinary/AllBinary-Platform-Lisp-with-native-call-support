@@ -1,57 +1,50 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation.image
 
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local CacheableInterface = require("org.allbinary.logic.util.cache.CacheableInterface")
-local AdjustedImageArrayRotationAnimation = require("org.allbinary.animation.image.AdjustedImageArrayRotationAnimation")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ImageArrayRotationAnimationCacheable (AdjustedImageArrayRotationAnimation)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun ImageArrayRotationAnimationCacheable.jnew_2 (_anyType _animationBehavior)
+  (declare (ignorable _anyType _animationBehavior))
+  (let ((this (make-instance 'ImageArrayRotationAnimationCacheable)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
-local ImageArrayRotationAnimationCacheable = {}
-ImageArrayRotationAnimationCacheable.__index = ImageArrayRotationAnimationCacheable
-ImageArrayRotationAnimationCacheable.className = "ImageArrayRotationAnimationCacheable"
-setmetatable(ImageArrayRotationAnimationCacheable, {__index = AdjustedImageArrayRotationAnimation})
+    
+(unless (fboundp 'jm_getKey_0) (defgeneric jm_getKey_0 (this)))
+(defmethod jm_getKey_0 ((this ImageArrayRotationAnimationCacheable))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT)))))
+
+    
+(unless (fboundp 'jm_toString_0) (defgeneric jm_toString_0 (this)))
+(defmethod jm_toString_0 ((this ImageArrayRotationAnimationCacheable))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING)))))
 
 
-function ImageArrayRotationAnimationCacheable.new(anyType, animationBehavior)
-    local self = setmetatable(AdjustedImageArrayRotationAnimation.new((anyType):getImageArray(), (anyType):getAngleInfoP(), (anyType):getTotalAngle(), (anyType):getDx(), (anyType):getDy(), animationBehavior), ImageArrayRotationAnimationCacheable)
-        -- super(...) made self above
-    return self
-end
-
-
-function ImageArrayRotationAnimationCacheable:getKey()
-        return NullUtil.getInstance().NULL_OBJECT
-end
-
-
-function ImageArrayRotationAnimationCacheable:toString()
-        return StringUtil.getInstance().EMPTY_STRING
-end
-ImageArrayRotationAnimationCacheable.__tostring = function(self) return self:toString() end
-
-return ImageArrayRotationAnimationCacheable
 

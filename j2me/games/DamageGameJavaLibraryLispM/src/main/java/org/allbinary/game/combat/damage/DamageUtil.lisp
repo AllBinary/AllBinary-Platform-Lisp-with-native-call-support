@@ -1,79 +1,75 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.combat.damage
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.combat.damage
 
-local CollidableCompositeLayer = require("org.allbinary.game.layer.CollidableCompositeLayer")
-local CollidableDestroyableDamageableLayer = require("org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass DamageUtil (JObject)
+  ((f_logUtil :initform nil)
+   (f_COLLIDE :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar DamageUtil.jcell_instance :jnone)
+(defun DamageUtil.jstatic_instance ()
+  (when (eq DamageUtil.jcell_instance :jnone) (setf DamageUtil.jcell_instance (DamageUtil.jnew_0)))
+  DamageUtil.jcell_instance)
+(defun (setf DamageUtil.jstatic_instance) (value) (setf DamageUtil.jcell_instance value))
 
-local DamageUtil = {}
-DamageUtil.__index = DamageUtil
-DamageUtil.className = "DamageUtil"
+    
+(defun DamageUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (DamageUtil.jstatic_instance)))))
 
-function DamageUtil:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.COLLIDE = "collide"
-end
+    
+(defun DamageUtil.jnew_0 ()
+  (let ((this (make-instance 'DamageUtil)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_COLLIDE) "collide")
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(unless (fboundp 'jm_process_2) (defgeneric jm_process_2 (this p1 p2)))
+(defmethod jm_process_2 ((this DamageUtil) _damageableInterface _damageableInterface2)
+  (declare (ignorable this _damageableInterface _damageableInterface2))
+  (let ()
+    (block jreturn
+        (jm_damage_2 _damageableInterface (jm_getDamage_1 _damageableInterface2 0) 0))))
+
+    
+(unless (fboundp 'jm_debugDamage_2) (defgeneric jm_debugDamage_2 (this p1 p2)))
+(defmethod jm_debugDamage_2 ((this DamageUtil) _collidableInterfaceCompositeInterface1 _collidableInterfaceCompositeInterface)
+  (declare (ignorable this _collidableInterfaceCompositeInterface1 _collidableInterfaceCompositeInterface))
+  (let (_collidableDestroyableDamageableLayer _damage _stringBuffer)
+  (declare (ignorable _collidableDestroyableDamageableLayer _damage _stringBuffer))
+    (block jreturn
+        (setf _collidableDestroyableDamageableLayer _collidableInterfaceCompositeInterface)
+        (setf _damage (jm_getDamage_1 _collidableDestroyableDamageableLayer 0))
+        (if (> _damage 20000)
+            (progn
+            (setf _stringBuffer (StringMaker.jnew_0))
+            (jm_append_1 _stringBuffer "Collision ")
+            (jm_append_1 _stringBuffer (jm_toString_0 _collidableInterfaceCompositeInterface1))
+            (jm_append_1 _stringBuffer " with: ")
+            (jm_append_1 _stringBuffer (jm_toString_0 _collidableInterfaceCompositeInterface))
+            (jm_append_1 _stringBuffer " damage: ")
+            (jm_appendint_1 _stringBuffer _damage)
+            (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 _stringBuffer) _collidableInterfaceCompositeInterface1 (slot-value this 'f_COLLIDE)))))))
 
 
-function DamageUtil.getInstance()
-        return DamageUtil.instance
-end
-
-
-function DamageUtil.new()
-    local self = setmetatable({}, DamageUtil)
-    self:_init_fields()
-    return self
-end
-
-
--- throws Exception
-function DamageUtil:process(damageableInterface, damageableInterface2)
-        damageableInterface:damage(damageableInterface2:getDamage(0), 0)
-end
-
-
--- throws Exception
-function DamageUtil:debugDamage(collidableInterfaceCompositeInterface1, collidableInterfaceCompositeInterface)
-        local collidableDestroyableDamageableLayer = collidableInterfaceCompositeInterface
-        local damage = collidableDestroyableDamageableLayer:getDamage(0)
-        if damage > 20000 then
-            local stringBuffer = StringMaker.new()
-            stringBuffer:append("Collision ")
-            stringBuffer:append(tostring(collidableInterfaceCompositeInterface1))
-            stringBuffer:append(" with: ")
-            stringBuffer:append(tostring(collidableInterfaceCompositeInterface))
-            stringBuffer:append(" damage: ")
-            stringBuffer:appendint(damage)
-            self.logUtil:putF(tostring(stringBuffer), collidableInterfaceCompositeInterface1, self.COLLIDE)
-        end
-end
-
-DamageUtil.instance = DamageUtil.new()
-
-return DamageUtil
 

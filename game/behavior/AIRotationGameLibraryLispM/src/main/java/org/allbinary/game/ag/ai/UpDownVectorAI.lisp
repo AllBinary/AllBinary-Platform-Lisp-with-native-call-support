@@ -1,77 +1,65 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.ag.ai
 
-local BasicAI = require("org.allbinary.game.ai.BasicAI")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local BasicVelocityProperties = require("org.allbinary.game.physics.velocity.BasicVelocityProperties")
-local VelocityInterfaceCompositeInterface = require("org.allbinary.game.physics.velocity.VelocityInterfaceCompositeInterface")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local BasicDecimal = require("org.allbinary.logic.math.BasicDecimal")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass UpDownVectorAI (BasicAI)
+  ((f_velocityInterface :initform nil)
+   (f_index :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun UpDownVectorAI.jnew_2 (_ownerLayerInterface _gameInput)
+  (declare (ignorable _ownerLayerInterface _gameInput))
+  (let ((this (make-instance 'UpDownVectorAI)))
+    
+    (setf (slot-value this 'f_index) 0)
+  (let (_velocityInterfaceCompositeInterface)
+  (declare (ignorable _velocityInterfaceCompositeInterface))
+    (block jreturn
+        nil
+        (setf _velocityInterfaceCompositeInterface (jm_getOwnerLayerInterface_0 this))
+        (setf (slot-value this 'f_velocityInterface) (jm_getVelocityProperties_0 _velocityInterfaceCompositeInterface))
+        (jm_setint_1 (jm_getVelocityYBasicDecimalP_0 (slot-value this 'f_velocityInterface)) 0)))
+    this))
 
-local UpDownVectorAI = {}
-UpDownVectorAI.__index = UpDownVectorAI
-UpDownVectorAI.className = "UpDownVectorAI"
-setmetatable(UpDownVectorAI, {__index = BasicAI})
+    
+(unless (fboundp 'jm_processAI_1) (defgeneric jm_processAI_1 (this p1)))
+(defmethod jm_processAI_1 ((this UpDownVectorAI) _allBinaryLayerManager)
+  (declare (ignorable this _allBinaryLayerManager))
+  (let (_y _basicDecimal)
+  (declare (ignorable _y _basicDecimal))
+    (block jreturn
+        (setf _y (JR.i32 (* (jm_getHeight_0 (jm_getOwnerLayerInterface_0 this)) 270)))
+        (if (< (slot-value this 'f_index) 5)
+            (progn
+            (setf _basicDecimal (jm_getVelocityYBasicDecimalP_0 (slot-value this 'f_velocityInterface)))
+            (jm_setint_1 _basicDecimal 0)
+            (jm_addint_1 _basicDecimal _y)
+            (setf (slot-value this 'f_index) (JR.i32 (+ (slot-value this 'f_index) 1))))
+            (if (< (slot-value this 'f_index) 10)
+            (progn
+            (setf _basicDecimal (jm_getVelocityYBasicDecimalP_0 (slot-value this 'f_velocityInterface)))
+            (jm_setint_1 _basicDecimal 0)
+            (jm_subtractint_1 _basicDecimal _y)
+            (setf (slot-value this 'f_index) (JR.i32 (+ (slot-value this 'f_index) 1))))
+            (progn
+            (setf (slot-value this 'f_index) 0)
+            (jm_processAI_1 this _allBinaryLayerManager)))))))
 
-function UpDownVectorAI:_init_fields()
-    self.velocityInterface = nil
-    self.index = 0
-end
 
-
-function UpDownVectorAI.new(ownerLayerInterface, gameInput)
-    local self = setmetatable(BasicAI.new(ownerLayerInterface, gameInput), UpDownVectorAI)
-    self:_init_fields()
-        -- super(...) made self above
-        local velocityInterfaceCompositeInterface = self:getOwnerLayerInterface()
-        self.velocityInterface = velocityInterfaceCompositeInterface:getVelocityProperties()
-        self.velocityInterface:getVelocityYBasicDecimalP():setint(0)
-    return self
-end
-
-
--- throws Exception
-function UpDownVectorAI:processAI(allBinaryLayerManager)
-        local y = self:getOwnerLayerInterface():getHeight() * 270
-        if self.index < 5 then
-            local basicDecimal = self.velocityInterface:getVelocityYBasicDecimalP()
-            basicDecimal:setint(0)
-            basicDecimal:addint(y)
-            self.index = self.index + 1
-        elseif self.index < 10 then
-            local basicDecimal = self.velocityInterface:getVelocityYBasicDecimalP()
-            basicDecimal:setint(0)
-            basicDecimal:subtractint(y)
-            self.index = self.index + 1
-        else
-            self.index = 0
-            self:processAI(allBinaryLayerManager)
-        end
-end
-
-return UpDownVectorAI
 

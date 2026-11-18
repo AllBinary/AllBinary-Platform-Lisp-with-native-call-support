@@ -1,134 +1,160 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.compound
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation.compound
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Animation = require("org.allbinary.animation.Animation")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local IndexedAnimation = require("org.allbinary.animation.IndexedAnimation")
-local PrimitiveIntUtil = require("org.allbinary.logic.math.PrimitiveIntUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass SimultaneousCompoundIndexedAnimation (IndexedAnimation)
+  ((f_animationInterfaceArray :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun SimultaneousCompoundIndexedAnimation.jnew_2 (_animationInterfaceArray _animationBehavior)
+  (declare (ignorable _animationInterfaceArray _animationBehavior))
+  (let ((this (make-instance 'SimultaneousCompoundIndexedAnimation)))
+    
+  (let ()
+    (block jreturn
+        nil
+        (setf (slot-value this 'f_animationInterfaceArray) _animationInterfaceArray)))
+    this))
 
-local SimultaneousCompoundIndexedAnimation = {}
-SimultaneousCompoundIndexedAnimation.__index = SimultaneousCompoundIndexedAnimation
-SimultaneousCompoundIndexedAnimation.className = "SimultaneousCompoundIndexedAnimation"
-setmetatable(SimultaneousCompoundIndexedAnimation, {__index = IndexedAnimation})
+    
+(unless (fboundp 'jm_setFrame_1) (defgeneric jm_setFrame_1 (this p1)))
+(defmethod jm_setFrame_1 ((this SimultaneousCompoundIndexedAnimation) _frameIndex)
+  (declare (ignorable this _frameIndex))
+  (let (_indexedAnimation _index)
+  (declare (ignorable _indexedAnimation _index))
+    (block jreturn
+        (setf _indexedAnimation nil)
+        (progn
+            (setf _index (length (slot-value this 'f_animationInterfaceArray)))
+            (block jbreak (loop while (>= (setf _index (JR.i32 (- _index 1))) 0) do
+                (block jcontinue
+            (setf _indexedAnimation (aref (slot-value this 'f_animationInterfaceArray) _index))
+            (jm_setFrame_1 _indexedAnimation _frameIndex))))))))
 
-function SimultaneousCompoundIndexedAnimation:_init_fields()
-    self.animationInterfaceArray = nil
-end
+    
+(unless (fboundp 'jm_getFrame_0) (defgeneric jm_getFrame_0 (this)))
+(defmethod jm_getFrame_0 ((this SimultaneousCompoundIndexedAnimation))
+  (declare (ignorable this))
+  (let (_indexedAnimation)
+  (declare (ignorable _indexedAnimation))
+    (block jreturn
+        (setf _indexedAnimation (aref (slot-value this 'f_animationInterfaceArray) 0))
+        (return-from jreturn (jm_getFrame_0 _indexedAnimation)))))
+
+    
+(unless (fboundp 'jm_getSize_0) (defgeneric jm_getSize_0 (this)))
+(defmethod jm_getSize_0 ((this SimultaneousCompoundIndexedAnimation))
+  (declare (ignorable this))
+  (let (_indexedAnimation)
+  (declare (ignorable _indexedAnimation))
+    (block jreturn
+        (setf _indexedAnimation (aref (slot-value this 'f_animationInterfaceArray) 0))
+        (return-from jreturn (jm_getSize_0 _indexedAnimation)))))
+
+    
+(unless (fboundp 'jm_previousFrame_0) (defgeneric jm_previousFrame_0 (this)))
+(defmethod jm_previousFrame_0 ((this SimultaneousCompoundIndexedAnimation))
+  (declare (ignorable this))
+  (let (_indexedAnimation _index)
+  (declare (ignorable _indexedAnimation _index))
+    (block jreturn
+        (setf _indexedAnimation nil)
+        (progn
+            (setf _index (length (slot-value this 'f_animationInterfaceArray)))
+            (block jbreak (loop while (>= (setf _index (JR.i32 (- _index 1))) 0) do
+                (block jcontinue
+            (setf _indexedAnimation (aref (slot-value this 'f_animationInterfaceArray) _index))
+            (jm_previousFrame_0 _indexedAnimation))))))))
+
+    
+(unless (fboundp 'jm_setSequence_1) (defgeneric jm_setSequence_1 (this p1)))
+(defmethod jm_setSequence_1 ((this SimultaneousCompoundIndexedAnimation) _sequence)
+  (declare (ignorable this _sequence))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_getSequence_0) (defgeneric jm_getSequence_0 (this)))
+(defmethod jm_getSequence_0 ((this SimultaneousCompoundIndexedAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (PrimitiveIntUtil.jm_getArrayInstance_0)))))
+
+    
+(unless (fboundp 'jm_nextFrame_0) (defgeneric jm_nextFrame_0 (this)))
+(defmethod jm_nextFrame_0 ((this SimultaneousCompoundIndexedAnimation))
+  (declare (ignorable this))
+  (let (_index)
+  (declare (ignorable _index))
+    (block jreturn
+        (progn
+            (setf _index (length (slot-value this 'f_animationInterfaceArray)))
+            (block jbreak (loop while (>= (setf _index (JR.i32 (- _index 1))) 0) do
+                (block jcontinue
+            (jm_nextFrame_0 (aref (slot-value this 'f_animationInterfaceArray) _index)))))))))
+
+    
+(unless (fboundp 'jm_paintXY_3) (defgeneric jm_paintXY_3 (this p1 p2 p3)))
+(defmethod jm_paintXY_3 ((this SimultaneousCompoundIndexedAnimation) _graphics _x _y)
+  (declare (ignorable this _graphics _x _y))
+  (let (_size _index)
+  (declare (ignorable _size _index))
+    (block jreturn
+        (setf _size (length (slot-value this 'f_animationInterfaceArray)))
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (jm_paintXY_3 (aref (slot-value this 'f_animationInterfaceArray) _index) _graphics _x _y))
+                (setf _index (JR.i32 (+ _index 1)))))))))
+
+    
+(unless (fboundp 'jm_paintThreedXYZ_4) (defgeneric jm_paintThreedXYZ_4 (this p1 p2 p3 p4)))
+(defmethod jm_paintThreedXYZ_4 ((this SimultaneousCompoundIndexedAnimation) _graphics _x _y _z)
+  (declare (ignorable this _graphics _x _y _z))
+  (let (_size _index)
+  (declare (ignorable _size _index))
+    (block jreturn
+        (setf _size (length (slot-value this 'f_animationInterfaceArray)))
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (jm_paintThreedXYZ_4 (aref (slot-value this 'f_animationInterfaceArray) _index) _graphics _x _y _z))
+                (setf _index (JR.i32 (+ _index 1)))))))))
+
+    
+(unless (fboundp 'jm_getAnimationInterfaceArray_0) (defgeneric jm_getAnimationInterfaceArray_0 (this)))
+(defmethod jm_getAnimationInterfaceArray_0 ((this SimultaneousCompoundIndexedAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_animationInterfaceArray)))))
+
+    
+(unless (fboundp 'jm_setAnimationInterfaceArray_1) (defgeneric jm_setAnimationInterfaceArray_1 (this p1)))
+(defmethod jm_setAnimationInterfaceArray_1 ((this SimultaneousCompoundIndexedAnimation) _animationInterfaceArray)
+  (declare (ignorable this _animationInterfaceArray))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_animationInterfaceArray) _animationInterfaceArray))))
 
 
-function SimultaneousCompoundIndexedAnimation.new(animationInterfaceArray, animationBehavior)
-    local self = setmetatable(IndexedAnimation.new(animationBehavior), SimultaneousCompoundIndexedAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self.animationInterfaceArray = animationInterfaceArray
-    return self
-end
-
-
-function SimultaneousCompoundIndexedAnimation:setFrame(frameIndex)
-        local indexedAnimation = nil
-        do
-            local index = (self.animationInterfaceArray.n or #self.animationInterfaceArray)
-            while (function() index = index - 1 return index end)() >= 0 do
-            indexedAnimation = self.animationInterfaceArray[index + 1]
-            indexedAnimation:setFrame(frameIndex)
-            end
-        end
-end
-
-
-function SimultaneousCompoundIndexedAnimation:getFrame()
-        local indexedAnimation = self.animationInterfaceArray[1]
-        return indexedAnimation:getFrame()
-end
-
-
-function SimultaneousCompoundIndexedAnimation:getSize()
-        local indexedAnimation = self.animationInterfaceArray[1]
-        return indexedAnimation:getSize()
-end
-
-
-function SimultaneousCompoundIndexedAnimation:previousFrame()
-        local indexedAnimation = nil
-        do
-            local index = (self.animationInterfaceArray.n or #self.animationInterfaceArray)
-            while (function() index = index - 1 return index end)() >= 0 do
-            indexedAnimation = self.animationInterfaceArray[index + 1]
-            indexedAnimation:previousFrame()
-            end
-        end
-end
-
-
-function SimultaneousCompoundIndexedAnimation:setSequence(sequence)
-end
-
-
-function SimultaneousCompoundIndexedAnimation:getSequence()
-        return PrimitiveIntUtil.getArrayInstance()
-end
-
-
--- throws Exception
-function SimultaneousCompoundIndexedAnimation:nextFrame()
-        do
-            local index = (self.animationInterfaceArray.n or #self.animationInterfaceArray)
-            while (function() index = index - 1 return index end)() >= 0 do
-            self.animationInterfaceArray[index + 1]:nextFrame()
-            end
-        end
-end
-
-
-function SimultaneousCompoundIndexedAnimation:paintXY(graphics, x, y)
-        local size = (self.animationInterfaceArray.n or #self.animationInterfaceArray)
-        for index = 0, size - 1 do
-            self.animationInterfaceArray[index + 1]:paintXY(graphics, x, y)
-        end
-end
-
-
-function SimultaneousCompoundIndexedAnimation:paintThreedXYZ(graphics, x, y, z)
-        local size = (self.animationInterfaceArray.n or #self.animationInterfaceArray)
-        for index = 0, size - 1 do
-            self.animationInterfaceArray[index + 1]:paintThreedXYZ(graphics, x, y, z)
-        end
-end
-
-
-function SimultaneousCompoundIndexedAnimation:getAnimationInterfaceArray()
-        return self.animationInterfaceArray
-end
-
-
-function SimultaneousCompoundIndexedAnimation:setAnimationInterfaceArray(animationInterfaceArray)
-        self.animationInterfaceArray = animationInterfaceArray
-end
-
-return SimultaneousCompoundIndexedAnimation
 

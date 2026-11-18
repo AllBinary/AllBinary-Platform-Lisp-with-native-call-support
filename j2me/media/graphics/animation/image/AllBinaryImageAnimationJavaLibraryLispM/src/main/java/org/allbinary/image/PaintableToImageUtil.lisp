@@ -1,52 +1,46 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.image
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.image
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
--- local Image = require("javax.microedition.lcdui.Image")
-local PaintableInterface = require("org.allbinary.graphics.paint.PaintableInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass PaintableToImageUtil (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar PaintableToImageUtil.jcell_instance :jnone)
+(defun PaintableToImageUtil.jstatic_instance ()
+  (when (eq PaintableToImageUtil.jcell_instance :jnone) (setf PaintableToImageUtil.jcell_instance (PaintableToImageUtil.jnew_0)))
+  PaintableToImageUtil.jcell_instance)
+(defun (setf PaintableToImageUtil.jstatic_instance) (value) (setf PaintableToImageUtil.jcell_instance value))
 
-local PaintableToImageUtil = {}
-PaintableToImageUtil.__index = PaintableToImageUtil
-PaintableToImageUtil.className = "PaintableToImageUtil"
+(defun PaintableToImageUtil.jnew_0 ()
+  (let ((this (make-instance 'PaintableToImageUtil)))
+    this))
 
-function PaintableToImageUtil.new()
-    local self = setmetatable({}, PaintableToImageUtil)
-    return self
-end
+    
+(defun PaintableToImageUtil.jm_getImage_3 (_paintableInterface _width _height)
+  (declare (ignorable _paintableInterface _width _height))
+  (let (_image _graphics)
+  (declare (ignorable _image _graphics))
+    (block jreturn
+        (setf _image (jm_get_3 (GameFeatureImageCacheFactory.jm_getInstance_0) (JR.className (PaintableToImageUtil.jstatic_instance)) _width _height))
+        (setf _graphics (jm_getGraphics_0 _image))
+        (jm_paint_1 _paintableInterface _graphics)
+        (return-from jreturn _image))))
 
 
--- throws Exception
-function PaintableToImageUtil.getImage(paintableInterface, width, height)
-        local image = GameFeatureImageCacheFactory.getInstance():get(getmetatable(PaintableToImageUtil.instance).className, width, height)
-        local graphics = image:getGraphics()
-        paintableInterface:paint(graphics)
-        return image
-end
-
-PaintableToImageUtil.instance = PaintableToImageUtil.new()
-
-return PaintableToImageUtil
 

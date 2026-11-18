@@ -1,47 +1,41 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation
 
-local AnimationInterface = require("org.allbinary.animation.AnimationInterface")
-local SequenceInterface = require("org.allbinary.animation.SequenceInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass SequentialAnimationInterface (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun SequentialAnimationInterface.jnew_0 ()
+  (let ((this (make-instance 'SequentialAnimationInterface)))
+    this))
 
--- Java interface
-local SequentialAnimationInterface = {}
-SequentialAnimationInterface.__index = SequentialAnimationInterface
-SequentialAnimationInterface.className = "SequentialAnimationInterface"
-setmetatable(SequentialAnimationInterface, {__index = AnimationInterface})
+    
+(unless (fboundp 'jm_getSize_0) (defgeneric jm_getSize_0 (this)))
+(defmethod jm_getSize_0 ((this SequentialAnimationInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "getSize")))
 
-
-function SequentialAnimationInterface:getSize()
-    error("abstract method getSize")
-end
+    
+(unless (fboundp 'jm_previousFrame_0) (defgeneric jm_previousFrame_0 (this)))
+(defmethod jm_previousFrame_0 ((this SequentialAnimationInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "previousFrame")))
 
 
-function SequentialAnimationInterface:previousFrame()
-    error("abstract method previousFrame")
-end
-
-return SequentialAnimationInterface
 

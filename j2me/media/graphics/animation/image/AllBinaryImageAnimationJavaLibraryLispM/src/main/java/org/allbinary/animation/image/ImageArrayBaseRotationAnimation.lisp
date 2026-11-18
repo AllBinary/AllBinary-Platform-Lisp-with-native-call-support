@@ -1,156 +1,187 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation.image
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
--- local Image = require("javax.microedition.lcdui.Image")
--- local NullImage = require("javax.microedition.lcdui.NullImage")
-local DisposalUtil = require("org.allbinary.DisposalUtil")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local RotationAnimation = require("org.allbinary.animation.RotationAnimation")
-local Anchor = require("org.allbinary.graphics.Anchor")
-local PrimitiveIntUtil = require("org.allbinary.logic.math.PrimitiveIntUtil")
-local AngleInfo = require("org.allbinary.math.AngleInfo")
-local ImageModifierUtil = require("org.allbinary.media.image.ImageModifierUtil")
-local CircularIndexUtil = require("org.allbinary.util.CircularIndexUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ImageArrayBaseRotationAnimation (RotationAnimation)
+  ((f_imageModifierUtil :initform nil)
+   (f_originalImageArray :initform nil)
+   (f_imageArray :initform nil)
+   (f_currentImage :initform nil)
+   (f_totalFrames :initform 0)
+   (f_anchor :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun ImageArrayBaseRotationAnimation.jnew_3 (_originalImageArray _angleInfo _animationBehavior)
+  (declare (ignorable _originalImageArray _angleInfo _animationBehavior))
+  (let ((this (make-instance 'ImageArrayBaseRotationAnimation)))
+    (setf (slot-value this 'f_imageModifierUtil) (ImageModifierUtil.jm_getInstanceOrCreate_0))
+    
+    (setf (slot-value this 'f_imageArray) (NullImage.jstatic_NULL_IMAGE_ARRAY))
+    
+    
+    (setf (slot-value this 'f_anchor) (Anchor.jstatic_TOP_LEFT))
+  (let ()
+    (block jreturn
+        nil
+        (setf (slot-value this 'f_originalImageArray) _originalImageArray)
+        (jm_setImageArray_1 this (jm_getImageArray_1 (slot-value this 'f_imageModifierUtil) _originalImageArray))
+        (setf (slot-value this 'f_currentImage) (aref (slot-value this 'f_imageArray) (jm_getIndex_0 (slot-value this 'f_circularIndexUtil))))))
+    this))
 
-local ImageArrayBaseRotationAnimation = {}
-ImageArrayBaseRotationAnimation.__index = ImageArrayBaseRotationAnimation
-ImageArrayBaseRotationAnimation.className = "ImageArrayBaseRotationAnimation"
-setmetatable(ImageArrayBaseRotationAnimation, {__index = RotationAnimation})
+    
+(unless (fboundp 'jm_getAnimationSize_0) (defgeneric jm_getAnimationSize_0 (this)))
+(defmethod jm_getAnimationSize_0 ((this ImageArrayBaseRotationAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getSize_0 this)))))
 
-function ImageArrayBaseRotationAnimation:_init_fields()
-    self.imageModifierUtil = ImageModifierUtil.getInstanceOrCreate()
-    self.originalImageArray = nil
-    self.imageArray = NullImage.NULL_IMAGE_ARRAY
-    self.currentImage = nil
-    self.totalFrames = 0
-    self.anchor = Anchor.TOP_LEFT
-end
+    
+(unless (fboundp 'jm_setAlpha_1) (defgeneric jm_setAlpha_1 (this p1)))
+(defmethod jm_setAlpha_1 ((this ImageArrayBaseRotationAnimation) _alpha)
+  (declare (ignorable this _alpha))
+  (let (_index)
+  (declare (ignorable _index))
+    (block jreturn
+        (if (not (eq (slot-value this 'f_alphaP) _alpha))
+            (progn
+            (call-next-method this _alpha)
+            (jm_reset_0 (slot-value this 'f_imageModifierUtil))
+            (setf _index (jm_getIndex_0 (slot-value this 'f_circularIndexUtil)))
+            (jm_setAlpha_4 (slot-value this 'f_imageModifierUtil) (aref (slot-value this 'f_originalImageArray) _index) (aref (slot-value this 'f_imageArray) _index) _index (slot-value this 'f_alphaP)))))))
+
+    
+(unless (fboundp 'jm_nextRotation_0) (defgeneric jm_nextRotation_0 (this)))
+(defmethod jm_nextRotation_0 ((this ImageArrayBaseRotationAnimation))
+  (declare (ignorable this))
+  (let (_index)
+  (declare (ignorable _index))
+    (block jreturn
+        (call-next-method this)
+        (setf _index (jm_getIndex_0 (slot-value this 'f_circularIndexUtil)))
+        (jm_setAlpha_4 (slot-value this 'f_imageModifierUtil) (aref (slot-value this 'f_originalImageArray) _index) (aref (slot-value this 'f_imageArray) _index) _index (slot-value this 'f_alphaP))
+        (setf (slot-value this 'f_currentImage) (aref (slot-value this 'f_imageArray) _index)))))
+
+    
+(unless (fboundp 'jm_previousRotation_0) (defgeneric jm_previousRotation_0 (this)))
+(defmethod jm_previousRotation_0 ((this ImageArrayBaseRotationAnimation))
+  (declare (ignorable this))
+  (let (_index)
+  (declare (ignorable _index))
+    (block jreturn
+        (call-next-method this)
+        (setf _index (jm_getIndex_0 (slot-value this 'f_circularIndexUtil)))
+        (jm_setAlpha_4 (slot-value this 'f_imageModifierUtil) (aref (slot-value this 'f_originalImageArray) _index) (aref (slot-value this 'f_imageArray) _index) _index (slot-value this 'f_alphaP))
+        (setf (slot-value this 'f_currentImage) (aref (slot-value this 'f_imageArray) _index)))))
+
+    
+(unless (fboundp 'jm_setFrame_1) (defgeneric jm_setFrame_1 (this p1)))
+(defmethod jm_setFrame_1 ((this ImageArrayBaseRotationAnimation) _index2)
+  (declare (ignorable this _index2))
+  (let (_index)
+  (declare (ignorable _index))
+    (block jreturn
+        (call-next-method this _index2)
+        (setf _index (jm_getIndex_0 (slot-value this 'f_circularIndexUtil)))
+        (jm_setAlpha_4 (slot-value this 'f_imageModifierUtil) (aref (slot-value this 'f_originalImageArray) _index) (aref (slot-value this 'f_imageArray) _index) _index (slot-value this 'f_alphaP))
+        (setf (slot-value this 'f_currentImage) (aref (slot-value this 'f_imageArray) _index)))))
+
+    
+(unless (fboundp 'jm_setSequence_1) (defgeneric jm_setSequence_1 (this p1)))
+(defmethod jm_setSequence_1 ((this ImageArrayBaseRotationAnimation) _sequence)
+  (declare (ignorable this _sequence))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_getSequence_0) (defgeneric jm_getSequence_0 (this)))
+(defmethod jm_getSequence_0 ((this ImageArrayBaseRotationAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (PrimitiveIntUtil.jm_getArrayInstance_0)))))
+
+    
+(unless (fboundp 'jm_setImageArray_1) (defgeneric jm_setImageArray_1 (this p1)))
+(defmethod jm_setImageArray_1 ((this ImageArrayBaseRotationAnimation) _imageArray)
+  (declare (ignorable this _imageArray))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_imageArray) _imageArray)
+        (setf (slot-value this 'f_totalFrames) (length _imageArray))
+        (setf (slot-value this 'f_circularIndexUtil) (CircularIndexUtil.jm_createInstance_1 (slot-value this 'f_totalFrames))))))
+
+    
+(unless (fboundp 'jm_paintXY_3) (defgeneric jm_paintXY_3 (this p1 p2 p3)))
+(defmethod jm_paintXY_3 ((this ImageArrayBaseRotationAnimation) _graphics _x _y)
+  (declare (ignorable this _graphics _x _y))
+  (let ()
+    (block jreturn
+        (jm_drawImage_4 _graphics (slot-value this 'f_currentImage) _x _y (slot-value this 'f_anchor)))))
+
+    
+(unless (fboundp 'jm_close_0) (defgeneric jm_close_0 (this)))
+(defmethod jm_close_0 ((this ImageArrayBaseRotationAnimation))
+  (declare (ignorable this))
+  (let (_disposalUtil _size2 _index _size)
+  (declare (ignorable _disposalUtil _size2 _index _size))
+    (block jreturn
+        (setf _disposalUtil (DisposalUtil.jm_getInstance_0))
+        (setf _size2 (length (slot-value this 'f_imageArray)))
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size2) do
+                (block jcontinue
+            (jm_disposeImage_1 _disposalUtil (aref (slot-value this 'f_imageArray) _index)))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (setf _size (length (slot-value this 'f_originalImageArray)))
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (jm_disposeImage_1 _disposalUtil (aref (slot-value this 'f_originalImageArray) _index)))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (jm_disposeImage_1 _disposalUtil (slot-value this 'f_currentImage)))))
+
+    
+(unless (fboundp 'jm_finalize_0) (defgeneric jm_finalize_0 (this)))
+(defmethod jm_finalize_0 ((this ImageArrayBaseRotationAnimation))
+  (declare (ignorable this))
+  (let (_disposalUtil _size2 _index _size)
+  (declare (ignorable _disposalUtil _size2 _index _size))
+    (block jreturn
+        (setf _disposalUtil (DisposalUtil.jm_getInstance_0))
+        (setf _size2 (length (slot-value this 'f_imageArray)))
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size2) do
+                (block jcontinue
+            (jm_disposeImage_1 _disposalUtil (aref (slot-value this 'f_imageArray) _index)))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (setf _size (length (slot-value this 'f_originalImageArray)))
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (jm_disposeImage_1 _disposalUtil (aref (slot-value this 'f_originalImageArray) _index)))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (jm_disposeImage_1 _disposalUtil (slot-value this 'f_currentImage)))))
 
 
-function ImageArrayBaseRotationAnimation.new(originalImageArray, angleInfo, animationBehavior)
-    local self = setmetatable(RotationAnimation.new(angleInfo, CircularIndexUtil.createInstance(360 / angleInfo:getAngleIncrementInfo():getAngleIncrement()), animationBehavior), ImageArrayBaseRotationAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self.originalImageArray = originalImageArray
-        self:setImageArray(self.imageModifierUtil:getImageArray(originalImageArray))
-        self.currentImage = self.imageArray[self.circularIndexUtil:getIndex() + 1]
-    return self
-end
-
-
--- throws Exception
-function ImageArrayBaseRotationAnimation:getAnimationSize()
-        return self:getSize()
-end
-
-
-function ImageArrayBaseRotationAnimation:setAlpha(alpha)
-        if self.alphaP ~= alpha then
-            RotationAnimation.setAlpha(self, alpha)
-            self.imageModifierUtil:reset()
-            local index = self.circularIndexUtil:getIndex()
-            self.imageModifierUtil:setAlpha(self.originalImageArray[index + 1], self.imageArray[index + 1], index, self.alphaP)
-        end
-end
-
-
-function ImageArrayBaseRotationAnimation:nextRotation()
-        RotationAnimation.nextRotation(self)
-        local index = self.circularIndexUtil:getIndex()
-        self.imageModifierUtil:setAlpha(self.originalImageArray[index + 1], self.imageArray[index + 1], index, self.alphaP)
-        self.currentImage = self.imageArray[index + 1]
-end
-
-
-function ImageArrayBaseRotationAnimation:previousRotation()
-        RotationAnimation.previousRotation(self)
-        local index = self.circularIndexUtil:getIndex()
-        self.imageModifierUtil:setAlpha(self.originalImageArray[index + 1], self.imageArray[index + 1], index, self.alphaP)
-        self.currentImage = self.imageArray[index + 1]
-end
-
-
-function ImageArrayBaseRotationAnimation:setFrame(index2)
-        RotationAnimation.setFrame(self, index2)
-        local index = self.circularIndexUtil:getIndex()
-        self.imageModifierUtil:setAlpha(self.originalImageArray[index + 1], self.imageArray[index + 1], index, self.alphaP)
-        self.currentImage = self.imageArray[index + 1]
-end
-
-
-function ImageArrayBaseRotationAnimation:setSequence(sequence)
-end
-
-
-function ImageArrayBaseRotationAnimation:getSequence()
-        return PrimitiveIntUtil.getArrayInstance()
-end
-
-
-function ImageArrayBaseRotationAnimation:setImageArray(imageArray)
-        self.imageArray = imageArray
-        self.totalFrames = (imageArray.n or #imageArray)
-        self.circularIndexUtil = CircularIndexUtil.createInstance(self.totalFrames)
-end
-
-
-function ImageArrayBaseRotationAnimation:paintXY(graphics, x, y)
-        graphics:drawImage(self.currentImage, x, y, self.anchor)
-end
-
-
--- throws Exception
-function ImageArrayBaseRotationAnimation:close()
-        local disposalUtil = DisposalUtil.getInstance()
-        local size2 = (self.imageArray.n or #self.imageArray)
-        for index = 0, size2 - 1 do
-            disposalUtil:disposeImage(self.imageArray[index + 1])
-        end
-        local size = (self.originalImageArray.n or #self.originalImageArray)
-        for index = 0, size - 1 do
-            disposalUtil:disposeImage(self.originalImageArray[index + 1])
-        end
-        disposalUtil:disposeImage(self.currentImage)
-end
-
-
--- throws Throwable
-function ImageArrayBaseRotationAnimation:finalize()
-        local disposalUtil = DisposalUtil.getInstance()
-        local size2 = (self.imageArray.n or #self.imageArray)
-        for index = 0, size2 - 1 do
-            disposalUtil:disposeImage(self.imageArray[index + 1])
-        end
-        local size = (self.originalImageArray.n or #self.originalImageArray)
-        for index = 0, size - 1 do
-            disposalUtil:disposeImage(self.originalImageArray[index + 1])
-        end
-        disposalUtil:disposeImage(self.currentImage)
-end
-
-return ImageArrayBaseRotationAnimation
 

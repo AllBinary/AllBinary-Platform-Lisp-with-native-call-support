@@ -1,66 +1,63 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.paint
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.paint
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass MainGameDemoStatePaintable (Paintable)
+  ((f_ownershipPaintableInterface :initform nil)
+   (f_menuPaintableInterface :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun MainGameDemoStatePaintable.jnew_2 (_ownershipPaintableInterface _menuPaintableInterface)
+  (declare (ignorable _ownershipPaintableInterface _menuPaintableInterface))
+  (let ((this (make-instance 'MainGameDemoStatePaintable)))
+    
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_ownershipPaintableInterface) _ownershipPaintableInterface)
+        (setf (slot-value this 'f_menuPaintableInterface) _menuPaintableInterface)))
+    this))
 
-local MainGameDemoStatePaintable = {}
-MainGameDemoStatePaintable.__index = MainGameDemoStatePaintable
-MainGameDemoStatePaintable.className = "MainGameDemoStatePaintable"
-setmetatable(MainGameDemoStatePaintable, {__index = Paintable})
+    
+(unless (fboundp 'jm_paint_1) (defgeneric jm_paint_1 (this p1)))
+(defmethod jm_paint_1 ((this MainGameDemoStatePaintable) _graphics)
+  (declare (ignorable this _graphics))
+  (let ()
+    (block jreturn
+        (jm_paint_1 (slot-value this 'f_menuPaintableInterface) _graphics)
+        (jm_paint_1 (slot-value this 'f_ownershipPaintableInterface) _graphics))))
 
-function MainGameDemoStatePaintable:_init_fields()
-    self.ownershipPaintableInterface = nil
-    self.menuPaintableInterface = nil
-end
+    
+(unless (fboundp 'jm_getOwnershipPaintableInterface_0) (defgeneric jm_getOwnershipPaintableInterface_0 (this)))
+(defmethod jm_getOwnershipPaintableInterface_0 ((this MainGameDemoStatePaintable))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_ownershipPaintableInterface)))))
 
-
-function MainGameDemoStatePaintable.new(ownershipPaintableInterface, menuPaintableInterface)
-    local self = setmetatable(Paintable.new(), MainGameDemoStatePaintable)
-    self:_init_fields()
-        self.ownershipPaintableInterface = ownershipPaintableInterface
-        self.menuPaintableInterface = menuPaintableInterface
-    return self
-end
-
-
-function MainGameDemoStatePaintable:paint(graphics)
-        self.menuPaintableInterface:paint(graphics)
-        self.ownershipPaintableInterface:paint(graphics)
-end
-
-
-function MainGameDemoStatePaintable:getOwnershipPaintableInterface()
-        return self.ownershipPaintableInterface
-end
+    
+(unless (fboundp 'jm_getMenuPaintableInterface_0) (defgeneric jm_getMenuPaintableInterface_0 (this)))
+(defmethod jm_getMenuPaintableInterface_0 ((this MainGameDemoStatePaintable))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_menuPaintableInterface)))))
 
 
-function MainGameDemoStatePaintable:getMenuPaintableInterface()
-        return self.menuPaintableInterface
-end
-
-return MainGameDemoStatePaintable
 

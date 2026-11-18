@@ -1,55 +1,40 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.layer
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local BasicColorSetUtil = require("org.allbinary.graphics.color.BasicColorSetUtil")
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass SWTBlackPaintable (Paintable)
+  ((f_basicSetColorUtil :initform nil)
+   (f_BLACK :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun SWTBlackPaintable.jnew_0 ()
+  (let ((this (make-instance 'SWTBlackPaintable)))
+    (setf (slot-value this 'f_basicSetColorUtil) (BasicColorSetUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_BLACK) (slot-value (BasicColorFactory.jm_getInstance_0) 'f_BLACK))
+    this))
 
-local SWTBlackPaintable = {}
-SWTBlackPaintable.__index = SWTBlackPaintable
-SWTBlackPaintable.className = "SWTBlackPaintable"
-setmetatable(SWTBlackPaintable, {__index = Paintable})
-
-function SWTBlackPaintable:_init_fields()
-    self.basicSetColorUtil = BasicColorSetUtil.getInstance()
-    self.BLACK = BasicColorFactory.getInstance().BLACK
-end
-
-function SWTBlackPaintable.new()
-    local self = setmetatable(Paintable.new(), SWTBlackPaintable)
-    self:_init_fields()
-    return self
-end
+    
+(unless (fboundp 'jm_paint_1) (defgeneric jm_paint_1 (this p1)))
+(defmethod jm_paint_1 ((this SWTBlackPaintable) _graphics)
+  (declare (ignorable this _graphics))
+  (let ()
+    (block jreturn
+        (jm_setBasicColorP_2 (slot-value this 'f_basicSetColorUtil) _graphics (slot-value this 'f_BLACK)))))
 
 
-function SWTBlackPaintable:paint(graphics)
-        self.basicSetColorUtil:setBasicColorP(graphics, self.BLACK)
-end
-
-return SWTBlackPaintable
 

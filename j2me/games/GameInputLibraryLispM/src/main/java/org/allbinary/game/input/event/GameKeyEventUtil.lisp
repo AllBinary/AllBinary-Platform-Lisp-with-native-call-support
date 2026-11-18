@@ -1,45 +1,41 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.event
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.input.event
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass GameKeyEventUtil (JObject)
+  ())
+
+    
+(defun GameKeyEventUtil.jnew_0 ()
+  (let ((this (make-instance 'GameKeyEventUtil)))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(defun GameKeyEventUtil.jm_getKey_1 (_anyType)
+  (declare (ignorable _anyType))
+  (let (_gameKeyEvent)
+  (declare (ignorable _gameKeyEvent))
+    (block jreturn
+        (setf _gameKeyEvent _anyType)
+        (return-from jreturn (jm_getKey_0 _gameKeyEvent)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local GameKeyEventUtil = {}
-GameKeyEventUtil.__index = GameKeyEventUtil
-GameKeyEventUtil.className = "GameKeyEventUtil"
-
-
-function GameKeyEventUtil.new()
-    local self = setmetatable({}, GameKeyEventUtil)
-    return self
-end
-
-
-function GameKeyEventUtil.getKey(anyType)
-        local gameKeyEvent = anyType
-        return gameKeyEvent:getKey()
-end
-
-return GameKeyEventUtil
 

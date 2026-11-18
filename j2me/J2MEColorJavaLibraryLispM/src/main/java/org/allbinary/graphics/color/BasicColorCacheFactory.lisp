@@ -25,6 +25,7 @@
 (defun BasicColorCacheFactory.jstatic_instance ()
   (when (eq BasicColorCacheFactory.jcell_instance :jnone) (setf BasicColorCacheFactory.jcell_instance (BasicColorCacheFactory.jnew_0)))
   BasicColorCacheFactory.jcell_instance)
+(defun (setf BasicColorCacheFactory.jstatic_instance) (value) (setf BasicColorCacheFactory.jcell_instance value))
 
     
 (defun BasicColorCacheFactory.jm_getInstance_0 ()

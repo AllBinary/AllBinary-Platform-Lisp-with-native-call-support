@@ -1,50 +1,55 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles.shader
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.opengles.shader
 
--- local GL10 = require("javax.microedition.khronos.opengles.GL10")
-local OpenGLProcessor = require("org.allbinary.graphics.opengles.OpenGLProcessor")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ShaderOpenGLProcessor (OpenGLProcessor)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun ShaderOpenGLProcessor.jnew_0 ()
+  (let ((this (make-instance 'ShaderOpenGLProcessor)))
+  (let ()
+    (block jreturn nil))
+    this))
 
-local ShaderOpenGLProcessor = {}
-ShaderOpenGLProcessor.__index = ShaderOpenGLProcessor
-ShaderOpenGLProcessor.className = "ShaderOpenGLProcessor"
-setmetatable(ShaderOpenGLProcessor, {__index = OpenGLProcessor})
+    
+(unless (fboundp 'jm_process0_1) (defgeneric jm_process0_1 (this p1)))
+(defmethod jm_process0_1 ((this ShaderOpenGLProcessor) _gl)
+  (declare (ignorable this _gl))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_process1_1) (defgeneric jm_process1_1 (this p1)))
+(defmethod jm_process1_1 ((this ShaderOpenGLProcessor) _gl)
+  (declare (ignorable this _gl))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_process_1) (defgeneric jm_process_1 (this p1)))
+(defmethod jm_process_1 ((this ShaderOpenGLProcessor) _gl)
+  (declare (ignorable this _gl))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_process2_1) (defgeneric jm_process2_1 (this p1)))
+(defmethod jm_process2_1 ((this ShaderOpenGLProcessor) _gl)
+  (declare (ignorable this _gl))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_process3_1) (defgeneric jm_process3_1 (this p1)))
+(defmethod jm_process3_1 ((this ShaderOpenGLProcessor) _gl)
+  (declare (ignorable this _gl))
+  (let ()
+    (block jreturn nil)))
 
 
-function ShaderOpenGLProcessor.new()
-    local self = setmetatable(OpenGLProcessor.new(), ShaderOpenGLProcessor)
-    return self
-end
-
-
-function ShaderOpenGLProcessor:process0(gl)
-end
-
-
-function ShaderOpenGLProcessor:process1(gl)
-end
-
-
-function ShaderOpenGLProcessor:process(gl)
-end
-
-
-function ShaderOpenGLProcessor:process2(gl)
-end
-
-
-function ShaderOpenGLProcessor:process3(gl)
-end
-
-return ShaderOpenGLProcessor
 

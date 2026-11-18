@@ -1,129 +1,137 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.layer
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.layer
 
-local GroupInterfaceCompositeInterface = require("org.allbinary.game.identification.GroupInterfaceCompositeInterface")
-local PaintableInterface = require("org.allbinary.graphics.paint.PaintableInterface")
-local NamedInterface = require("org.allbinary.layer.NamedInterface")
-local PositionInterface = require("org.allbinary.layer.PositionInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass LayerInterface (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun LayerInterface.jnew_0 ()
+  (let ((this (make-instance 'LayerInterface)))
+    this))
 
--- Java interface
-local LayerInterface = {}
-LayerInterface.__index = LayerInterface
-LayerInterface.className = "LayerInterface"
-setmetatable(LayerInterface, {__index = NamedInterface})
+    
+(unless (fboundp 'jm_getHeight_0) (defgeneric jm_getHeight_0 (this)))
+(defmethod jm_getHeight_0 ((this LayerInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "getHeight")))
+
+    
+(unless (fboundp 'jm_getWidth_0) (defgeneric jm_getWidth_0 (this)))
+(defmethod jm_getWidth_0 ((this LayerInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "getWidth")))
+
+    
+(unless (fboundp 'jm_getHalfHeight_0) (defgeneric jm_getHalfHeight_0 (this)))
+(defmethod jm_getHalfHeight_0 ((this LayerInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "getHalfHeight")))
+
+    
+(unless (fboundp 'jm_getHalfWidth_0) (defgeneric jm_getHalfWidth_0 (this)))
+(defmethod jm_getHalfWidth_0 ((this LayerInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "getHalfWidth")))
+
+    
+(unless (fboundp 'jm_getXP_0) (defgeneric jm_getXP_0 (this)))
+(defmethod jm_getXP_0 ((this LayerInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "getXP")))
+
+    
+(unless (fboundp 'jm_getYP_0) (defgeneric jm_getYP_0 (this)))
+(defmethod jm_getYP_0 ((this LayerInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "getYP")))
+
+    
+(unless (fboundp 'jm_getZP_0) (defgeneric jm_getZP_0 (this)))
+(defmethod jm_getZP_0 ((this LayerInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "getZP")))
+
+    
+(unless (fboundp 'jm_getX2_0) (defgeneric jm_getX2_0 (this)))
+(defmethod jm_getX2_0 ((this LayerInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "getX2")))
+
+    
+(unless (fboundp 'jm_getY2_0) (defgeneric jm_getY2_0 (this)))
+(defmethod jm_getY2_0 ((this LayerInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "getY2")))
+
+    
+(unless (fboundp 'jm_getZ2_0) (defgeneric jm_getZ2_0 (this)))
+(defmethod jm_getZ2_0 ((this LayerInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "getZ2")))
+
+    
+(unless (fboundp 'jm_isVisible_0) (defgeneric jm_isVisible_0 (this)))
+(defmethod jm_isVisible_0 ((this LayerInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "isVisible")))
+
+    
+(unless (fboundp 'jm_moveDXYZ_3) (defgeneric jm_moveDXYZ_3 (this p1 p2 p3)))
+(defmethod jm_moveDXYZ_3 ((this LayerInterface) _dx _dy _dz)
+  (declare (ignorable this _dx _dy _dz))
+  (error (JR.newException "AbstractMethodError" "moveDXYZ")))
+
+    
+(unless (fboundp 'jm_setVisible_1) (defgeneric jm_setVisible_1 (this p1)))
+(defmethod jm_setVisible_1 ((this LayerInterface) _visible)
+  (declare (ignorable this _visible))
+  (error (JR.newException "AbstractMethodError" "setVisible")))
+
+    
+(unless (fboundp 'jm_implmentsTickableInterface_0) (defgeneric jm_implmentsTickableInterface_0 (this)))
+(defmethod jm_implmentsTickableInterface_0 ((this LayerInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "implmentsTickableInterface")))
+
+    
+(unless (fboundp 'jm_implmentsCollidableInterface_0) (defgeneric jm_implmentsCollidableInterface_0 (this)))
+(defmethod jm_implmentsCollidableInterface_0 ((this LayerInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "implmentsCollidableInterface")))
+
+    
+(unless (fboundp 'jm_implmentsGameInputInterface_0) (defgeneric jm_implmentsGameInputInterface_0 (this)))
+(defmethod jm_implmentsGameInputInterface_0 ((this LayerInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "implmentsGameInputInterface")))
+
+    
+(unless (fboundp 'jm_implmentsArtificialIntelligenceCompositeInterface_0) (defgeneric jm_implmentsArtificialIntelligenceCompositeInterface_0 (this)))
+(defmethod jm_implmentsArtificialIntelligenceCompositeInterface_0 ((this LayerInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "implmentsArtificialIntelligenceCompositeInterface")))
+
+    
+(unless (fboundp 'jm_getType_0) (defgeneric jm_getType_0 (this)))
+(defmethod jm_getType_0 ((this LayerInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "getType")))
 
 
-function LayerInterface:getHeight()
-    error("abstract method getHeight")
-end
-
-
-function LayerInterface:getWidth()
-    error("abstract method getWidth")
-end
-
-
-function LayerInterface:getHalfHeight()
-    error("abstract method getHalfHeight")
-end
-
-
-function LayerInterface:getHalfWidth()
-    error("abstract method getHalfWidth")
-end
-
-
-function LayerInterface:getXP()
-    error("abstract method getXP")
-end
-
-
-function LayerInterface:getYP()
-    error("abstract method getYP")
-end
-
-
-function LayerInterface:getZP()
-    error("abstract method getZP")
-end
-
-
-function LayerInterface:getX2()
-    error("abstract method getX2")
-end
-
-
-function LayerInterface:getY2()
-    error("abstract method getY2")
-end
-
-
-function LayerInterface:getZ2()
-    error("abstract method getZ2")
-end
-
-
-function LayerInterface:isVisible()
-    error("abstract method isVisible")
-end
-
-
-function LayerInterface:moveDXYZ(dx, dy, dz)
-    error("abstract method moveDXYZ")
-end
-
-
-function LayerInterface:setVisible(visible)
-    error("abstract method setVisible")
-end
-
-
-function LayerInterface:implmentsTickableInterface()
-    error("abstract method implmentsTickableInterface")
-end
-
-
-function LayerInterface:implmentsCollidableInterface()
-    error("abstract method implmentsCollidableInterface")
-end
-
-
-function LayerInterface:implmentsGameInputInterface()
-    error("abstract method implmentsGameInputInterface")
-end
-
-
-function LayerInterface:implmentsArtificialIntelligenceCompositeInterface()
-    error("abstract method implmentsArtificialIntelligenceCompositeInterface")
-end
-
-
-function LayerInterface:getType()
-    error("abstract method getType")
-end
-
-return LayerInterface
 

@@ -52,7 +52,7 @@
     (block jreturn
         (if (< (slot-value this 'f_size) _size)
             (progn
-            (JR.className (slot-value this 'f_list))
+            (jm_ensureCapacity_1 (slot-value this 'f_list) _size)
             (progn
                 (setf _index (JR.i32 (- _size 1)))
                 (block jbreak (loop while (>= _index (slot-value this 'f_size)) do
@@ -82,7 +82,7 @@
   (declare (ignorable this _anyType))
   (let ()
     (block jreturn
-        (JR.className (slot-value this 'f_list)))))
+        (jm_add_1 (slot-value this 'f_list) _anyType))))
 
     
 (unless (fboundp 'jm_add_1) (defgeneric jm_add_1 (this p1)))
@@ -90,7 +90,7 @@
   (declare (ignorable this _cacheableInterface))
   (let ()
     (block jreturn
-        (JR.className (slot-value this 'f_list)))))
+        (jm_add_1 (slot-value this 'f_list) _cacheableInterface))))
 
     
 (unless (fboundp 'jm_addArray_1) (defgeneric jm_addArray_1 (this p1)))

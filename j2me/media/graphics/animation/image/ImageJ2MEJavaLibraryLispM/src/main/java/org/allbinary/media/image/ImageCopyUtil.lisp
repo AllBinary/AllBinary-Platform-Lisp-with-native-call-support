@@ -1,128 +1,116 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.image
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.media.image
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
--- local Image = require("javax.microedition.lcdui.Image")
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local GameFeatureFactory = require("org.allbinary.game.configuration.feature.GameFeatureFactory")
-local Anchor = require("org.allbinary.graphics.Anchor")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(defclass ImageCopyUtil (JObject)
+  ((f_logUtil :initform nil)
+   (f_commonStrings :initform nil)
+   (f_imageCreationUtil :initform nil)
+   (f_anchor :initform 0)
+   (f_gameFeatureFactory :initform nil)
+   (f_features :initform nil)
+   (f_NO_COPY :initform nil)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defvar ImageCopyUtil.jcell_instance :jnone)
+(defun ImageCopyUtil.jstatic_instance ()
+  (when (eq ImageCopyUtil.jcell_instance :jnone) (setf ImageCopyUtil.jcell_instance (ImageCopyUtil.jnew_0)))
+  ImageCopyUtil.jcell_instance)
+(defun (setf ImageCopyUtil.jstatic_instance) (value) (setf ImageCopyUtil.jcell_instance value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun ImageCopyUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (ImageCopyUtil.jstatic_instance)))))
 
-local ImageCopyUtil = {}
-ImageCopyUtil.__index = ImageCopyUtil
-ImageCopyUtil.className = "ImageCopyUtil"
+    
+(defun ImageCopyUtil.jnew_0 ()
+  (let ((this (make-instance 'ImageCopyUtil)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_commonStrings) (CommonStrings.jm_getInstance_0))
+    (setf (slot-value this 'f_imageCreationUtil) (ImageCreationUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_anchor) (Anchor.jstatic_TOP_LEFT))
+    (setf (slot-value this 'f_gameFeatureFactory) (GameFeatureFactory.jm_getInstance_0))
+    (setf (slot-value this 'f_features) (Features.jm_getInstance_0))
+    (setf (slot-value this 'f_NO_COPY) "J2ME does not need to copy images after initial loading")
+  (let ()
+    (block jreturn nil))
+    this))
 
-function ImageCopyUtil:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.imageCreationUtil = ImageCreationUtil.getInstance()
-    self.anchor = Anchor.TOP_LEFT
-    self.gameFeatureFactory = GameFeatureFactory.getInstance()
-    self.features = Features.getInstance()
-    self.NO_COPY = "J2ME does not need to copy images after initial loading"
-end
+    
+(unless (fboundp 'jm_createImageForRotation_1) (defgeneric jm_createImageForRotation_1 (this p1)))
+(defmethod jm_createImageForRotation_1 ((this ImageCopyUtil) _originalImage)
+  (declare (ignorable this _originalImage))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_createImage_1 this _originalImage)))))
+
+    
+(unless (fboundp 'jm_createImage_1) (defgeneric jm_createImage_1 (this p1)))
+(defmethod jm_createImage_1 ((this ImageCopyUtil) _originalImage)
+  (declare (ignorable this _originalImage))
+  (let (_image)
+  (declare (ignorable _image))
+    (block jreturn
+        (if (not (jm_isFeature_1 (slot-value this 'f_features) (slot-value (slot-value this 'f_gameFeatureFactory) 'f_POST_IMAGE_LOADING_MODIFICATION)))
+            (progn
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value this 'f_NO_COPY) this (slot-value (slot-value this 'f_commonStrings) 'f_CONSTRUCTOR) (JR.newException "Exception"))
+            (return-from jreturn _originalImage)))
+        (setf _image (jm_createImageWH_2 (slot-value this 'f_imageCreationUtil) (jm_getWidth_0 _originalImage) (jm_getHeight_0 _originalImage)))
+        (if (jm_isMutable_0 _image)
+            (progn
+            (jm_drawImage_4 (jm_getGraphics_0 _image) _originalImage 0 0 (slot-value this 'f_anchor))
+            (return-from jreturn _image))
+            (progn
+            (error (JR.newException "Exception" "Not Mutable")))))))
+
+    
+(unless (fboundp 'jm_createImageScale_3) (defgeneric jm_createImageScale_3 (this p1 p2 p3)))
+(defmethod jm_createImageScale_3 ((this ImageCopyUtil) _originalImage _canvasScale _resize)
+  (declare (ignorable this _originalImage _canvasScale _resize))
+  (let (_newWidth _newHeight _image _halfWidthDelta _halfHeightDelta _graphics)
+  (declare (ignorable _newWidth _newHeight _image _halfWidthDelta _halfHeightDelta _graphics))
+    (block jreturn
+        (if (not (jm_isFeature_1 (slot-value this 'f_features) (slot-value (slot-value this 'f_gameFeatureFactory) 'f_POST_IMAGE_LOADING_MODIFICATION)))
+            (progn
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value this 'f_NO_COPY) this (slot-value (slot-value this 'f_commonStrings) 'f_CONSTRUCTOR) (JR.newException "Exception"))
+            (return-from jreturn _originalImage)))
+        (setf _newWidth (* (jm_getWidth_0 _originalImage) _canvasScale))
+        (setf _newHeight (* (jm_getHeight_0 _originalImage) _canvasScale))
+        (if _resize
+            (progn
+            (if (< _newWidth _newHeight)
+                (progn
+                (setf _newWidth _newHeight)))
+            (if (< _newHeight _newWidth)
+                (progn
+                (setf _newHeight _newWidth)))))
+        (setf _image (jm_createImageWH_2 (slot-value this 'f_imageCreationUtil) _newWidth _newHeight))
+        (if (jm_isMutable_0 _image)
+            (progn
+            (setf _halfWidthDelta (JR.idiv (JR.i32 (- _newWidth (jm_getWidth_0 _originalImage))) 2))
+            (setf _halfHeightDelta (JR.idiv (JR.i32 (- _newHeight (jm_getHeight_0 _originalImage))) 2))
+            (setf _graphics (jm_getGraphics_0 _image))
+            (jm_drawImage_4 _graphics _originalImage _halfWidthDelta _halfHeightDelta (slot-value this 'f_anchor))
+            (return-from jreturn _image))
+            (progn
+            (error (JR.newException "Exception" "Not Mutable")))))))
 
 
-function ImageCopyUtil.getInstance()
-        return ImageCopyUtil.instance
-end
-
-
-function ImageCopyUtil.new()
-    local self = setmetatable({}, ImageCopyUtil)
-    self:_init_fields()
-    return self
-end
-
-
--- throws Exception
-function ImageCopyUtil:createImageForRotation(originalImage)
-        return self:createImage(originalImage)
-end
-
-
--- throws Exception
-function ImageCopyUtil:createImage(originalImage)
-        if not self.features:isFeature(self.gameFeatureFactory.POST_IMAGE_LOADING_MODIFICATION) then
-            self.logUtil:put(self.NO_COPY, self, self.commonStrings.CONSTRUCTOR, java_exception("Exception"))
-            return originalImage
-        end
-        local image = self.imageCreationUtil:createImageWH(originalImage:getWidth(), originalImage:getHeight())
-        if image:isMutable() then
-            image:getGraphics():drawImage(originalImage, 0, 0, self.anchor)
-            return image
-        else
-            error(java_exception("Exception", "Not Mutable"), 0)
-        end
-end
-
-
--- throws Exception
-function ImageCopyUtil:createImageScale(originalImage, canvasScale, resize)
-        if not self.features:isFeature(self.gameFeatureFactory.POST_IMAGE_LOADING_MODIFICATION) then
-            self.logUtil:put(self.NO_COPY, self, self.commonStrings.CONSTRUCTOR, java_exception("Exception"))
-            return originalImage
-        end
-        local newWidth = java_int((originalImage:getWidth() * canvasScale))
-        local newHeight = java_int((originalImage:getHeight() * canvasScale))
-        if resize then
-            if newWidth < newHeight then
-                newWidth = newHeight
-            end
-            if newHeight < newWidth then
-                newHeight = newWidth
-            end
-        end
-        local image = self.imageCreationUtil:createImageWH(newWidth, newHeight)
-        if image:isMutable() then
-            local halfWidthDelta = (newWidth - originalImage:getWidth()) / 2
-            local halfHeightDelta = (newHeight - originalImage:getHeight()) / 2
-            local graphics = image:getGraphics()
-            graphics:drawImage(originalImage, halfWidthDelta, halfHeightDelta, self.anchor)
-            return image
-        else
-            error(java_exception("Exception", "Not Mutable"), 0)
-        end
-end
-
-ImageCopyUtil.instance = ImageCopyUtil.new()
-
-return ImageCopyUtil
 

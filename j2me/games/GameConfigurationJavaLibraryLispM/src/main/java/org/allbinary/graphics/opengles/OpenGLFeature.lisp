@@ -1,42 +1,34 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.opengles
 
-local Feature = require("org.allbinary.game.configuration.feature.Feature")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass OpenGLFeature (Feature)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local OpenGLFeature = {}
-OpenGLFeature.__index = OpenGLFeature
-OpenGLFeature.className = "OpenGLFeature"
-setmetatable(OpenGLFeature, {__index = Feature})
+    
+(defun OpenGLFeature.jnew_1 (_name)
+  (declare (ignorable _name))
+  (let ((this (make-instance 'OpenGLFeature)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
 
-function OpenGLFeature.new(name)
-    local self = setmetatable(Feature.new(name), OpenGLFeature)
-        -- super(...) made self above
-    return self
-end
-
-return OpenGLFeature
 

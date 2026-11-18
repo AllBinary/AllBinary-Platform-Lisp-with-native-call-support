@@ -1,122 +1,117 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.data.resource
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.data.resource
 
--- local InputStream = require("java.io.InputStream")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+;J2SE - J2ME
+(defclass ResourceUtil (JObject)
+  ((f_logUtil :initform nil)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defvar ResourceUtil.jcell_classLoader :jnone)
+(defun ResourceUtil.jstatic_classLoader ()
+  (when (eq ResourceUtil.jcell_classLoader :jnone) (setf ResourceUtil.jcell_classLoader (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT)))
+  ResourceUtil.jcell_classLoader)
+(defun (setf ResourceUtil.jstatic_classLoader) (value) (setf ResourceUtil.jcell_classLoader value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar ResourceUtil.jcell_instance :jnone)
+(defun ResourceUtil.jstatic_instance ()
+  (when (eq ResourceUtil.jcell_instance :jnone) (setf ResourceUtil.jcell_instance (ResourceUtil.jnew_0)))
+  ResourceUtil.jcell_instance)
+(defun (setf ResourceUtil.jstatic_instance) (value) (setf ResourceUtil.jcell_instance value))
 
---J2SE - J2ME
-local ResourceUtil = {}
-ResourceUtil.__index = ResourceUtil
-ResourceUtil.className = "ResourceUtil"
+    
+(defun ResourceUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (ResourceUtil.jstatic_instance)))))
 
-function ResourceUtil:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-end
+    
+(defun ResourceUtil.jnew_0 ()
+  (let ((this (make-instance 'ResourceUtil)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(unless (fboundp 'jm_setLoadingPaths_2) (defgeneric jm_setLoadingPaths_2 (this p1 p2)))
+(defmethod jm_setLoadingPaths_2 ((this ResourceUtil) _path _ext)
+  (declare (ignorable this _path _ext))
+  (let ()
+    (block jreturn
+        (jm_putF_3 (slot-value this 'f_logUtil) (slot-value (CommonStrings.jm_getInstance_0) 'f_NOT_IMPLEMENTED) this "setLoadingPaths"))))
+
+    
+(unless (fboundp 'jm_setClassLoader_1) (defgeneric jm_setClassLoader_1 (this p1)))
+(defmethod jm_setClassLoader_1 ((this ResourceUtil) _classLoader)
+  (declare (ignorable this _classLoader))
+  (let ()
+    (block jreturn
+        (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 (jm_append_1 (jm_append_1 (StringMaker.jnew_0) "Resource Loader: ") (JR.className _classLoader))) this "setClassLoader")
+        (setf (ResourceUtil.jstatic_classLoader) _classLoader))))
+
+    
+(unless (fboundp 'jm_getResourceAsStream_1) (defgeneric jm_getResourceAsStream_1 (this p1)))
+(defmethod jm_getResourceAsStream_1 ((this ResourceUtil) _resource)
+  (declare (ignorable this _resource))
+  (let (_inputStream)
+  (declare (ignorable _inputStream))
+    (block jreturn
+        (setf _inputStream (jm_getResourceAsStreamAtStart_2 this _resource 2))
+        (if (null _inputStream)
+            (progn
+            (setf _inputStream (jm_getResourceAsStreamAtStart_2 this _resource 1))
+            (if (null _inputStream)
+                (progn
+                (error (JR.newException "Exception" (jm_toString_0 (jm_append_1 (jm_append_1 (StringMaker.jnew_0) "Unable to obtain: ") _resource))))))))
+        (return-from jreturn _inputStream))))
+
+    
+(unless (fboundp 'jm_getResourceAsStreamAtStart_2) (defgeneric jm_getResourceAsStreamAtStart_2 (this p1 p2)))
+(defmethod jm_getResourceAsStreamAtStart_2 ((this ResourceUtil) _resource _startIndex)
+  (declare (ignorable this _resource _startIndex))
+  (let (_commonSeps _index _resourcePath _inputStream _classLoader)
+  (declare (ignorable _commonSeps _index _resourcePath _inputStream _classLoader))
+    (block jreturn
+        (setf _commonSeps (CommonSeps.jm_getInstance_0))
+        (setf _index (JR.indexOf _resource (slot-value _commonSeps 'f_COLON)))
+        (setf _resourcePath (JR.substring _resource (JR.i32 (+ _index _startIndex))))
+        (setf _inputStream (jm_getResourceAsStream_1 (JR.className _resource) _resourcePath))
+        (if (not (null _inputStream))
+            (progn
+            (return-from jreturn _inputStream)))
+        (setf _classLoader (ResourceUtil.jstatic_classLoader))
+        (setf _inputStream (jm_getResourceAsStream_1 _classLoader _resourcePath))
+        (if (not (null _inputStream))
+            (progn
+            (return-from jreturn _inputStream)))
+        (setf _inputStream (jm_getResourceAsStream_1 (jm_getContextClassLoader_0 (Thread.jm_currentThread_0)) _resourcePath))
+        (if (not (null _inputStream))
+            (progn
+            (return-from jreturn _inputStream)))
+        (return-from jreturn _inputStream))))
+
+    
+(unless (fboundp 'jm_addResource_2) (defgeneric jm_addResource_2 (this p1 p2)))
+(defmethod jm_addResource_2 ((this ResourceUtil) _resource _value)
+  (declare (ignorable this _resource _value))
+  (let ()
+    (block jreturn nil)))
 
 
-function ResourceUtil.getInstance()
-        return ResourceUtil.instance
-end
-
-
-function ResourceUtil.new()
-    local self = setmetatable({}, ResourceUtil)
-    self:_init_fields()
-    return self
-end
-
-
-function ResourceUtil:setLoadingPaths(path, ext)
-        self.logUtil:putF(CommonStrings.getInstance().NOT_IMPLEMENTED, self, "setLoadingPaths")
-end
-
-
-function ResourceUtil:setClassLoader(classLoader)
-        self.logUtil:putF(tostring(StringMaker.new():append("Resource Loader: "):append(getmetatable(classLoader).className)), self, "setClassLoader")
-        ResourceUtil.classLoader = classLoader
-end
-
-
--- throws Exception
-function ResourceUtil:getResourceAsStream(resource)
-        local inputStream = self:getResourceAsStreamAtStart(resource, 2)
-        if inputStream == nil then
-            inputStream = self:getResourceAsStreamAtStart(resource, 1)
-            if inputStream == nil then
-                error(java_exception("Exception", tostring(StringMaker.new():append("Unable to obtain: "):append(resource))), 0)
-            end
-        end
-        return inputStream
-end
-
-
--- throws Exception
-function ResourceUtil:getResourceAsStreamAtStart(resource, startIndex)
-        local commonSeps = CommonSeps.getInstance()
-        local index = ((string.find(resource, commonSeps.COLON, 1, true) or 0) - 1)
-        local resourcePath = string.sub(resource, (index + startIndex) + 1)
-        local inputStream = getmetatable(resource):getResourceAsStream(resourcePath)
-        if inputStream ~= nil then
-            return inputStream
-        end
-        local classLoader = ResourceUtil.classLoader
-        inputStream = classLoader:getResourceAsStream(resourcePath)
-        if inputStream ~= nil then
-            return inputStream
-        end
-        inputStream = Thread.currentThread():getContextClassLoader():getResourceAsStream(resourcePath)
-        if inputStream ~= nil then
-            return inputStream
-        end
-        return inputStream
-end
-
-
-function ResourceUtil:addResource(resource, value)
-end
-
-ResourceUtil.classLoader = NullUtil.getInstance().NULL_OBJECT
-ResourceUtil.instance = ResourceUtil.new()
-
-return ResourceUtil
 

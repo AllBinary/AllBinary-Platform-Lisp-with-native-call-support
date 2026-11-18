@@ -1,55 +1,43 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.form
 
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local TouchFeatureFactory = require("org.allbinary.game.configuration.feature.TouchFeatureFactory")
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local ABCustomItem = require("org.allbinary.graphics.form.item.ABCustomItem")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass CommandCurrentSelectionFormFactory (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun CommandCurrentSelectionFormFactory.jnew_0 ()
+  (let ((this (make-instance 'CommandCurrentSelectionFormFactory)))
+    this))
 
-local CommandCurrentSelectionFormFactory = {}
-CommandCurrentSelectionFormFactory.__index = CommandCurrentSelectionFormFactory
-CommandCurrentSelectionFormFactory.className = "CommandCurrentSelectionFormFactory"
+    
+(defun CommandCurrentSelectionFormFactory.jm_getInstance_8 (_title _items _rectangle _formType _border _moveForSmallScreen _backgroundBasicColor _foregroundBasicColor)
+  (declare (ignorable _title _items _rectangle _formType _border _moveForSmallScreen _backgroundBasicColor _foregroundBasicColor))
+  (let (_scrollSelectionForm)
+  (declare (ignorable _scrollSelectionForm))
+    (block jreturn
+        (if (jm_isFeature_1 (Features.jm_getInstance_0) (slot-value (TouchFeatureFactory.jm_getInstance_0) 'f_TOUCH_ENABLED))
+            (progn
+            (setf _scrollSelectionForm (CommandCurrentSelectionForm.jnew_6 _title _items _border _moveForSmallScreen _backgroundBasicColor _foregroundBasicColor))
+            (jm_init_2 _scrollSelectionForm _rectangle _formType)
+            (return-from jreturn _scrollSelectionForm))
+            (progn
+            (return-from jreturn (ScrollSelectionFormNoneFactory.jm_getInstance_0)))))))
 
-function CommandCurrentSelectionFormFactory.new()
-    local self = setmetatable({}, CommandCurrentSelectionFormFactory)
-    return self
-end
 
-
--- throws Exception
-function CommandCurrentSelectionFormFactory.getInstance(title, items, rectangle, formType, border, moveForSmallScreen, backgroundBasicColor, foregroundBasicColor)
-        if Features.getInstance():isFeature(TouchFeatureFactory.getInstance().TOUCH_ENABLED) then
-            local scrollSelectionForm = CommandCurrentSelectionForm.new(title, items, border, moveForSmallScreen, backgroundBasicColor, foregroundBasicColor)
-            scrollSelectionForm:init(rectangle, formType)
-            return scrollSelectionForm
-        else
-            return ScrollSelectionFormNoneFactory.getInstance()
-        end
-end
-
-return CommandCurrentSelectionFormFactory
 

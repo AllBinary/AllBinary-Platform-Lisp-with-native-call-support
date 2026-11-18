@@ -1,219 +1,245 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.form
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Processor = require("org.allbinary.canvas.Processor")
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local MyFontProcessor = require("org.allbinary.graphics.font.MyFontProcessor")
-local UpdateMyFontInterface = require("org.allbinary.graphics.font.UpdateMyFontInterface")
-local UpdateMyFontProcessor = require("org.allbinary.graphics.font.UpdateMyFontProcessor")
-local ABCustomItem = require("org.allbinary.graphics.form.item.ABCustomItem")
-local ScrollSelectionForm = require("org.allbinary.graphics.form.ScrollSelectionForm")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(defclass ScrollCurrentSelectionForm (ScrollSelectionForm)
+  ((f_moveForSmallScreen :initform nil)
+   (f_updateMyFontProcessor :initform nil)
+   (f_myFontProcessor :initform nil)
+   (f_processor :initform nil)
+   (f_preItemIndexDx :initform nil)
+   (f_dx :initform 0)
+   (f_dy :initform 0)
+   (f_maxWidth :initform 0)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(defun ScrollCurrentSelectionForm.jnew_8 (_title _items _formPaintableFactory _border _adjustedExtraBorder _moveForSmallScreen _backgroundBasicColor _foregroundBasicColor)
+  (declare (ignorable _title _items _formPaintableFactory _border _adjustedExtraBorder _moveForSmallScreen _backgroundBasicColor _foregroundBasicColor))
+  (let ((this (make-instance 'ScrollCurrentSelectionForm)))
+    
+    (setf (slot-value this 'f_updateMyFontProcessor) (UpdateMyFontProcessor.jnew_1 this))
+    (setf (slot-value this 'f_myFontProcessor) (slot-value this 'f_updateMyFontProcessor))
+    (setf (slot-value this 'f_processor) (Processor.jm_getInstance_0))
+    (setf (slot-value this 'f_preItemIndexDx) (ItemIndexDx.jm_getInstance_0))
+    
+    
+    (setf (slot-value this 'f_maxWidth) 0)
+  (let ()
+    (block jreturn
+        nil
+        (setf (slot-value this 'f_moveForSmallScreen) _moveForSmallScreen)))
+    this))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(unless (fboundp 'jm_init_2) (defgeneric jm_init_2 (this p1 p2)))
+(defmethod jm_init_2 ((this ScrollCurrentSelectionForm) _rectangle _formType)
+  (declare (ignorable this _rectangle _formType))
+  (let (_formTypeFactory)
+  (declare (ignorable _formTypeFactory))
+    (block jreturn
+        (call-next-method this _rectangle _formType)
+        (setf _formTypeFactory (FormTypeFactory.jm_getInstance_0))
+        (if (eq _formType (slot-value _formTypeFactory 'f_TEMP_HORIZONTAL_FORM))
+            (progn
+            (setf (slot-value this 'f_processor) (TempHorizontalFormProcessor.jnew_1 this))
+            (setf (slot-value this 'f_preItemIndexDx) (TempHorizontalItemIndexDx.jnew_1 this)))
+            (if (eq _formType (slot-value _formTypeFactory 'f_HORIZONTAL_FORM))
+            (progn
+            (setf (slot-value this 'f_processor) (HorizontalFormProcessor.jnew_1 this))
+            (setf (slot-value this 'f_preItemIndexDx) (HorizontalItemIndexDx.jnew_1 this)))
+            (if (eq _formType (slot-value _formTypeFactory 'f_VERTICAL_CENTER_FORM))
+            (progn
+            (setf (slot-value this 'f_processor) (VerticalFormProcessor.jnew_1 this))
+            (setf (slot-value this 'f_preItemIndexDx) (VerticalItemIndexDx.jnew_1 this)))
+            (if (eq _formType (slot-value _formTypeFactory 'f_NULL_FORM_TYPE))
+            (progn
+            nil)
+            (progn
+            (jm_putF_3 (slot-value this 'f_logUtil) (slot-value _formTypeFactory 'f_UNK) this (slot-value (slot-value this 'f_commonStrings) 'f_INIT)))))))
+        (setf (slot-value this 'f_myFontProcessor) (slot-value this 'f_updateMyFontProcessor)))))
 
-local ScrollCurrentSelectionForm = {}
-ScrollCurrentSelectionForm.__index = ScrollCurrentSelectionForm
-ScrollCurrentSelectionForm.className = "ScrollCurrentSelectionForm"
-setmetatable(ScrollCurrentSelectionForm, {__index = ScrollSelectionForm})
+    
+(unless (fboundp 'jm_updateMeasurement_1) (defgeneric jm_updateMeasurement_1 (this p1)))
+(defmethod jm_updateMeasurement_1 ((this ScrollCurrentSelectionForm) _graphics)
+  (declare (ignorable this _graphics))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_myFontProcessor) (MyFontProcessor.jm_getInstance_0)))))
 
-function ScrollCurrentSelectionForm:_init_fields()
-    self.moveForSmallScreen = nil
-    self.updateMyFontProcessor = UpdateMyFontProcessor.new(self)
-    self.myFontProcessor = self.updateMyFontProcessor
-    self.processor = Processor.getInstance()
-    self.preItemIndexDx = ItemIndexDx.getInstance()
-    self.dx = 0
-    self.dy = 0
-    self.maxWidth = 0
-end
+    
+(unless (fboundp 'jm_processTempHorizontalForm_0) (defgeneric jm_processTempHorizontalForm_0 (this)))
+(defmethod jm_processTempHorizontalForm_0 ((this ScrollCurrentSelectionForm))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_dx) (JR.i32 (+ (JR.i32 (- (slot-value this 'f_x) 30)) (ash (jm_getWidth_0 (slot-value this 'f_rectangle)) (- (logand 1 31))))))
+        (setf (slot-value this 'f_dy) (slot-value this 'f_y)))))
+
+    
+(unless (fboundp 'jm_processHorizontalForm_0) (defgeneric jm_processHorizontalForm_0 (this)))
+(defmethod jm_processHorizontalForm_0 ((this ScrollCurrentSelectionForm))
+  (declare (ignorable this))
+  (let (_size _totalWidth _item _index _maxTitleHeight)
+  (declare (ignorable _size _totalWidth _item _index _maxTitleHeight))
+    (block jreturn
+        (setf _size (jm_size_0 this))
+        (setf _totalWidth 0)
+        (setf _item nil)
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (setf _item (jm_get_1 this _index))
+            (setf _totalWidth (JR.i32 (+ _totalWidth (JR.i32 (+ (jm_getMinimumWidth_0 _item) (slot-value this 'f_border)))))))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (setf (slot-value this 'f_dx) (JR.i32 (- (JR.i32 (+ (slot-value this 'f_x) (ash (jm_getWidth_0 (slot-value this 'f_rectangle)) (- (logand 1 31))))) (ash _totalWidth (- (logand 1 31))))))
+        (setf (slot-value this 'f_dy) (JR.i32 (+ (slot-value this 'f_y) (ash (jm_getHeight_0 (slot-value this 'f_rectangle)) (- (logand 1 31))))))
+        (if (slot-value this 'f_moveForSmallScreen)
+            (progn
+            (setf _maxTitleHeight 175)
+            (if (< (slot-value this 'f_dy) _maxTitleHeight)
+                (progn
+                (setf (slot-value this 'f_dy) _maxTitleHeight))))))))
+
+    
+(unless (fboundp 'jm_processVerticalForm_0) (defgeneric jm_processVerticalForm_0 (this)))
+(defmethod jm_processVerticalForm_0 ((this ScrollCurrentSelectionForm))
+  (declare (ignorable this))
+  (let (_totalHeight _size _item2 _index _maxTitleHeight)
+  (declare (ignorable _totalHeight _size _item2 _index _maxTitleHeight))
+    (block jreturn
+        (setf _totalHeight 0)
+        (setf _size (jm_size_0 this))
+        (setf _item2 nil)
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (setf _item2 (jm_get_1 this _index))
+            (if (< (slot-value this 'f_maxWidth) (jm_getMinimumWidth_0 _item2))
+                (progn
+                (setf (slot-value this 'f_maxWidth) (jm_getMinimumWidth_0 _item2))))
+            (setf _totalHeight (JR.i32 (+ _totalHeight (JR.i32 (+ (jm_getMinimumHeight_0 _item2) (slot-value this 'f_border)))))))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (setf (slot-value this 'f_dx) (JR.idiv (JR.i32 (- (jm_getWidth_0 (slot-value this 'f_rectangle)) (slot-value this 'f_maxWidth))) 2))
+        (if (> (jm_size_0 this) 0)
+            (progn
+            (setf (slot-value this 'f_dy) (JR.i32 (+ (slot-value this 'f_y) (JR.idiv (JR.i32 (- (jm_getHeight_0 (slot-value this 'f_rectangle)) _totalHeight)) 2))))
+            (if (slot-value this 'f_moveForSmallScreen)
+                (progn
+                (setf _maxTitleHeight 175)
+                (if (< (slot-value this 'f_dy) _maxTitleHeight)
+                    (progn
+                    (setf (slot-value this 'f_dy) _maxTitleHeight))))))
+            (progn
+            (setf (slot-value this 'f_dy) (slot-value this 'f_y)))))))
+
+    
+(unless (fboundp 'jm_getXTempHorizontalForm_4) (defgeneric jm_getXTempHorizontalForm_4 (this p1 p2 p3 p4)))
+(defmethod jm_getXTempHorizontalForm_4 ((this ScrollCurrentSelectionForm) _index _item _dx _dy)
+  (declare (ignorable this _index _item _dx _dy))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getDiffX_1 this _item)))))
+
+    
+(unless (fboundp 'jm_getXHorizontalForm_4) (defgeneric jm_getXHorizontalForm_4 (this p1 p2 p3 p4)))
+(defmethod jm_getXHorizontalForm_4 ((this ScrollCurrentSelectionForm) _index _item _dx _dy)
+  (declare (ignorable this _index _item _dx _dy))
+  (let ()
+    (block jreturn
+        (return-from jreturn 0))))
+
+    
+(unless (fboundp 'jm_getXVerticalForm_4) (defgeneric jm_getXVerticalForm_4 (this p1 p2 p3 p4)))
+(defmethod jm_getXVerticalForm_4 ((this ScrollCurrentSelectionForm) _index _item _dx _dy)
+  (declare (ignorable this _index _item _dx _dy))
+  (let ()
+    (block jreturn
+        (return-from jreturn (JR.i32 (+ (jm_getDiffX_1 this _item) (slot-value this 'f_halfBorder)))))))
+
+    
+(unless (fboundp 'jm_getDiffX_1) (defgeneric jm_getDiffX_1 (this p1)))
+(defmethod jm_getDiffX_1 ((this ScrollCurrentSelectionForm) _item)
+  (declare (ignorable this _item))
+  (let ()
+    (block jreturn
+        (return-from jreturn (ash (JR.i32 (- (slot-value this 'f_maxWidth) (jm_getMinimumWidth_0 _item))) (- (logand 1 31)))))))
+
+    
+(unless (fboundp 'jm_getDx_0) (defgeneric jm_getDx_0 (this)))
+(defmethod jm_getDx_0 ((this ScrollCurrentSelectionForm))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_dx)))))
+
+    
+(unless (fboundp 'jm_getDy_0) (defgeneric jm_getDy_0 (this)))
+(defmethod jm_getDy_0 ((this ScrollCurrentSelectionForm))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_dy)))))
+
+    
+(unless (fboundp 'jm_paint_1) (defgeneric jm_paint_1 (this p1)))
+(defmethod jm_paint_1 ((this ScrollCurrentSelectionForm) _graphics)
+  (declare (ignorable this _graphics))
+  (let (_delta _deltaX _deltaY _size _formTypeFactory _item _diffX _index)
+  (declare (ignorable _delta _deltaX _deltaY _size _formTypeFactory _item _diffX _index))
+    (block jreturn
+        (handler-case (progn
+            (jm_process_0 (slot-value this 'f_processor))
+            (setf _delta 0)
+            (setf _deltaX (jm_getDx_0 this))
+            (setf _deltaY (jm_getDy_0 this))
+            (setf _size (jm_size_0 this))
+            (setf _formTypeFactory (FormTypeFactory.jm_getInstance_0))
+            (setf _item nil)
+            (progn
+                (setf _index 0)
+                (block jbreak (loop while (< _index _size) do
+                    (block jcontinue
+                (setf _item (jm_get_1 this _index))
+                (setf _diffX (jm_getDx_4 (slot-value this 'f_preItemIndexDx) _index _item (slot-value this 'f_dx) (slot-value this 'f_dy)))
+                (if (= _index (jm_getSelectedIndex_0 this))
+                    (progn
+                    (setf _delta (jm_paintItem_5 this _graphics _index _item (JR.i32 (+ _deltaX _diffX)) _deltaY))
+                    (jm_paint_4 (slot-value this 'f_paintable) _graphics _index (JR.i32 (+ _deltaX _diffX)) _deltaY))
+                    (progn
+                    (setf _delta (jm_paintUnselectedItem_5 this _graphics _index _item (JR.i32 (+ _deltaX _diffX)) _deltaY))
+                    (jm_paint_4 (slot-value this 'f_paintable) _graphics _index (JR.i32 (+ _deltaX _diffX)) _deltaY)))
+                (if (eq (slot-value this 'f_formType) (slot-value _formTypeFactory 'f_TEMP_HORIZONTAL_FORM))
+                    (progn
+                    nil)
+                    (if (eq (slot-value this 'f_formType) (slot-value _formTypeFactory 'f_HORIZONTAL_FORM))
+                    (progn
+                    (setf _deltaX _delta))
+                    (if (eq (slot-value this 'f_formType) (slot-value _formTypeFactory 'f_VERTICAL_CENTER_FORM))
+                    (progn
+                    (setf _deltaY _delta))
+                    (progn
+                    (error (JR.newException "Exception" (slot-value _formTypeFactory 'f_UNK))))))))
+                    (setf _index (JR.i32 (+ _index 1)))))))
+            (error (_e) (declare (ignorable _e))
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_EXCEPTION) this (slot-value (slot-value this 'f_canvasStrings) 'f_PAINT) _e))))))
 
 
-function ScrollCurrentSelectionForm.new(title, items, formPaintableFactory, border, adjustedExtraBorder, moveForSmallScreen, backgroundBasicColor, foregroundBasicColor)
-    local self = setmetatable(ScrollSelectionForm.new(title, items, formPaintableFactory, border, adjustedExtraBorder, backgroundBasicColor, foregroundBasicColor), ScrollCurrentSelectionForm)
-    self:_init_fields()
-        -- super(...) made self above
-        self.moveForSmallScreen = moveForSmallScreen
-    return self
-end
-
-
--- throws Exception
-function ScrollCurrentSelectionForm:init(rectangle, formType)
-        ScrollSelectionForm.init(self, rectangle, formType)
-        local formTypeFactory = FormTypeFactory.getInstance()
-        if formType == formTypeFactory.TEMP_HORIZONTAL_FORM then
-            self.processor = TempHorizontalFormProcessor.new(self)
-            self.preItemIndexDx = TempHorizontalItemIndexDx.new(self)
-        elseif formType == formTypeFactory.HORIZONTAL_FORM then
-            self.processor = HorizontalFormProcessor.new(self)
-            self.preItemIndexDx = HorizontalItemIndexDx.new(self)
-        elseif formType == formTypeFactory.VERTICAL_CENTER_FORM then
-            self.processor = VerticalFormProcessor.new(self)
-            self.preItemIndexDx = VerticalItemIndexDx.new(self)
-        elseif formType == formTypeFactory.NULL_FORM_TYPE then
-        else
-            self.logUtil:putF(formTypeFactory.UNK, self, self.commonStrings.INIT)
-        end
-        self.myFontProcessor = self.updateMyFontProcessor
-end
-
-
-function ScrollCurrentSelectionForm:updateMeasurement(graphics)
-        self.myFontProcessor = MyFontProcessor.getInstance()
-end
-
-
-function ScrollCurrentSelectionForm:processTempHorizontalForm()
-        self.dx = self.x - 30 + (((self.rectangle:getWidth()) // (1 << (1))))
-        self.dy = self.y
-end
-
-
-function ScrollCurrentSelectionForm:processHorizontalForm()
-        local size = self:size()
-        local totalWidth = 0
-        local item = nil
-        for index = 0, size - 1 do
-            item = self:get(index)
-            totalWidth = totalWidth + (item:getMinimumWidth() + self.border)
-        end
-        self.dx = self.x + (((self.rectangle:getWidth()) // (1 << (1)))) - (((totalWidth) // (1 << (1))))
-        self.dy = self.y + (((self.rectangle:getHeight()) // (1 << (1))))
-        if self.moveForSmallScreen then
-            local maxTitleHeight = 175
-            if self.dy < maxTitleHeight then
-                self.dy = maxTitleHeight
-            end
-        end
-end
-
-
-function ScrollCurrentSelectionForm:processVerticalForm()
-        local totalHeight = 0
-        local size = self:size()
-        local item2 = nil
-        for index = 0, size - 1 do
-            item2 = self:get(index)
-            if self.maxWidth < item2:getMinimumWidth() then
-                self.maxWidth = item2:getMinimumWidth()
-            end
-            totalHeight = totalHeight + (item2:getMinimumHeight() + self.border)
-        end
-        self.dx = ((self.rectangle:getWidth() - self.maxWidth) / 2)
-        if self:size() > 0 then
-            self.dy = self.y + ((self.rectangle:getHeight() - totalHeight) / 2)
-            if self.moveForSmallScreen then
-                local maxTitleHeight = 175
-                if self.dy < maxTitleHeight then
-                    self.dy = maxTitleHeight
-                end
-            end
-        else
-            self.dy = self.y
-        end
-end
-
-
-function ScrollCurrentSelectionForm:getXTempHorizontalForm(index, item, dx, dy)
-        return self:getDiffX(item)
-end
-
-
-function ScrollCurrentSelectionForm:getXHorizontalForm(index, item, dx, dy)
-        return 0
-end
-
-
-function ScrollCurrentSelectionForm:getXVerticalForm(index, item, dx, dy)
-        return self:getDiffX(item) + self.halfBorder
-end
-
-
-function ScrollCurrentSelectionForm:getDiffX(item)
-        return ((((self.maxWidth - item:getMinimumWidth())) // (1 << (1))))
-end
-
-
-function ScrollCurrentSelectionForm:getDx()
-        return self.dx
-end
-
-
-function ScrollCurrentSelectionForm:getDy()
-        return self.dy
-end
-
-
-function ScrollCurrentSelectionForm:paint(graphics)
-        local try_ok, try_error = pcall(function()
-            self.processor:process()
-            local delta = 0
-            local deltaX = self:getDx()
-            local deltaY = self:getDy()
-            local size = self:size()
-            local formTypeFactory = FormTypeFactory.getInstance()
-            local item = nil
-            for index = 0, size - 1 do
-                item = self:get(index)
-                local diffX = self.preItemIndexDx:getDx(index, item, self.dx, self.dy)
-                if index == self:getSelectedIndex() then
-                    delta = self:paintItem(graphics, index, item, deltaX + diffX, deltaY)
-                    self.paintable:paint(graphics, index, deltaX + diffX, deltaY)
-                else
-                    delta = self:paintUnselectedItem(graphics, index, item, deltaX + diffX, deltaY)
-                    self.paintable:paint(graphics, index, deltaX + diffX, deltaY)
-                end
-                if self.formType == formTypeFactory.TEMP_HORIZONTAL_FORM then
-                elseif self.formType == formTypeFactory.HORIZONTAL_FORM then
-                    deltaX = delta
-                elseif self.formType == formTypeFactory.VERTICAL_CENTER_FORM then
-                    deltaY = delta
-                else
-                    error(java_exception("Exception", formTypeFactory.UNK), 0)
-                end
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.canvasStrings.PAINT, e)
-        end
-end
-
-return ScrollCurrentSelectionForm
 

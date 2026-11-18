@@ -1,24 +1,17 @@
--- Generated Code Do Not Modify
--- package javax.microedition.khronos.opengles
+;;;; Generated Code Do Not Modify
+;;;; package javax.microedition.khronos.opengles
 
-local GL = require("javax.microedition.khronos.opengles.GL")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass GL10 (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun GL10.jnew_0 ()
+  (let ((this (make-instance 'GL10)))
+    this))
 
--- Java interface
-local GL10 = {}
-GL10.__index = GL10
-GL10.className = "GL10"
-setmetatable(GL10, {__index = GL})
 
-return GL10
 

@@ -1,82 +1,89 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2022 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.displayable.canvas
 
-local DisplayChangeEvent = require("org.allbinary.graphics.displayable.event.DisplayChangeEvent")
-local BaseMenuBehavior = require("org.allbinary.game.displayable.canvas.BaseMenuBehavior")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass InGameMenuBehavior (BaseMenuBehavior)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar InGameMenuBehavior.jcell_instanceC :jnone)
+(defun InGameMenuBehavior.jstatic_instanceC ()
+  (when (eq InGameMenuBehavior.jcell_instanceC :jnone) (setf InGameMenuBehavior.jcell_instanceC (InGameMenuBehavior.jnew_0)))
+  InGameMenuBehavior.jcell_instanceC)
+(defun (setf InGameMenuBehavior.jstatic_instanceC) (value) (setf InGameMenuBehavior.jcell_instanceC value))
 
-local InGameMenuBehavior = {}
-InGameMenuBehavior.__index = InGameMenuBehavior
-InGameMenuBehavior.className = "InGameMenuBehavior"
-setmetatable(InGameMenuBehavior, {__index = BaseMenuBehavior})
+(defun InGameMenuBehavior.jnew_0 ()
+  (let ((this (make-instance 'InGameMenuBehavior)))
+    this))
 
-function InGameMenuBehavior.new()
-    local self = setmetatable(BaseMenuBehavior.new(), InGameMenuBehavior)
-    return self
-end
+    
+(defun InGameMenuBehavior.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (InGameMenuBehavior.jstatic_instanceC)))))
+
+    
+(unless (fboundp 'jm_onDisplayChangeEvent_2) (defgeneric jm_onDisplayChangeEvent_2 (this p1 p2)))
+(defmethod jm_onDisplayChangeEvent_2 ((this InGameMenuBehavior) _allBinaryGameCanvas _displayChangeEvent)
+  (declare (ignorable this _allBinaryGameCanvas _displayChangeEvent))
+  (let ()
+    (block jreturn
+        (jm_updateMenuFromEvent_1 _allBinaryGameCanvas _displayChangeEvent))))
+
+    
+(unless (fboundp 'jm_initSpecialPaint_1) (defgeneric jm_initSpecialPaint_1 (this p1)))
+(defmethod jm_initSpecialPaint_1 ((this InGameMenuBehavior) _allBinaryGameCanvas)
+  (declare (ignorable this _allBinaryGameCanvas))
+  (let ()
+    (block jreturn
+        (jm_setNonBotPaintableP_1 _allBinaryGameCanvas (GameCanvasNonBotPaintable.jnew_1 _allBinaryGameCanvas)))))
+
+    
+(unless (fboundp 'jm_initMenu_1) (defgeneric jm_initMenu_1 (this p1)))
+(defmethod jm_initMenu_1 ((this InGameMenuBehavior) _allBinaryGameCanvas)
+  (declare (ignorable this _allBinaryGameCanvas))
+  (let ()
+    (block jreturn
+        (jm_initMenu2_0 _allBinaryGameCanvas))))
+
+    
+(unless (fboundp 'jm_updateMenu_1) (defgeneric jm_updateMenu_1 (this p1)))
+(defmethod jm_updateMenu_1 ((this InGameMenuBehavior) _allBinaryGameCanvas)
+  (declare (ignorable this _allBinaryGameCanvas))
+  (let ()
+    (block jreturn
+        (jm_initMenu2_0 _allBinaryGameCanvas))))
+
+    
+(unless (fboundp 'jm_popupMenu_1) (defgeneric jm_popupMenu_1 (this p1)))
+(defmethod jm_popupMenu_1 ((this InGameMenuBehavior) _allBinaryGameCanvas)
+  (declare (ignorable this _allBinaryGameCanvas))
+  (let ()
+    (block jreturn
+        (jm_popupMenu2_0 _allBinaryGameCanvas))))
+
+    
+(unless (fboundp 'jm_closeMenu_1) (defgeneric jm_closeMenu_1 (this p1)))
+(defmethod jm_closeMenu_1 ((this InGameMenuBehavior) _allBinaryGameCanvas)
+  (declare (ignorable this _allBinaryGameCanvas))
+  (let ()
+    (block jreturn
+        (jm_closeMenu2_0 _allBinaryGameCanvas))))
 
 
-function InGameMenuBehavior.getInstance()
-        return InGameMenuBehavior.instanceC
-end
-
-
--- throws Exception
-function InGameMenuBehavior:onDisplayChangeEvent(allBinaryGameCanvas, displayChangeEvent)
-        allBinaryGameCanvas:updateMenuFromEvent(displayChangeEvent)
-end
-
-
-function InGameMenuBehavior:initSpecialPaint(allBinaryGameCanvas)
-        allBinaryGameCanvas:setNonBotPaintableP(GameCanvasNonBotPaintable.new(allBinaryGameCanvas))
-end
-
-
--- throws Exception
-function InGameMenuBehavior:initMenu(allBinaryGameCanvas)
-        allBinaryGameCanvas:initMenu2()
-end
-
-
--- throws Exception
-function InGameMenuBehavior:updateMenu(allBinaryGameCanvas)
-        allBinaryGameCanvas:initMenu2()
-end
-
-
--- throws Exception
-function InGameMenuBehavior:popupMenu(allBinaryGameCanvas)
-        allBinaryGameCanvas:popupMenu2()
-end
-
-
-function InGameMenuBehavior:closeMenu(allBinaryGameCanvas)
-        allBinaryGameCanvas:closeMenu2()
-end
-
-InGameMenuBehavior.instanceC = InGameMenuBehavior.new()
-
-return InGameMenuBehavior
 

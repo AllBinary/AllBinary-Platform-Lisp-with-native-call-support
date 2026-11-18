@@ -1,56 +1,44 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.paint
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.paint
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local DisplayInfoSingleton = require("org.allbinary.graphics.displayable.DisplayInfoSingleton")
-local ColorFillBasePaintable = require("org.allbinary.game.paint.ColorFillBasePaintable")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ColorFillPaintable (ColorFillBasePaintable)
+  ((f_displayInfoSingleton :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun ColorFillPaintable.jnew_1 (_basicColor)
+  (declare (ignorable _basicColor))
+  (let ((this (make-instance 'ColorFillPaintable)))
+    (setf (slot-value this 'f_displayInfoSingleton) (DisplayInfoSingleton.jm_getInstance_0))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
-local ColorFillPaintable = {}
-ColorFillPaintable.__index = ColorFillPaintable
-ColorFillPaintable.className = "ColorFillPaintable"
-setmetatable(ColorFillPaintable, {__index = ColorFillBasePaintable})
-
-function ColorFillPaintable:_init_fields()
-    self.displayInfoSingleton = DisplayInfoSingleton.getInstance()
-end
-
-
-function ColorFillPaintable.new(basicColor)
-    local self = setmetatable(ColorFillBasePaintable.new(basicColor), ColorFillPaintable)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
+    
+(unless (fboundp 'jm_paint_1) (defgeneric jm_paint_1 (this p1)))
+(defmethod jm_paint_1 ((this ColorFillPaintable) _graphics)
+  (declare (ignorable this _graphics))
+  (let ()
+    (block jreturn
+        (jm_setColor_1 _graphics (slot-value this 'f_colorP))
+        (jm_fillRect_4 _graphics 0 0 (jm_getLastWidth_0 (slot-value this 'f_displayInfoSingleton)) (jm_getLastHeight_0 (slot-value this 'f_displayInfoSingleton))))))
 
 
-function ColorFillPaintable:paint(graphics)
-        graphics:setColor(self.colorP)
-        graphics:fillRect(0, 0, self.displayInfoSingleton:getLastWidth(), self.displayInfoSingleton:getLastHeight())
-end
-
-return ColorFillPaintable
 

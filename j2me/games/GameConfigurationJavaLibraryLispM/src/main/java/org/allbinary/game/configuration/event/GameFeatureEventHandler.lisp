@@ -1,57 +1,54 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.event
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.configuration.event
 
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
-local BasicEventHandler = require("org.allbinary.logic.util.event.handler.BasicEventHandler")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass GameFeatureEventHandler (BasicEventHandler)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar GameFeatureEventHandler.jcell_gameKeyEventHandler :jnone)
+(defun GameFeatureEventHandler.jstatic_gameKeyEventHandler ()
+  (when (eq GameFeatureEventHandler.jcell_gameKeyEventHandler :jnone) (setf GameFeatureEventHandler.jcell_gameKeyEventHandler (GameFeatureEventHandler.jnew_0)))
+  GameFeatureEventHandler.jcell_gameKeyEventHandler)
+(defun (setf GameFeatureEventHandler.jstatic_gameKeyEventHandler) (value) (setf GameFeatureEventHandler.jcell_gameKeyEventHandler value))
 
-local GameFeatureEventHandler = {}
-GameFeatureEventHandler.__index = GameFeatureEventHandler
-GameFeatureEventHandler.className = "GameFeatureEventHandler"
-setmetatable(GameFeatureEventHandler, {__index = BasicEventHandler})
+    
+(defun GameFeatureEventHandler.jnew_0 ()
+  (let ((this (make-instance 'GameFeatureEventHandler)))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(defun GameFeatureEventHandler.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (GameFeatureEventHandler.jstatic_gameKeyEventHandler)))))
+
+    
+(unless (fboundp 'jm_process_2) (defgeneric jm_process_2 (this p1 p2)))
+(defmethod jm_process_2 ((this GameFeatureEventHandler) _eventObject _eventListenerInterface)
+  (declare (ignorable this _eventObject _eventListenerInterface))
+  (let (_gameFeatureListenerInterface)
+  (declare (ignorable _gameFeatureListenerInterface))
+    (block jreturn
+        (setf _gameFeatureListenerInterface _eventListenerInterface)
+        (jm_onGameFeatureChange_1 _gameFeatureListenerInterface _eventObject))))
 
 
-function GameFeatureEventHandler.new()
-    local self = setmetatable(BasicEventHandler.new(), GameFeatureEventHandler)
-    return self
-end
-
-
-function GameFeatureEventHandler.getInstance()
-        return GameFeatureEventHandler.gameKeyEventHandler
-end
-
-
--- throws Exception
-function GameFeatureEventHandler:process(eventObject, eventListenerInterface)
-        local gameFeatureListenerInterface = (eventListenerInterface)
-        gameFeatureListenerInterface:onGameFeatureChange(eventObject)
-end
-
-GameFeatureEventHandler.gameKeyEventHandler = GameFeatureEventHandler.new()
-
-return GameFeatureEventHandler
 

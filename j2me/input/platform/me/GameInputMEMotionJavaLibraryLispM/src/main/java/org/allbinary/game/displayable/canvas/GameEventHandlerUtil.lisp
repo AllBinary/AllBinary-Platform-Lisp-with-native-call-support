@@ -1,46 +1,36 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.displayable.canvas
 
-local DownGameKeyEventHandler = require("org.allbinary.game.input.event.DownGameKeyEventHandler")
-local UpGameKeyEventHandler = require("org.allbinary.game.input.event.UpGameKeyEventHandler")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass GameEventHandlerUtil (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun GameEventHandlerUtil.jnew_0 ()
+  (let ((this (make-instance 'GameEventHandlerUtil)))
+    this))
 
-local GameEventHandlerUtil = {}
-GameEventHandlerUtil.__index = GameEventHandlerUtil
-GameEventHandlerUtil.className = "GameEventHandlerUtil"
-
-function GameEventHandlerUtil.new()
-    local self = setmetatable({}, GameEventHandlerUtil)
-    return self
-end
+    
+(defun GameEventHandlerUtil.jm_removeAllListeners_0 ()
+  (let ()
+    (block jreturn
+        (jm_removeAllListeners_0 (UpGameKeyEventHandler.jm_getInstance_0))
+        (jm_removeAllListeners_0 (DownGameKeyEventHandler.jm_getInstance_0)))))
 
 
-function GameEventHandlerUtil.removeAllListeners()
-        UpGameKeyEventHandler.getInstance():removeAllListeners()
-        DownGameKeyEventHandler.getInstance():removeAllListeners()
-end
-
-return GameEventHandlerUtil
 

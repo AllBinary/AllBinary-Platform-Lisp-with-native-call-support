@@ -1,82 +1,68 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.form
 
-local GPoint = require("org.allbinary.graphics.GPoint")
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local RectangleFactory = require("org.allbinary.graphics.RectangleFactory")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local CanvasStrings = require("org.allbinary.graphics.displayable.CanvasStrings")
-local ABCustomItem = require("org.allbinary.graphics.form.item.ABCustomItem")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local ABCustomForm = require("org.allbinary.graphics.form.ABCustomForm")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(defclass PaintableForm (ABCustomForm)
+  ((f_canvasStrings :initform nil)
+   (f_rectangle :initform nil)
+   (f_x :initform 0)
+   (f_y :initform 0)
+   (f_formType :initform nil)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defvar PaintableForm.jcell_NULL_PAINTABLE_FORM :jnone)
+(defun PaintableForm.jstatic_NULL_PAINTABLE_FORM ()
+  (when (eq PaintableForm.jcell_NULL_PAINTABLE_FORM :jnone) (setf PaintableForm.jcell_NULL_PAINTABLE_FORM (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT)))
+  PaintableForm.jcell_NULL_PAINTABLE_FORM)
+(defun (setf PaintableForm.jstatic_NULL_PAINTABLE_FORM) (value) (setf PaintableForm.jcell_NULL_PAINTABLE_FORM value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun PaintableForm.jm_getNullPaintableForm_0 ()
+  (let ()
+    (block jreturn
+        (if (eq (PaintableForm.jstatic_NULL_PAINTABLE_FORM) (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT))
+            (progn
+            (setf (PaintableForm.jstatic_NULL_PAINTABLE_FORM) (PaintableForm.jnew_4 (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (JR.newArray nil 0) (slot-value (BasicColorFactory.jm_getInstance_0) 'f_BLACK) (slot-value (BasicColorFactory.jm_getInstance_0) 'f_WHITE)))))
+        (return-from jreturn (PaintableForm.jstatic_NULL_PAINTABLE_FORM)))))
 
-local PaintableForm = {}
-PaintableForm.__index = PaintableForm
-PaintableForm.className = "PaintableForm"
-setmetatable(PaintableForm, {__index = ABCustomForm})
+    
+(defun PaintableForm.jnew_4 (_title _items _backgroundBasicColor _foregroundBasicColor)
+  (declare (ignorable _title _items _backgroundBasicColor _foregroundBasicColor))
+  (let ((this (make-instance 'PaintableForm)))
+    (setf (slot-value this 'f_canvasStrings) (CanvasStrings.jm_getInstance_0))
+    (setf (slot-value this 'f_rectangle) (RectangleFactory.jstatic_SINGLETON))
+    
+    
+    (setf (slot-value this 'f_formType) (slot-value (FormTypeFactory.jm_getInstance_0) 'f_NULL_FORM_TYPE))
+  (let ()
+    (block jreturn
+        nil
+        (jm_setSelectedIndex_1 this 0)))
+    this))
 
-function PaintableForm:_init_fields()
-    self.canvasStrings = CanvasStrings.getInstance()
-    self.rectangle = RectangleFactory.SINGLETON
-    self.x = 0
-    self.y = 0
-    self.formType = FormTypeFactory.getInstance().NULL_FORM_TYPE
-end
+    
+(unless (fboundp 'jm_init_2) (defgeneric jm_init_2 (this p1 p2)))
+(defmethod jm_init_2 ((this PaintableForm) _rectangle _formType)
+  (declare (ignorable this _rectangle _formType))
+  (let (_point)
+  (declare (ignorable _point))
+    (block jreturn
+        (setf (slot-value this 'f_rectangle) _rectangle)
+        (setf _point (jm_getPoint_0 (slot-value this 'f_rectangle)))
+        (setf (slot-value this 'f_x) (jm_getX_0 _point))
+        (setf (slot-value this 'f_y) (jm_getY_0 _point))
+        (setf (slot-value this 'f_formType) _formType))))
 
-
-function PaintableForm.getNullPaintableForm()
-        if PaintableForm.NULL_PAINTABLE_FORM == NullUtil.getInstance().NULL_OBJECT then
-            PaintableForm.NULL_PAINTABLE_FORM = PaintableForm.new(StringUtil.getInstance().EMPTY_STRING, java_new_array(nil, 0), BasicColorFactory.getInstance().BLACK, BasicColorFactory.getInstance().WHITE)
-        end
-        return PaintableForm.NULL_PAINTABLE_FORM
-end
-
-
-function PaintableForm.new(title, items, backgroundBasicColor, foregroundBasicColor)
-    local self = setmetatable(ABCustomForm.new(title, items, backgroundBasicColor, foregroundBasicColor), PaintableForm)
-    self:_init_fields()
-        -- super(...) made self above
-        self:setSelectedIndex(0)
-    return self
-end
-
-
--- throws Exception
-function PaintableForm:init(rectangle, formType)
-        self.rectangle = rectangle
-        local point = self.rectangle:getPoint()
-        self.x = point:getX()
-        self.y = point:getY()
-        self.formType = formType
-end
+    
+(unless (fboundp 'jm_getWidth_0) (defgeneric jm_getWidth_0 (this)))
+(defmethod jm_getWidth_0 ((this PaintableForm))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getWidth_0 (slot-value this 'f_rectangle))))))
 
 
-function PaintableForm:getWidth()
-        return self.rectangle:getWidth()
-end
-
-PaintableForm.NULL_PAINTABLE_FORM = NullUtil.getInstance().NULL_OBJECT
-
-return PaintableForm
 

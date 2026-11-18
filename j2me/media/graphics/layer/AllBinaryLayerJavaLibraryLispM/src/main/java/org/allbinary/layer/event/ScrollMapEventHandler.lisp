@@ -1,57 +1,54 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.layer.event
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.layer.event
 
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
-local BasicEventHandler = require("org.allbinary.logic.util.event.handler.BasicEventHandler")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ScrollMapEventHandler (BasicEventHandler)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar ScrollMapEventHandler.jcell_SINGLETON :jnone)
+(defun ScrollMapEventHandler.jstatic_SINGLETON ()
+  (when (eq ScrollMapEventHandler.jcell_SINGLETON :jnone) (setf ScrollMapEventHandler.jcell_SINGLETON (ScrollMapEventHandler.jnew_0)))
+  ScrollMapEventHandler.jcell_SINGLETON)
+(defun (setf ScrollMapEventHandler.jstatic_SINGLETON) (value) (setf ScrollMapEventHandler.jcell_SINGLETON value))
 
-local ScrollMapEventHandler = {}
-ScrollMapEventHandler.__index = ScrollMapEventHandler
-ScrollMapEventHandler.className = "ScrollMapEventHandler"
-setmetatable(ScrollMapEventHandler, {__index = BasicEventHandler})
+    
+(defun ScrollMapEventHandler.jnew_0 ()
+  (let ((this (make-instance 'ScrollMapEventHandler)))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(defun ScrollMapEventHandler.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (ScrollMapEventHandler.jstatic_SINGLETON)))))
+
+    
+(unless (fboundp 'jm_process_2) (defgeneric jm_process_2 (this p1 p2)))
+(defmethod jm_process_2 ((this ScrollMapEventHandler) _eventObject _eventListenerInterface)
+  (declare (ignorable this _eventObject _eventListenerInterface))
+  (let (_scrollMapEventListenerInterface)
+  (declare (ignorable _scrollMapEventListenerInterface))
+    (block jreturn
+        (setf _scrollMapEventListenerInterface _eventListenerInterface)
+        (jm_onMoveEvent_1 _scrollMapEventListenerInterface _eventObject))))
 
 
-function ScrollMapEventHandler.new()
-    local self = setmetatable(BasicEventHandler.new(), ScrollMapEventHandler)
-    return self
-end
-
-
-function ScrollMapEventHandler.getInstance()
-        return ScrollMapEventHandler.SINGLETON
-end
-
-
--- throws Exception
-function ScrollMapEventHandler:process(eventObject, eventListenerInterface)
-        local scrollMapEventListenerInterface = (eventListenerInterface)
-        scrollMapEventListenerInterface:onMoveEvent(eventObject)
-end
-
-ScrollMapEventHandler.SINGLETON = ScrollMapEventHandler.new()
-
-return ScrollMapEventHandler
 

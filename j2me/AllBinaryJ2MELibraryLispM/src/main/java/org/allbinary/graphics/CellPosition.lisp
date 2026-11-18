@@ -1,91 +1,95 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics
 
-local V = require("org.allbinary.graph.V")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass CellPosition (V)
+  ((f_id :initform 0)
+   (f_column :initform 0)
+   (f_row :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun CellPosition.jnew_4 (_column _row _columns _rows)
+  (declare (ignorable _column _row _columns _rows))
+  (let ((this (make-instance 'CellPosition)))
+    
+    
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_column) _column)
+        (setf (slot-value this 'f_row) _row)
+        (setf (slot-value this 'f_id) (JR.i32 (+ (JR.i32 (* _row _columns)) _column)))))
+    this))
 
-local CellPosition = {}
-CellPosition.__index = CellPosition
-CellPosition.className = "CellPosition"
-setmetatable(CellPosition, {__index = V})
+    
+(unless (fboundp 'jm_getColumn_0) (defgeneric jm_getColumn_0 (this)))
+(defmethod jm_getColumn_0 ((this CellPosition))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_column)))))
 
-function CellPosition:_init_fields()
-    self.id = nil
-    self.column = nil
-    self.row = nil
-end
+    
+(unless (fboundp 'jm_getRow_0) (defgeneric jm_getRow_0 (this)))
+(defmethod jm_getRow_0 ((this CellPosition))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_row)))))
+
+    
+(unless (fboundp 'jm_toString_0) (defgeneric jm_toString_0 (this)))
+(defmethod jm_toString_0 ((this CellPosition))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (CellPosition.jm_toStringColRow_2 (jm_getColumn_0 this) (jm_getRow_0 this))))))
+
+    
+(defun CellPosition.jm_toStringCellPosition_1 (_basicGeographicMapCellPosition)
+  (declare (ignorable _basicGeographicMapCellPosition))
+  (let ()
+    (block jreturn
+        (return-from jreturn (CellPosition.jm_toStringColRow_2 (jm_getColumn_0 _basicGeographicMapCellPosition) (jm_getRow_0 _basicGeographicMapCellPosition))))))
+
+    
+(defun CellPosition.jm_toStringColRow_2 (_i_column _i_row)
+  (declare (ignorable _i_column _i_row))
+  (let (_stringBuffer _commonSeps)
+  (declare (ignorable _stringBuffer _commonSeps))
+    (block jreturn
+        (setf _stringBuffer (StringMaker.jnew_0))
+        (setf _commonSeps (CommonSeps.jm_getInstance_0))
+        (jm_append_1 _stringBuffer (slot-value _commonSeps 'f_PARENTHESIS_OPEN))
+        (jm_appendint_1 _stringBuffer _i_column)
+        (jm_append_1 _stringBuffer (slot-value _commonSeps 'f_COMMA))
+        (jm_appendint_1 _stringBuffer _i_row)
+        (jm_append_1 _stringBuffer (slot-value _commonSeps 'f_PARENTHESIS_CLOSE))
+        (return-from jreturn (jm_toString_0 _stringBuffer)))))
+
+    
+(unless (fboundp 'jm_getId_0) (defgeneric jm_getId_0 (this)))
+(defmethod jm_getId_0 ((this CellPosition))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_id)))))
 
 
-function CellPosition.new(column, row, columns, rows)
-    local self = setmetatable(V.new(), CellPosition)
-    self:_init_fields()
-        self.column = column
-        self.row = row
-        self.id = (row * columns) + column
-    return self
-end
-
-
-function CellPosition:getColumn()
-        return self.column
-end
-
-
-function CellPosition:getRow()
-        return self.row
-end
-
-
-function CellPosition:toString()
-        return CellPosition.toStringColRow(self:getColumn(), self:getRow())
-end
-CellPosition.__tostring = function(self) return self:toString() end
-
-
-function CellPosition.toStringCellPosition(basicGeographicMapCellPosition)
-        return CellPosition.toStringColRow(basicGeographicMapCellPosition:getColumn(), basicGeographicMapCellPosition:getRow())
-end
-
-
-function CellPosition.toStringColRow(i_column, i_row)
-        local stringBuffer = StringMaker.new()
-        local commonSeps = CommonSeps.getInstance()
-        stringBuffer:append(commonSeps.PARENTHESIS_OPEN)
-        stringBuffer:appendint(i_column)
-        stringBuffer:append(commonSeps.COMMA)
-        stringBuffer:appendint(i_row)
-        stringBuffer:append(commonSeps.PARENTHESIS_CLOSE)
-        return tostring(stringBuffer)
-end
-
-
-function CellPosition:getId()
-        return self.id
-end
-
-return CellPosition
 

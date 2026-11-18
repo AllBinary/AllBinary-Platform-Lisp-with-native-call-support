@@ -1,51 +1,48 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.image
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.media.image
 
--- local Image = require("javax.microedition.lcdui.Image")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ImageCompleteUtil (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar ImageCompleteUtil.jcell_instance :jnone)
+(defun ImageCompleteUtil.jstatic_instance ()
+  (when (eq ImageCompleteUtil.jcell_instance :jnone) (setf ImageCompleteUtil.jcell_instance (ImageCompleteUtil.jnew_0)))
+  ImageCompleteUtil.jcell_instance)
+(defun (setf ImageCompleteUtil.jstatic_instance) (value) (setf ImageCompleteUtil.jcell_instance value))
 
-local ImageCompleteUtil = {}
-ImageCompleteUtil.__index = ImageCompleteUtil
-ImageCompleteUtil.className = "ImageCompleteUtil"
+(defun ImageCompleteUtil.jnew_0 ()
+  (let ((this (make-instance 'ImageCompleteUtil)))
+    this))
 
-function ImageCompleteUtil.new()
-    local self = setmetatable({}, ImageCompleteUtil)
-    return self
-end
+    
+(defun ImageCompleteUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (ImageCompleteUtil.jstatic_instance)))))
+
+    
+(unless (fboundp 'jm_waitForImage_2) (defgeneric jm_waitForImage_2 (this p1 p2)))
+(defmethod jm_waitForImage_2 ((this ImageCompleteUtil) _image _name)
+  (declare (ignorable this _image _name))
+  (let ()
+    (block jreturn nil)))
 
 
-function ImageCompleteUtil.getInstance()
-        return ImageCompleteUtil.instance
-end
-
-
--- throws Exception
-function ImageCompleteUtil:waitForImage(image, name)
-end
-
-ImageCompleteUtil.instance = ImageCompleteUtil.new()
-
-return ImageCompleteUtil
 

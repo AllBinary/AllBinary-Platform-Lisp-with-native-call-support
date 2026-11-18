@@ -36,6 +36,7 @@
 (defun OperatingSystems.jstatic_instance ()
   (when (eq OperatingSystems.jcell_instance :jnone) (setf OperatingSystems.jcell_instance (OperatingSystems.jnew_0)))
   OperatingSystems.jcell_instance)
+(defun (setf OperatingSystems.jstatic_instance) (value) (setf OperatingSystems.jcell_instance value))
 
     
 (defun OperatingSystems.jnew_0 ()

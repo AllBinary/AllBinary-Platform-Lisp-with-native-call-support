@@ -1,88 +1,93 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.event
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.input.event
 
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass GameKeyEventHandler (JObject)
+  ((f_logUtil :initform nil)
+   (f_commonStrings :initform nil)
+   (f_pressGameKeyEventHandler :initform nil)
+   (f_upGameKeyEventHandler :initform nil)
+   (f_downGameKeyEventHandler :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar GameKeyEventHandler.jcell_instance :jnone)
+(defun GameKeyEventHandler.jstatic_instance ()
+  (when (eq GameKeyEventHandler.jcell_instance :jnone) (setf GameKeyEventHandler.jcell_instance (GameKeyEventHandler.jnew_0)))
+  GameKeyEventHandler.jcell_instance)
+(defun (setf GameKeyEventHandler.jstatic_instance) (value) (setf GameKeyEventHandler.jcell_instance value))
 
-local GameKeyEventHandler = {}
-GameKeyEventHandler.__index = GameKeyEventHandler
-GameKeyEventHandler.className = "GameKeyEventHandler"
+(defun GameKeyEventHandler.jnew_0 ()
+  (let ((this (make-instance 'GameKeyEventHandler)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_commonStrings) (CommonStrings.jm_getInstance_0))
+    (setf (slot-value this 'f_pressGameKeyEventHandler) (PressGameKeyEventHandler.jm_getInstance_0))
+    (setf (slot-value this 'f_upGameKeyEventHandler) (UpGameKeyEventHandler.jm_getInstance_0))
+    (setf (slot-value this 'f_downGameKeyEventHandler) (DownGameKeyEventHandler.jm_getInstance_0))
+    this))
 
-function GameKeyEventHandler:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.pressGameKeyEventHandler = PressGameKeyEventHandler.getInstance()
-    self.upGameKeyEventHandler = UpGameKeyEventHandler.getInstance()
-    self.downGameKeyEventHandler = DownGameKeyEventHandler.getInstance()
-end
+    
+(defun GameKeyEventHandler.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (GameKeyEventHandler.jstatic_instance)))))
 
-function GameKeyEventHandler.new()
-    local self = setmetatable({}, GameKeyEventHandler)
-    self:_init_fields()
-    return self
-end
+    
+(unless (fboundp 'jm_removeAllListeners_0) (defgeneric jm_removeAllListeners_0 (this)))
+(defmethod jm_removeAllListeners_0 ((this GameKeyEventHandler))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_removeAllListeners_0 (slot-value this 'f_pressGameKeyEventHandler))
+        (jm_removeAllListeners_0 (slot-value this 'f_upGameKeyEventHandler))
+        (jm_removeAllListeners_0 (slot-value this 'f_downGameKeyEventHandler)))))
+
+    
+(unless (fboundp 'jm_addListenerForPlayer_2) (defgeneric jm_addListenerForPlayer_2 (this p1 p2)))
+(defmethod jm_addListenerForPlayer_2 ((this GameKeyEventHandler) _eventListenerInterface _playerInputId)
+  (declare (ignorable this _eventListenerInterface _playerInputId))
+  (let ()
+    (block jreturn
+        (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 _eventListenerInterface) this (slot-value (slot-value this 'f_commonStrings) 'f_ADD_LISTENER))
+        (jm_addListenerSingleThreaded_1 (slot-value this 'f_pressGameKeyEventHandler) _eventListenerInterface)
+        (jm_addListenerSingleThreaded_1 (jm_getInstanceForPlayer_1 (slot-value this 'f_upGameKeyEventHandler) _playerInputId) _eventListenerInterface)
+        (jm_addListenerSingleThreaded_1 (jm_getInstanceForPlayer_1 (slot-value this 'f_downGameKeyEventHandler) _playerInputId) _eventListenerInterface))))
+
+    
+(unless (fboundp 'jm_addListener_1) (defgeneric jm_addListener_1 (this p1)))
+(defmethod jm_addListener_1 ((this GameKeyEventHandler) _eventListenerInterface)
+  (declare (ignorable this _eventListenerInterface))
+  (let ()
+    (block jreturn
+        (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 _eventListenerInterface) this (slot-value (slot-value this 'f_commonStrings) 'f_ADD_LISTENER))
+        (jm_addListenerSingleThreaded_1 (slot-value this 'f_pressGameKeyEventHandler) _eventListenerInterface)
+        (jm_addListenerSingleThreaded_1 (slot-value this 'f_upGameKeyEventHandler) _eventListenerInterface)
+        (jm_addListenerSingleThreaded_1 (slot-value this 'f_downGameKeyEventHandler) _eventListenerInterface))))
+
+    
+(unless (fboundp 'jm_removeListener_1) (defgeneric jm_removeListener_1 (this p1)))
+(defmethod jm_removeListener_1 ((this GameKeyEventHandler) _eventListenerInterface)
+  (declare (ignorable this _eventListenerInterface))
+  (let ()
+    (block jreturn
+        (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 _eventListenerInterface) this (slot-value (slot-value this 'f_commonStrings) 'f_REMOVE_LISTENER))
+        (jm_removeListenerSingleThreaded_1 (slot-value this 'f_pressGameKeyEventHandler) _eventListenerInterface)
+        (jm_removeListenerSingleThreaded_1 (slot-value this 'f_upGameKeyEventHandler) _eventListenerInterface)
+        (jm_removeListenerSingleThreaded_1 (slot-value this 'f_downGameKeyEventHandler) _eventListenerInterface))))
 
 
-function GameKeyEventHandler.getInstance()
-        return GameKeyEventHandler.instance
-end
-
-
-function GameKeyEventHandler:removeAllListeners()
-        self.pressGameKeyEventHandler:removeAllListeners()
-        self.upGameKeyEventHandler:removeAllListeners()
-        self.downGameKeyEventHandler:removeAllListeners()
-end
-
-
-function GameKeyEventHandler:addListenerForPlayer(eventListenerInterface, playerInputId)
-        self.logUtil:putF(tostring(eventListenerInterface), self, self.commonStrings.ADD_LISTENER)
-        self.pressGameKeyEventHandler:addListenerSingleThreaded(eventListenerInterface)
-        self.upGameKeyEventHandler:getInstanceForPlayer(playerInputId):addListenerSingleThreaded(eventListenerInterface)
-        self.downGameKeyEventHandler:getInstanceForPlayer(playerInputId):addListenerSingleThreaded(eventListenerInterface)
-end
-
-
-function GameKeyEventHandler:addListener(eventListenerInterface)
-        self.logUtil:putF(tostring(eventListenerInterface), self, self.commonStrings.ADD_LISTENER)
-        self.pressGameKeyEventHandler:addListenerSingleThreaded(eventListenerInterface)
-        self.upGameKeyEventHandler:addListenerSingleThreaded(eventListenerInterface)
-        self.downGameKeyEventHandler:addListenerSingleThreaded(eventListenerInterface)
-end
-
-
-function GameKeyEventHandler:removeListener(eventListenerInterface)
-        self.logUtil:putF(tostring(eventListenerInterface), self, self.commonStrings.REMOVE_LISTENER)
-        self.pressGameKeyEventHandler:removeListenerSingleThreaded(eventListenerInterface)
-        self.upGameKeyEventHandler:removeListenerSingleThreaded(eventListenerInterface)
-        self.downGameKeyEventHandler:removeListenerSingleThreaded(eventListenerInterface)
-end
-
-GameKeyEventHandler.instance = GameKeyEventHandler.new()
-
-return GameKeyEventHandler
 

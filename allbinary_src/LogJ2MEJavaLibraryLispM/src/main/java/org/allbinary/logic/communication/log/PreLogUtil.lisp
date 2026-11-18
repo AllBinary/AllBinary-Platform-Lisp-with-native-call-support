@@ -26,6 +26,7 @@
 (defun PreLogUtil.jstatic_LOG_SUCCESS ()
   (when (eq PreLogUtil.jcell_LOG_SUCCESS :jnone) (setf PreLogUtil.jcell_LOG_SUCCESS "org.allbinary: "))
   PreLogUtil.jcell_LOG_SUCCESS)
+(defun (setf PreLogUtil.jstatic_LOG_SUCCESS) (value) (setf PreLogUtil.jcell_LOG_SUCCESS value))
 
     
 (defun PreLogUtil.jnew_0 ()

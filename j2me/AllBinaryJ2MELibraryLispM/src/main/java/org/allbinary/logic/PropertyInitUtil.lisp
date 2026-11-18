@@ -1,51 +1,46 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2026 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2026 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic
 
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass PropertyInitUtil (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar PropertyInitUtil.jcell_instance :jnone)
+(defun PropertyInitUtil.jstatic_instance ()
+  (when (eq PropertyInitUtil.jcell_instance :jnone) (setf PropertyInitUtil.jcell_instance (PropertyInitUtil.jnew_0)))
+  PropertyInitUtil.jcell_instance)
+(defun (setf PropertyInitUtil.jstatic_instance) (value) (setf PropertyInitUtil.jcell_instance value))
 
-local PropertyInitUtil = {}
-PropertyInitUtil.__index = PropertyInitUtil
-PropertyInitUtil.className = "PropertyInitUtil"
+(defun PropertyInitUtil.jnew_0 ()
+  (let ((this (make-instance 'PropertyInitUtil)))
+    this))
 
-function PropertyInitUtil.new()
-    local self = setmetatable({}, PropertyInitUtil)
-    return self
-end
+    
+(defun PropertyInitUtil.jm_getInstance_1 (_value)
+  (declare (ignorable _value))
+  (let (_commonStrings _logUtil)
+  (declare (ignorable _commonStrings _logUtil))
+    (block jreturn
+        (setf _commonStrings (CommonStrings.jm_getInstance_0))
+        (setf _logUtil (LogUtil.jm_getInstance_0))
+        (jm_putF_3 _logUtil (jm_toString_0 (jm_appendint_1 (jm_append_1 (StringMaker.jnew_0) "PropertyInitUtil: ") _value)) _logUtil (slot-value _commonStrings 'f_CONSTRUCTOR))
+        (return-from jreturn (PropertyInitUtil.jstatic_instance)))))
 
 
-function PropertyInitUtil.getInstance(value)
-        local commonStrings = CommonStrings.getInstance()
-        local logUtil = LogUtil.getInstance()
-        logUtil:putF(tostring(StringMaker.new():append("PropertyInitUtil: "):appendint(value)), logUtil, commonStrings.CONSTRUCTOR)
-        return PropertyInitUtil.instance
-end
-
-PropertyInitUtil.instance = PropertyInitUtil.new()
-
-return PropertyInitUtil
 

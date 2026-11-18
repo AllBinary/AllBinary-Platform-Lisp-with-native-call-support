@@ -1,41 +1,35 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.resource
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation.resource
 
-local BasicAnimationInterfaceFactoryInterface = require("org.allbinary.animation.BasicAnimationInterfaceFactoryInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ResourceAnimationInterfaceFactoryInterface (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun ResourceAnimationInterfaceFactoryInterface.jnew_0 ()
+  (let ((this (make-instance 'ResourceAnimationInterfaceFactoryInterface)))
+    this))
 
--- Java interface
-local ResourceAnimationInterfaceFactoryInterface = {}
-ResourceAnimationInterfaceFactoryInterface.__index = ResourceAnimationInterfaceFactoryInterface
-ResourceAnimationInterfaceFactoryInterface.className = "ResourceAnimationInterfaceFactoryInterface"
+    
+(unless (fboundp 'jm_getBasicAnimationInterfaceFactoryInstance_1) (defgeneric jm_getBasicAnimationInterfaceFactoryInstance_1 (this p1)))
+(defmethod jm_getBasicAnimationInterfaceFactoryInstance_1 ((this ResourceAnimationInterfaceFactoryInterface) _resource)
+  (declare (ignorable this _resource))
+  (error (JR.newException "AbstractMethodError" "getBasicAnimationInterfaceFactoryInstance")))
 
 
--- throws Exception
-function ResourceAnimationInterfaceFactoryInterface:getBasicAnimationInterfaceFactoryInstance(resource)
-    error("abstract method getBasicAnimationInterfaceFactoryInstance")
-end
-
-return ResourceAnimationInterfaceFactoryInterface
 

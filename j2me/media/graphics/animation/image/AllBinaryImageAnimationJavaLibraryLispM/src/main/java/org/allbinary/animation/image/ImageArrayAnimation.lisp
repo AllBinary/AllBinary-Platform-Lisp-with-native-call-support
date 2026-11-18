@@ -1,120 +1,139 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation.image
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
--- local Image = require("javax.microedition.lcdui.Image")
--- local NullImage = require("javax.microedition.lcdui.NullImage")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local IndexedAnimation = require("org.allbinary.animation.IndexedAnimation")
-local Anchor = require("org.allbinary.graphics.Anchor")
-local PrimitiveIntUtil = require("org.allbinary.logic.math.PrimitiveIntUtil")
-local CircularIndexUtil = require("org.allbinary.util.CircularIndexUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ImageArrayAnimation (IndexedAnimation)
+  ((f_imageArray :initform nil)
+   (f_totalFrames :initform 0)
+   (f_circularIndexUtil :initform nil)
+   (f_anchor :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun ImageArrayAnimation.jnew_2 (_imageArray _animationBehavior)
+  (declare (ignorable _imageArray _animationBehavior))
+  (let ((this (make-instance 'ImageArrayAnimation)))
+    (setf (slot-value this 'f_imageArray) (NullImage.jstatic_NULL_IMAGE_ARRAY))
+    
+    (setf (slot-value this 'f_circularIndexUtil) (CircularIndexUtil.jstatic_NULL_CIRCULAR_INDEX_UTIL))
+    (setf (slot-value this 'f_anchor) (Anchor.jstatic_TOP_LEFT))
+  (let ()
+    (block jreturn
+        nil
+        (jm_setImageArray_1 this _imageArray)))
+    this))
 
-local ImageArrayAnimation = {}
-ImageArrayAnimation.__index = ImageArrayAnimation
-ImageArrayAnimation.className = "ImageArrayAnimation"
-setmetatable(ImageArrayAnimation, {__index = IndexedAnimation})
+    
+(unless (fboundp 'jm_getAnimationSize_0) (defgeneric jm_getAnimationSize_0 (this)))
+(defmethod jm_getAnimationSize_0 ((this ImageArrayAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getSize_0 this)))))
 
-function ImageArrayAnimation:_init_fields()
-    self.imageArray = NullImage.NULL_IMAGE_ARRAY
-    self.totalFrames = 0
-    self.circularIndexUtil = CircularIndexUtil.NULL_CIRCULAR_INDEX_UTIL
-    self.anchor = Anchor.TOP_LEFT
-end
+    
+(unless (fboundp 'jm_nextFrame_0) (defgeneric jm_nextFrame_0 (this)))
+(defmethod jm_nextFrame_0 ((this ImageArrayAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_next_0 (slot-value this 'f_circularIndexUtil)))))
+
+    
+(unless (fboundp 'jm_previousFrame_0) (defgeneric jm_previousFrame_0 (this)))
+(defmethod jm_previousFrame_0 ((this ImageArrayAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_previous_0 (slot-value this 'f_circularIndexUtil)))))
+
+    
+(unless (fboundp 'jm_setFrame_1) (defgeneric jm_setFrame_1 (this p1)))
+(defmethod jm_setFrame_1 ((this ImageArrayAnimation) _index)
+  (declare (ignorable this _index))
+  (let ()
+    (block jreturn
+        (jm_setIndex_1 (slot-value this 'f_circularIndexUtil) _index))))
+
+    
+(unless (fboundp 'jm_getFrame_0) (defgeneric jm_getFrame_0 (this)))
+(defmethod jm_getFrame_0 ((this ImageArrayAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getIndex_0 (slot-value this 'f_circularIndexUtil))))))
+
+    
+(unless (fboundp 'jm_getSize_0) (defgeneric jm_getSize_0 (this)))
+(defmethod jm_getSize_0 ((this ImageArrayAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_totalFrames)))))
+
+    
+(unless (fboundp 'jm_setSequence_1) (defgeneric jm_setSequence_1 (this p1)))
+(defmethod jm_setSequence_1 ((this ImageArrayAnimation) _sequence)
+  (declare (ignorable this _sequence))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_getSequence_0) (defgeneric jm_getSequence_0 (this)))
+(defmethod jm_getSequence_0 ((this ImageArrayAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (PrimitiveIntUtil.jm_getArrayInstance_0)))))
+
+    
+(unless (fboundp 'jm_getImage_1) (defgeneric jm_getImage_1 (this p1)))
+(defmethod jm_getImage_1 ((this ImageArrayAnimation) _index)
+  (declare (ignorable this _index))
+  (let ()
+    (block jreturn
+        (return-from jreturn (aref (slot-value this 'f_imageArray) _index)))))
+
+    
+(unless (fboundp 'jm_getImageArray_0) (defgeneric jm_getImageArray_0 (this)))
+(defmethod jm_getImageArray_0 ((this ImageArrayAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_imageArray)))))
+
+    
+(unless (fboundp 'jm_setImageArray_1) (defgeneric jm_setImageArray_1 (this p1)))
+(defmethod jm_setImageArray_1 ((this ImageArrayAnimation) _imageArray)
+  (declare (ignorable this _imageArray))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_imageArray) _imageArray)
+        (setf (slot-value this 'f_totalFrames) (length _imageArray))
+        (setf (slot-value this 'f_circularIndexUtil) (CircularIndexUtil.jm_createInstance_1 (slot-value this 'f_totalFrames))))))
+
+    
+(unless (fboundp 'jm_paintXY_3) (defgeneric jm_paintXY_3 (this p1 p2 p3)))
+(defmethod jm_paintXY_3 ((this ImageArrayAnimation) _graphics _x _y)
+  (declare (ignorable this _graphics _x _y))
+  (let ()
+    (block jreturn
+        (jm_drawImage_4 _graphics (aref (slot-value this 'f_imageArray) (jm_getIndex_0 (slot-value this 'f_circularIndexUtil))) _x _y (slot-value this 'f_anchor)))))
 
 
-function ImageArrayAnimation.new(imageArray, animationBehavior)
-    local self = setmetatable(IndexedAnimation.new(animationBehavior), ImageArrayAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self:setImageArray(imageArray)
-    return self
-end
-
-
--- throws Exception
-function ImageArrayAnimation:getAnimationSize()
-        return self:getSize()
-end
-
-
-function ImageArrayAnimation:nextFrame()
-        self.circularIndexUtil:next()
-end
-
-
-function ImageArrayAnimation:previousFrame()
-        self.circularIndexUtil:previous()
-end
-
-
-function ImageArrayAnimation:setFrame(index)
-        self.circularIndexUtil:setIndex(index)
-end
-
-
-function ImageArrayAnimation:getFrame()
-        return self.circularIndexUtil:getIndex()
-end
-
-
-function ImageArrayAnimation:getSize()
-        return self.totalFrames
-end
-
-
-function ImageArrayAnimation:setSequence(sequence)
-end
-
-
-function ImageArrayAnimation:getSequence()
-        return PrimitiveIntUtil.getArrayInstance()
-end
-
-
-function ImageArrayAnimation:getImage(index)
-        return self.imageArray[index + 1]
-end
-
-
-function ImageArrayAnimation:getImageArray()
-        return self.imageArray
-end
-
-
-function ImageArrayAnimation:setImageArray(imageArray)
-        self.imageArray = imageArray
-        self.totalFrames = (imageArray.n or #imageArray)
-        self.circularIndexUtil = CircularIndexUtil.createInstance(self.totalFrames)
-end
-
-
-function ImageArrayAnimation:paintXY(graphics, x, y)
-        graphics:drawImage(self.imageArray[self.circularIndexUtil:getIndex() + 1], x, y, self.anchor)
-end
-
-return ImageArrayAnimation
 

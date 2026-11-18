@@ -1,49 +1,42 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local VectorAnimation = require("org.allbinary.animation.VectorAnimation")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ColorLessVectorAnimation (VectorAnimation)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun ColorLessVectorAnimation.jnew_2 (_currentPoints _animationBehavior)
+  (declare (ignorable _currentPoints _animationBehavior))
+  (let ((this (make-instance 'ColorLessVectorAnimation)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
-local ColorLessVectorAnimation = {}
-ColorLessVectorAnimation.__index = ColorLessVectorAnimation
-ColorLessVectorAnimation.className = "ColorLessVectorAnimation"
-setmetatable(ColorLessVectorAnimation, {__index = VectorAnimation})
-
-
-function ColorLessVectorAnimation.new(currentPoints, animationBehavior)
-    local self = setmetatable(VectorAnimation.new(currentPoints, BasicColorFactory.getInstance().WHITE, animationBehavior), ColorLessVectorAnimation)
-        -- super(...) made self above
-    return self
-end
+    
+(unless (fboundp 'jm_paintXY_3) (defgeneric jm_paintXY_3 (this p1 p2 p3)))
+(defmethod jm_paintXY_3 ((this ColorLessVectorAnimation) _graphics _x _y)
+  (declare (ignorable this _graphics _x _y))
+  (let ()
+    (block jreturn
+        (jm_paintVectors_3 this _graphics _x _y))))
 
 
-function ColorLessVectorAnimation:paintXY(graphics, x, y)
-        self:paintVectors(graphics, x, y)
-end
-
-return ColorLessVectorAnimation
 

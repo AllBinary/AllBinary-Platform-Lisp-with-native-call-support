@@ -1,105 +1,84 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.licensing
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.system.security.licensing
 
--- local InputStream = require("java.io.InputStream")
--- local OutputStream = require("java.io.OutputStream")
-local LicenseInitInfoUtil = require("org.allbinary.business.init.LicenseInitInfoUtil")
-local ResourceUtil = require("org.allbinary.data.resource.ResourceUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local FileStreamFactory = require("org.allbinary.logic.io.FileStreamFactory")
-local StreamUtil = require("org.allbinary.logic.io.StreamUtil")
-local FileFactory = require("org.allbinary.logic.io.file.FileFactory")
-local SimpleFileUtil = require("org.allbinary.logic.io.file.SimpleFileUtil")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass LicenseServerInitFileUtil (JObject)
+  ((f_logUtil :initform nil)
+   (f_commonStrings :initform nil)
+   (f_NULL_OUTPUT_STREAM :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun LicenseServerInitFileUtil.jnew_0 ()
+  (let ((this (make-instance 'LicenseServerInitFileUtil)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_commonStrings) (CommonStrings.jm_getInstance_0))
+    (setf (slot-value this 'f_NULL_OUTPUT_STREAM) (SimpleFileUtil.jm_nullOutputStream_0))
+    this))
 
-local LicenseServerInitFileUtil = {}
-LicenseServerInitFileUtil.__index = LicenseServerInitFileUtil
-LicenseServerInitFileUtil.className = "LicenseServerInitFileUtil"
+    
+(unless (fboundp 'jm_init_0) (defgeneric jm_init_0 (this)))
+(defmethod jm_init_0 ((this LicenseServerInitFileUtil))
+  (declare (ignorable this))
+  (let (_filePath)
+  (declare (ignorable _filePath))
+    (block jreturn
+        (handler-case (progn
+            (setf _filePath (slot-value (LicenseInitInfoUtil.jm_getInstance_0) 'f_INITFILENAME))
+            (jm_setFilePath_1 (LicenseInitInfoUtil.jm_getInstance_0) (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING))
+            (if (jm_isFile_1 (FileFactory.jm_getInstance_0) _filePath)
+                (progn
+                (jm_putF_3 (slot-value this 'f_logUtil) "Using Existing License File" this (slot-value (slot-value this 'f_commonStrings) 'f_INIT)))
+                (progn
+                (jm_write_0 this))))
+            (error (_e) (declare (ignorable _e))
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_EXCEPTION) this (slot-value (slot-value this 'f_commonStrings) 'f_INIT) _e))))))
 
-function LicenseServerInitFileUtil:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.NULL_OUTPUT_STREAM = SimpleFileUtil.nullOutputStream()
-end
+    
+(unless (fboundp 'jm_write_0) (defgeneric jm_write_0 (this)))
+(defmethod jm_write_0 ((this LicenseServerInitFileUtil))
+  (declare (ignorable this))
+  (let (_fileOutputStream _resourceUtil _filePath _inputStream _fileStreamFactory _b _index)
+  (declare (ignorable _fileOutputStream _resourceUtil _filePath _inputStream _fileStreamFactory _b _index))
+    (block jreturn
+        (setf _fileOutputStream (slot-value this 'f_NULL_OUTPUT_STREAM))
+        (unwind-protect (handler-case (progn
+            (setf _resourceUtil (ResourceUtil.jm_getInstance_0))
+            (setf _filePath (slot-value (LicenseInitInfoUtil.jm_getInstance_0) 'f_INITFILENAME))
+            (setf _inputStream (jm_getResourceAsStream_1 _resourceUtil _filePath))
+            (jm_putF_3 (slot-value this 'f_logUtil) "Writing Default License File" this (slot-value (slot-value this 'f_commonStrings) 'f_INIT))
+            (setf _fileStreamFactory (FileStreamFactory.jm_getInstance_0))
+            (setf _fileOutputStream (jm_getFileOutputStreamInstance_2 _fileStreamFactory (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) _filePath))
+            (setf _b 0)
+            (setf _index 0)
+            (block jbreak (loop while t do
+                    (block jcontinue
+                (setf _b (jm_read_0 _inputStream))
+                (if (= _b (JR.i32 (- 1)))
+                    (progn
+                    (return-from jbreak)))
+                (jm_write_1 _fileOutputStream _b)
+                (setf _index (JR.i32 (+ _index 1))))))
+            (jm_putF_3 (slot-value this 'f_logUtil) (JR.concat "Wrote Bytes: " (JR.str _index)) this (slot-value (slot-value this 'f_commonStrings) 'f_INIT))
+            (jm_flush_0 _fileOutputStream))
+            (error (_e) (declare (ignorable _e))
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_EXCEPTION) this (slot-value (slot-value this 'f_commonStrings) 'f_INIT) _e)))
+            (progn
+            (jm_close_1 (StreamUtil.jm_getInstance_0) _fileOutputStream))))))
 
-function LicenseServerInitFileUtil.new()
-    local self = setmetatable({}, LicenseServerInitFileUtil)
-    self:_init_fields()
-    return self
-end
 
-
-function LicenseServerInitFileUtil:init()
-        local try_ok, try_error = pcall(function()
-            local filePath = LicenseInitInfoUtil.getInstance().INITFILENAME
-            LicenseInitInfoUtil.getInstance():setFilePath(StringUtil.getInstance().EMPTY_STRING)
-            if FileFactory.getInstance():isFile(filePath) then
-                self.logUtil:putF("Using Existing License File", self, self.commonStrings.INIT)
-            else
-                self:write()
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.commonStrings.INIT, e)
-        end
-end
-
-
-function LicenseServerInitFileUtil:write()
-        local fileOutputStream = self.NULL_OUTPUT_STREAM
-        local try_ok, try_error = pcall(function()
-            local resourceUtil = ResourceUtil.getInstance()
-            local filePath = LicenseInitInfoUtil.getInstance().INITFILENAME
-            local inputStream = resourceUtil:getResourceAsStream(filePath)
-            self.logUtil:putF("Writing Default License File", self, self.commonStrings.INIT)
-            local fileStreamFactory = FileStreamFactory.getInstance()
-            fileOutputStream = fileStreamFactory:getFileOutputStreamInstance(StringUtil.getInstance().EMPTY_STRING, filePath)
-            local b = 0
-            local index = 0
-            while true do
-                b = inputStream:read()
-                if b == -1 then
-                    break
-                end
-                fileOutputStream:write(b)
-                index = index + 1
-            end
-            self.logUtil:putF("Wrote Bytes: " .. tostring(index), self, self.commonStrings.INIT)
-            fileOutputStream:flush()
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.commonStrings.INIT, e)
-        end
-        do -- finally
-            StreamUtil.getInstance():close(fileOutputStream)
-        end
-end
-
-return LicenseServerInitFileUtil
 

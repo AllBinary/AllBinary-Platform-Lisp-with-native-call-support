@@ -1,52 +1,49 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2022 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
-local MultiPlayerGameFeatureFactory = require("org.allbinary.game.configuration.feature.MultiPlayerGameFeatureFactory")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass PostGameCommandFactory (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar PostGameCommandFactory.jcell_instance :jnone)
+(defun PostGameCommandFactory.jstatic_instance ()
+  (when (eq PostGameCommandFactory.jcell_instance :jnone) (setf PostGameCommandFactory.jcell_instance (PostGameCommandFactory.jnew_0)))
+  PostGameCommandFactory.jcell_instance)
+(defun (setf PostGameCommandFactory.jstatic_instance) (value) (setf PostGameCommandFactory.jcell_instance value))
 
-local PostGameCommandFactory = {}
-PostGameCommandFactory.__index = PostGameCommandFactory
-PostGameCommandFactory.className = "PostGameCommandFactory"
+(defun PostGameCommandFactory.jnew_0 ()
+  (let ((this (make-instance 'PostGameCommandFactory)))
+    this))
 
-function PostGameCommandFactory.new()
-    local self = setmetatable({}, PostGameCommandFactory)
-    return self
-end
+    
+(defun PostGameCommandFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (PostGameCommandFactory.jstatic_instance)))))
+
+    
+(unless (fboundp 'jm_addCommands_1) (defgeneric jm_addCommands_1 (this p1)))
+(defmethod jm_addCommands_1 ((this PostGameCommandFactory) _canvas)
+  (declare (ignorable this _canvas))
+  (let ()
+    (block jreturn
+        (jm_addCommands_1 (MultiPlayerGameFeatureFactory.jm_getInstance_0) _canvas))))
 
 
-function PostGameCommandFactory.getInstance()
-        return PostGameCommandFactory.instance
-end
-
-
-function PostGameCommandFactory:addCommands(canvas)
-        MultiPlayerGameFeatureFactory.getInstance():addCommands(canvas)
-end
-
-PostGameCommandFactory.instance = PostGameCommandFactory.new()
-
-return PostGameCommandFactory
 

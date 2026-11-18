@@ -29,6 +29,7 @@
 (defun NoDecimalTrigTable.jstatic_instance ()
   (when (eq NoDecimalTrigTable.jcell_instance :jnone) (setf NoDecimalTrigTable.jcell_instance (NoDecimalTrigTable.jnew_0)))
   NoDecimalTrigTable.jcell_instance)
+(defun (setf NoDecimalTrigTable.jstatic_instance) (value) (setf NoDecimalTrigTable.jcell_instance value))
 
     
 (defun NoDecimalTrigTable.jm_getInstance_0 ()

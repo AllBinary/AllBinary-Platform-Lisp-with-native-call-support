@@ -1,111 +1,120 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.media.audio
 
--- local InputStream = require("java.io.InputStream")
--- local Player = require("javax.microedition.media.Player")
-local TsUtil = require("org.allbinary.TsUtil")
-local ProgressCanvasFactory = require("org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+;NotDeviceSpecificNoMediaMIDP1Library
+(defclass AllBinaryMediaManager (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar AllBinaryMediaManager.jcell_THIS :jnone)
+(defun AllBinaryMediaManager.jstatic_THIS ()
+  (when (eq AllBinaryMediaManager.jcell_THIS :jnone) (setf AllBinaryMediaManager.jcell_THIS "AllBinaryMediaManagerNoMediaMIDP1"))
+  AllBinaryMediaManager.jcell_THIS)
+(defun (setf AllBinaryMediaManager.jstatic_THIS) (value) (setf AllBinaryMediaManager.jcell_THIS value))
 
---NotDeviceSpecificNoMediaMIDP1Library
-local AllBinaryMediaManager = {}
-AllBinaryMediaManager.__index = AllBinaryMediaManager
-AllBinaryMediaManager.className = "AllBinaryMediaManager"
+    
+(defun AllBinaryMediaManager.jnew_0 ()
+  (let ((this (make-instance 'AllBinaryMediaManager)))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(defun AllBinaryMediaManager.jm_isMuted_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn nil))))
+
+    
+(defun AllBinaryMediaManager.jm_setMuted_1 (_aMuted)
+  (declare (ignorable _aMuted))
+  (let ()
+    (block jreturn nil)))
+
+    
+(defun AllBinaryMediaManager.jm_update_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn t))))
+
+    
+(defun AllBinaryMediaManager.jm_init_1 (_soundsFactoryInterface)
+  (declare (ignorable _soundsFactoryInterface))
+  (let (_logUtil _commonString)
+  (declare (ignorable _logUtil _commonString))
+    (block jreturn
+        (setf _logUtil (LogUtil.jm_getInstance_0))
+        (setf _commonString (CommonStrings.jm_getInstance_0))
+        (jm_putF_3 _logUtil (slot-value _commonString 'f_START) (AllBinaryMediaManager.jstatic_THIS) (slot-value _commonString 'f_INIT))
+        (jm_addNormalPortion_2 (ProgressCanvasFactory.jm_getInstance_0) 50 "Media Manager")
+        (jm_init_0 (Sounds.jnew_1 _soundsFactoryInterface)))))
+
+    
+(defun AllBinaryMediaManager.jm_shutdown_1 (_soundsFactoryInterface)
+  (declare (ignorable _soundsFactoryInterface))
+  (let ()
+    (block jreturn
+        (jm_stopAll_0 (Sounds.jnew_1 _soundsFactoryInterface))
+        (jm_closeAll_0 (Sounds.jnew_1 _soundsFactoryInterface))
+        (jm_gc_0 (TsUtil.jm_getInstance_0)))))
+
+    
+(defun AllBinaryMediaManager.jm_createPlayerFromInputStream_2 (_stream _type)
+  (declare (ignorable _stream _type))
+  (let (_logUtil _commonString)
+  (declare (ignorable _logUtil _commonString))
+    (block jreturn
+        (setf _logUtil (LogUtil.jm_getInstance_0))
+        (setf _commonString (CommonStrings.jm_getInstance_0))
+        (jm_putF_3 _logUtil (slot-value _commonString 'f_START) (AllBinaryMediaManager.jstatic_THIS) "creatPlayer(InputStream)")
+        (return-from jreturn (NoPlayer.jstatic_NO_PLAYER)))))
+
+    
+(defun AllBinaryMediaManager.jm_createPlayer_1 (_locator)
+  (declare (ignorable _locator))
+  (let (_logUtil _commonString)
+  (declare (ignorable _logUtil _commonString))
+    (block jreturn
+        (setf _logUtil (LogUtil.jm_getInstance_0))
+        (setf _commonString (CommonStrings.jm_getInstance_0))
+        (jm_putF_3 _logUtil (slot-value _commonString 'f_START) (AllBinaryMediaManager.jstatic_THIS) "creatPlayer(locator)")
+        (return-from jreturn (NoPlayer.jstatic_NO_PLAYER)))))
+
+    
+(defun AllBinaryMediaManager.jm_playTone_3 (_frequency _time _volume)
+  (declare (ignorable _frequency _time _volume))
+  (let ()
+    (block jreturn nil)))
+
+    
+(defun AllBinaryMediaManager.jm_getSupportedContentTypes_1 (_protocol)
+  (declare (ignorable _protocol))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getArrayInstance_0 (StringUtil.jm_getInstance_0))))))
+
+    
+(defun AllBinaryMediaManager.jm_getSupportedProtocols_1 (_content_type)
+  (declare (ignorable _content_type))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getArrayInstance_0 (StringUtil.jm_getInstance_0))))))
 
 
-function AllBinaryMediaManager.new()
-    local self = setmetatable({}, AllBinaryMediaManager)
-    return self
-end
-
-
-function AllBinaryMediaManager.isMuted()
-        return false
-end
-
-
-function AllBinaryMediaManager.setMuted(aMuted)
-end
-
-
-function AllBinaryMediaManager.update()
-        return true
-end
-
-
--- throws Exception
-function AllBinaryMediaManager.init(soundsFactoryInterface)
-        local logUtil = LogUtil.getInstance()
-        local commonString = CommonStrings.getInstance()
-        logUtil:putF(commonString.START, AllBinaryMediaManager.THIS, commonString.INIT)
-        ProgressCanvasFactory.getInstance():addNormalPortion(50, "Media Manager")
-        Sounds.new(soundsFactoryInterface):init()
-end
-
-
--- throws Exception
-function AllBinaryMediaManager.shutdown(soundsFactoryInterface)
-        Sounds.new(soundsFactoryInterface):stopAll()
-        Sounds.new(soundsFactoryInterface):closeAll()
-        TsUtil.getInstance():gc()
-end
-
-
-function AllBinaryMediaManager.createPlayerFromInputStream(stream, type)
-        local logUtil = LogUtil.getInstance()
-        local commonString = CommonStrings.getInstance()
-        logUtil:putF(commonString.START, AllBinaryMediaManager.THIS, "creatPlayer(InputStream)")
-        return NoPlayer.NO_PLAYER
-end
-
-
-function AllBinaryMediaManager.createPlayer(locator)
-        local logUtil = LogUtil.getInstance()
-        local commonString = CommonStrings.getInstance()
-        logUtil:putF(commonString.START, AllBinaryMediaManager.THIS, "creatPlayer(locator)")
-        return NoPlayer.NO_PLAYER
-end
-
-
-function AllBinaryMediaManager.playTone(frequency, time, volume)
-end
-
-
-function AllBinaryMediaManager.getSupportedContentTypes(protocol)
-        return StringUtil.getInstance():getArrayInstance()
-end
-
-
-function AllBinaryMediaManager.getSupportedProtocols(content_type)
-        return StringUtil.getInstance():getArrayInstance()
-end
-
-AllBinaryMediaManager.THIS = "AllBinaryMediaManagerNoMediaMIDP1"
-
-return AllBinaryMediaManager
 

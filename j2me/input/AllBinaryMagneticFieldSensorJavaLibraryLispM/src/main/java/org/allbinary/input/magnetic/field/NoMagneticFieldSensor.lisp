@@ -1,52 +1,44 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.magnetic.field
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.input.magnetic.field
 
-local AllBinarySensorListener = require("org.allbinary.input.AllBinarySensorListener")
-local Orientation = require("org.allbinary.logic.math.Orientation")
-local AllBinaryMagneticFieldSensor = require("org.allbinary.input.magnetic.field.AllBinaryMagneticFieldSensor")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass NoMagneticFieldSensor (AllBinaryMagneticFieldSensor)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun NoMagneticFieldSensor.jnew_0 ()
+  (let ((this (make-instance 'NoMagneticFieldSensor)))
+    this))
 
-local NoMagneticFieldSensor = {}
-NoMagneticFieldSensor.__index = NoMagneticFieldSensor
-NoMagneticFieldSensor.className = "NoMagneticFieldSensor"
-setmetatable(NoMagneticFieldSensor, {__index = AllBinaryMagneticFieldSensor})
+    
+(unless (fboundp 'jm_getOrientation_0) (defgeneric jm_getOrientation_0 (this)))
+(defmethod jm_getOrientation_0 ((this NoMagneticFieldSensor))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (Orientation.jstatic_NONE)))))
 
-function NoMagneticFieldSensor.new()
-    local self = setmetatable(AllBinaryMagneticFieldSensor.new(), NoMagneticFieldSensor)
-    return self
-end
-
-
--- throws Exception
-function NoMagneticFieldSensor:getOrientation()
-        return Orientation.NONE
-end
+    
+(unless (fboundp 'jm_onSensorChange_0) (defgeneric jm_onSensorChange_0 (this)))
+(defmethod jm_onSensorChange_0 ((this NoMagneticFieldSensor))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
 
 
-function NoMagneticFieldSensor:onSensorChange()
-end
-
-return NoMagneticFieldSensor
 

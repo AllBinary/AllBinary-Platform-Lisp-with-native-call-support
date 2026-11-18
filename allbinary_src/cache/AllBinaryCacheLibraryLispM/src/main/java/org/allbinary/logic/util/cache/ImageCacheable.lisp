@@ -1,56 +1,50 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.util.cache
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.util.cache
 
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ImageCacheable (JObject)
+  ((f_name :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun ImageCacheable.jnew_2 (_name _anyType)
+  (declare (ignorable _name _anyType))
+  (let ((this (make-instance 'ImageCacheable)))
+    (setf (slot-value this 'f_name) (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING))
+  (let ()
+    (block jreturn nil))
+    this))
 
-local ImageCacheable = {}
-ImageCacheable.__index = ImageCacheable
-ImageCacheable.className = "ImageCacheable"
+    
+(unless (fboundp 'jm_getKey_0) (defgeneric jm_getKey_0 (this)))
+(defmethod jm_getKey_0 ((this ImageCacheable))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_name)))))
 
-function ImageCacheable:_init_fields()
-    self.name = StringUtil.getInstance().EMPTY_STRING
-end
-
-
-function ImageCacheable.new(name, anyType)
-    local self = setmetatable({}, ImageCacheable)
-    self:_init_fields()
-    return self
-end
-
-
-function ImageCacheable:getKey()
-        return self.name
-end
+    
+(unless (fboundp 'jm_toString_0) (defgeneric jm_toString_0 (this)))
+(defmethod jm_toString_0 ((this ImageCacheable))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_name)))))
 
 
-function ImageCacheable:toString()
-        return self.name
-end
-ImageCacheable.__tostring = function(self) return self:toString() end
-
-return ImageCacheable
 

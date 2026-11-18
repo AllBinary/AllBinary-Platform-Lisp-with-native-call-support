@@ -25,6 +25,7 @@
 (defun RectangleCollisionUtil.jstatic_instance ()
   (when (eq RectangleCollisionUtil.jcell_instance :jnone) (setf RectangleCollisionUtil.jcell_instance (RectangleCollisionUtil.jnew_0)))
   RectangleCollisionUtil.jcell_instance)
+(defun (setf RectangleCollisionUtil.jstatic_instance) (value) (setf RectangleCollisionUtil.jcell_instance value))
 
     
 (defun RectangleCollisionUtil.jm_getInstance_0 ()

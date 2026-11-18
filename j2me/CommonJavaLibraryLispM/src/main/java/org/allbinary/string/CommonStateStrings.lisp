@@ -36,6 +36,7 @@
 (defun CommonStateStrings.jstatic_instance ()
   (when (eq CommonStateStrings.jcell_instance :jnone) (setf CommonStateStrings.jcell_instance (CommonStateStrings.jnew_0)))
   CommonStateStrings.jcell_instance)
+(defun (setf CommonStateStrings.jstatic_instance) (value) (setf CommonStateStrings.jcell_instance value))
 
 (defun CommonStateStrings.jnew_0 ()
   (let ((this (make-instance 'CommonStateStrings)))

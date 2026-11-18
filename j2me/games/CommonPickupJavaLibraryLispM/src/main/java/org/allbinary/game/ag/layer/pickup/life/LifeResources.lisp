@@ -1,51 +1,45 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.pickup.life
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.ag.layer.pickup.life
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass LifeResources (JObject)
+  ((f_RESOURCE :initform nil)))
+
+(defvar LifeResources.jcell_SINGLETON :jnone)
+(defun LifeResources.jstatic_SINGLETON ()
+  (when (eq LifeResources.jcell_SINGLETON :jnone) (setf LifeResources.jcell_SINGLETON (LifeResources.jnew_0)))
+  LifeResources.jcell_SINGLETON)
+(defun (setf LifeResources.jstatic_SINGLETON) (value) (setf LifeResources.jcell_SINGLETON value))
+
+    
+(defun LifeResources.jnew_0 ()
+  (let ((this (make-instance 'LifeResources)))
+    (setf (slot-value this 'f_RESOURCE) "life_drop_20_by_20.png")
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(defun LifeResources.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (LifeResources.jstatic_SINGLETON)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local LifeResources = {}
-LifeResources.__index = LifeResources
-LifeResources.className = "LifeResources"
-
-function LifeResources:_init_fields()
-    self.RESOURCE = "life_drop_20_by_20.png"
-end
-
-
-function LifeResources.new()
-    local self = setmetatable({}, LifeResources)
-    self:_init_fields()
-    return self
-end
-
-
-function LifeResources.getInstance()
-        return LifeResources.SINGLETON
-end
-
-LifeResources.SINGLETON = LifeResources.new()
-
-return LifeResources
 

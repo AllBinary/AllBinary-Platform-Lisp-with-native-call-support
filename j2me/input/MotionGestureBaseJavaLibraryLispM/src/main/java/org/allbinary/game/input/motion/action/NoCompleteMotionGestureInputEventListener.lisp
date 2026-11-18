@@ -1,61 +1,59 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.motion.action
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.input.motion.action
 
-local CompleteMotionGestureInputEvent = require("org.allbinary.game.input.CompleteMotionGestureInputEvent")
-local CompleteMotionGestureInputEventListener = require("org.allbinary.game.input.CompleteMotionGestureInputEventListener")
-local ForcedLogUtil = require("org.allbinary.logic.communication.log.ForcedLogUtil")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local EventStrings = require("org.allbinary.logic.util.event.EventStrings")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass NoCompleteMotionGestureInputEventListener (CompleteMotionGestureInputEventListener)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar NoCompleteMotionGestureInputEventListener.jcell_instance :jnone)
+(defun NoCompleteMotionGestureInputEventListener.jstatic_instance ()
+  (when (eq NoCompleteMotionGestureInputEventListener.jcell_instance :jnone) (setf NoCompleteMotionGestureInputEventListener.jcell_instance (NoCompleteMotionGestureInputEventListener.jnew_0)))
+  NoCompleteMotionGestureInputEventListener.jcell_instance)
+(defun (setf NoCompleteMotionGestureInputEventListener.jstatic_instance) (value) (setf NoCompleteMotionGestureInputEventListener.jcell_instance value))
 
-local NoCompleteMotionGestureInputEventListener = {}
-NoCompleteMotionGestureInputEventListener.__index = NoCompleteMotionGestureInputEventListener
-NoCompleteMotionGestureInputEventListener.className = "NoCompleteMotionGestureInputEventListener"
-setmetatable(NoCompleteMotionGestureInputEventListener, {__index = CompleteMotionGestureInputEventListener})
+    
+(defun NoCompleteMotionGestureInputEventListener.jnew_0 ()
+  (let ((this (make-instance 'NoCompleteMotionGestureInputEventListener)))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(unless (fboundp 'jm_onEvent_1) (defgeneric jm_onEvent_1 (this p1)))
+(defmethod jm_onEvent_1 ((this NoCompleteMotionGestureInputEventListener) _eventObject)
+  (declare (ignorable this _eventObject))
+  (let ()
+    (block jreturn
+        (ForcedLogUtil.jm_log_2 (slot-value (EventStrings.jm_getInstance_0) 'f_PERFORMANCE_MESSAGE) this))))
+
+    
+(unless (fboundp 'jm_onCompleteMotionGestureInputEvent_1) (defgeneric jm_onCompleteMotionGestureInputEvent_1 (this p1)))
+(defmethod jm_onCompleteMotionGestureInputEvent_1 ((this NoCompleteMotionGestureInputEventListener) _completeMotionGestureInputEvent)
+  (declare (ignorable this _completeMotionGestureInputEvent))
+  (let ()
+    (block jreturn nil)))
+
+    
+(defun NoCompleteMotionGestureInputEventListener.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (NoCompleteMotionGestureInputEventListener.jstatic_instance)))))
 
 
-function NoCompleteMotionGestureInputEventListener.new()
-    local self = setmetatable(CompleteMotionGestureInputEventListener.new(), NoCompleteMotionGestureInputEventListener)
-    return self
-end
-
-
-function NoCompleteMotionGestureInputEventListener:onEvent(eventObject)
-        ForcedLogUtil.log(EventStrings.getInstance().PERFORMANCE_MESSAGE, self)
-end
-
-
-function NoCompleteMotionGestureInputEventListener:onCompleteMotionGestureInputEvent(completeMotionGestureInputEvent)
-end
-
-
-function NoCompleteMotionGestureInputEventListener.getInstance()
-        return NoCompleteMotionGestureInputEventListener.instance
-end
-
-NoCompleteMotionGestureInputEventListener.instance = NoCompleteMotionGestureInputEventListener.new()
-
-return NoCompleteMotionGestureInputEventListener
 

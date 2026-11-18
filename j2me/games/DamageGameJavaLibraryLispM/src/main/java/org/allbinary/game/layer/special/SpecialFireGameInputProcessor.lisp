@@ -1,50 +1,42 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.special
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.layer.special
 
-local GameKeyEvent = require("org.allbinary.game.input.event.GameKeyEvent")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local SpecialGameInputProcessor = require("org.allbinary.game.layer.special.SpecialGameInputProcessor")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass SpecialFireGameInputProcessor (SpecialGameInputProcessor)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun SpecialFireGameInputProcessor.jnew_1 (_collidableDestroyableDamageableLayer)
+  (declare (ignorable _collidableDestroyableDamageableLayer))
+  (let ((this (make-instance 'SpecialFireGameInputProcessor)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
-local SpecialFireGameInputProcessor = {}
-SpecialFireGameInputProcessor.__index = SpecialFireGameInputProcessor
-SpecialFireGameInputProcessor.className = "SpecialFireGameInputProcessor"
-setmetatable(SpecialFireGameInputProcessor, {__index = SpecialGameInputProcessor})
-
-
-function SpecialFireGameInputProcessor.new(collidableDestroyableDamageableLayer)
-    local self = setmetatable(SpecialGameInputProcessor.new(collidableDestroyableDamageableLayer), SpecialFireGameInputProcessor)
-        -- super(...) made self above
-    return self
-end
+    
+(unless (fboundp 'jm_processEvent_2) (defgeneric jm_processEvent_2 (this p1 p2)))
+(defmethod jm_processEvent_2 ((this SpecialFireGameInputProcessor) _allbinaryLayerManager _gameKeyEvent)
+  (declare (ignorable this _allbinaryLayerManager _gameKeyEvent))
+  (let ()
+    (block jreturn
+        (jm_fire_2 (slot-value this 'f_collidableDestroyableDamageableLayer) _allbinaryLayerManager _gameKeyEvent))))
 
 
--- throws Exception
-function SpecialFireGameInputProcessor:processEvent(allbinaryLayerManager, gameKeyEvent)
-        self.collidableDestroyableDamageableLayer:fire(allbinaryLayerManager, gameKeyEvent)
-end
-
-return SpecialFireGameInputProcessor
 

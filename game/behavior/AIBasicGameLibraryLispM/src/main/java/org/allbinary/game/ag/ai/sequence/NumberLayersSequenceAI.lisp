@@ -1,63 +1,49 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai.sequence
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.ag.ai.sequence
 
-local ArtificialIntelligenceInterface = require("org.allbinary.ai.ArtificialIntelligenceInterface")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local SequenceAI = require("org.allbinary.game.ag.ai.sequence.SequenceAI")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass NumberLayersSequenceAI (SequenceAI)
+  ((f_numberOfLayersLeft :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun NumberLayersSequenceAI.jnew_4 (_numberOfEnemiesLeft _artificialIntelligenceInterface _ownerLayerInterface _gameInput)
+  (declare (ignorable _numberOfEnemiesLeft _artificialIntelligenceInterface _ownerLayerInterface _gameInput))
+  (let ((this (make-instance 'NumberLayersSequenceAI)))
+    
+  (let ()
+    (block jreturn
+        nil
+        (setf (slot-value this 'f_numberOfLayersLeft) _numberOfEnemiesLeft)))
+    this))
 
-local NumberLayersSequenceAI = {}
-NumberLayersSequenceAI.__index = NumberLayersSequenceAI
-NumberLayersSequenceAI.className = "NumberLayersSequenceAI"
-setmetatable(NumberLayersSequenceAI, {__index = SequenceAI})
-
-function NumberLayersSequenceAI:_init_fields()
-    self.numberOfLayersLeft = nil
-end
-
-
-function NumberLayersSequenceAI.new(numberOfEnemiesLeft, artificialIntelligenceInterface, ownerLayerInterface, gameInput)
-    local self = setmetatable(SequenceAI.new(artificialIntelligenceInterface, ownerLayerInterface, gameInput), NumberLayersSequenceAI)
-    self:_init_fields()
-        -- super(...) made self above
-        self.numberOfLayersLeft = numberOfEnemiesLeft
-    return self
-end
+    
+(unless (fboundp 'jm_processAI_1) (defgeneric jm_processAI_1 (this p1)))
+(defmethod jm_processAI_1 ((this NumberLayersSequenceAI) _allBinaryLayerManager)
+  (declare (ignorable this _allBinaryLayerManager))
+  (let ()
+    (block jreturn
+        (if (eq (jm_getIndex_0 this) 0)
+            (progn
+            (if (< (jm_getSize_0 _allBinaryLayerManager) (slot-value this 'f_numberOfLayersLeft))
+                (progn
+                (jm_setIndex_1 this 1)))))
+        (call-next-method this _allBinaryLayerManager))))
 
 
--- throws Exception
-function NumberLayersSequenceAI:processAI(allBinaryLayerManager)
-        if self:getIndex() == 0 then
-            if allBinaryLayerManager:getSize() < self.numberOfLayersLeft then
-                self:setIndex(1)
-            end
-        end
-        SequenceAI.processAI(self, allBinaryLayerManager)
-end
-
-return NumberLayersSequenceAI
 

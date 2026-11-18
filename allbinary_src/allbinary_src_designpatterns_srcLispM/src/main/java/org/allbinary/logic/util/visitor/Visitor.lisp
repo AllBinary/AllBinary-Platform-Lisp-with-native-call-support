@@ -25,6 +25,7 @@
 (defun Visitor.jstatic_instance ()
   (when (eq Visitor.jcell_instance :jnone) (setf Visitor.jcell_instance (Visitor.jnew_0)))
   Visitor.jcell_instance)
+(defun (setf Visitor.jstatic_instance) (value) (setf Visitor.jcell_instance value))
 
 (defun Visitor.jnew_0 ()
   (let ((this (make-instance 'Visitor)))

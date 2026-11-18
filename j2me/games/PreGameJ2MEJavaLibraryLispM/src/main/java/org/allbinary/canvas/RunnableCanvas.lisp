@@ -1,270 +1,313 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.canvas
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.canvas
 
--- local CommandListener = require("javax.microedition.lcdui.CommandListener")
-local TsUtil = require("org.allbinary.TsUtil")
-local NullWaitGameRunnable = require("org.allbinary.game.displayable.canvas.NullWaitGameRunnable")
-local MyCanvas = require("org.allbinary.graphics.displayable.MyCanvas")
-local ABSystemWrapper = require("org.allbinary.logic.ABSystemWrapper")
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local StdUtil = require("org.allbinary.logic.StdUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local CommonLabels = require("org.allbinary.string.CommonLabels")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local NullThread = require("org.allbinary.thread.NullThread")
-local RunnableInterface = require("org.allbinary.thread.RunnableInterface")
-local ThreadObjectUtil = require("org.allbinary.thread.ThreadObjectUtil")
-local TimeDelayHelper = require("org.allbinary.time.TimeDelayHelper")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass RunnableCanvas (MyCanvas)
+  ((f_nullUtil :initform nil)
+   (f_stdUtil :initform nil)
+   (f_systemWrapper :initform nil)
+   (f_tsUtil :initform nil)
+   (f_thread :initform nil)
+   (f_currentThread :initform nil)
+   (f_running :initform nil)
+   (f_loopTimeHelper :initform nil)
+   (f_runnableCanvasRefreshHelper :initform nil)
+   (f_commonLabels :initform nil)
+   (f_threadObjectUtil :initform nil)
+   (f_SET_RUNNING :initform nil)
+   (f_IS_RUNNING :initform nil)
+   (f_THREAD :initform nil)
+   (f_NOT_EQUAL :initform nil)
+   (f_PAUSE_SLEEP :initform nil)
+   (f_START_PAUSE :initform nil)
+   (f_END_PAUSE :initform nil)
+   (f_PROCESS_LOOP_SLEEP :initform nil)
+   (f_pauseWait :initform 0)
+   (f_notified :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun RunnableCanvas.jnew_3 (_commandListener _childNameList _hasParam)
+  (declare (ignorable _commandListener _childNameList _hasParam))
+  (let ((this (make-instance 'RunnableCanvas)))
+    (setf (slot-value this 'f_nullUtil) (NullUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_stdUtil) (StdUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_systemWrapper) (ABSystemWrapper.jm_getInstance_0))
+    (setf (slot-value this 'f_tsUtil) (TsUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_thread) (NullThread.jstatic_NULL_THREAD))
+    (setf (slot-value this 'f_currentThread) (NullThread.jstatic_NULL_THREAD))
+    
+    (setf (slot-value this 'f_loopTimeHelper) (TimeDelayHelper.jnew_1 (slot-value (NullWaitGameRunnable.jm_getInstance_0) 'f_WAIT)))
+    (setf (slot-value this 'f_runnableCanvasRefreshHelper) (Processor.jm_getInstance_0))
+    (setf (slot-value this 'f_commonLabels) (CommonLabels.jm_getInstance_0))
+    (setf (slot-value this 'f_threadObjectUtil) (ThreadObjectUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_SET_RUNNING) "setRunning")
+    (setf (slot-value this 'f_IS_RUNNING) "isRunning")
+    (setf (slot-value this 'f_THREAD) "Thread: ")
+    (setf (slot-value this 'f_NOT_EQUAL) " != ")
+    (setf (slot-value this 'f_PAUSE_SLEEP) "pause sleep")
+    (setf (slot-value this 'f_START_PAUSE) "start pause - game thread sleep at: ")
+    (setf (slot-value this 'f_END_PAUSE) "end pause - game thread sleep at: ")
+    (setf (slot-value this 'f_PROCESS_LOOP_SLEEP) "processLoopSleep")
+    (setf (slot-value this 'f_pauseWait) 0)
+    (setf (slot-value this 'f_notified) nil)
+  (let ()
+    (block jreturn
+        nil
+        (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 (jm_appendint_1 (jm_append_1 (StringMaker.jnew_0) "RunnableCanvas delay: ") (slot-value (slot-value this 'f_loopTimeHelper) 'f_delay))) this (slot-value (slot-value this 'f_commonStrings) 'f_CONSTRUCTOR))
+        (setf (slot-value this 'f_runnableCanvasRefreshHelper) (RunnableCanvasRefreshHelper.jnew_1 this))
+        (if (not (null _commandListener))
+            (progn
+            (jm_initCommands_1 this _commandListener))
+            (if _hasParam
+            (progn
+            (jm_putF_3 (slot-value this 'f_logUtil) "commandListener was null" this "initCommands"))))))
+    this))
 
-local function java_sleep(milliseconds)
-    local finish = os.clock() + milliseconds / 1000
-    while os.clock() < finish do end
-end
+    
+(unless (fboundp 'jm_initCommands_1) (defgeneric jm_initCommands_1 (this p1)))
+(defmethod jm_initCommands_1 ((this RunnableCanvas) _cmdListener)
+  (declare (ignorable this _cmdListener))
+  (let ()
+    (block jreturn
+        (jm_putF_3 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_NOT_IMPLEMENTED) this "initCommands"))))
 
-local RunnableCanvas = {}
-RunnableCanvas.__index = RunnableCanvas
-RunnableCanvas.className = "RunnableCanvas"
-setmetatable(RunnableCanvas, {__index = MyCanvas})
+    
+(unless (fboundp 'jm_isMainCanvas_0) (defgeneric jm_isMainCanvas_0 (this)))
+(defmethod jm_isMainCanvas_0 ((this RunnableCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (if (not (null (jm_getCustomCommandListener_0 this)))
+            (progn
+            (return-from jreturn t))
+            (progn
+            (return-from jreturn nil))))))
 
-function RunnableCanvas:_init_fields()
-    self.nullUtil = NullUtil.getInstance()
-    self.stdUtil = StdUtil.getInstance()
-    self.systemWrapper = ABSystemWrapper.getInstance()
-    self.tsUtil = TsUtil.getInstance()
-    self.thread = NullThread.NULL_THREAD
-    self.currentThread = NullThread.NULL_THREAD
-    self.running = false
-    self.loopTimeHelper = TimeDelayHelper.new(NullWaitGameRunnable.getInstance().WAIT)
-    self.runnableCanvasRefreshHelper = Processor.getInstance()
-    self.commonLabels = CommonLabels.getInstance()
-    self.threadObjectUtil = ThreadObjectUtil.getInstance()
-    self.SET_RUNNING = "setRunning"
-    self.IS_RUNNING = "isRunning"
-    self.THREAD = "Thread: "
-    self.NOT_EQUAL = " != "
-    self.PAUSE_SLEEP = "pause sleep"
-    self.START_PAUSE = "start pause - game thread sleep at: "
-    self.END_PAUSE = "end pause - game thread sleep at: "
-    self.PROCESS_LOOP_SLEEP = "processLoopSleep"
-    self.pauseWait = 0
-    self.notified = false
-end
+    
+(unless (fboundp 'jm_setThread_1) (defgeneric jm_setThread_1 (this p1)))
+(defmethod jm_setThread_1 ((this RunnableCanvas) _thread)
+  (declare (ignorable this _thread))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_thread) _thread))))
+
+    
+(unless (fboundp 'jm_setRunning_1) (defgeneric jm_setRunning_1 (this p1)))
+(defmethod jm_setRunning_1 ((this RunnableCanvas) _running)
+  (declare (ignorable this _running))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_running) _running)
+        (if (not (slot-value this 'f_running))
+            (progn
+            (setf (slot-value this 'f_thread) (NullThread.jstatic_NULL_THREAD))
+            (progn
+                (jm_notifyObject_1 (slot-value this 'f_threadObjectUtil) this))))
+        (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 (jm_appendboolean_1 (jm_append_1 (StringMaker.jnew_0) (slot-value this 'f_IS_RUNNING)) (slot-value this 'f_running))) this (slot-value this 'f_SET_RUNNING)))))
+
+    
+(unless (fboundp 'jm_isRunning_0) (defgeneric jm_isRunning_0 (this)))
+(defmethod jm_isRunning_0 ((this RunnableCanvas))
+  (declare (ignorable this))
+  (let (_stringBuffer)
+  (declare (ignorable _stringBuffer))
+    (block jreturn
+        (if (eq (slot-value this 'f_thread) (slot-value this 'f_currentThread))
+            (progn
+            (return-from jreturn (slot-value this 'f_running)))
+            (progn
+            (setf _stringBuffer (StringMaker.jnew_0))
+            (jm_append_1 _stringBuffer (slot-value this 'f_THREAD))
+            (if (not (null (slot-value this 'f_thread)))
+                (progn
+                (jm_append_1 _stringBuffer (jm_toString_0 (slot-value this 'f_thread)))))
+            (jm_append_1 _stringBuffer (slot-value this 'f_NOT_EQUAL))
+            (if (not (null (slot-value this 'f_currentThread)))
+                (progn
+                (jm_append_1 _stringBuffer (jm_toString_1 (StringUtil.jm_getInstance_0) (slot-value this 'f_currentThread)))))
+            (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 _stringBuffer) this (slot-value this 'f_IS_RUNNING))
+            (return-from jreturn nil))))))
+
+    
+(unless (fboundp 'jm_getLoopTimeHelperP_0) (defgeneric jm_getLoopTimeHelperP_0 (this)))
+(defmethod jm_getLoopTimeHelperP_0 ((this RunnableCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_loopTimeHelper)))))
+
+    
+(unless (fboundp 'jm_setWait_1) (defgeneric jm_setWait_1 (this p1)))
+(defmethod jm_setWait_1 ((this RunnableCanvas) _wait)
+  (declare (ignorable this _wait))
+  (let ()
+    (block jreturn
+        (setf (slot-value (slot-value this 'f_loopTimeHelper) 'f_delay) _wait)
+        (setf (slot-value this 'f_pauseWait) (JR.i64 (* _wait 3)))
+        (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 (jm_appendint_1 (jm_append_1 (StringMaker.jnew_0) "setWait - delay: ") (slot-value (slot-value this 'f_loopTimeHelper) 'f_delay))) this (slot-value (slot-value this 'f_commonStrings) 'f_CONSTRUCTOR)))))
+
+    
+(unless (fboundp 'jm_getWait_0) (defgeneric jm_getWait_0 (this)))
+(defmethod jm_getWait_0 ((this RunnableCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value (slot-value this 'f_loopTimeHelper) 'f_delay)))))
+
+    
+(unless (fboundp 'jm_setCurrentThread_0) (defgeneric jm_setCurrentThread_0 (this)))
+(defmethod jm_setCurrentThread_0 ((this RunnableCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_currentThread) (Thread.jm_currentThread_0)))))
+
+    
+(unless (fboundp 'jm_setCurrentThreadFake_0) (defgeneric jm_setCurrentThreadFake_0 (this)))
+(defmethod jm_setCurrentThreadFake_0 ((this RunnableCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_currentThread) (slot-value this 'f_thread)))))
+
+    
+(unless (fboundp 'jm_showNotify_0) (defgeneric jm_showNotify_0 (this)))
+(defmethod jm_showNotify_0 ((this RunnableCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (handler-case (progn
+            (jm_stopWaiting_0 this))
+            (error (_e) (declare (ignorable _e))
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_EXCEPTION) this "showNotify" _e))))))
+
+    
+(unless (fboundp 'jm_stopWaiting_0) (defgeneric jm_stopWaiting_0 (this)))
+(defmethod jm_stopWaiting_0 ((this RunnableCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_notified) t)
+        (progn
+            (jm_notifyObject_1 (slot-value this 'f_threadObjectUtil) this))
+        (jm_repaint_0 this))))
+
+    
+(unless (fboundp 'jm_waitOnNotify_1) (defgeneric jm_waitOnNotify_1 (this p1)))
+(defmethod jm_waitOnNotify_1 ((this RunnableCanvas) _wait)
+  (declare (ignorable this _wait))
+  (let ()
+    (block jreturn
+        (if (not (slot-value this 'f_notified))
+            (progn
+            (if (> _wait 0)
+                (progn
+                (jm_waitObjectFor_2 (slot-value this 'f_threadObjectUtil) this _wait))
+                (progn
+                (jm_waitObject_1 (slot-value this 'f_threadObjectUtil) this))))))))
+
+    
+(unless (fboundp 'jm_processSleep_0) (defgeneric jm_processSleep_0 (this)))
+(defmethod jm_processSleep_0 ((this RunnableCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (Thread.jm_sleep_1 (slot-value this 'f_pauseWait)))))
+
+    
+(unless (fboundp 'jm_isPausable_0) (defgeneric jm_isPausable_0 (this)))
+(defmethod jm_isPausable_0 ((this RunnableCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn nil))))
+
+    
+(unless (fboundp 'jm_processGameSleep_1) (defgeneric jm_processGameSleep_1 (this p1)))
+(defmethod jm_processGameSleep_1 ((this RunnableCanvas) _sleep)
+  (declare (ignorable this _sleep))
+  (let ()
+    (block jreturn
+        (Thread.jm_sleep_1 _sleep))))
+
+    
+(unless (fboundp 'jm_processLoopSleep_0) (defgeneric jm_processLoopSleep_0 (this)))
+(defmethod jm_processLoopSleep_0 ((this RunnableCanvas))
+  (declare (ignorable this))
+  (let (_stringMaker _currentTimeMillis _elapsedTime _wait)
+  (declare (ignorable _stringMaker _currentTimeMillis _elapsedTime _wait))
+    (block jreturn
+        (jm_process_0 (slot-value this 'f_runnableCanvasRefreshHelper))
+        (if (jm_isPaused_0 this)
+            (progn
+            (setf _stringMaker (StringMaker.jnew_0))
+            (if (and (jm_isRunning_0 this) (not (jm_isSingleThread_0 this)))
+                (progn
+                (jm_delete_2 _stringMaker 0 (jm_length_0 _stringMaker))
+                (setf _currentTimeMillis (jm_currentTimeMillis_0 (slot-value this 'f_systemWrapper)))
+                (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 (jm_appendlong_1 (jm_append_1 (jm_appendlong_1 (jm_append_1 _stringMaker (slot-value this 'f_START_PAUSE)) _currentTimeMillis) (slot-value this 'f_PAUSE_SLEEP)) (slot-value this 'f_pauseWait))) this (slot-value this 'f_PROCESS_LOOP_SLEEP))
+                (block jbreak (loop while (and (and (jm_isPaused_0 this) (jm_isRunning_0 this)) (not (jm_isSingleThread_0 this))) do
+                        (block jcontinue
+                    (jm_processSleep_0 this)
+                    (if (not (jm_isPausable_0 this))
+                        (progn
+                        (jm_delete_2 _stringMaker 0 (jm_length_0 _stringMaker))
+                        (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 (jm_appendlong_1 (jm_append_1 _stringMaker (slot-value this 'f_END_PAUSE)) _currentTimeMillis)) this (slot-value this 'f_PROCESS_LOOP_SLEEP))
+                        (return-from jreturn))))))))))
+        (setf _elapsedTime (jm_getElapsedTNT_0 (slot-value this 'f_loopTimeHelper)))
+        (setf _wait (slot-value (slot-value this 'f_loopTimeHelper) 'f_delay))
+        (if (> _elapsedTime _wait)
+            (progn
+            (setf _elapsedTime _wait))
+            (progn
+            (jm_processGameSleep_1 this (JR.i64 (- _wait _elapsedTime))))))))
+
+    
+(unless (fboundp 'jm_isSingleThread_0) (defgeneric jm_isSingleThread_0 (this)))
+(defmethod jm_isSingleThread_0 ((this RunnableCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn nil))))
+
+    
+(unless (fboundp 'jm_run_0) (defgeneric jm_run_0 (this)))
+(defmethod jm_run_0 ((this RunnableCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_setCurrentThread_0 this))))
+
+    
+(unless (fboundp 'jm_end2_0) (defgeneric jm_end2_0 (this)))
+(defmethod jm_end2_0 ((this RunnableCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_getType_0) (defgeneric jm_getType_0 (this)))
+(defmethod jm_getType_0 ((this RunnableCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (JR.i32 (- 1))))))
 
 
-function RunnableCanvas.new(commandListener, childNameList, hasParam)
-    local self = setmetatable(MyCanvas.new(CommonStrings.getInstance().UNKNOWN, childNameList), RunnableCanvas)
-    self:_init_fields()
-        -- super(...) made self above
-        self.logUtil:putF(tostring(StringMaker.new():append("RunnableCanvas delay: "):appendint(java_int(self.loopTimeHelper.delay))), self, self.commonStrings.CONSTRUCTOR)
-        self.runnableCanvasRefreshHelper = RunnableCanvasRefreshHelper.new(self)
-        if commandListener ~= nil then
-            self:initCommands(commandListener)
-        elseif hasParam then
-            self.logUtil:putF("commandListener was null", self, "initCommands")
-        end
-    return self
-end
-
-
-function RunnableCanvas:initCommands(cmdListener)
-        self.logUtil:putF(self.commonStrings.NOT_IMPLEMENTED, self, "initCommands")
-end
-
-
-function RunnableCanvas:isMainCanvas()
-        if self:getCustomCommandListener() ~= nil then
-            return true
-        else
-            return false
-        end
-end
-
-
-function RunnableCanvas:setThread(thread)
-        self.thread = thread
-end
-
-
-function RunnableCanvas:setRunning(running)
-        self.running = running
-        if not self.running then
-            self.thread = NullThread.NULL_THREAD
-            do -- synchronized (self)
-                self.threadObjectUtil:notifyObject(self)
-            end
-        end
-        self.logUtil:putF(tostring(StringMaker.new():append(self.IS_RUNNING):appendboolean(self.running)), self, self.SET_RUNNING)
-end
-
-
-function RunnableCanvas:isRunning()
-        if self.thread == self.currentThread then
-            return self.running
-        else
-            local stringBuffer = StringMaker.new()
-            stringBuffer:append(self.THREAD)
-            if self.thread ~= nil then
-                stringBuffer:append(tostring(self.thread))
-            end
-            stringBuffer:append(self.NOT_EQUAL)
-            if self.currentThread ~= nil then
-                stringBuffer:append(StringUtil.getInstance():toString(self.currentThread))
-            end
-            self.logUtil:putF(tostring(stringBuffer), self, self.IS_RUNNING)
-            return false
-        end
-end
-
-
-function RunnableCanvas:getLoopTimeHelperP()
-        return self.loopTimeHelper
-end
-
-
-function RunnableCanvas:setWait(wait)
-        self.loopTimeHelper.delay = wait
-        self.pauseWait = wait * 3
-        self.logUtil:putF(tostring(StringMaker.new():append("setWait - delay: "):appendint(java_int(self.loopTimeHelper.delay))), self, self.commonStrings.CONSTRUCTOR)
-end
-
-
-function RunnableCanvas:getWait()
-        return self.loopTimeHelper.delay
-end
-
-
-function RunnableCanvas:setCurrentThread()
-        self.currentThread = Thread.currentThread()
-end
-
-
-function RunnableCanvas:setCurrentThreadFake()
-        self.currentThread = self.thread
-end
-
-
-function RunnableCanvas:showNotify()
-        local try_ok, try_error = pcall(function()
-            self:stopWaiting()
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, "showNotify", e)
-        end
-end
-
-
--- throws Exception
-function RunnableCanvas:stopWaiting()
-        self.notified = true
-        do -- synchronized (self)
-            self.threadObjectUtil:notifyObject(self)
-        end
-        self:repaint()
-end
-
-
--- throws Exception
-function RunnableCanvas:waitOnNotify(wait)
-        if not self.notified then
-            if wait > 0 then
-                self.threadObjectUtil:waitObjectFor(self, wait)
-            else
-                self.threadObjectUtil:waitObject(self)
-            end
-        end
-end
-
-
--- throws Exception
-function RunnableCanvas:processSleep()
-        java_sleep(self.pauseWait)
-end
-
-
-function RunnableCanvas:isPausable()
-        return false
-end
-
-
--- throws Exception
-function RunnableCanvas:processGameSleep(sleep)
-        java_sleep(sleep)
-end
-
-
--- throws Exception
-function RunnableCanvas:processLoopSleep()
-        self.runnableCanvasRefreshHelper:process()
-        if self:isPaused() then
-            local stringMaker = StringMaker.new()
-            if self:isRunning() and not self:isSingleThread() then
-                stringMaker:delete(0, stringMaker:length())
-                local currentTimeMillis = self.systemWrapper:currentTimeMillis()
-                self.logUtil:putF(tostring(stringMaker:append(self.START_PAUSE):appendlong(currentTimeMillis):append(self.PAUSE_SLEEP):appendlong(self.pauseWait)), self, self.PROCESS_LOOP_SLEEP)
-                while self:isPaused() and self:isRunning() and not self:isSingleThread() do
-                    self:processSleep()
-                    if not self:isPausable() then
-                        stringMaker:delete(0, stringMaker:length())
-                        self.logUtil:putF(tostring(stringMaker:append(self.END_PAUSE):appendlong(currentTimeMillis)), self, self.PROCESS_LOOP_SLEEP)
-                        return
-                    end
-                end
-            end
-        end
-        local elapsedTime = self.loopTimeHelper:getElapsedTNT()
-        local wait = java_int(self.loopTimeHelper.delay)
-        if elapsedTime > wait then
-            elapsedTime = wait
-        else
-            self:processGameSleep(wait - elapsedTime)
-        end
-end
-
-
-function RunnableCanvas:isSingleThread()
-        return false
-end
-
-
-function RunnableCanvas:run()
-        self:setCurrentThread()
-end
-
-
--- throws Exception
-function RunnableCanvas:end2()
-end
-
-
-function RunnableCanvas:getType()
-        return -1
-end
-
-return RunnableCanvas
 

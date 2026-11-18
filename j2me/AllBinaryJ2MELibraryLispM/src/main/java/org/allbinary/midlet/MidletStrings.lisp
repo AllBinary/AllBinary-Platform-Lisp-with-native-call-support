@@ -1,50 +1,42 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.midlet
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.midlet
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass MidletStrings (JObject)
+  ((f_COMMAND_ACTION :initform nil)))
+
+(defvar MidletStrings.jcell_instance :jnone)
+(defun MidletStrings.jstatic_instance ()
+  (when (eq MidletStrings.jcell_instance :jnone) (setf MidletStrings.jcell_instance (MidletStrings.jnew_0)))
+  MidletStrings.jcell_instance)
+(defun (setf MidletStrings.jstatic_instance) (value) (setf MidletStrings.jcell_instance value))
+
+(defun MidletStrings.jnew_0 ()
+  (let ((this (make-instance 'MidletStrings)))
+    (setf (slot-value this 'f_COMMAND_ACTION) "commandAction")
+    this))
+
+    
+(defun MidletStrings.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (MidletStrings.jstatic_instance)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local MidletStrings = {}
-MidletStrings.__index = MidletStrings
-MidletStrings.className = "MidletStrings"
-
-function MidletStrings:_init_fields()
-    self.COMMAND_ACTION = "commandAction"
-end
-
-function MidletStrings.new()
-    local self = setmetatable({}, MidletStrings)
-    self:_init_fields()
-    return self
-end
-
-
-function MidletStrings.getInstance()
-        return MidletStrings.instance
-end
-
-MidletStrings.instance = MidletStrings.new()
-
-return MidletStrings
 

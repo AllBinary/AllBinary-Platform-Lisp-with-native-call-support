@@ -1,111 +1,100 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.weapon
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.layer.weapon
 
-local CircularIndexUtil = require("org.allbinary.util.CircularIndexUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(defclass WeaponLayerArrayLayerCircularStaticPool (JObject)
+  ((f_MAX :initform 0)
+   (f_circularIndexUtil :initform nil)
+   (f_WEAPONLAYER_ARRAY :initform nil)
+   (f_TWO_WEAPONLAYER_ARRAY :initform nil)
+   (f_THREE_WEAPONLAYER_ARRAY :initform nil)))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(defvar WeaponLayerArrayLayerCircularStaticPool.jcell_instance :jnone)
+(defun WeaponLayerArrayLayerCircularStaticPool.jstatic_instance ()
+  (when (eq WeaponLayerArrayLayerCircularStaticPool.jcell_instance :jnone) (setf WeaponLayerArrayLayerCircularStaticPool.jcell_instance (WeaponLayerArrayLayerCircularStaticPool.jnew_0)))
+  WeaponLayerArrayLayerCircularStaticPool.jcell_instance)
+(defun (setf WeaponLayerArrayLayerCircularStaticPool.jstatic_instance) (value) (setf WeaponLayerArrayLayerCircularStaticPool.jcell_instance value))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defun WeaponLayerArrayLayerCircularStaticPool.jnew_0 ()
+  (let ((this (make-instance 'WeaponLayerArrayLayerCircularStaticPool)))
+    (setf (slot-value this 'f_MAX) 5)
+    (setf (slot-value this 'f_circularIndexUtil) (CircularIndexUtil.jm_createInstance_1 (slot-value this 'f_MAX)))
+    
+    
+    
+    this))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun WeaponLayerArrayLayerCircularStaticPool.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (WeaponLayerArrayLayerCircularStaticPool.jstatic_instance)))))
 
-local WeaponLayerArrayLayerCircularStaticPool = {}
-WeaponLayerArrayLayerCircularStaticPool.__index = WeaponLayerArrayLayerCircularStaticPool
-WeaponLayerArrayLayerCircularStaticPool.className = "WeaponLayerArrayLayerCircularStaticPool"
+    
+(unless (fboundp 'jm_init_0) (defgeneric jm_init_0 (this)))
+(defmethod jm_init_0 ((this WeaponLayerArrayLayerCircularStaticPool))
+  (declare (ignorable this))
+  (let (_WEAPONLAYER_ARRAY _TWO_WEAPONLAYER_ARRAY _THREE_WEAPONLAYER_ARRAY _index)
+  (declare (ignorable _WEAPONLAYER_ARRAY _TWO_WEAPONLAYER_ARRAY _THREE_WEAPONLAYER_ARRAY _index))
+    (block jreturn
+        (setf _WEAPONLAYER_ARRAY (JR.newArray nil (JR.i32 (* (slot-value this 'f_MAX) 2))))
+        (setf _TWO_WEAPONLAYER_ARRAY (JR.newArray nil (slot-value this 'f_MAX)))
+        (setf _THREE_WEAPONLAYER_ARRAY (JR.newArray nil (slot-value this 'f_MAX)))
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index (slot-value this 'f_MAX)) do
+                (block jcontinue
+            (setf (aref _WEAPONLAYER_ARRAY _index) (JR.newArray nil 1))
+            (setf (aref _TWO_WEAPONLAYER_ARRAY _index) (JR.newArray nil 2))
+            (setf (aref _THREE_WEAPONLAYER_ARRAY _index) (JR.newArray nil 3)))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (setf (slot-value this 'f_WEAPONLAYER_ARRAY) _WEAPONLAYER_ARRAY)
+        (setf (slot-value this 'f_TWO_WEAPONLAYER_ARRAY) _TWO_WEAPONLAYER_ARRAY)
+        (setf (slot-value this 'f_THREE_WEAPONLAYER_ARRAY) _THREE_WEAPONLAYER_ARRAY))))
 
-function WeaponLayerArrayLayerCircularStaticPool:_init_fields()
-    self.MAX = 5
-    self.circularIndexUtil = CircularIndexUtil.createInstance(self.MAX)
-    self.WEAPONLAYER_ARRAY = nil
-    self.TWO_WEAPONLAYER_ARRAY = nil
-    self.THREE_WEAPONLAYER_ARRAY = nil
-end
+    
+(unless (fboundp 'jm_getWeaponLayerArrays_1) (defgeneric jm_getWeaponLayerArrays_1 (this p1)))
+(defmethod jm_getWeaponLayerArrays_1 ((this WeaponLayerArrayLayerCircularStaticPool) _size)
+  (declare (ignorable this _size))
+  (let ()
+    (block jreturn
+        (if (= _size 1)
+            (progn
+            (return-from jreturn (slot-value this 'f_WEAPONLAYER_ARRAY)))
+            (if (= _size 2)
+            (progn
+            (return-from jreturn (slot-value this 'f_TWO_WEAPONLAYER_ARRAY)))
+            (if (= _size 3)
+            (progn
+            (return-from jreturn (slot-value this 'f_THREE_WEAPONLAYER_ARRAY))))))
+        (error (JR.newException "RuntimeException")))))
 
-function WeaponLayerArrayLayerCircularStaticPool.new()
-    local self = setmetatable({}, WeaponLayerArrayLayerCircularStaticPool)
-    self:_init_fields()
-    return self
-end
-
-
-function WeaponLayerArrayLayerCircularStaticPool.getInstance()
-        return WeaponLayerArrayLayerCircularStaticPool.instance
-end
-
-
-function WeaponLayerArrayLayerCircularStaticPool:init()
-        local WEAPONLAYER_ARRAY = java_new_array(nil, self.MAX * 2)
-        local TWO_WEAPONLAYER_ARRAY = java_new_array(nil, self.MAX)
-        local THREE_WEAPONLAYER_ARRAY = java_new_array(nil, self.MAX)
-        for index = 0, self.MAX - 1 do
-            WEAPONLAYER_ARRAY[index + 1] = java_new_array(nil, 1)
-            TWO_WEAPONLAYER_ARRAY[index + 1] = java_new_array(nil, 2)
-            THREE_WEAPONLAYER_ARRAY[index + 1] = java_new_array(nil, 3)
-        end
-        self.WEAPONLAYER_ARRAY = WEAPONLAYER_ARRAY
-        self.TWO_WEAPONLAYER_ARRAY = TWO_WEAPONLAYER_ARRAY
-        self.THREE_WEAPONLAYER_ARRAY = THREE_WEAPONLAYER_ARRAY
-end
-
-
-function WeaponLayerArrayLayerCircularStaticPool:getWeaponLayerArrays(size)
-        if size == 1 then
-            return self.WEAPONLAYER_ARRAY
-        elseif size == 2 then
-            return self.TWO_WEAPONLAYER_ARRAY
-        elseif size == 3 then
-            return self.THREE_WEAPONLAYER_ARRAY
-        end
-        error(java_exception("RuntimeException"), 0)
-end
+    
+(unless (fboundp 'jm_getInstanceArray_1) (defgeneric jm_getInstanceArray_1 (this p1)))
+(defmethod jm_getInstanceArray_1 ((this WeaponLayerArrayLayerCircularStaticPool) _size)
+  (declare (ignorable this _size))
+  (let (_weaponLayerArray)
+  (declare (ignorable _weaponLayerArray))
+    (block jreturn
+        (setf _weaponLayerArray (aref (jm_getWeaponLayerArrays_1 this _size) (jm_getIndex_0 (slot-value this 'f_circularIndexUtil))))
+        (jm_next_0 (slot-value this 'f_circularIndexUtil))
+        (return-from jreturn _weaponLayerArray))))
 
 
--- throws Exception
-function WeaponLayerArrayLayerCircularStaticPool:getInstanceArray(size)
-        local weaponLayerArray = self:getWeaponLayerArrays(size)[self.circularIndexUtil:getIndex() + 1]
-        self.circularIndexUtil:next()
-        return weaponLayerArray
-end
-
-WeaponLayerArrayLayerCircularStaticPool.instance = WeaponLayerArrayLayerCircularStaticPool.new()
-
-return WeaponLayerArrayLayerCircularStaticPool
 

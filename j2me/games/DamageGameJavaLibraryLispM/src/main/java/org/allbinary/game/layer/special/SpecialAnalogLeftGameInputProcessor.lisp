@@ -1,50 +1,42 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.special
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.layer.special
 
-local GameKeyEvent = require("org.allbinary.game.input.event.GameKeyEvent")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local SpecialGameInputProcessor = require("org.allbinary.game.layer.special.SpecialGameInputProcessor")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass SpecialAnalogLeftGameInputProcessor (SpecialGameInputProcessor)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun SpecialAnalogLeftGameInputProcessor.jnew_1 (_collidableDestroyableDamageableLayer)
+  (declare (ignorable _collidableDestroyableDamageableLayer))
+  (let ((this (make-instance 'SpecialAnalogLeftGameInputProcessor)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
-local SpecialAnalogLeftGameInputProcessor = {}
-SpecialAnalogLeftGameInputProcessor.__index = SpecialAnalogLeftGameInputProcessor
-SpecialAnalogLeftGameInputProcessor.className = "SpecialAnalogLeftGameInputProcessor"
-setmetatable(SpecialAnalogLeftGameInputProcessor, {__index = SpecialGameInputProcessor})
-
-
-function SpecialAnalogLeftGameInputProcessor.new(collidableDestroyableDamageableLayer)
-    local self = setmetatable(SpecialGameInputProcessor.new(collidableDestroyableDamageableLayer), SpecialAnalogLeftGameInputProcessor)
-        -- super(...) made self above
-    return self
-end
+    
+(unless (fboundp 'jm_processAnalog_3) (defgeneric jm_processAnalog_3 (this p1 p2 p3)))
+(defmethod jm_processAnalog_3 ((this SpecialAnalogLeftGameInputProcessor) _allbinaryLayerManager _gameKeyEvent _xAnalogValue)
+  (declare (ignorable this _allbinaryLayerManager _gameKeyEvent _xAnalogValue))
+  (let ()
+    (block jreturn
+        (jm_leftAnalog_1 (slot-value this 'f_collidableDestroyableDamageableLayer) _xAnalogValue))))
 
 
--- throws Exception
-function SpecialAnalogLeftGameInputProcessor:processAnalog(allbinaryLayerManager, gameKeyEvent, xAnalogValue)
-        self.collidableDestroyableDamageableLayer:leftAnalog(xAnalogValue)
-end
-
-return SpecialAnalogLeftGameInputProcessor
 

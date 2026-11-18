@@ -1,49 +1,49 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.emulator.device
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2025 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.emulator.device
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass TrueTypeFontUtilBase (JObject)
+  ())
+
+    
+(defun TrueTypeFontUtilBase.jnew_1 (_scale)
+  (declare (ignorable _scale))
+  (let ((this (make-instance 'TrueTypeFontUtilBase)))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(unless (fboundp 'jm_getAsTextureSize_1) (defgeneric jm_getAsTextureSize_1 (this p1)))
+(defmethod jm_getAsTextureSize_1 ((this TrueTypeFontUtilBase) _textureSize)
+  (declare (ignorable this _textureSize))
+  (let ()
+    (block jreturn
+        (return-from jreturn (JR.i32 (- 1))))))
+
+    
+(unless (fboundp 'jm_getCellSize_1) (defgeneric jm_getCellSize_1 (this p1)))
+(defmethod jm_getCellSize_1 ((this TrueTypeFontUtilBase) _cellSize)
+  (declare (ignorable this _cellSize))
+  (let ()
+    (block jreturn
+        (return-from jreturn (JR.i32 (- 1))))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local TrueTypeFontUtilBase = {}
-TrueTypeFontUtilBase.__index = TrueTypeFontUtilBase
-TrueTypeFontUtilBase.className = "TrueTypeFontUtilBase"
-
-
-function TrueTypeFontUtilBase.new(scale)
-    local self = setmetatable({}, TrueTypeFontUtilBase)
-    return self
-end
-
-
-function TrueTypeFontUtilBase:getAsTextureSize(textureSize)
-        return -1
-end
-
-
-function TrueTypeFontUtilBase:getCellSize(cellSize)
-        return -1
-end
-
-return TrueTypeFontUtilBase
 

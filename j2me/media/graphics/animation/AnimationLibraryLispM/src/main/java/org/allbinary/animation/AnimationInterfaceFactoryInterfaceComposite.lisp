@@ -1,62 +1,58 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation
 
-local ScaleProperties = require("org.allbinary.media.ScaleProperties")
-local AnimationInterfaceFactoryInterface = require("org.allbinary.animation.AnimationInterfaceFactoryInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass AnimationInterfaceFactoryInterfaceComposite (JObject)
+  ((f_animationInterfaceFactoryInterfaceArray :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun AnimationInterfaceFactoryInterfaceComposite.jnew_1 (_basicAnimationInterfaceFactoryInterfaceArray)
+  (declare (ignorable _basicAnimationInterfaceFactoryInterfaceArray))
+  (let ((this (make-instance 'AnimationInterfaceFactoryInterfaceComposite)))
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_animationInterfaceFactoryInterfaceArray) _basicAnimationInterfaceFactoryInterfaceArray)))
+    this))
 
-local AnimationInterfaceFactoryInterfaceComposite = {}
-AnimationInterfaceFactoryInterfaceComposite.__index = AnimationInterfaceFactoryInterfaceComposite
-AnimationInterfaceFactoryInterfaceComposite.className = "AnimationInterfaceFactoryInterfaceComposite"
+    
+(unless (fboundp 'jm_getInstance_1) (defgeneric jm_getInstance_1 (this p1)))
+(defmethod jm_getInstance_1 ((this AnimationInterfaceFactoryInterfaceComposite) _instanceId)
+  (declare (ignorable this _instanceId))
+  (let ()
+    (block jreturn
+        (return-from jreturn (jm_getInstance_1 (NullAnimationFactory.jm_getFactoryInstance_0) 0)))))
 
-function AnimationInterfaceFactoryInterfaceComposite:_init_fields()
-    self.animationInterfaceFactoryInterfaceArray = nil
-end
+    
+(unless (fboundp 'jm_getAnimationInterfaceFactoryInterfaceArray_0) (defgeneric jm_getAnimationInterfaceFactoryInterfaceArray_0 (this)))
+(defmethod jm_getAnimationInterfaceFactoryInterfaceArray_0 ((this AnimationInterfaceFactoryInterfaceComposite))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_animationInterfaceFactoryInterfaceArray)))))
 
-
-function AnimationInterfaceFactoryInterfaceComposite.new(basicAnimationInterfaceFactoryInterfaceArray)
-    local self = setmetatable({}, AnimationInterfaceFactoryInterfaceComposite)
-    self:_init_fields()
-        self.animationInterfaceFactoryInterfaceArray = basicAnimationInterfaceFactoryInterfaceArray
-    return self
-end
-
-
--- throws Exception
-function AnimationInterfaceFactoryInterfaceComposite:getInstance(instanceId)
-        return NullAnimationFactory.getFactoryInstance():getInstance(0)
-end
-
-
-function AnimationInterfaceFactoryInterfaceComposite:getAnimationInterfaceFactoryInterfaceArray()
-        return self.animationInterfaceFactoryInterfaceArray
-end
+    
+(unless (fboundp 'jm_setInitialScale_1) (defgeneric jm_setInitialScale_1 (this p1)))
+(defmethod jm_setInitialScale_1 ((this AnimationInterfaceFactoryInterfaceComposite) _scaleProperties)
+  (declare (ignorable this _scaleProperties))
+  (let ()
+    (block jreturn nil)))
 
 
-function AnimationInterfaceFactoryInterfaceComposite:setInitialScale(scaleProperties)
-end
-
-return AnimationInterfaceFactoryInterfaceComposite
 

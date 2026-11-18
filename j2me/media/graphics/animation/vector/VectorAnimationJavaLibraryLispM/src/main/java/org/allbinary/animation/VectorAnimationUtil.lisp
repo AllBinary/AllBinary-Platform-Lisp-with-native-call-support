@@ -1,103 +1,118 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation
 
-local GPoint = require("org.allbinary.graphics.GPoint")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(defclass VectorAnimationUtil (JObject)
+  ())
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defvar VectorAnimationUtil.jcell_instance :jnone)
+(defun VectorAnimationUtil.jstatic_instance ()
+  (when (eq VectorAnimationUtil.jcell_instance :jnone) (setf VectorAnimationUtil.jcell_instance (VectorAnimationUtil.jnew_0)))
+  VectorAnimationUtil.jcell_instance)
+(defun (setf VectorAnimationUtil.jstatic_instance) (value) (setf VectorAnimationUtil.jcell_instance value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun VectorAnimationUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (VectorAnimationUtil.jstatic_instance)))))
 
-local VectorAnimationUtil = {}
-VectorAnimationUtil.__index = VectorAnimationUtil
-VectorAnimationUtil.className = "VectorAnimationUtil"
+    
+(defun VectorAnimationUtil.jnew_0 ()
+  (let ((this (make-instance 'VectorAnimationUtil)))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(unless (fboundp 'jm_toAnimationArrayFromListOfPointListWithPointsPerFrame_2) (defgeneric jm_toAnimationArrayFromListOfPointListWithPointsPerFrame_2 (this p1 p2)))
+(defmethod jm_toAnimationArrayFromListOfPointListWithPointsPerFrame_2 ((this VectorAnimationUtil) _vector _pointsPerFrame)
+  (declare (ignorable this _vector _pointsPerFrame))
+  (let (_size _points _nextBasicArrayList _framePoints _pointIndex _index)
+  (declare (ignorable _size _points _nextBasicArrayList _framePoints _pointIndex _index))
+    (block jreturn
+        (setf _size (jm_size_0 _vector))
+        (setf _points (JR.newArray 0 _size _pointsPerFrame 2))
+        (setf _nextBasicArrayList nil)
+        (setf _framePoints nil)
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (setf _nextBasicArrayList (aref (slot-value _vector 'f_objectArray) _index))
+            (setf _framePoints (jm_toFrameArrayFromPointBasicArrayList_1 this _nextBasicArrayList))
+            (progn
+                (setf _pointIndex 0)
+                (block jbreak (loop while (< _pointIndex (length _framePoints)) do
+                    (block jcontinue
+                (setf (aref (aref (aref _points _index) _pointIndex) 0) (aref (aref _framePoints _pointIndex) 0))
+                (setf (aref (aref (aref _points _index) _pointIndex) 1) (aref (aref _framePoints _pointIndex) 1)))
+                    (setf _pointIndex (JR.i32 (+ _pointIndex 1)))))))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (return-from jreturn _points))))
+
+    
+(unless (fboundp 'jm_toAnimationArrayFromListOfPointList_1) (defgeneric jm_toAnimationArrayFromListOfPointList_1 (this p1)))
+(defmethod jm_toAnimationArrayFromListOfPointList_1 ((this VectorAnimationUtil) _vector)
+  (declare (ignorable this _vector))
+  (let (_size _points _nextBasicArrayList _framePoints _pointIndex _index)
+  (declare (ignorable _size _points _nextBasicArrayList _framePoints _pointIndex _index))
+    (block jreturn
+        (setf _size (jm_size_0 _vector))
+        (setf _points (JR.newArray 0 _size 0 0))
+        (setf _nextBasicArrayList nil)
+        (setf _framePoints nil)
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (setf _nextBasicArrayList (aref (slot-value _vector 'f_objectArray) _index))
+            (setf _framePoints (jm_toFrameArrayFromPointBasicArrayList_1 this _nextBasicArrayList))
+            (setf (aref _points _index) (JR.newArray 0 (length _framePoints) 2))
+            (progn
+                (setf _pointIndex 0)
+                (block jbreak (loop while (< _pointIndex (length _framePoints)) do
+                    (block jcontinue
+                (setf (aref (aref (aref _points _index) _pointIndex) 0) (aref (aref _framePoints _pointIndex) 0))
+                (setf (aref (aref (aref _points _index) _pointIndex) 1) (aref (aref _framePoints _pointIndex) 1)))
+                    (setf _pointIndex (JR.i32 (+ _pointIndex 1)))))))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (return-from jreturn _points))))
+
+    
+(unless (fboundp 'jm_toFrameArrayFromPointBasicArrayList_1) (defgeneric jm_toFrameArrayFromPointBasicArrayList_1 (this p1)))
+(defmethod jm_toFrameArrayFromPointBasicArrayList_1 ((this VectorAnimationUtil) _list)
+  (declare (ignorable this _list))
+  (let (_points _size _nextPoint _index)
+  (declare (ignorable _points _size _nextPoint _index))
+    (block jreturn
+        (setf _points (JR.newArray 0 (jm_size_0 _list) 2))
+        (setf _size (jm_size_0 _list))
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (setf _nextPoint (aref (slot-value _list 'f_objectArray) _index))
+            (setf (aref (aref _points _index) 0) (jm_getX_0 _nextPoint))
+            (setf (aref (aref _points _index) 1) (jm_getY_0 _nextPoint)))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (return-from jreturn _points))))
 
 
-function VectorAnimationUtil.getInstance()
-        return VectorAnimationUtil.instance
-end
-
-
-function VectorAnimationUtil.new()
-    local self = setmetatable({}, VectorAnimationUtil)
-    return self
-end
-
-
-function VectorAnimationUtil:toAnimationArrayFromListOfPointListWithPointsPerFrame(vector, pointsPerFrame)
-        local size = vector:size()
-        local points = java_new_array(0, size, pointsPerFrame, 2)
-        local nextBasicArrayList = nil
-        local framePoints = nil
-        for index = 0, size - 1 do
-            nextBasicArrayList = vector.objectArray[index + 1]
-            framePoints = self:toFrameArrayFromPointBasicArrayList(nextBasicArrayList)
-            for pointIndex = 0, (framePoints.n or #framePoints) - 1 do
-                points[index + 1][pointIndex + 1][1] = framePoints[pointIndex + 1][1]
-                points[index + 1][pointIndex + 1][2] = framePoints[pointIndex + 1][2]
-            end
-        end
-        return points
-end
-
-
-function VectorAnimationUtil:toAnimationArrayFromListOfPointList(vector)
-        local size = vector:size()
-        local points = java_new_array(0, size, 0, 0)
-        local nextBasicArrayList = nil
-        local framePoints = nil
-        for index = 0, size - 1 do
-            nextBasicArrayList = vector.objectArray[index + 1]
-            framePoints = self:toFrameArrayFromPointBasicArrayList(nextBasicArrayList)
-            points[index + 1] = java_new_array(0, (framePoints.n or #framePoints), 2)
-            for pointIndex = 0, (framePoints.n or #framePoints) - 1 do
-                points[index + 1][pointIndex + 1][1] = framePoints[pointIndex + 1][1]
-                points[index + 1][pointIndex + 1][2] = framePoints[pointIndex + 1][2]
-            end
-        end
-        return points
-end
-
-
-function VectorAnimationUtil:toFrameArrayFromPointBasicArrayList(list)
-        local points = java_new_array(0, list:size(), 2)
-        local size = list:size()
-        for index = 0, size - 1 do
-            local nextPoint = list.objectArray[index + 1]
-            points[index + 1][1] = nextPoint:getX()
-            points[index + 1][2] = nextPoint:getY()
-        end
-        return points
-end
-
-VectorAnimationUtil.instance = VectorAnimationUtil.new()
-
-return VectorAnimationUtil
 

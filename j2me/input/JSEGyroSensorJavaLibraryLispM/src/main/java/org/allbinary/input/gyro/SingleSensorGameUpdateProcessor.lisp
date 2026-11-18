@@ -1,58 +1,47 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.gyro
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.input.gyro
 
-local Processor = require("org.allbinary.canvas.Processor")
-local SensorGameUpdateProcessor = require("org.allbinary.input.gyro.SensorGameUpdateProcessor")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass SingleSensorGameUpdateProcessor (SensorGameUpdateProcessor)
+  ((f_accelerometerSensorUpdateProcessor :initform nil)
+   (f_gyroSensorUpdateProcessor :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun SingleSensorGameUpdateProcessor.jnew_0 ()
+  (let ((this (make-instance 'SingleSensorGameUpdateProcessor)))
+    (setf (slot-value this 'f_accelerometerSensorUpdateProcessor) (AccelerometerSensorUpdateProcessor.jnew_0))
+    (setf (slot-value this 'f_gyroSensorUpdateProcessor) (GyroSensorUpdateProcessor.jnew_0))
+    this))
 
-local SingleSensorGameUpdateProcessor = {}
-SingleSensorGameUpdateProcessor.__index = SingleSensorGameUpdateProcessor
-SingleSensorGameUpdateProcessor.className = "SingleSensorGameUpdateProcessor"
-setmetatable(SingleSensorGameUpdateProcessor, {__index = SensorGameUpdateProcessor})
+    
+(unless (fboundp 'jm_process_1) (defgeneric jm_process_1 (this p1)))
+(defmethod jm_process_1 ((this SingleSensorGameUpdateProcessor) _anyType)
+  (declare (ignorable this _anyType))
+  (let ()
+    (block jreturn
+        (jm_setNoSensors_0 this))))
 
-function SingleSensorGameUpdateProcessor:_init_fields()
-    self.accelerometerSensorUpdateProcessor = AccelerometerSensorUpdateProcessor.new()
-    self.gyroSensorUpdateProcessor = GyroSensorUpdateProcessor.new()
-end
-
-function SingleSensorGameUpdateProcessor.new()
-    local self = setmetatable(SensorGameUpdateProcessor.new(), SingleSensorGameUpdateProcessor)
-    self:_init_fields()
-    return self
-end
-
-
--- throws Exception
-function SingleSensorGameUpdateProcessor:process(anyType)
-        self:setNoSensors()
-end
+    
+(unless (fboundp 'jm_sendNotifications_1) (defgeneric jm_sendNotifications_1 (this p1)))
+(defmethod jm_sendNotifications_1 ((this SingleSensorGameUpdateProcessor) _anyType)
+  (declare (ignorable this _anyType))
+  (let ()
+    (block jreturn nil)))
 
 
--- throws Exception
-function SingleSensorGameUpdateProcessor:sendNotifications(anyType)
-end
-
-return SingleSensorGameUpdateProcessor
 

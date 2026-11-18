@@ -1,55 +1,53 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.input
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass GameKeyUtil (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar GameKeyUtil.jcell_instance :jnone)
+(defun GameKeyUtil.jstatic_instance ()
+  (when (eq GameKeyUtil.jcell_instance :jnone) (setf GameKeyUtil.jcell_instance (GameKeyUtil.jnew_0)))
+  GameKeyUtil.jcell_instance)
+(defun (setf GameKeyUtil.jstatic_instance) (value) (setf GameKeyUtil.jcell_instance value))
 
-local GameKeyUtil = {}
-GameKeyUtil.__index = GameKeyUtil
-GameKeyUtil.className = "GameKeyUtil"
+(defun GameKeyUtil.jnew_0 ()
+  (let ((this (make-instance 'GameKeyUtil)))
+    this))
 
-function GameKeyUtil.new()
-    local self = setmetatable({}, GameKeyUtil)
-    return self
-end
+    
+(unless (fboundp 'jm_isDirectionKey_1) (defgeneric jm_isDirectionKey_1 (this p1)))
+(defmethod jm_isDirectionKey_1 ((this GameKeyUtil) _key)
+  (declare (ignorable this _key))
+  (let ()
+    (block jreturn
+        (if (or (or (or (= _key (Canvas.jstatic_UP)) (= _key (Canvas.jstatic_DOWN))) (= _key (Canvas.jstatic_LEFT))) (= _key (Canvas.jstatic_RIGHT)))
+            (progn
+            (return-from jreturn t))
+            (progn
+            (return-from jreturn nil))))))
+
+    
+(defun GameKeyUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (GameKeyUtil.jstatic_instance)))))
 
 
-function GameKeyUtil:isDirectionKey(key)
-        if key == Canvas.UP or key == Canvas.DOWN or key == Canvas.LEFT or key == Canvas.RIGHT then
-            return true
-        else
-            return false
-        end
-end
-
-
-function GameKeyUtil.getInstance()
-        return GameKeyUtil.instance
-end
-
-GameKeyUtil.instance = GameKeyUtil.new()
-
-return GameKeyUtil
 

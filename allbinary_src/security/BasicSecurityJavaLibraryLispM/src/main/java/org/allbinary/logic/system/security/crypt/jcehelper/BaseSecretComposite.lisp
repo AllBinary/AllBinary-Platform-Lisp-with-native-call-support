@@ -1,53 +1,51 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.crypt.jcehelper
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2025 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.system.security.crypt.jcehelper
 
-local NullUtil = require("org.allbinary.logic.NullUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass BaseSecretComposite (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar BaseSecretComposite.jcell_NULL_SECRET_COMPOSITE :jnone)
+(defun BaseSecretComposite.jstatic_NULL_SECRET_COMPOSITE ()
+  (when (eq BaseSecretComposite.jcell_NULL_SECRET_COMPOSITE :jnone) (setf BaseSecretComposite.jcell_NULL_SECRET_COMPOSITE (BaseSecretComposite.jnew_0)))
+  BaseSecretComposite.jcell_NULL_SECRET_COMPOSITE)
+(defun (setf BaseSecretComposite.jstatic_NULL_SECRET_COMPOSITE) (value) (setf BaseSecretComposite.jcell_NULL_SECRET_COMPOSITE value))
 
-local BaseSecretComposite = {}
-BaseSecretComposite.__index = BaseSecretComposite
-BaseSecretComposite.className = "BaseSecretComposite"
+(defun BaseSecretComposite.jnew_0 ()
+  (let ((this (make-instance 'BaseSecretComposite)))
+    this))
 
-function BaseSecretComposite.new()
-    local self = setmetatable({}, BaseSecretComposite)
-    return self
-end
+    
+(unless (fboundp 'jm_encrypt_1) (defgeneric jm_encrypt_1 (this p1)))
+(defmethod jm_encrypt_1 ((this BaseSecretComposite) _array)
+  (declare (ignorable this _array))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_BYTE_ARRAY)))))
+
+    
+(unless (fboundp 'jm_decrypt_1) (defgeneric jm_decrypt_1 (this p1)))
+(defmethod jm_decrypt_1 ((this BaseSecretComposite) _array)
+  (declare (ignorable this _array))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_BYTE_ARRAY)))))
 
 
--- throws Exception
-function BaseSecretComposite:encrypt(array)
-        return NullUtil.getInstance().NULL_BYTE_ARRAY
-end
-
-
--- throws Exception
-function BaseSecretComposite:decrypt(array)
-        return NullUtil.getInstance().NULL_BYTE_ARRAY
-end
-
-BaseSecretComposite.NULL_SECRET_COMPOSITE = BaseSecretComposite.new()
-
-return BaseSecretComposite
 

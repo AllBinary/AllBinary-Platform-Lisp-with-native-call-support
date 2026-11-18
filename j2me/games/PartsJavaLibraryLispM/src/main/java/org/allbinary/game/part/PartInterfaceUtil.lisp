@@ -1,53 +1,41 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.part
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.part
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass PartInterfaceUtil (JObject)
+  ())
+
+(defvar PartInterfaceUtil.jcell_SINGLETON :jnone)
+(defun PartInterfaceUtil.jstatic_SINGLETON ()
+  (when (eq PartInterfaceUtil.jcell_SINGLETON :jnone) (setf PartInterfaceUtil.jcell_SINGLETON (JR.newArray nil 0)))
+  PartInterfaceUtil.jcell_SINGLETON)
+(defun (setf PartInterfaceUtil.jstatic_SINGLETON) (value) (setf PartInterfaceUtil.jcell_SINGLETON value))
+
+(defun PartInterfaceUtil.jnew_0 ()
+  (let ((this (make-instance 'PartInterfaceUtil)))
+    this))
+
+    
+(defun PartInterfaceUtil.jm_getZeroArray_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (PartInterfaceUtil.jstatic_SINGLETON)))))
 
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
-
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local PartInterfaceUtil = {}
-PartInterfaceUtil.__index = PartInterfaceUtil
-PartInterfaceUtil.className = "PartInterfaceUtil"
-
-function PartInterfaceUtil.new()
-    local self = setmetatable({}, PartInterfaceUtil)
-    return self
-end
-
-
-function PartInterfaceUtil.getZeroArray()
-        return PartInterfaceUtil.SINGLETON
-end
-
-PartInterfaceUtil.SINGLETON = java_new_array(nil, 0)
-
-return PartInterfaceUtil
 

@@ -1,57 +1,50 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.input.motion
 
-local PreLogUtil = require("org.allbinary.logic.communication.log.PreLogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass CompleteMotionGestureInputToGameMotionGestureInput (JObject)
+  ((f_commonStrings :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar CompleteMotionGestureInputToGameMotionGestureInput.jcell_instance :jnone)
+(defun CompleteMotionGestureInputToGameMotionGestureInput.jstatic_instance ()
+  (when (eq CompleteMotionGestureInputToGameMotionGestureInput.jcell_instance :jnone) (setf CompleteMotionGestureInputToGameMotionGestureInput.jcell_instance (CompleteMotionGestureInputToGameMotionGestureInput.jnew_0)))
+  CompleteMotionGestureInputToGameMotionGestureInput.jcell_instance)
+(defun (setf CompleteMotionGestureInputToGameMotionGestureInput.jstatic_instance) (value) (setf CompleteMotionGestureInputToGameMotionGestureInput.jcell_instance value))
 
-local CompleteMotionGestureInputToGameMotionGestureInput = {}
-CompleteMotionGestureInputToGameMotionGestureInput.__index = CompleteMotionGestureInputToGameMotionGestureInput
-CompleteMotionGestureInputToGameMotionGestureInput.className = "CompleteMotionGestureInputToGameMotionGestureInput"
+(defun CompleteMotionGestureInputToGameMotionGestureInput.jnew_0 ()
+  (let ((this (make-instance 'CompleteMotionGestureInputToGameMotionGestureInput)))
+    (setf (slot-value this 'f_commonStrings) (CommonStrings.jm_getInstance_0))
+    this))
 
-function CompleteMotionGestureInputToGameMotionGestureInput:_init_fields()
-    self.commonStrings = CommonStrings.getInstance()
-end
+    
+(defun CompleteMotionGestureInputToGameMotionGestureInput.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (CompleteMotionGestureInputToGameMotionGestureInput.jstatic_instance)))))
 
-function CompleteMotionGestureInputToGameMotionGestureInput.new()
-    local self = setmetatable({}, CompleteMotionGestureInputToGameMotionGestureInput)
-    self:_init_fields()
-    return self
-end
-
-
-function CompleteMotionGestureInputToGameMotionGestureInput.getInstance()
-        return CompleteMotionGestureInputToGameMotionGestureInput.instance
-end
+    
+(unless (fboundp 'jm_init_0) (defgeneric jm_init_0 (this)))
+(defmethod jm_init_0 ((this CompleteMotionGestureInputToGameMotionGestureInput))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (PreLogUtil.jm_put_3 "No Touch Button = No Compound Motion Gestures" this (slot-value (slot-value this 'f_commonStrings) 'f_INIT)))))
 
 
-function CompleteMotionGestureInputToGameMotionGestureInput:init()
-        PreLogUtil.put("No Touch Button = No Compound Motion Gestures", self, self.commonStrings.INIT)
-end
-
-CompleteMotionGestureInputToGameMotionGestureInput.instance = CompleteMotionGestureInputToGameMotionGestureInput.new()
-
-return CompleteMotionGestureInputToGameMotionGestureInput
 

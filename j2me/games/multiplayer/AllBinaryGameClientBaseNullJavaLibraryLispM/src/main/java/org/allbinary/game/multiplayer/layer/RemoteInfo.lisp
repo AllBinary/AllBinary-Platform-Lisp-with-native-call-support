@@ -1,35 +1,37 @@
--- 
--- To change this license header, choose License Headers in Project Properties. 
--- To change this template file, choose Tools | Templates 
--- and open the template in the editor.  
--- Generated Code Do Not Modify
--- package org.allbinary.game.multiplayer.layer
+;;;; 
+;;;; To change this license header, choose License Headers in Project Properties. 
+;;;; To change this template file, choose Tools | Templates 
+;;;; and open the template in the editor.  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.multiplayer.layer
 
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass RemoteInfo (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar RemoteInfo.jcell_NEW_PLAYER_ID :jnone)
+(defun RemoteInfo.jstatic_NEW_PLAYER_ID ()
+  (when (eq RemoteInfo.jcell_NEW_PLAYER_ID :jnone) (setf RemoteInfo.jcell_NEW_PLAYER_ID 0))
+  RemoteInfo.jcell_NEW_PLAYER_ID)
+(defun (setf RemoteInfo.jstatic_NEW_PLAYER_ID) (value) (setf RemoteInfo.jcell_NEW_PLAYER_ID value))
 
-local RemoteInfo = {}
-RemoteInfo.__index = RemoteInfo
-RemoteInfo.className = "RemoteInfo"
+(defvar RemoteInfo.jcell_REMOTE_INFO :jnone)
+(defun RemoteInfo.jstatic_REMOTE_INFO ()
+  (when (eq RemoteInfo.jcell_REMOTE_INFO :jnone) (setf RemoteInfo.jcell_REMOTE_INFO (RemoteInfo.jnew_4 (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING) (JR.i32 (- 1)) (JR.i32 (- 1)) (RemoteInfo.jstatic_NEW_PLAYER_ID))))
+  RemoteInfo.jcell_REMOTE_INFO)
+(defun (setf RemoteInfo.jstatic_REMOTE_INFO) (value) (setf RemoteInfo.jcell_REMOTE_INFO value))
+
+    
+(defun RemoteInfo.jnew_4 (_username _actorSessionId _playerInputId _id)
+  (declare (ignorable _username _actorSessionId _playerInputId _id))
+  (let ((this (make-instance 'RemoteInfo)))
+  (let ()
+    (block jreturn nil))
+    this))
 
 
-function RemoteInfo.new(username, actorSessionId, playerInputId, id)
-    local self = setmetatable({}, RemoteInfo)
-    return self
-end
-
-RemoteInfo.NEW_PLAYER_ID = 0
-RemoteInfo.REMOTE_INFO = RemoteInfo.new(StringUtil.getInstance().EMPTY_STRING, -1, -1, RemoteInfo.NEW_PLAYER_ID)
-
-return RemoteInfo
 

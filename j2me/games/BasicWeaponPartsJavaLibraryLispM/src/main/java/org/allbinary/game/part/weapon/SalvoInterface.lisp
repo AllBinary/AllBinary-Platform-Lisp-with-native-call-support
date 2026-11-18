@@ -1,49 +1,41 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.part.weapon
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.part.weapon
 
-local WeaponProperties = require("org.allbinary.game.combat.weapon.WeaponProperties")
-local ScoreableInterface = require("org.allbinary.game.score.ScoreableInterface")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass SalvoInterface (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun SalvoInterface.jnew_0 ()
+  (let ((this (make-instance 'SalvoInterface)))
+    this))
 
--- Java interface
-local SalvoInterface = {}
-SalvoInterface.__index = SalvoInterface
-SalvoInterface.className = "SalvoInterface"
+    
+(unless (fboundp 'jm_process_3) (defgeneric jm_process_3 (this p1 p2 p3)))
+(defmethod jm_process_3 ((this SalvoInterface) _allbinaryLayerManager _angle _otherAngle)
+  (declare (ignorable this _allbinaryLayerManager _angle _otherAngle))
+  (error (JR.newException "AbstractMethodError" "process")))
 
-
--- throws Exception
-function SalvoInterface:process(allbinaryLayerManager, angle, otherAngle)
-    error("abstract method process")
-end
+    
+(unless (fboundp 'jm_processScore_5) (defgeneric jm_processScore_5 (this p1 p2 p3 p4 p5)))
+(defmethod jm_processScore_5 ((this SalvoInterface) _allbinaryLayerManager _angle _otherAngle _weaponProperties _scoreableInterface)
+  (declare (ignorable this _allbinaryLayerManager _angle _otherAngle _weaponProperties _scoreableInterface))
+  (error (JR.newException "AbstractMethodError" "processScore")))
 
 
--- throws Exception
-function SalvoInterface:processScore(allbinaryLayerManager, angle, otherAngle, weaponProperties, scoreableInterface)
-    error("abstract method processScore")
-end
-
-return SalvoInterface
 

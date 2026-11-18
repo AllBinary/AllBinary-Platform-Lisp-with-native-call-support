@@ -1,65 +1,54 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.media.audio
 
-local BaseSoundsFactory = require("org.allbinary.media.audio.BaseSoundsFactory")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(defclass EarlySoundsFactory (BaseSoundsFactory)
+  ())
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defvar EarlySoundsFactory.jcell_instance :jnone)
+(defun EarlySoundsFactory.jstatic_instance ()
+  (when (eq EarlySoundsFactory.jcell_instance :jnone) (setf EarlySoundsFactory.jcell_instance (EarlySoundsFactory.jnew_0)))
+  EarlySoundsFactory.jcell_instance)
+(defun (setf EarlySoundsFactory.jstatic_instance) (value) (setf EarlySoundsFactory.jcell_instance value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun EarlySoundsFactory.jnew_0 ()
+  (let ((this (make-instance 'EarlySoundsFactory)))
+    this))
 
-local EarlySoundsFactory = {}
-EarlySoundsFactory.__index = EarlySoundsFactory
-EarlySoundsFactory.className = "EarlySoundsFactory"
-setmetatable(EarlySoundsFactory, {__index = BaseSoundsFactory})
+    
+(unless (fboundp 'jm_getSoundInterfaceArray_0) (defgeneric jm_getSoundInterfaceArray_0 (this)))
+(defmethod jm_getSoundInterfaceArray_0 ((this EarlySoundsFactory))
+  (declare (ignorable this))
+  (let (_soundInterfaceArray _index)
+  (declare (ignorable _soundInterfaceArray _index))
+    (block jreturn
+        (setf _soundInterfaceArray (JR.newArray nil 2))
+        (setf _index 0)
+        (setf (aref _soundInterfaceArray (prog1 _index (setf _index (JR.i32 (+ _index 1))))) (SelectSound.jm_getInstance_0))
+        (setf (aref _soundInterfaceArray (prog1 _index (setf _index (JR.i32 (+ _index 1))))) (ErrorSound.jm_getInstance_0))
+        (return-from jreturn _soundInterfaceArray))))
 
-function EarlySoundsFactory.new()
-    local self = setmetatable(BaseSoundsFactory.new(), EarlySoundsFactory)
-    return self
-end
-
-
--- throws Exception
-function EarlySoundsFactory:getSoundInterfaceArray()
-        local soundInterfaceArray = java_new_array(nil, 2)
-        local index = 0
-        soundInterfaceArray[(function() local value = index index = value + 1 return value end)() + 1] = SelectSound.getInstance()
-        soundInterfaceArray[(function() local value = index index = value + 1 return value end)() + 1] = ErrorSound.getInstance()
-        return soundInterfaceArray
-end
+    
+(defun EarlySoundsFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (EarlySoundsFactory.jstatic_instance)))))
 
 
-function EarlySoundsFactory.getInstance()
-        return EarlySoundsFactory.instance
-end
-
-EarlySoundsFactory.instance = EarlySoundsFactory.new()
-
-return EarlySoundsFactory
 

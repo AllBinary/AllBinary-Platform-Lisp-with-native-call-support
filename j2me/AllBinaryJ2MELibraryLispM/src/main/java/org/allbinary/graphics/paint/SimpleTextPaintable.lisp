@@ -1,100 +1,107 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.paint
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.paint
 
--- local Font = require("javax.microedition.lcdui.Font")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Anchor = require("org.allbinary.graphics.Anchor")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local DisplayInfoSingleton = require("org.allbinary.graphics.displayable.DisplayInfoSingleton")
-local MyFontProcessor = require("org.allbinary.graphics.font.MyFontProcessor")
-local UpdateMyFontInterface = require("org.allbinary.graphics.font.UpdateMyFontInterface")
-local UpdateMyFontProcessor = require("org.allbinary.graphics.font.UpdateMyFontProcessor")
-local Paintable = require("org.allbinary.graphics.paint.Paintable")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass SimpleTextPaintable (Paintable)
+  ((f_displayInfoSingleton :initform nil)
+   (f_updateMyFontProcessor :initform nil)
+   (f_myFontProcessor :initform nil)
+   (f_text :initform nil)
+   (f_basicColor :initform nil)
+   (f_topScoresWidth :initform 0)
+   (f_fontHeight :initform 0)
+   (f_anchor :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun SimpleTextPaintable.jnew_2 (_text _basicColor)
+  (declare (ignorable _text _basicColor))
+  (let ((this (make-instance 'SimpleTextPaintable)))
+    (setf (slot-value this 'f_displayInfoSingleton) (DisplayInfoSingleton.jm_getInstance_0))
+    (setf (slot-value this 'f_updateMyFontProcessor) (UpdateMyFontProcessor.jnew_1 this))
+    (setf (slot-value this 'f_myFontProcessor) (slot-value this 'f_updateMyFontProcessor))
+    
+    
+    (setf (slot-value this 'f_topScoresWidth) 0)
+    (setf (slot-value this 'f_fontHeight) 0)
+    (setf (slot-value this 'f_anchor) (Anchor.jstatic_TOP_LEFT))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_text) _text)
+        (setf (slot-value this 'f_basicColor) _basicColor)))
+    this))
 
-local SimpleTextPaintable = {}
-SimpleTextPaintable.__index = SimpleTextPaintable
-SimpleTextPaintable.className = "SimpleTextPaintable"
-setmetatable(SimpleTextPaintable, {__index = Paintable})
+    
+(unless (fboundp 'jm_updateMeasurement_1) (defgeneric jm_updateMeasurement_1 (this p1)))
+(defmethod jm_updateMeasurement_1 ((this SimpleTextPaintable) _graphics)
+  (declare (ignorable this _graphics))
+  (let (_font)
+  (declare (ignorable _font))
+    (block jreturn
+        (setf _font (jm_getFont_0 _graphics))
+        (setf (slot-value this 'f_topScoresWidth) (ash (jm_stringWidth_1 _font (slot-value this 'f_text)) (- (logand 1 31))))
+        (setf (slot-value this 'f_fontHeight) (jm_getHeight_0 _font))
+        (setf (slot-value this 'f_myFontProcessor) (MyFontProcessor.jm_getInstance_0)))))
 
-function SimpleTextPaintable:_init_fields()
-    self.displayInfoSingleton = DisplayInfoSingleton.getInstance()
-    self.updateMyFontProcessor = UpdateMyFontProcessor.new(self)
-    self.myFontProcessor = self.updateMyFontProcessor
-    self.text = nil
-    self.basicColor = nil
-    self.topScoresWidth = 0
-    self.fontHeight = 0
-    self.anchor = Anchor.TOP_LEFT
-end
+    
+(unless (fboundp 'jm_paint_1) (defgeneric jm_paint_1 (this p1)))
+(defmethod jm_paint_1 ((this SimpleTextPaintable) _graphics)
+  (declare (ignorable this _graphics))
+  (let (_width)
+  (declare (ignorable _width))
+    (block jreturn
+        (jm_process_1 (slot-value this 'f_myFontProcessor) _graphics)
+        (setf _width (aref (jm_getLast_0 (slot-value this 'f_displayInfoSingleton)) (slot-value (slot-value this 'f_displayInfoSingleton) 'f_WIDTH)))
+        (jm_setColor_1 _graphics (jm_intValue_0 (jm_getBasicColorP_0 this)))
+        (jm_drawString_4 _graphics (slot-value this 'f_text) (JR.i32 (- (ash _width (- (logand 1 31))) (slot-value this 'f_topScoresWidth))) (slot-value this 'f_fontHeight) (slot-value this 'f_anchor)))))
+
+    
+(unless (fboundp 'jm_setBasicColorP_1) (defgeneric jm_setBasicColorP_1 (this p1)))
+(defmethod jm_setBasicColorP_1 ((this SimpleTextPaintable) _basicColor)
+  (declare (ignorable this _basicColor))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_basicColor) _basicColor))))
+
+    
+(unless (fboundp 'jm_getBasicColorP_0) (defgeneric jm_getBasicColorP_0 (this)))
+(defmethod jm_getBasicColorP_0 ((this SimpleTextPaintable))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_basicColor)))))
+
+    
+(unless (fboundp 'jm_setText_1) (defgeneric jm_setText_1 (this p1)))
+(defmethod jm_setText_1 ((this SimpleTextPaintable) _text)
+  (declare (ignorable this _text))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_text) _text)
+        (setf (slot-value this 'f_myFontProcessor) (slot-value this 'f_updateMyFontProcessor)))))
+
+    
+(unless (fboundp 'jm_getText_0) (defgeneric jm_getText_0 (this)))
+(defmethod jm_getText_0 ((this SimpleTextPaintable))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_text)))))
 
 
-function SimpleTextPaintable.new(text, basicColor)
-    local self = setmetatable(Paintable.new(), SimpleTextPaintable)
-    self:_init_fields()
-        self.text = text
-        self.basicColor = basicColor
-    return self
-end
-
-
-function SimpleTextPaintable:updateMeasurement(graphics)
-        local font = graphics:getFont()
-        self.topScoresWidth = (((font:stringWidth(self.text)) // (1 << (1))))
-        self.fontHeight = font:getHeight()
-        self.myFontProcessor = MyFontProcessor.getInstance()
-end
-
-
-function SimpleTextPaintable:paint(graphics)
-        self.myFontProcessor:process(graphics)
-        local width = self.displayInfoSingleton:getLast()[self.displayInfoSingleton.WIDTH + 1]
-        graphics:setColor(math.tointeger(self:getBasicColorP() // 1))
-        graphics:drawString(self.text, (((width) // (1 << (1)))) - self.topScoresWidth, self.fontHeight, self.anchor)
-end
-
-
-function SimpleTextPaintable:setBasicColorP(basicColor)
-        self.basicColor = basicColor
-end
-
-
-function SimpleTextPaintable:getBasicColorP()
-        return self.basicColor
-end
-
-
-function SimpleTextPaintable:setText(text)
-        self.text = text
-        self.myFontProcessor = self.updateMyFontProcessor
-end
-
-
-function SimpleTextPaintable:getText()
-        return self.text
-end
-
-return SimpleTextPaintable
 

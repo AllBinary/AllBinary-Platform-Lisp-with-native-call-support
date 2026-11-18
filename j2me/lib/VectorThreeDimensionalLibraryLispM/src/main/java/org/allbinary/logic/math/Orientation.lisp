@@ -1,74 +1,79 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.math
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.math
 
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass Orientation (JObject)
+  ((f_yaw :initform nil)
+   (f_pitch :initform nil)
+   (f_roll :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar Orientation.jcell_NONE :jnone)
+(defun Orientation.jstatic_NONE ()
+  (when (eq Orientation.jcell_NONE :jnone) (setf Orientation.jcell_NONE (Orientation.jnew_3 0 0 0)))
+  Orientation.jcell_NONE)
+(defun (setf Orientation.jstatic_NONE) (value) (setf Orientation.jcell_NONE value))
 
-local Orientation = {}
-Orientation.__index = Orientation
-Orientation.className = "Orientation"
+(defvar Orientation.jcell_SINGLETON :jnone)
+(defun Orientation.jstatic_SINGLETON ()
+  (when (eq Orientation.jcell_SINGLETON :jnone) (setf Orientation.jcell_SINGLETON (Orientation.jnew_3 0 0 0)))
+  Orientation.jcell_SINGLETON)
+(defun (setf Orientation.jstatic_SINGLETON) (value) (setf Orientation.jcell_SINGLETON value))
 
-function Orientation:_init_fields()
-    self.yaw = BasicDecimal.new(0)
-    self.pitch = BasicDecimal.new(0)
-    self.roll = BasicDecimal.new(0)
-end
+    
+(defun Orientation.jm_getInstance_3 (_yaw _pitch _roll)
+  (declare (ignorable _yaw _pitch _roll))
+  (let ()
+    (block jreturn
+        (jm_setint_1 (slot-value (Orientation.jstatic_SINGLETON) 'f_yaw) _yaw)
+        (jm_setint_1 (slot-value (Orientation.jstatic_SINGLETON) 'f_pitch) _pitch)
+        (jm_setint_1 (slot-value (Orientation.jstatic_SINGLETON) 'f_roll) _roll)
+        (return-from jreturn (Orientation.jstatic_SINGLETON)))))
+
+    
+(defun Orientation.jnew_3 (_yaw _pitch _roll)
+  (declare (ignorable _yaw _pitch _roll))
+  (let ((this (make-instance 'Orientation)))
+    (setf (slot-value this 'f_yaw) (BasicDecimal.jnew_1 0))
+    (setf (slot-value this 'f_pitch) (BasicDecimal.jnew_1 0))
+    (setf (slot-value this 'f_roll) (BasicDecimal.jnew_1 0))
+  (let ()
+    (block jreturn
+        (jm_setint_1 (slot-value this 'f_yaw) _yaw)
+        (jm_setint_1 (slot-value this 'f_pitch) _pitch)
+        (jm_setint_1 (slot-value this 'f_roll) _roll)))
+    this))
+
+    
+(unless (fboundp 'jm_toString_0) (defgeneric jm_toString_0 (this)))
+(defmethod jm_toString_0 ((this Orientation))
+  (declare (ignorable this))
+  (let (_stringBuffer)
+  (declare (ignorable _stringBuffer))
+    (block jreturn
+        (setf _stringBuffer (StringMaker.jnew_0))
+        (jm_append_1 _stringBuffer "Y: ")
+        (jm_append_1 _stringBuffer (jm_toString_0 (slot-value this 'f_yaw)))
+        (jm_append_1 _stringBuffer " P: ")
+        (jm_append_1 _stringBuffer (jm_toString_0 (slot-value this 'f_pitch)))
+        (jm_append_1 _stringBuffer " R: ")
+        (jm_append_1 _stringBuffer (jm_toString_0 (slot-value this 'f_roll)))
+        (return-from jreturn (jm_toString_0 _stringBuffer)))))
 
 
-function Orientation.getInstance(yaw, pitch, roll)
-        Orientation.SINGLETON.yaw:setint(yaw)
-        Orientation.SINGLETON.pitch:setint(pitch)
-        Orientation.SINGLETON.roll:setint(roll)
-        return Orientation.SINGLETON
-end
-
-
-function Orientation.new(yaw, pitch, roll)
-    local self = setmetatable({}, Orientation)
-    self:_init_fields()
-        self.yaw:setint(yaw)
-        self.pitch:setint(pitch)
-        self.roll:setint(roll)
-    return self
-end
-
-
-function Orientation:toString()
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append("Y: ")
-        stringBuffer:append(tostring(self.yaw))
-        stringBuffer:append(" P: ")
-        stringBuffer:append(tostring(self.pitch))
-        stringBuffer:append(" R: ")
-        stringBuffer:append(tostring(self.roll))
-        return tostring(stringBuffer)
-end
-Orientation.__tostring = function(self) return self:toString() end
-
-Orientation.NONE = Orientation.new(0, 0, 0)
-Orientation.SINGLETON = Orientation.new(0, 0, 0)
-
-return Orientation
 

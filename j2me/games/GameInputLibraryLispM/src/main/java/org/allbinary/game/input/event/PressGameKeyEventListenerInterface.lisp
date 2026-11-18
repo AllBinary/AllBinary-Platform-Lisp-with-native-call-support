@@ -1,42 +1,35 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.event
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.input.event
 
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass PressGameKeyEventListenerInterface (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun PressGameKeyEventListenerInterface.jnew_0 ()
+  (let ((this (make-instance 'PressGameKeyEventListenerInterface)))
+    this))
 
--- Java interface
-local PressGameKeyEventListenerInterface = {}
-PressGameKeyEventListenerInterface.__index = PressGameKeyEventListenerInterface
-PressGameKeyEventListenerInterface.className = "PressGameKeyEventListenerInterface"
-setmetatable(PressGameKeyEventListenerInterface, {__index = EventListenerInterface})
+    
+(unless (fboundp 'jm_onPressGameKeyEvent_1) (defgeneric jm_onPressGameKeyEvent_1 (this p1)))
+(defmethod jm_onPressGameKeyEvent_1 ((this PressGameKeyEventListenerInterface) _gameKeyEvent)
+  (declare (ignorable this _gameKeyEvent))
+  (error (JR.newException "AbstractMethodError" "onPressGameKeyEvent")))
 
 
--- throws Exception
-function PressGameKeyEventListenerInterface:onPressGameKeyEvent(gameKeyEvent)
-    error("abstract method onPressGameKeyEvent")
-end
-
-return PressGameKeyEventListenerInterface
 

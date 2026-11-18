@@ -1,85 +1,79 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.combat.destroy
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.combat.destroy
 
-local DestroyEventCircularStaticPool = require("org.allbinary.game.combat.destroy.event.DestroyEventCircularStaticPool")
-local DestroyedEvent = require("org.allbinary.game.combat.destroy.event.DestroyedEvent")
-local DestroyedEventHandler = require("org.allbinary.game.combat.destroy.event.DestroyedEventHandler")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local BasicLayerProcessor = require("org.allbinary.layer.BasicLayerProcessor")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass DestroyedLayerProcessor (BasicLayerProcessor)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar DestroyedLayerProcessor.jcell_DESTROYED_LAYER_PROCESSOR :jnone)
+(defun DestroyedLayerProcessor.jstatic_DESTROYED_LAYER_PROCESSOR ()
+  (when (eq DestroyedLayerProcessor.jcell_DESTROYED_LAYER_PROCESSOR :jnone) (setf DestroyedLayerProcessor.jcell_DESTROYED_LAYER_PROCESSOR (BasicLayerProcessor.jstatic_NULL_LAYER_PROCESSOR)))
+  DestroyedLayerProcessor.jcell_DESTROYED_LAYER_PROCESSOR)
+(defun (setf DestroyedLayerProcessor.jstatic_DESTROYED_LAYER_PROCESSOR) (value) (setf DestroyedLayerProcessor.jcell_DESTROYED_LAYER_PROCESSOR value))
 
-local DestroyedLayerProcessor = {}
-DestroyedLayerProcessor.__index = DestroyedLayerProcessor
-DestroyedLayerProcessor.className = "DestroyedLayerProcessor"
-setmetatable(DestroyedLayerProcessor, {__index = BasicLayerProcessor})
+    
+(defun DestroyedLayerProcessor.jnew_0 ()
+  (let ((this (make-instance 'DestroyedLayerProcessor)))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(defun DestroyedLayerProcessor.jm_init_0 ()
+  (let ()
+    (block jreturn
+        (setf (DestroyedLayerProcessor.jstatic_DESTROYED_LAYER_PROCESSOR) (DestroyedLayerProcessor.jnew_0)))))
+
+    
+(defun DestroyedLayerProcessor.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (DestroyedLayerProcessor.jstatic_DESTROYED_LAYER_PROCESSOR)))))
+
+    
+(unless (fboundp 'jm_process_1) (defgeneric jm_process_1 (this p1)))
+(defmethod jm_process_1 ((this DestroyedLayerProcessor) _allBinaryLayerManager)
+  (declare (ignorable this _allBinaryLayerManager))
+  (let (_list _size _destroyedEventHandler _destroyEventCircularStaticPool _destroyedEvent _layerInterface _layerInterfaceCanBeNull _commonStrings _index)
+  (declare (ignorable _list _size _destroyedEventHandler _destroyEventCircularStaticPool _destroyedEvent _layerInterface _layerInterfaceCanBeNull _commonStrings _index))
+    (block jreturn
+        (setf _list (jm_getList_0 this))
+        (setf _size (jm_size_0 _list))
+        (setf _destroyedEventHandler (DestroyedEventHandler.jm_getInstance_0))
+        (setf _destroyEventCircularStaticPool (DestroyEventCircularStaticPool.jm_getInstance_0))
+        (setf _destroyedEvent nil)
+        (setf _layerInterface nil)
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (setf _layerInterfaceCanBeNull (aref (slot-value _list 'f_objectArray) _index))
+            (if (not (null _layerInterfaceCanBeNull))
+                (progn
+                (setf _layerInterface _layerInterfaceCanBeNull)
+                (jm_remove_1 _allBinaryLayerManager _layerInterface)
+                (setf _destroyedEvent (jm_getInstanceForLayer_1 _destroyEventCircularStaticPool _layerInterface))
+                (jm_fireEvent_1 _destroyedEventHandler _destroyedEvent))
+                (progn
+                (setf _commonStrings (CommonStrings.jm_getInstance_0)))))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (jm_clear_0 _list))))
 
 
-function DestroyedLayerProcessor.new()
-    local self = setmetatable(BasicLayerProcessor.new(), DestroyedLayerProcessor)
-    return self
-end
-
-
-function DestroyedLayerProcessor.init()
-        DestroyedLayerProcessor.DESTROYED_LAYER_PROCESSOR = DestroyedLayerProcessor.new()
-end
-
-
-function DestroyedLayerProcessor.getInstance()
-        return DestroyedLayerProcessor.DESTROYED_LAYER_PROCESSOR
-end
-
-
--- throws Exception
-function DestroyedLayerProcessor:process(allBinaryLayerManager)
-        local list = self:getList()
-        local size = list:size()
-        local destroyedEventHandler = DestroyedEventHandler.getInstance()
-        local destroyEventCircularStaticPool = DestroyEventCircularStaticPool.getInstance()
-        local destroyedEvent = nil
-        local layerInterface = nil
-        for index = 0, size - 1 do
-            local layerInterfaceCanBeNull = list.objectArray[index + 1]
-            if layerInterfaceCanBeNull ~= nil then
-                layerInterface = layerInterfaceCanBeNull
-                allBinaryLayerManager:remove(layerInterface)
-                destroyedEvent = destroyEventCircularStaticPool:getInstanceForLayer(layerInterface)
-                destroyedEventHandler:fireEvent(destroyedEvent)
-            else
-                local commonStrings = CommonStrings.getInstance()
-            end
-        end
-        list:clear()
-end
-
-DestroyedLayerProcessor.DESTROYED_LAYER_PROCESSOR = BasicLayerProcessor.NULL_LAYER_PROCESSOR
-
-return DestroyedLayerProcessor
 

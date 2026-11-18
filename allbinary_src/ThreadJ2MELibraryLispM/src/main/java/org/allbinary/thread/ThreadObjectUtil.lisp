@@ -13,6 +13,7 @@
 (defun ThreadObjectUtil.jstatic_instance ()
   (when (eq ThreadObjectUtil.jcell_instance :jnone) (setf ThreadObjectUtil.jcell_instance (ThreadObjectUtil.jnew_0)))
   ThreadObjectUtil.jcell_instance)
+(defun (setf ThreadObjectUtil.jstatic_instance) (value) (setf ThreadObjectUtil.jcell_instance value))
 
 (defun ThreadObjectUtil.jnew_0 ()
   (let ((this (make-instance 'ThreadObjectUtil)))
@@ -31,7 +32,7 @@
   (declare (ignorable this _anyType))
   (let ()
     (block jreturn
-        (JR.className _anyType))))
+        (jm_notify_0 _anyType))))
 
     
 (unless (fboundp 'jm_waitObject_1) (defgeneric jm_waitObject_1 (this p1)))
@@ -39,7 +40,7 @@
   (declare (ignorable this _anyType))
   (let ()
     (block jreturn
-        (JR.className _anyType))))
+        (jm_wait_0 _anyType))))
 
     
 (unless (fboundp 'jm_waitObjectFor_2) (defgeneric jm_waitObjectFor_2 (this p1 p2)))

@@ -39,6 +39,7 @@
 (defun CommonLabels.jstatic_instance ()
   (when (eq CommonLabels.jcell_instance :jnone) (setf CommonLabels.jcell_instance (CommonLabels.jnew_0)))
   CommonLabels.jcell_instance)
+(defun (setf CommonLabels.jstatic_instance) (value) (setf CommonLabels.jcell_instance value))
 
 (defun CommonLabels.jnew_0 ()
   (let ((this (make-instance 'CommonLabels)))

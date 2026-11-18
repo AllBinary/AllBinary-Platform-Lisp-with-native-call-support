@@ -1,58 +1,45 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.score
 
--- local Command = require("javax.microedition.lcdui.Command")
-local HighScoreCommandsBaseFactory = require("org.allbinary.game.score.HighScoreCommandsBaseFactory")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(defclass HighScoreCommandsFactory (HighScoreCommandsBaseFactory)
+  ())
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defvar HighScoreCommandsFactory.jcell_instance :jnone)
+(defun HighScoreCommandsFactory.jstatic_instance ()
+  (when (eq HighScoreCommandsFactory.jcell_instance :jnone) (setf HighScoreCommandsFactory.jcell_instance (HighScoreCommandsFactory.jnew_0)))
+  HighScoreCommandsFactory.jcell_instance)
+(defun (setf HighScoreCommandsFactory.jstatic_instance) (value) (setf HighScoreCommandsFactory.jcell_instance value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun HighScoreCommandsFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (HighScoreCommandsFactory.jstatic_instance)))))
 
-local HighScoreCommandsFactory = {}
-HighScoreCommandsFactory.__index = HighScoreCommandsFactory
-HighScoreCommandsFactory.className = "HighScoreCommandsFactory"
-setmetatable(HighScoreCommandsFactory, {__index = HighScoreCommandsBaseFactory})
-
-
-function HighScoreCommandsFactory.getInstance()
-        return HighScoreCommandsFactory.instance
-end
+    
+(defun HighScoreCommandsFactory.jnew_0 ()
+  (let ((this (make-instance 'HighScoreCommandsFactory)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
 
-function HighScoreCommandsFactory.new()
-    local self = setmetatable(HighScoreCommandsBaseFactory.new({HighScoreCommands.getInstance().PERSONAL, HighScoreCommands.getInstance().WORLD}), HighScoreCommandsFactory)
-        -- super(...) made self above
-    return self
-end
-
-HighScoreCommandsFactory.instance = HighScoreCommandsFactory.new()
-
-return HighScoreCommandsFactory
 

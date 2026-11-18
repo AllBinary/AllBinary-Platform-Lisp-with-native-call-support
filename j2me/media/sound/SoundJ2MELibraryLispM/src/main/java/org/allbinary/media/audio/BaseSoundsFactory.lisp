@@ -1,72 +1,61 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.media.audio
 
-local SoundsFactoryInterface = require("org.allbinary.media.audio.SoundsFactoryInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(defclass BaseSoundsFactory (JObject)
+  ((f_initialized :initform nil)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defun BaseSoundsFactory.jnew_0 ()
+  (let ((this (make-instance 'BaseSoundsFactory)))
+    
+    this))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(unless (fboundp 'jm_init_0) (defgeneric jm_init_0 (this)))
+(defmethod jm_init_0 ((this BaseSoundsFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
 
-local BaseSoundsFactory = {}
-BaseSoundsFactory.__index = BaseSoundsFactory
-BaseSoundsFactory.className = "BaseSoundsFactory"
+    
+(unless (fboundp 'jm_getSoundInterfaceArray_0) (defgeneric jm_getSoundInterfaceArray_0 (this)))
+(defmethod jm_getSoundInterfaceArray_0 ((this BaseSoundsFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (JR.newArray nil 0)))))
 
-function BaseSoundsFactory:_init_fields()
-    self.initialized = false
-end
+    
+(unless (fboundp 'jm_setInitialized_1) (defgeneric jm_setInitialized_1 (this p1)))
+(defmethod jm_setInitialized_1 ((this BaseSoundsFactory) _initialized)
+  (declare (ignorable this _initialized))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_initialized) _initialized))))
 
-function BaseSoundsFactory.new()
-    local self = setmetatable({}, BaseSoundsFactory)
-    self:_init_fields()
-    return self
-end
-
-
-function BaseSoundsFactory:init()
-end
-
-
--- throws Exception
-function BaseSoundsFactory:getSoundInterfaceArray()
-        return java_new_array(nil, 0)
-end
-
-
-function BaseSoundsFactory:setInitialized(initialized)
-        self.initialized = initialized
-end
+    
+(unless (fboundp 'jm_isInitialized_0) (defgeneric jm_isInitialized_0 (this)))
+(defmethod jm_isInitialized_0 ((this BaseSoundsFactory))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_initialized)))))
 
 
-function BaseSoundsFactory:isInitialized()
-        return self.initialized
-end
-
-return BaseSoundsFactory
 

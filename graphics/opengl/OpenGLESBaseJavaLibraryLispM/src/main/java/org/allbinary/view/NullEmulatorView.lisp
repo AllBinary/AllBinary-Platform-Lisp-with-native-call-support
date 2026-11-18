@@ -1,55 +1,56 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.view
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2025 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.view
 
--- local Displayable = require("javax.microedition.lcdui.Displayable")
--- local MIDlet = require("javax.microedition.midlet.MIDlet")
-local EmulatorViewInterface = require("org.allbinary.view.EmulatorViewInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass NullEmulatorView (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar NullEmulatorView.jcell_NULL_EMULATOR_VIEW :jnone)
+(defun NullEmulatorView.jstatic_NULL_EMULATOR_VIEW ()
+  (when (eq NullEmulatorView.jcell_NULL_EMULATOR_VIEW :jnone) (setf NullEmulatorView.jcell_NULL_EMULATOR_VIEW (NullEmulatorView.jnew_0)))
+  NullEmulatorView.jcell_NULL_EMULATOR_VIEW)
+(defun (setf NullEmulatorView.jstatic_NULL_EMULATOR_VIEW) (value) (setf NullEmulatorView.jcell_NULL_EMULATOR_VIEW value))
 
-local NullEmulatorView = {}
-NullEmulatorView.__index = NullEmulatorView
-NullEmulatorView.className = "NullEmulatorView"
+(defun NullEmulatorView.jnew_0 ()
+  (let ((this (make-instance 'NullEmulatorView)))
+    this))
 
-function NullEmulatorView.new()
-    local self = setmetatable({}, NullEmulatorView)
-    return self
-end
+    
+(unless (fboundp 'jm_setMidlet_1) (defgeneric jm_setMidlet_1 (this p1)))
+(defmethod jm_setMidlet_1 ((this NullEmulatorView) _midlet)
+  (declare (ignorable this _midlet))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_onEmulatorInitComplete_1) (defgeneric jm_onEmulatorInitComplete_1 (this p1)))
+(defmethod jm_onEmulatorInitComplete_1 ((this NullEmulatorView) _midletActivity)
+  (declare (ignorable this _midletActivity))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_onSetDisplayable_1) (defgeneric jm_onSetDisplayable_1 (this p1)))
+(defmethod jm_onSetDisplayable_1 ((this NullEmulatorView) _displayable)
+  (declare (ignorable this _displayable))
+  (let ()
+    (block jreturn nil)))
 
 
-function NullEmulatorView:setMidlet(midlet)
-end
-
-
-function NullEmulatorView:onEmulatorInitComplete(midletActivity)
-end
-
-
-function NullEmulatorView:onSetDisplayable(displayable)
-end
-
-NullEmulatorView.NULL_EMULATOR_VIEW = NullEmulatorView.new()
-
-return NullEmulatorView
 

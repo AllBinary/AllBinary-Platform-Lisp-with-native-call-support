@@ -1,64 +1,63 @@
--- Generated Code Do Not Modify
--- package org.allbinary.logic.math.permutations
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.math.permutations
 
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local Visitor = require("org.allbinary.logic.util.visitor.Visitor")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass IntPermutationVisitor (Visitor)
+  ((f_data :initform nil)
+   (f_stringBuilder :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun IntPermutationVisitor.jnew_1 (_data)
+  (declare (ignorable _data))
+  (let ((this (make-instance 'IntPermutationVisitor)))
+    
+    (setf (slot-value this 'f_stringBuilder) (StringMaker.jnew_0))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_data) _data)))
+    this))
 
-local IntPermutationVisitor = {}
-IntPermutationVisitor.__index = IntPermutationVisitor
-IntPermutationVisitor.className = "IntPermutationVisitor"
-setmetatable(IntPermutationVisitor, {__index = Visitor})
+    
+(unless (fboundp 'jm_visit_1) (defgeneric jm_visit_1 (this p1)))
+(defmethod jm_visit_1 ((this IntPermutationVisitor) _anyType)
+  (declare (ignorable this _anyType))
+  (let ()
+    (block jreturn
+        (jm_delete_2 (slot-value this 'f_stringBuilder) 0 (jm_length_0 (slot-value this 'f_stringBuilder)))
+        (jm_print_2 this (slot-value this 'f_data) (slot-value this 'f_stringBuilder))
+        (return-from jreturn (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT)))))
 
-function IntPermutationVisitor:_init_fields()
-    self.data = nil
-    self.stringBuilder = StringMaker.new()
-end
+    
+(unless (fboundp 'jm_print_1) (defgeneric jm_print_1 (this p1)))
+(defmethod jm_print_1 ((this IntPermutationVisitor) _data)
+  (declare (ignorable this _data))
+  (let (_stringBuilder)
+  (declare (ignorable _stringBuilder))
+    (block jreturn
+        (setf _stringBuilder (StringMaker.jnew_0))
+        (jm_print_2 this _data _stringBuilder))))
+
+    
+(unless (fboundp 'jm_print_2) (defgeneric jm_print_2 (this p1 p2)))
+(defmethod jm_print_2 ((this IntPermutationVisitor) _data _stringBuilder)
+  (declare (ignorable this _data _stringBuilder))
+  (let (_commonSeps _size _i)
+  (declare (ignorable _commonSeps _size _i))
+    (block jreturn
+        (setf _commonSeps (CommonSeps.jm_getInstance_0))
+        (setf _size (length _data))
+        (progn
+            (setf _i 0)
+            (block jbreak (loop while (< _i _size) do
+                (block jcontinue
+            (jm_appendint_1 _stringBuilder (aref _data _i))
+            (jm_append_1 _stringBuilder (slot-value _commonSeps 'f_SPACE)))
+                (setf _i (JR.i32 (+ _i 1))))))
+        (JR.println (jm_toString_0 _stringBuilder)))))
 
 
-function IntPermutationVisitor.new(data)
-    local self = setmetatable(Visitor.new(), IntPermutationVisitor)
-    self:_init_fields()
-        self.data = data
-    return self
-end
-
-
-function IntPermutationVisitor:visit(anyType)
-        self.stringBuilder:delete(0, self.stringBuilder:length())
-        self:print(self.data, self.stringBuilder)
-        return NullUtil.getInstance().NULL_OBJECT
-end
-
-
-function IntPermutationVisitor:print(data)
-        local stringBuilder = StringMaker.new()
-        self:print(data, stringBuilder)
-end
-
-
--- Java overloaded method: Lua keeps the last definition
-function IntPermutationVisitor:print(data, stringBuilder)
-        local commonSeps = CommonSeps.getInstance()
-        local size = (data.n or #data)
-        for i = 0, size - 1 do
-            stringBuilder:appendint(data[i + 1])
-            stringBuilder:append(commonSeps.SPACE)
-        end
-        print(tostring(stringBuilder))
-end
-
-return IntPermutationVisitor
 

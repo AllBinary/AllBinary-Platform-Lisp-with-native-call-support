@@ -1,85 +1,84 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation.image
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
--- local Image = require("javax.microedition.lcdui.Image")
--- local Sprite = require("javax.microedition.lcdui.game.Sprite")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local Anchor = require("org.allbinary.graphics.Anchor")
-local PrimitiveIntUtil = require("org.allbinary.logic.math.PrimitiveIntUtil")
-local ImageSegmentAnimation = require("org.allbinary.animation.image.ImageSegmentAnimation")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass RightToLeftImageAnimation (ImageSegmentAnimation)
+  ((f_startWidth :initform 0)
+   (f_currentWidth :initform 0)
+   (f_anchor :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun RightToLeftImageAnimation.jnew_2 (_image _animationBehavior)
+  (declare (ignorable _image _animationBehavior))
+  (let ((this (make-instance 'RightToLeftImageAnimation)))
+    
+    
+    (setf (slot-value this 'f_anchor) (Anchor.jstatic_TOP_LEFT))
+  (let ()
+    (block jreturn
+        nil
+        (jm_setFrame_1 this (JR.i32 (- (jm_getSize_0 this) 1)))))
+    this))
 
-local RightToLeftImageAnimation = {}
-RightToLeftImageAnimation.__index = RightToLeftImageAnimation
-RightToLeftImageAnimation.className = "RightToLeftImageAnimation"
-setmetatable(RightToLeftImageAnimation, {__index = ImageSegmentAnimation})
+    
+(unless (fboundp 'jm_nextFrame_0) (defgeneric jm_nextFrame_0 (this)))
+(defmethod jm_nextFrame_0 ((this RightToLeftImageAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_previousFrame_0 this)
+        (jm_update_0 this))))
 
-function RightToLeftImageAnimation:_init_fields()
-    self.startWidth = 0
-    self.currentWidth = 0
-    self.anchor = Anchor.TOP_LEFT
-end
+    
+(unless (fboundp 'jm_previousFrame_0) (defgeneric jm_previousFrame_0 (this)))
+(defmethod jm_previousFrame_0 ((this RightToLeftImageAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_nextFrame_0 this)
+        (jm_update_0 this))))
+
+    
+(unless (fboundp 'jm_setFrame_1) (defgeneric jm_setFrame_1 (this p1)))
+(defmethod jm_setFrame_1 ((this RightToLeftImageAnimation) _index)
+  (declare (ignorable this _index))
+  (let ()
+    (block jreturn
+        (call-next-method this _index)
+        (jm_update_0 this))))
+
+    
+(unless (fboundp 'jm_update_0) (defgeneric jm_update_0 (this)))
+(defmethod jm_update_0 ((this RightToLeftImageAnimation))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_startWidth) (JR.idiv (JR.i32 (* (jm_getDrawWidth_0 this) (jm_getFrame_0 this))) (jm_getSize_0 this)))
+        (setf (slot-value this 'f_currentWidth) (JR.i32 (- (jm_getDrawWidth_0 this) (slot-value this 'f_startWidth)))))))
+
+    
+(unless (fboundp 'jm_paintXY_3) (defgeneric jm_paintXY_3 (this p1 p2 p3)))
+(defmethod jm_paintXY_3 ((this RightToLeftImageAnimation) _graphics _x _y)
+  (declare (ignorable this _graphics _x _y))
+  (let ()
+    (block jreturn
+        (jm_drawRegion_9 _graphics (jm_getImage_0 this) (slot-value this 'f_startWidth) (jm_getStartY_0 this) (slot-value this 'f_currentWidth) (jm_getDrawHeight_0 this) (Sprite.jstatic_TRANS_NONE) (JR.i32 (+ _x (slot-value this 'f_startWidth))) _y (slot-value this 'f_anchor)))))
 
 
-function RightToLeftImageAnimation.new(image, animationBehavior)
-    local self = setmetatable(ImageSegmentAnimation.new(image, PrimitiveIntUtil.getArrayInstance(), animationBehavior), RightToLeftImageAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self:setFrame(self:getSize() - 1)
-    return self
-end
-
-
-function RightToLeftImageAnimation:nextFrame()
-        ImageSegmentAnimation.previousFrame(self)
-        self:update()
-end
-
-
-function RightToLeftImageAnimation:previousFrame()
-        ImageSegmentAnimation.nextFrame(self)
-        self:update()
-end
-
-
-function RightToLeftImageAnimation:setFrame(index)
-        ImageSegmentAnimation.setFrame(self, index)
-        self:update()
-end
-
-
-function RightToLeftImageAnimation:update()
-        self.startWidth = self:getDrawWidth() * self:getFrame() / self:getSize()
-        self.currentWidth = self:getDrawWidth() - self.startWidth
-end
-
-
-function RightToLeftImageAnimation:paintXY(graphics, x, y)
-        graphics:drawRegion(self:getImage(), self.startWidth, self:getStartY(), self.currentWidth, self:getDrawHeight(), Sprite.TRANS_NONE, x + self.startWidth, y, self.anchor)
-end
-
-return RightToLeftImageAnimation
 

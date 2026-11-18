@@ -1,101 +1,94 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2022 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.score
 
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local HighScoresHelperBaseInterface = require("org.allbinary.game.score.HighScoresHelperBaseInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(defclass HighScoresHelperBase (JObject)
+  ((f_logUtil :initform nil)
+   (f_highScoresArrayP :initform nil)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defun HighScoresHelperBase.jnew_0 ()
+  (let ((this (make-instance 'HighScoresHelperBase)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_highScoresArrayP) (slot-value (LastFetchHighScoresFactory.jm_getInstance_0) 'f_highScoresArray))
+    this))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(unless (fboundp 'jm_setHighScoresArray_1) (defgeneric jm_setHighScoresArray_1 (this p1)))
+(defmethod jm_setHighScoresArray_1 ((this HighScoresHelperBase) _highScoresArrayP)
+  (declare (ignorable this _highScoresArrayP))
+  (let (_commonStrings)
+  (declare (ignorable _commonStrings))
+    (block jreturn
+        (if (not (null _highScoresArrayP))
+            (progn
+            (setf _commonStrings (CommonStrings.jm_getInstance_0))
+            (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 (jm_appendint_1 (jm_append_1 (StringMaker.jnew_0) (slot-value _commonStrings 'f_START)) (length _highScoresArrayP))) this "setHighScoresArray"))
+            (progn
+            (setf _commonStrings (CommonStrings.jm_getInstance_0))
+            (jm_putF_3 (slot-value this 'f_logUtil) (slot-value _commonStrings 'f_START) this "setHighScoresArray")))
+        (setf (slot-value this 'f_highScoresArrayP) _highScoresArrayP))))
 
-local HighScoresHelperBase = {}
-HighScoresHelperBase.__index = HighScoresHelperBase
-HighScoresHelperBase.className = "HighScoresHelperBase"
+    
+(unless (fboundp 'jm_getNextHighScores_0) (defgeneric jm_getNextHighScores_0 (this)))
+(defmethod jm_getNextHighScores_0 ((this HighScoresHelperBase))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (NullHighScoresSingletonFactory.jm_getInstance_0)))))
 
-function HighScoresHelperBase:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.highScoresArrayP = LastFetchHighScoresFactory.getInstance().highScoresArray
-end
+    
+(unless (fboundp 'jm_isAnyHighScores_0) (defgeneric jm_isAnyHighScores_0 (this)))
+(defmethod jm_isAnyHighScores_0 ((this HighScoresHelperBase))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (error (JR.newException "RuntimeException")))))
 
-function HighScoresHelperBase.new()
-    local self = setmetatable({}, HighScoresHelperBase)
-    self:_init_fields()
-    return self
-end
+    
+(unless (fboundp 'jm_setSelectedHighScores_1) (defgeneric jm_setSelectedHighScores_1 (this p1)))
+(defmethod jm_setSelectedHighScores_1 ((this HighScoresHelperBase) _selectedHighScores)
+  (declare (ignorable this _selectedHighScores))
+  (let ()
+    (block jreturn nil)))
 
+    
+(unless (fboundp 'jm_getSelectedHighScores_0) (defgeneric jm_getSelectedHighScores_0 (this)))
+(defmethod jm_getSelectedHighScores_0 ((this HighScoresHelperBase))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (NullHighScoresSingletonFactory.jm_getInstance_0)))))
 
-function HighScoresHelperBase:setHighScoresArray(highScoresArrayP)
-        if highScoresArrayP ~= nil then
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:putF(tostring(StringMaker.new():append(commonStrings.START):appendint((highScoresArrayP.n or #highScoresArrayP))), self, "setHighScoresArray")
-        else
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:putF(commonStrings.START, self, "setHighScoresArray")
-        end
-        self.highScoresArrayP = highScoresArrayP
-end
+    
+(unless (fboundp 'jm_getHighScoresArray_0) (defgeneric jm_getHighScoresArray_0 (this)))
+(defmethod jm_getHighScoresArray_0 ((this HighScoresHelperBase))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_highScoresArrayP)))))
 
-
-function HighScoresHelperBase:getNextHighScores()
-        return NullHighScoresSingletonFactory.getInstance()
-end
-
-
-function HighScoresHelperBase:isAnyHighScores()
-        error(java_exception("RuntimeException"), 0)
-end
-
-
-function HighScoresHelperBase:setSelectedHighScores(selectedHighScores)
-end
-
-
-function HighScoresHelperBase:getSelectedHighScores()
-        return NullHighScoresSingletonFactory.getInstance()
-end
-
-
-function HighScoresHelperBase:getHighScoresArray()
-        return self.highScoresArrayP
-end
+    
+(unless (fboundp 'jm_selectHighScores_0) (defgeneric jm_selectHighScores_0 (this)))
+(defmethod jm_selectHighScores_0 ((this HighScoresHelperBase))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
 
 
-function HighScoresHelperBase:selectHighScores()
-end
-
-return HighScoresHelperBase
 

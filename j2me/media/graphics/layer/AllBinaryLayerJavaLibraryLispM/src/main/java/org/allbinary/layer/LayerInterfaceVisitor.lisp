@@ -1,40 +1,35 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.layer
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.layer
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass LayerInterfaceVisitor (JObject)
+  ())
+
+(defun LayerInterfaceVisitor.jnew_0 ()
+  (let ((this (make-instance 'LayerInterfaceVisitor)))
+    this))
+
+    
+(unless (fboundp 'jm_visit_1) (defgeneric jm_visit_1 (this p1)))
+(defmethod jm_visit_1 ((this LayerInterfaceVisitor) _layerInterface)
+  (declare (ignorable this _layerInterface))
+  (error (JR.newException "AbstractMethodError" "visit")))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local LayerInterfaceVisitor = {}
-LayerInterfaceVisitor.__index = LayerInterfaceVisitor
-LayerInterfaceVisitor.className = "LayerInterfaceVisitor"
-
-
--- throws Exception
-function LayerInterfaceVisitor:visit(layerInterface)
-    error("abstract method visit")
-end
-
-return LayerInterfaceVisitor
 

@@ -1,64 +1,61 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.hud.basic.score
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.ag.layer.hud.basic.score
 
-local Scoreable = require("org.allbinary.game.score.Scoreable")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ScoreableAddOnlyForHud (Scoreable)
+  ((f_scoreHudWidget :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun ScoreableAddOnlyForHud.jnew_1 (_scoreVectorGraphic)
+  (declare (ignorable _scoreVectorGraphic))
+  (let ((this (make-instance 'ScoreableAddOnlyForHud)))
+    
+  (let ()
+    (block jreturn
+        nil
+        (setf (slot-value this 'f_scoreHudWidget) _scoreVectorGraphic)
+        (jm_set_1 (jm_getScoreHudWidget_0 this) 0)))
+    this))
 
-local ScoreableAddOnlyForHud = {}
-ScoreableAddOnlyForHud.__index = ScoreableAddOnlyForHud
-ScoreableAddOnlyForHud.className = "ScoreableAddOnlyForHud"
-setmetatable(ScoreableAddOnlyForHud, {__index = Scoreable})
+    
+(unless (fboundp 'jm_removePoints_1) (defgeneric jm_removePoints_1 (this p1)))
+(defmethod jm_removePoints_1 ((this ScoreableAddOnlyForHud) _points)
+  (declare (ignorable this _points))
+  (let ()
+    (block jreturn nil)))
 
-function ScoreableAddOnlyForHud:_init_fields()
-    self.scoreHudWidget = nil
-end
+    
+(unless (fboundp 'jm_addPoints_1) (defgeneric jm_addPoints_1 (this p1)))
+(defmethod jm_addPoints_1 ((this ScoreableAddOnlyForHud) _points)
+  (declare (ignorable this _points))
+  (let ()
+    (block jreturn
+        (call-next-method this _points)
+        (jm_add_1 (jm_getScoreHudWidget_0 this) _points))))
 
-
-function ScoreableAddOnlyForHud.new(scoreVectorGraphic)
-    local self = setmetatable(Scoreable.new(0), ScoreableAddOnlyForHud)
-    self:_init_fields()
-        -- super(...) made self above
-        self.scoreHudWidget = scoreVectorGraphic
-        self:getScoreHudWidget():set(0)
-    return self
-end
-
-
-function ScoreableAddOnlyForHud:removePoints(points)
-end
-
-
-function ScoreableAddOnlyForHud:addPoints(points)
-        Scoreable.addPoints(self, points)
-        self:getScoreHudWidget():add(points)
-end
+    
+(unless (fboundp 'jm_getScoreHudWidget_0) (defgeneric jm_getScoreHudWidget_0 (this)))
+(defmethod jm_getScoreHudWidget_0 ((this ScoreableAddOnlyForHud))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_scoreHudWidget)))))
 
 
-function ScoreableAddOnlyForHud:getScoreHudWidget()
-        return self.scoreHudWidget
-end
-
-return ScoreableAddOnlyForHud
 

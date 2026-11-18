@@ -1,48 +1,41 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2011 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.layer.event
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2011 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.layer.event
 
-local EventListenerInterface = require("org.allbinary.logic.util.event.EventListenerInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass LayerManagerEventListenerInterface (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun LayerManagerEventListenerInterface.jnew_0 ()
+  (let ((this (make-instance 'LayerManagerEventListenerInterface)))
+    this))
 
--- Java interface
-local LayerManagerEventListenerInterface = {}
-LayerManagerEventListenerInterface.__index = LayerManagerEventListenerInterface
-LayerManagerEventListenerInterface.className = "LayerManagerEventListenerInterface"
-setmetatable(LayerManagerEventListenerInterface, {__index = EventListenerInterface})
+    
+(unless (fboundp 'jm_onCreateLayerManagerEvent_1) (defgeneric jm_onCreateLayerManagerEvent_1 (this p1)))
+(defmethod jm_onCreateLayerManagerEvent_1 ((this LayerManagerEventListenerInterface) _layerManagerEvent)
+  (declare (ignorable this _layerManagerEvent))
+  (error (JR.newException "AbstractMethodError" "onCreateLayerManagerEvent")))
 
-
--- throws Exception
-function LayerManagerEventListenerInterface:onCreateLayerManagerEvent(layerManagerEvent)
-    error("abstract method onCreateLayerManagerEvent")
-end
+    
+(unless (fboundp 'jm_onDeleteLayerManagerEvent_1) (defgeneric jm_onDeleteLayerManagerEvent_1 (this p1)))
+(defmethod jm_onDeleteLayerManagerEvent_1 ((this LayerManagerEventListenerInterface) _layerManagerEvent)
+  (declare (ignorable this _layerManagerEvent))
+  (error (JR.newException "AbstractMethodError" "onDeleteLayerManagerEvent")))
 
 
--- throws Exception
-function LayerManagerEventListenerInterface:onDeleteLayerManagerEvent(layerManagerEvent)
-    error("abstract method onDeleteLayerManagerEvent")
-end
-
-return LayerManagerEventListenerInterface
 

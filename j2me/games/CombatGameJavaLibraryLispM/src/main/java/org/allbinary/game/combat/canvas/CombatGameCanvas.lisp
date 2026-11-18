@@ -1,129 +1,118 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.combat.canvas
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.combat.canvas
 
--- local CommandListener = require("javax.microedition.lcdui.CommandListener")
-local DestroyedLayerProcessor = require("org.allbinary.game.combat.destroy.DestroyedLayerProcessor")
-local DestroyEventCircularStaticPool = require("org.allbinary.game.combat.destroy.event.DestroyEventCircularStaticPool")
-local DestroyedEventHandler = require("org.allbinary.game.combat.destroy.event.DestroyedEventHandler")
-local Features = require("org.allbinary.game.configuration.feature.Features")
-local GameFeatureFactory = require("org.allbinary.game.configuration.feature.GameFeatureFactory")
-local AllBinaryGameCanvas = require("org.allbinary.game.displayable.canvas.AllBinaryGameCanvas")
-local BasicBuildGameInitializerFactory = require("org.allbinary.game.init.BasicBuildGameInitializerFactory")
-local AllBinaryGameLayerManager = require("org.allbinary.game.layer.AllBinaryGameLayerManager")
-local DropLayerProcessor = require("org.allbinary.game.layer.drop.DropLayerProcessor")
-local GroupLayerManagerListener = require("org.allbinary.game.layer.identification.GroupLayerManagerListener")
-local HighScoresFactoryInterface = require("org.allbinary.game.score.HighScoresFactoryInterface")
-local ProgressCanvasFactory = require("org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory")
-local BasicLayerProcessor = require("org.allbinary.layer.BasicLayerProcessor")
-local AbeClientInformationInterface = require("org.allbinary.logic.system.security.licensing.AbeClientInformationInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(defclass CombatGameCanvas (AllBinaryGameCanvas)
+  ())
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defvar CombatGameCanvas.jcell_basicLayerProcessor :jnone)
+(defun CombatGameCanvas.jstatic_basicLayerProcessor ()
+  (when (eq CombatGameCanvas.jcell_basicLayerProcessor :jnone) (setf CombatGameCanvas.jcell_basicLayerProcessor (JR.newArray nil 0)))
+  CombatGameCanvas.jcell_basicLayerProcessor)
+(defun (setf CombatGameCanvas.jstatic_basicLayerProcessor) (value) (setf CombatGameCanvas.jcell_basicLayerProcessor value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun CombatGameCanvas.jnew_5 (_cmdListener _gameLayerManager _highScoresFactoryInterface _gameInitializationInterfaceFactoryInterface _buffered)
+  (declare (ignorable _cmdListener _gameLayerManager _highScoresFactoryInterface _gameInitializationInterfaceFactoryInterface _buffered))
+  (let ((this (make-instance 'CombatGameCanvas)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
-local CombatGameCanvas = {}
-CombatGameCanvas.__index = CombatGameCanvas
-CombatGameCanvas.className = "CombatGameCanvas"
-setmetatable(CombatGameCanvas, {__index = AllBinaryGameCanvas})
+    
+(unless (fboundp 'jm_CombatGameCanvas_init_0) (defgeneric jm_CombatGameCanvas_init_0 (this)))
+(defmethod jm_CombatGameCanvas_init_0 ((this CombatGameCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_init_1 (DestroyEventCircularStaticPool.jm_getInstance_0) this)
+        (jm_addNormalPortion_2 (ProgressCanvasFactory.jm_getInstance_0) 50 "Destroy Events"))))
 
+    
+(unless (fboundp 'jm_initApp_1) (defgeneric jm_initApp_1 (this p1)))
+(defmethod jm_initApp_1 ((this CombatGameCanvas) _abeClientInformation)
+  (declare (ignorable this _abeClientInformation))
+  (let ()
+    (block jreturn
+        (jm_CombatGameCanvas_init_0 this)
+        (call-next-method this _abeClientInformation))))
 
-function CombatGameCanvas.new(cmdListener, gameLayerManager, highScoresFactoryInterface, gameInitializationInterfaceFactoryInterface, buffered)
-    local self = setmetatable(AllBinaryGameCanvas.new(cmdListener, gameLayerManager, highScoresFactoryInterface, gameInitializationInterfaceFactoryInterface, buffered), CombatGameCanvas)
-        -- super(...) made self above
-    return self
-end
+    
+(unless (fboundp 'jm_initConfigurablePortion_1) (defgeneric jm_initConfigurablePortion_1 (this p1)))
+(defmethod jm_initConfigurablePortion_1 ((this CombatGameCanvas) _portion)
+  (declare (ignorable this _portion))
+  (let (_features _gameFeatureFactory)
+  (declare (ignorable _features _gameFeatureFactory))
+    (block jreturn
+        (DestroyedLayerProcessor.jm_init_0)
+        (jm_addNormalPortion_2 (ProgressCanvasFactory.jm_getInstance_0) _portion "Basic Processors")
+        (setf _features (Features.jm_getInstance_0))
+        (setf _gameFeatureFactory (GameFeatureFactory.jm_getInstance_0))
+        (if (and (jm_isFeature_1 _features (slot-value _gameFeatureFactory 'f_DROPPED_ITEMS)) (jm_isFeature_1 _features (slot-value _gameFeatureFactory 'f_DROPPED_ITEMS_FROM_DEATH)))
+            (progn
+            (setf (CombatGameCanvas.jstatic_basicLayerProcessor) (JR.newArray nil 2))
+            (setf (aref (CombatGameCanvas.jstatic_basicLayerProcessor) 0) (DestroyedLayerProcessor.jm_getInstance_0))
+            (setf (aref (CombatGameCanvas.jstatic_basicLayerProcessor) 1) (DropLayerProcessor.jm_getInstance_0)))
+            (progn
+            (setf (CombatGameCanvas.jstatic_basicLayerProcessor) (JR.newArray nil 1))
+            (setf (aref (CombatGameCanvas.jstatic_basicLayerProcessor) 0) (DestroyedLayerProcessor.jm_getInstance_0)))))))
 
+    
+(unless (fboundp 'jm_processPlayingGame_0) (defgeneric jm_processPlayingGame_0 (this)))
+(defmethod jm_processPlayingGame_0 ((this CombatGameCanvas))
+  (declare (ignorable this))
+  (let (_index)
+  (declare (ignorable _index))
+    (block jreturn
+        (call-next-method this)
+        (progn
+            (setf _index (length (CombatGameCanvas.jstatic_basicLayerProcessor)))
+            (block jbreak (loop while (>= (setf _index (JR.i32 (- _index 1))) 0) do
+                (block jcontinue
+            (jm_process_1 (aref (CombatGameCanvas.jstatic_basicLayerProcessor) _index) (slot-value this 'f_gameLayerManager)))))))))
 
-function CombatGameCanvas:CombatGameCanvas_init()
-        DestroyEventCircularStaticPool.getInstance():init(self)
-        ProgressCanvasFactory.getInstance():addNormalPortion(50, "Destroy Events")
-end
+    
+(unless (fboundp 'jm_cleanupGame_0) (defgeneric jm_cleanupGame_0 (this)))
+(defmethod jm_cleanupGame_0 ((this CombatGameCanvas))
+  (declare (ignorable this))
+  (let (_index)
+  (declare (ignorable _index))
+    (block jreturn
+        (call-next-method this)
+        (progn
+            (setf _index (length (CombatGameCanvas.jstatic_basicLayerProcessor)))
+            (block jbreak (loop while (>= (setf _index (JR.i32 (- _index 1))) 0) do
+                (block jcontinue
+            (jm_clear_0 (jm_getList_0 (aref (CombatGameCanvas.jstatic_basicLayerProcessor) _index)))))))
+        (jm_clear_0 (GroupLayerManagerListener.jm_getInstance_0))
+        (jm_log_0 (GroupLayerManagerListener.jm_getInstance_0))
+        (jm_removeAllListeners_0 (DestroyedEventHandler.jm_getInstance_0))
+        (jm_cleanupManager_0 this))))
 
-
--- throws Exception
-function CombatGameCanvas:initApp(abeClientInformation)
-        self:CombatGameCanvas_init()
-        AllBinaryGameCanvas.initApp(self, abeClientInformation)
-end
-
-
-function CombatGameCanvas:initConfigurablePortion(portion)
-        DestroyedLayerProcessor.init()
-        ProgressCanvasFactory.getInstance():addNormalPortion(portion, "Basic Processors")
-        local features = Features.getInstance()
-        local gameFeatureFactory = GameFeatureFactory.getInstance()
-        if features:isFeature(gameFeatureFactory.DROPPED_ITEMS) and features:isFeature(gameFeatureFactory.DROPPED_ITEMS_FROM_DEATH) then
-            CombatGameCanvas.basicLayerProcessor = java_new_array(nil, 2)
-            CombatGameCanvas.basicLayerProcessor[1] = DestroyedLayerProcessor.getInstance()
-            CombatGameCanvas.basicLayerProcessor[2] = DropLayerProcessor.getInstance()
-        else
-            CombatGameCanvas.basicLayerProcessor = java_new_array(nil, 1)
-            CombatGameCanvas.basicLayerProcessor[1] = DestroyedLayerProcessor.getInstance()
-        end
-end
-
-
--- throws Exception
-function CombatGameCanvas:processPlayingGame()
-        AllBinaryGameCanvas.processPlayingGame(self)
-        do
-            local index = (CombatGameCanvas.basicLayerProcessor.n or #CombatGameCanvas.basicLayerProcessor)
-            while (function() index = index - 1 return index end)() >= 0 do
-            CombatGameCanvas.basicLayerProcessor[index + 1]:process(self.gameLayerManager)
-            end
-        end
-end
-
-
--- throws Exception
-function CombatGameCanvas:cleanupGame()
-        AllBinaryGameCanvas.cleanupGame(self)
-        do
-            local index = (CombatGameCanvas.basicLayerProcessor.n or #CombatGameCanvas.basicLayerProcessor)
-            while (function() index = index - 1 return index end)() >= 0 do
-            CombatGameCanvas.basicLayerProcessor[index + 1]:getList():clear()
-            end
-        end
-        GroupLayerManagerListener.getInstance():clear()
-        GroupLayerManagerListener.getInstance():log()
-        DestroyedEventHandler.getInstance():removeAllListeners()
-        self:cleanupManager()
-end
+    
+(unless (fboundp 'jm_cleanupManager_0) (defgeneric jm_cleanupManager_0 (this)))
+(defmethod jm_cleanupManager_0 ((this CombatGameCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_cleanup_0 (slot-value this 'f_gameLayerManager)))))
 
 
--- throws Exception
-function CombatGameCanvas:cleanupManager()
-        self.gameLayerManager:cleanup()
-end
-
-CombatGameCanvas.basicLayerProcessor = java_new_array(nil, 0)
-
-return CombatGameCanvas
 

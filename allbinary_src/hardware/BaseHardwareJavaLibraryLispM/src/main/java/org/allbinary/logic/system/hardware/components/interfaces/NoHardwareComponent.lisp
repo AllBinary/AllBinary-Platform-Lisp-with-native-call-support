@@ -25,6 +25,7 @@
 (defun NoHardwareComponent.jstatic_instance ()
   (when (eq NoHardwareComponent.jcell_instance :jnone) (setf NoHardwareComponent.jcell_instance (NoHardwareComponent.jnew_0)))
   NoHardwareComponent.jcell_instance)
+(defun (setf NoHardwareComponent.jstatic_instance) (value) (setf NoHardwareComponent.jcell_instance value))
 
 (defun NoHardwareComponent.jnew_0 ()
   (let ((this (make-instance 'NoHardwareComponent)))

@@ -1,69 +1,70 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles.shader
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2025 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.opengles.shader
 
--- local GL10 = require("javax.microedition.khronos.opengles.GL10")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ShaderManager (JObject)
+  ((f_LOAD_SHADER :initform nil)
+   (f_commonStrings :initform nil)
+   (f_GL_VERTEX_SHADER :initform 0)
+   (f_GL_FRAGMENT_SHADER :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar ShaderManager.jcell_instance :jnone)
+(defun ShaderManager.jstatic_instance ()
+  (when (eq ShaderManager.jcell_instance :jnone) (setf ShaderManager.jcell_instance (ShaderManager.jnew_2 (JR.i32 (- 1)) (JR.i32 (- 1)))))
+  ShaderManager.jcell_instance)
+(defun (setf ShaderManager.jstatic_instance) (value) (setf ShaderManager.jcell_instance value))
 
-local ShaderManager = {}
-ShaderManager.__index = ShaderManager
-ShaderManager.className = "ShaderManager"
+    
+(defun ShaderManager.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (ShaderManager.jstatic_instance)))))
 
-function ShaderManager:_init_fields()
-    self.LOAD_SHADER = "loadShader"
-    self.commonStrings = CommonStrings.getInstance()
-    self.GL_VERTEX_SHADER = nil
-    self.GL_FRAGMENT_SHADER = nil
-end
+    
+(defun ShaderManager.jnew_2 (_GL_VERTEX_SHADER _GL_FRAGMENT_SHADER)
+  (declare (ignorable _GL_VERTEX_SHADER _GL_FRAGMENT_SHADER))
+  (let ((this (make-instance 'ShaderManager)))
+    (setf (slot-value this 'f_LOAD_SHADER) "loadShader")
+    (setf (slot-value this 'f_commonStrings) (CommonStrings.jm_getInstance_0))
+    
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_GL_VERTEX_SHADER) _GL_VERTEX_SHADER)
+        (setf (slot-value this 'f_GL_FRAGMENT_SHADER) _GL_FRAGMENT_SHADER)))
+    this))
+
+    
+(unless (fboundp 'jm_load_4) (defgeneric jm_load_4 (this p1 p2 p3 p4)))
+(defmethod jm_load_4 ((this ShaderManager) _gl _resource _shaderAsStringArray _shaderType)
+  (declare (ignorable this _gl _resource _shaderAsStringArray _shaderType))
+  (let ()
+    (block jreturn
+        (return-from jreturn (JR.i32 (- 1))))))
+
+    
+(unless (fboundp 'jm_loadShader_4) (defgeneric jm_loadShader_4 (this p1 p2 p3 p4)))
+(defmethod jm_loadShader_4 ((this ShaderManager) _gl _resource _stringList _shaderType)
+  (declare (ignorable this _gl _resource _stringList _shaderType))
+  (let ()
+    (block jreturn
+        (return-from jreturn (JR.i32 (- 1))))))
 
 
-function ShaderManager.getInstance()
-        return ShaderManager.instance
-end
-
-
-function ShaderManager.new(GL_VERTEX_SHADER, GL_FRAGMENT_SHADER)
-    local self = setmetatable({}, ShaderManager)
-    self:_init_fields()
-        self.GL_VERTEX_SHADER = GL_VERTEX_SHADER
-        self.GL_FRAGMENT_SHADER = GL_FRAGMENT_SHADER
-    return self
-end
-
-
-function ShaderManager:load(gl, resource, shaderAsStringArray, shaderType)
-        return -1
-end
-
-
-function ShaderManager:loadShader(gl, resource, stringList, shaderType)
-        return -1
-end
-
-ShaderManager.instance = ShaderManager.new(-1, -1)
-
-return ShaderManager
 

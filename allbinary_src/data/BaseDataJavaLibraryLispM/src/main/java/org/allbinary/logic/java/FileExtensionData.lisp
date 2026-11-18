@@ -26,6 +26,7 @@
 (defun FileExtensionData.jstatic_instance ()
   (when (eq FileExtensionData.jcell_instance :jnone) (setf FileExtensionData.jcell_instance (FileExtensionData.jnew_0)))
   FileExtensionData.jcell_instance)
+(defun (setf FileExtensionData.jstatic_instance) (value) (setf FileExtensionData.jcell_instance value))
 
     
 (defun FileExtensionData.jm_getInstance_0 ()

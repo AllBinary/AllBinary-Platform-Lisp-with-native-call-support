@@ -1,77 +1,67 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai.scroller
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.ag.ai.scroller
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local MyRandomFactory = require("org.allbinary.game.rand.MyRandomFactory")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
-local BasePatrolAI = require("org.allbinary.game.ag.ai.scroller.BasePatrolAI")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass RandomPatrolAI (BasePatrolAI)
+  ((f_changedDirection :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun RandomPatrolAI.jnew_3 (_hashtable _ownerLayerInterface _gameInput)
+  (declare (ignorable _hashtable _ownerLayerInterface _gameInput))
+  (let ((this (make-instance 'RandomPatrolAI)))
+    (setf (slot-value this 'f_changedDirection) t)
+  (let ()
+    (block jreturn
+        nil
+        (jm_updateRandomDistance_0 this)))
+    this))
 
-local RandomPatrolAI = {}
-RandomPatrolAI.__index = RandomPatrolAI
-RandomPatrolAI.className = "RandomPatrolAI"
-setmetatable(RandomPatrolAI, {__index = BasePatrolAI})
+    
+(unless (fboundp 'jm_updateRandomDistance_0) (defgeneric jm_updateRandomDistance_0 (this)))
+(defmethod jm_updateRandomDistance_0 ((this RandomPatrolAI))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_currentDistance) (jm_getAbsoluteNextInt_1 (MyRandomFactory.jm_getInstance_0) (jm_intValue_0 (slot-value this 'f_maxDistance)))))))
 
-function RandomPatrolAI:_init_fields()
-    self.changedDirection = true
-end
+    
+(unless (fboundp 'jm_processAI_1) (defgeneric jm_processAI_1 (this p1)))
+(defmethod jm_processAI_1 ((this RandomPatrolAI) _allBinaryLayerManager)
+  (declare (ignorable this _allBinaryLayerManager))
+  (let ()
+    (block jreturn
+        (jm_update_0 this)
+        (jm_processKeyAI_1 this (slot-value this 'f_keyDirection))
+        (if (slot-value this 'f_changedDirection)
+            (progn
+            (jm_processKeyAI_1 this (Canvas.jstatic_KEY_NUM1))
+            (jm_updateRandomDistance_0 this)
+            (setf (slot-value this 'f_changedDirection) nil))))))
 
-
-function RandomPatrolAI.new(hashtable, ownerLayerInterface, gameInput)
-    local self = setmetatable(BasePatrolAI.new(hashtable, ownerLayerInterface, gameInput), RandomPatrolAI)
-    self:_init_fields()
-        -- super(...) made self above
-        self:updateRandomDistance()
-    return self
-end
-
-
-function RandomPatrolAI:updateRandomDistance()
-        self.currentDistance = MyRandomFactory.getInstance():getAbsoluteNextInt(math.tointeger(self.maxDistance // 1))
-end
-
-
--- throws Exception
-function RandomPatrolAI:processAI(allBinaryLayerManager)
-        BasePatrolAI.update(self)
-        BasePatrolAI.processKeyAI(self, self.keyDirection)
-        if self.changedDirection then
-            BasePatrolAI.processKeyAI(self, Canvas.KEY_NUM1)
-            self:updateRandomDistance()
-            self.changedDirection = false
-        end
-end
+    
+(unless (fboundp 'jm_nextDirection_0) (defgeneric jm_nextDirection_0 (this)))
+(defmethod jm_nextDirection_0 ((this RandomPatrolAI))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (call-next-method this)
+        (setf (slot-value this 'f_changedDirection) t))))
 
 
-function RandomPatrolAI:nextDirection()
-        BasePatrolAI.nextDirection(self)
-        self.changedDirection = true
-end
-
-return RandomPatrolAI
 

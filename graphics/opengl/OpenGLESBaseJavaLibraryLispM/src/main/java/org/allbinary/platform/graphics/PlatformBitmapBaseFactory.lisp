@@ -1,46 +1,43 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.platform.graphics
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2022 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.platform.graphics
 
--- local Image = require("javax.microedition.lcdui.Image")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass PlatformBitmapBaseFactory (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar PlatformBitmapBaseFactory.jcell_NULL_PLATFORM_BITMAP_BASE_FACTORY :jnone)
+(defun PlatformBitmapBaseFactory.jstatic_NULL_PLATFORM_BITMAP_BASE_FACTORY ()
+  (when (eq PlatformBitmapBaseFactory.jcell_NULL_PLATFORM_BITMAP_BASE_FACTORY :jnone) (setf PlatformBitmapBaseFactory.jcell_NULL_PLATFORM_BITMAP_BASE_FACTORY (PlatformBitmapBaseFactory.jnew_0)))
+  PlatformBitmapBaseFactory.jcell_NULL_PLATFORM_BITMAP_BASE_FACTORY)
+(defun (setf PlatformBitmapBaseFactory.jstatic_NULL_PLATFORM_BITMAP_BASE_FACTORY) (value) (setf PlatformBitmapBaseFactory.jcell_NULL_PLATFORM_BITMAP_BASE_FACTORY value))
 
-local PlatformBitmapBaseFactory = {}
-PlatformBitmapBaseFactory.__index = PlatformBitmapBaseFactory
-PlatformBitmapBaseFactory.className = "PlatformBitmapBaseFactory"
+(defun PlatformBitmapBaseFactory.jnew_0 ()
+  (let ((this (make-instance 'PlatformBitmapBaseFactory)))
+    this))
 
-function PlatformBitmapBaseFactory.new()
-    local self = setmetatable({}, PlatformBitmapBaseFactory)
-    return self
-end
+    
+(unless (fboundp 'jm_createBitmap_1) (defgeneric jm_createBitmap_1 (this p1)))
+(defmethod jm_createBitmap_1 ((this PlatformBitmapBaseFactory) _image)
+  (declare (ignorable this _image))
+  (let ()
+    (block jreturn
+        (return-from jreturn (PlatformBitmapBase.jstatic_NULL_PLATFORM_BITMAP_BASE)))))
 
 
-function PlatformBitmapBaseFactory:createBitmap(image)
-        return PlatformBitmapBase.NULL_PLATFORM_BITMAP_BASE
-end
-
-PlatformBitmapBaseFactory.NULL_PLATFORM_BITMAP_BASE_FACTORY = PlatformBitmapBaseFactory.new()
-
-return PlatformBitmapBaseFactory
 

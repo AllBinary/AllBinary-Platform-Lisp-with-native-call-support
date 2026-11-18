@@ -1,59 +1,59 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.debug
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.debug
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass DebugInterface (JObject)
+  ())
+
+(defun DebugInterface.jnew_0 ()
+  (let ((this (make-instance 'DebugInterface)))
+    this))
+
+    
+(unless (fboundp 'jm_start_0) (defgeneric jm_start_0 (this)))
+(defmethod jm_start_0 ((this DebugInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "start")))
+
+    
+(unless (fboundp 'jm_stop_0) (defgeneric jm_stop_0 (this)))
+(defmethod jm_stop_0 ((this DebugInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "stop")))
+
+    
+(unless (fboundp 'jm_getStartTime_0) (defgeneric jm_getStartTime_0 (this)))
+(defmethod jm_getStartTime_0 ((this DebugInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "getStartTime")))
+
+    
+(unless (fboundp 'jm_getMaxTime_0) (defgeneric jm_getMaxTime_0 (this)))
+(defmethod jm_getMaxTime_0 ((this DebugInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "getMaxTime")))
+
+    
+(unless (fboundp 'jm_isRunning_0) (defgeneric jm_isRunning_0 (this)))
+(defmethod jm_isRunning_0 ((this DebugInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "isRunning")))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local DebugInterface = {}
-DebugInterface.__index = DebugInterface
-DebugInterface.className = "DebugInterface"
-
-
-function DebugInterface:start()
-    error("abstract method start")
-end
-
-
-function DebugInterface:stop()
-    error("abstract method stop")
-end
-
-
-function DebugInterface:getStartTime()
-    error("abstract method getStartTime")
-end
-
-
-function DebugInterface:getMaxTime()
-    error("abstract method getMaxTime")
-end
-
-
-function DebugInterface:isRunning()
-    error("abstract method isRunning")
-end
-
-return DebugInterface
 

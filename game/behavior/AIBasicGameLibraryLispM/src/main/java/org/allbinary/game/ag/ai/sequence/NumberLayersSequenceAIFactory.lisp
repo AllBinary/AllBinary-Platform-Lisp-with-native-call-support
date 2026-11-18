@@ -1,46 +1,37 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai.sequence
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.ag.ai.sequence
 
-local ArtificialIntelligenceInterface = require("org.allbinary.ai.ArtificialIntelligenceInterface")
-local GameInput = require("org.allbinary.game.input.GameInput")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass NumberLayersSequenceAIFactory (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun NumberLayersSequenceAIFactory.jnew_0 ()
+  (let ((this (make-instance 'NumberLayersSequenceAIFactory)))
+    this))
 
-local NumberLayersSequenceAIFactory = {}
-NumberLayersSequenceAIFactory.__index = NumberLayersSequenceAIFactory
-NumberLayersSequenceAIFactory.className = "NumberLayersSequenceAIFactory"
-
-function NumberLayersSequenceAIFactory.new()
-    local self = setmetatable({}, NumberLayersSequenceAIFactory)
-    return self
-end
+    
+(unless (fboundp 'jm_getInstance_4) (defgeneric jm_getInstance_4 (this p1 p2 p3 p4)))
+(defmethod jm_getInstance_4 ((this NumberLayersSequenceAIFactory) _numberOfEnemiesLeft _artificialIntelligenceInterface _ownerLayerInterface _gameInput)
+  (declare (ignorable this _numberOfEnemiesLeft _artificialIntelligenceInterface _ownerLayerInterface _gameInput))
+  (let ()
+    (block jreturn
+        (return-from jreturn (NumberLayersSequenceAI.jnew_4 _numberOfEnemiesLeft _artificialIntelligenceInterface _ownerLayerInterface _gameInput)))))
 
 
-function NumberLayersSequenceAIFactory:getInstance(numberOfEnemiesLeft, artificialIntelligenceInterface, ownerLayerInterface, gameInput)
-        return NumberLayersSequenceAI.new(numberOfEnemiesLeft, artificialIntelligenceInterface, ownerLayerInterface, gameInput)
-end
-
-return NumberLayersSequenceAIFactory
 

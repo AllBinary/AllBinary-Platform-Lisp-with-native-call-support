@@ -28,6 +28,7 @@
 (defun HttpData.jstatic_instance ()
   (when (eq HttpData.jcell_instance :jnone) (setf HttpData.jcell_instance (HttpData.jnew_0)))
   HttpData.jcell_instance)
+(defun (setf HttpData.jstatic_instance) (value) (setf HttpData.jcell_instance value))
 
     
 (defun HttpData.jm_getInstance_0 ()

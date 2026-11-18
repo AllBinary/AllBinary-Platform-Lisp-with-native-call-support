@@ -1,56 +1,57 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.licensing
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.logic.system.security.licensing
 
-local LockedUtilInterface = require("org.allbinary.logic.system.security.licensing.LockedUtilInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass LockedUtil (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar LockedUtil.jcell_instance :jnone)
+(defun LockedUtil.jstatic_instance ()
+  (when (eq LockedUtil.jcell_instance :jnone) (setf LockedUtil.jcell_instance (LockedUtil.jnew_0)))
+  LockedUtil.jcell_instance)
+(defun (setf LockedUtil.jstatic_instance) (value) (setf LockedUtil.jcell_instance value))
 
-local LockedUtil = {}
-LockedUtil.__index = LockedUtil
-LockedUtil.className = "LockedUtil"
+(defun LockedUtil.jnew_0 ()
+  (let ((this (make-instance 'LockedUtil)))
+    this))
 
-function LockedUtil.new()
-    local self = setmetatable({}, LockedUtil)
-    return self
-end
+    
+(defun LockedUtil.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (LockedUtil.jstatic_instance)))))
+
+    
+(unless (fboundp 'jm_isLocked_0) (defgeneric jm_isLocked_0 (this)))
+(defmethod jm_isLocked_0 ((this LockedUtil))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn t))))
+
+    
+(unless (fboundp 'jm_isLockedFeature_1) (defgeneric jm_isLockedFeature_1 (this p1)))
+(defmethod jm_isLockedFeature_1 ((this LockedUtil) _lockableFeatrue)
+  (declare (ignorable this _lockableFeatrue))
+  (let ()
+    (block jreturn
+        (return-from jreturn t))))
 
 
-function LockedUtil.getInstance()
-        return LockedUtil.instance
-end
-
-
-function LockedUtil:isLocked()
-        return true
-end
-
-
-function LockedUtil:isLockedFeature(lockableFeatrue)
-        return true
-end
-
-LockedUtil.instance = LockedUtil.new()
-
-return LockedUtil
 

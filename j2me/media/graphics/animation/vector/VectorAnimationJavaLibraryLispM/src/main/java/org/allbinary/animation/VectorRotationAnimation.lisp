@@ -1,75 +1,78 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation
 
-local Direction = require("org.allbinary.direction.Direction")
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local Angle = require("org.allbinary.math.Angle")
-local AngleFactory = require("org.allbinary.math.AngleFactory")
-local AngleInfo = require("org.allbinary.math.AngleInfo")
-local VectorBaseRotationAnimation = require("org.allbinary.animation.VectorBaseRotationAnimation")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass VectorRotationAnimation (VectorBaseRotationAnimation)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun VectorRotationAnimation.jnew_3 (_currentPoints _basicColor _animationBehavior)
+  (declare (ignorable _currentPoints _basicColor _animationBehavior))
+  (let ((this (make-instance 'VectorRotationAnimation)))
+  (let ()
+    (block jreturn
+        nil
+        (jm_adjustAngle_1 (slot-value this 'f_angleInfo) (jm_getFrame_0 this))))
+    this))
 
-local VectorRotationAnimation = {}
-VectorRotationAnimation.__index = VectorRotationAnimation
-VectorRotationAnimation.className = "VectorRotationAnimation"
-setmetatable(VectorRotationAnimation, {__index = VectorBaseRotationAnimation})
+    
+(unless (fboundp 'jm_setFrameByDirection_1) (defgeneric jm_setFrameByDirection_1 (this p1)))
+(defmethod jm_setFrameByDirection_1 ((this VectorRotationAnimation) _direction)
+  (declare (ignorable this _direction))
+  (let (_angle)
+  (declare (ignorable _angle))
+    (block jreturn
+        (setf _angle (jm_getFrameAngle_1 (slot-value this 'f_directionUtil) _direction))
+        (jm_adjustFrameToAngle_1 this _angle))))
+
+    
+(unless (fboundp 'jm_setFrameToAngle_1) (defgeneric jm_setFrameToAngle_1 (this p1)))
+(defmethod jm_setFrameToAngle_1 ((this VectorRotationAnimation) _angle)
+  (declare (ignorable this _angle))
+  (let ()
+    (block jreturn
+        (jm_adjustFrameToAngle_1 this _angle))))
+
+    
+(unless (fboundp 'jm_setFrame_1) (defgeneric jm_setFrame_1 (this p1)))
+(defmethod jm_setFrame_1 ((this VectorRotationAnimation) _index)
+  (declare (ignorable this _index))
+  (let ()
+    (block jreturn
+        (call-next-method this _index)
+        (jm_adjustAngle_1 (slot-value this 'f_angleInfo) (jm_getFrame_0 this)))))
+
+    
+(unless (fboundp 'jm_adjustFrame_1) (defgeneric jm_adjustFrame_1 (this p1)))
+(defmethod jm_adjustFrame_1 ((this VectorRotationAnimation) _newAngle)
+  (declare (ignorable this _newAngle))
+  (let ()
+    (block jreturn
+        (jm_setFrame_1 this (jm_getFrameForAngle_2 (slot-value this 'f_frameUtil) _newAngle (jm_getAngleIncrement_0 (jm_getAngleIncrementInfo_0 (slot-value this 'f_angleInfo))))))))
+
+    
+(unless (fboundp 'jm_adjustFrameToAngle_1) (defgeneric jm_adjustFrameToAngle_1 (this p1)))
+(defmethod jm_adjustFrameToAngle_1 ((this VectorRotationAnimation) _newAngle)
+  (declare (ignorable this _newAngle))
+  (let ()
+    (block jreturn
+        (jm_adjustFrame_1 this (jm_getValue_0 _newAngle)))))
 
 
-function VectorRotationAnimation.new(currentPoints, basicColor, animationBehavior)
-    local self = setmetatable(VectorBaseRotationAnimation.new(AngleInfo.getInstance(java_int((AngleFactory.getInstance().TOTAL_ANGLE / (currentPoints.n or #currentPoints)))), currentPoints, basicColor, animationBehavior), VectorRotationAnimation)
-        -- super(...) made self above
-        self.angleInfo:adjustAngle(self:getFrame())
-    return self
-end
-
-
-function VectorRotationAnimation:setFrameByDirection(direction)
-        local angle = self.directionUtil:getFrameAngle(direction)
-        self:adjustFrameToAngle(angle)
-end
-
-
-function VectorRotationAnimation:setFrameToAngle(angle)
-        self:adjustFrameToAngle(angle)
-end
-
-
-function VectorRotationAnimation:setFrame(index)
-        VectorBaseRotationAnimation.setFrame(self, index)
-        self.angleInfo:adjustAngle(self:getFrame())
-end
-
-
-function VectorRotationAnimation:adjustFrame(newAngle)
-        self:setFrame(self.frameUtil:getFrameForAngle(newAngle, java_int(self.angleInfo:getAngleIncrementInfo():getAngleIncrement())))
-end
-
-
-function VectorRotationAnimation:adjustFrameToAngle(newAngle)
-        self:adjustFrame(newAngle:getValue())
-end
-
-return VectorRotationAnimation
 

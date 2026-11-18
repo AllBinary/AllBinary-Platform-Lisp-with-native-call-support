@@ -1,62 +1,56 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.combat.destroy
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.combat.destroy
 
-local CollidableCompositeLayer = require("org.allbinary.game.layer.CollidableCompositeLayer")
-local DestroyableBaseBehavior = require("org.allbinary.game.combat.destroy.DestroyableBaseBehavior")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass DestroyableSimpleBehavior (DestroyableBaseBehavior)
+  ((f_ownerLayer :initform nil)
+   (f_destroyed :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun DestroyableSimpleBehavior.jnew_1 (_ownerLayer)
+  (declare (ignorable _ownerLayer))
+  (let ((this (make-instance 'DestroyableSimpleBehavior)))
+    
+    (setf (slot-value this 'f_destroyed) nil)
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_ownerLayer) _ownerLayer)))
+    this))
 
-local DestroyableSimpleBehavior = {}
-DestroyableSimpleBehavior.__index = DestroyableSimpleBehavior
-DestroyableSimpleBehavior.className = "DestroyableSimpleBehavior"
-setmetatable(DestroyableSimpleBehavior, {__index = DestroyableBaseBehavior})
+    
+(unless (fboundp 'jm_isDestroyed_0) (defgeneric jm_isDestroyed_0 (this)))
+(defmethod jm_isDestroyed_0 ((this DestroyableSimpleBehavior))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_destroyed)))))
 
-function DestroyableSimpleBehavior:_init_fields()
-    self.ownerLayer = nil
-    self.destroyed = false
-end
-
-
-function DestroyableSimpleBehavior.new(ownerLayer)
-    local self = setmetatable(DestroyableBaseBehavior.new(), DestroyableSimpleBehavior)
-    self:_init_fields()
-        self.ownerLayer = ownerLayer
-    return self
-end
-
-
-function DestroyableSimpleBehavior:isDestroyed()
-        return self.destroyed
-end
+    
+(unless (fboundp 'jm_setDestroyed_1) (defgeneric jm_setDestroyed_1 (this p1)))
+(defmethod jm_setDestroyed_1 ((this DestroyableSimpleBehavior) _destroyed)
+  (declare (ignorable this _destroyed))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_destroyed) _destroyed)
+        (if (jm_isDestroyed_0 this)
+            (progn
+            (jm_add_1 (DestroyedLayerProcessor.jm_getInstance_0) (slot-value this 'f_ownerLayer)))))))
 
 
-function DestroyableSimpleBehavior:setDestroyed(destroyed)
-        self.destroyed = destroyed
-        if self:isDestroyed() then
-            DestroyedLayerProcessor.getInstance():add(self.ownerLayer)
-        end
-end
-
-return DestroyableSimpleBehavior
 

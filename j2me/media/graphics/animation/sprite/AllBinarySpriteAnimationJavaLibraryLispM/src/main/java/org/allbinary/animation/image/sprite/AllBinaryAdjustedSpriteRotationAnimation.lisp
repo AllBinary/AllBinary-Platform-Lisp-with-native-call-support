@@ -1,60 +1,48 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image.sprite
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.animation.image.sprite
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
--- local Image = require("javax.microedition.lcdui.Image")
--- local Sprite = require("javax.microedition.lcdui.game.Sprite")
-local AnimationBehavior = require("org.allbinary.animation.AnimationBehavior")
-local AllBinarySpriteRotationAnimation = require("org.allbinary.animation.image.sprite.AllBinarySpriteRotationAnimation")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass AllBinaryAdjustedSpriteRotationAnimation (AllBinarySpriteRotationAnimation)
+  ((f_dx :initform 0)
+   (f_dy :initform 0)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun AllBinaryAdjustedSpriteRotationAnimation.jnew_5 (_sprite _image _dx _dy _animationBehavior)
+  (declare (ignorable _sprite _image _dx _dy _animationBehavior))
+  (let ((this (make-instance 'AllBinaryAdjustedSpriteRotationAnimation)))
+    
+    
+  (let ()
+    (block jreturn
+        nil
+        (setf (slot-value this 'f_dx) _dx)
+        (setf (slot-value this 'f_dy) _dy)))
+    this))
 
-local AllBinaryAdjustedSpriteRotationAnimation = {}
-AllBinaryAdjustedSpriteRotationAnimation.__index = AllBinaryAdjustedSpriteRotationAnimation
-AllBinaryAdjustedSpriteRotationAnimation.className = "AllBinaryAdjustedSpriteRotationAnimation"
-setmetatable(AllBinaryAdjustedSpriteRotationAnimation, {__index = AllBinarySpriteRotationAnimation})
-
-function AllBinaryAdjustedSpriteRotationAnimation:_init_fields()
-    self.dx = nil
-    self.dy = nil
-end
-
-
-function AllBinaryAdjustedSpriteRotationAnimation.new(sprite, image, dx, dy, animationBehavior)
-    local self = setmetatable(AllBinarySpriteRotationAnimation.new(sprite, image, animationBehavior), AllBinaryAdjustedSpriteRotationAnimation)
-    self:_init_fields()
-        -- super(...) made self above
-        self.dx = dx
-        self.dy = dy
-    return self
-end
+    
+(unless (fboundp 'jm_paintXY_3) (defgeneric jm_paintXY_3 (this p1 p2 p3)))
+(defmethod jm_paintXY_3 ((this AllBinaryAdjustedSpriteRotationAnimation) _g _x _y)
+  (declare (ignorable this _g _x _y))
+  (let ()
+    (block jreturn
+        (jm_setPosition_2 (slot-value this 'f_sprite) (JR.i32 (+ _x (slot-value this 'f_dx))) (JR.i32 (+ _y (slot-value this 'f_dy))))
+        (jm_paint_1 this _g))))
 
 
-function AllBinaryAdjustedSpriteRotationAnimation:paintXY(g, x, y)
-        self.sprite:setPosition(x + self.dx, y + self.dy)
-        self:paint(g)
-end
-
-return AllBinaryAdjustedSpriteRotationAnimation
 

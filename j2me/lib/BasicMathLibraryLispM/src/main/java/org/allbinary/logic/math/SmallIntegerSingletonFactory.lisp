@@ -31,6 +31,7 @@
 (defun SmallIntegerSingletonFactory.jstatic_instance ()
   (when (eq SmallIntegerSingletonFactory.jcell_instance :jnone) (setf SmallIntegerSingletonFactory.jcell_instance (SmallIntegerSingletonFactory.jnew_0)))
   SmallIntegerSingletonFactory.jcell_instance)
+(defun (setf SmallIntegerSingletonFactory.jstatic_instance) (value) (setf SmallIntegerSingletonFactory.jcell_instance value))
 
     
 (defun SmallIntegerSingletonFactory.jm_getInstance_0 ()

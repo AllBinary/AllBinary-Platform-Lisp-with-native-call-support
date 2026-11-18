@@ -26,6 +26,7 @@
 (defun ThreadUtil.jstatic_instance ()
   (when (eq ThreadUtil.jcell_instance :jnone) (setf ThreadUtil.jcell_instance (ThreadUtil.jnew_0)))
   ThreadUtil.jcell_instance)
+(defun (setf ThreadUtil.jstatic_instance) (value) (setf ThreadUtil.jcell_instance value))
 
 (defun ThreadUtil.jnew_0 ()
   (let ((this (make-instance 'ThreadUtil)))

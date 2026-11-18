@@ -31,6 +31,7 @@
 (defun SmallLongFactory.jstatic_instance ()
   (when (eq SmallLongFactory.jcell_instance :jnone) (setf SmallLongFactory.jcell_instance (SmallLongFactory.jnew_0)))
   SmallLongFactory.jcell_instance)
+(defun (setf SmallLongFactory.jstatic_instance) (value) (setf SmallLongFactory.jcell_instance value))
 
     
 (defun SmallLongFactory.jm_getInstance_0 ()

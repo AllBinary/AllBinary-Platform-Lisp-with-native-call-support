@@ -35,6 +35,7 @@
 (defun AdminRoleFactory.jstatic_instance ()
   (when (eq AdminRoleFactory.jcell_instance :jnone) (setf AdminRoleFactory.jcell_instance (AdminRoleFactory.jnew_0)))
   AdminRoleFactory.jcell_instance)
+(defun (setf AdminRoleFactory.jstatic_instance) (value) (setf AdminRoleFactory.jcell_instance value))
 
     
 (defun AdminRoleFactory.jm_getInstance_0 ()

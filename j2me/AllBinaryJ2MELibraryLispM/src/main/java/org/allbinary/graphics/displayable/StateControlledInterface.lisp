@@ -1,39 +1,35 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.displayable
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.displayable
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass StateControlledInterface (JObject)
+  ())
+
+(defun StateControlledInterface.jnew_0 ()
+  (let ((this (make-instance 'StateControlledInterface)))
+    this))
+
+    
+(unless (fboundp 'jm_setState_1) (defgeneric jm_setState_1 (this p1)))
+(defmethod jm_setState_1 ((this StateControlledInterface) _state)
+  (declare (ignorable this _state))
+  (error (JR.newException "AbstractMethodError" "setState")))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local StateControlledInterface = {}
-StateControlledInterface.__index = StateControlledInterface
-StateControlledInterface.className = "StateControlledInterface"
-
-
-function StateControlledInterface:setState(state)
-    error("abstract method setState")
-end
-
-return StateControlledInterface
 

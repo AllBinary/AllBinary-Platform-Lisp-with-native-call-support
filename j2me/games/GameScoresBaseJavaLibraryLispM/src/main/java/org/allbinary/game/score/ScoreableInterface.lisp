@@ -1,49 +1,47 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.score
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass ScoreableInterface (JObject)
+  ())
+
+(defun ScoreableInterface.jnew_0 ()
+  (let ((this (make-instance 'ScoreableInterface)))
+    this))
+
+    
+(unless (fboundp 'jm_getPoints_0) (defgeneric jm_getPoints_0 (this)))
+(defmethod jm_getPoints_0 ((this ScoreableInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "getPoints")))
+
+    
+(unless (fboundp 'jm_addPoints_1) (defgeneric jm_addPoints_1 (this p1)))
+(defmethod jm_addPoints_1 ((this ScoreableInterface) _points)
+  (declare (ignorable this _points))
+  (error (JR.newException "AbstractMethodError" "addPoints")))
+
+    
+(unless (fboundp 'jm_removePoints_1) (defgeneric jm_removePoints_1 (this p1)))
+(defmethod jm_removePoints_1 ((this ScoreableInterface) _points)
+  (declare (ignorable this _points))
+  (error (JR.newException "AbstractMethodError" "removePoints")))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
--- Java interface
-local ScoreableInterface = {}
-ScoreableInterface.__index = ScoreableInterface
-ScoreableInterface.className = "ScoreableInterface"
-
-
-function ScoreableInterface:getPoints()
-    error("abstract method getPoints")
-end
-
-
-function ScoreableInterface:addPoints(points)
-    error("abstract method addPoints")
-end
-
-
-function ScoreableInterface:removePoints(points)
-    error("abstract method removePoints")
-end
-
-return ScoreableInterface
 

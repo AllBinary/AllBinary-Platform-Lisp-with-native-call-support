@@ -1,63 +1,50 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game
 
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_new_array(default, size, ...)
-    local array = {n = size}
-    for index = 1, size do
-        if select("#", ...) > 0 then array[index] = java_new_array(default, ...) else array[index] = default end
-    end
-    return array
-end
+(defclass GameTypeFactory (JObject)
+  ((f_NULL_GAME_TYPE_ARRAY :initform nil)
+   (f_NONE :initform nil)
+   (f_SINGLE_PLAYER :initform nil)
+   (f_MULTI_PLAYER :initform nil)
+   (f_BOT :initform nil)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defvar GameTypeFactory.jcell_instance :jnone)
+(defun GameTypeFactory.jstatic_instance ()
+  (when (eq GameTypeFactory.jcell_instance :jnone) (setf GameTypeFactory.jcell_instance (GameTypeFactory.jnew_0)))
+  GameTypeFactory.jcell_instance)
+(defun (setf GameTypeFactory.jstatic_instance) (value) (setf GameTypeFactory.jcell_instance value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun GameTypeFactory.jnew_0 ()
+  (let ((this (make-instance 'GameTypeFactory)))
+    (setf (slot-value this 'f_NULL_GAME_TYPE_ARRAY) (JR.newArray nil 0))
+    (setf (slot-value this 'f_NONE) (GameType.jnew_1 (slot-value (StringUtil.jm_getInstance_0) 'f_NULL_STRING)))
+    (setf (slot-value this 'f_SINGLE_PLAYER) (GameType.jnew_1 "Single Player"))
+    (setf (slot-value this 'f_MULTI_PLAYER) (GameType.jnew_1 "Multi Player"))
+    (setf (slot-value this 'f_BOT) (GameType.jnew_1 "Artificial Player"))
+    this))
 
-local GameTypeFactory = {}
-GameTypeFactory.__index = GameTypeFactory
-GameTypeFactory.className = "GameTypeFactory"
-
-function GameTypeFactory:_init_fields()
-    self.NULL_GAME_TYPE_ARRAY = java_new_array(nil, 0)
-    self.NONE = GameType.new(StringUtil.getInstance().NULL_STRING)
-    self.SINGLE_PLAYER = GameType.new("Single Player")
-    self.MULTI_PLAYER = GameType.new("Multi Player")
-    self.BOT = GameType.new("Artificial Player")
-end
-
-function GameTypeFactory.new()
-    local self = setmetatable({}, GameTypeFactory)
-    self:_init_fields()
-    return self
-end
+    
+(defun GameTypeFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (GameTypeFactory.jstatic_instance)))))
 
 
-function GameTypeFactory.getInstance()
-        return GameTypeFactory.instance
-end
-
-GameTypeFactory.instance = GameTypeFactory.new()
-
-return GameTypeFactory
 

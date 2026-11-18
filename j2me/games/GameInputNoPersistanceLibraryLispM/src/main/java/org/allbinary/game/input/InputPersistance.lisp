@@ -1,101 +1,88 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.input
 
--- local RecordEnumeration = require("javax.microedition.rms.RecordEnumeration")
--- local RecordStore = require("javax.microedition.rms.RecordStore")
-local BasicPersitance = require("org.allbinary.game.configuration.persistance.BasicPersitance")
-local NullRecordComparator = require("org.allbinary.game.configuration.persistance.NullRecordComparator")
-local NullRecordFilter = require("org.allbinary.game.configuration.persistance.NullRecordFilter")
-local PreLogUtil = require("org.allbinary.logic.communication.log.PreLogUtil")
-local SmallIntegerSingletonFactory = require("org.allbinary.logic.math.SmallIntegerSingletonFactory")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local AbeClientInformationInterface = require("org.allbinary.logic.system.security.licensing.AbeClientInformationInterface")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local HashtableUtil = require("org.allbinary.util.HashtableUtil")
-local StdUtil = require("org.allbinary.logic.StdUtil")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+;GameInputNoPersistanceLibrary
+(defclass InputPersistance (BasicPersitance)
+  ((f_hashtableUtil :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun InputPersistance.jnew_1 (_name)
+  (declare (ignorable _name))
+  (let ((this (make-instance 'InputPersistance)))
+    (setf (slot-value this 'f_hashtableUtil) (HashtableUtil.jm_getInstance_0))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
---GameInputNoPersistanceLibrary
-local InputPersistance = {}
-InputPersistance.__index = InputPersistance
-InputPersistance.className = "InputPersistance"
-setmetatable(InputPersistance, {__index = BasicPersitance})
+    
+(unless (fboundp 'jm_loadAll_1) (defgeneric jm_loadAll_1 (this p1)))
+(defmethod jm_loadAll_1 ((this InputPersistance) _abeClientInformation)
+  (declare (ignorable this _abeClientInformation))
+  (let (_recordStore _recordEnum _hashtable _stringBuffer _smallIntegerSingletonFactory _id)
+  (declare (ignorable _recordStore _recordEnum _hashtable _stringBuffer _smallIntegerSingletonFactory _id))
+    (block jreturn
+        (setf _recordStore (RecordStore.jm_openRecordStore_2 (jm_getRecordId_1 this _abeClientInformation) t))
+        (setf _recordEnum (jm_enumerateRecords_3 _recordStore (NullRecordFilter.jstatic_NULL_RECORD_FILTER) (NullRecordComparator.jstatic_NULL_RECORD_COMPARATOR) t))
+        (setf _hashtable nil)
+        (setf _stringBuffer (StringMaker.jnew_0))
+        (setf _smallIntegerSingletonFactory (SmallIntegerSingletonFactory.jm_getInstance_0))
+        (setf _id 0)
+        (block jbreak (loop while (jm_hasNextElement_0 _recordEnum) do
+                (block jcontinue
+            (setf _id (jm_nextRecordId_0 _recordEnum))
+            (jm_delete_2 _stringBuffer 0 (jm_length_0 _stringBuffer))
+            (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 (jm_appendint_1 (jm_append_1 _stringBuffer (slot-value (slot-value this 'f_persistanceStrings) 'f_LOADING_ID)) _id)) this (slot-value (slot-value this 'f_persistanceStrings) 'f_LOAD_ALL))
+            (setf _hashtable (jm_createHashtable_0 (StdUtil.jm_getInstance_0)))
+            (jm_add_1 (slot-value this 'f_valueList) _hashtable)
+            (jm_add_1 (slot-value this 'f_idList) (jm_getAt_1 _smallIntegerSingletonFactory _id)))))
+        (jm_closeRecordStore_0 _recordStore))))
 
-function InputPersistance:_init_fields()
-    self.hashtableUtil = HashtableUtil.getInstance()
-end
+    
+(unless (fboundp 'jm_save_2) (defgeneric jm_save_2 (this p1 p2)))
+(defmethod jm_save_2 ((this InputPersistance) _abeClientInformation _hashtable)
+  (declare (ignorable this _abeClientInformation _hashtable))
+  (let (_recordStore _gameActionInput _list _input _inputObjectArray _size _index2 _index)
+  (declare (ignorable _recordStore _gameActionInput _list _input _inputObjectArray _size _index2 _index))
+    (block jreturn
+        (PreLogUtil.jm_put_3 (jm_toString_0 (jm_append_1 (jm_append_1 (StringMaker.jnew_0) (slot-value (slot-value this 'f_persistanceStrings) 'f_NOT_SAVING)) (jm_toString_1 (StringUtil.jm_getInstance_0) _hashtable))) this (slot-value (slot-value this 'f_commonStrings) 'f_SAVE))
+        (setf _recordStore (RecordStore.jm_openRecordStore_2 (jm_getRecordId_1 this _abeClientInformation) t))
+        (setf _gameActionInput nil)
+        (setf _list nil)
+        (setf _input nil)
+        (setf _inputObjectArray (jm_getKeysAsArray_1 (slot-value this 'f_hashtableUtil) _hashtable))
+        (setf _size (length _inputObjectArray))
+        (progn
+            (setf _index 0)
+            (block jbreak (loop while (< _index _size) do
+                (block jcontinue
+            (setf _gameActionInput (aref _inputObjectArray _index))
+            (setf _list (jm_get_1 _hashtable (aref _inputObjectArray _index)))
+            (progn
+                (setf _index2 0)
+                (block jbreak (loop while (< _index2 (jm_size_0 _list)) do
+                    (block jcontinue
+                (setf _input (jm_get_1 _list _index2)))
+                    (setf _index2 (JR.i32 (+ _index2 1)))))))
+                (setf _index (JR.i32 (+ _index 1))))))
+        (jm_closeRecordStore_0 _recordStore))))
 
 
-function InputPersistance.new(name)
-    local self = setmetatable(BasicPersitance.new(name), InputPersistance)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function InputPersistance:loadAll(abeClientInformation)
-        local recordStore = RecordStore.openRecordStore(self:getRecordId(abeClientInformation), true)
-        local recordEnum = recordStore:enumerateRecords(NullRecordFilter.NULL_RECORD_FILTER, NullRecordComparator.NULL_RECORD_COMPARATOR, true)
-        local hashtable = nil
-        local stringBuffer = StringMaker.new()
-        local smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance()
-        local id = 0
-        while recordEnum:hasNextElement() do
-            id = recordEnum:nextRecordId()
-            stringBuffer:delete(0, stringBuffer:length())
-            self.logUtil:putF(tostring(stringBuffer:append(self.persistanceStrings.LOADING_ID):appendint(id)), self, self.persistanceStrings.LOAD_ALL)
-            hashtable = StdUtil.getInstance():createHashtable()
-            self.valueList:add(hashtable)
-            self.idList:add(smallIntegerSingletonFactory:getAt(id))
-        end
-        recordStore:closeRecordStore()
-end
-
-
--- throws Exception
-function InputPersistance:save(abeClientInformation, hashtable)
-        PreLogUtil.put(tostring(StringMaker.new():append(self.persistanceStrings.NOT_SAVING):append(StringUtil.getInstance():toString(hashtable))), self, self.commonStrings.SAVE)
-        local recordStore = RecordStore.openRecordStore(self:getRecordId(abeClientInformation), true)
-        local gameActionInput = nil
-        local list = nil
-        local input = nil
-        local inputObjectArray = self.hashtableUtil:getKeysAsArray(hashtable)
-        local size = (inputObjectArray.n or #inputObjectArray)
-        for index = 0, size - 1 do
-            gameActionInput = inputObjectArray[index + 1]
-            list = hashtable:get(inputObjectArray[index + 1])
-            for index2 = 0, list:size() - 1 do
-                input = list:get(index2)
-            end
-        end
-        recordStore:closeRecordStore()
-end
-
-return InputPersistance
 

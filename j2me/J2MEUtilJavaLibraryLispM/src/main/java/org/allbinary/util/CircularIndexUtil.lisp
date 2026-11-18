@@ -27,6 +27,7 @@
 (defun CircularIndexUtil.jstatic_NULL_CIRCULAR_INDEX_UTIL ()
   (when (eq CircularIndexUtil.jcell_NULL_CIRCULAR_INDEX_UTIL :jnone) (setf CircularIndexUtil.jcell_NULL_CIRCULAR_INDEX_UTIL (CircularIndexUtil.jnew_2 0 0)))
   CircularIndexUtil.jcell_NULL_CIRCULAR_INDEX_UTIL)
+(defun (setf CircularIndexUtil.jstatic_NULL_CIRCULAR_INDEX_UTIL) (value) (setf CircularIndexUtil.jcell_NULL_CIRCULAR_INDEX_UTIL value))
 
     
 (defun CircularIndexUtil.jnew_2 (_index _size)

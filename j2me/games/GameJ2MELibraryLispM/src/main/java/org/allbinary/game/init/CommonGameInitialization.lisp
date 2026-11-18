@@ -1,96 +1,66 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.init
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.init
 
--- local CommandListener = require("javax.microedition.lcdui.CommandListener")
-local ResourceInitialization = require("org.allbinary.game.resource.ResourceInitialization")
-local ResourceLoadingLevelFactory = require("org.allbinary.game.resource.ResourceLoadingLevelFactory")
-local PointFactory = require("org.allbinary.graphics.PointFactory")
-local ProgressCanvas = require("org.allbinary.graphics.canvas.transition.progress.ProgressCanvas")
-local ProgressCanvasFactory = require("org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory")
-local SmallIntegerSingletonFactory = require("org.allbinary.logic.math.SmallIntegerSingletonFactory")
-local AbeClientInformationInterface = require("org.allbinary.logic.system.security.licensing.AbeClientInformationInterface")
-local AngleFactory = require("org.allbinary.math.AngleFactory")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local BaseGameInitialization = require("org.allbinary.game.init.BaseGameInitialization")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(defclass CommonGameInitialization (BaseGameInitialization)
+  ((f_commonStrings :initform nil)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(defun CommonGameInitialization.jnew_2 (_resourceInitializationArray _portion)
+  (declare (ignorable _resourceInitializationArray _portion))
+  (let ((this (make-instance 'CommonGameInitialization)))
+    (setf (slot-value this 'f_commonStrings) (CommonStrings.jm_getInstance_0))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(unless (fboundp 'jm_init_3) (defgeneric jm_init_3 (this p1 p2 p3)))
+(defmethod jm_init_3 ((this CommonGameInitialization) _abeClientInformation _commandListener _level)
+  (declare (ignorable this _abeClientInformation _commandListener _level))
+  (let (_resourceLoadingLevelFactory _progressCanvas)
+  (declare (ignorable _resourceLoadingLevelFactory _progressCanvas))
+    (block jreturn
+        (call-next-method this _abeClientInformation _commandListener _level)
+        (setf _resourceLoadingLevelFactory (ResourceLoadingLevelFactory.jm_getInstance_0))
+        (if (and (not (jm_isGameInitialized_0 this)) (= _level (jm_getLevel_0 (slot-value _resourceLoadingLevelFactory 'f_LOAD_ALL))))
+            (progn
+            (jm_setGameInitialized_1 this t)
+            (setf _progressCanvas (ProgressCanvasFactory.jm_getInstance_0))
+            (jm_init_0 (SmallIntegerSingletonFactory.jm_getInstance_0))
+            (jm_addNormalPortion_2 _progressCanvas 50 "Integers")
+            (jm_init_0 (PointFactory.jm_getInstance_0))
+            (jm_addNormalPortion_2 _progressCanvas 50 "Points")
+            (AngleFactory.jm_getInstance_0)
+            (jm_addNormalPortion_2 _progressCanvas 50 "Angles")
+            (jm_initGame_0 this)
+            (jm_init_0 (aref (slot-value this 'f_resourceInitializationArray) (slot-value this 'f_GAME_RESOURCES)))))
+        (jm_resourceInitialization_1 this _level))))
 
-local CommonGameInitialization = {}
-CommonGameInitialization.__index = CommonGameInitialization
-CommonGameInitialization.className = "CommonGameInitialization"
-setmetatable(CommonGameInitialization, {__index = BaseGameInitialization})
-
-function CommonGameInitialization:_init_fields()
-    self.commonStrings = CommonStrings.getInstance()
-end
-
-
-function CommonGameInitialization.new(resourceInitializationArray, portion)
-    local self = setmetatable(BaseGameInitialization.new(resourceInitializationArray, portion), CommonGameInitialization)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
+    
+(unless (fboundp 'jm_initGame_0) (defgeneric jm_initGame_0 (this)))
+(defmethod jm_initGame_0 ((this CommonGameInitialization))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (error (JR.newException "Exception" (slot-value (slot-value this 'f_commonStrings) 'f_NOT_IMPLEMENTED))))))
 
 
--- throws Exception
-function CommonGameInitialization:init(abeClientInformation, commandListener, level)
-        BaseGameInitialization.init(self, abeClientInformation, commandListener, level)
-        local resourceLoadingLevelFactory = ResourceLoadingLevelFactory.getInstance()
-        if not self:isGameInitialized() and level == resourceLoadingLevelFactory.LOAD_ALL:getLevel() then
-            self:setGameInitialized(true)
-            local progressCanvas = ProgressCanvasFactory.getInstance()
-            SmallIntegerSingletonFactory.getInstance():init()
-            progressCanvas:addNormalPortion(50, "Integers")
-            PointFactory.getInstance():init()
-            progressCanvas:addNormalPortion(50, "Points")
-            AngleFactory.getInstance()
-            progressCanvas:addNormalPortion(50, "Angles")
-            self:initGame()
-            self.resourceInitializationArray[self.GAME_RESOURCES + 1]:init()
-        end
-        BaseGameInitialization.resourceInitialization(self, level)
-end
-
-
--- throws Exception
-function CommonGameInitialization:initGame()
-        error(java_exception("Exception", self.commonStrings.NOT_IMPLEMENTED), 0)
-end
-
-return CommonGameInitialization
 

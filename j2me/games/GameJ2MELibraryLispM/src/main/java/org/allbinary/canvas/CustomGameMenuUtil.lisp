@@ -1,52 +1,45 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.canvas
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.canvas
 
-local AppletUtil = require("org.allbinary.AppletUtil")
-local J2MEUtil = require("org.allbinary.J2MEUtil")
-local GameCommandsFactory = require("org.allbinary.game.commands.GameCommandsFactory")
-local MyCanvas = require("org.allbinary.graphics.displayable.MyCanvas")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass CustomGameMenuUtil (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun CustomGameMenuUtil.jnew_0 ()
+  (let ((this (make-instance 'CustomGameMenuUtil)))
+    this))
 
-local CustomGameMenuUtil = {}
-CustomGameMenuUtil.__index = CustomGameMenuUtil
-CustomGameMenuUtil.className = "CustomGameMenuUtil"
+    
+(defun CustomGameMenuUtil.jm_add_1 (_canvas)
+  (declare (ignorable _canvas))
+  (let (_gameCommandsFactory)
+  (declare (ignorable _gameCommandsFactory))
+    (block jreturn
+        (setf _gameCommandsFactory (GameCommandsFactory.jm_getInstance_0))
+        (if (AppletUtil.jm_isAppletLoader_1 _canvas)
+            (progn
+            nil)
+            (if (J2MEUtil.jm_isHTML_0)
+            (progn
+            nil)
+            (progn
+            (jm_addCommand_1 _canvas (slot-value _gameCommandsFactory 'f_EXIT_COMMAND))))))))
 
-function CustomGameMenuUtil.new()
-    local self = setmetatable({}, CustomGameMenuUtil)
-    return self
-end
 
-
-function CustomGameMenuUtil.add(canvas)
-        local gameCommandsFactory = GameCommandsFactory.getInstance()
-        if AppletUtil.isAppletLoader(canvas) then
-        elseif J2MEUtil.isHTML() then
-        else
-            canvas:addCommand(gameCommandsFactory.EXIT_COMMAND)
-        end
-end
-
-return CustomGameMenuUtil
 

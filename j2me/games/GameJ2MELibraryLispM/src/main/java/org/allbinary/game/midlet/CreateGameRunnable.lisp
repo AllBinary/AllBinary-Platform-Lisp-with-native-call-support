@@ -1,78 +1,65 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.midlet
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.midlet
 
-local ProgressCanvas = require("org.allbinary.graphics.canvas.transition.progress.ProgressCanvas")
-local ProgressCanvasFactory = require("org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory")
-local MyCommandsFactory = require("org.allbinary.graphics.displayable.command.MyCommandsFactory")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
--- java.lang.Runnable has no Lua module
-local Runnable = {}
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass CreateGameRunnable (JObject)
+  ((f_logUtil :initform nil)
+   (f_commonStrings :initform nil)
+   (f_demoGameMidlet :initform nil)
+   (f_hashtable :initform nil)
+   (f_startGameMidletEvent :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun CreateGameRunnable.jnew_2 (_demoGameMidlet _hashtable)
+  (declare (ignorable _demoGameMidlet _hashtable))
+  (let ((this (make-instance 'CreateGameRunnable)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_commonStrings) (CommonStrings.jm_getInstance_0))
+    
+    
+    
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_demoGameMidlet) _demoGameMidlet)
+        (setf (slot-value this 'f_hashtable) _hashtable)
+        (setf (slot-value this 'f_startGameMidletEvent) (DemoGameMidletEvent.jnew_2 this (slot-value (DemoGameMidletStateFactory.jm_getInstance_0) 'f_START_GAME)))))
+    this))
 
-local CreateGameRunnable = {}
-CreateGameRunnable.__index = CreateGameRunnable
-CreateGameRunnable.className = "CreateGameRunnable"
-
-function CreateGameRunnable:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.commonStrings = CommonStrings.getInstance()
-    self.demoGameMidlet = nil
-    self.hashtable = nil
-    self.startGameMidletEvent = nil
-end
-
-
-function CreateGameRunnable.new(demoGameMidlet, hashtable)
-    local self = setmetatable({}, CreateGameRunnable)
-    self:_init_fields()
-        self.demoGameMidlet = demoGameMidlet
-        self.hashtable = hashtable
-        self.startGameMidletEvent = DemoGameMidletEvent.new(self, DemoGameMidletStateFactory.getInstance().START_GAME)
-    return self
-end
+    
+(unless (fboundp 'jm_run_0) (defgeneric jm_run_0 (this)))
+(defmethod jm_run_0 ((this CreateGameRunnable))
+  (declare (ignorable this))
+  (let (_progressCanvas)
+  (declare (ignorable _progressCanvas))
+    (block jreturn
+        (handler-case (progn
+            (jm_putF_3 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_START_RUNNABLE) this (slot-value (slot-value this 'f_commonStrings) 'f_RUN))
+            (setf _progressCanvas (ProgressCanvasFactory.jm_getInstance_0))
+            (jm_commandAction_2 (slot-value this 'f_demoGameMidlet) (slot-value (MyCommandsFactory.jm_getInstance_0) 'f_SET_DISPLAYABLE) _progressCanvas)
+            (jm_stopGameCanvasRunnableInterface_0 (slot-value this 'f_demoGameMidlet))
+            (jm_setGameCanvasRunnableInterface_1 (slot-value this 'f_demoGameMidlet) (jm_createGameCanvasRunnableInterface_0 (slot-value this 'f_demoGameMidlet)))
+            (jm_setLoadStateHashtable_1 (jm_getGameCanvasRunnableInterface_0 (slot-value this 'f_demoGameMidlet)) (slot-value this 'f_hashtable))
+            (jm_startGameCanvasRunnableInterface_0 (slot-value this 'f_demoGameMidlet))
+            (jm_fireEvent_1 (DemoGameMidletEventHandler.jm_getInstance_0) (slot-value this 'f_startGameMidletEvent))
+            (jm_putF_3 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_END_RUNNABLE) this (slot-value (slot-value this 'f_commonStrings) 'f_RUN)))
+            (error (_e) (declare (ignorable _e))
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_EXCEPTION) this (slot-value (slot-value this 'f_commonStrings) 'f_RUN) _e))))))
 
 
-function CreateGameRunnable:run()
-        local try_ok, try_error = pcall(function()
-            self.logUtil:putF(self.commonStrings.START_RUNNABLE, self, self.commonStrings.RUN)
-            local progressCanvas = ProgressCanvasFactory.getInstance()
-            self.demoGameMidlet:commandAction(MyCommandsFactory.getInstance().SET_DISPLAYABLE, progressCanvas)
-            self.demoGameMidlet:stopGameCanvasRunnableInterface()
-            self.demoGameMidlet:setGameCanvasRunnableInterface(self.demoGameMidlet:createGameCanvasRunnableInterface())
-            self.demoGameMidlet:getGameCanvasRunnableInterface():setLoadStateHashtable(self.hashtable)
-            self.demoGameMidlet:startGameCanvasRunnableInterface()
-            DemoGameMidletEventHandler.getInstance():fireEvent(self.startGameMidletEvent)
-            self.logUtil:putF(self.commonStrings.END_RUNNABLE, self, self.commonStrings.RUN)
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, self.commonStrings.RUN, e)
-        end
-end
-
-return CreateGameRunnable
 

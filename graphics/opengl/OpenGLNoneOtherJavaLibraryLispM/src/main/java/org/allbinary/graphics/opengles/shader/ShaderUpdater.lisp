@@ -1,59 +1,51 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles.shader
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2025 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.opengles.shader
 
--- local EGLConfig = require("javax.microedition.khronos.egl.EGLConfig")
--- local GL10 = require("javax.microedition.khronos.opengles.GL10")
-local RendererStrings = require("org.allbinary.graphics.opengles.renderer.RendererStrings")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ShaderUpdater (JObject)
+  ((f_commonStrings :initform nil)
+   (f_rendererStrings :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar ShaderUpdater.jcell_instance :jnone)
+(defun ShaderUpdater.jstatic_instance ()
+  (when (eq ShaderUpdater.jcell_instance :jnone) (setf ShaderUpdater.jcell_instance (ShaderUpdater.jnew_0)))
+  ShaderUpdater.jcell_instance)
+(defun (setf ShaderUpdater.jstatic_instance) (value) (setf ShaderUpdater.jcell_instance value))
 
-local ShaderUpdater = {}
-ShaderUpdater.__index = ShaderUpdater
-ShaderUpdater.className = "ShaderUpdater"
+(defun ShaderUpdater.jnew_0 ()
+  (let ((this (make-instance 'ShaderUpdater)))
+    (setf (slot-value this 'f_commonStrings) (CommonStrings.jm_getInstance_0))
+    (setf (slot-value this 'f_rendererStrings) (RendererStrings.jm_getInstance_0))
+    this))
 
-function ShaderUpdater:_init_fields()
-    self.commonStrings = CommonStrings.getInstance()
-    self.rendererStrings = RendererStrings.getInstance()
-end
+    
+(defun ShaderUpdater.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (ShaderUpdater.jstatic_instance)))))
 
-function ShaderUpdater.new()
-    local self = setmetatable({}, ShaderUpdater)
-    self:_init_fields()
-    return self
-end
-
-
-function ShaderUpdater.getInstance()
-        return ShaderUpdater.instance
-end
+    
+(unless (fboundp 'jm_onSurfaceCreated_2) (defgeneric jm_onSurfaceCreated_2 (this p1 p2)))
+(defmethod jm_onSurfaceCreated_2 ((this ShaderUpdater) _gl _eglConfig)
+  (declare (ignorable this _gl _eglConfig))
+  (let ()
+    (block jreturn nil)))
 
 
-function ShaderUpdater:onSurfaceCreated(gl, eglConfig)
-end
-
-ShaderUpdater.instance = ShaderUpdater.new()
-
-return ShaderUpdater
 

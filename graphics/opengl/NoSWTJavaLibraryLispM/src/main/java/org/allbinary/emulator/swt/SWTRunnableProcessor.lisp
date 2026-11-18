@@ -1,52 +1,48 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.emulator.swt
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2022 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.emulator.swt
 
-local Display = require("org.eclipse.swt.widgets.Display")
-local SWTProcessor = require("org.allbinary.emulator.swt.SWTProcessor")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass SWTRunnableProcessor (SWTProcessor)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar SWTRunnableProcessor.jcell_instanceR :jnone)
+(defun SWTRunnableProcessor.jstatic_instanceR ()
+  (when (eq SWTRunnableProcessor.jcell_instanceR :jnone) (setf SWTRunnableProcessor.jcell_instanceR (SWTRunnableProcessor.jnew_0)))
+  SWTRunnableProcessor.jcell_instanceR)
+(defun (setf SWTRunnableProcessor.jstatic_instanceR) (value) (setf SWTRunnableProcessor.jcell_instanceR value))
 
-local SWTRunnableProcessor = {}
-SWTRunnableProcessor.__index = SWTRunnableProcessor
-SWTRunnableProcessor.className = "SWTRunnableProcessor"
-setmetatable(SWTRunnableProcessor, {__index = SWTProcessor})
+(defun SWTRunnableProcessor.jnew_0 ()
+  (let ((this (make-instance 'SWTRunnableProcessor)))
+    this))
 
-function SWTRunnableProcessor.new()
-    local self = setmetatable(SWTProcessor.new(), SWTRunnableProcessor)
-    return self
-end
+    
+(defun SWTRunnableProcessor.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (SWTRunnableProcessor.jstatic_instanceR)))))
+
+    
+(unless (fboundp 'jm_process_1) (defgeneric jm_process_1 (this p1)))
+(defmethod jm_process_1 ((this SWTRunnableProcessor) _display)
+  (declare (ignorable this _display))
+  (let ()
+    (block jreturn nil)))
 
 
-function SWTRunnableProcessor.getInstance()
-        return SWTRunnableProcessor.instanceR
-end
-
-
-function SWTRunnableProcessor:process(display)
-end
-
-SWTRunnableProcessor.instanceR = SWTRunnableProcessor.new()
-
-return SWTRunnableProcessor
 

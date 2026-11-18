@@ -1,87 +1,93 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.hud.event
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.layer.hud.event
 
-local BasicColor = require("org.allbinary.graphics.color.BasicColor")
-local BasicColorFactory = require("org.allbinary.graphics.color.BasicColorFactory")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass GameNotificationEvent (AllBinaryEventObject)
+  ((f_string :initform nil)
+   (f_seconds :initform nil)
+   (f_basicColor :initform nil)
+   (f_removeable :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun GameNotificationEvent.jnew_5 (_anyType _string _seconds _basicColor _permanent)
+  (declare (ignorable _anyType _string _seconds _basicColor _permanent))
+  (let ((this (make-instance 'GameNotificationEvent)))
+    (setf (slot-value this 'f_string) (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING))
+    
+    (setf (slot-value this 'f_basicColor) (slot-value (BasicColorFactory.jm_getInstance_0) 'f_BLACK))
+    
+  (let ()
+    (block jreturn
+        nil
+        (jm_setString_1 this _string)
+        (setf (slot-value this 'f_seconds) _seconds)
+        (jm_setBasicColorP_1 this _basicColor)
+        (setf (slot-value this 'f_removeable) _permanent)))
+    this))
 
-local GameNotificationEvent = {}
-GameNotificationEvent.__index = GameNotificationEvent
-GameNotificationEvent.className = "GameNotificationEvent"
-setmetatable(GameNotificationEvent, {__index = AllBinaryEventObject})
+    
+(unless (fboundp 'jm_getString_0) (defgeneric jm_getString_0 (this)))
+(defmethod jm_getString_0 ((this GameNotificationEvent))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_string)))))
 
-function GameNotificationEvent:_init_fields()
-    self.string = StringUtil.getInstance().EMPTY_STRING
-    self.seconds = nil
-    self.basicColor = BasicColorFactory.getInstance().BLACK
-    self.removeable = nil
-end
+    
+(unless (fboundp 'jm_getSeconds_0) (defgeneric jm_getSeconds_0 (this)))
+(defmethod jm_getSeconds_0 ((this GameNotificationEvent))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_seconds)))))
+
+    
+(unless (fboundp 'jm_getBasicColorP_0) (defgeneric jm_getBasicColorP_0 (this)))
+(defmethod jm_getBasicColorP_0 ((this GameNotificationEvent))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_basicColor)))))
+
+    
+(unless (fboundp 'jm_getPermanent_0) (defgeneric jm_getPermanent_0 (this)))
+(defmethod jm_getPermanent_0 ((this GameNotificationEvent))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_removeable)))))
+
+    
+(unless (fboundp 'jm_setString_1) (defgeneric jm_setString_1 (this p1)))
+(defmethod jm_setString_1 ((this GameNotificationEvent) _string)
+  (declare (ignorable this _string))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_string) _string))))
+
+    
+(unless (fboundp 'jm_setBasicColorP_1) (defgeneric jm_setBasicColorP_1 (this p1)))
+(defmethod jm_setBasicColorP_1 ((this GameNotificationEvent) _basicColor)
+  (declare (ignorable this _basicColor))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_basicColor) _basicColor))))
 
 
-function GameNotificationEvent.new(anyType, string, seconds, basicColor, permanent)
-    local self = setmetatable(AllBinaryEventObject.new(anyType), GameNotificationEvent)
-    self:_init_fields()
-        -- super(...) made self above
-        self:setString(string)
-        self.seconds = seconds
-        self:setBasicColorP(basicColor)
-        self.removeable = permanent
-    return self
-end
-
-
-function GameNotificationEvent:getString()
-        return self.string
-end
-
-
-function GameNotificationEvent:getSeconds()
-        return self.seconds
-end
-
-
-function GameNotificationEvent:getBasicColorP()
-        return self.basicColor
-end
-
-
-function GameNotificationEvent:getPermanent()
-        return self.removeable
-end
-
-
-function GameNotificationEvent:setString(string)
-        self.string = string
-end
-
-
-function GameNotificationEvent:setBasicColorP(basicColor)
-        self.basicColor = basicColor
-end
-
-return GameNotificationEvent
 

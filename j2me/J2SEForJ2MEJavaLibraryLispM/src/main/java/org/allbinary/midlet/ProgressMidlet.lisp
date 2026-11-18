@@ -1,79 +1,63 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.midlet
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.midlet
 
-local Processor = require("org.allbinary.canvas.Processor")
-local AbeClientInformationInterface = require("org.allbinary.logic.system.security.licensing.AbeClientInformationInterface")
-local ClientInformationFactory = require("org.allbinary.logic.system.security.licensing.ClientInformationFactory")
-local PrimaryThreadPool = require("org.allbinary.thread.PrimaryThreadPool")
-local ThreadPool = require("org.allbinary.thread.ThreadPool")
-local AllBinaryMidlet = require("org.allbinary.midlet.AllBinaryMidlet")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+;J2SEForJ2ME
+(defclass ProgressMidlet (AllBinaryMidlet)
+  ((f_abeClientInformation :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun ProgressMidlet.jnew_1 (_clientInformationFactory)
+  (declare (ignorable _clientInformationFactory))
+  (let ((this (make-instance 'ProgressMidlet)))
+    
+  (let ()
+    (block jreturn
+        (jm_preInit_0 this)
+        (setf (slot-value this 'f_abeClientInformation) (jm_getInstance_0 _clientInformationFactory))))
+    this))
 
---J2SEForJ2ME
-local ProgressMidlet = {}
-ProgressMidlet.__index = ProgressMidlet
-ProgressMidlet.className = "ProgressMidlet"
-setmetatable(ProgressMidlet, {__index = AllBinaryMidlet})
+    
+(unless (fboundp 'jm_preInit_0) (defgeneric jm_preInit_0 (this)))
+(defmethod jm_preInit_0 ((this ProgressMidlet))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
 
-function ProgressMidlet:_init_fields()
-    self.abeClientInformation = nil
-end
+    
+(unless (fboundp 'jm_exitProgress_1) (defgeneric jm_exitProgress_1 (this p1)))
+(defmethod jm_exitProgress_1 ((this ProgressMidlet) _isProgress)
+  (declare (ignorable this _isProgress))
+  (let (_processor _primaryThreadPool _runnable)
+  (declare (ignorable _processor _primaryThreadPool _runnable))
+    (block jreturn
+        (setf _processor (jm_getExitInstance_1 (MidletExitProcessorFactory.jm_getInstance_0) this))
+        (handler-case (progn
+            (setf _primaryThreadPool (PrimaryThreadPool.jm_getInstance_0))
+            (setf _runnable (ExitRunnable.jnew_3 this _processor _isProgress))
+            (jm_runTask_1 _primaryThreadPool _runnable))
+            (error (_e) (declare (ignorable _e))
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_EXCEPTION) this "exit" _e)
+            (handler-case (progn
+                (jm_process_0 _processor))
+                (error (_e2) (declare (ignorable _e2))
+                (jm_put_4 (slot-value this 'f_logUtil) (slot-value (slot-value this 'f_commonStrings) 'f_EXCEPTION) this "exit" _e))))))))
 
 
-function ProgressMidlet.new(clientInformationFactory)
-    local self = setmetatable(AllBinaryMidlet.new(), ProgressMidlet)
-    self:_init_fields()
-        self:preInit()
-        self.abeClientInformation = clientInformationFactory:getInstance()
-    return self
-end
-
-
-function ProgressMidlet:preInit()
-end
-
-
-function ProgressMidlet:exitProgress(isProgress)
-        local processor = MidletExitProcessorFactory.getInstance():getExitInstance(self)
-        local try_ok, try_error = pcall(function()
-            local primaryThreadPool = PrimaryThreadPool.getInstance()
-            local runnable = ExitRunnable.new(self, processor, isProgress)
-            primaryThreadPool:runTask(runnable)
-        end)
-        if not try_ok then
-            local e = try_error
-            self.logUtil:put(self.commonStrings.EXCEPTION, self, "exit", e)
-            local try_ok, try_error = pcall(function()
-                processor:process()
-            end)
-            if not try_ok then
-                local e2 = try_error
-                self.logUtil:put(self.commonStrings.EXCEPTION, self, "exit", e)
-            end
-        end
-end
-
-return ProgressMidlet
 

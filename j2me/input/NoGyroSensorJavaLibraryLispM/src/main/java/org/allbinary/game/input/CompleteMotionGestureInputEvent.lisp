@@ -1,84 +1,78 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.input
 
-local MotionGestureInput = require("org.allbinary.input.motion.gesture.MotionGestureInput")
-local TouchMotionGestureFactory = require("org.allbinary.input.motion.gesture.TouchMotionGestureFactory")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local AllBinaryEventObject = require("org.allbinary.logic.util.event.AllBinaryEventObject")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
-local CompleteMotionGestureInputInterface = require("org.allbinary.game.input.CompleteMotionGestureInputInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass CompleteMotionGestureInputEvent (AllBinaryEventObject)
+  ((f_logUtil :initform nil)
+   (f_name :initform nil)
+   (f_motionGestureInput :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun CompleteMotionGestureInputEvent.jnew_2 (_name _motionGestureInput)
+  (declare (ignorable _name _motionGestureInput))
+  (let ((this (make-instance 'CompleteMotionGestureInputEvent)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_name) (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING))
+    (setf (slot-value this 'f_motionGestureInput) (slot-value (TouchMotionGestureFactory.jm_getInstance_0) 'f_NO_MOTION))
+  (let (_commonStrings)
+  (declare (ignorable _commonStrings))
+    (block jreturn
+        nil
+        (jm_setName_1 this _name)
+        (handler-case (progn
+            (jm_setMotionGestureInput_1 this _motionGestureInput))
+            (error (_e) (declare (ignorable _e))
+            (setf _commonStrings (CommonStrings.jm_getInstance_0))
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value _commonStrings 'f_EXCEPTION) this "InputToGameKeyEventAction" _e)))))
+    this))
 
-local CompleteMotionGestureInputEvent = {}
-CompleteMotionGestureInputEvent.__index = CompleteMotionGestureInputEvent
-CompleteMotionGestureInputEvent.className = "CompleteMotionGestureInputEvent"
-setmetatable(CompleteMotionGestureInputEvent, {__index = AllBinaryEventObject})
+    
+(unless (fboundp 'jm_setName_1) (defgeneric jm_setName_1 (this p1)))
+(defmethod jm_setName_1 ((this CompleteMotionGestureInputEvent) _name)
+  (declare (ignorable this _name))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_name) _name))))
 
-function CompleteMotionGestureInputEvent:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.name = StringUtil.getInstance().EMPTY_STRING
-    self.motionGestureInput = TouchMotionGestureFactory.getInstance().NO_MOTION
-end
+    
+(unless (fboundp 'jm_getName_0) (defgeneric jm_getName_0 (this)))
+(defmethod jm_getName_0 ((this CompleteMotionGestureInputEvent))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_name)))))
 
+    
+(unless (fboundp 'jm_setMotionGestureInput_1) (defgeneric jm_setMotionGestureInput_1 (this p1)))
+(defmethod jm_setMotionGestureInput_1 ((this CompleteMotionGestureInputEvent) _motionGestureInput)
+  (declare (ignorable this _motionGestureInput))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_motionGestureInput) _motionGestureInput))))
 
-function CompleteMotionGestureInputEvent.new(name, motionGestureInput)
-    local self = setmetatable(AllBinaryEventObject.new(motionGestureInput), CompleteMotionGestureInputEvent)
-    self:_init_fields()
-        -- super(...) made self above
-        self:setName(name)
-        local try_ok, try_error = pcall(function()
-            self:setMotionGestureInput(motionGestureInput)
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, "InputToGameKeyEventAction", e)
-        end
-    return self
-end
-
-
-function CompleteMotionGestureInputEvent:setName(name)
-        self.name = name
-end
-
-
-function CompleteMotionGestureInputEvent:getName()
-        return self.name
-end
+    
+(unless (fboundp 'jm_getMotionGestureInput_0) (defgeneric jm_getMotionGestureInput_0 (this)))
+(defmethod jm_getMotionGestureInput_0 ((this CompleteMotionGestureInputEvent))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_motionGestureInput)))))
 
 
-function CompleteMotionGestureInputEvent:setMotionGestureInput(motionGestureInput)
-        self.motionGestureInput = motionGestureInput
-end
-
-
-function CompleteMotionGestureInputEvent:getMotionGestureInput()
-        return self.motionGestureInput
-end
-
-return CompleteMotionGestureInputEvent
 

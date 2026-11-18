@@ -1,62 +1,55 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.ai
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.ai
 
-local CollidableCompositeLayer = require("org.allbinary.game.layer.CollidableCompositeLayer")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local LayerProcessor = require("org.allbinary.layer.LayerProcessor")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass OptimizedArtificialIntelligenceLayerProcessorForCollidableLayer (LayerProcessor)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun OptimizedArtificialIntelligenceLayerProcessorForCollidableLayer.jnew_0 ()
+  (let ((this (make-instance 'OptimizedArtificialIntelligenceLayerProcessorForCollidableLayer)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
-local OptimizedArtificialIntelligenceLayerProcessorForCollidableLayer = {}
-OptimizedArtificialIntelligenceLayerProcessorForCollidableLayer.__index = OptimizedArtificialIntelligenceLayerProcessorForCollidableLayer
-OptimizedArtificialIntelligenceLayerProcessorForCollidableLayer.className = "OptimizedArtificialIntelligenceLayerProcessorForCollidableLayer"
-setmetatable(OptimizedArtificialIntelligenceLayerProcessorForCollidableLayer, {__index = LayerProcessor})
+    
+(unless (fboundp 'jm_processAt_3) (defgeneric jm_processAt_3 (this p1 p2 p3)))
+(defmethod jm_processAt_3 ((this OptimizedArtificialIntelligenceLayerProcessorForCollidableLayer) _allBinaryLayerManager _layerInterface _index)
+  (declare (ignorable this _allBinaryLayerManager _layerInterface _index))
+  (let (_artificialIntelligenceCompositeInterface)
+  (declare (ignorable _artificialIntelligenceCompositeInterface))
+    (block jreturn
+        (setf _artificialIntelligenceCompositeInterface _layerInterface)
+        (jm_processAI_1 (jm_getArtificialIntelligenceInterface_0 _artificialIntelligenceCompositeInterface) _allBinaryLayerManager))))
+
+    
+(unless (fboundp 'jm_isProcessorLayer_1) (defgeneric jm_isProcessorLayer_1 (this p1)))
+(defmethod jm_isProcessorLayer_1 ((this OptimizedArtificialIntelligenceLayerProcessorForCollidableLayer) _layerInterface)
+  (declare (ignorable this _layerInterface))
+  (let ()
+    (block jreturn
+        (if (jm_implmentsArtificialIntelligenceCompositeInterface_0 _layerInterface)
+            (progn
+            (return-from jreturn t))
+            (progn
+            (return-from jreturn nil))))))
 
 
-function OptimizedArtificialIntelligenceLayerProcessorForCollidableLayer.new()
-    local self = setmetatable(LayerProcessor.new(OptimizedArtificialIntelligenceLayerManager.new()), OptimizedArtificialIntelligenceLayerProcessorForCollidableLayer)
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function OptimizedArtificialIntelligenceLayerProcessorForCollidableLayer:processAt(allBinaryLayerManager, layerInterface, index)
-        local artificialIntelligenceCompositeInterface = layerInterface
-        artificialIntelligenceCompositeInterface:getArtificialIntelligenceInterface():processAI(allBinaryLayerManager)
-end
-
-
--- throws Exception
-function OptimizedArtificialIntelligenceLayerProcessorForCollidableLayer:isProcessorLayer(layerInterface)
-        if layerInterface:implmentsArtificialIntelligenceCompositeInterface() then
-            return true
-        else
-            return false
-        end
-end
-
-return OptimizedArtificialIntelligenceLayerProcessorForCollidableLayer
 

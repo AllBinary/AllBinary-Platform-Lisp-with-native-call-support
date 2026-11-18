@@ -1,72 +1,66 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.pickup
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.layer.pickup
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
-local Animation = require("org.allbinary.animation.Animation")
-local NullAnimationFactory = require("org.allbinary.animation.NullAnimationFactory")
-local PointFactory = require("org.allbinary.graphics.PointFactory")
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local AllBinaryLayer = require("org.allbinary.layer.AllBinaryLayer")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local ViewPosition = require("org.allbinary.view.ViewPosition")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass IconLayer (AllBinaryLayer)
+  ((f_animationInterface :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar IconLayer.jcell_NULL_ICON_LAYER :jnone)
+(defun IconLayer.jstatic_NULL_ICON_LAYER ()
+  (when (eq IconLayer.jcell_NULL_ICON_LAYER :jnone) (setf IconLayer.jcell_NULL_ICON_LAYER (IconLayer.jnew_3 (jm_getInstance_1 (NullAnimationFactory.jm_getFactoryInstance_0) 0) 0 0)))
+  IconLayer.jcell_NULL_ICON_LAYER)
+(defun (setf IconLayer.jstatic_NULL_ICON_LAYER) (value) (setf IconLayer.jcell_NULL_ICON_LAYER value))
 
-local IconLayer = {}
-IconLayer.__index = IconLayer
-IconLayer.className = "IconLayer"
-setmetatable(IconLayer, {__index = AllBinaryLayer})
+    
+(defun IconLayer.jnew_3 (_animationInterface _width _height)
+  (declare (ignorable _animationInterface _width _height))
+  (let ((this (make-instance 'IconLayer)))
+    
+  (let ()
+    (block jreturn
+        nil
+        (setf (slot-value this 'f_animationInterface) _animationInterface)))
+    this))
 
-function IconLayer:_init_fields()
-    self.animationInterface = nil
-end
+    
+(unless (fboundp 'jm_paint_1) (defgeneric jm_paint_1 (this p1)))
+(defmethod jm_paint_1 ((this IconLayer) _graphics)
+  (declare (ignorable this _graphics))
+  (let ()
+    (block jreturn
+        (jm_paintXY_3 (slot-value this 'f_animationInterface) _graphics (slot-value this 'f_x) (slot-value this 'f_y)))))
+
+    
+(unless (fboundp 'jm_paintThreed_1) (defgeneric jm_paintThreed_1 (this p1)))
+(defmethod jm_paintThreed_1 ((this IconLayer) _graphics)
+  (declare (ignorable this _graphics))
+  (let ()
+    (block jreturn
+        (jm_paintThreedXYZ_4 (slot-value this 'f_animationInterface) _graphics (slot-value this 'f_x) (slot-value this 'f_y) (slot-value this 'f_z)))))
+
+    
+(unless (fboundp 'jm_getAnimationInterface_0) (defgeneric jm_getAnimationInterface_0 (this)))
+(defmethod jm_getAnimationInterface_0 ((this IconLayer))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_animationInterface)))))
 
 
-function IconLayer.new(animationInterface, width, height)
-    local self = setmetatable(AllBinaryLayer.new(StringUtil.getInstance().EMPTY_STRING, Rectangle.new(PointFactory.getInstance().ZERO_ZERO, width, height), ViewPosition.getInstanceD()), IconLayer)
-    self:_init_fields()
-        -- super(...) made self above
-        self.animationInterface = animationInterface
-    return self
-end
-
-
-function IconLayer:paint(graphics)
-        self.animationInterface:paintXY(graphics, self.x, self.y)
-end
-
-
-function IconLayer:paintThreed(graphics)
-        self.animationInterface:paintThreedXYZ(graphics, self.x, self.y, self.z)
-end
-
-
-function IconLayer:getAnimationInterface()
-        return self.animationInterface
-end
-
-IconLayer.NULL_ICON_LAYER = IconLayer.new(NullAnimationFactory.getFactoryInstance():getInstance(0), 0, 0)
-
-return IconLayer
 

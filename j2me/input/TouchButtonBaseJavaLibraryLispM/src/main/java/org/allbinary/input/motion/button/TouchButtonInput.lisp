@@ -1,83 +1,74 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.input.motion.button
 
-local GameKey = require("org.allbinary.game.input.GameKey")
-local GameKeyEventSourceInterface = require("org.allbinary.game.input.GameKeyEventSourceInterface")
-local Input = require("org.allbinary.game.input.Input")
-local InputFactory = require("org.allbinary.game.input.InputFactory")
-local GameKeyEvent = require("org.allbinary.game.input.event.GameKeyEvent")
-local GameKeyEventFactory = require("org.allbinary.game.input.event.GameKeyEventFactory")
-local InputToGameKeyMapping = require("org.allbinary.game.input.mapping.InputToGameKeyMapping")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass TouchButtonInput (Input)
+  ((f_logUtil :initform nil)
+   (f_gameKeyEventFactory :initform nil)
+   (f_TOUCH_BUTTON_SOURCE_ID :initform 0)
+   (f_gameKeyEvent :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun TouchButtonInput.jnew_2 (_id _name)
+  (declare (ignorable _id _name))
+  (let ((this (make-instance 'TouchButtonInput)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_gameKeyEventFactory) (GameKeyEventFactory.jm_getInstance_0))
+    (setf (slot-value this 'f_TOUCH_BUTTON_SOURCE_ID) (slot-value (slot-value this 'f_gameKeyEventFactory) 'f_TOUCH_BUTTON_SOURCE_ID))
+    (setf (slot-value this 'f_gameKeyEvent) (GameKeyEvent.jstatic_NONE))
+  (let (_inputFactory)
+  (declare (ignorable _inputFactory))
+    (block jreturn
+        nil
+        (setf _inputFactory (InputFactory.jm_getInstance_0))
+        (jm_add_2 _inputFactory (jm_getId_0 this) this)))
+    this))
 
-local TouchButtonInput = {}
-TouchButtonInput.__index = TouchButtonInput
-TouchButtonInput.className = "TouchButtonInput"
-setmetatable(TouchButtonInput, {__index = Input})
+    
+(unless (fboundp 'jm_update_1) (defgeneric jm_update_1 (this p1)))
+(defmethod jm_update_1 ((this TouchButtonInput) _inputToGameKeyMapping)
+  (declare (ignorable this _inputToGameKeyMapping))
+  (let (_gameKey _commonStrings)
+  (declare (ignorable _gameKey _commonStrings))
+    (block jreturn
+        (handler-case (progn
+            (setf _gameKey (jm_getInstance_1 _inputToGameKeyMapping (jm_getId_0 this)))
+            (setf (slot-value this 'f_gameKeyEvent) (jm_getInstanceForInput_2 (slot-value this 'f_gameKeyEventFactory) this _gameKey)))
+            (error (_e) (declare (ignorable _e))
+            (setf _commonStrings (CommonStrings.jm_getInstance_0))
+            (jm_put_4 (slot-value this 'f_logUtil) (slot-value _commonStrings 'f_EXCEPTION) this (slot-value _commonStrings 'f_UPDATE) _e))))))
 
-function TouchButtonInput:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.gameKeyEventFactory = GameKeyEventFactory.getInstance()
-    self.TOUCH_BUTTON_SOURCE_ID = self.gameKeyEventFactory.TOUCH_BUTTON_SOURCE_ID
-    self.gameKeyEvent = GameKeyEvent.NONE
-end
+    
+(unless (fboundp 'jm_getSourceId_0) (defgeneric jm_getSourceId_0 (this)))
+(defmethod jm_getSourceId_0 ((this TouchButtonInput))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_TOUCH_BUTTON_SOURCE_ID)))))
 
-
-function TouchButtonInput.new(id, name)
-    local self = setmetatable(Input.new(id, name), TouchButtonInput)
-    self:_init_fields()
-        -- super(...) made self above
-        local inputFactory = InputFactory.getInstance()
-        inputFactory:add(self:getId(), self)
-    return self
-end
-
-
-function TouchButtonInput:update(inputToGameKeyMapping)
-        local try_ok, try_error = pcall(function()
-            local gameKey = inputToGameKeyMapping:getInstance(self:getId())
-            self.gameKeyEvent = self.gameKeyEventFactory:getInstanceForInput(self, gameKey)
-        end)
-        if not try_ok then
-            local e = try_error
-            local commonStrings = CommonStrings.getInstance()
-            self.logUtil:put(commonStrings.EXCEPTION, self, commonStrings.UPDATE, e)
-        end
-end
-
-
-function TouchButtonInput:getSourceId()
-        return self.TOUCH_BUTTON_SOURCE_ID
-end
+    
+(unless (fboundp 'jm_getGameKeyEvent_0) (defgeneric jm_getGameKeyEvent_0 (this)))
+(defmethod jm_getGameKeyEvent_0 ((this TouchButtonInput))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_gameKeyEvent)))))
 
 
-function TouchButtonInput:getGameKeyEvent()
-        return self.gameKeyEvent
-end
-
-return TouchButtonInput
 

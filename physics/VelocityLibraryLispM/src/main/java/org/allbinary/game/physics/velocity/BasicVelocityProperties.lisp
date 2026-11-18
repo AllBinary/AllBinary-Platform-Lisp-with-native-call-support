@@ -1,174 +1,210 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.physics.velocity
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.physics.velocity
 
-local Direction = require("org.allbinary.direction.Direction")
-local DirectionUtil = require("org.allbinary.direction.DirectionUtil")
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local BasicDecimal = require("org.allbinary.logic.math.BasicDecimal")
-local AxisMathVectorUtil = require("org.allbinary.logic.math.vector.AxisMathVectorUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local Angle = require("org.allbinary.math.Angle")
-local PositionStrings = require("org.allbinary.math.PositionStrings")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
-local BasicVelocityInterface = require("org.allbinary.game.physics.velocity.BasicVelocityInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass BasicVelocityProperties (JObject)
+  ((f_logUtil :initform nil)
+   (f_velocityXBasicDecimal :initform nil)
+   (f_velocityYBasicDecimal :initform nil)
+   (f_velocityZBasicDecimal :initform nil)
+   (f_axisMathVectorUtil :initform nil)
+   (f_directionUtil :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun BasicVelocityProperties.jnew_0 ()
+  (let ((this (make-instance 'BasicVelocityProperties)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+    
+    
+    
+    (setf (slot-value this 'f_axisMathVectorUtil) (AxisMathVectorUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_directionUtil) (DirectionUtil.jm_getInstance_0))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_velocityXBasicDecimal) (BasicDecimal.jnew_1 0))
+        (setf (slot-value this 'f_velocityYBasicDecimal) (BasicDecimal.jnew_1 0))
+        (setf (slot-value this 'f_velocityZBasicDecimal) (BasicDecimal.jnew_1 0))))
+    this))
 
-local BasicVelocityProperties = {}
-BasicVelocityProperties.__index = BasicVelocityProperties
-BasicVelocityProperties.className = "BasicVelocityProperties"
+    
+(unless (fboundp 'jm_zero_0) (defgeneric jm_zero_0 (this)))
+(defmethod jm_zero_0 ((this BasicVelocityProperties))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (jm_setint_1 (slot-value this 'f_velocityXBasicDecimal) 0)
+        (jm_setint_1 (slot-value this 'f_velocityYBasicDecimal) 0)
+        (jm_setint_1 (slot-value this 'f_velocityZBasicDecimal) 0))))
 
-function BasicVelocityProperties:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-    self.velocityXBasicDecimal = nil
-    self.velocityYBasicDecimal = nil
-    self.velocityZBasicDecimal = nil
-    self.axisMathVectorUtil = AxisMathVectorUtil.getInstance()
-    self.directionUtil = DirectionUtil.getInstance()
-end
+    
+(unless (fboundp 'jm_getVelocityXBasicDecimalP_0) (defgeneric jm_getVelocityXBasicDecimalP_0 (this)))
+(defmethod jm_getVelocityXBasicDecimalP_0 ((this BasicVelocityProperties))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_velocityXBasicDecimal)))))
+
+    
+(unless (fboundp 'jm_getVelocityYBasicDecimalP_0) (defgeneric jm_getVelocityYBasicDecimalP_0 (this)))
+(defmethod jm_getVelocityYBasicDecimalP_0 ((this BasicVelocityProperties))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_velocityYBasicDecimal)))))
+
+    
+(unless (fboundp 'jm_getVelocityZBasicDecimalP_0) (defgeneric jm_getVelocityZBasicDecimalP_0 (this)))
+(defmethod jm_getVelocityZBasicDecimalP_0 ((this BasicVelocityProperties))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_velocityZBasicDecimal)))))
+
+    
+(unless (fboundp 'jm_setVelocityWithBigDecimalAndDirection_3) (defgeneric jm_setVelocityWithBigDecimalAndDirection_3 (this p1 p2 p3)))
+(defmethod jm_setVelocityWithBigDecimalAndDirection_3 ((this BasicVelocityProperties) _magnitudeBasicDecimal _direction _otherDirection)
+  (declare (ignorable this _magnitudeBasicDecimal _direction _otherDirection))
+  (let (_angle _otherAngle)
+  (declare (ignorable _angle _otherAngle))
+    (block jreturn
+        (setf _angle (jm_getAngle_1 (slot-value this 'f_directionUtil) _direction))
+        (setf _otherAngle (jm_getAngle_1 (slot-value this 'f_directionUtil) _otherDirection))
+        (jm_setVelocityWithBigDecimal_3 this _magnitudeBasicDecimal _angle _otherAngle))))
+
+    
+(unless (fboundp 'jm_setVelocityWithDirection_3) (defgeneric jm_setVelocityWithDirection_3 (this p1 p2 p3)))
+(defmethod jm_setVelocityWithDirection_3 ((this BasicVelocityProperties) _magnitude _direction _otherDirection)
+  (declare (ignorable this _magnitude _direction _otherDirection))
+  (let (_angle _otherAngle)
+  (declare (ignorable _angle _otherAngle))
+    (block jreturn
+        (setf _angle (jm_getAngle_1 (slot-value this 'f_directionUtil) _direction))
+        (setf _otherAngle (jm_getAngle_1 (slot-value this 'f_directionUtil) _otherDirection))
+        (jm_setVelocity_3 this _magnitude _angle _otherAngle))))
+
+    
+(unless (fboundp 'jm_addVelocityWithBigDecimalAndDirection_3) (defgeneric jm_addVelocityWithBigDecimalAndDirection_3 (this p1 p2 p3)))
+(defmethod jm_addVelocityWithBigDecimalAndDirection_3 ((this BasicVelocityProperties) _magnitudeBasicDecimal _direction _otherDirection)
+  (declare (ignorable this _magnitudeBasicDecimal _direction _otherDirection))
+  (let (_angle _otherAngle)
+  (declare (ignorable _angle _otherAngle))
+    (block jreturn
+        (setf _angle (jm_getAngle_1 (slot-value this 'f_directionUtil) _direction))
+        (setf _otherAngle (jm_getAngle_1 (slot-value this 'f_directionUtil) _otherDirection))
+        (jm_addVelocityWithBigDecimal_3 this _magnitudeBasicDecimal _angle _otherAngle))))
+
+    
+(unless (fboundp 'jm_addVelocityWithDirection_3) (defgeneric jm_addVelocityWithDirection_3 (this p1 p2 p3)))
+(defmethod jm_addVelocityWithDirection_3 ((this BasicVelocityProperties) _magnitude _direction _otherDirection)
+  (declare (ignorable this _magnitude _direction _otherDirection))
+  (let (_angle _otherAngle)
+  (declare (ignorable _angle _otherAngle))
+    (block jreturn
+        (setf _angle (jm_getAngle_1 (slot-value this 'f_directionUtil) _direction))
+        (setf _otherAngle (jm_getAngle_1 (slot-value this 'f_directionUtil) _otherDirection))
+        (jm_addVelocity_3 this _magnitude _angle _otherAngle))))
+
+    
+(unless (fboundp 'jm_setVelocityWithBigDecimal_3) (defgeneric jm_setVelocityWithBigDecimal_3 (this p1 p2 p3)))
+(defmethod jm_setVelocityWithBigDecimal_3 ((this BasicVelocityProperties) _magnitudeBasicDecimal _angle _otherAngle)
+  (declare (ignorable this _magnitudeBasicDecimal _angle _otherAngle))
+  (let (_magnitude)
+  (declare (ignorable _magnitude))
+    (block jreturn
+        (setf _magnitude (jm_getUnscaled_0 _magnitudeBasicDecimal))
+        (jm_setVelocity_3 this _magnitude _angle _otherAngle))))
+
+    
+(unless (fboundp 'jm_addVelocityWithBigDecimal_3) (defgeneric jm_addVelocityWithBigDecimal_3 (this p1 p2 p3)))
+(defmethod jm_addVelocityWithBigDecimal_3 ((this BasicVelocityProperties) _magnitudeBasicDecimal _angle _otherAngle)
+  (declare (ignorable this _magnitudeBasicDecimal _angle _otherAngle))
+  (let (_magnitude)
+  (declare (ignorable _magnitude))
+    (block jreturn
+        (setf _magnitude (jm_getUnscaled_0 _magnitudeBasicDecimal))
+        (jm_addVelocity_3 this _magnitude _angle _otherAngle))))
+
+    
+(unless (fboundp 'jm_setVelocity_3) (defgeneric jm_setVelocity_3 (this p1 p2 p3)))
+(defmethod jm_setVelocity_3 ((this BasicVelocityProperties) _magnitude _angle _otherAngle)
+  (declare (ignorable this _magnitude _angle _otherAngle))
+  (let ()
+    (block jreturn
+        (jm_setVelocityi_3 this _magnitude (jm_getValue_0 _angle) (jm_getValue_0 _otherAngle)))))
+
+    
+(unless (fboundp 'jm_addVelocity_3) (defgeneric jm_addVelocity_3 (this p1 p2 p3)))
+(defmethod jm_addVelocity_3 ((this BasicVelocityProperties) _magnitude _angle _otherAngle)
+  (declare (ignorable this _magnitude _angle _otherAngle))
+  (let ()
+    (block jreturn
+        (jm_addVelocityi_3 this _magnitude (jm_getValue_0 _angle) (jm_getValue_0 _otherAngle)))))
+
+    
+(unless (fboundp 'jm_setVelocityi_3) (defgeneric jm_setVelocityi_3 (this p1 p2 p3)))
+(defmethod jm_setVelocityi_3 ((this BasicVelocityProperties) _magnitude _angle _otherAngle)
+  (declare (ignorable this _magnitude _angle _otherAngle))
+  (let (_xVector _yVector _zVector)
+  (declare (ignorable _xVector _yVector _zVector))
+    (block jreturn
+        (setf _xVector (JR.idiv (jm_calculateX_2 (slot-value this 'f_axisMathVectorUtil) _magnitude _angle) (jm_getScaledFactorValue_0 (slot-value this 'f_velocityXBasicDecimal))))
+        (setf _yVector (JR.idiv (jm_calculateY_2 (slot-value this 'f_axisMathVectorUtil) _magnitude _angle) (jm_getScaledFactorValue_0 (slot-value this 'f_velocityYBasicDecimal))))
+        (setf _zVector (JR.idiv (jm_calculateZ_2 (slot-value this 'f_axisMathVectorUtil) _magnitude _otherAngle) (jm_getScaledFactorValue_0 (slot-value this 'f_velocityZBasicDecimal))))
+        (jm_setlong_1 (slot-value this 'f_velocityXBasicDecimal) _xVector)
+        (jm_setlong_1 (slot-value this 'f_velocityYBasicDecimal) _yVector)
+        (jm_setlong_1 (slot-value this 'f_velocityZBasicDecimal) _zVector))))
+
+    
+(unless (fboundp 'jm_addVelocityi_3) (defgeneric jm_addVelocityi_3 (this p1 p2 p3)))
+(defmethod jm_addVelocityi_3 ((this BasicVelocityProperties) _magnitude _angle _otherAngle)
+  (declare (ignorable this _magnitude _angle _otherAngle))
+  (let (_xVector _yVector _zVector)
+  (declare (ignorable _xVector _yVector _zVector))
+    (block jreturn
+        (setf _xVector (JR.idiv (jm_calculateX_2 (slot-value this 'f_axisMathVectorUtil) _magnitude _angle) (jm_getScaledFactorValue_0 (slot-value this 'f_velocityXBasicDecimal))))
+        (setf _yVector (JR.idiv (jm_calculateY_2 (slot-value this 'f_axisMathVectorUtil) _magnitude _angle) (jm_getScaledFactorValue_0 (slot-value this 'f_velocityYBasicDecimal))))
+        (setf _zVector (JR.idiv (jm_calculateZ_2 (slot-value this 'f_axisMathVectorUtil) _magnitude _otherAngle) (jm_getScaledFactorValue_0 (slot-value this 'f_velocityZBasicDecimal))))
+        (jm_addlong_1 (slot-value this 'f_velocityXBasicDecimal) _xVector)
+        (jm_addlong_1 (slot-value this 'f_velocityYBasicDecimal) _yVector)
+        (jm_addlong_1 (slot-value this 'f_velocityZBasicDecimal) _zVector))))
+
+    
+(unless (fboundp 'jm_toString_0) (defgeneric jm_toString_0 (this)))
+(defmethod jm_toString_0 ((this BasicVelocityProperties))
+  (declare (ignorable this))
+  (let (_commonSeps _positionStrings _stringBuffer _stringUtil)
+  (declare (ignorable _commonSeps _positionStrings _stringBuffer _stringUtil))
+    (block jreturn
+        (setf _commonSeps (CommonSeps.jm_getInstance_0))
+        (setf _positionStrings (PositionStrings.jm_getInstance_0))
+        (setf _stringBuffer (StringMaker.jnew_0))
+        (setf _stringUtil (StringUtil.jm_getInstance_0))
+        (jm_append_1 _stringBuffer "Velocity ")
+        (jm_append_1 _stringBuffer (slot-value _positionStrings 'f_X_LABEL))
+        (jm_append_1 _stringBuffer (jm_toString_1 _stringUtil (slot-value this 'f_velocityXBasicDecimal)))
+        (jm_append_1 _stringBuffer (slot-value _commonSeps 'f_SPACE))
+        (jm_append_1 _stringBuffer (slot-value _positionStrings 'f_Y_LABEL))
+        (jm_append_1 _stringBuffer (jm_toString_1 _stringUtil (slot-value this 'f_velocityYBasicDecimal)))
+        (jm_append_1 _stringBuffer (slot-value _commonSeps 'f_SPACE))
+        (jm_append_1 _stringBuffer (slot-value _positionStrings 'f_Z_LABEL))
+        (jm_append_1 _stringBuffer (jm_toString_1 _stringUtil (slot-value this 'f_velocityZBasicDecimal)))
+        (return-from jreturn (jm_toString_0 _stringBuffer)))))
 
 
-function BasicVelocityProperties.new()
-    local self = setmetatable({}, BasicVelocityProperties)
-    self:_init_fields()
-        self.velocityXBasicDecimal = BasicDecimal.new(0)
-        self.velocityYBasicDecimal = BasicDecimal.new(0)
-        self.velocityZBasicDecimal = BasicDecimal.new(0)
-    return self
-end
-
-
-function BasicVelocityProperties:zero()
-        self.velocityXBasicDecimal:setint(0)
-        self.velocityYBasicDecimal:setint(0)
-        self.velocityZBasicDecimal:setint(0)
-end
-
-
-function BasicVelocityProperties:getVelocityXBasicDecimalP()
-        return self.velocityXBasicDecimal
-end
-
-
-function BasicVelocityProperties:getVelocityYBasicDecimalP()
-        return self.velocityYBasicDecimal
-end
-
-
-function BasicVelocityProperties:getVelocityZBasicDecimalP()
-        return self.velocityZBasicDecimal
-end
-
-
-function BasicVelocityProperties:setVelocityWithBigDecimalAndDirection(magnitudeBasicDecimal, direction, otherDirection)
-        local angle = self.directionUtil:getAngle(direction)
-        local otherAngle = self.directionUtil:getAngle(otherDirection)
-        self:setVelocityWithBigDecimal(magnitudeBasicDecimal, angle, otherAngle)
-end
-
-
-function BasicVelocityProperties:setVelocityWithDirection(magnitude, direction, otherDirection)
-        local angle = self.directionUtil:getAngle(direction)
-        local otherAngle = self.directionUtil:getAngle(otherDirection)
-        self:setVelocity(magnitude, angle, otherAngle)
-end
-
-
-function BasicVelocityProperties:addVelocityWithBigDecimalAndDirection(magnitudeBasicDecimal, direction, otherDirection)
-        local angle = self.directionUtil:getAngle(direction)
-        local otherAngle = self.directionUtil:getAngle(otherDirection)
-        self:addVelocityWithBigDecimal(magnitudeBasicDecimal, angle, otherAngle)
-end
-
-
-function BasicVelocityProperties:addVelocityWithDirection(magnitude, direction, otherDirection)
-        local angle = self.directionUtil:getAngle(direction)
-        local otherAngle = self.directionUtil:getAngle(otherDirection)
-        self:addVelocity(magnitude, angle, otherAngle)
-end
-
-
-function BasicVelocityProperties:setVelocityWithBigDecimal(magnitudeBasicDecimal, angle, otherAngle)
-        local magnitude = magnitudeBasicDecimal:getUnscaled()
-        self:setVelocity(magnitude, angle, otherAngle)
-end
-
-
-function BasicVelocityProperties:addVelocityWithBigDecimal(magnitudeBasicDecimal, angle, otherAngle)
-        local magnitude = magnitudeBasicDecimal:getUnscaled()
-        self:addVelocity(magnitude, angle, otherAngle)
-end
-
-
-function BasicVelocityProperties:setVelocity(magnitude, angle, otherAngle)
-        self:setVelocityi(magnitude, java_int(angle:getValue()), java_int(otherAngle:getValue()))
-end
-
-
-function BasicVelocityProperties:addVelocity(magnitude, angle, otherAngle)
-        self:addVelocityi(magnitude, java_int(angle:getValue()), java_int(otherAngle:getValue()))
-end
-
-
-function BasicVelocityProperties:setVelocityi(magnitude, angle, otherAngle)
-        local xVector = (self.axisMathVectorUtil:calculateX(magnitude, angle) / self.velocityXBasicDecimal:getScaledFactorValue())
-        local yVector = (self.axisMathVectorUtil:calculateY(magnitude, angle) / self.velocityYBasicDecimal:getScaledFactorValue())
-        local zVector = (self.axisMathVectorUtil:calculateZ(magnitude, otherAngle) / self.velocityZBasicDecimal:getScaledFactorValue())
-        self.velocityXBasicDecimal:setlong(xVector)
-        self.velocityYBasicDecimal:setlong(yVector)
-        self.velocityZBasicDecimal:setlong(zVector)
-end
-
-
-function BasicVelocityProperties:addVelocityi(magnitude, angle, otherAngle)
-        local xVector = (self.axisMathVectorUtil:calculateX(magnitude, angle) / self.velocityXBasicDecimal:getScaledFactorValue())
-        local yVector = (self.axisMathVectorUtil:calculateY(magnitude, angle) / self.velocityYBasicDecimal:getScaledFactorValue())
-        local zVector = (self.axisMathVectorUtil:calculateZ(magnitude, otherAngle) / self.velocityZBasicDecimal:getScaledFactorValue())
-        self.velocityXBasicDecimal:addlong(xVector)
-        self.velocityYBasicDecimal:addlong(yVector)
-        self.velocityZBasicDecimal:addlong(zVector)
-end
-
-
-function BasicVelocityProperties:toString()
-        local commonSeps = CommonSeps.getInstance()
-        local positionStrings = PositionStrings.getInstance()
-        local stringBuffer = StringMaker.new()
-        local stringUtil = StringUtil.getInstance()
-        stringBuffer:append("Velocity ")
-        stringBuffer:append(positionStrings.X_LABEL)
-        stringBuffer:append(stringUtil:toString(self.velocityXBasicDecimal))
-        stringBuffer:append(commonSeps.SPACE)
-        stringBuffer:append(positionStrings.Y_LABEL)
-        stringBuffer:append(stringUtil:toString(self.velocityYBasicDecimal))
-        stringBuffer:append(commonSeps.SPACE)
-        stringBuffer:append(positionStrings.Z_LABEL)
-        stringBuffer:append(stringUtil:toString(self.velocityZBasicDecimal))
-        return tostring(stringBuffer)
-end
-BasicVelocityProperties.__tostring = function(self) return self:toString() end
-
-return BasicVelocityProperties
 

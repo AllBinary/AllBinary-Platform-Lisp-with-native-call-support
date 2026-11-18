@@ -1,81 +1,84 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.displayable.canvas
 
-local GameInfo = require("org.allbinary.game.GameInfo")
-local MyCanvas = require("org.allbinary.graphics.displayable.MyCanvas")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass EndGameInfo (JObject)
+  ((f_NORMAL_GAME_OVER_WIN :initform nil)
+   (f_TEASER_DEMO_GAME_END_LAST_LEVEL :initform nil)
+   (f_TEASER_DEMO_GAME_END :initform nil)
+   (f_gameOverStr :initform nil)
+   (f_winStr :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun EndGameInfo.jnew_0 ()
+  (let ((this (make-instance 'EndGameInfo)))
+    (setf (slot-value this 'f_NORMAL_GAME_OVER_WIN) "You Won")
+    (setf (slot-value this 'f_TEASER_DEMO_GAME_END_LAST_LEVEL) "End of Demo.")
+    (setf (slot-value this 'f_TEASER_DEMO_GAME_END) "Demo Game Over.")
+    (setf (slot-value this 'f_gameOverStr) (slot-value (StringUtil.jm_getInstance_0) 'f_EMPTY_STRING))
+    (setf (slot-value this 'f_winStr) (slot-value this 'f_gameOverStr))
+    this))
 
-local EndGameInfo = {}
-EndGameInfo.__index = EndGameInfo
-EndGameInfo.className = "EndGameInfo"
+    
+(unless (fboundp 'jm_update_2) (defgeneric jm_update_2 (this p1 p2)))
+(defmethod jm_update_2 ((this EndGameInfo) _gameInfo _myCanvas)
+  (declare (ignorable this _gameInfo _myCanvas))
+  (let ()
+    (block jreturn
+        (if (jm_isLastLevel_0 _gameInfo)
+            (progn
+            (jm_setWinStr_1 this (slot-value this 'f_TEASER_DEMO_GAME_END_LAST_LEVEL))
+            (jm_setGameOverStr_1 this (slot-value this 'f_TEASER_DEMO_GAME_END_LAST_LEVEL)))
+            (progn
+            (jm_setWinStr_1 this (slot-value this 'f_NORMAL_GAME_OVER_WIN))
+            (jm_setGameOverStr_1 this (slot-value this 'f_TEASER_DEMO_GAME_END)))))))
 
-function EndGameInfo:_init_fields()
-    self.NORMAL_GAME_OVER_WIN = "You Won"
-    self.TEASER_DEMO_GAME_END_LAST_LEVEL = "End of Demo."
-    self.TEASER_DEMO_GAME_END = "Demo Game Over."
-    self.gameOverStr = StringUtil.getInstance().EMPTY_STRING
-    self.winStr = self.gameOverStr
-end
+    
+(unless (fboundp 'jm_getGameOverStr_0) (defgeneric jm_getGameOverStr_0 (this)))
+(defmethod jm_getGameOverStr_0 ((this EndGameInfo))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_gameOverStr)))))
 
-function EndGameInfo.new()
-    local self = setmetatable({}, EndGameInfo)
-    self:_init_fields()
-    return self
-end
+    
+(unless (fboundp 'jm_setGameOverStr_1) (defgeneric jm_setGameOverStr_1 (this p1)))
+(defmethod jm_setGameOverStr_1 ((this EndGameInfo) _gameOverStr)
+  (declare (ignorable this _gameOverStr))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_gameOverStr) _gameOverStr))))
 
+    
+(unless (fboundp 'jm_getWinStr_0) (defgeneric jm_getWinStr_0 (this)))
+(defmethod jm_getWinStr_0 ((this EndGameInfo))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_winStr)))))
 
-function EndGameInfo:update(gameInfo, myCanvas)
-        if gameInfo:isLastLevel() then
-            self:setWinStr(self.TEASER_DEMO_GAME_END_LAST_LEVEL)
-            self:setGameOverStr(self.TEASER_DEMO_GAME_END_LAST_LEVEL)
-        else
-            self:setWinStr(self.NORMAL_GAME_OVER_WIN)
-            self:setGameOverStr(self.TEASER_DEMO_GAME_END)
-        end
-end
-
-
-function EndGameInfo:getGameOverStr()
-        return self.gameOverStr
-end
-
-
-function EndGameInfo:setGameOverStr(gameOverStr)
-        self.gameOverStr = gameOverStr
-end
+    
+(unless (fboundp 'jm_setWinStr_1) (defgeneric jm_setWinStr_1 (this p1)))
+(defmethod jm_setWinStr_1 ((this EndGameInfo) _winStr)
+  (declare (ignorable this _winStr))
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_winStr) _winStr))))
 
 
-function EndGameInfo:getWinStr()
-        return self.winStr
-end
-
-
-function EndGameInfo:setWinStr(winStr)
-        self.winStr = winStr
-end
-
-return EndGameInfo
 

@@ -1,51 +1,47 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.gyro
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.input.gyro
+
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
+
+(defclass GyroSensorFactory (JObject)
+  ())
+
+(defvar GyroSensorFactory.jcell_allBinaryGyroSensor :jnone)
+(defun GyroSensorFactory.jstatic_allBinaryGyroSensor ()
+  (when (eq GyroSensorFactory.jcell_allBinaryGyroSensor :jnone) (setf GyroSensorFactory.jcell_allBinaryGyroSensor nil))
+  GyroSensorFactory.jcell_allBinaryGyroSensor)
+(defun (setf GyroSensorFactory.jstatic_allBinaryGyroSensor) (value) (setf GyroSensorFactory.jcell_allBinaryGyroSensor value))
+
+(defun GyroSensorFactory.jnew_0 ()
+  (let ((this (make-instance 'GyroSensorFactory)))
+    this))
+
+    
+(defun GyroSensorFactory.jm_init_0 ()
+  (let ()
+    (block jreturn
+        (setf (GyroSensorFactory.jstatic_allBinaryGyroSensor) (NoGyroSensor.jnew_0)))))
+
+    
+(defun GyroSensorFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (GyroSensorFactory.jstatic_allBinaryGyroSensor)))))
 
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
-
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
-
-local GyroSensorFactory = {}
-GyroSensorFactory.__index = GyroSensorFactory
-GyroSensorFactory.className = "GyroSensorFactory"
-
-function GyroSensorFactory.new()
-    local self = setmetatable({}, GyroSensorFactory)
-    return self
-end
-
-
--- throws Exception
-function GyroSensorFactory.init()
-        GyroSensorFactory.allBinaryGyroSensor = NoGyroSensor.new()
-end
-
-
-function GyroSensorFactory.getInstance()
-        return GyroSensorFactory.allBinaryGyroSensor
-end
-
-GyroSensorFactory.allBinaryGyroSensor = nil
-
-return GyroSensorFactory
 

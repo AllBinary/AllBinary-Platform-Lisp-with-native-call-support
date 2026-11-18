@@ -30,6 +30,7 @@
 (defun AngleIncrementInfo.jstatic_INCREMENT ()
   (when (eq AngleIncrementInfo.jcell_INCREMENT :jnone) (setf AngleIncrementInfo.jcell_INCREMENT "Inc: "))
   AngleIncrementInfo.jcell_INCREMENT)
+(defun (setf AngleIncrementInfo.jstatic_INCREMENT) (value) (setf AngleIncrementInfo.jcell_INCREMENT value))
 
     
 (defun AngleIncrementInfo.jnew_1 (_angleIncrement)
@@ -47,10 +48,10 @@
         (setf (slot-value this 'f_angleIncrement) _angleIncrement)
         (setf _angleFactory (AngleFactory.jm_getInstance_0))
         (setf _smallIntegerSingletonFactory (SmallIntegerSingletonFactory.jm_getInstance_0))
-        (setf (slot-value this 'f_DOWN_FRAME) (jm_getAt_1 _smallIntegerSingletonFactory (JR.idiv (JR.className (slot-value _angleFactory 'f_DOWN)) (slot-value this 'f_angleIncrement))))
-        (setf (slot-value this 'f_UP_FRAME) (jm_getAt_1 _smallIntegerSingletonFactory (JR.className (slot-value _angleFactory 'f_UP))))
-        (setf (slot-value this 'f_LEFT_FRAME) (jm_getAt_1 _smallIntegerSingletonFactory (JR.idiv (JR.className (slot-value _angleFactory 'f_LEFT)) (slot-value this 'f_angleIncrement))))
-        (setf (slot-value this 'f_RIGHT_FRAME) (jm_getAt_1 _smallIntegerSingletonFactory (JR.idiv (JR.className (slot-value _angleFactory 'f_RIGHT)) (slot-value this 'f_angleIncrement))))))
+        (setf (slot-value this 'f_DOWN_FRAME) (jm_getAt_1 _smallIntegerSingletonFactory (JR.idiv (jm_getValue_0 (slot-value _angleFactory 'f_DOWN)) (slot-value this 'f_angleIncrement))))
+        (setf (slot-value this 'f_UP_FRAME) (jm_getAt_1 _smallIntegerSingletonFactory (jm_getValue_0 (slot-value _angleFactory 'f_UP))))
+        (setf (slot-value this 'f_LEFT_FRAME) (jm_getAt_1 _smallIntegerSingletonFactory (JR.idiv (jm_getValue_0 (slot-value _angleFactory 'f_LEFT)) (slot-value this 'f_angleIncrement))))
+        (setf (slot-value this 'f_RIGHT_FRAME) (jm_getAt_1 _smallIntegerSingletonFactory (JR.idiv (jm_getValue_0 (slot-value _angleFactory 'f_RIGHT)) (slot-value this 'f_angleIncrement))))))
     this))
 
     

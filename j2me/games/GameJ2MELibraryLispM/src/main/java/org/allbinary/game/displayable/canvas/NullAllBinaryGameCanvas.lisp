@@ -1,87 +1,83 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2025 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.displayable.canvas
 
--- local Command = require("javax.microedition.lcdui.Command")
--- local CommandListener = require("javax.microedition.lcdui.CommandListener")
-local AllBinaryGameLayerManager = require("org.allbinary.game.layer.AllBinaryGameLayerManager")
-local AllBinaryGameCanvasInterface = require("org.allbinary.game.displayable.canvas.AllBinaryGameCanvasInterface")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
--- Java library Throwable. tostring gives the message like Java getMessage.
-local function java_exception(className, message, cause)
-    if cause == nil and type(message) == "table" then
-        cause = message
-        message = tostring(message)
-    end
-    local exception = {className = className, message = message, cause = cause}
-    function exception:getMessage() return self.message end
-    function exception:getCause() return self.cause end
-    function exception:printStackTrace() print(debug.traceback(tostring(self))) end
-    return setmetatable(exception, {__tostring = function(self) if self.message ~= nil then return tostring(self.message) end return self.className end})
-end
+(defclass NullAllBinaryGameCanvas (JObject)
+  ())
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defvar NullAllBinaryGameCanvas.jcell_NULL_ALLBINARY_GAME_CANVAS :jnone)
+(defun NullAllBinaryGameCanvas.jstatic_NULL_ALLBINARY_GAME_CANVAS ()
+  (when (eq NullAllBinaryGameCanvas.jcell_NULL_ALLBINARY_GAME_CANVAS :jnone) (setf NullAllBinaryGameCanvas.jcell_NULL_ALLBINARY_GAME_CANVAS (NullAllBinaryGameCanvas.jnew_0)))
+  NullAllBinaryGameCanvas.jcell_NULL_ALLBINARY_GAME_CANVAS)
+(defun (setf NullAllBinaryGameCanvas.jstatic_NULL_ALLBINARY_GAME_CANVAS) (value) (setf NullAllBinaryGameCanvas.jcell_NULL_ALLBINARY_GAME_CANVAS value))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun NullAllBinaryGameCanvas.jnew_0 ()
+  (let ((this (make-instance 'NullAllBinaryGameCanvas)))
+    this))
 
-local NullAllBinaryGameCanvas = {}
-NullAllBinaryGameCanvas.__index = NullAllBinaryGameCanvas
-NullAllBinaryGameCanvas.className = "NullAllBinaryGameCanvas"
+    
+(unless (fboundp 'jm_getLayerManager_0) (defgeneric jm_getLayerManager_0 (this)))
+(defmethod jm_getLayerManager_0 ((this NullAllBinaryGameCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (error (JR.newException "RuntimeException")))))
 
-function NullAllBinaryGameCanvas.new()
-    local self = setmetatable({}, NullAllBinaryGameCanvas)
-    return self
-end
+    
+(unless (fboundp 'jm_addCommand_1) (defgeneric jm_addCommand_1 (this p1)))
+(defmethod jm_addCommand_1 ((this NullAllBinaryGameCanvas) _cmd)
+  (declare (ignorable this _cmd))
+  (let ()
+    (block jreturn
+        (error (JR.newException "RuntimeException")))))
+
+    
+(unless (fboundp 'jm_getHeight_0) (defgeneric jm_getHeight_0 (this)))
+(defmethod jm_getHeight_0 ((this NullAllBinaryGameCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (error (JR.newException "RuntimeException")))))
+
+    
+(unless (fboundp 'jm_getWidth_0) (defgeneric jm_getWidth_0 (this)))
+(defmethod jm_getWidth_0 ((this NullAllBinaryGameCanvas))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (error (JR.newException "RuntimeException")))))
+
+    
+(unless (fboundp 'jm_removeCommand_1) (defgeneric jm_removeCommand_1 (this p1)))
+(defmethod jm_removeCommand_1 ((this NullAllBinaryGameCanvas) _cmd)
+  (declare (ignorable this _cmd))
+  (let ()
+    (block jreturn
+        (error (JR.newException "RuntimeException")))))
+
+    
+(unless (fboundp 'jm_setCommandListener_1) (defgeneric jm_setCommandListener_1 (this p1)))
+(defmethod jm_setCommandListener_1 ((this NullAllBinaryGameCanvas) _l)
+  (declare (ignorable this _l))
+  (let ()
+    (block jreturn
+        (error (JR.newException "RuntimeException")))))
 
 
-function NullAllBinaryGameCanvas:getLayerManager()
-        error(java_exception("RuntimeException"), 0)
-end
-
-
-function NullAllBinaryGameCanvas:addCommand(cmd)
-        error(java_exception("RuntimeException"), 0)
-end
-
-
-function NullAllBinaryGameCanvas:getHeight()
-        error(java_exception("RuntimeException"), 0)
-end
-
-
-function NullAllBinaryGameCanvas:getWidth()
-        error(java_exception("RuntimeException"), 0)
-end
-
-
-function NullAllBinaryGameCanvas:removeCommand(cmd)
-        error(java_exception("RuntimeException"), 0)
-end
-
-
-function NullAllBinaryGameCanvas:setCommandListener(l)
-        error(java_exception("RuntimeException"), 0)
-end
-
-NullAllBinaryGameCanvas.NULL_ALLBINARY_GAME_CANVAS = NullAllBinaryGameCanvas.new()
-
-return NullAllBinaryGameCanvas
 

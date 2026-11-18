@@ -1,214 +1,167 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.input
 
--- local ByteArrayInputStream = require("java.io.ByteArrayInputStream")
--- local ByteArrayOutputStream = require("java.io.ByteArrayOutputStream")
--- local DataInputStream = require("java.io.DataInputStream")
--- local DataOutputStream = require("java.io.DataOutputStream")
--- local RecordEnumeration = require("javax.microedition.rms.RecordEnumeration")
--- local RecordStore = require("javax.microedition.rms.RecordStore")
-local TsUtil = require("org.allbinary.TsUtil")
-local BasicPersitance = require("org.allbinary.game.configuration.persistance.BasicPersitance")
-local NullRecordComparator = require("org.allbinary.game.configuration.persistance.NullRecordComparator")
-local NullRecordFilter = require("org.allbinary.game.configuration.persistance.NullRecordFilter")
-local NullRecordStore = require("org.allbinary.game.configuration.persistance.NullRecordStore")
-local PreLogUtil = require("org.allbinary.logic.communication.log.PreLogUtil")
-local SmallIntegerSingletonFactory = require("org.allbinary.logic.math.SmallIntegerSingletonFactory")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local AbeClientInformationInterface = require("org.allbinary.logic.system.security.licensing.AbeClientInformationInterface")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local HashtableUtil = require("org.allbinary.util.HashtableUtil")
-local StdUtil = require("org.allbinary.logic.StdUtil")
-local ABHashtable = require("org.allbinary.util.ABHashtable")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
--- Java library java.io.ByteArrayOutputStream
-local function java_byte_array_output_stream()
-    local stream = {buffer = {}}
-    function stream:write(value, offset, length)
-        if type(value) == "table" then
-            local first = (offset or 0) + 1
-            local last = first + (length or #value) - 1
-            for index = first, last do self.buffer[#self.buffer + 1] = string.char(value[index] % 256) end
-        elseif type(value) == "number" then
-            self.buffer[#self.buffer + 1] = string.char(value % 256)
-        else
-            self.buffer[#self.buffer + 1] = tostring(value)
-        end
-    end
-    function stream:toString() return table.concat(self.buffer) end
-    function stream:size() return #table.concat(self.buffer) end
-    function stream:reset() self.buffer = {} end
-    function stream:flush() end
-    function stream:close() end
-    return setmetatable(stream, {__tostring = function(self) return table.concat(self.buffer) end})
-end
+;GameInputPersistanceLibrary
+(defclass InputPersistance (BasicPersitance)
+  ((f_tsUtil :initform nil)
+   (f_hashtableUtil :initform nil)))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+    
+(defun InputPersistance.jnew_1 (_name)
+  (declare (ignorable _name))
+  (let ((this (make-instance 'InputPersistance)))
+    (setf (slot-value this 'f_tsUtil) (TsUtil.jm_getInstance_0))
+    (setf (slot-value this 'f_hashtableUtil) (HashtableUtil.jm_getInstance_0))
+  (let ()
+    (block jreturn
+        nil))
+    this))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(unless (fboundp 'jm_loadAll_1) (defgeneric jm_loadAll_1 (this p1)))
+(defmethod jm_loadAll_1 ((this InputPersistance) _abeClientInformation)
+  (declare (ignorable this _abeClientInformation))
+  (let (_recordStore _recordEnum _gameActionInputId _inputId _gameActionInput _input _hashtable _gameKeyFactory _stringBuffer _inputFactory _smallIntegerSingletonFactory _stdUtil _recordAsBytes _byteArrayInputStream _inputStream _id _value _gameActionInputIdAsString)
+  (declare (ignorable _recordStore _recordEnum _gameActionInputId _inputId _gameActionInput _input _hashtable _gameKeyFactory _stringBuffer _inputFactory _smallIntegerSingletonFactory _stdUtil _recordAsBytes _byteArrayInputStream _inputStream _id _value _gameActionInputIdAsString))
+    (block jreturn
+        (setf _recordStore (NullRecordStore.jstatic_NULL_RECORD_STORE))
+        (unwind-protect (handler-case (progn
+            (setf _recordStore (RecordStore.jm_openRecordStore_2 (jm_getRecordId_1 this _abeClientInformation) t))
+            (setf _recordEnum (jm_enumerateRecords_3 _recordStore (NullRecordFilter.jstatic_NULL_RECORD_FILTER) (NullRecordComparator.jstatic_NULL_RECORD_COMPARATOR) t))
+            (setf _gameActionInputId 0)
+            (setf _inputId 0)
+            (setf _gameActionInput nil)
+            (setf _input nil)
+            (setf _hashtable nil)
+            (setf _gameKeyFactory (GameKeyMappingFactory.jm_getInstance_0))
+            (setf _stringBuffer (StringMaker.jnew_0))
+            (setf _inputFactory (InputFactory.jm_getInstance_0))
+            (setf _smallIntegerSingletonFactory (SmallIntegerSingletonFactory.jm_getInstance_0))
+            (setf _stdUtil (StdUtil.jm_getInstance_0))
+            (setf _recordAsBytes nil)
+            (setf _byteArrayInputStream nil)
+            (setf _inputStream nil)
+            (block jbreak (loop while (jm_hasNextElement_0 _recordEnum) do
+                    (block jcontinue
+                (setf _id (jm_nextRecordId_0 _recordEnum))
+                (jm_delete_2 _stringBuffer 0 (jm_length_0 _stringBuffer))
+                (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 (jm_appendint_1 (jm_append_1 _stringBuffer (slot-value (slot-value this 'f_persistanceStrings) 'f_LOADING_ID)) _id)) this (slot-value (slot-value this 'f_persistanceStrings) 'f_LOAD_ALL))
+                (setf _recordAsBytes (jm_getRecord_2 (slot-value this 'f_tsUtil) _recordStore _id))
+                (if (not (null _recordAsBytes))
+                    (progn
+                    (setf _byteArrayInputStream (ByteArrayInputStream.jnew_1 _recordAsBytes))
+                    (setf _inputStream (DataInputStream.jnew_1 _byteArrayInputStream))
+                    (setf _hashtable (jm_createHashtable_0 _stdUtil))
+                    (setf _value 0)
+                    (block jbreak (loop while (> (jm_available_0 _inputStream) 0) do
+                            (block jcontinue
+                        (setf _gameActionInputIdAsString (jm_readUTF_0 _inputStream))
+                        (setf _value (Integer.jm_parseInt_1 _gameActionInputIdAsString))
+                        (setf _gameActionInputId _value)
+                        (jm_readUTF_0 _inputStream)
+                        (setf _value (Integer.jm_parseInt_1 (jm_readUTF_0 _inputStream)))
+                        (setf _inputId _value)
+                        (setf _gameActionInput (jm_getGameKey_1 _gameKeyFactory (JR.i32 _gameActionInputId)))
+                        (setf _input (jm_getInstanceById_1 _inputFactory (JR.i32 _inputId)))
+                        (if (or (eq _input (slot-value _inputFactory 'f_NO_INPUT)) (null _gameActionInput))
+                            (progn
+                            (jm_delete_2 _stringBuffer 0 (jm_length_0 _stringBuffer))
+                            (if (eq _input (slot-value _inputFactory 'f_NO_INPUT))
+                                (progn
+                                (jm_append_1 _stringBuffer (slot-value (slot-value this 'f_persistanceStrings) 'f_ERROR_LOADING_ID))
+                                (jm_appendlong_1 _stringBuffer _inputId)
+                                (jm_append_1 _stringBuffer (slot-value (slot-value this 'f_persistanceStrings) 'f_GAME_ACTION_INPUT))
+                                (jm_appendlong_1 _stringBuffer _gameActionInputId)
+                                (PreLogUtil.jm_put_3 (jm_toString_0 _stringBuffer) this (slot-value (slot-value this 'f_persistanceStrings) 'f_LOAD_ALL))))
+                            (if (null _gameActionInput)
+                                (progn
+                                (jm_delete_2 _stringBuffer 0 (jm_length_0 _stringBuffer))
+                                (jm_append_1 _stringBuffer (slot-value (slot-value this 'f_persistanceStrings) 'f_ERROR_LOADING))
+                                (jm_appendlong_1 _stringBuffer _gameActionInputId)
+                                (jm_append_1 _stringBuffer (slot-value (slot-value this 'f_persistanceStrings) 'f_ID))
+                                (jm_appendlong_1 _stringBuffer _inputId)
+                                (PreLogUtil.jm_put_3 (jm_toString_0 _stringBuffer) this (slot-value (slot-value this 'f_persistanceStrings) 'f_LOAD_ALL)))))
+                            (progn
+                            nil))
+                        (jm_put_2 _hashtable _input _gameActionInput))))
+                    (jm_add_1 (slot-value this 'f_valueList) _hashtable)
+                    (jm_add_1 (slot-value this 'f_idList) (jm_getAt_1 _smallIntegerSingletonFactory _id)))
+                    (progn
+                    nil))))))
+            (error (_e) (declare (ignorable _e))
+            (error _e)))
+            (progn
+            (if (not (null _recordStore))
+                (progn
+                (PreLogUtil.jm_put_3 (slot-value (slot-value this 'f_persistanceStrings) 'f_CLOSING_RECORDSTORE) this (slot-value (slot-value this 'f_persistanceStrings) 'f_LOAD_ALL))
+                (jm_closeRecordStore_0 _recordStore))))))))
 
---GameInputPersistanceLibrary
-local InputPersistance = {}
-InputPersistance.__index = InputPersistance
-InputPersistance.className = "InputPersistance"
-setmetatable(InputPersistance, {__index = BasicPersitance})
-
-function InputPersistance:_init_fields()
-    self.tsUtil = TsUtil.getInstance()
-    self.hashtableUtil = HashtableUtil.getInstance()
-end
-
-
-function InputPersistance.new(name)
-    local self = setmetatable(BasicPersitance.new(name), InputPersistance)
-    self:_init_fields()
-        -- super(...) made self above
-    return self
-end
-
-
--- throws Exception
-function InputPersistance:loadAll(abeClientInformation)
-        local recordStore = NullRecordStore.NULL_RECORD_STORE
-        local try_ok, try_error = pcall(function()
-            recordStore = RecordStore.openRecordStore(self:getRecordId(abeClientInformation), true)
-            local recordEnum = recordStore:enumerateRecords(NullRecordFilter.NULL_RECORD_FILTER, NullRecordComparator.NULL_RECORD_COMPARATOR, true)
-            local gameActionInputId = 0
-            local inputId = 0
-            local gameActionInput = nil
-            local input = nil
-            local hashtable = nil
-            local gameKeyFactory = GameKeyMappingFactory.getInstance()
-            local stringBuffer = StringMaker.new()
-            local inputFactory = InputFactory.getInstance()
-            local smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance()
-            local stdUtil = StdUtil.getInstance()
-            local recordAsBytes = nil
-            local byteArrayInputStream = nil
-            local inputStream = nil
-            while recordEnum:hasNextElement() do
-                local id = recordEnum:nextRecordId()
-                stringBuffer:delete(0, stringBuffer:length())
-                self.logUtil:putF(tostring(stringBuffer:append(self.persistanceStrings.LOADING_ID):appendint(id)), self, self.persistanceStrings.LOAD_ALL)
-                recordAsBytes = self.tsUtil:getRecord(recordStore, id)
-                if recordAsBytes ~= nil then
-                    byteArrayInputStream = ByteArrayInputStream.new(recordAsBytes)
-                    inputStream = DataInputStream.new(byteArrayInputStream)
-                    hashtable = stdUtil:createHashtable()
-                    local value = 0
-                    while inputStream:available() > 0 do
-                        local gameActionInputIdAsString = inputStream:readUTF()
-                        value = math.tointeger(tonumber(gameActionInputIdAsString))
-                        gameActionInputId = value
-                        inputStream:readUTF()
-                        value = math.tointeger(tonumber(inputStream:readUTF()))
-                        inputId = value
-                        gameActionInput = gameKeyFactory:getGameKey(gameActionInputId)
-                        input = inputFactory:getInstanceById(inputId)
-                        if input == inputFactory.NO_INPUT or gameActionInput == nil then
-                            stringBuffer:delete(0, stringBuffer:length())
-                            if input == inputFactory.NO_INPUT then
-                                stringBuffer:append(self.persistanceStrings.ERROR_LOADING_ID)
-                                stringBuffer:appendlong(inputId)
-                                stringBuffer:append(self.persistanceStrings.GAME_ACTION_INPUT)
-                                stringBuffer:appendlong(gameActionInputId)
-                                PreLogUtil.put(tostring(stringBuffer), self, self.persistanceStrings.LOAD_ALL)
-                            end
-                            if gameActionInput == nil then
-                                stringBuffer:delete(0, stringBuffer:length())
-                                stringBuffer:append(self.persistanceStrings.ERROR_LOADING)
-                                stringBuffer:appendlong(gameActionInputId)
-                                stringBuffer:append(self.persistanceStrings.ID)
-                                stringBuffer:appendlong(inputId)
-                                PreLogUtil.put(tostring(stringBuffer), self, self.persistanceStrings.LOAD_ALL)
-                            end
-                        else
-                        end
-                        hashtable:put(input, gameActionInput)
-                    end
-                    self.valueList:add(hashtable)
-                    self.idList:add(smallIntegerSingletonFactory:getAt(id))
-                else
-                end
-            end
-        end)
-        if not try_ok then
-            local e = try_error
-            error(e, 0)
-        end
-        do -- finally
-            if recordStore ~= nil then
-                PreLogUtil.put(self.persistanceStrings.CLOSING_RECORDSTORE, self, self.persistanceStrings.LOAD_ALL)
-                recordStore:closeRecordStore()
-            end
-        end
-end
+    
+(unless (fboundp 'jm_save_2) (defgeneric jm_save_2 (this p1 p2)))
+(defmethod jm_save_2 ((this InputPersistance) _abeClientInformation _hashtable)
+  (declare (ignorable this _abeClientInformation _hashtable))
+  (let (_recordStore _stringBuffer _byteArrayOutputStream _outputStream _gameActionInput _list _input _savedGameBytes _commonSeps _smallIntegerSingletonFactory _inputObjectArray _size _gameActionInputIdAsString _inputIdAsString _index2 _index)
+  (declare (ignorable _recordStore _stringBuffer _byteArrayOutputStream _outputStream _gameActionInput _list _input _savedGameBytes _commonSeps _smallIntegerSingletonFactory _inputObjectArray _size _gameActionInputIdAsString _inputIdAsString _index2 _index))
+    (block jreturn
+        (setf _recordStore (NullRecordStore.jstatic_NULL_RECORD_STORE))
+        (unwind-protect (handler-case (progn
+            (setf _stringBuffer (StringMaker.jnew_0))
+            (PreLogUtil.jm_put_3 (jm_toString_0 (jm_append_1 (jm_append_1 _stringBuffer (slot-value (slot-value this 'f_persistanceStrings) 'f_SAVING)) (jm_toString_1 (StringUtil.jm_getInstance_0) _hashtable))) this (slot-value (slot-value this 'f_commonStrings) 'f_SAVE))
+            (setf _recordStore (RecordStore.jm_openRecordStore_2 (jm_getRecordId_1 this _abeClientInformation) t))
+            (setf _byteArrayOutputStream (ByteArrayOutputStream.jnew_0))
+            (setf _outputStream (DataOutputStream.jnew_1 _byteArrayOutputStream))
+            (setf _gameActionInput nil)
+            (setf _list nil)
+            (setf _input nil)
+            (setf _savedGameBytes nil)
+            (setf _commonSeps (CommonSeps.jm_getInstance_0))
+            (setf _smallIntegerSingletonFactory (SmallIntegerSingletonFactory.jm_getInstance_0))
+            (setf _inputObjectArray (jm_getKeysAsArray_1 (slot-value this 'f_hashtableUtil) _hashtable))
+            (setf _size (length _inputObjectArray))
+            (progn
+                (setf _index 0)
+                (block jbreak (loop while (< _index _size) do
+                    (block jcontinue
+                (setf _gameActionInput (aref _inputObjectArray _index))
+                (setf _list (jm_get_1 _hashtable (aref _inputObjectArray _index)))
+                (progn
+                    (setf _index2 0)
+                    (block jbreak (loop while (< _index2 (jm_size_0 _list)) do
+                        (block jcontinue
+                    (setf _gameActionInputIdAsString (JR.toString (jm_getAt_1 _smallIntegerSingletonFactory (jm_getId_0 _gameActionInput))))
+                    (jm_writeUTF_1 _outputStream _gameActionInputIdAsString)
+                    (jm_writeUTF_1 _outputStream (slot-value _commonSeps 'f_EQUALS))
+                    (setf _input (aref (slot-value _list 'f_objectArray) _index2))
+                    (setf _inputIdAsString (JR.toString (jm_getAt_1 _smallIntegerSingletonFactory (jm_getId_0 _input))))
+                    (jm_writeUTF_1 _outputStream _inputIdAsString))
+                        (setf _index2 (JR.i32 (+ _index2 1)))))))
+                    (setf _index (JR.i32 (+ _index 1))))))
+            (setf _savedGameBytes (jm_toByteArray_0 _byteArrayOutputStream))
+            (jm_addRecord_3 _recordStore _savedGameBytes 0 (length _savedGameBytes)))
+            (error (_e) (declare (ignorable _e))
+            (error _e)))
+            (progn
+            (if (not (null _recordStore))
+                (progn
+                (PreLogUtil.jm_put_3 (slot-value (slot-value this 'f_persistanceStrings) 'f_CLOSING_RECORDSTORE) this (slot-value (slot-value this 'f_commonStrings) 'f_SAVE))
+                (jm_closeRecordStore_0 _recordStore))))))))
 
 
--- throws Exception
-function InputPersistance:save(abeClientInformation, hashtable)
-        local recordStore = NullRecordStore.NULL_RECORD_STORE
-        local try_ok, try_error = pcall(function()
-            local stringBuffer = StringMaker.new()
-            PreLogUtil.put(tostring(stringBuffer:append(self.persistanceStrings.SAVING):append(StringUtil.getInstance():toString(hashtable))), self, self.commonStrings.SAVE)
-            recordStore = RecordStore.openRecordStore(self:getRecordId(abeClientInformation), true)
-            local byteArrayOutputStream = java_byte_array_output_stream()
-            local outputStream = DataOutputStream.new(byteArrayOutputStream)
-            local gameActionInput = nil
-            local list = nil
-            local input = nil
-            local savedGameBytes = nil
-            local commonSeps = CommonSeps.getInstance()
-            local smallIntegerSingletonFactory = SmallIntegerSingletonFactory.getInstance()
-            local inputObjectArray = self.hashtableUtil:getKeysAsArray(hashtable)
-            local size = (inputObjectArray.n or #inputObjectArray)
-            for index = 0, size - 1 do
-                gameActionInput = inputObjectArray[index + 1]
-                list = hashtable:get(inputObjectArray[index + 1])
-                for index2 = 0, list:size() - 1 do
-                    local gameActionInputIdAsString = tostring(smallIntegerSingletonFactory:getAt(gameActionInput:getId()))
-                    outputStream:writeUTF(gameActionInputIdAsString)
-                    outputStream:writeUTF(commonSeps.EQUALS)
-                    input = list.objectArray[index2 + 1]
-                    local inputIdAsString = tostring(smallIntegerSingletonFactory:getAt(input:getId()))
-                    outputStream:writeUTF(inputIdAsString)
-                end
-            end
-            savedGameBytes = byteArrayOutputStream:toByteArray()
-            recordStore:addRecord(savedGameBytes, 0, (savedGameBytes.n or #savedGameBytes))
-        end)
-        if not try_ok then
-            local e = try_error
-            error(e, 0)
-        end
-        do -- finally
-            if recordStore ~= nil then
-                PreLogUtil.put(self.persistanceStrings.CLOSING_RECORDSTORE, self, self.commonStrings.SAVE)
-                recordStore:closeRecordStore()
-            end
-        end
-end
-
-return InputPersistance
 

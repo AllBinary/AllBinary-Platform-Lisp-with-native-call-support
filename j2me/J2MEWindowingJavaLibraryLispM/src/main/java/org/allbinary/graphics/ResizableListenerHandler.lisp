@@ -25,6 +25,7 @@
 (defun ResizableListenerHandler.jstatic_instance ()
   (when (eq ResizableListenerHandler.jcell_instance :jnone) (setf ResizableListenerHandler.jcell_instance (ResizableListenerHandler.jnew_0)))
   ResizableListenerHandler.jcell_instance)
+(defun (setf ResizableListenerHandler.jstatic_instance) (value) (setf ResizableListenerHandler.jcell_instance value))
 
 (defun ResizableListenerHandler.jnew_0 ()
   (let ((this (make-instance 'ResizableListenerHandler)))

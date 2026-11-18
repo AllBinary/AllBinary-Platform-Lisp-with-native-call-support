@@ -1,69 +1,66 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.gyro
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.input.gyro
 
-local InputFactory = require("org.allbinary.game.input.InputFactory")
-local MotionGestureInput = require("org.allbinary.input.motion.gesture.MotionGestureInput")
-local NullUtil = require("org.allbinary.logic.NullUtil")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass OrientationMotionGestureFactory (JObject)
+  ((f_LEFT :initform nil)
+   (f_RIGHT :initform nil)
+   (f_UP :initform nil)
+   (f_DOWN :initform nil)
+   (f_ROLL_LEFT :initform nil)
+   (f_ROLL_RIGHT :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar OrientationMotionGestureFactory.jcell_instance :jnone)
+(defun OrientationMotionGestureFactory.jstatic_instance ()
+  (when (eq OrientationMotionGestureFactory.jcell_instance :jnone) (setf OrientationMotionGestureFactory.jcell_instance (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT)))
+  OrientationMotionGestureFactory.jcell_instance)
+(defun (setf OrientationMotionGestureFactory.jstatic_instance) (value) (setf OrientationMotionGestureFactory.jcell_instance value))
 
-local OrientationMotionGestureFactory = {}
-OrientationMotionGestureFactory.__index = OrientationMotionGestureFactory
-OrientationMotionGestureFactory.className = "OrientationMotionGestureFactory"
+    
+(defun OrientationMotionGestureFactory.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (if (eq (OrientationMotionGestureFactory.jstatic_instance) (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT))
+            (progn
+            (setf (OrientationMotionGestureFactory.jstatic_instance) (OrientationMotionGestureFactory.jnew_0))))
+        (return-from jreturn (OrientationMotionGestureFactory.jstatic_instance)))))
 
-function OrientationMotionGestureFactory:_init_fields()
-    self.LEFT = nil
-    self.RIGHT = nil
-    self.UP = nil
-    self.DOWN = nil
-    self.ROLL_LEFT = nil
-    self.ROLL_RIGHT = nil
-end
+    
+(defun OrientationMotionGestureFactory.jnew_0 ()
+  (let ((this (make-instance 'OrientationMotionGestureFactory)))
+    
+    
+    
+    
+    
+    
+  (let (_MAX)
+  (declare (ignorable _MAX))
+    (block jreturn
+        (setf _MAX (slot-value (InputFactory.jm_getInstance_0) 'f_MAX))
+        (setf (slot-value this 'f_LEFT) (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 20)) "Left Orient"))
+        (setf (slot-value this 'f_RIGHT) (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 21)) "Right Orient"))
+        (setf (slot-value this 'f_UP) (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 22)) "Up Orient"))
+        (setf (slot-value this 'f_DOWN) (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 23)) "Down Orient"))
+        (setf (slot-value this 'f_ROLL_LEFT) (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 24)) "Roll Left"))
+        (setf (slot-value this 'f_ROLL_RIGHT) (MotionGestureInput.jnew_2 (JR.i32 (- _MAX 25)) "Roll Right"))))
+    this))
 
 
-function OrientationMotionGestureFactory.getInstance()
-        if OrientationMotionGestureFactory.instance == NullUtil.getInstance().NULL_OBJECT then
-            OrientationMotionGestureFactory.instance = OrientationMotionGestureFactory.new()
-        end
-        return OrientationMotionGestureFactory.instance
-end
-
-
-function OrientationMotionGestureFactory.new()
-    local self = setmetatable({}, OrientationMotionGestureFactory)
-    self:_init_fields()
-        local MAX = InputFactory.getInstance().MAX
-        self.LEFT = MotionGestureInput.new(MAX - 20, "Left Orient")
-        self.RIGHT = MotionGestureInput.new(MAX - 21, "Right Orient")
-        self.UP = MotionGestureInput.new(MAX - 22, "Up Orient")
-        self.DOWN = MotionGestureInput.new(MAX - 23, "Down Orient")
-        self.ROLL_LEFT = MotionGestureInput.new(MAX - 24, "Roll Left")
-        self.ROLL_RIGHT = MotionGestureInput.new(MAX - 25, "Roll Right")
-    return self
-end
-
-OrientationMotionGestureFactory.instance = NullUtil.getInstance().NULL_OBJECT
-
-return OrientationMotionGestureFactory
 

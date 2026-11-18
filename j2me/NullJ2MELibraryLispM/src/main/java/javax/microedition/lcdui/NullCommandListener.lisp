@@ -1,33 +1,30 @@
--- Generated Code Do Not Modify
--- package javax.microedition.lcdui
+;;;; Generated Code Do Not Modify
+;;;; package javax.microedition.lcdui
 
-local CommandListener = require("javax.microedition.lcdui.CommandListener")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass NullCommandListener (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar NullCommandListener.jcell_NULL_COMMAND_LISTENER :jnone)
+(defun NullCommandListener.jstatic_NULL_COMMAND_LISTENER ()
+  (when (eq NullCommandListener.jcell_NULL_COMMAND_LISTENER :jnone) (setf NullCommandListener.jcell_NULL_COMMAND_LISTENER (NullCommandListener.jnew_0)))
+  NullCommandListener.jcell_NULL_COMMAND_LISTENER)
+(defun (setf NullCommandListener.jstatic_NULL_COMMAND_LISTENER) (value) (setf NullCommandListener.jcell_NULL_COMMAND_LISTENER value))
 
-local NullCommandListener = {}
-NullCommandListener.__index = NullCommandListener
-NullCommandListener.className = "NullCommandListener"
+(defun NullCommandListener.jnew_0 ()
+  (let ((this (make-instance 'NullCommandListener)))
+    this))
 
-function NullCommandListener.new()
-    local self = setmetatable({}, NullCommandListener)
-    return self
-end
+    
+(unless (fboundp 'jm_commandAction_2) (defgeneric jm_commandAction_2 (this p1 p2)))
+(defmethod jm_commandAction_2 ((this NullCommandListener) _c _d)
+  (declare (ignorable this _c _d))
+  (let ()
+    (block jreturn nil)))
 
 
-function NullCommandListener:commandAction(c, d)
-end
-
-NullCommandListener.NULL_COMMAND_LISTENER = NullCommandListener.new()
-
-return NullCommandListener
 

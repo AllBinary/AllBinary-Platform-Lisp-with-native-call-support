@@ -1,62 +1,56 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.pickup
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.ag.layer.pickup
 
-local NullAnimationFactory = require("org.allbinary.animation.NullAnimationFactory")
-local CountedPickedUpLayerInterfaceFactory = require("org.allbinary.game.layer.pickup.CountedPickedUpLayerInterfaceFactory")
-local PickupLayer = require("org.allbinary.game.layer.pickup.PickupLayer")
-local RemoteInfo = require("org.allbinary.game.multiplayer.layer.RemoteInfo")
-local TickableInterface = require("org.allbinary.game.tick.TickableInterface")
-local PointFactory = require("org.allbinary.graphics.PointFactory")
-local Rectangle = require("org.allbinary.graphics.Rectangle")
-local AllBinaryLayerManager = require("org.allbinary.layer.AllBinaryLayerManager")
-local ViewPosition = require("org.allbinary.view.ViewPosition")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass FallingPickupLayer (PickupLayer)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar FallingPickupLayer.jcell_NAME :jnone)
+(defun FallingPickupLayer.jstatic_NAME ()
+  (when (eq FallingPickupLayer.jcell_NAME :jnone) (setf FallingPickupLayer.jcell_NAME "FallingPickupLayer"))
+  FallingPickupLayer.jcell_NAME)
+(defun (setf FallingPickupLayer.jstatic_NAME) (value) (setf FallingPickupLayer.jcell_NAME value))
 
-local FallingPickupLayer = {}
-FallingPickupLayer.__index = FallingPickupLayer
-FallingPickupLayer.className = "FallingPickupLayer"
-setmetatable(FallingPickupLayer, {__index = PickupLayer})
+    
+(defun FallingPickupLayer.jnew_1 (_remoteInfo)
+  (declare (ignorable _remoteInfo))
+  (let ((this (make-instance 'FallingPickupLayer)))
+  (let ()
+    (block jreturn
+        nil))
+    this))
+
+    
+(unless (fboundp 'jm_processTick_1) (defgeneric jm_processTick_1 (this p1)))
+(defmethod jm_processTick_1 ((this FallingPickupLayer) _allBinaryLayerManager)
+  (declare (ignorable this _allBinaryLayerManager))
+  (let ()
+    (block jreturn
+        (jm_setPosition_3 this (slot-value this 'f_x) (JR.i32 (+ (slot-value this 'f_y) 1)) (slot-value this 'f_z)))))
+
+    
+(unless (fboundp 'jm_implmentsTickableInterface_0) (defgeneric jm_implmentsTickableInterface_0 (this)))
+(defmethod jm_implmentsTickableInterface_0 ((this FallingPickupLayer))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn t))))
 
 
-function FallingPickupLayer.new(remoteInfo)
-    local self = setmetatable(PickupLayer.new(FallingPickupLayer.NAME, remoteInfo, 0, CountedPickedUpLayerInterfaceFactory.NULL_COUNTED_PICKUP_LAYER_FACTORY, NullAnimationFactory.getFactoryInstance():getInstance(0), Rectangle.new(PointFactory.getInstance().ZERO_ZERO, 0, 0), ViewPosition.getInstanceD()), FallingPickupLayer)
-        -- super(...) made self above
-    return self
-end
-
-
-function FallingPickupLayer:processTick(allBinaryLayerManager)
-        self:setPosition(self.x, self.y + 1, self.z)
-end
-
-
-function FallingPickupLayer:implmentsTickableInterface()
-        return true
-end
-
-FallingPickupLayer.NAME = "FallingPickupLayer"
-
-return FallingPickupLayer
 

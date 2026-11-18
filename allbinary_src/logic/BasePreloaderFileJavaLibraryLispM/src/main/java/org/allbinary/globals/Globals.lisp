@@ -1,87 +1,79 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.globals
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.globals
 
-local LogUtil = require("org.allbinary.logic.communication.log.LogUtil")
-local StringMaker = require("org.allbinary.logic.string.StringMaker")
-local StringValidationUtil = require("org.allbinary.logic.string.StringValidationUtil")
-local WebappClassLoaderInfo = require("org.allbinary.logic.system.loader.WebappClassLoaderInfo")
-local CommonSeps = require("org.allbinary.string.CommonSeps")
-local CommonStrings = require("org.allbinary.string.CommonStrings")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass Globals (JObject)
+  ((f_logUtil :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar Globals.jcell_instance :jnone)
+(defun Globals.jstatic_instance ()
+  (when (eq Globals.jcell_instance :jnone) (setf Globals.jcell_instance (Globals.jnew_0)))
+  Globals.jcell_instance)
+(defun (setf Globals.jstatic_instance) (value) (setf Globals.jcell_instance value))
 
-local Globals = {}
-Globals.__index = Globals
-Globals.className = "Globals"
+    
+(defun Globals.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (Globals.jstatic_instance)))))
 
-function Globals:_init_fields()
-    self.logUtil = LogUtil.getInstance()
-end
+    
+(defun Globals.jnew_0 ()
+  (let ((this (make-instance 'Globals)))
+    (setf (slot-value this 'f_logUtil) (LogUtil.jm_getInstance_0))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(unless (fboundp 'jm_init_2) (defgeneric jm_init_2 (this p1 p2)))
+(defmethod jm_init_2 ((this Globals) _classLoader _pathString)
+  (declare (ignorable this _classLoader _pathString))
+  (let (_commonStrings _appUrlGlobals _stringBuffer _stringValidationUtil)
+  (declare (ignorable _commonStrings _appUrlGlobals _stringBuffer _stringValidationUtil))
+    (block jreturn
+        (setf _commonStrings (CommonStrings.jm_getInstance_0))
+        (setf _appUrlGlobals (AppUrlGlobals.jnew_0))
+        (jm_setWebappPath_1 _appUrlGlobals _pathString)
+        (URLGLOBALS.jm_init_1 _appUrlGlobals)
+        (WebappClassLoaderInfo.jm_setLoader_1 _classLoader)
+        (setf _stringBuffer (StringMaker.jnew_0))
+        (jm_append_1 _stringBuffer "Setting Up AllBinary System Configuration Args: ")
+        (jm_append_1 _stringBuffer _pathString)
+        (jm_append_1 _stringBuffer " ClassLoader: ")
+        (jm_append_1 _stringBuffer (JR.className _classLoader))
+        (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 _stringBuffer) this (slot-value _commonStrings 'f_INIT))
+        (setf _stringValidationUtil (StringValidationUtil.jm_getInstance_0))
+        (if (jm_isEmpty_1 _stringValidationUtil _pathString)
+            (progn
+            (jm_delete_2 _stringBuffer 0 (jm_length_0 _stringBuffer))
+            (jm_append_1 _stringBuffer "No Path Provided. Using Process Path: ")
+            (jm_append_1 _stringBuffer _pathString)
+            (jm_append_1 _stringBuffer (slot-value (CommonSeps.jm_getInstance_0) 'f_SPACE))
+            (jm_append_1 _stringBuffer (slot-value (CommonSeps.jm_getInstance_0) 'f_EQUALS))
+            (jm_append_1 _stringBuffer (slot-value (CommonSeps.jm_getInstance_0) 'f_SPACE))
+            (jm_append_1 _stringBuffer (URLGLOBALS.jm_getWebappPath_0))
+            (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 _stringBuffer) this (slot-value _commonStrings 'f_INIT))))
+        (jm_delete_2 _stringBuffer 0 (jm_length_0 _stringBuffer))
+        (jm_append_1 _stringBuffer "Webapp Path Set To: ")
+        (jm_append_1 _stringBuffer (URLGLOBALS.jm_getWebappPath_0))
+        (jm_putF_3 (slot-value this 'f_logUtil) (jm_toString_0 _stringBuffer) this (slot-value _commonStrings 'f_INIT)))))
 
 
-function Globals.getInstance()
-        return Globals.instance
-end
-
-
-function Globals.new()
-    local self = setmetatable({}, Globals)
-    self:_init_fields()
-    return self
-end
-
-
-function Globals:init(classLoader, pathString)
-        local commonStrings = CommonStrings.getInstance()
-        local appUrlGlobals = AppUrlGlobals.new()
-        appUrlGlobals:setWebappPath(pathString)
-        self.URLGLOBALS:init(appUrlGlobals)
-        WebappClassLoaderInfo.setLoader(classLoader)
-        local stringBuffer = StringMaker.new()
-        stringBuffer:append("Setting Up AllBinary System Configuration Args: ")
-        stringBuffer:append(pathString)
-        stringBuffer:append(" ClassLoader: ")
-        stringBuffer:append(getmetatable(classLoader).className)
-        self.logUtil:putF(tostring(stringBuffer), self, commonStrings.INIT)
-        local stringValidationUtil = StringValidationUtil.getInstance()
-        if stringValidationUtil:isEmpty(pathString) then
-            stringBuffer:delete(0, stringBuffer:length())
-            stringBuffer:append("No Path Provided. Using Process Path: ")
-            stringBuffer:append(pathString)
-            stringBuffer:append(CommonSeps.getInstance().SPACE)
-            stringBuffer:append(CommonSeps.getInstance().EQUALS)
-            stringBuffer:append(CommonSeps.getInstance().SPACE)
-            stringBuffer:append(self.URLGLOBALS:getWebappPath())
-            self.logUtil:putF(tostring(stringBuffer), self, commonStrings.INIT)
-        end
-        stringBuffer:delete(0, stringBuffer:length())
-        stringBuffer:append("Webapp Path Set To: ")
-        stringBuffer:append(self.URLGLOBALS:getWebappPath())
-        self.logUtil:putF(tostring(stringBuffer), self, commonStrings.INIT)
-end
-
-Globals.instance = Globals.new()
-
-return Globals
 

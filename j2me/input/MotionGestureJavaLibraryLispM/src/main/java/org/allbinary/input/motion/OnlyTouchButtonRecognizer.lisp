@@ -1,76 +1,69 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.input.motion
 
-local TouchButtonRecognizer = require("org.allbinary.input.motion.button.TouchButtonRecognizer")
-local MotionRecognizer = require("org.allbinary.input.motion.MotionRecognizer")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass OnlyTouchButtonRecognizer (MotionRecognizer)
+  ((f_touchButtonRecognizer :initform nil)
+   (f_touchButtonProcessing :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+    
+(defun OnlyTouchButtonRecognizer.jnew_0 ()
+  (let ((this (make-instance 'OnlyTouchButtonRecognizer)))
+    
+    (setf (slot-value this 'f_touchButtonProcessing) nil)
+  (let ()
+    (block jreturn
+        (setf (slot-value this 'f_touchButtonRecognizer) (TouchButtonRecognizer.jnew_0))))
+    this))
 
-local OnlyTouchButtonRecognizer = {}
-OnlyTouchButtonRecognizer.__index = OnlyTouchButtonRecognizer
-OnlyTouchButtonRecognizer.className = "OnlyTouchButtonRecognizer"
-setmetatable(OnlyTouchButtonRecognizer, {__index = MotionRecognizer})
+    
+(unless (fboundp 'jm_processStartMotionEvent_4) (defgeneric jm_processStartMotionEvent_4 (this p1 p2 p3 p4)))
+(defmethod jm_processStartMotionEvent_4 ((this OnlyTouchButtonRecognizer) _x _y _deviceId _modifiers)
+  (declare (ignorable this _x _y _deviceId _modifiers))
+  (let ()
+    (block jreturn
+        (if (jm_pressTouchButtonInput_3 (slot-value this 'f_touchButtonRecognizer) _x _y _deviceId)
+            (progn
+            (setf (slot-value this 'f_touchButtonProcessing) t))))))
 
-function OnlyTouchButtonRecognizer:_init_fields()
-    self.touchButtonRecognizer = nil
-    self.touchButtonProcessing = false
-end
+    
+(unless (fboundp 'jm_processEndMotionEvent_4) (defgeneric jm_processEndMotionEvent_4 (this p1 p2 p3 p4)))
+(defmethod jm_processEndMotionEvent_4 ((this OnlyTouchButtonRecognizer) _x _y _deviceId _modifiers)
+  (declare (ignorable this _x _y _deviceId _modifiers))
+  (let ()
+    (block jreturn
+        (if (slot-value this 'f_touchButtonProcessing)
+            (progn
+            (setf (slot-value this 'f_touchButtonProcessing) nil)))
+        (if (jm_releaseTouchButtonInput_3 (slot-value this 'f_touchButtonRecognizer) _x _y _deviceId)
+            (progn
+            (return-from jreturn))))))
 
-
-function OnlyTouchButtonRecognizer.new()
-    local self = setmetatable(MotionRecognizer.new(), OnlyTouchButtonRecognizer)
-    self:_init_fields()
-        self.touchButtonRecognizer = TouchButtonRecognizer.new()
-    return self
-end
-
-
--- throws Exception
-function OnlyTouchButtonRecognizer:processStartMotionEvent(x, y, deviceId, modifiers)
-        if self.touchButtonRecognizer:pressTouchButtonInput(x, y, deviceId) then
-            self.touchButtonProcessing = true
-        end
-end
-
-
--- throws Exception
-function OnlyTouchButtonRecognizer:processEndMotionEvent(x, y, deviceId, modifiers)
-        if self.touchButtonProcessing then
-            self.touchButtonProcessing = false
-        end
-        if self.touchButtonRecognizer:releaseTouchButtonInput(x, y, deviceId) then
-            return
-        end
-end
+    
+(unless (fboundp 'jm_processDraggedMotionEvent_4) (defgeneric jm_processDraggedMotionEvent_4 (this p1 p2 p3 p4)))
+(defmethod jm_processDraggedMotionEvent_4 ((this OnlyTouchButtonRecognizer) _x _y _deviceId _modifiers)
+  (declare (ignorable this _x _y _deviceId _modifiers))
+  (let ()
+    (block jreturn
+        (if (slot-value this 'f_touchButtonProcessing)
+            (progn
+            (jm_pressTouchButtonInput_3 (slot-value this 'f_touchButtonRecognizer) _x _y _deviceId))))))
 
 
--- throws Exception
-function OnlyTouchButtonRecognizer:processDraggedMotionEvent(x, y, deviceId, modifiers)
-        if self.touchButtonProcessing then
-            self.touchButtonRecognizer:pressTouchButtonInput(x, y, deviceId)
-        end
-end
-
-return OnlyTouchButtonRecognizer
 

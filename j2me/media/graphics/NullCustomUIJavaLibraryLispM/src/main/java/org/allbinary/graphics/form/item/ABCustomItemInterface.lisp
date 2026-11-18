@@ -1,48 +1,47 @@
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form.item
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.graphics.form.item
 
--- local Graphics = require("javax.microedition.lcdui.Graphics")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass ABCustomItemInterface (JObject)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defun ABCustomItemInterface.jnew_0 ()
+  (let ((this (make-instance 'ABCustomItemInterface)))
+    this))
 
--- Java interface
-local ABCustomItemInterface = {}
-ABCustomItemInterface.__index = ABCustomItemInterface
-ABCustomItemInterface.className = "ABCustomItemInterface"
+    
+(unless (fboundp 'jm_getMinimumWidth_0) (defgeneric jm_getMinimumWidth_0 (this)))
+(defmethod jm_getMinimumWidth_0 ((this ABCustomItemInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "getMinimumWidth")))
+
+    
+(unless (fboundp 'jm_getMinimumHeight_0) (defgeneric jm_getMinimumHeight_0 (this)))
+(defmethod jm_getMinimumHeight_0 ((this ABCustomItemInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "getMinimumHeight")))
+
+    
+(unless (fboundp 'jm_getLabel_0) (defgeneric jm_getLabel_0 (this)))
+(defmethod jm_getLabel_0 ((this ABCustomItemInterface))
+  (declare (ignorable this))
+  (error (JR.newException "AbstractMethodError" "getLabel")))
+
+    
+(unless (fboundp 'jm_paintXY_3) (defgeneric jm_paintXY_3 (this p1 p2 p3)))
+(defmethod jm_paintXY_3 ((this ABCustomItemInterface) _graphics _x _y)
+  (declare (ignorable this _graphics _x _y))
+  (error (JR.newException "AbstractMethodError" "paintXY")))
+
+    
+(unless (fboundp 'jm_paintUnselected_3) (defgeneric jm_paintUnselected_3 (this p1 p2 p3)))
+(defmethod jm_paintUnselected_3 ((this ABCustomItemInterface) _graphics _x _y)
+  (declare (ignorable this _graphics _x _y))
+  (error (JR.newException "AbstractMethodError" "paintUnselected")))
 
 
-function ABCustomItemInterface:getMinimumWidth()
-    error("abstract method getMinimumWidth")
-end
-
-
-function ABCustomItemInterface:getMinimumHeight()
-    error("abstract method getMinimumHeight")
-end
-
-
-function ABCustomItemInterface:getLabel()
-    error("abstract method getLabel")
-end
-
-
-function ABCustomItemInterface:paintXY(graphics, x, y)
-    error("abstract method paintXY")
-end
-
-
-function ABCustomItemInterface:paintUnselected(graphics, x, y)
-    error("abstract method paintUnselected")
-end
-
-return ABCustomItemInterface
 

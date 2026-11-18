@@ -1,51 +1,46 @@
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
+;;;; 
+;;;; AllBinary Open License Version 1 
+;;;; Copyright (c) 2022 AllBinary 
+;;;;  
+;;;; By agreeing to this license you and any business entity you represent are 
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement. 
+;;;;  
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from 
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
+;;;;  
+;;;; Created By: Travis Berthelot 
+;;;;   
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.media.audio
 
-local StringUtil = require("org.allbinary.logic.string.StringUtil")
-local Sound = require("org.allbinary.media.audio.Sound")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass NoSound (Sound)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar NoSound.jcell_instance :jnone)
+(defun NoSound.jstatic_instance ()
+  (when (eq NoSound.jcell_instance :jnone) (setf NoSound.jcell_instance (NoSound.jnew_0)))
+  NoSound.jcell_instance)
+(defun (setf NoSound.jstatic_instance) (value) (setf NoSound.jcell_instance value))
 
-local NoSound = {}
-NoSound.__index = NoSound
-NoSound.className = "NoSound"
-setmetatable(NoSound, {__index = Sound})
+    
+(defun NoSound.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (NoSound.jstatic_instance)))))
+
+    
+(defun NoSound.jnew_0 ()
+  (let ((this (make-instance 'NoSound)))
+  (let ()
+    (block jreturn
+        nil
+        (jm_setPlayerP_1 this (NoPlayer.jstatic_NO_PLAYER))))
+    this))
 
 
-function NoSound.getInstance()
-        return NoSound.instance
-end
-
-
-function NoSound.new()
-    local self = setmetatable(Sound.new(StringUtil.getInstance().EMPTY_STRING), NoSound)
-        -- super(...) made self above
-        self:setPlayerP(NoPlayer.NO_PLAYER)
-    return self
-end
-
-NoSound.instance = NoSound.new()
-
-return NoSound
 

@@ -1,42 +1,40 @@
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.game.displayable.canvas
 
--- local Canvas = require("javax.microedition.lcdui.Canvas")
--- local Graphics = require("javax.microedition.lcdui.Graphics")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+;Temp should not be in any build
+(defclass NullDisplayable (Canvas)
+  ())
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar NullDisplayable.jcell_SINGLETON :jnone)
+(defun NullDisplayable.jstatic_SINGLETON ()
+  (when (eq NullDisplayable.jcell_SINGLETON :jnone) (setf NullDisplayable.jcell_SINGLETON (NullDisplayable.jnew_0)))
+  NullDisplayable.jcell_SINGLETON)
+(defun (setf NullDisplayable.jstatic_SINGLETON) (value) (setf NullDisplayable.jcell_SINGLETON value))
 
---Temp should not be in any build
-local NullDisplayable = {}
-NullDisplayable.__index = NullDisplayable
-NullDisplayable.className = "NullDisplayable"
-setmetatable(NullDisplayable, {__index = Canvas})
+    
+(defun NullDisplayable.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (return-from jreturn (NullDisplayable.jstatic_SINGLETON)))))
+
+    
+(defun NullDisplayable.jnew_0 ()
+  (let ((this (make-instance 'NullDisplayable)))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(unless (fboundp 'jm_paint_1) (defgeneric jm_paint_1 (this p1)))
+(defmethod jm_paint_1 ((this NullDisplayable) _graphics)
+  (declare (ignorable this _graphics))
+  (let ()
+    (block jreturn nil)))
 
 
-function NullDisplayable.getInstance()
-        return NullDisplayable.SINGLETON
-end
-
-
-function NullDisplayable.new()
-    local self = setmetatable(Canvas.new(), NullDisplayable)
-    return self
-end
-
-
-function NullDisplayable:paint(graphics)
-end
-
-NullDisplayable.SINGLETON = NullDisplayable.new()
-
-return NullDisplayable
 

@@ -1,72 +1,74 @@
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input
+;;;;
+;;;; AllBinary Open License Version 1
+;;;; Copyright (c) 2011 AllBinary
+;;;; 
+;;;; By agreeing to this license you and any business entity you represent are
+;;;; legally bound to the AllBinary Open License Version 1 legal agreement.
+;;;; 
+;;;; You may obtain the AllBinary Open License Version 1 legal agreement from
+;;;; AllBinary or the root directory of AllBinary's AllBinary Platform repository.
+;;;; 
+;;;; Created By: Travis Berthelot
+;;;;  
+;;;; Generated Code Do Not Modify
+;;;; package org.allbinary.input
 
-local NullUtil = require("org.allbinary.logic.NullUtil")
-local BasicArrayList = require("org.allbinary.util.BasicArrayList")
-local BasicArrayListD = require("org.allbinary.util.BasicArrayListD")
+(in-package :allbinary)
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (setf *readtable* (copy-readtable))
+  (setf (readtable-case *readtable*) :invert))
 
-local function java_idiv(a, b)
-    local q = a / b
-    if q < 0 then return math.ceil(q) end
-    return math.floor(q)
-end
+(defclass AllBinarySensorManager (JObject)
+  ((f_ORIENTATION_SENSOR_INPUT :initform nil)
+   (f_ORIENTATION_TYPE :initform nil)
+   (f_list :initform nil)))
 
-local function java_int(value)
-    if value < 0 then return math.tointeger(math.ceil(value)) end
-    return math.tointeger(math.floor(value))
-end
+(defvar AllBinarySensorManager.jcell_instance :jnone)
+(defun AllBinarySensorManager.jstatic_instance ()
+  (when (eq AllBinarySensorManager.jcell_instance :jnone) (setf AllBinarySensorManager.jcell_instance (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT)))
+  AllBinarySensorManager.jcell_instance)
+(defun (setf AllBinarySensorManager.jstatic_instance) (value) (setf AllBinarySensorManager.jcell_instance value))
 
-local AllBinarySensorManager = {}
-AllBinarySensorManager.__index = AllBinarySensorManager
-AllBinarySensorManager.className = "AllBinarySensorManager"
+    
+(defun AllBinarySensorManager.jm_getInstance_0 ()
+  (let ()
+    (block jreturn
+        (if (eq (AllBinarySensorManager.jstatic_instance) (slot-value (NullUtil.jm_getInstance_0) 'f_NULL_OBJECT))
+            (progn
+            (setf (AllBinarySensorManager.jstatic_instance) (AllBinarySensorManager.jnew_0))))
+        (return-from jreturn (AllBinarySensorManager.jstatic_instance)))))
 
-function AllBinarySensorManager:_init_fields()
-    self.ORIENTATION_SENSOR_INPUT = "Orientation Sensor Input"
-    self.ORIENTATION_TYPE = "Orientation Type"
-    self.list = BasicArrayListD.new()
-end
+    
+(defun AllBinarySensorManager.jnew_0 ()
+  (let ((this (make-instance 'AllBinarySensorManager)))
+    (setf (slot-value this 'f_ORIENTATION_SENSOR_INPUT) "Orientation Sensor Input")
+    (setf (slot-value this 'f_ORIENTATION_TYPE) "Orientation Type")
+    (setf (slot-value this 'f_list) (BasicArrayListD.jnew_0))
+  (let ()
+    (block jreturn nil))
+    this))
+
+    
+(unless (fboundp 'jm_init_0) (defgeneric jm_init_0 (this)))
+(defmethod jm_init_0 ((this AllBinarySensorManager))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
+
+    
+(unless (fboundp 'jm_getSensorNamesList_0) (defgeneric jm_getSensorNamesList_0 (this)))
+(defmethod jm_getSensorNamesList_0 ((this AllBinarySensorManager))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn
+        (return-from jreturn (slot-value this 'f_list)))))
+
+    
+(unless (fboundp 'jm_shutdown_0) (defgeneric jm_shutdown_0 (this)))
+(defmethod jm_shutdown_0 ((this AllBinarySensorManager))
+  (declare (ignorable this))
+  (let ()
+    (block jreturn nil)))
 
 
-function AllBinarySensorManager.getInstance()
-        if AllBinarySensorManager.instance == NullUtil.getInstance().NULL_OBJECT then
-            AllBinarySensorManager.instance = AllBinarySensorManager.new()
-        end
-        return AllBinarySensorManager.instance
-end
-
-
-function AllBinarySensorManager.new()
-    local self = setmetatable({}, AllBinarySensorManager)
-    self:_init_fields()
-    return self
-end
-
-
-function AllBinarySensorManager:init()
-end
-
-
-function AllBinarySensorManager:getSensorNamesList()
-        return self.list
-end
-
-
-function AllBinarySensorManager:shutdown()
-end
-
-AllBinarySensorManager.instance = NullUtil.getInstance().NULL_OBJECT
-
-return AllBinarySensorManager
 
