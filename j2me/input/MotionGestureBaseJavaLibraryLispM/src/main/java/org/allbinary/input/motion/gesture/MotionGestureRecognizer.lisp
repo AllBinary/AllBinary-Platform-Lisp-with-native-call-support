@@ -121,7 +121,7 @@
             (progn
             (setf _diagonalToleranceHigher (coerce (JR.i32 (- 90 (jm_getDiagonalTolerance_0 _conf))) 'double-float))
             (setf _diagonalToleranceLower (coerce (jm_getDiagonalTolerance_0 _conf) 'double-float))))
-        (if (> _absGradient (tan (toRadians _diagonalToleranceHigher)))
+        (if (> _absGradient (tan (JR.toRadians _diagonalToleranceHigher)))
             (progn
             (if (> (jm_getDeltaY_0 (slot-value this 'f_line)) 0)
                 (progn
@@ -129,7 +129,7 @@
                 (progn
                 (setf _newMotionGesture (slot-value _touchMotionGestureFactory 'f_DOWN)))))
             (progn
-            (if (< _absGradient (tan (toRadians _diagonalToleranceLower)))
+            (if (< _absGradient (tan (JR.toRadians _diagonalToleranceLower)))
                 (progn
                 (if (> (jm_getDeltaX_0 (slot-value this 'f_line)) 0)
                     (progn

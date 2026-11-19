@@ -43,7 +43,7 @@
   (declare (ignorable this _value))
   (let ()
     (block jreturn
-        (return-from jreturn (round _value)))))
+        (return-from jreturn (JR.round _value)))))
 
     
 (unless (fboundp 'jm_abs_1) (defgeneric jm_abs_1 (this p1)))

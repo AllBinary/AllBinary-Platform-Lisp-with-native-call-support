@@ -40,8 +40,8 @@
     (block jreturn
         (setf _buttonSize (slot-value (CommonButtons.jm_getInstance_0) 'f_STANDARD_BUTTON_SIZE))
         (setf _displayInfo (DisplayInfoSingleton.jm_getInstance_0))
-        (setf (slot-value this 'f_totalColumns) (round (/ (coerce (jm_getLastWidth_0 _displayInfo) 'single-float) (coerce _buttonSize 'single-float))))
-        (setf (slot-value this 'f_totalRows) (round (/ (coerce (jm_getLastHeight_0 _displayInfo) 'single-float) (coerce _buttonSize 'single-float))))
+        (setf (slot-value this 'f_totalColumns) (JR.round (/ (coerce (jm_getLastWidth_0 _displayInfo) 'single-float) (coerce _buttonSize 'single-float))))
+        (setf (slot-value this 'f_totalRows) (JR.round (/ (coerce (jm_getLastHeight_0 _displayInfo) 'single-float) (coerce _buttonSize 'single-float))))
         (setf (slot-value this 'f_columnsRemainder) (rem (jm_getLastWidth_0 _displayInfo) _buttonSize))
         (setf (slot-value this 'f_columnsRemainderHalf) (ash (slot-value this 'f_columnsRemainder) (- (logand 1 31))))
         (setf (slot-value this 'f_rowsRemainder) (rem (jm_getLastHeight_0 _displayInfo) _buttonSize))

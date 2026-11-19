@@ -35,9 +35,9 @@
   (let ((this (make-instance 'WeaponLayerArrayLayerCircularStaticPool)))
     (setf (slot-value this 'f_MAX) 5)
     (setf (slot-value this 'f_circularIndexUtil) (CircularIndexUtil.jm_createInstance_1 (slot-value this 'f_MAX)))
-    
-    
-    
+    (setf (slot-value this 'f_WEAPONLAYER_ARRAY) (JR.newArray nil (JR.i32 (* (slot-value this 'f_MAX) 2))))
+    (setf (slot-value this 'f_TWO_WEAPONLAYER_ARRAY) (JR.newArray nil (slot-value this 'f_MAX)))
+    (setf (slot-value this 'f_THREE_WEAPONLAYER_ARRAY) (JR.newArray nil (slot-value this 'f_MAX)))
     this))
 
     
@@ -50,23 +50,20 @@
 (unless (fboundp 'jm_init_0) (defgeneric jm_init_0 (this)))
 (defmethod jm_init_0 ((this WeaponLayerArrayLayerCircularStaticPool))
   (declare (ignorable this))
-  (let (_WEAPONLAYER_ARRAY _TWO_WEAPONLAYER_ARRAY _THREE_WEAPONLAYER_ARRAY _index)
-  (declare (ignorable _WEAPONLAYER_ARRAY _TWO_WEAPONLAYER_ARRAY _THREE_WEAPONLAYER_ARRAY _index))
+  (let (_index)
+  (declare (ignorable _index))
     (block jreturn
-        (setf _WEAPONLAYER_ARRAY (JR.newArray nil (JR.i32 (* (slot-value this 'f_MAX) 2))))
-        (setf _TWO_WEAPONLAYER_ARRAY (JR.newArray nil (slot-value this 'f_MAX)))
-        (setf _THREE_WEAPONLAYER_ARRAY (JR.newArray nil (slot-value this 'f_MAX)))
         (progn
             (setf _index 0)
             (block jbreak (loop while (< _index (slot-value this 'f_MAX)) do
                 (block jcontinue
-            (setf (aref _WEAPONLAYER_ARRAY _index) (JR.newArray nil 1))
-            (setf (aref _TWO_WEAPONLAYER_ARRAY _index) (JR.newArray nil 2))
-            (setf (aref _THREE_WEAPONLAYER_ARRAY _index) (JR.newArray nil 3)))
+            (setf (aref (slot-value this 'f_WEAPONLAYER_ARRAY) _index) (JR.newArray nil 1))
+            (setf (aref (slot-value this 'f_TWO_WEAPONLAYER_ARRAY) _index) (JR.newArray nil 2))
+            (setf (aref (slot-value this 'f_THREE_WEAPONLAYER_ARRAY) _index) (JR.newArray nil 3)))
                 (setf _index (JR.i32 (+ _index 1))))))
-        (setf (slot-value this 'f_WEAPONLAYER_ARRAY) _WEAPONLAYER_ARRAY)
-        (setf (slot-value this 'f_TWO_WEAPONLAYER_ARRAY) _TWO_WEAPONLAYER_ARRAY)
-        (setf (slot-value this 'f_THREE_WEAPONLAYER_ARRAY) _THREE_WEAPONLAYER_ARRAY))))
+        (setf (slot-value this 'f_WEAPONLAYER_ARRAY) (slot-value this 'f_WEAPONLAYER_ARRAY))
+        (setf (slot-value this 'f_TWO_WEAPONLAYER_ARRAY) (slot-value this 'f_TWO_WEAPONLAYER_ARRAY))
+        (setf (slot-value this 'f_THREE_WEAPONLAYER_ARRAY) (slot-value this 'f_THREE_WEAPONLAYER_ARRAY)))))
 
     
 (unless (fboundp 'jm_getWeaponLayerArrays_1) (defgeneric jm_getWeaponLayerArrays_1 (this p1)))
